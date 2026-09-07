@@ -1,0 +1,38 @@
+:root { --tc-stash-fab-size: 2.75rem; --tc-stash-fab-col-gap: 0.65rem; }
+.tc-stash-float-root {
+    position: fixed; z-index: 55; pointer-events: none;
+    right: max(1rem, env(safe-area-inset-right, 0px));
+    bottom: max(5.5rem, calc(env(safe-area-inset-bottom, 0px) + 4.5rem));
+    display: flex; flex-direction: column; align-items: flex-end; gap: var(--tc-stash-fab-col-gap);
+}
+#tc-stash-rail-float-wrap, #tc-stash-save-fab-wrap { pointer-events: auto; display: flex; flex-direction: column; align-items: center; gap: var(--tc-stash-fab-col-gap); }
+#tc-stash-rail-expand-btn, #tc-stash-open-btn, #tc-back-to-top-btn {
+    box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center;
+    width: var(--tc-stash-fab-size); height: var(--tc-stash-fab-size); border-radius: 9999px;
+    border: 1px solid rgba(255,255,255,.5); color: #fff; cursor: pointer; touch-action: manipulation;
+    box-shadow: 0 10px 28px rgba(99,102,241,.35), inset 0 1px 0 rgba(255,255,255,.22);
+}
+#tc-stash-rail-expand-btn { background: linear-gradient(135deg,#0f766e 0%,#14b8a6 48%,#2dd4bf 100%); }
+#tc-stash-rail-expand-btn.tc-stash-rail-expand-btn--active { background: linear-gradient(135deg,#115e59 0%,#0f766e 100%); }
+#tc-stash-open-btn { background: linear-gradient(135deg,#7c3aed 0%,#6366f1 50%,#4f46e5 100%); min-width: var(--tc-stash-fab-size); padding: 0 .65rem; width: auto; font-size: .75rem; font-weight: 700; }
+#tc-stash-open-btn.tc-stash-open-btn--blocked { opacity: .55; cursor: not-allowed; }
+#tc-back-to-top-btn { background: linear-gradient(145deg,rgba(15,23,42,.94) 0%,rgba(30,41,59,.94) 100%); opacity: 0; transform: translateY(10px) scale(.88); pointer-events: none; transition: opacity .2s, transform .2s; }
+#tc-back-to-top-btn.tc-back-to-top-btn--visible { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+.tc-stash-rail-fab-icon, #tc-back-to-top-icon { width: 1.2rem; height: 1.2rem; }
+#tc-stash-rail-col {
+    position: fixed; z-index: 56; width: min(22rem, calc(100vw - 1.5rem)); max-height: min(calc(100dvh - 11rem), 20rem);
+    display: flex; flex-direction: column; border-radius: 1rem; overflow: hidden;
+    border: 1px solid rgba(148,163,184,.35); background: rgba(255,255,255,.98);
+    box-shadow: 0 18px 48px -12px rgba(15,23,42,.28); pointer-events: auto;
+}
+#tc-stash-rail-col.tc-stash-rail-col--collapsed { display: none !important; visibility: hidden !important; pointer-events: none !important; }
+.tc-stash-rail-drag-handle {
+    display: flex; align-items: center; gap: .5rem; padding: .55rem .75rem; cursor: grab; touch-action: none;
+    background: linear-gradient(135deg,#4338ca 0%,#6366f1 100%); color: #fff; font-size: .8125rem; font-weight: 600;
+}
+.tc-stash-rail-close-btn { margin-left: auto; border: none; background: transparent; color: inherit; font-size: 1.25rem; line-height: 1; cursor: pointer; padding: .15rem .35rem; border-radius: .35rem; }
+.tc-stash-drawer-list-panel { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+#tc-stash-list { flex: 1 1 auto; min-height: 4.5rem; max-height: 10.5rem; overflow: auto; }
+.tc-stash-modal.hidden { display: none !important; }
+.tc-stash-modal.flex { display: flex !important; }
+body.tc-workspace-docs #tc-stash-rail-col, body.tc-workspace-docs #tc-stash-rail-float-wrap, body.tc-workspace-docs #tc-stash-save-fab-wrap { display: none !important; }

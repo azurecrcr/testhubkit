@@ -1,0 +1,14 @@
+{# 全站页面切换加载层：拦截同源导航链接 #}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hf_page_nav_loading.css') }}?v=20260620navload1">
+<div id="hf-page-nav-loading" class="hf-page-nav-loading" aria-hidden="true" aria-live="polite" aria-busy="false">
+    <div class="hf-page-nav-loading__panel" role="status" aria-label="正在加载页面">
+        <div class="hf-page-nav-loading__ring" aria-hidden="true">
+            <span class="hf-page-nav-loading__ring-track"></span>
+            <span class="hf-page-nav-loading__ring-arc"></span>
+        </div>
+        <div class="hf-page-nav-loading__dots" aria-hidden="true">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/hf_page_nav_loading.js') }}?v=20260728exportload1" defer></script>

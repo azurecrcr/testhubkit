@@ -1,0 +1,108 @@
+/**
+ * 配置元件 · 树形卡片启用/停用分段切换（计数器 + HTTP 管理器）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-counter-enable-seg,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-mgr-enable-seg {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 2px;
+    margin-right: 0.15rem;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.12);
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-counter-enable-seg__btn,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-mgr-enable-seg__btn {
+    border: none;
+    background: transparent;
+    padding: 0.16rem 0.48rem;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #64748b;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-counter-enable-seg__btn:hover:not(.is-active),
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-mgr-enable-seg__btn:hover:not(.is-active) {
+    color: #334155;
+    background: rgba(255, 255, 255, 0.45);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-counter-enable-seg__btn.is-active[data-counter-enable-val="1"],
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-mgr-enable-seg__btn.is-active[data-mgr-enable-val="1"] {
+    background: #fff;
+    color: #0f766e;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-counter-enable-seg__btn.is-active[data-counter-enable-val="0"],
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-mgr-enable-seg__btn.is-active[data-mgr-enable-val="0"] {
+    background: #fff;
+    color: #94a3b8;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-aux-card--tg-config-counter .jms-aux-card__stripe,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-aux-card--http-mount-config-counter .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #14b8a6, #0d9488) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-aux-card--tg-config-counter.is-disabled .jms-aux-card__stripe,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-aux-card--http-mount-config-counter.is-disabled .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #cbd5e1, #94a3b8) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-aux-card--tg-config-counter .jms-aux-type,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-aux-card--http-mount-config-counter .jms-aux-type {
+    color: #0f766e;
+    background: rgba(204, 251, 241, 0.85);
+    border: 1px solid rgba(45, 212, 191, 0.35);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-aux-card--tg-config-counter.is-disabled .jms-aux-name,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-aux-card--http-mount-config-counter.is-disabled .jms-aux-name {
+    color: #94a3b8;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-http-card__actions.lth-step-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.12rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-config-card-toolbar {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    align-self: center;
+    gap: 0.12rem;
+    margin-right: 0.35rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-aux-card--tg-config-mgr.is-disabled .jms-aux-card__stripe,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-aux-card--http-mount-config-mgr.is-disabled .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #cbd5e1, #94a3b8) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-aux-card--tg-config-mgr.is-disabled .jms-aux-name,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-aux-card--http-mount-config-mgr.is-disabled .jms-aux-name {
+    color: #94a3b8;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-http-context__config-row.is-disabled .jms-http-context__config-name {
+    color: #94a3b8;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-aux-card--if-mount.jms-aux-card--http-mount-config-counter .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #14b8a6, #0d9488) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-aux-card--if-mount.jms-aux-card--http-mount-config-counter.is-disabled .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #cbd5e1, #94a3b8) !important;
+}

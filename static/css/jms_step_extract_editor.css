@@ -1,0 +1,21 @@
+/* 压测造数 · 步骤编辑抽屉 · JSON 提取器多行列表 */
+#modal-step-edit .jms-step-extract-list .jms-extract-row .jms-extract-path {
+    flex: 1.35 1 0;
+    min-width: 0;
+}
+
+#modal-step-edit .jms-step-extract-list .jms-extract-row .jms-extract-var {
+    flex: 0.85 1 0;
+    min-width: 0;
+}
+
+#modal-step-edit .jms-step-extract-head {
+    display: grid;
+    grid-template-columns: 1.35fr 0.85fr 1.75rem;
+    gap: 0.35rem;
+    margin-bottom: 0.25rem;
+    padding: 0 0.1rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #64748b;
+}

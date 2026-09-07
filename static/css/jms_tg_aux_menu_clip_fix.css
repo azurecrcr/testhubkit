@@ -1,0 +1,36 @@
+/**
+ * 树形视图 · Debug / BeanShell 步骤 ⋯ 菜单防裁切（隔离）
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card:has(.lth-step-actions.is-measuring) {
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 6 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--debug:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--debug:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--beanshell:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--beanshell:has(.lth-step-actions.is-hover) {
+    overflow: visible !important;
+    z-index: 5 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-block--tree:has(.jms-aux-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-block--tree:has(.jms-aux-card .lth-step-actions.is-hover) {
+    overflow: visible !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card .lth-step-actions.is-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card .lth-step-actions.is-hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card .lth-step-actions.is-measuring {
+    position: relative !important;
+    z-index: 35 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card .lth-step-actions.is-open .lth-step-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card .lth-step-actions.is-hover .lth-step-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card .lth-step-actions.is-measuring .lth-step-menu {
+    z-index: 40 !important;
+}

@@ -1,0 +1,55 @@
+{% extends "layout/base_toolkit.html" %}
+{% block page_title %}用例评审 · {{ hf_site_brand_title }}{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/tabulator/tabulator.min.css') }}?v=6.3.1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/smm/simpleMindMap.esm.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tc_share_preview.css') }}?v=20260624previewsmm24">
+{% endblock %}
+{% block body_class %}tc-share-preview-body{% endblock %}
+{% block body %}
+<div class="tc-share-preview-page__bg" aria-hidden="true">
+    <img src="{{ url_for('static', filename='images/test-cases/tc-ai-page-bg.png') }}" alt="" class="tc-share-preview-page__bg-img" width="1920" height="1600" loading="eager" decoding="async">
+    <div class="tc-share-preview-page__bg-scrim"></div>
+</div>
+<main class="tc-share-preview" data-share-token="{{ token|e }}">
+    <header class="tc-share-preview__head">
+        <a href="/app" class="tc-share-preview__brand">{{ hf_site_brand_title }}</a>
+        <div class="tc-share-preview__head-center">
+            <h1 id="tc-share-preview-title" class="tc-share-preview__head-title"></h1>
+            <p id="tc-share-preview-meta" class="tc-share-preview__head-meta"></p>
+        </div>
+        <span class="tc-share-preview__badge">只读评审</span>
+    </header>
+    <div id="tc-share-preview-status" class="tc-share-preview__status">加载中…</div>
+    <div id="tc-share-preview-main" class="tc-share-preview__main hidden">
+        <div id="tc-share-hidden-columns" class="tc-share-hidden-columns hidden" aria-live="polite" aria-label="已隐藏的列"></div>
+        <div class="tc-share-preview__body">
+            <div class="tc-share-preview__content">
+                <div id="tc-share-preview-mindmap-wrap" class="tc-share-preview__mindmap-wrap hidden" aria-label="思维导图评审画布"></div>
+                <div id="tc-share-preview-table-wrap" class="tc-share-preview__table-wrap overflow-x-auto"></div>
+            </div>
+            <section id="tc-share-comments-section" class="tc-share-preview__comments">
+                <h2 class="tc-share-preview__comments-title">评论</h2>
+                <div id="tc-share-comments-list" class="tc-share-preview__comments-list"></div>
+                <form id="tc-share-comment-form" class="tc-share-preview__comment-form" autocomplete="off">
+                    <p class="tc-share-preview__comment-form-label">全局评论</p>
+                    <div class="tc-share-preview__comment-form-row">
+                        <input type="text" id="tc-share-comment-name" class="form-input" placeholder="您的昵称" maxlength="64" required>
+                        <textarea id="tc-share-comment-content" class="form-input" rows="3" placeholder="写下评审意见…" maxlength="2000" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">提交评论</button>
+                </form>
+            </section>
+        </div>
+    </div>
+</main>
+{% include 'partials/hf_tc_app_dialog.html' %}
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='vendor/tabulator/tabulator.min.js') }}?v=6.3.1"></script>
+<script src="{{ url_for('static', filename='js/tc_workbench/l1_foundation/tc_dialog.js') }}?v=20260613dlgip1"></script>
+<script src="{{ url_for('static', filename='js/tc_share_preview_table_layout.js') }}?v=20260613hiddenbar1"></script>
+<script src="{{ url_for('static', filename='vendor/smm/simpleMindMap.umd.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/tc_share_preview_smm_canvas.js') }}?v=20260624previewsmm24"></script>
+<script src="{{ url_for('static', filename='js/tc_share_preview.js') }}?v=20260624previewsmm24"></script>
+{% endblock %}

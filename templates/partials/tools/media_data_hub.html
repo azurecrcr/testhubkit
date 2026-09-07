@@ -1,0 +1,90 @@
+{# 媒体与数据工具箱 #}
+
+{% set _mdh_tab = media_data_hub_tab | default('media') %}
+
+<div class="tc-hub-scope mdh-hub-scope" data-initial-tab="{{ _mdh_tab }}">
+
+    <header class="mdh-hub-hero">
+        <div class="mdh-hub-hero__bg mdh-hub-hero__bg--pink" aria-hidden="true">
+            <div class="mdh-hub-hero__bg-scrim"></div>
+        </div>
+        <div class="mdh-hub-hero__content relative z-10">
+        <p class="mdh-hub-hero__eyebrow">Hugo Feng Toolkit</p>
+
+        <h1 class="mdh-hub-hero__title">媒体与数据工具箱</h1>
+
+        <p class="mdh-hub-hero__desc">图片压缩 · 格式转换 · 语音生成 · JSON · Base64/URL · 文本对比 · 时间戳，分类收纳、一页直达</p>
+
+        <ul class="mdh-hub-hero__tags" aria-label="功能一览">
+
+            <li>图片处理</li>
+
+            <li>音频 TTS</li>
+
+            <li>JSON</li>
+
+            <li>编解码</li>
+
+            <li>文本 Diff</li>
+
+            <li>时间戳</li>
+
+        </ul>
+        </div>
+    </header>
+
+
+
+    <div class="tc-hub-mode-bar tc-hub-mode-bar--compact mdh-hub-mode-bar">
+        <nav class="tc-hub-mode-switch tc-hub-mode-switch--compact mdh-hub-mode-switch" role="tablist" aria-label="媒体与数据工具箱">
+            <a href="/tool/media-data-hub"
+               class="tc-hub-mode tc-hub-mode--compact tc-hub-mode--ai{% if _mdh_tab != 'codec' %} tc-hub-mode--active{% endif %}"
+               role="tab"
+               aria-selected="{{ 'true' if _mdh_tab != 'codec' else 'false' }}">
+                <span class="tc-hub-mode__icon tc-hub-mode__icon--ai" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                </span>
+                <span class="tc-hub-mode__title">媒体处理</span>
+            </a>
+            <a href="/tool/media-data-hub?tab=codec"
+               class="tc-hub-mode tc-hub-mode--compact tc-hub-mode--excel{% if _mdh_tab == 'codec' %} tc-hub-mode--active{% endif %}"
+               role="tab"
+               aria-selected="{{ 'true' if _mdh_tab == 'codec' else 'false' }}">
+                <span class="tc-hub-mode__icon tc-hub-mode__icon--excel" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                </span>
+                <span class="tc-hub-mode__title">开发助手</span>
+            </a>
+        </nav>
+    </div>
+
+
+
+    <div id="mdh-hub-panel-media"
+
+         class="tc-hub-panel mdh-hub-panel mdh-hub-panel--media{% if _mdh_tab == 'codec' %} hidden{% endif %}"
+
+         role="tabpanel">
+
+        {% include 'partials/tools/media_workbench_panel.html' %}
+
+    </div>
+
+
+
+    <div id="mdh-hub-panel-codec"
+
+         class="tc-hub-panel mdh-hub-panel mdh-hub-panel--codec{% if _mdh_tab != 'codec' %} hidden{% endif %}"
+
+         role="tabpanel">
+
+        {% include 'partials/tools/data_codec_panel.html' %}
+
+    </div>
+
+</div>
+

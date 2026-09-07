@@ -1,0 +1,371 @@
+/**
+ * 线程组 · 查看结果树监听器弹窗（隔离样式 v1 · modal-tg-view-results-tree）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 310;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    background: rgba(15, 23, 42, 0.42);
+    backdrop-filter: blur(10px);
+    --jms-tg-vrt-accent: #0d9488;
+    --jms-tg-vrt-accent-deep: #0f766e;
+    --jms-tg-vrt-accent-soft: rgba(13, 148, 136, 0.1);
+    --jms-tg-vrt-border: #e2e8f0;
+    --jms-tg-vrt-text: #0f172a;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree.jms-modal-open {
+    display: flex !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-step-modal {
+    width: min(920px, 96vw) !important;
+    max-height: min(92vh, 40rem);
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(226, 232, 240, 0.95) !important;
+    background: #ffffff !important;
+    color: var(--jms-tg-vrt-text) !important;
+    box-shadow: 0 28px 72px rgba(13, 148, 136, 0.12), 0 0 0 1px rgba(13, 148, 136, 0.06) !important;
+    overflow: hidden !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-tg-vrt-drawer__head {
+    flex-shrink: 0;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.75rem !important;
+    padding: 1.1rem 1.45rem !important;
+    border-bottom: 1px solid var(--jms-tg-vrt-border) !important;
+    background: linear-gradient(180deg, #ffffff 0%, #f0fdfa 100%) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-tg-vrt-drawer__head-main {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-tg-vrt-drawer__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.16rem 0.6rem;
+    font-size: 0.625rem;
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--jms-tg-vrt-accent-deep) !important;
+    background: var(--jms-tg-vrt-accent-soft) !important;
+    border: 1px solid rgba(13, 148, 136, 0.22);
+    border-radius: 999px;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-step-modal__title {
+    margin: 0 !important;
+    font-size: 1.075rem !important;
+    font-weight: 650 !important;
+    letter-spacing: -0.025em;
+    color: var(--jms-tg-vrt-text) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-tg-vrt-drawer__close {
+    flex: 0 0 auto;
+    width: 2.1rem;
+    height: 2.1rem;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: #64748b;
+    font-size: 1.35rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-tg-vrt-drawer__close:hover {
+    background: rgba(13, 148, 136, 0.08);
+    color: var(--jms-tg-vrt-accent-deep);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-tg-vrt-drawer__body {
+    flex: 1 1 auto;
+    overflow: auto;
+    padding: 1.25rem 1.5rem 1rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-tg-vrt-drawer__foot {
+    flex-shrink: 0;
+    padding: 0.9rem 1.5rem 1.1rem !important;
+    border-top: 1px solid var(--jms-tg-vrt-border) !important;
+    background: #fafafa !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-btn-primary {
+    background: linear-gradient(135deg, #0d9488, #14b8a6) !important;
+    border-color: transparent !important;
+    box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-btn-primary:hover {
+    background: linear-gradient(135deg, #0f766e, #0d9488) !important;
+}
+
+/* v1 紧凑表单 */
+.jms-tg-vrt-v1 {
+    display: flex;
+    flex-direction: column;
+    gap: 1.05rem;
+}
+
+.jms-tg-vrt-v1__meta {
+    display: flex;
+    align-items: stretch;
+    gap: 0.85rem;
+    padding: 0.15rem 0;
+}
+
+.jms-tg-vrt-v1__inline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.jms-tg-vrt-v1__inline--name {
+    flex: 0 0 42%;
+    max-width: 16rem;
+}
+
+.jms-tg-vrt-v1__inline--comments {
+    flex: 1 1 auto;
+}
+
+.jms-tg-vrt-v1__inline-label,
+.jms-tg-vrt-v1__file-label,
+.jms-tg-vrt-v1__bar-label {
+    flex: 0 0 auto;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #475569;
+    white-space: nowrap;
+}
+
+.jms-tg-vrt-v1__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 9px;
+    font-size: 0.875rem;
+    color: #0f172a;
+    background: #fff;
+    font-family: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.jms-tg-vrt-v1__input:focus {
+    outline: none;
+    border-color: rgba(13, 148, 136, 0.5);
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+}
+
+.jms-tg-vrt-v1__file-card {
+    border-radius: 14px;
+    border: 1px solid #e8ecf1;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    padding: 1rem 1.05rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    box-shadow: 0 1px 3px rgba(13, 148, 136, 0.04);
+}
+
+.jms-tg-vrt-v1__file-head {
+    font-size: 0.8125rem;
+    font-weight: 650;
+    color: #334155;
+    letter-spacing: 0.01em;
+}
+
+.jms-tg-vrt-v1__file-row {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.jms-tg-vrt-v1__input--filename {
+    flex: 1 1 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.8125rem;
+}
+
+.jms-tg-vrt-v1__browse {
+    flex: 0 0 auto;
+    padding: 0.45rem 0.75rem;
+    border-radius: 9px;
+    border: 1px solid rgba(13, 148, 136, 0.25);
+    background: #fff;
+    color: var(--jms-tg-vrt-accent-deep);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.jms-tg-vrt-v1__browse:hover {
+    background: rgba(13, 148, 136, 0.06);
+    border-color: rgba(13, 148, 136, 0.38);
+}
+
+.jms-tg-vrt-v1__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.85rem;
+    border-radius: 11px;
+    border: 1px solid rgba(13, 148, 136, 0.14);
+    background: #fff;
+    flex-wrap: wrap;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.jms-tg-vrt-v1__bar-options {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex: 1 1 auto;
+    min-width: 0;
+    flex-wrap: wrap;
+}
+
+.jms-tg-vrt-v1__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.28rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid rgba(13, 148, 136, 0.2);
+    background: #fff;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.jms-tg-vrt-v1__pill:has(input:checked) {
+    background: rgba(13, 148, 136, 0.1);
+    border-color: rgba(13, 148, 136, 0.35);
+}
+
+.jms-tg-vrt-v1__pill input[type="checkbox"] {
+    width: 0.9rem;
+    height: 0.9rem;
+    margin: 0;
+    accent-color: #0d9488;
+}
+
+.jms-tg-vrt-v1__pill span {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #334155;
+    white-space: nowrap;
+}
+
+.jms-tg-vrt-v1__configure {
+    flex: 0 0 auto;
+    padding: 0.28rem 0.65rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: #475569;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.jms-tg-vrt-v1__configure:hover,
+.jms-tg-vrt-v1__configure.is-open {
+    background: rgba(13, 148, 136, 0.08);
+    border-color: rgba(13, 148, 136, 0.28);
+    color: var(--jms-tg-vrt-accent-deep);
+}
+
+.jms-tg-vrt-v1__enabled {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-left: auto;
+    padding: 0.28rem 0.55rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.jms-tg-vrt-v1__enabled input[type="checkbox"] {
+    width: 0.9rem;
+    height: 0.9rem;
+    margin: 0;
+    accent-color: #0d9488;
+}
+
+.jms-tg-vrt-v1__enabled span {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #334155;
+}
+
+.jms-tg-vrt-v1__configure-panel {
+    padding: 0.65rem 0.75rem;
+    border-radius: 9px;
+    border: 1px dashed rgba(13, 148, 136, 0.22);
+    background: rgba(240, 253, 250, 0.65);
+}
+
+.jms-tg-vrt-v1__configure-panel[hidden] {
+    display: none !important;
+}
+
+.jms-tg-vrt-v1__configure-note {
+    margin: 0;
+    font-size: 0.75rem;
+    line-height: 1.55;
+    color: #64748b;
+}
+
+@media (max-width: 640px) {
+    .jms-tg-vrt-v1__meta {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .jms-tg-vrt-v1__inline--name {
+        flex: 1 1 auto;
+        max-width: none;
+    }
+    .jms-tg-vrt-v1__file-row {
+        flex-wrap: wrap;
+    }
+    .jms-tg-vrt-v1__bar {
+        flex-wrap: wrap;
+    }
+    .jms-tg-vrt-v1__enabled {
+        margin-left: 0;
+    }
+}
+
+/* 菜单项高亮 · 查看结果树 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-listener-menu-item[data-listener="view_results_tree"].is-on {
+    color: #0f766e !important;
+    background: rgba(13, 148, 136, 0.08) !important;
+}

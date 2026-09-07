@@ -1,0 +1,191 @@
+/* 压测造数 · 未保存离开 / 刷新提醒 */
+#modal-jms-leave-guard {
+  --lg-ink: #14532d;
+  --lg-line: rgba(134, 239, 172, 0.55);
+  --lg-panel: linear-gradient(160deg, #ffffff 0%, #f4fdf7 48%, #e8faf1 100%);
+  --lg-primary: linear-gradient(135deg, #34d399 0%, #10b981 48%, #059669 100%);
+  --lg-shadow: 0 28px 56px rgba(6, 78, 59, 0.2), 0 0 0 1px rgba(167, 243, 208, 0.5);
+  position: fixed;
+  inset: 0;
+  z-index: 100001;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(4, 47, 36, 0.42);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+#modal-jms-leave-guard *,
+#modal-jms-leave-guard *::before,
+#modal-jms-leave-guard *::after {
+  box-sizing: border-box;
+}
+#modal-jms-leave-guard.jms-modal-open {
+  display: flex;
+  opacity: 1;
+}
+#modal-jms-leave-guard.is-closing {
+  display: flex;
+  opacity: 0;
+}
+#modal-jms-leave-guard .jms-leave-guard-card {
+  position: relative;
+  width: min(420px, 100%);
+  margin: 0;
+  padding: 1.45rem 1.45rem 1.25rem;
+  border-radius: 1.15rem;
+  border: 1px solid var(--lg-line);
+  background: var(--lg-panel);
+  color: var(--lg-ink);
+  box-shadow: var(--lg-shadow);
+  overflow: hidden;
+  transform: translateY(10px) scale(0.98);
+  transition: transform 0.2s ease;
+}
+#modal-jms-leave-guard.jms-modal-open .jms-leave-guard-card {
+  transform: translateY(0) scale(1);
+}
+#modal-jms-leave-guard .jms-leave-guard-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, #6ee7b7 0%, #10b981 45%, #047857 100%);
+}
+#modal-jms-leave-guard .jms-leave-guard-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 0 0.85rem;
+  border-radius: 0.85rem;
+  color: #047857;
+  background: linear-gradient(145deg, rgba(167, 243, 208, 0.55), rgba(209, 250, 229, 0.9));
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+#modal-jms-leave-guard .jms-leave-guard-kicker {
+  margin: 0 0 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #059669;
+  opacity: 0.9;
+}
+#modal-jms-leave-guard .jms-leave-guard-title {
+  margin: 0;
+  font-size: 1.22rem;
+  font-weight: 730;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  color: #065f46;
+}
+#modal-jms-leave-guard .jms-leave-guard-msg {
+  margin: 0.6rem 0 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.65;
+  color: #166534;
+  opacity: 0.92;
+}
+#modal-jms-leave-guard .jms-leave-guard-field {
+  margin-top: 1.05rem;
+}
+#modal-jms-leave-guard .jms-leave-guard-label {
+  display: block;
+  margin: 0 0 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #047857;
+}
+#modal-jms-leave-guard .jms-leave-guard-input {
+  display: block;
+  width: 100%;
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  border-radius: 0.75rem;
+  padding: 0.68rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #064e3b;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: inset 0 1px 2px rgba(6, 78, 59, 0.04);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+#modal-jms-leave-guard .jms-leave-guard-input::placeholder {
+  color: #86efac;
+  font-weight: 400;
+}
+#modal-jms-leave-guard .jms-leave-guard-input:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+}
+#modal-jms-leave-guard .jms-leave-guard-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(167, 243, 208, 0.45);
+}
+#modal-jms-leave-guard .jms-leave-guard-btn {
+  appearance: none;
+  border-radius: 0.7rem;
+  padding: 0.58rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.12s ease, filter 0.12s ease;
+}
+#modal-jms-leave-guard .jms-leave-guard-btn:active {
+  transform: translateY(1px);
+}
+#modal-jms-leave-guard .jms-leave-guard-btn--ghost {
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  background: rgba(255, 255, 255, 0.88);
+  color: #047857;
+}
+#modal-jms-leave-guard .jms-leave-guard-btn--ghost:hover {
+  background: #ecfdf5;
+  border-color: rgba(16, 185, 129, 0.45);
+}
+#modal-jms-leave-guard .jms-leave-guard-btn--soft {
+  border: 1px solid rgba(252, 165, 165, 0.7);
+  background: rgba(255, 255, 255, 0.9);
+  color: #b91c1c;
+}
+#modal-jms-leave-guard .jms-leave-guard-btn--soft:hover {
+  background: #fef2f2;
+}
+#modal-jms-leave-guard .jms-leave-guard-btn--primary {
+  border: none;
+  background: var(--lg-primary);
+  color: #ecfdf5;
+  box-shadow: 0 8px 18px rgba(5, 150, 105, 0.28);
+}
+#modal-jms-leave-guard .jms-leave-guard-btn--primary:hover {
+  filter: brightness(1.03);
+}
+@media (max-width: 480px) {
+  #modal-jms-leave-guard .jms-leave-guard-foot {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  #modal-jms-leave-guard .jms-leave-guard-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

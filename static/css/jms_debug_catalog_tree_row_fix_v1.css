@@ -1,0 +1,117 @@
+/**
+ * Debug Sampler catalog 树行 · 与 CON/SAM/catalog 头行对齐（隔离覆盖 v2）
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .jms-aux-card.jms-catalog-card {
+    padding: 0 !important;
+    margin: 0.15rem 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    align-items: stretch !important;
+    align-self: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+    border-radius: 10px !important;
+    overflow: visible !important;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .jms-debug-catalog__head {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 0.28rem !important;
+    width: 100% !important;
+    min-height: 2.25rem !important;
+    height: auto !important;
+    padding: 0.45rem 0.55rem !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    border-bottom: none !important;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .jms-debug-catalog__badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 2.125rem !important;
+    min-width: 2.125rem !important;
+    max-width: 2.125rem !important;
+    padding: 0.1rem 0.4rem !important;
+    border-radius: 999px !important;
+    font-size: 0.625rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    color: #64748b !important;
+    background: #f1f5f9 !important;
+    border: 1px solid #e2e8f0 !important;
+    flex-shrink: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .jms-debug-catalog__head .jms-http-name {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    font-size: 0.6875rem !important;
+    font-weight: 600 !important;
+    line-height: 1.25 !important;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .jms-debug-catalog__head .jms-catalog-card__meta {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    margin-left: auto !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .jms-debug-catalog__head .jms-card-head-actions {
+    display: inline-flex !important;
+    align-items: center !important;
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+    gap: 0.28rem !important;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .jms-debug-catalog__head .jms-config-card-toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .jms-debug-catalog__head .jms-step-enable-seg {
+    display: inline-flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--debug:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--debug:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card.jms-catalog-card--expandable:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card.jms-catalog-card--expandable:has(.lth-step-actions.is-hover) {
+    overflow: visible !important;
+    z-index: 12 !important;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .jms-aux-card.jms-catalog-card--expandable {
+    overflow: visible !important;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .lth-step-actions.is-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .lth-step-actions.is-hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .lth-step-actions.is-measuring {
+    position: relative !important;
+    z-index: 35 !important;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .lth-step-actions.is-open .lth-step-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .lth-step-actions.is-hover .lth-step-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .lth-step-actions.is-measuring .lth-step-menu {
+    z-index: 40 !important;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .jms-debug-catalog__head .jms-catalog-card__meta:empty {
+    display: none !important;
+    flex: 0 0 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .jms-aux-card.jms-catalog-card .jms-config-card-toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .jms-aux-card.jms-catalog-card .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--debug .jms-aux-card.jms-catalog-card .jms-config-card-toolbar .lth-step-actions {
+    margin-right: 0 !important;
+}body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--debug .jms-aux-card.jms-catalog-card .jms-config-card-toolbar,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--debug .jms-aux-card.jms-catalog-card .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--debug .jms-aux-card.jms-catalog-card .jms-config-card-toolbar .lth-step-actions {
+    margin-right: 0 !important;
+}

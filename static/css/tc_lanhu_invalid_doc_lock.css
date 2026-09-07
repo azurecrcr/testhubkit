@@ -1,0 +1,45 @@
+/* 无效蓝湖文档：锁定模板 / AI / 导出悬浮按钮 */
+.tc-workbench-scope.tc-invalid-lanhu-doc-workbench-lock #tc-choose-template-btn,
+.tc-workbench-scope.tc-invalid-lanhu-doc-workbench-lock #tc-switch-template-btn {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: grayscale(0.4);
+  box-shadow: none;
+}
+
+.tc-workbench-scope.tc-invalid-lanhu-doc-workbench-lock #tc-export-fab-wrap,
+.tc-workbench-scope.tc-invalid-lanhu-doc-workbench-lock #tc-export-fab-wrap .tc-workbench-fab-toggle,
+.tc-workbench-scope.tc-invalid-lanhu-doc-workbench-lock #tc-export-fab-toggle {
+  opacity: 0.42;
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: grayscale(0.35);
+}
+
+/* AI 悬浮钮在 workbench-scope 外 — body / wrap 双通道锁定 */
+body.tc-invalid-lanhu-doc-lock #tc-left-input-float-wrap,
+body.tc-invalid-lanhu-doc-lock #tc-left-float-dock,
+#tc-left-input-float-wrap.tc-invalid-lanhu-doc-ai-lock,
+#tc-left-float-dock.tc-invalid-lanhu-doc-ai-lock {
+  pointer-events: none !important;
+}
+
+body.tc-invalid-lanhu-doc-lock #tc-left-float-dock,
+body.tc-invalid-lanhu-doc-lock #tc-left-float-dock .tc-left-float-dock__mode,
+#tc-left-float-dock.tc-invalid-lanhu-doc-ai-lock,
+#tc-left-float-dock.tc-invalid-lanhu-doc-ai-lock .tc-left-float-dock__mode {
+  opacity: 0.42;
+  cursor: not-allowed;
+  filter: grayscale(0.35);
+}
+
+body.tc-invalid-lanhu-doc-lock #tc-left-float-dock .tc-left-float-dock__mode:hover,
+#tc-left-float-dock.tc-invalid-lanhu-doc-ai-lock .tc-left-float-dock__mode:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.tc-workbench-scope.tc-invalid-lanhu-doc-workbench-lock #tc-export-fab-toggle:hover {
+  transform: none;
+}

@@ -1,0 +1,2531 @@
+    <script src="{{ url_for('static', filename='js/hf_float_toast.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jms_http_beanshell_preprocessor_jmx.js') }}?v=20260628bspreproc1"></script>
+    <script src="{{ url_for('static', filename='js/jmeter_jmx_extra.js') }}?v=20260630planrcv1"></script>
+    <script src="{{ url_for('static', filename='js/jmeter_order_chain_template.js') }}?v=20260712catalog-demo1"></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_path_host.js') }}?v=20260630jmxhostfix1"></script>
+    <script src="{{ url_for('static', filename='js/jms_http_path_query.js') }}?v=20260630jmxhostfix1"></script>
+    <script src="{{ url_for('static', filename='js/jms_step_assert_legacy_migrate.js') }}?v=20260701validatefixv1"></script>
+    <script src="{{ url_for('static', filename='js/jms_step_assert_resolver.js') }}?v=20260701validatefixv1"></script>
+    <script src="{{ url_for('static', filename='js/jms_tg_add_choice_ui.js') }}?v=20260701tgaddchoice1"></script>
+    <script src="{{ url_for('static', filename='js/jms_tg_load_drawer_ui.js') }}?v=20260701tgloaddrawer1"></script>
+    <script src="{{ url_for('static', filename='js/jms_http_blank_step_factory.js') }}?v=20260702blankhttp1" defer></script>
+    <script src="{{ url_for('static', filename='js/jmeter_visual_builder.js') }}?v=20260715ai-cfg-route1"></script>
+    <script src="{{ url_for('static', filename='js/jms_tg_setup_name_guard.js') }}?v=20260625setupname1"></script>
+    <script src="{{ url_for('static', filename='js/lth_studio_shell.js') }}?v=20260701validatefixv1"></script>
+    <script src="{{ url_for('static', filename='js/jmx_response_assertion.js') }}?v=20260628respassert1"></script>
+    <script src="{{ url_for('static', filename='js/jms_http_response_assertion_jmx.js') }}?v=20260630httprespav1"></script>
+    <script src="{{ url_for('static', filename='js/jms_http_json_assertion_jmx.js') }}?v=20260630httpjsonav1"></script>
+    <script src="{{ url_for('static', filename='js/jms_http_size_assertion_jmx.js') }}?v=20260630httpsizev1"></script>
+    <script src="{{ url_for('static', filename='js/jms_http_md5hex_assertion_jmx.js') }}?v=20260630httpmd5v1"></script>
+    <script src="{{ url_for('static', filename='js/jms_tg_listener_import_jmx.js') }}?v=20260624tglistenerimp1"></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_path_import.js') }}?v=20260630jmxhostfix1"></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_get_body_import.js') }}?v=20260628jmxgetbody1"></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_get_query_import.js') }}?v=20260628jmxgetquery1"></script>
+    <script src="{{ url_for('static', filename='js/jms_tg_http_defaults_advanced.js') }}?v=20260629tghdv7"></script>
+    <script src="{{ url_for('static', filename='js/jms_tg_http_defaults_jmx.js') }}?v=20260629tghdv12"></script>
+    <script src="{{ url_for('static', filename='js/jms_catalog_unify_migrate.js') }}?v=20260713jmx-import-hierarchy5"></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_import_timeline_merge_v1.js') }}?v=20260713jmx-import-hierarchy9"></script>
+    <script src="{{ url_for('static', filename='js/jms_catalog_legacy_purge.js') }}?v=20260713jmx-import-hierarchy5"></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_import_config_attach_v1.js') }}?v=20260713jmx-import-hierarchy5"></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_import_catalog_bridge.js') }}?v=20260713jmx-import-hierarchy5"></script>
+    <script src="{{ url_for('static', filename='js/jms_scenario_normalize.js') }}?v=20260713jmx-import-hierarchy5"></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_import_json_assert_props_normalize_v1.js') }}?v=20260713jmx-import-hierarchy6"></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_import_header_props_normalize_v1.js') }}?v=20260713jmx-import-hierarchy5"></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_import_sampler_hash_timeline_v1.js') }}?v=20260713jmx-import-hierarchy3"></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_import_controller_config_step_v1.js') }}?v=20260713jmx-import-hierarchy2"></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_import_listener_step_v1.js') }}?v=20260713jmx-import-hierarchy1"></script>
+    <script src="{{ url_for('static', filename='js/jmx_import_parser.js') }}?v=20260712catalog-zero-legacy18-import-hierarchy4"></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_import_csv_passthrough_v1.js') }}?v=20260713jmx-import-hierarchy12"></script>
+    <script src="{{ url_for('static', filename='js/jms_catalog_editor_schema_config_gui_v1.js') }}?v=20260713jmx-import-hierarchy13"></script>
+    <script src="{{ url_for('static', filename='js/jms_backend_listener_catalog.js') }}?v=20260628tgbackendcfg1"></script>
+<script src="{{ url_for('static', filename='js/jms_backend_listener_jmx.js') }}?v=20260628tgbackendcfg1"></script>
+<script src="{{ url_for('static', filename='js/jms_mount_catalog_bridge.js') }}?v=20260712mount-bridge3"></script>
+<script src="{{ url_for('static', filename='js/jms_tg_listener_catalog_bridge.js') }}?v=20260712catalog-bridge-legacy10"></script>
+<script src="{{ url_for('static', filename='js/jms_tg_backend_listener_jmx.js') }}?v=20260628tgbackendcfg1"></script>
+    <script src="{{ url_for('static', filename='js/jmx_scenario_advanced.js') }}?v=20260702jmxrandomgui2"></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_export_compact.js') }}?v=20260702planvars1"></script>
+    <script src="{{ url_for('static', filename='js/jmx_jsr223_assertion.js') }}?v=20260624jsr223planlst1"></script>
+    <script src="{{ url_for('static', filename='js/jmx_jsr223_post_processor.js') }}?v=20260629tgjsr223v1"></script>
+    <script src="{{ url_for('static', filename='js/jmx_json_post_processor.js') }}?v=20260628jsonextproc1"></script>
+    <script src="{{ url_for('static', filename='js/jmx_regex_extractor.js') }}?v=20260629httpregexv1"></script>
+    <script src="{{ url_for('static', filename='js/jmx_jdbc_post_processor.js') }}?v=20260630tgjdbcv1"></script>
+    <script src="{{ url_for('static', filename='js/jmx_xpath_extractor.js') }}?v=20260630httpxpathv1"></script>
+    <script src="{{ url_for('static', filename='js/jms_json_post_extract_sync.js') }}?v=20260628jsonsync2"></script>
+    <script>
+(function () {
+    var TEMPLATES = {
+        order: (typeof window.JMETER_ORDER_CHAIN_DEMO_YAML === 'string' && window.JMETER_ORDER_CHAIN_DEMO_YAML.trim())
+            ? window.JMETER_ORDER_CHAIN_DEMO_YAML
+            : '# 订单链路示例加载失败\nname: 订单创建链路\nthread_groups: []\n'
+    };
+
+    function applyScenarioYaml(yamlText) {
+        if (!yamlInput) return;
+        yamlInput.value = yamlText;
+        syncPanelsFromYaml();
+        if (window.JmsVisualBuilder) JmsVisualBuilder.loadTemplate(yamlText);
+    }
+
+    var yamlInput = document.getElementById('yaml-input');
+    var outJmx = document.getElementById('out-jmx');
+    var outReadme = document.getElementById('out-readme');
+    var summaryBox = document.getElementById('summary-box');
+    var summaryList = document.getElementById('summary-list');
+    var _jmxImportParsedYaml = null;
+    var _jmxImportParsedScenario = null;
+    var _jmxImportRawBundle = null;
+    var linkGrafana = document.getElementById('link-grafana');
+
+    var lastScenario = null;
+    var lastOutputs = { jmx: '', readme: '', scenarioSlug: '' };
+    var activeTab = 'jmx';
+    var importMode = 'curl';
+    var importTarget = null;
+    var httpAddChoiceTarget = null;
+    var jmsConfirmCallback = null;
+    var scenarioUserEdited = false;
+    var suppressScenarioDirty = false;
+
+    function markScenarioDirty() {
+        if (scenarioUserEdited || suppressScenarioDirty) return;
+        scenarioUserEdited = true;
+        var wrap = document.getElementById('tpl-select-wrap');
+        if (wrap) wrap.classList.add('hidden');
+    }
+
+    function showJmsConfirmDialog(opts) {
+        var modal = document.getElementById('modal-jms-confirm');
+        var titleEl = document.getElementById('modal-jms-confirm-title');
+        var msgEl = document.getElementById('modal-jms-confirm-msg');
+        var okBtn = document.getElementById('btn-jms-confirm-ok');
+        if (!modal || !titleEl || !msgEl) return;
+        var titleText = (opts && (opts.title || opts.heading)) ? String(opts.title || opts.heading) : '确认删除';
+        var msgText = (opts && (opts.message || opts.msg || opts.text))
+            ? String(opts.message || opts.msg || opts.text)
+            : '确定要继续吗？';
+        titleEl.textContent = titleText;
+        msgEl.textContent = msgText;
+        titleEl.style.cssText = 'display:block;visibility:visible;opacity:1;color:#065f46;-webkit-text-fill-color:#065f46;font-size:1.0625rem;font-weight:800;';
+        msgEl.style.cssText = 'display:block;visibility:visible;opacity:1;color:#14532d;-webkit-text-fill-color:#14532d;font-size:0.875rem;font-weight:500;line-height:1.55;margin-top:0.55rem;white-space:pre-wrap;';
+        if (okBtn) okBtn.textContent = (opts && opts.confirmText) ? opts.confirmText : '删除';
+        jmsConfirmCallback = (opts && typeof opts.onConfirm === 'function') ? opts.onConfirm : null;
+        modal.setAttribute('aria-hidden', 'false');
+        modal.classList.add('jms-modal-open');
+    }
+
+    function closeJmsConfirmDialog() {
+        var modal = document.getElementById('modal-jms-confirm');
+        if (!modal) return;
+        modal.classList.remove('jms-modal-open');
+        modal.setAttribute('aria-hidden', 'true');
+        jmsConfirmCallback = null;
+    }
+
+    function bindClick(id, handler) {
+        var el = document.getElementById(id);
+        if (!el) return false;
+        el.addEventListener('click', handler);
+        return true;
+    }
+
+    function toggleConfigPanel(panelId, btnId) {
+        var panel = document.getElementById(panelId);
+        var btn = document.getElementById(btnId);
+        if (!panel || !btn) return;
+        var pairs = [
+            ['panel-quick', 'btn-panel-quick'],
+            ['panel-load', 'btn-panel-load']
+        ];
+        var willOpen = !panel.classList.contains('is-open');
+        pairs.forEach(function (p) {
+            var pEl = document.getElementById(p[0]);
+            var bEl = document.getElementById(p[1]);
+            if (pEl) pEl.classList.remove('is-open');
+            if (bEl) {
+                bEl.classList.remove('is-active');
+                bEl.setAttribute('aria-expanded', 'false');
+            }
+        });
+        if (willOpen) {
+            panel.classList.add('is-open');
+            btn.classList.add('is-active');
+            btn.setAttribute('aria-expanded', 'true');
+        }
+    }
+
+    function setOutputActionsEnabled(_enabled) {}
+
+    function openOutputModal(tab) {
+        var modal = document.getElementById('modal-output');
+        if (!modal) return;
+        if (tab) setTab(tab);
+        modal.setAttribute('aria-hidden', 'false');
+        modal.classList.add('jms-modal-open');
+    }
+
+    function closeOutputModal() {
+        var modal = document.getElementById('modal-output');
+        if (!modal) return;
+        modal.classList.remove('jms-modal-open');
+        modal.setAttribute('aria-hidden', 'true');
+    }
+
+    function ensureGenerated() {
+        if (!lastOutputs.jmx) {
+            generateAll();
+            return true;
+        }
+        return false;
+    }
+
+    function showMsg(text, ok) {
+        if (typeof hfFloatToast !== 'function') return;
+        hfFloatToast(text, {
+            placement: 'top',
+            variant: ok ? 'success' : 'error',
+            duration: ok ? 3200 : 4500
+        });
+    }
+
+    function slugify(name) {
+        var s = String(name || 'scenario').toLowerCase().replace(/[^a-z0-9\u4e00-\u9fff]+/g, '-').replace(/^-+|-+$/g, '');
+        return s || 'scenario';
+    }
+
+    function escapeXml(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function parseBaseUrl(baseUrl) {
+        var u = String(baseUrl || '').trim();
+        if (!u) throw new Error('base_url 不能为空');
+        if (!/^https?:\/\//i.test(u)) u = 'https://' + u;
+        var url = new URL(u);
+        var protocol = url.protocol.replace(':', '');
+        var host = url.hostname;
+        var port = url.port || (protocol === 'https' ? '443' : '80');
+        return { protocol: protocol, host: host, port: port, origin: url.origin };
+    }
+
+    /** 新方法：允许空 base_url（场景监控已移除 / JMX 保真导入），不改动 parseBaseUrl */
+    function parseBaseUrlForStudioExport(baseUrl) {
+        if (window.JmsSceneMonitorValidateOptionalV1 &&
+            typeof window.JmsSceneMonitorValidateOptionalV1.parseBaseUrlOptional === 'function') {
+            return window.JmsSceneMonitorValidateOptionalV1.parseBaseUrlOptional(baseUrl);
+        }
+        var u = String(baseUrl || '').trim();
+        if (!u) return { protocol: '', host: '', port: '', origin: '', empty: true };
+        return parseBaseUrl(u);
+    }
+
+    /** 新方法：YAML 校验不强制 root base_url（保留 validateScenario 原语义） */
+    function validateScenarioForStudio(raw) {
+        var data;
+        try { data = jsyaml.load(raw); } catch (e) { throw new Error('YAML 解析失败：' + (e.message || e)); }
+        if (!data || typeof data !== 'object') throw new Error('根节点必须是对象');
+        if (window.JmsSceneMonitorValidateOptionalV1 &&
+            typeof window.JmsSceneMonitorValidateOptionalV1.prepareScenarioDataSkipLegacyScene === 'function') {
+            data = window.JmsSceneMonitorValidateOptionalV1.prepareScenarioDataSkipLegacyScene(data);
+        }
+        var requireBase = window.JmsSceneMonitorValidateOptionalV1 &&
+            typeof window.JmsSceneMonitorValidateOptionalV1.shouldRequireLegacySceneFields === 'function'
+            ? window.JmsSceneMonitorValidateOptionalV1.shouldRequireLegacySceneFields(data)
+            : !!(document.getElementById('btn-scene-monitor') || document.getElementById('modal-scene-monitor'));
+        if (requireBase) {
+            if (!data.base_url) throw new Error('缺少 base_url');
+            parseBaseUrl(data.base_url);
+        } else if (data.base_url) {
+            parseBaseUrlForStudioExport(data.base_url);
+        } else {
+            data.base_url = data.base_url || '';
+        }
+
+        data.name = data.name || 'API Scenario';
+        data.env = data.env ? String(data.env) : 'staging';
+        data.build = data.build !== undefined ? String(data.build) : '${BUILD_ID}';
+        data.default_headers = (data.default_headers && typeof data.default_headers === 'object') ? data.default_headers : {};
+        data.variables = (data.variables && typeof data.variables === 'object') ? data.variables : {};
+        normalizeInfluxRoot(data, data.name);
+
+        mergeLegacyTestPlans(data);
+
+        if (window.JmsPlanCatalogResolve && typeof window.JmsPlanCatalogResolve.migrateLegacyDataToCatalog === 'function') {
+            window.JmsPlanCatalogResolve.migrateLegacyDataToCatalog(data);
+        }
+
+        if (Array.isArray(data.thread_groups) && data.thread_groups.length) {
+            data.layout = 'scenario';
+            var rootLoadFallback = (data.load && typeof data.load === 'object') ? data.load : null;
+            if (Array.isArray(data.setup_thread_groups) && data.setup_thread_groups.length && window.JmxScenarioAdvanced) {
+                data.setup_thread_groups = window.JmxScenarioAdvanced.normalizeSetupThreadGroups(
+                    data.setup_thread_groups, rootLoadFallback, data
+                );
+            }
+            if (Array.isArray(data.post_thread_groups) && data.post_thread_groups.length && window.JmxScenarioAdvanced) {
+                data.post_thread_groups = window.JmxScenarioAdvanced.normalizePostThreadGroups(
+                    data.post_thread_groups, rootLoadFallback, data
+                );
+            }
+            data.thread_groups = data.thread_groups.map(function (tg, j) {
+                var row = normalizeThreadGroup(tg, 'thread_groups[' + j + ']', rootLoadFallback, data);
+                if (tg.processors) row.processors = tg.processors;
+                if (Array.isArray(row.steps) && window.JmxScenarioAdvanced &&
+                    row.steps.some(function (s) { return s && s.type === 'if_controller'; })) {
+                    row.steps = window.JmxScenarioAdvanced.normalizeStepTree(row.steps, 'thread_groups[' + j + '].steps');
+                }
+                return row;
+            });
+            if (data.raw_jmx && data.raw_jmx.enabled && !data.execution_mode) data.execution_mode = 'raw_jmx';
+            return data;
+        }
+
+        data.layout = 'single';
+        data.load = normalizeLoad(data.load, 'load');
+        data.steps = normalizeSteps(data.steps, 'steps');
+        return data;
+    }
+
+
+    var _jmxExportPathOpts = { useBaseUrlVar: false };
+
+    function setJmxExportPathContext(data) {
+        if (!data) {
+            _jmxExportPathOpts.useBaseUrlVar = false;
+            return;
+        }
+        if (window.JmsPlanCatalogResolve && typeof window.JmsPlanCatalogResolve.resolvePlanVariablesFromData === 'function') {
+            data.variables = window.JmsPlanCatalogResolve.resolvePlanVariablesFromData(data);
+        } else {
+            data.variables = (data.variables && typeof data.variables === 'object') ? data.variables : {};
+        }
+        if (!data.variables.BASE_URL && data.base_url) {
+            data.variables.BASE_URL = String(data.base_url).replace(/\/$/, '');
+        }
+        _jmxExportPathOpts.useBaseUrlVar = !!data.variables.BASE_URL;
+    }
+
+    function resolveScenarioFromPlanCatalog(data) {
+        if (window.JmsPlanCatalogResolve && typeof window.JmsPlanCatalogResolve.applyResolvedForExport === 'function') {
+            return window.JmsPlanCatalogResolve.applyResolvedForExport(data);
+        }
+        return data;
+    }
+
+    function resolveStepPathForJmx(st) {
+        if (window.JmsHttpPathQuery && typeof window.JmsHttpPathQuery.formatJmxExportPath === 'function') {
+            return window.JmsHttpPathQuery.formatJmxExportPath(st, _jmxExportPathOpts);
+        }
+        if (window.JmsHttpPathQuery) return window.JmsHttpPathQuery.resolveJmxSamplerPath(st);
+        return String(st.path || '/') + buildQueryString(st.query);
+    }
+
+    function httpStepEnabledAttr(st) {
+        return st && st.enabled === false ? 'false' : 'true';
+    }
+
+    function jmxSamplerEnabledAttr(st) {
+        if (window.JmsJmxExportCompact) {
+            return window.JmsJmxExportCompact.enabledAttr(st && st.enabled !== false);
+        }
+        return ' enabled="' + httpStepEnabledAttr(st) + '"';
+    }
+
+    function buildQueryString(query) {
+        if (!query) return '';
+        var p = new URLSearchParams();
+        Object.keys(query).forEach(function (k) {
+            var v = query[k];
+            if (v !== undefined && v !== null) p.append(k, String(v));
+        });
+        var s = p.toString();
+        return s ? '?' + s : '';
+    }
+
+    var ASSERT_TYPES = {
+        status: { label: '响应状态码', placeholder: '200', hint: '等于指定 HTTP 状态码' },
+        contains: { label: '响应包含文本', placeholder: 'success', hint: '响应体包含该字符串' },
+        not_contains: { label: '响应不包含', placeholder: 'error', hint: '响应体不包含该字符串' },
+        duration: { label: '响应时间(ms)', placeholder: '3000', hint: '响应时间不超过该毫秒数' },
+        json: { label: 'JSON 断言', placeholder: 'JSONPath', hint: 'JSONPath 匹配' },
+        xml: { label: 'XML 断言', placeholder: 'XPath', hint: 'XML XPath' },
+        xpath: { label: 'XPath 断言', placeholder: 'XPath', hint: 'HTML XPath' },
+        size: { label: '大小断言(bytes)', placeholder: '1024', hint: '响应大小' },
+        jsr223_assert: { label: 'JSR223 断言', placeholder: '脚本', hint: 'JSR223 脚本断言' }
+    };
+
+    function normalizeAssertionItem(a, label) {
+        if (!a || typeof a !== 'object') return null;
+        var type = String(a.type || '').trim();
+        if (!ASSERT_TYPES[type]) return null;
+        if (type === 'jsr223_assert') {
+            var script = a.script !== undefined ? String(a.script) : String(a.value || '');
+            if (!script.trim()) return null;
+            return {
+                type: 'jsr223_assert',
+                name: a.name ? String(a.name) : 'JSR223 断言',
+                script: script,
+                language: a.language ? String(a.language) : 'groovy',
+                enabled: a.enabled !== false
+            };
+        }
+        var value = a.value !== undefined && a.value !== null ? String(a.value).trim() : '';
+        if (!value) return null;
+        if (type === 'status' || type === 'duration') {
+            var n = Number(value);
+            if (!Number.isFinite(n)) throw new Error(label + ' 的断言值必须是数字');
+            value = String(Math.floor(n));
+        }
+        var item = { type: type, value: value };
+        if (a.expected !== undefined && a.expected !== null && String(a.expected).trim()) {
+            item.expected = String(a.expected).trim();
+        }
+        if (a.operator) item.operator = String(a.operator);
+        if (a.custom_message !== undefined && a.custom_message !== null && String(a.custom_message).trim()) {
+            item.custom_message = String(a.custom_message).trim();
+        }
+        if (a.jmeter_test_type !== undefined && a.jmeter_test_type !== null && !isNaN(Number(a.jmeter_test_type))) {
+            item.jmeter_test_type = Number(a.jmeter_test_type);
+        }
+        if (a.jmeter_test_field) item.jmeter_test_field = String(a.jmeter_test_field);
+        if (a.jmeter_name) item.jmeter_name = String(a.jmeter_name);
+        return item;
+    }
+
+    function collectStepAssertions(step) {
+        if (window.JmsStepAssertResolver && typeof window.JmsStepAssertResolver.getStepAssertions === 'function') {
+            return window.JmsStepAssertResolver.getStepAssertions(step);
+        }
+        var list = [];
+        if (Array.isArray(step.assertions)) {
+            step.assertions.forEach(function (a, i) {
+                var item = normalizeAssertionItem(a, 'assertions[' + i + ']');
+                if (item) list.push(item);
+            });
+        }
+        return list;
+    }
+
+    function genAssertionXml(assertion, samplerName, childPad) {
+        if (window.JmsAssertionExportIncludeDisabledV1 && typeof window.JmsAssertionExportIncludeDisabledV1.genAssertionXml === 'function') {
+            return window.JmsAssertionExportIncludeDisabledV1.genAssertionXml(assertion, samplerName, childPad, escapeXml);
+        }
+        var xml = '';
+        if (assertion.type === 'response_assert' &&
+            window.JmsHttpResponseAssertionJmx && typeof window.JmsHttpResponseAssertionJmx.genXml === 'function') {
+            return window.JmsHttpResponseAssertionJmx.genXml(assertion, childPad, escapeXml);
+        }
+        if (assertion.type === 'json_assert' &&
+            window.JmsHttpJsonAssertionJmx && typeof window.JmsHttpJsonAssertionJmx.genXml === 'function') {
+            return window.JmsHttpJsonAssertionJmx.genXml(assertion, childPad, escapeXml);
+        }
+        if (assertion.type === 'size_assert' &&
+            window.JmsHttpSizeAssertionJmx && typeof window.JmsHttpSizeAssertionJmx.genXml === 'function') {
+            return window.JmsHttpSizeAssertionJmx.genXml(assertion, childPad, escapeXml);
+        }
+        if (assertion.type === 'md5hex_assert' &&
+            window.JmsHttpMd5hexAssertionJmx && typeof window.JmsHttpMd5hexAssertionJmx.genXml === 'function') {
+            return window.JmsHttpMd5hexAssertionJmx.genXml(assertion, childPad, escapeXml);
+        }
+        var testName = escapeXml(assertion.type + ' ' + assertion.value + ' ' + samplerName);
+        if ((assertion.type === 'status' || assertion.type === 'contains' || assertion.type === 'not_contains') &&
+            window.JmxResponseAssertion && typeof window.JmxResponseAssertion.genXml === 'function') {
+            xml += window.JmxResponseAssertion.genXml(assertion, samplerName, childPad, escapeXml);
+        } else if (assertion.type === 'status') {
+            xml += childPad + '<ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="' + testName + '" enabled="true">\n';
+            xml += childPad + '  <collectionProp name="Assertion.test_strings">\n';
+            xml += childPad + '    <stringProp name="0">' + escapeXml(assertion.value) + '</stringProp>\n';
+            xml += childPad + '  </collectionProp>\n';
+            xml += childPad + '  <stringProp name="Assertion.custom_message"></stringProp>\n';
+            xml += childPad + '  <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>\n';
+            xml += childPad + '  <boolProp name="Assertion.assume_success">false</boolProp>\n';
+            xml += childPad + '  <intProp name="Assertion.test_type">8</intProp>\n';
+            xml += childPad + '</ResponseAssertion>\n';
+            xml += childPad + '<hashTree/>\n';
+        } else if (assertion.type === 'contains' || assertion.type === 'not_contains') {
+            var testType = assertion.type === 'contains' ? '2' : '6';
+            xml += childPad + '<ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="' + testName + '" enabled="true">\n';
+            xml += childPad + '  <collectionProp name="Assertion.test_strings">\n';
+            xml += childPad + '    <stringProp name="0">' + escapeXml(assertion.value) + '</stringProp>\n';
+            xml += childPad + '  </collectionProp>\n';
+            xml += childPad + '  <stringProp name="Assertion.custom_message"></stringProp>\n';
+            xml += childPad + '  <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>\n';
+            xml += childPad + '  <boolProp name="Assertion.assume_success">false</boolProp>\n';
+            xml += childPad + '  <intProp name="Assertion.test_type">' + testType + '</intProp>\n';
+            xml += childPad + '</ResponseAssertion>\n';
+            xml += childPad + '<hashTree/>\n';
+        } else if (assertion.type === 'duration') {
+            xml += childPad + '<DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="' + testName + '" enabled="true">\n';
+            xml += childPad + '  <stringProp name="DurationAssertion.duration">' + escapeXml(assertion.value) + '</stringProp>\n';
+            xml += childPad + '</DurationAssertion>\n';
+            xml += childPad + '<hashTree/>\n';
+        } else if (assertion.type === 'jsr223_assert' &&
+            window.JmxJsr223Assertion && typeof window.JmxJsr223Assertion.genXml === 'function') {
+            xml += window.JmxJsr223Assertion.genXml(assertion, samplerName, childPad, escapeXml);
+        } else if (window.JmeterJmxExtra && ['json', 'xml', 'xpath', 'size'].indexOf(assertion.type) >= 0) {
+            xml += window.JmeterJmxExtra.genExtendedAssertionXml(assertion, samplerName, childPad, escapeXml);
+        }
+        return xml;
+    }
+
+    function normalizeLoad(load, label, fallbackLoad) {
+        label = label || 'load';
+        var src = (load && typeof load === 'object') ? load : ((fallbackLoad && typeof fallbackLoad === 'object') ? fallbackLoad : {});
+        var out = {};
+        var users = Number(src.users);
+        if (!Number.isFinite(users) || users < 1) throw new Error(label + '.users 必须是 >= 1 的数字');
+        out.users = Math.floor(users);
+        out.spawn_rate = Math.max(1, Math.floor(Number(src.spawn_rate) || 1));
+        var dur = src.duration_sec !== undefined ? src.duration_sec : src.run_time_sec;
+        if (dur === undefined || dur === null || dur === '') throw new Error(label + '.duration_sec 必填');
+        out.duration_sec = Math.max(1, Math.floor(Number(dur)));
+        out.loops = src.loops !== undefined ? Number(src.loops) : -1;
+        if (!Number.isFinite(out.loops)) out.loops = -1;
+        return out;
+    }
+
+    function resolveStepBodyType(step) {
+        var t = step.body_type ? String(step.body_type).toLowerCase() : '';
+        if (['none', 'json', 'form', 'multipart'].indexOf(t) >= 0) return t;
+        if (step.multipart && typeof step.multipart === 'object') return 'multipart';
+        if (step.form_params && typeof step.form_params === 'object' && Object.keys(step.form_params).length) return 'form';
+        if (step.body !== undefined && step.body !== null && String(step.body).trim()) return 'json';
+        return 'none';
+    }
+
+    function normalizeStepBody(step, stepLabel, method) {
+        var bodyType = resolveStepBodyType(step);
+        if (['POST', 'PUT', 'PATCH'].indexOf(method) < 0) bodyType = 'none';
+        var encoding = step.encoding !== undefined && step.encoding !== null ? String(step.encoding).trim() : '';
+        var out = {
+            body_type: bodyType,
+            body: null,
+            form_params: null,
+            multipart: null
+        };
+        if (encoding) out.encoding = encoding;
+        if (bodyType === 'json') {
+            out.body = (step.body === undefined || step.body === null) ? '' : String(step.body);
+        } else if (bodyType === 'form') {
+            var fp = (step.form_params && typeof step.form_params === 'object') ? step.form_params : {};
+            out.form_params = fp;
+        } else if (bodyType === 'multipart') {
+            var mp = (step.multipart && typeof step.multipart === 'object') ? step.multipart : {};
+            var fields = (mp.fields && typeof mp.fields === 'object') ? mp.fields : {};
+            var files = Array.isArray(mp.files) ? mp.files : [];
+            files = files.map(function (f, fi) {
+                if (!f || typeof f !== 'object') throw new Error(stepLabel + '.multipart.files[' + fi + '] 无效');
+                var param = String(f.param || f.paramname || '').trim();
+                var path = String(f.path || '').trim();
+                if (!param) throw new Error(stepLabel + '.multipart.files[' + fi + '].param 必填');
+                if (!path) throw new Error(stepLabel + '.multipart.files[' + fi + '].path 必填');
+                return {
+                    param: param,
+                    path: path,
+                    mime: f.mime || f.mimetype ? String(f.mime || f.mimetype) : ''
+                };
+            });
+            out.multipart = { fields: fields, files: files };
+        }
+        return out;
+    }
+
+    function normalizeHttpStep(step, stepLabel) {
+        if (!step || typeof step !== 'object') throw new Error(stepLabel + ' 必须是对象');
+        var name = step.name || 'HTTP 请求';
+        var method = String(step.method || 'GET').toUpperCase();
+        var path = String(step.path || '/');
+        var query = (step.query && typeof step.query === 'object') ? step.query :
+            ((step.query_params && typeof step.query_params === 'object') ? step.query_params : null);
+        if (window.JmsHttpPathQuery) path = window.JmsHttpPathQuery.mergePathAndQuery(path, query);
+        if (!path.startsWith('/')) throw new Error(stepLabel + '.path 建议以 / 开头');
+        var headers = (step.headers && typeof step.headers === 'object') ? step.headers : {};
+        var bodyNorm = normalizeStepBody(step, stepLabel, method);
+        var extract = null;
+        if (step.extract) {
+            if (typeof step.extract !== 'object' || !step.extract.json_path || !step.extract.var) {
+                throw new Error(stepLabel + '.extract 需要 json_path 与 var');
+            }
+            extract = { json_path: String(step.extract.json_path), var: String(step.extract.var) };
+        }
+        var assertions = collectStepAssertions(step);
+        var assertStatus = null;
+        assertions.forEach(function (a) {
+            if (a.type === 'status') assertStatus = Number(a.value);
+        });
+        var row = {
+            name: name, method: method, path: path, query: null, headers: headers,
+            body_type: bodyNorm.body_type, body: bodyNorm.body,
+            extract: extract, assert_status: assertStatus, assertions: assertions,
+            enabled: step.enabled !== false
+        };
+        if (bodyNorm.encoding) row.encoding = bodyNorm.encoding;
+        if (bodyNorm.form_params) row.form_params = bodyNorm.form_params;
+        if (bodyNorm.multipart) row.multipart = bodyNorm.multipart;
+        if (step.extractors && Array.isArray(step.extractors)) row.extractors = step.extractors;
+        if (step.processors && Array.isArray(step.processors)) row.processors = step.processors;
+        if (step.step_listeners && typeof step.step_listeners === 'object') row.step_listeners = step.step_listeners;
+        if (step.constant_timer && typeof step.constant_timer === 'object') row.constant_timer = step.constant_timer;
+        if (step.user_parameters && typeof step.user_parameters === 'object') row.user_parameters = step.user_parameters;
+        return row;
+    }
+
+    function normalizeSteps(steps, label) {
+        label = label || 'steps';
+        if (!Array.isArray(steps) || !steps.length) throw new Error(label + ' 必须是非空数组');
+        var EV = window.JmsExportValidateStepsV1;
+        if (EV && typeof EV.shouldUseTreeNormalize === 'function' && EV.shouldUseTreeNormalize(steps)) {
+            if (window.JmxScenarioAdvanced && typeof window.JmxScenarioAdvanced.normalizeStepTree === 'function') {
+                return window.JmxScenarioAdvanced.normalizeStepTree(steps, label);
+            }
+        }
+        if (window.JmxScenarioAdvanced && steps.some(function (s) {
+            return s && (s.type === 'if_controller' || s.type === 'debug_sampler' || s.type === 'beanshell_post');
+        })) {
+            return window.JmxScenarioAdvanced.normalizeStepTree(steps, label);
+        }
+        return steps.map(function (step, i) {
+            return normalizeHttpStep(step, label + '[' + i + ']');
+        });
+    }
+
+    function normalizeInfluxRoot(data, defaultName) {
+        data.influxdb = (data.influxdb && typeof data.influxdb === 'object') ? data.influxdb : {};
+        if (data.influxdb.enabled !== false) {
+            data.influxdb.enabled = true;
+            if (!data.influxdb.url) throw new Error('influxdb.url 不能为空');
+            if (!data.influxdb.application) throw new Error('influxdb.application 必填（Grafana 主维度）');
+            data.influxdb.measurement = data.influxdb.measurement || 'jmeter';
+            data.influxdb.tags = (data.influxdb.tags && typeof data.influxdb.tags === 'object') ? data.influxdb.tags : {};
+            if (!data.influxdb.tags.scenario) {
+                data.influxdb.tags.scenario = slugify(defaultName || data.name || 'API Scenario');
+            }
+            if (!data.influxdb.tags.env) data.influxdb.tags.env = data.env;
+        }
+    }
+
+    function normalizeThreadGroup(tg, tgLabel, rootLoadFallback, data) {
+        if (!tg || typeof tg !== 'object') throw new Error(tgLabel + ' 必须是对象');
+        tg.name = tg.name ? String(tg.name) : '线程组';
+        tg.variables = (tg.variables && typeof tg.variables === 'object') ? tg.variables : {};
+        tg.load = normalizeLoad(tg.load, tgLabel + '.load', rootLoadFallback);
+        tg.steps = normalizeSteps(tg.steps, tgLabel + '.steps');
+        var tgInf = (tg.influxdb && typeof tg.influxdb === 'object') ? tg.influxdb : {};
+        tg.influxdb = { tags: (tgInf.tags && typeof tgInf.tags === 'object') ? tgInf.tags : {} };
+        if (!tg.influxdb.tags.scenario) tg.influxdb.tags.scenario = slugify(tg.name || data.name);
+        if (!tg.influxdb.tags.env) tg.influxdb.tags.env = data.env;
+        tg.http_managers = normalizeHttpManagers(tg.http_managers);
+        tg.listeners = (tg.listeners && typeof tg.listeners === 'object') ? tg.listeners : {};
+        if (tg.config_timeline_active === true) tg.config_timeline_active = true;
+        if (Array.isArray(tg.config_items)) tg.config_items = tg.config_items.slice();
+        if (Array.isArray(tg.removed_config_types)) tg.removed_config_types = tg.removed_config_types.slice();
+        return tg;
+    }
+
+    function mergeLegacyTestPlans(data) {
+        if (!Array.isArray(data.test_plans) || !data.test_plans.length) return;
+        var rootLoadFallback = (data.load && typeof data.load === 'object') ? data.load : null;
+        var mergedTgs = [];
+        data.test_plans.forEach(function (plan, i) {
+            if (!plan || typeof plan !== 'object') throw new Error('test_plans[' + i + '] 必须是对象');
+            var label = 'test_plans[' + i + ']';
+            plan.variables = (plan.variables && typeof plan.variables === 'object') ? plan.variables : {};
+            Object.keys(plan.variables).forEach(function (k) {
+                if (data.variables[k] === undefined) data.variables[k] = plan.variables[k];
+            });
+            if (Array.isArray(plan.thread_groups) && plan.thread_groups.length) {
+                plan.thread_groups.forEach(function (tg, j) {
+                    mergedTgs.push(normalizeThreadGroup(tg, label + '.thread_groups[' + j + ']', rootLoadFallback, data));
+                });
+            } else {
+                plan.load = normalizeLoad(plan.load, label + '.load', rootLoadFallback);
+                plan.steps = normalizeSteps(plan.steps, label + '.steps');
+                mergedTgs.push(normalizeThreadGroup({
+                    name: plan.name || ('线程组 ' + (i + 1)),
+                    load: plan.load,
+                    variables: plan.variables,
+                    steps: plan.steps,
+                    influxdb: plan.influxdb
+                }, label, rootLoadFallback, data));
+            }
+        });
+        if (!data.name && data.test_plans[0] && data.test_plans[0].name) {
+            data.name = data.test_plans[0].name;
+        }
+        data.thread_groups = mergedTgs;
+        delete data.test_plans;
+    }
+
+    function validateScenario(raw) {
+        var data;
+        try { data = jsyaml.load(raw); } catch (e) { throw new Error('YAML 解析失败：' + (e.message || e)); }
+        if (!data || typeof data !== 'object') throw new Error('根节点必须是对象');
+        if (!data.base_url) throw new Error('缺少 base_url');
+        parseBaseUrl(data.base_url);
+
+        data.name = data.name || 'API Scenario';
+        data.env = data.env ? String(data.env) : 'staging';
+        data.build = data.build !== undefined ? String(data.build) : '${BUILD_ID}';
+        data.default_headers = (data.default_headers && typeof data.default_headers === 'object') ? data.default_headers : {};
+        data.variables = (data.variables && typeof data.variables === 'object') ? data.variables : {};
+        normalizeInfluxRoot(data, data.name);
+
+        mergeLegacyTestPlans(data);
+
+        if (window.JmsPlanCatalogResolve && typeof window.JmsPlanCatalogResolve.migrateLegacyDataToCatalog === 'function') {
+            window.JmsPlanCatalogResolve.migrateLegacyDataToCatalog(data);
+        }
+
+        if (Array.isArray(data.thread_groups) && data.thread_groups.length) {
+            data.layout = 'scenario';
+            var rootLoadFallback = (data.load && typeof data.load === 'object') ? data.load : null;
+            if (Array.isArray(data.setup_thread_groups) && data.setup_thread_groups.length && window.JmxScenarioAdvanced) {
+                data.setup_thread_groups = window.JmxScenarioAdvanced.normalizeSetupThreadGroups(
+                    data.setup_thread_groups, rootLoadFallback, data
+                );
+            }
+            if (Array.isArray(data.post_thread_groups) && data.post_thread_groups.length && window.JmxScenarioAdvanced) {
+                data.post_thread_groups = window.JmxScenarioAdvanced.normalizePostThreadGroups(
+                    data.post_thread_groups, rootLoadFallback, data
+                );
+            }
+            data.thread_groups = data.thread_groups.map(function (tg, j) {
+                var row = normalizeThreadGroup(tg, 'thread_groups[' + j + ']', rootLoadFallback, data);
+                if (tg.processors) row.processors = tg.processors;
+                if (Array.isArray(row.steps) && window.JmxScenarioAdvanced &&
+                    row.steps.some(function (s) { return s && s.type === 'if_controller'; })) {
+                    row.steps = window.JmxScenarioAdvanced.normalizeStepTree(row.steps, 'thread_groups[' + j + '].steps');
+                }
+                return row;
+            });
+            if (data.raw_jmx && data.raw_jmx.enabled && !data.execution_mode) data.execution_mode = 'raw_jmx';
+            return data;
+        }
+
+        data.layout = 'single';
+        data.load = normalizeLoad(data.load, 'load');
+        data.steps = normalizeSteps(data.steps, 'steps');
+        return data;
+    }
+
+    function influxDataForPlan(root, plan, tg) {
+        var rootInf = root.influxdb || {};
+        var planInf = plan.influxdb || {};
+        var tgInf = (tg && tg.influxdb) ? tg.influxdb : {};
+        var tags = Object.assign({}, rootInf.tags || {}, planInf.tags || {}, tgInf.tags || {});
+        return {
+            name: (tg && tg.name) || plan.name,
+            env: root.env,
+            influxdb: {
+                enabled: rootInf.enabled !== false && planInf.enabled !== false && tgInf.enabled !== false,
+                url: rootInf.url,
+                application: rootInf.application,
+                measurement: rootInf.measurement || 'jmeter',
+                tags: tags
+            }
+        };
+    }
+
+    function countScenarioSteps(data) {
+        if (window.JmxScenarioAdvanced) {
+            var n = 0;
+            (data.setup_thread_groups || []).forEach(function (tg) { n += window.JmxScenarioAdvanced.countStepsRecursive(tg.steps); });
+            (data.post_thread_groups || []).forEach(function (tg) { n += window.JmxScenarioAdvanced.countStepsRecursive(tg.steps); });
+            if (data.layout === 'scenario' && Array.isArray(data.thread_groups)) {
+                data.thread_groups.forEach(function (tg) { n += window.JmxScenarioAdvanced.countStepsRecursive(tg.steps); });
+                return n;
+            }
+            if (data.steps) return window.JmxScenarioAdvanced.countStepsRecursive(data.steps);
+        }
+        if (data.layout === 'scenario' && Array.isArray(data.thread_groups)) {
+            return data.thread_groups.reduce(function (n, tg) { return n + (tg.steps ? tg.steps.length : 0); }, 0);
+        }
+        return data.steps ? data.steps.length : 0;
+    }
+
+    function threadGroupsForJmx(data) {
+        if (data.layout === 'scenario' && Array.isArray(data.thread_groups) && data.thread_groups.length) {
+            return data.thread_groups.map(function (tg) {
+                return {
+                    name: tg.name || data.name,
+                    load: tg.load,
+                    variables: (tg.variables && typeof tg.variables === 'object') ? tg.variables : {},
+                    http_managers: normalizeHttpManagers(tg.http_managers),
+                    config_items: Array.isArray(tg.config_items) ? tg.config_items : [],
+                    listeners: tg.listeners || {},
+                    steps: tg.steps,
+                    tgRef: tg
+                };
+            });
+        }
+        return planGroupsForJmx({
+            name: data.name,
+            load: data.load,
+            variables: {},
+            steps: data.steps
+        });
+    }
+
+    function planGroupsForJmx(plan) {
+        if (Array.isArray(plan.thread_groups) && plan.thread_groups.length) {
+            return plan.thread_groups.map(function (tg) {
+                return {
+                    name: tg.name || plan.name,
+                    load: tg.load,
+                    variables: (tg.variables && typeof tg.variables === 'object') ? tg.variables : {},
+                    http_managers: normalizeHttpManagers(tg.http_managers),
+                    config_items: Array.isArray(tg.config_items) ? tg.config_items : [],
+                    listeners: tg.listeners || {},
+                    steps: tg.steps,
+                    tgRef: tg
+                };
+            });
+        }
+        return [{
+            name: plan.name,
+            load: plan.load,
+            variables: plan.variables || {},
+            http_managers: normalizeHttpManagers(plan.http_managers),
+            config_items: Array.isArray(plan.config_items) ? plan.config_items : [],
+            steps: plan.steps,
+            tgRef: null
+        }];
+    }
+
+    function countPlanSteps(plan) {
+        if (Array.isArray(plan.thread_groups) && plan.thread_groups.length) {
+            return plan.thread_groups.reduce(function (n, tg) { return n + (tg.steps ? tg.steps.length : 0); }, 0);
+        }
+        return plan.steps ? plan.steps.length : 0;
+    }
+
+    function syncPanelsFromYaml() {
+        try {
+            var data = jsyaml.load(yamlInput.value) || {};
+            var load = data.load || {};
+            document.getElementById('ld-users').value = load.users || '';
+            document.getElementById('ld-spawn').value = load.spawn_rate || '';
+            document.getElementById('ld-duration').value = load.duration_sec || load.run_time_sec || '';
+            document.getElementById('ld-loops').value = load.loops !== undefined ? load.loops : -1;
+        } catch (e) { /* ignore parse errors while typing */ }
+    }
+
+    function syncLoadToYaml() {
+        var data;
+        try { data = jsyaml.load(yamlInput.value) || {}; } catch (e) { data = {}; }
+        data.load = data.load || {};
+        data.load.users = Number(document.getElementById('ld-users').value) || 1;
+        data.load.spawn_rate = Number(document.getElementById('ld-spawn').value) || 1;
+        data.load.duration_sec = Number(document.getElementById('ld-duration').value) || 60;
+        data.load.loops = Number(document.getElementById('ld-loops').value);
+        if (!Number.isFinite(data.load.loops)) data.load.loops = -1;
+        yamlInput.value = jsyaml.dump(data, { lineWidth: 120, noRefs: true });
+        showMsg('已同步负载配置到 YAML。', true);
+    }
+
+    function backendListenerXml(data, indent, tgBackendCfg) {
+        if (tgBackendCfg && window.JmsBackendListenerJmx && typeof window.JmsBackendListenerJmx.genBackendListenerXml === 'function') {
+            return window.JmsBackendListenerJmx.genBackendListenerXml(tgBackendCfg, indent, escapeXml);
+        }
+        if (!data.influxdb || data.influxdb.enabled === false) return '';
+        var pad = indent || '        ';
+        var pad2 = pad + '  ';
+        var pad3 = pad2 + '  ';
+        var pad4 = pad3 + '  ';
+        var inf = data.influxdb;
+        var tags = inf.tags || {};
+        var eventTags = [];
+        if (tags.scenario) eventTags.push('scenario=' + tags.scenario);
+        if (tags.env || data.env) eventTags.push('env=' + (tags.env || data.env));
+        eventTags.push('build=${__P(build,unknown)}');
+        var eventTagsStr = eventTags.join(',');
+
+        var args = [
+            ['influxdbMetricsSender', 'org.apache.jmeter.visualizers.backend.influxdb.HttpMetricsSender'],
+            ['influxdbUrl', inf.url],
+            ['application', inf.application],
+            ['measurement', inf.measurement || 'jmeter'],
+            ['summaryOnly', 'false'],
+            ['samplersRegex', '.*'],
+            ['percentiles', '99;95;90'],
+            ['testTitle', data.name],
+            ['eventTags', eventTagsStr]
+        ];
+        var xml = pad + '<BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="InfluxDB Backend Listener" enabled="true">\n';
+        xml += pad2 + '<elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="Arguments" enabled="true">\n';
+        xml += pad3 + '<collectionProp name="Arguments.arguments">\n';
+        args.forEach(function (pair) {
+            xml += pad4 + '<elementProp name="' + escapeXml(pair[0]) + '" elementType="Argument">\n';
+            xml += pad4 + '  <stringProp name="Argument.name">' + escapeXml(pair[0]) + '</stringProp>\n';
+            xml += pad4 + '  <stringProp name="Argument.value">' + escapeXml(pair[1]) + '</stringProp>\n';
+            xml += pad4 + '  <stringProp name="Argument.metadata">=</stringProp>\n';
+            xml += pad4 + '</elementProp>\n';
+        });
+        xml += pad3 + '</collectionProp>\n';
+        xml += pad2 + '</elementProp>\n';
+        xml += pad2 + '<stringProp name="classname">org.apache.jmeter.visualizers.backend.influxdb.InfluxdbBackendListenerClient</stringProp>\n';
+        xml += pad + '</BackendListener>\n';
+        xml += pad + '<hashTree/>\n';
+        return xml;
+    }
+
+    function httpSamplerCommonProps(indent, opts) {
+        if (window.JmsJmxExportCompact) {
+            return window.JmsJmxExportCompact.httpSamplerCommonProps(indent, opts, escapeXml);
+        }
+        opts = opts || {};
+        var p = indent + '  ';
+        var enc = opts.encoding !== undefined && opts.encoding !== null ? String(opts.encoding) : '';
+        var multipart = !!opts.multipart;
+        return p + '<stringProp name="HTTPSampler.domain"></stringProp>\n' +
+            p + '<stringProp name="HTTPSampler.port"></stringProp>\n' +
+            p + '<stringProp name="HTTPSampler.protocol"></stringProp>\n' +
+            p + '<stringProp name="HTTPSampler.contentEncoding">' + escapeXml(enc) + '</stringProp>\n' +
+            p + '<boolProp name="HTTPSampler.follow_redirects">true</boolProp>\n' +
+            p + '<boolProp name="HTTPSampler.auto_redirects">false</boolProp>\n' +
+            p + '<boolProp name="HTTPSampler.use_keepalive">true</boolProp>\n' +
+            p + '<boolProp name="HTTPSampler.DO_MULTIPART_POST">' + (multipart ? 'true' : 'false') + '</boolProp>\n' +
+            p + '<stringProp name="HTTPSampler.embedded_url_re"></stringProp>\n' +
+            p + '<stringProp name="HTTPSampler.connect_timeout"></stringProp>\n' +
+            p + '<stringProp name="HTTPSampler.response_timeout"></stringProp>\n' +
+            p + '<stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>\n';
+    }
+
+    function genNamedHttpArgument(indent, name, value, alwaysEncode) {
+        if (window.JmsJmxExportCompact) {
+            return window.JmsJmxExportCompact.httpNamedArgument(indent, name, value, alwaysEncode, escapeXml);
+        }
+        return indent + '<elementProp name="' + escapeXml(name) + '" elementType="HTTPArgument">\n' +
+            indent + '  <boolProp name="HTTPArgument.always_encode">' + (alwaysEncode ? 'true' : 'false') + '</boolProp>\n' +
+            indent + '  <stringProp name="Argument.name">' + escapeXml(name) + '</stringProp>\n' +
+            indent + '  <stringProp name="Argument.value">' + escapeXml(value) + '</stringProp>\n' +
+            indent + '  <stringProp name="Argument.metadata">=</stringProp>\n' +
+            indent + '  <boolProp name="HTTPArgument.use_equals">true</boolProp>\n' +
+            indent + '</elementProp>\n';
+    }
+
+    function genHttpSamplerBodyXml(st, indent, method) {
+        var bodyType = resolveStepBodyType(st);
+        var methodUp = String(method || 'GET').toUpperCase();
+        if (['POST', 'PUT', 'PATCH'].indexOf(methodUp) < 0) {
+            if ((methodUp === 'GET' || methodUp === 'HEAD') &&
+                window.JmsJmxGetBodyImport &&
+                typeof window.JmsJmxGetBodyImport.shouldExportGetHeadBody === 'function' &&
+                window.JmsJmxGetBodyImport.shouldExportGetHeadBody(st)) {
+                /* 保留 JMX 导入的 GET/HEAD body */
+            } else {
+                bodyType = 'none';
+            }
+        }
+        var xml = '';
+        var multipart = false;
+
+        if (bodyType === 'json' && st.body !== null && st.body !== undefined && String(st.body).length) {
+            xml += indent + '  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>\n';
+            xml += indent + '  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">\n';
+            xml += indent + '    <collectionProp name="Arguments.arguments">\n';
+            xml += indent + '      <elementProp name="" elementType="HTTPArgument">\n';
+            xml += indent + '        <boolProp name="HTTPArgument.always_encode">false</boolProp>\n';
+            xml += indent + '        <stringProp name="Argument.value">' + escapeXml(st.body) + '</stringProp>\n';
+            xml += indent + '        <stringProp name="Argument.metadata">=</stringProp>\n';
+            xml += indent + '      </elementProp>\n';
+            xml += indent + '    </collectionProp>\n';
+            xml += indent + '  </elementProp>\n';
+            return { xml: xml, multipart: false };
+        }
+
+        if (bodyType === 'form' && st.form_params && typeof st.form_params === 'object') {
+            xml += indent + '  <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>\n';
+            xml += indent + '  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">\n';
+            xml += indent + '    <collectionProp name="Arguments.arguments">\n';
+            Object.keys(st.form_params).forEach(function (k) {
+                xml += genNamedHttpArgument(indent + '      ', k, st.form_params[k], true);
+            });
+            xml += indent + '    </collectionProp>\n';
+            xml += indent + '  </elementProp>\n';
+            return { xml: xml, multipart: false };
+        }
+
+        if (bodyType === 'multipart' && st.multipart && typeof st.multipart === 'object') {
+            multipart = true;
+            var fields = st.multipart.fields || {};
+            var files = Array.isArray(st.multipart.files) ? st.multipart.files : [];
+            xml += indent + '  <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>\n';
+            if (files.length) {
+                xml += indent + '  <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">\n';
+                xml += indent + '    <collectionProp name="HTTPFileArgs.files">\n';
+                files.forEach(function (f, fi) {
+                    var param = f.param || f.paramname || ('file' + fi);
+                    xml += indent + '      <elementProp name="' + escapeXml(param) + '" elementType="HTTPFileArg">\n';
+                    xml += indent + '        <stringProp name="File.path">' + escapeXml(f.path || '') + '</stringProp>\n';
+                    xml += indent + '        <stringProp name="File.paramname">' + escapeXml(param) + '</stringProp>\n';
+                    xml += indent + '        <stringProp name="File.mimetype">' + escapeXml(f.mime || f.mimetype || '') + '</stringProp>\n';
+                    xml += indent + '      </elementProp>\n';
+                });
+                xml += indent + '    </collectionProp>\n';
+                xml += indent + '  </elementProp>\n';
+            }
+            xml += indent + '  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">\n';
+            xml += indent + '    <collectionProp name="Arguments.arguments">\n';
+            Object.keys(fields).forEach(function (k) {
+                xml += genNamedHttpArgument(indent + '      ', k, fields[k], false);
+            });
+            xml += indent + '    </collectionProp>\n';
+            xml += indent + '  </elementProp>\n';
+            return { xml: xml, multipart: multipart };
+        }
+
+        if (window.JmsJmxExportCompact) {
+            xml += window.JmsJmxExportCompact.httpEmptyBodyArgs(indent + '  ');
+        } else {
+            xml += indent + '  <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>\n';
+            xml += indent + '  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">\n';
+            xml += indent + '    <collectionProp name="Arguments.arguments"/>\n';
+            xml += indent + '  </elementProp>\n';
+        }
+        return { xml: xml, multipart: false };
+    }
+
+    function normalizeHttpManagers(mgr) {
+        var out = {
+            http_defaults: {
+                enabled: false, protocol: '', domain: '', port: '', path: '',
+                connect_timeout: '', response_timeout: '', implementation: 'HttpClient4', content_encoding: '',
+                follow_redirects: true, auto_redirects: false, use_keepalive: true
+            },
+            header_manager: { enabled: false, headers: {} },
+            cookie_manager: { enabled: false, clear_each_iteration: true, controlled_by_thread_group: false, cookies: [] },
+            cache_manager: { enabled: false, clear_each_iteration: true, use_expires: true },
+            csv_data_set: {
+                enabled: false, filename: '', file_encoding: 'UTF-8', variable_names: '',
+                ignore_first_line: false, delimiter: ',', quoted_data: false,
+                recycle: true, stop_thread: false, share_mode: 'shareMode.all'
+            },
+            counter: {
+                enabled: false, start: '1', increment: '1', maximum: '999999',
+                format: '', variable_name: 'counter', per_user: true
+            }
+        };
+        if (!mgr || typeof mgr !== 'object') return out;
+        var hd = mgr.http_defaults;
+        if (hd && typeof hd === 'object') {
+            out.http_defaults.enabled = hd.enabled !== false;
+            out.http_defaults.protocol = hd.protocol ? String(hd.protocol) : '';
+            out.http_defaults.domain = hd.domain ? String(hd.domain) : '';
+            out.http_defaults.port = hd.port !== undefined && hd.port !== null ? String(hd.port) : '';
+            out.http_defaults.path = hd.path !== undefined ? String(hd.path) : '';
+            out.http_defaults.connect_timeout = hd.connect_timeout !== undefined ? String(hd.connect_timeout) : '';
+            out.http_defaults.response_timeout = hd.response_timeout !== undefined ? String(hd.response_timeout) : '';
+            out.http_defaults.implementation = hd.implementation ? String(hd.implementation) : 'HttpClient4';
+            out.http_defaults.content_encoding = hd.content_encoding !== undefined ? String(hd.content_encoding) : '';
+            out.http_defaults.follow_redirects = hd.follow_redirects !== false;
+            out.http_defaults.auto_redirects = !!hd.auto_redirects;
+            out.http_defaults.use_keepalive = hd.use_keepalive !== false;
+        }
+        var hm = mgr.header_manager;
+        if (hm && typeof hm === 'object') {
+            out.header_manager.enabled = !!hm.enabled;
+            out.header_manager.headers = (hm.headers && typeof hm.headers === 'object') ? hm.headers : {};
+        }
+        var cm = mgr.cookie_manager;
+        if (cm && typeof cm === 'object') {
+            out.cookie_manager.enabled = !!cm.enabled;
+            out.cookie_manager.clear_each_iteration = cm.clear_each_iteration !== false;
+            out.cookie_manager.controlled_by_thread_group = !!cm.controlled_by_thread_group;
+            out.cookie_manager.cookies = Array.isArray(cm.cookies) ? cm.cookies : [];
+        }
+        var cache = mgr.cache_manager;
+        if (cache && typeof cache === 'object') {
+            out.cache_manager.enabled = !!cache.enabled;
+            out.cache_manager.clear_each_iteration = cache.clear_each_iteration !== false;
+            out.cache_manager.use_expires = cache.use_expires !== false;
+        }
+        var csv = mgr.csv_data_set;
+        if (csv && typeof csv === 'object') {
+            out.csv_data_set.enabled = !!csv.enabled;
+            out.csv_data_set.filename = csv.filename !== undefined ? String(csv.filename) : '';
+            out.csv_data_set.file_encoding = csv.file_encoding ? String(csv.file_encoding) : 'UTF-8';
+            out.csv_data_set.variable_names = csv.variable_names !== undefined ? String(csv.variable_names) : '';
+            out.csv_data_set.ignore_first_line = !!csv.ignore_first_line;
+            out.csv_data_set.delimiter = csv.delimiter !== undefined ? String(csv.delimiter) : ',';
+            out.csv_data_set.quoted_data = !!csv.quoted_data;
+            out.csv_data_set.recycle = csv.recycle !== false;
+            out.csv_data_set.stop_thread = !!csv.stop_thread;
+            out.csv_data_set.share_mode = csv.share_mode ? String(csv.share_mode) : 'shareMode.all';
+        }
+        var ctr = mgr.counter;
+        if (ctr && typeof ctr === 'object') {
+            out.counter.enabled = !!ctr.enabled;
+            out.counter.start = ctr.start !== undefined ? String(ctr.start) : '1';
+            out.counter.increment = ctr.increment !== undefined ? String(ctr.increment) : '1';
+            out.counter.maximum = ctr.maximum !== undefined ? String(ctr.maximum) : '999999';
+            out.counter.format = ctr.format !== undefined ? String(ctr.format) : '';
+            out.counter.variable_name = ctr.variable_name ? String(ctr.variable_name) : 'counter';
+            out.counter.per_user = ctr.per_user !== false;
+        }
+        if (Array.isArray(mgr.selected_types)) {
+            out.selected_types = mgr.selected_types.filter(function (k) {
+                return k === 'http_defaults' || k === 'header_manager' || k === 'cookie_manager' || k === 'cache_manager' || k === 'csv_data_set' || k === 'counter';
+            });
+        }
+        return out;
+    }
+
+    function genHeaderManagerXml(headers, indent, testname, comments) {
+        if (window.JmsJmxExportCompact) {
+            return window.JmsJmxExportCompact.headerManagerBlock(headers, indent, testname, escapeXml, comments);
+        }
+        if (!headers || !Object.keys(headers).length) {
+            return indent + '<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="' + escapeXml(testname) + '" enabled="true">\n' +
+                indent + '  <collectionProp name="HeaderManager.headers"/>\n' +
+                indent + '</HeaderManager>\n' +
+                indent + '<hashTree/>\n';
+        }
+        var xml = indent + '<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="' + escapeXml(testname) + '" enabled="true">\n';
+        xml += indent + '  <collectionProp name="HeaderManager.headers">\n';
+        Object.keys(headers).forEach(function (hk) {
+            xml += indent + '    <elementProp name="' + escapeXml(hk) + '" elementType="Header">\n';
+            xml += indent + '      <stringProp name="Header.name">' + escapeXml(hk) + '</stringProp>\n';
+            xml += indent + '      <stringProp name="Header.value">' + escapeXml(headers[hk]) + '</stringProp>\n';
+            xml += indent + '    </elementProp>\n';
+        });
+        xml += indent + '  </collectionProp>\n';
+        xml += indent + '</HeaderManager>\n';
+        xml += indent + '<hashTree/>\n';
+        return xml;
+    }
+
+    function genCookieManagerXml(cfg, indent) {
+        if (!cfg || !cfg.enabled) return '';
+        var clear = cfg.clear_each_iteration !== false ? 'true' : 'false';
+        var controlled = cfg.controlled_by_thread_group ? 'true' : 'false';
+        var xml = indent + '<CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie 管理器" enabled="true">\n';
+        xml += indent + '  <collectionProp name="CookieManager.cookies">\n';
+        (cfg.cookies || []).forEach(function (c, i) {
+            if (!c || !c.name) return;
+            var cname = escapeXml(String(c.name));
+            xml += indent + '    <elementProp name="' + cname + '" elementType="Cookie">\n';
+            xml += indent + '      <stringProp name="Cookie.value">' + escapeXml(c.value || '') + '</stringProp>\n';
+            xml += indent + '      <stringProp name="Cookie.domain">' + escapeXml(c.domain || '') + '</stringProp>\n';
+            xml += indent + '      <stringProp name="Cookie.path">' + escapeXml(c.path || '/') + '</stringProp>\n';
+            xml += indent + '      <boolProp name="Cookie.secure">' + (c.secure ? 'true' : 'false') + '</boolProp>\n';
+            xml += indent + '      <longProp name="Cookie.expires">' + escapeXml(c.expires || '0') + '</longProp>\n';
+            xml += indent + '    </elementProp>\n';
+        });
+        xml += indent + '  </collectionProp>\n';
+        xml += indent + '  <boolProp name="CookieManager.clearEachIteration">' + clear + '</boolProp>\n';
+        xml += indent + '  <boolProp name="CookieManager.controlledByThreadGroup">' + controlled + '</boolProp>\n';
+        xml += indent + '</CookieManager>\n';
+        xml += indent + '<hashTree/>\n';
+        return xml;
+    }
+
+    function genCacheManagerXml(cfg, indent) {
+        if (!cfg || !cfg.enabled) return '';
+        var clear = cfg.clear_each_iteration !== false ? 'true' : 'false';
+        var expires = cfg.use_expires !== false ? 'true' : 'false';
+        return indent + '<CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP 缓存管理器" enabled="true">\n' +
+            indent + '  <boolProp name="clearEachIteration">' + clear + '</boolProp>\n' +
+            indent + '  <boolProp name="useExpires">' + expires + '</boolProp>\n' +
+            indent + '</CacheManager>\n' +
+            indent + '<hashTree/>\n';
+    }
+
+    function genCsvDataSetXml(cfg, indent) {
+        if (!cfg || !cfg.enabled) return '';
+        var filename = cfg.filename ? String(cfg.filename).trim() : '';
+        if (!filename) return '';
+        var xml = indent + '<CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV 数据文件设置" enabled="true">\n';
+        xml += indent + '  <stringProp name="filename">' + escapeXml(filename) + '</stringProp>\n';
+        xml += indent + '  <stringProp name="fileEncoding">' + escapeXml(cfg.file_encoding || 'UTF-8') + '</stringProp>\n';
+        xml += indent + '  <stringProp name="variableNames">' + escapeXml(cfg.variable_names || '') + '</stringProp>\n';
+        xml += indent + '  <boolProp name="ignoreFirstLine">' + (cfg.ignore_first_line ? 'true' : 'false') + '</boolProp>\n';
+        xml += indent + '  <stringProp name="delimiter">' + escapeXml(cfg.delimiter !== undefined ? String(cfg.delimiter) : ',') + '</stringProp>\n';
+        xml += indent + '  <boolProp name="quotedData">' + (cfg.quoted_data ? 'true' : 'false') + '</boolProp>\n';
+        xml += indent + '  <boolProp name="recycle">' + (cfg.recycle !== false ? 'true' : 'false') + '</boolProp>\n';
+        xml += indent + '  <boolProp name="stopThread">' + (cfg.stop_thread ? 'true' : 'false') + '</boolProp>\n';
+        xml += indent + '  <stringProp name="shareMode">' + escapeXml(cfg.share_mode || 'shareMode.all') + '</stringProp>\n';
+        xml += indent + '</CSVDataSet>\n';
+        xml += indent + '<hashTree/>\n';
+        return xml;
+    }
+
+    function genUserDefinedVariablesXml(variables, indent, testname) {
+        var xml = '';
+        var keys = Object.keys(variables || {});
+        if (!keys.length) return xml;
+        var pad = indent;
+        var pad2 = pad + '  ';
+        var pad3 = pad2 + '  ';
+        xml += pad + '<Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="' + escapeXml(testname || 'User Defined Variables') + '" enabled="true">\n';
+        xml += pad2 + '<collectionProp name="Arguments.arguments">\n';
+        keys.forEach(function (k) {
+            xml += pad3 + '<elementProp name="' + escapeXml(k) + '" elementType="Argument">\n';
+            xml += pad3 + '  <stringProp name="Argument.name">' + escapeXml(k) + '</stringProp>\n';
+            xml += pad3 + '  <stringProp name="Argument.value">' + escapeXml(variables[k]) + '</stringProp>\n';
+            xml += pad3 + '  <stringProp name="Argument.metadata">=</stringProp>\n';
+            xml += pad3 + '</elementProp>\n';
+        });
+        xml += pad2 + '</collectionProp>\n';
+        xml += pad + '</Arguments>\n';
+        xml += pad + '<hashTree/>\n';
+        return xml;
+    }
+
+    function hasJmxVariableEntries(variables) {
+        return !!(variables && typeof variables === 'object' && Object.keys(variables).length);
+    }
+
+    /** 场景公共变量：仅测试计划 hashTree 下输出独立 Arguments 组件 */
+    function genTestPlanPublicVariablesComponentXml(variables, indent, testname) {
+        if (!hasJmxVariableEntries(variables)) return '';
+        return genUserDefinedVariablesXml(variables, indent, testname || '计划变量');
+    }
+
+    /** 线程组自有变量：仅当 thread_groups[n].variables 非空时输出 */
+    function genThreadGroupLocalVariablesXml(variables, indent, testname) {
+        if (!hasJmxVariableEntries(variables)) return '';
+        return genUserDefinedVariablesXml(variables, indent, testname || '线程组变量');
+    }
+
+    /** 新方法：步骤中已有 Arguments catalog 时跳过自动写出，避免与导入保真重复 */
+    function genThreadGroupLocalVariablesXmlForStudio(plan, variables, indent, testname) {
+        var A = window.JmsJmxImportTgArgumentsStepV1;
+        if (A && typeof A.shouldSkipTgLocalVariablesExport === 'function' && A.shouldSkipTgLocalVariablesExport(plan || {})) {
+            return '';
+        }
+        return genThreadGroupLocalVariablesXml(variables, indent, testname);
+    }
+
+    function buildJmxExportHelpers() {
+        return {
+            escapeXml: escapeXml,
+            genStepsXml: genStepsXmlFlat,
+            genSingleStepXml: genSingleHttpStepXml,
+            genExtendedAssertionXml: window.JmeterJmxExtra ? function (a, name, pad) {
+                return window.JmeterJmxExtra.genExtendedAssertionXml(a, name, pad, escapeXml);
+            } : null,
+            normalizeHttpManagers: normalizeHttpManagers,
+            genUserDefinedVariablesXml: genUserDefinedVariablesXml,
+            hasJmxVariableEntries: hasJmxVariableEntries,
+            genTestPlanPublicVariablesComponentXml: genTestPlanPublicVariablesComponentXml,
+            genThreadGroupLocalVariablesXml: genThreadGroupLocalVariablesXml,
+            backendListenerXml: backendListenerXml,
+            genThreadGroupConfigXml: function (httpMgr, bu, defaultHeaders, listeners, tgLabel, opts) {
+                opts = opts || {};
+                var xml = '';
+                var tgScope = window.JmsTgJmxExportTgScope;
+                var tgRef = opts.tg || null;
+                var hdSelected = tgScope && typeof tgScope.shouldExportLegacyHttpDefaults === 'function'
+                    ? tgScope.shouldExportLegacyHttpDefaults(httpMgr, tgRef)
+                    : (httpMgr.selected_types && httpMgr.selected_types.length
+                        ? httpMgr.selected_types.indexOf('http_defaults') >= 0
+                        : httpMgr.http_defaults.enabled === true);
+                if (hdSelected) {
+                    var hd = httpMgr.http_defaults;
+                    var hdProtocol = hd.protocol || bu.protocol;
+                    var hdDomain = hd.domain || bu.host;
+                    var hdPort = hd.port || bu.port;
+                    var hdPath = hd.path !== undefined ? hd.path : '';
+                    var hdImpl = hd.implementation || 'HttpClient4';
+                    xml += '        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP 请求默认值" enabled="true">\n';
+                    xml += '          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">\n';
+                    xml += '            <collectionProp name="Arguments.arguments"/>\n';
+                    xml += '          </elementProp>\n';
+                    xml += '          <stringProp name="HTTPSampler.domain">' + escapeXml(hdDomain) + '</stringProp>\n';
+                    xml += '          <stringProp name="HTTPSampler.port">' + escapeXml(hdPort) + '</stringProp>\n';
+                    xml += '          <stringProp name="HTTPSampler.protocol">' + escapeXml(hdProtocol) + '</stringProp>\n';
+                    xml += '          <stringProp name="HTTPSampler.path">' + escapeXml(hdPath) + '</stringProp>\n';
+                    xml += '          <stringProp name="HTTPSampler.contentEncoding">' + escapeXml(hd.content_encoding || '') + '</stringProp>\n';
+                    xml += '          <boolProp name="HTTPSampler.follow_redirects">' + (hd.follow_redirects !== false ? 'true' : 'false') + '</boolProp>\n';
+                    xml += '          <boolProp name="HTTPSampler.auto_redirects">' + (hd.auto_redirects ? 'true' : 'false') + '</boolProp>\n';
+                    xml += '          <boolProp name="HTTPSampler.use_keepalive">' + (hd.use_keepalive !== false ? 'true' : 'false') + '</boolProp>\n';
+                    xml += '          <stringProp name="HTTPSampler.connect_timeout">' + escapeXml(hd.connect_timeout || '') + '</stringProp>\n';
+                    xml += '          <stringProp name="HTTPSampler.response_timeout">' + escapeXml(hd.response_timeout || '') + '</stringProp>\n';
+                    xml += '          <stringProp name="HTTPSampler.implementation">' + escapeXml(hdImpl) + '</stringProp>\n';
+                    xml += '        </ConfigTestElement>\n        <hashTree/>\n';
+                }
+                xml += genCookieManagerXml(httpMgr.cookie_manager, '        ');
+                xml += genCacheManagerXml(httpMgr.cache_manager, '        ');
+                var csvCfg = httpMgr.csv_data_set || {};
+                var csvSelected = httpMgr.selected_types && httpMgr.selected_types.length
+                    ? httpMgr.selected_types.indexOf('csv_data_set') >= 0 : !!csvCfg.enabled;
+                if (csvSelected) xml += genCsvDataSetXml(Object.assign({}, csvCfg, { enabled: true }), '        ');
+                var ctrCfg = httpMgr.counter || {};
+                var ctrSelected = httpMgr.selected_types && httpMgr.selected_types.length
+                    ? httpMgr.selected_types.indexOf('counter') >= 0 : !!ctrCfg.enabled;
+                if (ctrSelected && window.JmeterJmxExtra) {
+                    xml += window.JmeterJmxExtra.genCounterXml(Object.assign({}, ctrCfg, { enabled: true }), '        ', escapeXml);
+                }
+                if (window.JmeterJmxExtra && listeners) {
+                    xml += window.JmeterJmxExtra.genTgListenersXml(listeners, '        ', escapeXml, tgLabel);
+                }
+                if (httpMgr.header_manager.enabled) {
+                    var hmTestName = (httpMgr.header_manager.name && String(httpMgr.header_manager.name).trim()) || 'HTTP 请求头管理器';
+                    xml += genHeaderManagerXml(httpMgr.header_manager.headers, '        ', hmTestName, httpMgr.header_manager.comments);
+                }
+                return xml;
+            },
+            genStepsTreeXml: function (steps, indent, helpers) {
+                if (!window.JmxScenarioAdvanced) return genStepsXmlFlat(steps, indent);
+                return window.JmxScenarioAdvanced.genStepsTreeXml(steps, indent, helpers);
+            }
+        };
+    }
+
+    function genSingleHttpStepXml(st, stepIdx, indent, usedStepNames) {
+        var rawName = st.name || ('step_' + (stepIdx + 1));
+        var samplerName = escapeXml(rawName);
+        var pathWithQuery = resolveStepPathForJmx(st);
+        var stepAssertions = collectStepAssertions(st);
+        var bodyXml = genHttpSamplerBodyXml(st, indent, st.method);
+        var advChildren = window.JmxScenarioAdvanced ? window.JmxScenarioAdvanced.genSamplerChildrenAdvanced(st, indent + '  ', buildJmxExportHelpers()) : '';
+        var hasChildExtras = advChildren ||
+            (st.step_listeners && (st.step_listeners.view_results_tree || st.step_listeners.aggregate_report)) ||
+            (st.constant_timer && st.constant_timer.enabled) ||
+            (st.user_parameters && st.user_parameters.enabled);
+        var stepCfgActive = window.JmsHttpStepConfigJmx && typeof window.JmsHttpStepConfigJmx.hasActiveConfig === 'function'
+            && window.JmsHttpStepConfigJmx.hasActiveConfig(st);
+        var hasChildren = stepCfgActive || st.extract || stepAssertions.length > 0 || hasChildExtras;
+        var xml = '';
+        xml += indent + '<HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="' + samplerName + '"' + jmxSamplerEnabledAttr(st) + '>\n';
+        xml += bodyXml.xml;
+        xml += httpSamplerCommonProps(indent, { encoding: st.encoding || '', multipart: bodyXml.multipart });
+        xml += indent + '  <stringProp name="HTTPSampler.path">' + escapeXml(pathWithQuery) + '</stringProp>\n';
+        xml += indent + '  <stringProp name="HTTPSampler.method">' + escapeXml(st.method) + '</stringProp>\n';
+        xml += indent + '</HTTPSamplerProxy>\n';
+        xml += hasChildren ? indent + '<hashTree>\n' : indent + '<hashTree/>\n';
+        var childPad = indent + '  ';
+        if (window.JmsHttpStepConfigJmx && typeof window.JmsHttpStepConfigJmx.genStepConfigXml === 'function') {
+            xml += window.JmsHttpStepConfigJmx.genStepConfigXml(st, childPad, escapeXml);
+        } else if (window.JmsHttpStepConfigJmx && typeof window.JmsHttpStepConfigJmx.genStepConfigXml === 'function') {
+            xml += window.JmsHttpStepConfigJmx.genStepConfigXml(st, childPad, escapeXml);
+        } else if (st.headers && Object.keys(st.headers).length) {
+            xml += childPad + '<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="步骤请求头 ' + samplerName + '" enabled="true">\n';
+            xml += childPad + '  <collectionProp name="HeaderManager.headers">\n';
+            Object.keys(st.headers).forEach(function (hk) {
+                xml += childPad + '    <elementProp name="' + escapeXml(hk) + '" elementType="Header">\n';
+                xml += childPad + '      <stringProp name="Header.name">' + escapeXml(hk) + '</stringProp>\n';
+                xml += childPad + '      <stringProp name="Header.value">' + escapeXml(st.headers[hk]) + '</stringProp>\n';
+                xml += childPad + '    </elementProp>\n';
+            });
+            xml += childPad + '  </collectionProp>\n';
+            xml += childPad + '</HeaderManager>\n';
+            xml += childPad + '<hashTree/>\n';
+        }
+        if (advChildren) xml += advChildren;
+        else if (st.extract) {
+            xml += childPad + '<JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取 ' + escapeXml(st.extract.var) + '" enabled="true">\n';
+            xml += childPad + '  <stringProp name="JSONPostProcessor.referenceNames">' + escapeXml(st.extract.var) + '</stringProp>\n';
+            xml += childPad + '  <stringProp name="JSONPostProcessor.jsonPathExprs">' + escapeXml(st.extract.json_path) + '</stringProp>\n';
+            xml += childPad + '  <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>\n';
+            xml += childPad + '  <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>\n';
+            xml += childPad + '</JSONPostProcessor>\n';
+            xml += childPad + '<hashTree/>\n';
+        }
+        stepAssertions.forEach(function (a) { xml += genAssertionXml(a, samplerName, childPad); });
+        if (window.JmeterJmxExtraExportV2 && typeof window.JmeterJmxExtraExportV2.genStepChildComponentsXml === 'function') {
+            xml += window.JmeterJmxExtraExportV2.genStepChildComponentsXml(st, childPad, escapeXml);
+        } else if (window.JmeterJmxExtra) xml += window.JmeterJmxExtra.genStepChildComponentsXml(st, childPad, escapeXml);
+        if (hasChildren) xml += indent + '</hashTree>\n';
+        return xml;
+    }
+
+    function genStepsXmlFlat(steps, indent) {
+        var xml = '';
+        var usedStepNames = {};
+        steps.forEach(function (st, stepIdx) {
+            var rawName = st.name || ('step_' + (stepIdx + 1));
+            var samplerName = escapeXml(rawName);
+            var pathWithQuery = resolveStepPathForJmx(st);
+            var stepAssertions = collectStepAssertions(st);
+            var bodyXml = genHttpSamplerBodyXml(st, indent, st.method);
+            var hasChildExtras = (st.step_listeners && (st.step_listeners.view_results_tree || st.step_listeners.aggregate_report)) ||
+                (st.constant_timer && st.constant_timer.enabled) ||
+                (st.user_parameters && st.user_parameters.enabled);
+            var stepCfgActive = window.JmsHttpStepConfigJmx && typeof window.JmsHttpStepConfigJmx.hasActiveConfig === 'function'
+            && window.JmsHttpStepConfigJmx.hasActiveConfig(st);
+        var hasChildren = stepCfgActive || st.extract || stepAssertions.length > 0 || hasChildExtras;
+
+            xml += indent + '<HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="' + samplerName + '"' + jmxSamplerEnabledAttr(st) + '>\n';
+            xml += bodyXml.xml;
+            xml += httpSamplerCommonProps(indent, { encoding: st.encoding || '', multipart: bodyXml.multipart });
+            xml += indent + '  <stringProp name="HTTPSampler.path">' + escapeXml(pathWithQuery) + '</stringProp>\n';
+            xml += indent + '  <stringProp name="HTTPSampler.method">' + escapeXml(st.method) + '</stringProp>\n';
+            xml += indent + '</HTTPSamplerProxy>\n';
+            xml += hasChildren ? indent + '<hashTree>\n' : indent + '<hashTree/>\n';
+
+            var childPad = indent + '  ';
+            if (window.JmsHttpStepConfigJmx && typeof window.JmsHttpStepConfigJmx.genStepConfigXml === 'function') {
+            xml += window.JmsHttpStepConfigJmx.genStepConfigXml(st, childPad, escapeXml);
+        } else if (window.JmsHttpStepConfigJmx && typeof window.JmsHttpStepConfigJmx.genStepConfigXml === 'function') {
+            xml += window.JmsHttpStepConfigJmx.genStepConfigXml(st, childPad, escapeXml);
+        } else if (st.headers && Object.keys(st.headers).length) {
+                xml += childPad + '<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="步骤请求头 ' + samplerName + '" enabled="true">\n';
+                xml += childPad + '  <collectionProp name="HeaderManager.headers">\n';
+                Object.keys(st.headers).forEach(function (hk) {
+                    xml += childPad + '    <elementProp name="' + escapeXml(hk) + '" elementType="Header">\n';
+                    xml += childPad + '      <stringProp name="Header.name">' + escapeXml(hk) + '</stringProp>\n';
+                    xml += childPad + '      <stringProp name="Header.value">' + escapeXml(st.headers[hk]) + '</stringProp>\n';
+                    xml += childPad + '    </elementProp>\n';
+                });
+                xml += childPad + '  </collectionProp>\n';
+                xml += childPad + '</HeaderManager>\n';
+                xml += childPad + '<hashTree/>\n';
+            }
+            if (st.extract) {
+                xml += childPad + '<JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取 ' + escapeXml(st.extract.var) + '" enabled="true">\n';
+                xml += childPad + '  <stringProp name="JSONPostProcessor.referenceNames">' + escapeXml(st.extract.var) + '</stringProp>\n';
+                xml += childPad + '  <stringProp name="JSONPostProcessor.jsonPathExprs">' + escapeXml(st.extract.json_path) + '</stringProp>\n';
+                xml += childPad + '  <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>\n';
+                xml += childPad + '  <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>\n';
+                xml += childPad + '</JSONPostProcessor>\n';
+                xml += childPad + '<hashTree/>\n';
+            }
+            stepAssertions.forEach(function (a) {
+                xml += genAssertionXml(a, samplerName, childPad);
+            });
+            if (window.JmeterJmxExtra) {
+                if (window.JmeterJmxExtraExportV2 && typeof window.JmeterJmxExtraExportV2.genStepChildComponentsXml === 'function') {
+                    xml += window.JmeterJmxExtraExportV2.genStepChildComponentsXml(st, childPad, escapeXml);
+                } else if (window.JmeterJmxExtra) xml += window.JmeterJmxExtra.genStepChildComponentsXml(st, childPad, escapeXml);
+            }
+            if (hasChildren) xml += indent + '</hashTree>\n';
+        });
+        return xml;
+    }
+
+
+    function stepsNeedAdvancedTreeExport(steps) {
+        if (window.JmxScenarioAdvanced && typeof window.JmxScenarioAdvanced.stepsNeedTreeXml === 'function') {
+            return window.JmxScenarioAdvanced.stepsNeedTreeXml(steps);
+        }
+        return (steps || []).some(function (s) { return s && s.type === 'if_controller'; });
+    }
+
+    function genStepsXml(steps, indent) {
+        if (window.JmxScenarioAdvanced && stepsNeedAdvancedTreeExport(steps)) {
+            var helpers = buildJmxExportHelpers();
+            helpers.genStepsXml = genStepsXmlFlat;
+            return window.JmxScenarioAdvanced.genStepsTreeXml(steps, indent, helpers);
+        }
+        return genStepsXmlFlat(steps, indent);
+    }
+    function genThreadGroupXml(plan, bu, defaultHeaders, listenerData, tgLabel) {
+        var load = plan.load;
+        var loops = load.loops;
+        var loopForever = loops < 0 ? 'true' : 'false';
+        var loopsVal = loops < 0 ? '-1' : String(loops);
+        var tgName = escapeXml(tgLabel || plan.name || 'Thread Group');
+        var httpMgr = normalizeHttpManagers(plan.http_managers);
+        var xml = '      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="' + tgName + '" enabled="true">\n';
+        xml += '        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>\n';
+        xml += '        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">\n';
+        xml += '          <boolProp name="LoopController.continue_forever">' + loopForever + '</boolProp>\n';
+        xml += '          <stringProp name="LoopController.loops">' + loopsVal + '</stringProp>\n';
+        xml += '        </elementProp>\n';
+        xml += '        <stringProp name="ThreadGroup.num_threads">' + load.users + '</stringProp>\n';
+        xml += '        <stringProp name="ThreadGroup.ramp_time">' + load.spawn_rate + '</stringProp>\n';
+        xml += '        <boolProp name="ThreadGroup.scheduler">true</boolProp>\n';
+        xml += '        <stringProp name="ThreadGroup.duration">' + load.duration_sec + '</stringProp>\n';
+        xml += '        <stringProp name="ThreadGroup.delay"></stringProp>\n';
+        xml += '      </ThreadGroup>\n      <hashTree>\n';
+
+        xml += genThreadGroupLocalVariablesXmlForStudio(plan, plan.variables, '        ', '线程组变量 ' + (plan.name || tgName || ''));
+
+        if (plan.config_items && plan.config_items.length && window.JmsTgConfigJmx && typeof window.JmsTgConfigJmx.genItemsXml === 'function') {
+            xml += window.JmsTgConfigJmx.genItemsXml(plan.config_items, '        ', escapeXml, { bu: bu, defaultHeaders: defaultHeaders, tg: plan });
+            if (window.JmeterJmxExtra && plan.listeners) {
+                xml += window.JmeterJmxExtra.genTgListenersXml(plan.listeners, '        ', escapeXml, tgLabel);
+            }
+        } else {
+        var tgScope2 = window.JmsTgJmxExportTgScope;
+        var hdSelected = tgScope2 && typeof tgScope2.shouldExportLegacyHttpDefaults === 'function'
+            ? tgScope2.shouldExportLegacyHttpDefaults(httpMgr, plan)
+            : (httpMgr.selected_types && httpMgr.selected_types.length
+                ? httpMgr.selected_types.indexOf('http_defaults') >= 0
+                : httpMgr.http_defaults.enabled === true);
+        if (hdSelected) {
+            var hd = httpMgr.http_defaults;
+            var hdProtocol = hd.protocol || bu.protocol;
+            var hdDomain = hd.domain || bu.host;
+            var hdPort = hd.port || bu.port;
+            var hdPath = hd.path !== undefined ? hd.path : '';
+            var hdImpl = hd.implementation || 'HttpClient4';
+            if (window.JmsJmxExportCompact) {
+                var hdCompact = {
+                    enabled: true,
+                    domain: hdDomain,
+                    port: hdPort,
+                    protocol: hdProtocol,
+                    path: hdPath,
+                    content_encoding: hd.content_encoding || '',
+                    follow_redirects: hd.follow_redirects,
+                    auto_redirects: hd.auto_redirects,
+                    use_keepalive: hd.use_keepalive,
+                    connect_timeout: hd.connect_timeout || '',
+                    response_timeout: hd.response_timeout || '',
+                    implementation: hdImpl
+                };
+                xml += window.JmsJmxExportCompact.httpDefaultsBlock(hdCompact, '        ', escapeXml);
+            } else {
+            xml += '        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP 请求默认值" enabled="true">\n';
+            xml += '          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">\n';
+            xml += '            <collectionProp name="Arguments.arguments"/>\n';
+            xml += '          </elementProp>\n';
+            xml += '          <stringProp name="HTTPSampler.domain">' + escapeXml(hdDomain) + '</stringProp>\n';
+            xml += '          <stringProp name="HTTPSampler.port">' + escapeXml(hdPort) + '</stringProp>\n';
+            xml += '          <stringProp name="HTTPSampler.protocol">' + escapeXml(hdProtocol) + '</stringProp>\n';
+            xml += '          <stringProp name="HTTPSampler.path">' + escapeXml(hdPath) + '</stringProp>\n';
+            xml += '          <stringProp name="HTTPSampler.contentEncoding">' + escapeXml(hd.content_encoding || '') + '</stringProp>\n';
+            xml += '          <boolProp name="HTTPSampler.follow_redirects">' + (hd.follow_redirects !== false ? 'true' : 'false') + '</boolProp>\n';
+            xml += '          <boolProp name="HTTPSampler.auto_redirects">' + (hd.auto_redirects ? 'true' : 'false') + '</boolProp>\n';
+            xml += '          <boolProp name="HTTPSampler.use_keepalive">' + (hd.use_keepalive !== false ? 'true' : 'false') + '</boolProp>\n';
+            xml += '          <stringProp name="HTTPSampler.connect_timeout">' + escapeXml(hd.connect_timeout || '') + '</stringProp>\n';
+            xml += '          <stringProp name="HTTPSampler.response_timeout">' + escapeXml(hd.response_timeout || '') + '</stringProp>\n';
+            xml += '          <stringProp name="HTTPSampler.implementation">' + escapeXml(hdImpl) + '</stringProp>\n';
+            xml += '        </ConfigTestElement>\n        <hashTree/>\n';
+            }
+        }
+
+        xml += genCookieManagerXml(httpMgr.cookie_manager, '        ');
+        xml += genCacheManagerXml(httpMgr.cache_manager, '        ');
+        var csvCfg = httpMgr.csv_data_set || {};
+        var csvSelected = httpMgr.selected_types && httpMgr.selected_types.length
+            ? httpMgr.selected_types.indexOf('csv_data_set') >= 0
+            : !!csvCfg.enabled;
+        if (csvSelected) {
+            xml += genCsvDataSetXml(Object.assign({}, csvCfg, { enabled: true }), '        ');
+        }
+        var ctrCfg = httpMgr.counter || {};
+        var ctrSelected = httpMgr.selected_types && httpMgr.selected_types.length
+            ? httpMgr.selected_types.indexOf('counter') >= 0
+            : !!ctrCfg.enabled;
+        if (ctrSelected && window.JmeterJmxExtra) {
+            xml += window.JmeterJmxExtra.genCounterXml(Object.assign({}, ctrCfg, { enabled: true }), '        ', escapeXml);
+        }
+
+        if (window.JmeterJmxExtra && plan.listeners) {
+            xml += window.JmeterJmxExtra.genTgListenersXml(plan.listeners, '        ', escapeXml, tgLabel);
+        }
+
+        if (httpMgr.header_manager.enabled) {
+            var hmTestName = (httpMgr.header_manager.name && String(httpMgr.header_manager.name).trim()) || 'HTTP 请求头管理器';
+                    xml += genHeaderManagerXml(httpMgr.header_manager.headers, '        ', hmTestName, httpMgr.header_manager.comments);
+        }
+        }
+
+        if (window.JmxScenarioAdvanced && plan.processors && plan.processors.length) {
+            xml += window.JmxScenarioAdvanced.genProcessorsXml(plan.processors, '        ', escapeXml);
+        }
+
+        if (Array.isArray(plan.assertions) && plan.assertions.length) {
+            plan.assertions.forEach(function (a) {
+                xml += genAssertionXml(a, tgName, '        ');
+            });
+        }
+
+        xml += genStepsXml(plan.steps, '        ');
+        var exportTgBackend = (window.JmsTgBackendListenerJmx && typeof window.JmsTgBackendListenerJmx.shouldExport === 'function')
+            ? window.JmsTgBackendListenerJmx.shouldExport(plan.listeners, listenerData)
+            : (listenerData.influxdb && listenerData.influxdb.enabled !== false);
+        if (exportTgBackend) xml += backendListenerXml(listenerData, '        ', plan.backend_listener);
+        xml += '      </hashTree>\n';
+        return xml;
+    }
+
+    function genJmxScenario(data) {
+        data = resolveScenarioFromPlanCatalog(data);
+        var skipLegacyPlanHash = window.JmsPlanCatalogResolve &&
+            typeof window.JmsPlanCatalogResolve.shouldSkipLegacyPlanHashExports === 'function' &&
+            window.JmsPlanCatalogResolve.shouldSkipLegacyPlanHashExports(data);
+        var bu = parseBaseUrlForStudioExport(data.base_url);
+        var testName = escapeXml(data.name);
+        var xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+        xml += '<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6">\n  <hashTree>\n';
+        xml += '    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="' + testName + '" enabled="true">\n';
+        xml += '      <boolProp name="TestPlan.functional_mode">false</boolProp>\n';
+        xml += '      <boolProp name="TestPlan.serialize_threadgroups">' + (data.serialize_threadgroups ? 'true' : 'false') + '</boolProp>\n';
+        xml += '      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">\n';
+        xml += '        <collectionProp name="Arguments.arguments">\n';
+        Object.keys(data.variables || {}).forEach(function (k) {
+            xml += '          <elementProp name="' + escapeXml(k) + '" elementType="Argument">\n';
+            xml += '            <stringProp name="Argument.name">' + escapeXml(k) + '</stringProp>\n';
+            xml += '            <stringProp name="Argument.value">' + escapeXml(data.variables[k]) + '</stringProp>\n';
+            xml += '            <stringProp name="Argument.metadata">=</stringProp>\n';
+            xml += '          </elementProp>\n';
+        });
+        xml += '        </collectionProp>\n      </elementProp>\n    </TestPlan>\n    <hashTree>\n';
+        var skipDupPlanArgs = window.JmsJmxArgumentsDedupeV1 && typeof window.JmsJmxArgumentsDedupeV1.shouldSkipPublicVariablesComponent === 'function' &&
+            window.JmsJmxArgumentsDedupeV1.shouldSkipPublicVariablesComponent(data);
+        if (!skipLegacyPlanHash && !skipDupPlanArgs) {
+            xml += genTestPlanPublicVariablesComponentXml(data.variables, '      ', '计划变量 ' + (data.name || ''));
+            if (data.default_headers && Object.keys(data.default_headers).length) {
+                xml += genHeaderManagerXml(data.default_headers, '      ', '公共请求头');
+            }
+        }
+
+        if (window.JmxCatalogElement && Array.isArray(data.plan_catalog_items)) {
+            data.plan_catalog_items.forEach(function (item) {
+                if (item && item.type === 'catalog_element') {
+                    xml += window.JmxCatalogElement.genXml(item, '      ', { escapeXml: escapeXml });
+                }
+            });
+        }
+
+        (data.setup_thread_groups || []).forEach(function (stg, idx) {
+            var listenerData = influxDataForPlan(data, { name: data.name, influxdb: {} }, stg);
+            if (window.JmxScenarioAdvanced) {
+                xml += window.JmxScenarioAdvanced.genThreadGroupLikeXml({
+                    name: stg.name,
+                    load: stg.load,
+                    variables: (stg.variables && typeof stg.variables === 'object') ? stg.variables : {},
+                    http_managers: normalizeHttpManagers(stg.http_managers),
+                    listeners: stg.listeners || {},
+                    processors: stg.processors || [],
+                    config_items: Array.isArray(stg.config_items) ? stg.config_items : [],
+                    steps: stg.steps || []
+                }, bu, data.default_headers, listenerData, stg.name || ('Setup ' + (idx + 1)), {
+                    isSetup: true,
+                    helpers: buildJmxExportHelpers()
+                });
+            } else {
+                xml += genThreadGroupXml(stg, bu, data.default_headers, listenerData, stg.name);
+            }
+        });
+
+        threadGroupsForJmx(data).forEach(function (tg, idx) {
+            var listenerData = influxDataForPlan(data, { name: data.name, influxdb: {} }, tg.tgRef);
+            if (window.JmxScenarioAdvanced) {
+                xml += window.JmxScenarioAdvanced.genThreadGroupLikeXml({
+                    name: tg.name,
+                    load: tg.load,
+                    variables: tg.variables,
+                    http_managers: tg.http_managers,
+                    listeners: tg.listeners || {},
+                    processors: (tg.tgRef && tg.tgRef.processors) ? tg.tgRef.processors : [],
+                    config_items: Array.isArray(tg.config_items) ? tg.config_items : [],
+                    steps: tg.steps || []
+                }, bu, data.default_headers, listenerData, tg.name || ('Thread Group ' + (idx + 1)), {
+                    helpers: buildJmxExportHelpers()
+                });
+            } else {
+                xml += genThreadGroupXml({
+                    name: tg.name,
+                    load: tg.load,
+                    variables: tg.variables,
+                    http_managers: tg.http_managers,
+                    listeners: tg.listeners,
+                    processors: (tg.tgRef && tg.tgRef.processors) ? tg.tgRef.processors : [],
+                    steps: tg.steps
+                }, bu, data.default_headers, listenerData, tg.name);
+            }
+        });
+
+        (data.post_thread_groups || []).forEach(function (ptg, idx) {
+            var listenerDataPost = influxDataForPlan(data, { name: data.name, influxdb: {} }, ptg);
+            if (window.JmxScenarioAdvanced) {
+                xml += window.JmxScenarioAdvanced.genThreadGroupLikeXml({
+                    name: ptg.name,
+                    load: ptg.load,
+                    variables: (ptg.variables && typeof ptg.variables === 'object') ? ptg.variables : {},
+                    http_managers: normalizeHttpManagers(ptg.http_managers),
+                    listeners: ptg.listeners || {},
+                    processors: ptg.processors || [],
+                    config_items: Array.isArray(ptg.config_items) ? ptg.config_items : [],
+                    steps: ptg.steps || []
+                }, bu, data.default_headers, listenerDataPost, ptg.name || ('Post ' + (idx + 1)), {
+                    isPost: true,
+                    helpers: buildJmxExportHelpers()
+                });
+            } else {
+                xml += genThreadGroupXml(ptg, bu, data.default_headers, listenerDataPost, ptg.name);
+            }
+        });
+
+        xml += '    </hashTree>\n  </hashTree>\n</jmeterTestPlan>\n';
+        if (window.JmsJmxExportCompact && typeof window.JmsJmxExportCompact.compactExportXml === 'function') {
+            xml = window.JmsJmxExportCompact.compactExportXml(xml);
+        }
+        return xml;
+    }
+
+    function genJmx(data) {
+        if (window.JmsJmxImportCatalogBridge && typeof window.JmsJmxImportCatalogBridge.prepareScenarioData === 'function') {
+            data = window.JmsJmxImportCatalogBridge.prepareScenarioData(data);
+        }
+        data = resolveScenarioFromPlanCatalog(data);
+        setJmxExportPathContext(data);
+        if (window.JmxScenarioAdvanced && window.JmxScenarioAdvanced.shouldUseRawJmx(data)) {
+            return data.raw_jmx.xml;
+        }
+        if (data.layout === 'scenario' && Array.isArray(data.thread_groups) && data.thread_groups.length) {
+            return genJmxScenario(data);
+        }
+
+        var bu = parseBaseUrlForStudioExport(data.base_url);
+        var singlePlan = {
+            name: data.name,
+            load: data.load,
+            variables: {},
+            steps: data.steps
+        };
+        var xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+        xml += '<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6">\n  <hashTree>\n';
+        xml += '    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="' + escapeXml(data.name) + '" enabled="true">\n';
+        xml += '      <boolProp name="TestPlan.functional_mode">false</boolProp>\n';
+        xml += '      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>\n';
+        xml += '      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">\n';
+        xml += '        <collectionProp name="Arguments.arguments">\n';
+        Object.keys(data.variables || {}).forEach(function (k) {
+            xml += '          <elementProp name="' + escapeXml(k) + '" elementType="Argument">\n';
+            xml += '            <stringProp name="Argument.name">' + escapeXml(k) + '</stringProp>\n';
+            xml += '            <stringProp name="Argument.value">' + escapeXml(data.variables[k]) + '</stringProp>\n';
+            xml += '            <stringProp name="Argument.metadata">=</stringProp>\n';
+            xml += '          </elementProp>\n';
+        });
+        xml += '        </collectionProp>\n      </elementProp>\n    </TestPlan>\n    <hashTree>\n';
+        xml += genTestPlanPublicVariablesComponentXml(data.variables, '      ', '计划变量 ' + (data.name || ''));
+        xml += genThreadGroupXml(singlePlan, bu, data.default_headers, data, 'Thread Group');
+        xml += '    </hashTree>\n  </hashTree>\n</jmeterTestPlan>\n';
+        if (window.JmsJmxExportCompact && typeof window.JmsJmxExportCompact.compactExportXml === 'function') {
+            xml = window.JmsJmxExportCompact.compactExportXml(xml);
+        }
+        return xml;
+    }
+
+    function genReadme(data, slug) {
+        var inf = data.influxdb || {};
+        var tags = inf.tags || {};
+        var grafanaBase = (data.grafana && data.grafana.base_url) ? data.grafana.base_url : 'http://127.0.0.1:3000';
+        var dashUid = (data.grafana && data.grafana.dashboard_uid) ? data.grafana.dashboard_uid : 'YOUR_DASHBOARD_UID';
+        var grafanaLink = grafanaBase + '/d/' + dashUid + '?var-application=' + encodeURIComponent(inf.application || '') +
+            '&var-scenario=' + encodeURIComponent(tags.scenario || '') +
+            '&var-env=' + encodeURIComponent(tags.env || data.env || '') + '&from=now-15m';
+        var jmxFile = slug + '.jmx';
+        if (data.raw_jmx && data.raw_jmx.original_filename && window.JmxScenarioAdvanced && window.JmxScenarioAdvanced.shouldUseRawJmx(data)) {
+            jmxFile = data.raw_jmx.original_filename;
+        }
+        return '# ' + data.name + ' — JMeter 压测场景包\n\n' +
+            '由 TestHub「JMeter 压测场景」生成。\n\n' +
+            '## 包内文件\n\n' +
+            '| 文件 | 说明 |\n|------|------|\n' +
+            '| `' + jmxFile + '` | JMeter 测试计划（含 Backend Listener） |\n' +
+            '| `README.md` | 本说明文件 |\n' +
+            '| `data/*.csv` | （可选）CSV 参数化数据文件 |\n\n' +
+            '## 前置条件\n\n' +
+            '1. 本机已安装 **JMeter 5.6+**（内置 InfluxDB Backend Listener）\n' +
+            '2. 设置环境变量 `JMETER_HOME` 指向 JMeter 安装目录\n' +
+            '3. InfluxDB 可写：' + (inf.url || '(见 JMX Backend Listener 配置)') + '\n' +
+            '4. （可选）Grafana 看板已配置 application / scenario / env 变量\n\n' +
+            '## 运行\n\n' +
+            '解压后在目录内使用 **非 GUI** 模式执行：\n\n' +
+            '**Linux / macOS**\n\n' +
+            '```bash\n' +
+            '$JMETER_HOME/bin/jmeter -n -t "' + jmxFile + '" -l result.jtl -Jbuild=$(date +%Y%m%d_%H%M%S)\n' +
+            '```\n\n' +
+            '**Windows**\n\n' +
+            '```bat\n' +
+            '%JMETER_HOME%\\bin\\jmeter.bat -n -t "' + jmxFile + '" -l result.jtl -Jbuild=%DATE%_%TIME%\n' +
+            '```\n\n' +
+            '如需 HTML 报告，可在命令末尾追加 `-e -o report_<build>`。\n\n' +
+            '## InfluxDB 标签规范\n\n' +
+            '标签已写入 JMX 的 Backend Listener；`-Jbuild=` 用于区分每次执行：\n\n' +
+            '- **application**: `' + (inf.application || '') + '`（Grafana 主维度）\n' +
+            '- **scenario**: `' + (tags.scenario || '') + '`\n' +
+            '- **env**: `' + (tags.env || data.env || '') + '`\n' +
+            '- **build**: 通过 `-Jbuild=` 传入\n\n' +
+            '## Grafana\n\n' +
+            '打开看板（请替换为团队实际 UID）：\n' +
+            grafanaLink + '\n\n' +
+            '## 注意事项\n\n' +
+            '- 请使用 **非 GUI** 模式压测；勿在 GUI 中开启 View Results Tree 等聚合监听器\n' +
+            '- 发版对比：同一 scenario，换 build 标签再跑一轮，在 Grafana 按 build 或时间范围对比\n' +
+            (function () {
+                if (data.layout === 'scenario' && data.thread_groups && data.thread_groups.length) {
+                    var lines = [];
+                    data.thread_groups.forEach(function (tg) {
+                        lines.push('- **' + tg.name + '**：' + tg.load.users + ' 用户，爬升 ' + tg.load.spawn_rate + 's，时长 ' + tg.load.duration_sec + 's\n');
+                    });
+                    return lines.join('');
+                }
+                return '- 负载：' + data.load.users + ' 用户，爬升 ' + data.load.spawn_rate + 's，时长 ' + data.load.duration_sec + 's\n';
+            })();
+    }
+
+
+    function escSummaryText(s) {
+        return String(s == null ? '' : s)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    function renderSummaryGridItem(label, value, opts) {
+        opts = opts || {};
+        var cls = 'jms-output-summary-grid__item';
+        if (opts.wide) cls += ' jms-output-summary-grid__item--wide';
+        if (opts.plan) cls += ' jms-output-summary-grid__item--plan';
+        if (opts.sub) cls += ' jms-output-summary-grid__item--sub';
+        return '<li class="' + cls + '"><span class="jms-output-summary-grid__label">' + escSummaryText(label) + '</span><span class="jms-output-summary-grid__value">' + escSummaryText(value) + '</span></li>';
+    }
+
+    function buildSummary(data, jmxText) {
+        var inf = data.influxdb || {};
+        var items = [];
+        if (data.layout === 'scenario' && data.thread_groups && data.thread_groups.length) {
+            var stats = (window.JmsOutputSummaryStats && typeof window.JmsOutputSummaryStats.buildScenarioSummaryStats === 'function')
+                ? window.JmsOutputSummaryStats.buildScenarioSummaryStats(data)
+                : null;
+            var totalSteps = stats ? stats.totalHttpSteps : countScenarioSteps(data);
+            var jmxJsonCount = (window.JmsOutputSummaryStats && window.JmsOutputSummaryStats.countJmxJsonExtractors)
+                ? window.JmsOutputSummaryStats.countJmxJsonExtractors(jmxText)
+                : null;
+            var totalExtract = jmxJsonCount != null ? jmxJsonCount : (stats ? stats.totalJsonExtract : 0);
+            var tgCount = stats ? stats.tgCount : data.thread_groups.length;
+            if (jmxJsonCount == null && !stats) {
+                data.thread_groups.forEach(function (tg) {
+                    totalExtract += (tg.steps || []).filter(function (s) { return s.extract; }).length;
+                });
+            }
+            items.push(renderSummaryGridItem('场景', data.name, { plan: true }));
+            items.push(renderSummaryGridItem('线程组', tgCount + ' 个'));
+            items.push(renderSummaryGridItem('HTTP 步骤', totalSteps + ' 个'));
+            items.push(renderSummaryGridItem('JSON 提取', totalExtract + ' 个'));
+            items.push(renderSummaryGridItem('application', inf.application || '—'));
+            items.push(renderSummaryGridItem('Backend Listener', inf.enabled !== false ? (inf.url || '—') : '未启用', { wide: true }));
+            var tgRows = stats ? stats.threadGroups : null;
+            if (tgRows && tgRows.length) {
+                tgRows.forEach(function (row) {
+                    items.push(renderSummaryGridItem(row.name, row.users + ' 线程 · ' + row.httpSteps + ' HTTP', { sub: true }));
+                });
+            } else {
+                data.thread_groups.forEach(function (tg) {
+                    var httpN = (window.JmxScenarioAdvanced && window.JmxScenarioAdvanced.countStepsRecursive)
+                        ? window.JmxScenarioAdvanced.countStepsRecursive(tg.steps || [])
+                        : (tg.steps || []).length;
+                    items.push(renderSummaryGridItem(tg.name, tg.load.users + ' 线程 · ' + httpN + ' HTTP', { sub: true }));
+                });
+            }
+        } else {
+            var extractCount = (window.JmsOutputSummaryStats && window.JmsOutputSummaryStats.countJsonExtractRecursive)
+                ? window.JmsOutputSummaryStats.countJsonExtractRecursive(data.steps || [])
+                : (data.steps || []).filter(function (s) { return s.extract; }).length;
+            var singleHttp = (window.JmsOutputSummaryStats && window.JmsOutputSummaryStats.countHttpSteps)
+                ? window.JmsOutputSummaryStats.countHttpSteps(data.steps || [])
+                : (data.steps || []).length;
+            items.push(renderSummaryGridItem('场景', data.name, { plan: true }));
+            items.push(renderSummaryGridItem('ThreadGroup', data.load.users + ' 线程'));
+            items.push(renderSummaryGridItem('爬升 / 时长', data.load.spawn_rate + 's · ' + data.load.duration_sec + 's'));
+            items.push(renderSummaryGridItem('HTTP 步骤', singleHttp + ' 个'));
+            items.push(renderSummaryGridItem('JSON 提取', extractCount + ' 个'));
+            items.push(renderSummaryGridItem('application', (inf.application || '—') + ' · scenario=' + ((inf.tags && inf.tags.scenario) || '—'), { wide: true }));
+            items.push(renderSummaryGridItem('Backend Listener', inf.enabled !== false ? (inf.url || '—') : '未启用', { wide: true }));
+        }
+        summaryList.innerHTML = items.join('');
+        summaryBox.classList.remove('hidden');
+    }
+
+    function updateGrafanaLink(data) {
+        var inf = data.influxdb || {};
+        var tags = inf.tags || {};
+        var grafanaBase = (data.grafana && data.grafana.base_url) ? data.grafana.base_url : '';
+        if (!grafanaBase || !inf.application) {
+            linkGrafana.classList.add('hidden');
+            return;
+        }
+        var dashUid = (data.grafana && data.grafana.dashboard_uid) ? data.grafana.dashboard_uid : '';
+        var href = grafanaBase + (dashUid ? '/d/' + dashUid : '') +
+            '?var-application=' + encodeURIComponent(inf.application) +
+            '&var-scenario=' + encodeURIComponent(tags.scenario || '') +
+            '&var-env=' + encodeURIComponent(tags.env || data.env || '') + '&from=now-15m';
+        linkGrafana.href = href;
+        linkGrafana.classList.remove('hidden');
+    }
+
+    function generateAll() {
+        if (window.JmsVisualBuilder) JmsVisualBuilder.beforeValidate();
+        lastScenario = validateScenarioForStudio(yamlInput.value);
+        if (window.JmsTgJmxExportFilter && typeof window.JmsTgJmxExportFilter.prepareScenarioForJmxExport === 'function') {
+            lastScenario = window.JmsTgJmxExportFilter.prepareScenarioForJmxExport(lastScenario);
+        }
+        if (window.JmsCatalogJmxPrepare && typeof window.JmsCatalogJmxPrepare.prepareScenarioForJmx === 'function') {
+            lastScenario = window.JmsCatalogJmxPrepare.prepareScenarioForJmx(lastScenario);
+        }
+        if (window.JmsJmxScriptSanitizeV1 && typeof window.JmsJmxScriptSanitizeV1.sanitizeScenario === 'function') {
+            lastScenario = window.JmsJmxScriptSanitizeV1.sanitizeScenario(lastScenario);
+        }
+        var slug = slugify(lastScenario.influxdb.tags.scenario || lastScenario.influxdb.application || lastScenario.name);
+        lastOutputs.scenarioSlug = slug;
+        lastOutputs.jmx = genJmx(lastScenario);
+        if (window.JmsJmxExportSelfCheckV1 && typeof window.JmsJmxExportSelfCheckV1.run === 'function') {
+            window.JmsJmxExportSelfCheckV1.run(lastScenario, lastOutputs.jmx);
+        }
+        lastOutputs.readme = genReadme(lastScenario, slug);
+        outJmx.textContent = lastOutputs.jmx;
+        outReadme.textContent = lastOutputs.readme;
+        buildSummary(lastScenario, lastOutputs.jmx);
+        updateGrafanaLink(lastScenario);
+        setOutputActionsEnabled(true);
+        setTab('jmx');
+        return lastScenario;
+    }
+
+    function setTab(tab) {
+        activeTab = tab;
+        var modal = document.getElementById('modal-output');
+        if (modal) modal.setAttribute('data-active-tab', tab || 'jmx');
+        var map = { jmx: outJmx, readme: outReadme };
+        Object.keys(map).forEach(function (k) {
+            if (map[k]) map[k].classList.toggle('hidden', k !== tab);
+        });
+        if (summaryBox) {
+            var showSummary = tab === 'jmx';
+            summaryBox.classList.toggle('hidden', !showSummary);
+            summaryBox.setAttribute('aria-hidden', showSummary ? 'false' : 'true');
+        }
+        document.querySelectorAll('#modal-output .tab-btn').forEach(function (btn) {
+            var t = btn.getAttribute('data-tab');
+            var active = t === tab;
+            btn.classList.toggle('hf-tab-active', active);
+            btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+    }
+
+    function shellSingleQuote(s) {
+        return "'" + String(s).replace(/'/g, "'\\''") + "'";
+    }
+
+    function parseCurlToStep(curlText) {
+        var raw = String(curlText || '').trim();
+        if (!raw) throw new Error('curl 内容为空');
+        raw = raw.replace(/\\\r?\n/g, ' ');
+        var tokens = raw.match(/(?:[^\s"']+|"[^"]*"|'[^']*')+/g) || [];
+        var ti = 0;
+        if (ti < tokens.length && /^curl$/i.test(tokens[ti])) ti++;
+        var url = '';
+        var method = 'GET';
+        var headers = {};
+        var body = null;
+        while (ti < tokens.length) {
+            var t = tokens[ti];
+            if (t === '-X' || t === '--request') { method = tokens[++ti].replace(/^["']|["']$/g, '').toUpperCase(); ti++; continue; }
+            if (t === '-H' || t === '--header') {
+                var hv = tokens[++ti].replace(/^["']|["']$/g, '');
+                var ci = hv.indexOf(':');
+                if (ci > 0) headers[hv.slice(0, ci).trim()] = hv.slice(ci + 1).trim();
+                ti++; continue;
+            }
+            if (t === '-d' || t === '--data' || t === '--data-raw' || t === '--data-binary') {
+                body = tokens[++ti].replace(/^["']|["']$/g, '');
+                if (method === 'GET') method = 'POST';
+                ti++; continue;
+            }
+            if (!t.startsWith('-')) { url = t.replace(/^["']|["']$/g, ''); ti++; continue; }
+            ti++;
+        }
+        if (!url) throw new Error('未能解析 URL');
+        var u = new URL(url);
+        var stepPath = u.pathname || '/';
+        if (window.JmsHttpPathQuery) stepPath = window.JmsHttpPathQuery.appendSearchToPath(stepPath, u.search);
+        else if (u.search) stepPath += u.search;
+        var step = {
+            name: (method + ' ' + u.pathname).slice(0, 48),
+            method: method,
+            path: stepPath,
+            headers: headers,
+            assert_status: 200
+        };
+        if (body !== null) {
+            step.body = body;
+            step.body_type = 'json';
+            step.body_content_mode = 'json';
+        }
+        return { base_url: u.origin, step: step };
+    }
+
+    function parseStepYaml(text) {
+        var parsed = jsyaml.load(text);
+        if (parsed && parsed.method && parsed.path) return parsed;
+        if (Array.isArray(parsed) && parsed[0]) return parsed[0];
+        throw new Error('Step 格式无效，需要包含 method 与 path');
+    }
+
+    function mergeStepIntoYaml(step, baseUrlHint) {
+        var data;
+        try { data = jsyaml.load(yamlInput.value) || {}; } catch (e) { data = {}; }
+        if (baseUrlHint && !data.base_url) data.base_url = baseUrlHint;
+        if (Array.isArray(data.thread_groups) && data.thread_groups.length) {
+            var tg0 = data.thread_groups[0];
+            if (!tg0.steps) tg0.steps = [];
+            tg0.steps.push(step);
+        } else if (Array.isArray(data.test_plans) && data.test_plans.length) {
+            var plan = data.test_plans[0];
+            if (Array.isArray(plan.thread_groups) && plan.thread_groups.length) {
+                var tg = plan.thread_groups[0];
+                if (!tg.steps) tg.steps = [];
+                tg.steps.push(step);
+            } else {
+                if (!plan.steps) plan.steps = [];
+                plan.steps.push(step);
+            }
+        } else {
+            if (!data.steps) data.steps = [];
+            data.steps.push(step);
+        }
+        yamlInput.value = jsyaml.dump(data, { lineWidth: 120, noRefs: true });
+        syncPanelsFromYaml();
+        if (window.JmsVisualBuilder) JmsVisualBuilder.loadTemplate(yamlInput.value);
+    }
+
+
+    function clearHttpAddPlacementUi() {
+        var wrap = document.getElementById('http-add-placement-wrap');
+        var options = document.getElementById('http-add-placement-options');
+        if (wrap) {
+            wrap.classList.add('hidden');
+            wrap.setAttribute('aria-hidden', 'true');
+        }
+        if (options) options.innerHTML = '';
+    }
+
+    function resolveHttpAddTarget(baseTarget) {
+        if (!baseTarget) return null;
+        var target = Object.assign({}, baseTarget);
+        delete target.ifStepId;
+        return target;
+    }
+
+    function applyHttpAddChoiceMode(mode, baseTarget) {
+        var target = resolveHttpAddTarget(baseTarget);
+        if (!target) return;
+        closeHttpAddChoiceModal();
+        if (mode === 'blank') {
+            if (!window.JmsVisualBuilder || typeof JmsVisualBuilder.addBlankHttpStep !== 'function') return;
+            try {
+                var blankStep = JmsVisualBuilder.addBlankHttpStep(target.planId, target.tgId);
+                if (blankStep && blankStep.id && typeof JmsVisualBuilder.openStepEditor === 'function') {
+                    JmsVisualBuilder.openStepEditor(target.planId, target.tgId, blankStep.id);
+                }
+                markScenarioDirty();
+            } catch (e) { showMsg(e.message || String(e), false); }
+            return;
+        }
+        if (mode === 'curl') {
+            openImportModal('curl', target);
+            return;
+        }
+        if (mode === 'step') {
+            openImportModal('step', target);
+        }
+    }
+
+    function openHttpAddChoiceModal(target) {
+        httpAddChoiceTarget = target || null;
+        clearHttpAddPlacementUi();
+        var modal = document.getElementById('modal-http-add-choice');
+        if (!modal) return;
+        modal.classList.add('jms-modal-open');
+        modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeHttpAddChoiceModal() {
+        var modal = document.getElementById('modal-http-add-choice');
+        if (!modal) return;
+        modal.classList.remove('jms-modal-open');
+        modal.setAttribute('aria-hidden', 'true');
+        httpAddChoiceTarget = null;
+        clearHttpAddPlacementUi();
+    }
+
+    function openImportModal(mode, target) {
+        importMode = mode;
+        importTarget = target || null;
+        var modal = document.getElementById('modal-import');
+        var ta = document.getElementById('import-text');
+        var errEl = document.getElementById('import-err');
+        var applyBtn = document.getElementById('btn-import-apply');
+        if (!modal || !ta) return;
+        document.getElementById('modal-import-title').textContent = mode === 'curl' ? '粘贴 curl' : '粘贴 Step（YAML 片段）';
+        ta.value = '';
+        ta.placeholder = mode === 'curl'
+            ? 'curl -X POST https://api.example.com/path -H "Authorization: Bearer ..." -d \'{"key":"value"}\''
+            : '';
+        if (applyBtn) {
+            applyBtn.textContent = (mode === 'curl' && target && window.JmsVisualBuilder)
+                ? '导入并编辑'
+                : '合并到 YAML';
+        }
+        modal.classList.remove('jms-import-mode-curl', 'jms-import-mode-step');
+        modal.classList.add(mode === 'curl' ? 'jms-import-mode-curl' : 'jms-import-mode-step');
+        if (errEl) {
+            errEl.textContent = '';
+            errEl.classList.add('hidden');
+        }
+        modal.setAttribute('aria-hidden', 'false');
+        modal.classList.add('jms-modal-open');
+        setTimeout(function () { ta.focus(); }, 0);
+    }
+
+    function closeImportModal() {
+        var modal = document.getElementById('modal-import');
+        if (!modal) return;
+        modal.classList.remove('jms-modal-open');
+        modal.setAttribute('aria-hidden', 'true');
+        importTarget = null;
+    }
+
+    function copyCurrentTab() {
+        var map = { jmx: outJmx, readme: outReadme };
+        var text = (map[activeTab] && map[activeTab].textContent) || '';
+        if (!text) { showMsg('请先生成内容。', false); return; }
+        navigator.clipboard.writeText(text).then(function () {
+            showMsg('已复制到剪贴板。', true);
+        }).catch(function () {
+            showMsg('复制失败，请手动选择文本。', false);
+        });
+    }
+
+    function downloadCurrentTab() {
+        if (!lastOutputs.jmx) { showMsg('请先生成 JMX。', false); return; }
+        var slug = lastOutputs.scenarioSlug || 'scenario';
+        var files = { jmx: slug + '.jmx', readme: 'README.md' };
+        var map = { jmx: outJmx, readme: outReadme };
+        var text = (map[activeTab] && map[activeTab].textContent) || '';
+        if (!text) return;
+        var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = files[activeTab] || 'output.txt';
+        a.click();
+        URL.revokeObjectURL(a.href);
+    }
+
+    function buildStepFromQuickForm() {
+        var urlRaw = (document.getElementById('qa-url').value || '').trim();
+        if (!urlRaw) throw new Error('请填写接口 URL');
+        var u = new URL(/^https?:\/\//i.test(urlRaw) ? urlRaw : 'https://' + urlRaw);
+        var method = document.getElementById('qa-method').value;
+        var token = (document.getElementById('qa-token').value || '').trim();
+        var bodyRaw = (document.getElementById('qa-body').value || '').trim();
+        var headers = {};
+        if (token) headers.Authorization = 'Bearer ' + token;
+        if (bodyRaw && !headers['Content-Type']) headers['Content-Type'] = 'application/json';
+        var stepPath2 = u.pathname || '/';
+        if (window.JmsHttpPathQuery) stepPath2 = window.JmsHttpPathQuery.appendSearchToPath(stepPath2, u.search);
+        else if (u.search) stepPath2 += u.search;
+        var step = {
+            name: (method + ' ' + u.pathname).slice(0, 48),
+            method: method,
+            path: stepPath2,
+            headers: headers,
+            assert_status: 200
+        };
+        if (method !== 'GET' && method !== 'HEAD' && bodyRaw) step.body = bodyRaw;
+        if (!Object.keys(headers).length) delete step.headers;
+        return { base_url: u.origin, step: step };
+    }
+
+    bindClick('btn-panel-quick', function () { toggleConfigPanel('panel-quick', 'btn-panel-quick'); });
+    bindClick('btn-panel-load', function () { toggleConfigPanel('panel-load', 'btn-panel-load'); });
+
+    // Events — 导入弹窗优先绑定，避免后续元素缺失导致绑定中断
+    bindClick('btn-jms-confirm-cancel', closeJmsConfirmDialog);
+    bindClick('btn-jms-confirm-ok', function () {
+        var fn = jmsConfirmCallback;
+        closeJmsConfirmDialog();
+        if (fn) fn();
+    });
+    var modalJmsConfirm = document.getElementById('modal-jms-confirm');
+    if (modalJmsConfirm) {
+        modalJmsConfirm.addEventListener('click', function (ev) {
+            if (ev.target === modalJmsConfirm) closeJmsConfirmDialog();
+        });
+    }
+
+
+    bindClick('btn-http-add-blank', function () {
+        if (!httpAddChoiceTarget) return;
+        applyHttpAddChoiceMode('blank', httpAddChoiceTarget);
+    });
+    bindClick('btn-http-add-curl', function () {
+        if (!httpAddChoiceTarget) return;
+        applyHttpAddChoiceMode('curl', httpAddChoiceTarget);
+    });
+    bindClick('btn-http-add-step', function () {
+        if (!httpAddChoiceTarget) return;
+        applyHttpAddChoiceMode('step', httpAddChoiceTarget);
+    });
+    var modalHttpAddChoice = document.getElementById('modal-http-add-choice');
+    if (modalHttpAddChoice) {
+        modalHttpAddChoice.addEventListener('click', function (ev) {
+            if (ev.target === modalHttpAddChoice) closeHttpAddChoiceModal();
+        });
+    }
+
+    bindClick('btn-curl-import', function () { openImportModal('curl'); });
+    bindClick('btn-step-import', function () { openImportModal('step'); });
+    bindClick('btn-import-cancel', closeImportModal);
+    bindClick('btn-import-apply', function () {
+        var errEl = document.getElementById('import-err');
+        try {
+            var text = document.getElementById('import-text').value;
+            var step;
+            var baseUrlHint = null;
+            if (importMode === 'curl') {
+                var r = parseCurlToStep(text);
+                step = r.step;
+                baseUrlHint = r.base_url;
+            } else {
+                step = parseStepYaml(text);
+            }
+            if (importTarget && window.JmsVisualBuilder && typeof JmsVisualBuilder.addImportedStep === 'function') {
+                var targetPlanId = importTarget.planId;
+                var targetTgId = importTarget.tgId;
+                var addedStep = (importTarget.ifStepId && typeof JmsVisualBuilder.addImportedStepAt === 'function')
+                    ? JmsVisualBuilder.addImportedStepAt(targetPlanId, targetTgId, step, baseUrlHint, importTarget.ifStepId)
+                    : JmsVisualBuilder.addImportedStep(targetPlanId, targetTgId, step, baseUrlHint);
+                closeImportModal();
+                markScenarioDirty();
+                if (importMode === 'curl' && addedStep && addedStep.id && typeof JmsVisualBuilder.openStepEditor === 'function') {
+                    JmsVisualBuilder.openStepEditor(targetPlanId, targetTgId, addedStep.id);
+                }
+                showMsg(importMode === 'curl' ? '已导入 HTTP 请求，请确认配置。' : '已添加 HTTP 请求到当前线程组。', true);
+                return;
+            }
+            mergeStepIntoYaml(step, baseUrlHint);
+            closeImportModal();
+            markScenarioDirty();
+            showMsg('已合并 Step 到 YAML。', true);
+        } catch (e) {
+            if (errEl) {
+                errEl.textContent = e.message || String(e);
+                errEl.classList.remove('hidden');
+            } else {
+                showMsg(e.message || String(e), false);
+            }
+        }
+    });
+    var modalImport = document.getElementById('modal-import');
+    if (modalImport) {
+        modalImport.addEventListener('click', function (ev) {
+            if (ev.target === modalImport) closeImportModal();
+        });
+    }
+
+    var tplSelect = document.getElementById('tpl-select');
+    if (tplSelect) {
+        tplSelect.addEventListener('change', function (e) {
+            suppressScenarioDirty = true;
+            try {
+                var tpl = TEMPLATES[e.target.value] || TEMPLATES.order;
+                applyScenarioYaml(tpl);
+            } finally {
+                suppressScenarioDirty = false;
+            }
+        });
+    }
+    document.getElementById('btn-sync-load').addEventListener('click', function () {
+        syncLoadToYaml();
+        markScenarioDirty();
+    });
+    yamlInput.addEventListener('input', function () {
+        markScenarioDirty();
+    });
+    yamlInput.addEventListener('blur', syncPanelsFromYaml);
+
+    function isVisualEditorMode() {
+        var yamlWrap = document.getElementById('jms-yaml-wrap');
+        return !yamlWrap || yamlWrap.classList.contains('hidden');
+    }
+
+    function updateValidateButtonLabel() {
+        var btn = document.getElementById('btn-validate');
+        if (!btn) return;
+        btn.textContent = isVisualEditorMode() ? '校验配置' : '校验 YAML';
+    }
+
+    document.getElementById('btn-validate').addEventListener('click', function () {
+        try {
+            if (isVisualEditorMode()) {
+                if (!window.JmsVisualBuilder) throw new Error('可视化搭建模块未加载');
+                var summary = JmsVisualBuilder.validateVisual();
+                var validateMsg = '配置校验通过：' + (summary.planName || '当前场景') + ' · ' +
+                    summary.tgCount + ' 个线程组，' + summary.stepCount + ' 个步骤' +
+                    (summary.componentCount ? ('，' + summary.componentCount + ' 个挂载组件') : '');
+                showMsg(validateMsg, true);
+                return;
+            }
+            lastScenario = validateScenarioForStudio(yamlInput.value);
+            syncPanelsFromYaml();
+            var validateMsgYaml;
+            if (lastScenario.layout === 'scenario' && lastScenario.thread_groups) {
+                validateMsgYaml = 'YAML 校验通过：' + lastScenario.thread_groups.length + ' 个线程组，共 ' +
+                    countScenarioSteps(lastScenario) + ' 步';
+            } else {
+                validateMsgYaml = 'YAML 校验通过：' + lastScenario.steps.length + ' 步，' + lastScenario.load.users + ' 并发';
+            }
+            showMsg(validateMsgYaml, true);
+        } catch (e) { showMsg(e.message || String(e), false); }
+    });
+
+    bindClick('btn-generate-result', function () {
+        try {
+            generateAll();
+            openOutputModal('jmx');
+            showMsg('已生成场景结果，可在弹窗中查看 JMX、README 等。', true);
+        } catch (e) { showMsg(e.message || String(e), false); }
+    });
+
+
+    function resetJmxImportModal() {
+        _jmxImportParsedYaml = null;
+        var fileInput = document.getElementById('jmx-import-file');
+        var fn = document.getElementById('jmx-import-filename');
+        var st = document.getElementById('jmx-import-status');
+        var sum = document.getElementById('jmx-import-summary');
+        var applyBtn = document.getElementById('btn-jmx-import-apply');
+        if (fileInput) fileInput.value = '';
+        if (fn) fn.textContent = '未选择文件';
+        if (st) { st.textContent = ''; st.className = 'mt-2 text-xs text-slate-600'; }
+        if (sum) { sum.textContent = ''; sum.classList.add('hidden'); }
+        var csvBox = document.getElementById('jmx-import-csv-panel');
+        if (csvBox) csvBox.classList.add('hidden');
+        if (window.JmxImportModalUi && typeof window.JmxImportModalUi.resetBulkCsvUi === 'function') {
+            window.JmxImportModalUi.resetBulkCsvUi();
+        }
+        _jmxImportParsedScenario = null;
+        _jmxImportRawBundle = null;
+        if (applyBtn) applyBtn.disabled = true;
+    }
+
+    function openJmxImportModal() {
+        resetJmxImportModal();
+        var modal = document.getElementById('modal-jmx-import');
+        if (!modal) return;
+        modal.classList.add('jms-modal-open');
+        modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeJmxImportModal() {
+        var modal = document.getElementById('modal-jmx-import');
+        if (!modal) return;
+        modal.classList.remove('jms-modal-open');
+        modal.setAttribute('aria-hidden', 'true');
+        resetJmxImportModal();
+    }
+
+    function handleJmxFileSelected(file) {
+        if (!file || !window.JmxImportParser) return;
+        var applyBtn = document.getElementById('btn-jmx-import-apply');
+        var fn = document.getElementById('jmx-import-filename');
+        var st = document.getElementById('jmx-import-status');
+        var sum = document.getElementById('jmx-import-summary');
+        if (fn) fn.textContent = file.name;
+        if (applyBtn) applyBtn.disabled = true;
+        _jmxImportParsedYaml = null;
+        if (sum) sum.classList.add('hidden');
+
+        JmxImportParser.parseFileAsync(file, {
+            onProgress: function (msg) {
+                if (st) st.textContent = msg;
+            },
+            onSuccess: function (result) {
+                _jmxImportParsedYaml = result.yaml;
+                _jmxImportParsedScenario = result.scenario || null;
+                _jmxImportRawBundle = { xml: result.rawXml || '', filename: result.rawFilename || '', csvFiles: {} };
+                if (st) {
+                    st.textContent = '解析完成';
+                    st.className = 'mt-2 text-xs text-emerald-700';
+                }
+                if (sum && result.summary) {
+                    if (window.JmxImportModalUi && typeof window.JmxImportModalUi.renderSummary === 'function') {
+                        window.JmxImportModalUi.renderSummary(sum, result.summary);
+                    } else {
+                        sum.textContent = window.JmxScenarioAdvanced
+                            ? window.JmxScenarioAdvanced.formatImportReport(result.summary)
+                            : ('计划「' + result.summary.planName + '」：' + result.summary.threadGroups + ' 个线程组，' + result.summary.steps + ' 个 HTTP 步骤');
+                        sum.classList.remove('hidden');
+                    }
+                }
+                var csvBox = document.getElementById('jmx-import-csv-panel');
+                var csvList = document.getElementById('jmx-import-csv-list');
+                if (csvBox && csvList && result.summary && result.summary.csvAttachments && result.summary.csvAttachments.length) {
+                    if (window.JmxImportModalUi && typeof window.JmxImportModalUi.renderCsvList === 'function') {
+                        window.JmxImportModalUi.renderCsvList(csvList, result.summary.csvAttachments);
+                    } else {
+                        csvList.innerHTML = result.summary.csvAttachments.map(function (item, idx) {
+                            return '<div class="jmx-import-csv-row" data-csv-idx="' + idx + '">' +
+                                '<span class="hf-mono text-xs">' + item.normalized + '</span>' +
+                                '<span class="text-xs text-slate-500">原路径: ' + item.source_path + '</span>' +
+                                '<input type="file" accept=".csv,text/csv" class="jmx-import-csv-file" data-target="' + item.normalized + '" />' +
+                                '</div>';
+                        }).join('');
+                    }
+                    csvBox.classList.remove('hidden');
+                } else if (csvBox) {
+                    csvBox.classList.add('hidden');
+                }
+                if (applyBtn) applyBtn.disabled = false;
+            },
+            onError: function (err) {
+                if (st) {
+                    st.textContent = err || '解析失败';
+                    st.className = 'mt-2 text-xs text-red-600';
+                }
+            }
+        });
+    }
+
+    bindClick('btn-jmx-parse', openJmxImportModal);
+    bindClick('btn-jmx-import-cancel', closeJmxImportModal);
+    bindClick('btn-jmx-import-apply', function () {
+        if (!_jmxImportParsedYaml) {
+            showMsg('请先选择并解析 JMX 文件。', false);
+            return;
+        }
+        suppressScenarioDirty = true;
+        try {
+            if (_jmxImportParsedScenario && _jmxImportParsedScenario.raw_jmx) {
+                _jmxImportParsedScenario.raw_jmx.enabled = true;
+                _jmxImportParsedScenario.execution_mode = 'raw_jmx';
+            }
+            applyScenarioYaml(_jmxImportParsedYaml);
+            var finishImport = function (csvFiles) {
+                if (_jmxImportRawBundle && csvFiles) _jmxImportRawBundle.csvFiles = csvFiles;
+                if (_jmxImportRawBundle && window.JmsVisualBuilder && typeof window.JmsVisualBuilder.setRawJmxBundle === 'function') {
+                    window.JmsVisualBuilder.setRawJmxBundle(_jmxImportRawBundle);
+                }
+                if (window.JmsVisualBuilder && typeof window.JmsVisualBuilder.syncYamlFromModel === 'function') {
+                    window.JmsVisualBuilder.syncYamlFromModel();
+                }
+                if (window.JmsTgTreeShell && typeof window.JmsTgTreeShell.syncAll === 'function') {
+                    window.JmsTgTreeShell.setTreeView(true);
+                    window.JmsTgTreeShell.syncAll(true);
+                }
+                showMsg('已导入 JMX 到场景编辑器。', true);
+                closeJmxImportModal();
+            };
+            if (window.JmxImportModalUi && typeof window.JmxImportModalUi.applyCsvFilesToVisualBuilder === 'function' && window.JmsVisualBuilder) {
+                window.JmxImportModalUi.applyCsvFilesToVisualBuilder(window.JmsVisualBuilder)
+                    .then(finishImport)
+                    .catch(function () { finishImport({}); });
+            } else {
+                finishImport({});
+            }
+        } finally {
+            suppressScenarioDirty = false;
+            markScenarioDirty();
+        }
+    });
+
+    (function initJmxImportUi() {
+        var modal = document.getElementById('modal-jmx-import');
+        var drop = document.getElementById('jmx-import-drop');
+        var fileInput = document.getElementById('jmx-import-file');
+        if (!drop || !fileInput) return;
+
+        drop.addEventListener('click', function () { fileInput.click(); });
+        drop.addEventListener('keydown', function (ev) {
+            if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); fileInput.click(); }
+        });
+        fileInput.addEventListener('change', function () {
+            if (fileInput.files && fileInput.files[0]) handleJmxFileSelected(fileInput.files[0]);
+        });
+        drop.addEventListener('dragover', function (ev) {
+            ev.preventDefault();
+            drop.classList.add('is-dragover');
+        });
+        drop.addEventListener('dragleave', function () { drop.classList.remove('is-dragover'); });
+        drop.addEventListener('drop', function (ev) {
+            ev.preventDefault();
+            drop.classList.remove('is-dragover');
+            var f = ev.dataTransfer && ev.dataTransfer.files && ev.dataTransfer.files[0];
+            if (f) handleJmxFileSelected(f);
+        });
+        if (modal) {
+            modal.addEventListener('click', function (ev) {
+                if (ev.target === modal) closeJmxImportModal();
+            });
+        }
+    })();
+
+    bindClick('btn-output-close', closeOutputModal);
+    var modalOutput = document.getElementById('modal-output');
+    if (modalOutput) {
+        modalOutput.addEventListener('click', function (ev) {
+            if (ev.target === modalOutput) closeOutputModal();
+        });
+    }
+    document.querySelectorAll('#modal-output .tab-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () { setTab(btn.getAttribute('data-tab')); });
+    });
+    bindClick('btn-copy', copyCurrentTab);
+    bindClick('btn-download-file', downloadCurrentTab);
+
+    bindClick('btn-quick-add', function () {
+        try {
+            var r = buildStepFromQuickForm();
+            mergeStepIntoYaml(r.step, r.base_url);
+            markScenarioDirty();
+            showMsg('已添加 Step：' + r.step.name, true);
+        } catch (e) { showMsg(e.message || String(e), false); }
+    });
+
+    if (yamlInput) {
+        try { sessionStorage.removeItem('testhub.jmeter_scenario.yaml'); } catch (e) {}
+        applyScenarioYaml(TEMPLATES.order);
+    }
+
+window.JmsScenarioStudio = window.JmsScenarioStudio || {};
+    window.JmsScenarioStudio.openHttpAddChoiceModal = openHttpAddChoiceModal;
+    window.JmsScenarioStudio.closeHttpAddChoiceModal = closeHttpAddChoiceModal;
+    window.JmsScenarioStudio.openImportModal = openImportModal;
+    window.JmsScenarioStudio.applyScenarioYaml = applyScenarioYaml;
+    window.JmsScenarioStudio.clearDirtyState = function () {
+        scenarioUserEdited = false;
+        var wrap = document.getElementById('tpl-select-wrap');
+        if (wrap) wrap.classList.remove('hidden');
+        var sel = document.getElementById('tpl-select');
+        if (sel) sel.value = 'order';
+    };
+    window.JmsScenarioStudio.clearGeneratedState = function () {
+        lastScenario = null;
+        lastOutputs = { jmx: '', readme: '', scenarioSlug: '' };
+        _jmxImportParsedYaml = null;
+        _jmxImportParsedScenario = null;
+        _jmxImportRawBundle = null;
+        if (outJmx) outJmx.textContent = '';
+        if (outReadme) outReadme.textContent = '';
+        if (summaryBox) summaryBox.classList.add('hidden');
+        if (summaryList) summaryList.innerHTML = '';
+        if (window.JmsVisualBuilder && typeof JmsVisualBuilder.setRawJmxBundle === 'function') {
+            JmsVisualBuilder.setRawJmxBundle(null);
+        }
+    };
+    if (window.JmsVisualBuilder) {
+        JmsVisualBuilder.init({
+            yamlInput: yamlInput,
+            syncPanelsFromYaml: syncPanelsFromYaml,
+            showMsg: showMsg,
+            updateValidateButtonLabel: updateValidateButtonLabel,
+            openImportModal: openImportModal,
+            openHttpAddChoiceModal: openHttpAddChoiceModal,
+            showConfirm: showJmsConfirmDialog,
+            markScenarioDirty: markScenarioDirty
+        });
+        updateValidateButtonLabel();
+    }
+
+    if (window.JmsScenarioStudioReset && typeof window.JmsScenarioStudioReset.bind === 'function') {
+        window.JmsScenarioStudioReset.bind({
+            applyYaml: applyScenarioYaml,
+            clearDirtyState: window.JmsScenarioStudio.clearDirtyState,
+            clearGeneratedState: window.JmsScenarioStudio.clearGeneratedState,
+            showMsg: showMsg,
+            showConfirm: showJmsConfirmDialog
+        });
+    }
+
+})();
+    </script>

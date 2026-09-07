@@ -1,0 +1,17 @@
+/**
+ * 线程组步骤区 · 底部固定留白（隔离模块）
+ * 为逻辑控制器挂载区下拉菜单预留展开空间，避免滚到底部后需二次滚动。
+ * 20260702: 18rem -> 9rem，减轻滚到底时步骤区顶部出现的大块固定空白。
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps::after {
+    content: "";
+    display: block;
+    flex: 0 0 auto;
+    width: 100%;
+    min-height: 9rem;
+    pointer-events: none;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps {
+    scroll-padding-bottom: 9rem;
+}

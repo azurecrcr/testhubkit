@@ -1,0 +1,273 @@
+                        <div class="data-workbench-scope mdh-panel-card relative">
+                            <div class="relative z-[1] mdc-wb-bg__content mdh-split-layout">
+                            <aside class="mdh-tool-sidebar" aria-label="开发助手功能导航">
+
+                                <div class="mdh-sidebar-group">
+                                    <p class="mdh-sidebar-label">格式化</p>
+                                    <button id="data-tool-tab-json" type="button" class="data-tool-tab-btn mdh-sidebar-btn" role="tab" onclick="switchDataToolTab('json')">
+                                        <span class="mdh-sidebar-btn__icon mdh-sidebar-btn__icon--json">{ }</span>
+                                        <span class="mdh-sidebar-btn__text">
+                                            <span class="mdh-sidebar-btn__title">JSON 格式化</span>
+                                            <span class="mdh-sidebar-btn__hint">美化 · 校验</span>
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="mdh-sidebar-group">
+                                    <p class="mdh-sidebar-label">编解码</p>
+                                    <button id="data-tool-tab-base64" type="button" class="data-tool-tab-btn mdh-sidebar-btn" role="tab" onclick="switchDataToolTab('base64')">
+                                        <span class="mdh-sidebar-btn__icon mdh-sidebar-btn__icon--b64">64</span>
+                                        <span class="mdh-sidebar-btn__text">
+                                            <span class="mdh-sidebar-btn__title">Base64</span>
+                                            <span class="mdh-sidebar-btn__hint">编码 · 解码</span>
+                                        </span>
+                                    </button>
+                                    <button id="data-tool-tab-url" type="button" class="data-tool-tab-btn mdh-sidebar-btn" role="tab" onclick="switchDataToolTab('url')">
+                                        <span class="mdh-sidebar-btn__icon mdh-sidebar-btn__icon--url">URL</span>
+                                        <span class="mdh-sidebar-btn__text">
+                                            <span class="mdh-sidebar-btn__title">URL 编解码</span>
+                                            <span class="mdh-sidebar-btn__hint">%20 · 中文</span>
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="mdh-sidebar-group">
+                                    <p class="mdh-sidebar-label">文本</p>
+                                    <button id="data-tool-tab-diff" type="button" class="data-tool-tab-btn mdh-sidebar-btn" role="tab" onclick="switchDataToolTab('diff')">
+                                        <span class="mdh-sidebar-btn__icon mdh-sidebar-btn__icon--diff">±</span>
+                                        <span class="mdh-sidebar-btn__text">
+                                            <span class="mdh-sidebar-btn__title">文本对比</span>
+                                            <span class="mdh-sidebar-btn__hint">逐字 Diff</span>
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="mdh-sidebar-group">
+                                    <p class="mdh-sidebar-label">时间</p>
+                                    <button id="data-tool-tab-timestamp" type="button" class="data-tool-tab-btn mdh-sidebar-btn" role="tab" onclick="switchDataToolTab('timestamp')">
+                                        <span class="mdh-sidebar-btn__icon mdh-sidebar-btn__icon--ts">TS</span>
+                                        <span class="mdh-sidebar-btn__text">
+                                            <span class="mdh-sidebar-btn__title">时间戳</span>
+                                            <span class="mdh-sidebar-btn__hint">秒 / 毫秒</span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </aside>
+
+                            <div class="mdh-tool-main">
+                        <div id="data-tool-panel-json" class="tool-tab-panel is-active mdh-tool-panel ds-split ds-split--md ds-split--loose" role="tabpanel" aria-labelledby="data-tool-tab-json">
+                            <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_12px_40px_-28px_rgba(15,23,42,0.14)] ring-1 ring-slate-100/80">
+                                <h3 class="ds-section-title">输入</h3>
+                                <div class="form-group">
+                                    <label class="form-label" for="json-input">JSON 原文</label>
+                                    <textarea class="form-input data-code-textarea" id="json-input" rows="10" placeholder="在此粘贴 JSON 数据…"></textarea>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <button type="button" id="format-json" class="btn btn-primary">格式化</button>
+                                    <button type="button" id="clear-json" class="btn btn-secondary">清空</button>
+                                </div>
+                            </div>
+                            <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_12px_40px_-28px_rgba(15,23,42,0.14)] ring-1 ring-slate-100/80">
+                                <h3 class="ds-section-title">结果</h3>
+                                <div class="form-group">
+                                    <label class="form-label">格式化结果</label>
+                                    <pre class="form-input ds-output data-code-panel p-4 font-mono text-sm overflow-auto" id="json-output" style="min-height: 260px;">格式化后的JSON将显示在这里...</pre>
+                                </div>
+                                <div id="json-error" class="ds-alert ds-alert--error" role="alert"></div>
+                            </div>
+                        </div>
+
+                        <div id="data-tool-panel-base64" class="tool-tab-panel mdh-tool-panel ds-split ds-split--md ds-split--loose" role="tabpanel" aria-labelledby="data-tool-tab-base64" hidden>
+                            <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_12px_40px_-28px_rgba(15,23,42,0.14)] ring-1 ring-slate-100/80">
+                                <h3 class="ds-section-title">输入</h3>
+                                <div class="mb-4">
+                                    <div class="inline-flex w-full max-w-xs rounded-xl border border-slate-200/80 bg-slate-50/90 p-1 shadow-inner" role="tablist" aria-label="Base64 模式">
+                                        <button id="encode-tab" type="button" class="b64-mode-tab b64-mode-tab--active flex-1" role="tab" aria-selected="true">编码</button>
+                                        <button id="decode-tab" type="button" class="b64-mode-tab flex-1" role="tab" aria-selected="false">解码</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" id="input-label" for="base64-input">输入文本</label>
+                                    <textarea class="form-input data-code-textarea" id="base64-input" rows="6" placeholder="在此输入要编码的文本..."></textarea>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <button type="button" id="convert-base64" class="btn btn-primary">转换</button>
+                                    <button type="button" id="clear-base64" class="btn btn-secondary">清空</button>
+                                </div>
+                            </div>
+                            <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_12px_40px_-28px_rgba(15,23,42,0.14)] ring-1 ring-slate-100/80">
+                                <h3 class="ds-section-title">结果</h3>
+                                <div class="form-group">
+                                    <label class="form-label" id="output-label">Base64 输出</label>
+                                    <pre class="form-input ds-output data-code-panel p-4 font-mono text-sm overflow-auto" id="base64-output" style="min-height: 230px;">转换结果将显示在这里...</pre>
+                                </div>
+                                <div id="base64-error" class="ds-alert ds-alert--error" role="alert"></div>
+                            </div>
+                        </div>
+
+                        <div id="data-tool-panel-url" class="tool-tab-panel mdh-tool-panel ds-split ds-split--md ds-split--loose" role="tabpanel" aria-labelledby="data-tool-tab-url" hidden>
+                            <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_12px_40px_-28px_rgba(15,23,42,0.14)] ring-1 ring-slate-100/80">
+                                <h3 class="ds-section-title">输入</h3>
+                                <p class="mb-4 text-xs text-slate-500">处理链接中的 <code class="rounded bg-slate-100 px-1 py-0.5 text-[11px]">%20</code>、<code class="rounded bg-slate-100 px-1 py-0.5 text-[11px]">%E4%BD%A0</code> 等百分号编码</p>
+                                <div class="mb-4">
+                                    <div class="inline-flex w-full max-w-xs rounded-xl border border-slate-200/80 bg-slate-50/90 p-1 shadow-inner" role="tablist" aria-label="URL 模式">
+                                        <button id="url-encode-tab" type="button" class="b64-mode-tab b64-mode-tab--active flex-1" role="tab" aria-selected="true">编码</button>
+                                        <button id="url-decode-tab" type="button" class="b64-mode-tab flex-1" role="tab" aria-selected="false">解码</button>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label mb-2 block">编码方式</label>
+                                    <div class="inline-flex flex-wrap gap-2" role="radiogroup" aria-label="URL 编码方式">
+                                        <label class="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700">
+                                            <input type="radio" name="url-encode-style" value="standard" class="text-indigo-600 focus:ring-indigo-500" checked>
+                                            <span>标准（%20）</span>
+                                        </label>
+                                        <label class="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700">
+                                            <input type="radio" name="url-encode-style" value="plus" class="text-indigo-600 focus:ring-indigo-500">
+                                            <span>表单（+ 空格）</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" id="url-input-label" for="url-input">输入内容</label>
+                                    <textarea class="form-input data-code-textarea font-mono text-sm" id="url-input" rows="6" placeholder="例如：https://example.com/search?q=你好 world"></textarea>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <button type="button" id="convert-url" class="btn btn-primary">转换</button>
+                                    <button type="button" id="clear-url" class="btn btn-secondary">清空</button>
+                                </div>
+                            </div>
+                            <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_12px_40px_-28px_rgba(15,23,42,0.14)] ring-1 ring-slate-100/80">
+                                <h3 class="ds-section-title">结果</h3>
+                                <div class="form-group">
+                                    <label class="form-label" id="url-output-label">URL 输出</label>
+                                    <pre class="form-input ds-output data-code-panel p-4 font-mono text-sm overflow-auto break-all" id="url-output" style="min-height: 230px;">转换结果将显示在这里...</pre>
+                                </div>
+                                <div id="url-error" class="ds-alert ds-alert--error" role="alert"></div>
+                            </div>
+                        </div>
+
+                        <div id="data-tool-panel-timestamp" class="tool-tab-panel mdh-tool-panel ts-convert-scope ds-split ds-split--md ds-split--loose" role="tabpanel" aria-labelledby="data-tool-tab-timestamp" hidden>
+                            <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_12px_40px_-28px_rgba(15,23,42,0.14)] ring-1 ring-slate-100/80">
+                                <h3 class="ds-section-title">输入</h3>
+                                <p class="mb-4 text-xs text-slate-500">Unix 时间戳（秒/毫秒）与 <code class="rounded bg-slate-100 px-1 py-0.5 text-[11px]">2026-05-24 12:00:00</code> 格式互转（本地时区）</p>
+                                <div class="mb-4">
+                                    <div class="inline-flex w-full max-w-md rounded-xl border border-slate-200/80 bg-slate-50/90 p-1 shadow-inner" role="tablist" aria-label="时间戳转换方向">
+                                        <button id="ts-mode-to-datetime" type="button" class="b64-mode-tab b64-mode-tab--active flex-1" role="tab" aria-selected="true">时间戳 → 日期</button>
+                                        <button id="ts-mode-to-timestamp" type="button" class="b64-mode-tab flex-1" role="tab" aria-selected="false">日期 → 时间戳</button>
+                                    </div>
+                                </div>
+                                <div id="ts-unit-wrap" class="mb-4">
+                                    <label class="form-label mb-2 block">时间戳单位</label>
+                                    <div class="inline-flex flex-wrap gap-2" role="radiogroup" aria-label="时间戳单位">
+                                        <label class="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700">
+                                            <input type="radio" name="ts-unit" value="auto" class="text-indigo-600 focus:ring-indigo-500" checked>
+                                            <span>自动识别</span>
+                                        </label>
+                                        <label class="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700">
+                                            <input type="radio" name="ts-unit" value="s" class="text-indigo-600 focus:ring-indigo-500">
+                                            <span>秒（10 位）</span>
+                                        </label>
+                                        <label class="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700">
+                                            <input type="radio" name="ts-unit" value="ms" class="text-indigo-600 focus:ring-indigo-500">
+                                            <span>毫秒（13 位）</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" id="ts-input-label" for="ts-input">Unix 时间戳</label>
+                                    <input type="text" class="form-input font-mono text-sm" id="ts-input" placeholder="例如：1716532800 或 1716532800000" autocomplete="off" inputmode="numeric">
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <button type="button" id="ts-convert-btn" class="btn btn-primary">转换</button>
+                                    <button type="button" id="ts-now-btn" class="btn btn-secondary">填入当前时间</button>
+                                    <button type="button" id="ts-clear-btn" class="btn btn-secondary">清空</button>
+                                </div>
+                            </div>
+                            <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_12px_40px_-28px_rgba(15,23,42,0.14)] ring-1 ring-slate-100/80">
+                                <h3 class="ds-section-title">结果</h3>
+                                <div class="space-y-4">
+                                    <div class="form-group mb-0">
+                                        <label class="form-label">日期时间</label>
+                                        <div class="flex gap-2">
+                                            <input type="text" class="form-input font-mono text-sm flex-1" id="ts-out-datetime" readonly placeholder="2026-05-24 12:00:00">
+                                            <button type="button" class="btn btn-secondary text-sm shrink-0" data-ts-copy="ts-out-datetime">复制</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <label class="form-label">秒级时间戳</label>
+                                        <div class="flex gap-2">
+                                            <input type="text" class="form-input font-mono text-sm flex-1" id="ts-out-seconds" readonly placeholder="1716532800">
+                                            <button type="button" class="btn btn-secondary text-sm shrink-0" data-ts-copy="ts-out-seconds">复制</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <label class="form-label">毫秒级时间戳</label>
+                                        <div class="flex gap-2">
+                                            <input type="text" class="form-input font-mono text-sm flex-1" id="ts-out-milliseconds" readonly placeholder="1716532800000">
+                                            <button type="button" class="btn btn-secondary text-sm shrink-0" data-ts-copy="ts-out-milliseconds">复制</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="ts-error" class="ds-alert ds-alert--error mt-4" role="alert"></div>
+                            </div>
+                        </div>
+
+                        <div id="data-tool-panel-diff" class="tool-tab-panel mdh-tool-panel text-diff-scope" role="tabpanel" aria-labelledby="data-tool-tab-diff" hidden>
+                            <div class="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-[0_12px_40px_-28px_rgba(15,23,42,0.14)] ring-1 ring-slate-100/80 sm:p-6">
+                                <div class="flex flex-col gap-4 border-b border-slate-100 pb-4 sm:flex-row sm:items-center sm:justify-between">
+                                    <div>
+                                        <h3 class="ds-section-title mb-1">文本对比</h3>
+                                        <p class="text-xs text-slate-500">逐字对比两段文本，不同字符高亮标出（非按行/段落）</p>
+                                    </div>
+                                    <div class="flex flex-wrap items-center gap-3">
+                                        <label class="inline-flex cursor-pointer items-center gap-2 text-sm text-slate-600">
+                                            <input type="checkbox" id="diff-ignore-whitespace" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">
+                                            <span>忽略空白字符</span>
+                                        </label>
+                                        <div class="inline-flex rounded-xl border border-slate-200/80 bg-slate-50/90 p-1 shadow-inner" role="tablist" aria-label="对比视图">
+                                            <button type="button" id="diff-view-split" class="text-diff-view-tab text-diff-view-tab--active" role="tab" aria-selected="true">并排</button>
+                                            <button type="button" id="diff-view-unified" class="text-diff-view-tab" role="tab" aria-selected="false">统一</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
+                                    <div class="form-group mb-0">
+                                        <label class="form-label" for="diff-input-left">原始文本</label>
+                                        <textarea class="form-input data-code-textarea font-mono text-sm" id="diff-input-left" rows="12" placeholder="粘贴原始版本…"></textarea>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <label class="form-label" for="diff-input-right">对比文本</label>
+                                        <textarea class="form-input data-code-textarea font-mono text-sm" id="diff-input-right" rows="12" placeholder="粘贴修改后的版本…"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <button type="button" id="diff-compare-btn" class="btn btn-primary">开始对比</button>
+                                    <button type="button" id="diff-swap-btn" class="btn btn-secondary">左右互换</button>
+                                    <button type="button" id="diff-clear-btn" class="btn btn-secondary">清空</button>
+                                    <span id="diff-stats" class="ml-auto self-center text-xs text-slate-500"></span>
+                                </div>
+
+                                <div id="diff-error" class="ds-alert ds-alert--error mt-4" role="alert" hidden></div>
+
+                                <div class="mt-5">
+                                    <label class="form-label">对比结果</label>
+                                    <div id="diff-result-empty" class="ds-output-well">
+                                        <div class="ds-empty">
+                                            <span class="ds-empty__icon" aria-hidden="true">±</span>
+                                            <div class="ds-empty__title">等待对比</div>
+                                            <div class="ds-empty__desc">输入两段文本后点击「开始对比」，删除字符标红、新增字符标绿</div>
+                                        </div>
+                                    </div>
+                                    <div id="diff-result-wrap" class="text-diff-result hidden" hidden>
+                                        <div id="diff-result-split" class="text-diff-split"></div>
+                                        <pre id="diff-result-unified" class="text-diff-unified form-input font-mono text-sm hidden" hidden></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            </div>{# .mdh-tool-main #}
+                            </div>{# .mdh-split-layout #}
+                        </div>

@@ -1,0 +1,44 @@
+{# 全站交流群面板：独立功能，不依赖登录/投稿/消息 #}
+<div class="hf-community-mask is-hidden" id="hf-community-mask" aria-hidden="true">
+    <div class="hf-community-panel" role="dialog" aria-modal="true" aria-labelledby="hf-community-title">
+        <div class="hf-community-panel__head">
+            <div class="hf-community-panel__head-main">
+                <p class="hf-community-panel__eyebrow">Community</p>
+                <strong id="hf-community-title">加入交流群</strong>
+                <p class="hf-community-panel__lead">QQ / 微信均可，未登录也能加入。互助社群，非实时客服。</p>
+            </div>
+            <button type="button" class="hf-community-panel__close" id="hf-community-close" aria-label="关闭">×</button>
+        </div>
+        <div class="hf-community-panel__body">
+            <section class="hf-community-card hf-community-card--qq" aria-label="QQ 交流群">
+                <div class="hf-community-card__badge">QQ</div>
+                <h3 class="hf-community-card__title">TestHub 测试交流群</h3>
+                <p class="hf-community-card__desc">打开 QQ 搜索群号即可加入</p>
+                <div class="hf-community-qqno" id="hf-community-qq-no">1041496930</div>
+                <button type="button" class="hf-community-btn" id="hf-community-copy-qq">复制群号</button>
+            </section>
+            <section class="hf-community-card hf-community-card--wx" aria-label="微信交流群">
+                <div class="hf-community-card__badge hf-community-card__badge--wx">微信</div>
+                <h3 class="hf-community-card__title">TestHub 交流群</h3>
+                <p class="hf-community-card__desc">微信扫一扫加入</p>
+                <div class="hf-community-qr-wrap">
+                    <img
+                        class="hf-community-qr"
+                        id="hf-community-wx-qr"
+                        data-src="/community-qr/wechat_group_qr.png"
+                        width="168"
+                        height="168"
+                        alt="TestHub 微信交流群二维码"
+                        decoding="async"
+                    >
+                </div>
+                <div class="hf-community-admin is-hidden" id="hf-community-wx-admin" hidden>
+                    <input type="file" id="hf-community-wx-file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+                    <button type="button" class="hf-community-btn hf-community-btn--admin" id="hf-community-wx-replace">更换二维码</button>
+                    <p class="hf-community-admin__hint">仅管理员可见；上传后立即替换全站展示</p>
+                </div>
+            </section>
+        </div>
+        <p class="hf-community-panel__note">提问请尽量附带：功能点、操作步骤与截图。站内也可通过「投稿/建议」反馈。</p>
+    </div>
+</div>

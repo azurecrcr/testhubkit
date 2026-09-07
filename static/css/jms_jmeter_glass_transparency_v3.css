@@ -1,0 +1,246 @@
+/**
+ * JMeter 压测页 · 全页玻璃透明度提升 v5
+ * 仅降低面板不透明度，让背景浅绿 + 装饰图标透出；不改主色与布局
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab {
+  --lth-glass-alpha-strong: 0.38;
+  --lth-glass-alpha-mid: 0.28;
+  --lth-glass-alpha-soft: 0.2;
+  --lth-workspace-alpha-strong: 0.16;
+  --lth-workspace-alpha-mid: 0.1;
+  --lth-workspace-alpha-soft: 0.06;
+  --lth-tg-alpha-strong: 0.14;
+  --lth-tg-alpha-mid: 0.09;
+  --lth-tg-alpha-soft: 0.05;
+}
+
+/* ---- 背景 scrim 再减淡，装饰层加强 ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-jmeter-page__bg-scrim {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(236, 253, 245, 0.22) 0%,
+      rgba(209, 250, 229, 0.14) 45%,
+      rgba(240, 253, 250, 0.18) 100%
+    ),
+    radial-gradient(ellipse 90% 60% at 50% -5%, rgba(52, 211, 153, 0.1), transparent 62%),
+    radial-gradient(ellipse 70% 50% at 100% 100%, rgba(45, 212, 191, 0.08), transparent 55%) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-jmeter-page__bg::after {
+  opacity: 0.16 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-jmeter-page__bg-deco {
+  opacity: 0.72 !important;
+}
+
+/* ---- 左栏测试计划 ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-nav {
+  background:
+    radial-gradient(ellipse 130% 90% at 100% -10%, rgba(52, 211, 153, 0.14) 0%, transparent 58%),
+    radial-gradient(ellipse 100% 80% at -15% 105%, rgba(45, 212, 191, 0.1) 0%, transparent 52%),
+    linear-gradient(
+      168deg,
+      rgba(236, 253, 245, var(--lth-glass-alpha-strong)) 0%,
+      rgba(209, 250, 229, var(--lth-glass-alpha-mid)) 48%,
+      rgba(204, 251, 241, var(--lth-glass-alpha-soft)) 100%
+    ) !important;
+  backdrop-filter: blur(10px) saturate(1.15) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(1.15) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item {
+  background: rgba(255, 255, 255, 0.16) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item.is-active {
+  background: linear-gradient(135deg, rgba(187, 247, 208, 0.32), rgba(236, 253, 245, 0.36)) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item--plan-listener.is-on {
+  background: linear-gradient(180deg, rgba(220, 252, 231, 0.38), rgba(255, 255, 255, 0.28)) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item--action {
+  background: linear-gradient(180deg, rgba(220, 252, 231, 0.32), rgba(255, 255, 255, 0.28)) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-modes .jms-editor-mode-btn {
+  background: rgba(255, 255, 255, 0.16) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-modes .jms-editor-mode-btn.is-active {
+  background: linear-gradient(135deg, rgba(187, 247, 208, 0.38), rgba(236, 253, 245, 0.28)) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-plan-name-input {
+  background-color: rgba(240, 253, 250, 0.38) !important;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E"),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.32) 0%, rgba(236, 253, 245, 0.38) 100%) !important;
+}
+
+/* ---- 顶栏 hero ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope .lth-studio-topbar.hf-jmeter-hero,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope .hf-jmeter-hero {
+  background:
+    radial-gradient(ellipse 100% 90% at 100% 0%, rgba(52, 211, 153, 0.1) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 70% at 0% 100%, rgba(45, 212, 191, 0.07) 0%, transparent 50%),
+    linear-gradient(
+      168deg,
+      rgba(255, 255, 255, var(--lth-glass-alpha-strong)) 0%,
+      rgba(236, 253, 245, var(--lth-glass-alpha-mid)) 50%,
+      rgba(209, 250, 229, var(--lth-glass-alpha-soft)) 100%
+    ) !important;
+  backdrop-filter: blur(10px) saturate(1.12) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(1.12) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope .tc-hub-mode-switch--compact {
+  background: rgba(255, 255, 255, 0.18) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-step {
+  background: rgba(255, 255, 255, 0.18) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar #tpl-select,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar .lth-tpl-combobox__trigger {
+  background: rgba(255, 255, 255, 0.28) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar .lth-tpl-combobox__trigger {
+  background: linear-gradient(148deg, rgba(236, 253, 245, 0.38), rgba(224, 247, 250, 0.3)) !important;
+}
+
+/* ---- 场景搭建主面板（更透） ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white {
+  background:
+    radial-gradient(ellipse 120% 80% at 100% -15%, rgba(52, 211, 153, 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 70% at -10% 110%, rgba(45, 212, 191, 0.05) 0%, transparent 50%),
+    linear-gradient(
+      168deg,
+      rgba(255, 255, 255, var(--lth-workspace-alpha-strong)) 0%,
+      rgba(236, 253, 245, var(--lth-workspace-alpha-mid)) 42%,
+      rgba(209, 250, 229, var(--lth-workspace-alpha-soft)) 100%
+    ) !important;
+  backdrop-filter: blur(8px) saturate(1.08) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(1.08) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white::before {
+  opacity: 0.12 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-studio-plan-toolbar {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-editor-yaml .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white {
+  background: linear-gradient(
+    168deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(236, 253, 245, 0.14) 55%,
+    rgba(209, 250, 229, 0.1) 100%
+  ) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-tg-tree-workspace {
+  background: transparent !important;
+}
+
+/* ---- 线程组导航 + 步骤区（更透） ---- */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-nav {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, var(--lth-tg-alpha-strong)) 0%,
+    rgba(236, 253, 245, var(--lth-tg-alpha-mid)) 100%
+  ) !important;
+  backdrop-filter: blur(7px) saturate(1.06) !important;
+  -webkit-backdrop-filter: blur(7px) saturate(1.06) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-nav__head {
+  background: linear-gradient(
+    180deg,
+    rgba(236, 253, 245, 0.14) 0%,
+    rgba(255, 255, 255, 0.08) 100%
+  ) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-nav__item:hover {
+  background: rgba(240, 253, 250, 0.2) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-nav__item.is-active {
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.06) 0%, rgba(45, 212, 191, 0.04) 100%) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-block--tree {
+  background: rgba(255, 255, 255, var(--lth-tg-alpha-strong)) !important;
+  backdrop-filter: blur(7px) saturate(1.06) !important;
+  -webkit-backdrop-filter: blur(7px) saturate(1.06) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-head {
+  background: linear-gradient(
+    180deg,
+    rgba(236, 253, 245, 0.12) 0%,
+    rgba(255, 255, 255, 0.08) 100%
+  ) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-config-strip {
+  background: rgba(240, 253, 250, 0.1) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-config-chip {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps {
+  --jms-tree-row-bg: rgba(255, 255, 255, 0.18) !important;
+  background: transparent !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-row,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-if-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-transaction-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-loop-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-simple-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-random-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-catalog-plan-native,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node > .jms-http-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node > .jms-aux-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node > .jms-if-card {
+  background: var(--jms-tree-row-bg) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+}
+
+/* ---- 底部操作栏 ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock {
+  background: linear-gradient(
+    168deg,
+    rgba(236, 253, 245, 0.42) 0%,
+    rgba(209, 250, 229, 0.32) 38%,
+    rgba(167, 243, 208, 0.28) 72%,
+    rgba(209, 250, 229, 0.36) 100%
+  ) !important;
+  backdrop-filter: blur(10px) saturate(1.12) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(1.12) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .jms-action-btn,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .lth-dock-btn {
+  background: rgba(255, 255, 255, 0.28) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-collapse-btn--plan-nav,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-collapse-btn--workspace {
+  background: rgba(255, 255, 255, 0.28) !important;
+}

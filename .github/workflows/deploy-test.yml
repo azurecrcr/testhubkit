@@ -1,0 +1,111 @@
+name: Deploy Test
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ci-root
+          MYSQL_DATABASE: testhub
+          MYSQL_USER: testhub
+          MYSQL_PASSWORD: ci-test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -pci-root"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=15
+          --health-start-period=20s
+
+    env:
+      PYTHONPATH: .
+      MYSQL_HOST: 127.0.0.1
+      MYSQL_PORT: "3306"
+      MYSQL_USER: testhub
+      MYSQL_PASSWORD: ci-test
+      MYSQL_DATABASE: testhub
+      FLASK_SECRET_KEY: ci-test-secret-key
+      RAG_ENABLED: "0"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt gunicorn pytest
+
+      - name: Run tests
+        run: pytest tests/ -v --tb=short
+
+      - name: Smoke test — import Flask app
+        run: |
+          python -c "
+          from core.app_factory import create_app
+          app = create_app()
+          assert app.name
+          print('create_app OK')
+          "
+
+      - name: Smoke test — HTTP health via test client
+        run: |
+          python - <<'PY'
+          import os
+          os.environ.setdefault("MYSQL_HOST", "127.0.0.1")
+          from core.app_factory import create_app
+          app = create_app()
+          client = app.test_client()
+          for path in ("/", "/app", "/auth"):
+              r = client.get(path, follow_redirects=False)
+              assert r.status_code in (200, 302, 308), f"{path} -> {r.status_code}"
+              print(f"GET {path} -> {r.status_code}")
+          print("HTTP smoke OK")
+          PY
+
+      - name: Docker build
+        run: docker build -t testhub:ci .
+
+      - name: Docker run smoke
+        run: |
+          docker run -d --name testhub-ci \
+            --network host \
+            -e MYSQL_HOST=127.0.0.1 \
+            -e MYSQL_PORT=3306 \
+            -e MYSQL_USER=testhub \
+            -e MYSQL_PASSWORD=ci-test \
+            -e MYSQL_DATABASE=testhub \
+            -e FLASK_SECRET_KEY=ci-docker-secret \
+            -e RAG_ENABLED=0 \
+            testhub:ci
+          for i in $(seq 1 30); do
+            if curl -sf http://127.0.0.1:5000/app >/dev/null 2>&1; then
+              echo "Docker container responded on :5000"
+              docker logs testhub-ci --tail 20
+              docker stop testhub-ci
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "Container failed to start"
+          docker logs testhub-ci
+          docker stop testhub-ci || true
+          exit 1

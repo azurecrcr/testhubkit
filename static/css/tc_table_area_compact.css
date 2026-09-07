@@ -1,0 +1,218 @@
+/* 用例工作台：视口铺满（顶/底小缝隙；页脚沿用全站「滚到底滑入」逻辑） */
+
+:root {
+    --tc-wb-footer-safe: 3rem;
+    --tc-wb-edge-bottom: 12px;
+    --tc-wb-edge-top: 6px;
+}
+
+/* 工作台页：页脚略增高，避免贴边、样式被裁切 */
+body.tc-hub-ai-tab #hf-site-footer.hf-site-footer {
+    padding: 0.55rem 1rem max(0.6rem, env(safe-area-inset-bottom, 0px));
+    min-height: 2.5rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 主容器：顶贴导航；底部留白供页面向下滚动后露出页脚 */
+body.tc-hub-ai-tab main.tc-page-main-testcase > .container,
+body.tc-hub-ai-tab main.hf-tool-page-main.tc-page-main-testcase > .container,
+body.tc-hub-ai-tab main.hf-tool-page-main > .container {
+    padding-top: max(2px, env(safe-area-inset-top, 0px)) !important;
+    padding-bottom: calc(var(--tc-wb-footer-safe, 3rem) + var(--tc-wb-edge-bottom, 12px) + env(safe-area-inset-bottom, 0px)) !important;
+    padding-left: max(0.5rem, env(safe-area-inset-left, 0px)) !important;
+    padding-right: max(0.5rem, env(safe-area-inset-right, 0px)) !important;
+}
+
+@media (min-width: 640px) {
+    body.tc-hub-ai-tab main.hf-tool-page-main > .container {
+        padding-top: max(2px, env(safe-area-inset-top, 0px)) !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    body.tc-hub-ai-tab main.hf-tool-page-main > .container {
+        padding-top: max(2px, env(safe-area-inset-top, 0px)) !important;
+    }
+}
+
+body.tc-hub-ai-tab main.tc-page-main-testcase {
+    min-height: 100dvh;
+    min-height: 100vh;
+}
+
+body.tc-hub-ai-tab .tc-hub-scope,
+body.tc-hub-ai-tab .tc-hub-panel {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+body.tc-hub-ai-tab .tc-stash-main-col {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* 覆盖 toolkit 默认 3.25rem 底留白：仅为页脚上方的内容区留空 */
+body.tc-hub-ai-tab .tc-page-bleed {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+body.tc-hub-ai-tab #tc-stash-split {
+    row-gap: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope.rounded-xl {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill {
+    margin-bottom: 0 !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill #tc-main-content-shell.tc-main-wb-surface {
+    padding: 0.3rem 0.45rem 0.2rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill #right-panel #table-workspace {
+    padding: 0.2rem 0.3rem 0.15rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill #right-panel #table-workspace #table-toolbar.tc-table-workspace__head,
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill #table-toolbar.tc-table-workspace__head {
+    margin-bottom: 0.15rem !important;
+    padding: 0.2rem 0.35rem !important;
+    gap: 0.35rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill #tc-right-panel-title,
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill #table-toolbar .tc-right-panel-head h3#tc-right-panel-title {
+    font-size: 0.8125rem !important;
+    line-height: 1.2 !important;
+    font-weight: 600 !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill .tc-right-panel-head {
+    gap: 0.3rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill .tc-right-view-nav {
+    padding: 0.12rem !important;
+    gap: 0.12rem !important;
+    grid-template-columns: repeat(2, minmax(6.5rem, 1fr)) !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill .tc-right-view-nav__btn {
+    min-height: 1.45rem !important;
+    padding: 0.14rem 0.35rem !important;
+    font-size: 0.6875rem !important;
+    gap: 0.22rem !important;
+    border-radius: 0.4rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill .tc-right-view-nav__icon {
+    width: 0.85rem !important;
+    height: 0.85rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill #table-toolbar .tc-table-toolbar-center {
+    gap: 0.35rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill #table-toolbar #restore-columns {
+    gap: 0.22rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill #table-toolbar #restore-columns button {
+    padding: 0.14rem 0.35rem !important;
+    font-size: 0.6875rem !important;
+    line-height: 1.15 !important;
+    border-radius: 0.36rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill #table-toolbar .tc-table-filter-bar__search {
+    padding: 0.16rem 0.4rem !important;
+    font-size: 0.75rem !important;
+    min-width: 7rem !important;
+    width: 11.5rem !important;
+    max-width: min(16rem, 38vw) !important;
+    border-radius: 0.4rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill #table-toolbar .tc-table-filter-bar__reset {
+    padding: 0.14rem 0.35rem !important;
+    font-size: 0.6875rem !important;
+    border-radius: 0.36rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill .tc-table-filter-bar,
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill .tc-table-filter-bar__main {
+    gap: 0.28rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill .tc-table-filter-bar__meta {
+    font-size: 0.625rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope #table-toolbar {
+    margin-bottom: 0.35rem !important;
+    padding: 0.3rem 0.45rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill .tc-gen-batch-bar {
+    padding: 0.22rem 0.4rem !important;
+    margin-bottom: 0.15rem !important;
+    gap: 0.3rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill .tc-gen-batch-bar__title {
+    font-size: 0.8125rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill .tc-gen-batch-bar__meta,
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill .tc-gen-batch-bar__progress-text {
+    font-size: 0.6875rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill .tc-active-template-label,
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill .tc-view-meta-label,
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill .tc-switch-template-btn {
+    font-size: 0.6875rem !important;
+}
+
+/* 质量检查 + RAG 并排紧凑 */
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill #table-toolbar .tc-right-panel-head #tc-gen-options-row {
+    gap: 0.25rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill #table-toolbar .tc-right-panel-head .tc-gen-toggle-btn__icon {
+    width: 0.85rem !important;
+    height: 0.85rem !important;
+    flex-shrink: 0;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill #table-toolbar .tc-right-panel-head .tc-gen-toggle-btn {
+    min-height: 1.45rem !important;
+    padding: 0.14rem 0.38rem !important;
+    font-size: 0.6875rem !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--lanhu-fill #table-toolbar .tc-right-panel-head .tc-gen-option-help-btn {
+    width: 0.95rem !important;
+    height: 0.95rem !important;
+    font-size: 0.625rem !important;
+    line-height: 1;
+}
+
+/* 铺满激活：表格/导图区吃满计算高度 */
+body.tc-hub-ai-tab.tc-table-area-fill-active .tc-workbench-scope--lanhu-fill #tc-table-list-panel,
+body.tc-hub-ai-tab.tc-table-area-fill-active .tc-workbench-scope--lanhu-fill .tc-vxe-table-view-panel:not(.hidden),
+body.tc-hub-ai-tab.tc-table-area-fill-active .tc-workbench-scope--lanhu-fill #tc-mindmap-view-panel:not(.hidden) {
+    flex: 1 1 auto;
+    min-height: 0;
+}

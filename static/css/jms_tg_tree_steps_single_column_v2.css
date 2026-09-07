@@ -1,0 +1,161 @@
+/**
+ * Studio v2 · 树形步骤单列全宽（覆盖 row_layout_fit 双列 wrap，隔离模块）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    align-content: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 0.06rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps > .jms-tree-node {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node__body {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 auto !important;
+    align-items: center !important;
+    align-self: stretch !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--http .jms-tree-node__body,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--http .jms-http-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-if-card__body .jms-tree-node--http .jms-http-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-if-card__body .jms-tree-node--http .jms-tree-node__body {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 auto !important;
+    align-self: stretch !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card__main {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-if-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tree-node--http.is-selected .jms-http-card__main {
+    max-width: none !important;
+}
+
+/* 隐藏步骤序号 */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tree-step-order,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tree-node__index {
+    display: none !important;
+}
+
+/* ⋯ 菜单统一靠右（覆盖 row_layout_fit 的 margin-left:0） */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card {
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card__main,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card__content,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card__content--tree {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-config-card-toolbar {
+    margin-left: auto !important;
+    flex: 0 0 auto !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-if-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-random-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-simple-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-transaction-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-loop-card__head {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-if-card__head .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-random-card__head .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-simple-card__head .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-transaction-card__head .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-loop-card__head .lth-step-actions {
+    margin-left: auto !important;
+}
+
+/* 展开/收起按钮（已改为点击组件本身，隐藏左侧按钮） */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tree-step-toggle {
+    display: none !important;
+}
+
+/* legacy */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tree-step-toggle {
+    flex: 0 0 1.25rem !important;
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 0.25rem 0 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0.06rem !important;
+    background: rgba(148, 163, 184, 0.14) !important;
+    color: #475569 !important;
+    font-size: 0.65rem !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+    transition: transform 0.15s ease !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tree-step-toggle[aria-expanded="false"] {
+    transform: rotate(-90deg) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tree-node--http.jms-tree-node--collapsed > .jms-tree-node__body > .jms-http-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tree-node--http.jms-tree-node--collapsed .jms-http-mount-children {
+    display: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-aux-card--collapsed .jms-aux-card__content,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-aux-card--collapsed .jms-aux-card__content--tree {
+    display: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-if-card--collapsed > .jms-if-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-random-card--collapsed > .jms-random-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-simple-card--collapsed > .jms-simple-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-transaction-card--collapsed > .jms-transaction-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-loop-card--collapsed > .jms-loop-card__body {
+    display: none !important;
+}

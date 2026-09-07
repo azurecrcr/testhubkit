@@ -1,0 +1,31 @@
+/**
+ * 断言弹窗底部按钮右对齐（隔离样式 · 与 JSON 提取器/监听器弹窗一致）
+ * 启用态在卡片上切换，footer 仅保留取消/保存。
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-http-ja-drawer__foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-drawer__foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-http-sa-drawer__foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-drawer__foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-drawer__foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-tg-ra-drawer__foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-drawer__foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-tg-m5-drawer__foot {
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: 0.55rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-http-ja-drawer__foot-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-drawer__foot-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-http-sa-drawer__foot-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-drawer__foot-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-drawer__foot-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-tg-ra-drawer__foot-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-drawer__foot-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-tg-m5-drawer__foot-actions {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.55rem !important;
+    margin-left: 0 !important;
+}

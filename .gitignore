@@ -1,0 +1,265 @@
+# =============================================================================
+# TestHub .gitignore
+# Policy: when in doubt, ignore. Never commit secrets, runtime data, or local junk.
+# =============================================================================
+
+# --- Secrets & credentials ---------------------------------------------------
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# Deploy/runtime env (keep *.env.example)
+deploy/mcp-agent/daemon.env
+deploy/mcp-agent/daemon-uia.env
+deploy/playwright-mcp/server.env
+**/*.env.local
+**/*.env.production
+**/*.env.development
+**/*.env.test
+**/*.env.staging
+
+# TLS / SSH / crypto material
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.crt
+*.cer
+*.der
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+id_dsa
+id_dsa.*
+known_hosts
+authorized_keys
+deploy/certs/
+ssh-key-deploy/
+
+# docker-compose with embedded production secrets (use sanitized example instead)
+docker-compose.yml
+docker-compose.override.yml
+docker-compose.*.yml
+!docker-compose.example.yml
+!docker-compose.opensource.yml
+
+# --- Runtime / user / business data -------------------------------------------
+data/
+!data/**/.gitkeep
+
+uploads/
+deploy/nginx-logs/
+*.db
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+
+# Generated media & user artifacts
+generated_audio_*.wav
+generated_audio_*.mp3
+user_avatars/
+
+# --- Local env files (not examples) -------------------------------------------
+**/daemon.env
+**/daemon-uia.env
+**/server.env
+!**/daemon.env.example
+!**/server.env.example
+
+# --- Dependencies & build outputs ---------------------------------------------
+node_modules/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+static/dist/
+frontend/**/dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+.installed.cfg
+*.egg
+MANIFEST
+
+# --- Python tooling caches ----------------------------------------------------
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+.hypothesis/
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# --- Virtual environments -----------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# --- IDE / editor / AI assistant ----------------------------------------------
+.idea/
+.cursor/
+.ai/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.iml
+*.ipr
+*.iws
+
+# --- Playwright / browser automation state ------------------------------------
+.playwright-mcp/
+**/.playwright-mcp/
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
+**/chromium-state/
+**/browser-state/
+
+# --- Logs & dumps -------------------------------------------------------------
+*.log
+*.log.*
+*.stackdump
+*.dump
+*.dmp
+
+# --- Backups / temp / internal scratch ----------------------------------------
+*.bak
+*.bak.*
+*.bak*
+*_bak
+*.user_config_bak
+docker-compose.yml.bak*
+*.orig
+*.old
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Top-level & internal temp/deploy scratch (full scan findings)
+tmp_*/
+tmp/
+temp/
+archive/
+.legacy_ui_backup/
+_bak_*/
+_uia_prep_deploy/
+tmp_fb_sms/
+tmp_auth_ui/
+tmp_cm_up/
+tmp_daily_upload/
+
+# Root internal one-off scripts (deploy/fix/bench helpers)
+/_*.py
+/deploy_phase2_3.py
+/_scripts_manifest.html
+/_scripts_manifest.bundle.html
+
+# Accidental duplicated path folders at repo root
+/staticcss/
+/staticcssapi_intel/
+/staticjs/
+/staticjsapi_intel/
+/staticjstc_workbenchl3_ui/
+/templatespartialstools/
+/templatespartialstoolstc_workbench/
+
+# Odd junk file at repo root
+=3.0.0
+
+# --- OS junk ------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# --- Package manager locks (optional: keep package-lock for reproducibility) --
+# Uncomment if you prefer not to commit lockfiles:
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# --- Misc sensitive patterns --------------------------------------------------
+secrets/
+credentials/
+*.secret
+*.credentials
+*.token
+*.passwd
+*.password
+
+# Large/binary archives (usually not source)
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.7z
+*.rar
+*.iso
+
+# --- JMeter / test runtime artifacts ------------------------------------------
+static/tmp_*.jmx
+**/tmp_*.jmx
+
+# --- Proprietary modules (local only, not open-sourced) -----------------------
+# Keep in sync with opensource-exclude.txt
+core/services/ui_automation/
+core/services/api_intel/
+core/blueprints/api/ui_automation.py
+core/blueprints/api/api_intel.py
+core/blueprints/api/api_intel_*_routes.py
+core/config/api_intel.py
+core/config/omniflow.py
+core/config/omniflow_storage.py
+core/config/mcp_agent.py
+core/services/ai/omniflow_vision_config.py
+core/jobs/api_intel_schedule_runner.py
+deploy/mcp-agent/
+templates/omniflow_hub.html
+templates/omniflow_history.html
+templates/api_intel.html
+templates/partials/tools/omniflow_stash_ui.html
+static/js/ui_automation*.js
+static/js/ui_automation*.css
+static/js/uia_omniflow_banner.js
+static/js/api_intel/
+static/css/ui_automation*.css
+static/css/uia_gnav_glass.css
+static/css/api_intel/
+docs/API_INTEL_*.md
+scripts/api_intel/
+scripts/deploy_ui_automation_frontend.sh
+scripts/setup_omniflow_tunnel_user.sh
+scripts/ui_automation_minimal_notice.*
+scripts/_selftest_vision_admin.py
+api_intel_l5_overview.js

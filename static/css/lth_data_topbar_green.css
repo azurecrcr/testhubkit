@@ -1,0 +1,107 @@
+/* 数据构建 Tab · 顶栏/模式切换同步 JMeter 浅绿玻璃 */
+body.lth-studio-v2.lth-hub-data-tab .lth-hub-scope .lth-studio-topbar.hf-jmeter-hero,
+body.lth-studio-v2.lth-hub-data-tab .lth-hub-scope .hf-jmeter-hero {
+    position: relative !important;
+    isolation: isolate !important;
+    overflow: hidden !important;
+    margin-bottom: 0.45rem !important;
+    padding: 0.45rem 0.85rem !important;
+    border-radius: 0.85rem !important;
+    border: 1px solid rgba(167, 243, 208, 0.55) !important;
+    color: #065f46 !important;
+    background:
+        radial-gradient(ellipse 100% 90% at 100% 0%, rgba(52, 211, 153, 0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 80% 70% at 0% 100%, rgba(45, 212, 191, 0.14) 0%, transparent 50%),
+        linear-gradient(
+            168deg,
+            rgba(255, 255, 255, 0.94) 0%,
+            rgba(236, 253, 245, 0.9) 50%,
+            rgba(209, 250, 229, 0.82) 100%
+        ) !important;
+    backdrop-filter: blur(16px) saturate(1.3) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+    box-shadow:
+        0 4px 20px rgba(5, 150, 105, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+}
+
+body.lth-studio-v2.lth-hub-data-tab .lth-hub-scope .hf-jmeter-hero::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+    opacity: 1 !important;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, transparent 48%),
+        repeating-linear-gradient(
+            90deg,
+            rgba(16, 185, 129, 0.02) 0,
+            rgba(16, 185, 129, 0.02) 1px,
+            transparent 1px,
+            transparent 12px
+        ) !important;
+}
+
+body.lth-studio-v2.lth-hub-data-tab .lth-hub-scope .hf-jmeter-hero__row,
+body.lth-studio-v2.lth-hub-data-tab .lth-hub-scope .hf-jmeter-hero__main,
+body.lth-studio-v2.lth-hub-data-tab .lth-hub-scope .lth-studio-topbar__inner {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+body.lth-studio-v2.lth-hub-data-tab .lth-studio-topbar__eyebrow {
+    display: block !important;
+    margin: 0 !important;
+    font-size: 0.8125rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    color: #065f46 !important;
+    text-shadow: none !important;
+    -webkit-text-fill-color: #065f46 !important;
+}
+
+body.lth-studio-v2.lth-hub-data-tab .lth-hub-scope .tc-hub-mode-switch--compact {
+    padding: 0.14rem !important;
+    border-radius: 0.6rem !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    border: 1px solid rgba(16, 185, 129, 0.2) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
+
+body.lth-studio-v2.lth-hub-data-tab .lth-hub-scope .tc-hub-mode--compact {
+    color: #047857 !important;
+    border-radius: 0.45rem !important;
+    background: transparent !important;
+}
+
+body.lth-studio-v2.lth-hub-data-tab .lth-hub-scope .tc-hub-mode--compact .tc-hub-mode__title {
+    color: inherit !important;
+}
+
+body.lth-studio-v2.lth-hub-data-tab .lth-hub-scope .tc-hub-mode--compact:not(.tc-hub-mode--active):hover {
+    background: rgba(236, 253, 245, 0.85) !important;
+    color: #065f46 !important;
+}
+
+body.lth-studio-v2.lth-hub-data-tab .lth-hub-scope .tc-hub-mode--compact.tc-hub-mode--active,
+body.lth-studio-v2.lth-hub-data-tab .lth-hub-scope .tc-hub-mode--compact.tc-hub-mode--active:hover {
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(5, 150, 105, 0.28) !important;
+}
+
+body.lth-studio-v2.lth-hub-data-tab .lth-hub-scope .tc-hub-mode--compact.tc-hub-mode--active .tc-hub-mode__title {
+    color: #fff !important;
+}
+
+body.lth-studio-v2.lth-hub-data-tab .lth-hub-scope .tc-hub-mode--compact .tc-hub-mode__icon {
+    color: inherit !important;
+}
+
+/* 去掉顶栏 text-white 残留 */
+body.lth-studio-v2.lth-hub-data-tab .lth-studio-topbar.hf-jmeter-hero.text-white {
+    color: #065f46 !important;
+}

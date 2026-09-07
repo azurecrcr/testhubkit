@@ -1,0 +1,121 @@
+/**
+ * catalog_element · legacy 网格原生卡片样式（jms-tg-steps · 不依赖树形视图 class）
+ */
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-native {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0.35rem 0;
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-transaction-card.jms-catalog-plan-native,
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-loop-card.jms-catalog-plan-native,
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-simple-card.jms-catalog-plan-native,
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-random-card.jms-catalog-plan-native {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    background: rgba(255, 251, 235, 0.65);
+    overflow: hidden;
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-transaction-card.jms-catalog-plan-native .jms-transaction-card__head,
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-loop-card.jms-catalog-plan-native .jms-loop-card__head,
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-simple-card.jms-catalog-plan-native .jms-simple-card__head,
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-random-card.jms-catalog-plan-native .jms-random-card__head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding: 0.45rem 0.55rem;
+    border-bottom: 1px solid rgba(251, 191, 36, 0.18);
+    background: rgba(251, 191, 36, 0.08);
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-transaction-badge,
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-loop-badge,
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-simple-badge,
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-random-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.65rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 999px;
+    font-size: 0.625rem;
+    font-weight: 800;
+    color: #fcd34d;
+    background: rgba(251, 191, 36, 0.2);
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    flex-shrink: 0;
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-native .jms-http-name {
+    font-weight: 600;
+    min-width: 0;
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-native .jms-transaction-card__meta,
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-native .jms-loop-card__meta,
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-native .jms-simple-card__meta,
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-native .jms-random-card__meta {
+    color: #64748b;
+    font-size: 0.62rem;
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-native .jms-http-assert-badge {
+    margin-left: auto;
+    font-size: 0.58rem;
+    font-weight: 600;
+    color: #c2410c;
+    background: rgba(251, 191, 36, 0.22);
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    border-radius: 999px;
+    padding: 0.08rem 0.4rem;
+    white-space: nowrap;
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-transaction-card.jms-catalog-plan-native .jms-transaction-card__body,
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-loop-card.jms-catalog-plan-native .jms-loop-card__body,
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-simple-card.jms-catalog-plan-native .jms-simple-card__body,
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-random-card.jms-catalog-plan-native .jms-random-card__body {
+    padding: 0.45rem 0.55rem 0.55rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    background: rgba(255, 255, 255, 0.72);
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-aux-card.jms-catalog-plan-native {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    width: 100%;
+    padding: 0.45rem 0.55rem;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    background: rgba(255, 255, 255, 0.92);
+    margin: 0.35rem 0;
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-native.is-disabled {
+    opacity: 0.55;
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-card.jms-catalog-plan-native {
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    border-radius: 10px;
+    background: rgba(255, 251, 235, 0.65);
+    margin: 0.35rem 0;
+    overflow: hidden;
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-card.jms-catalog-plan-native .jms-catalog-plan-card__head {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.55rem;
+    border-bottom: 1px solid rgba(251, 191, 36, 0.18);
+    background: rgba(251, 191, 36, 0.08);
+}

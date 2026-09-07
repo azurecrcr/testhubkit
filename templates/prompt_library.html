@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提示词库 · {{ hf_site_brand_title }}</title>
+    {% include 'partials/hf_favicon.html' %}
+    <!-- 同源托管：避免 Chrome 扩展/跟踪防护拦截第三方脚本，导致 Tailwind 类名不生效 -->
+    <script src="{{ url_for('static', filename='vendor/tailwindcss-cdn-3.4.10.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toolkit.css') }}?v=20260556">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/page_shells.css') }}?v=20260556">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hf_prompt_library_sunny_bg_v1.css') }}?v=20260711prompt-orange5">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hf_prompt_library_pro_orange_v2.css') }}?v=20260711prompt-orange5">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hf_prompt_library_deco_v3.css') }}?v=20260711prompt-orange5">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hf_prompt_library_neutral_canvas_v4.css') }}?v=20260711prompt-orange5">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hf_prompt_library_orange_canvas_v5.css') }}?v=20260711prompt-orange5">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hf_prompt_gnav_glass.css') }}?v=20260729msgnav3">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        .hf-prompt-hero {
+            background: linear-gradient(135deg, #fdba74 0%, #fb923c 45%, #fbbf24 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hf-prompt-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 55% at 100% 0%, rgba(255,255,255,0.45) 0%, transparent 55%),
+                radial-gradient(ellipse 55% 45% at 0% 100%, rgba(254,243,199,0.5) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .hf-prompt-pill { letter-spacing: 0.04em; }
+        .hf-prompt-body--preview {
+            max-height: 5rem;
+            line-height: 1.5;
+            overflow: hidden;
+            word-break: break-word;
+        }
+        .hf-prompt-card--open {
+            cursor: pointer;
+        }
+        /* 提示词弹窗：视口居中、遮罩可滚、面板美式清爽风 */
+        .hf-prompt-dialog {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .hf-prompt-dialog[aria-hidden="true"] {
+            display: none;
+        }
+        .hf-prompt-dialog[aria-hidden="false"] {
+            display: block;
+        }
+        .hf-prompt-dialog__center {
+            min-height: 100%;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 1rem 2.5rem;
+        }
+        @media (min-width: 640px) {
+            .hf-prompt-dialog__center {
+                padding: 1.5rem 1.5rem 2rem;
+            }
+        }
+        .hf-prompt-dialog__backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background: linear-gradient(165deg, rgba(15, 23, 42, 0.78) 0%, rgba(30, 27, 75, 0.72) 40%, rgba(8, 47, 73, 0.68) 100%);
+            backdrop-filter: blur(14px) saturate(1.15);
+            -webkit-backdrop-filter: blur(14px) saturate(1.15);
+        }
+        .hf-prompt-dialog__panel {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 44rem;
+            max-height: min(88vh, 52rem);
+            max-height: min(88dvh, 52rem);
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            border-radius: 1.4rem;
+            overflow: hidden;
+            border: 1px solid rgba(165, 180, 252, 0.35);
+            background:
+                linear-gradient(155deg, #ffffff 0%, #f8faff 18%, #f0f4ff 42%, #ecfeff 68%, #f0fdf9 100%);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.6) inset,
+                0 1px 2px rgba(15, 23, 42, 0.04),
+                0 12px 40px -8px rgba(67, 56, 202, 0.18),
+                0 32px 64px -20px rgba(15, 23, 42, 0.2);
+            transform-origin: center center;
+            animation: hf-prompt-pop 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hf-prompt-dialog__panel-deco {
+            position: absolute;
+            pointer-events: none;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            border-radius: inherit;
+        }
+        .hf-prompt-dialog__panel-deco::before {
+            content: "";
+            position: absolute;
+            width: 18rem;
+            height: 18rem;
+            right: -5rem;
+            top: -7rem;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(6, 182, 212, 0.08) 50%, transparent 70%);
+        }
+        .hf-prompt-dialog__panel-deco::after {
+            content: "";
+            position: absolute;
+            width: 14rem;
+            height: 14rem;
+            left: -4rem;
+            bottom: -4rem;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, rgba(59, 130, 246, 0.08) 55%, transparent 70%);
+        }
+        .hf-prompt-dialog__stack {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            flex: 1 1 0%;
+        }
+        .hf-prompt-dialog__grid-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.22;
+            background-image: linear-gradient(rgba(99, 102, 241, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.12) 1px, transparent 1px);
+            background-size: 22px 22px;
+            mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+        }
+        @keyframes hf-prompt-pop {
+            from {
+                opacity: 0;
+                transform: scale(0.97) translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        /* 复制成功提示：叠在详情弹窗之上，避免被 z-index:9999 的弹窗挡住 */
+        #hf-prompt-toast {
+            z-index: 10050;
+        }
+        .hf-prompt-toast__inner {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            border-radius: 1rem;
+            padding: 0.75rem 1.15rem 0.75rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: #f8fafc;
+            background: linear-gradient(125deg, #1e1b4b 0%, #312e81 42%, #0f766e 100%);
+            border: 1px solid rgba(165, 180, 252, 0.35);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+                0 4px 24px -4px rgba(15, 23, 42, 0.45),
+                0 12px 40px -8px rgba(79, 70, 229, 0.35);
+        }
+        .hf-prompt-toast__inner svg {
+            flex-shrink: 0;
+            color: #5eead4;
+            filter: drop-shadow(0 0 8px rgba(45, 212, 191, 0.35));
+        }
+        .hf-prompt-dialog__head {
+            position: relative;
+            padding: 1.1rem 1.25rem 0.9rem 1.25rem;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(238, 242, 255, 0.45) 100%);
+        }
+        @media (min-width: 640px) {
+            .hf-prompt-dialog__head {
+                padding: 1.25rem 1.4rem 1rem 1.4rem;
+            }
+        }
+        .hf-prompt-dialog__head-main {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.9rem;
+        }
+        .hf-prompt-dialog__eyebrow {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #4f46e5, #0d9488, #0ea5e9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.4rem;
+        }
+        .hf-prompt-dialog__title {
+            font-size: 1.1875rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: #0f172a;
+            line-height: 1.25;
+        }
+        @media (min-width: 640px) {
+            .hf-prompt-dialog__title {
+                font-size: 1.35rem;
+            }
+        }
+        .hf-prompt-dialog__tagline {
+            margin-top: 0.75rem;
+            padding: 0.5rem 0.65rem 0.55rem;
+            border-radius: 0.65rem;
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.07) 0%, rgba(6, 182, 212, 0.07) 100%);
+            border: 1px solid rgba(165, 180, 252, 0.25);
+            font-size: 0.75rem;
+            line-height: 1.55;
+            color: #475569;
+        }
+        @media (min-width: 640px) {
+            .hf-prompt-dialog__tagline {
+                font-size: 0.8125rem;
+            }
+        }
+        .hf-prompt-dialog__tagline-en {
+            display: block;
+            font-size: 0.68rem;
+            letter-spacing: 0.02em;
+            color: #6366f1;
+            font-weight: 600;
+        }
+        .hf-prompt-dialog__hint {
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+            margin: 0.55rem 1rem 0.35rem;
+            padding: 0.4rem 0.65rem;
+            font-size: 0.7rem;
+            color: #64748b;
+            text-align: center;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+        }
+        @media (min-width: 640px) {
+            .hf-prompt-dialog__hint {
+                font-size: 0.75rem;
+                margin: 0.5rem 1.2rem 0.3rem;
+            }
+        }
+        .hf-prompt-dialog__actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hf-prompt-dialog__copy {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            height: 2.5rem;
+            padding: 0 0.9rem 0 0.75rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            color: #fff;
+            background: linear-gradient(165deg, #4f46e5 0%, #4338ca 55%, #3730a3 100%);
+            border: none;
+            border-radius: 0.6rem;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08), 0 2px 8px -2px rgba(79, 70, 229, 0.45);
+            cursor: pointer;
+            transition: transform 0.12s ease, box-shadow 0.15s ease, filter 0.15s ease;
+        }
+        .hf-prompt-dialog__copy:hover {
+            filter: brightness(1.05);
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1), 0 4px 14px -3px rgba(67, 56, 202, 0.5);
+        }
+        .hf-prompt-dialog__copy:active {
+            transform: scale(0.98);
+        }
+        .hf-prompt-dialog__copy:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #a5b4fc;
+        }
+        .hf-prompt-dialog__copy .hf-icon {
+            width: 1rem;
+            height: 1rem;
+            opacity: 0.95;
+        }
+        .hf-prompt-dialog__close {
+            width: 2.4rem;
+            height: 2.4rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.6rem;
+            color: #94a3b8;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            transition: color 0.15s, background 0.15s, border-color 0.15s, transform 0.1s;
+        }
+        .hf-prompt-dialog__close:hover {
+            color: #475569;
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+        .hf-prompt-dialog__close:active {
+            transform: scale(0.97);
+        }
+        .hf-prompt-dialog__body-wrap {
+            position: relative;
+            z-index: 1;
+            flex: 1 1 0%;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            margin: 0.25rem 0.9rem 0.85rem;
+        }
+        @media (min-width: 640px) {
+            .hf-prompt-dialog__body-wrap {
+                margin: 0.2rem 1.15rem 1rem;
+            }
+        }
+        .hf-prompt-dialog__body {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            border-radius: 0.9rem;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(241, 245, 249, 0.92) 100%);
+            border: 1px solid rgba(203, 213, 225, 0.65);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.95),
+                0 1px 2px rgba(15, 23, 42, 0.04);
+            padding: 1.05rem 1.1rem 1.1rem;
+            font-size: 0.8125rem;
+            line-height: 1.68;
+            color: #1e293b;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            white-space: pre-wrap;
+            word-break: break-word;
+            -webkit-overflow-scrolling: touch;
+        }
+        @media (min-width: 640px) {
+            .hf-prompt-dialog__body {
+                font-size: 0.875rem;
+                padding: 1.15rem 1.2rem 1.2rem;
+            }
+        }
+        .hf-prompt-dialog__body::-webkit-scrollbar {
+            width: 7px;
+        }
+        .hf-prompt-dialog__body::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .hf-prompt-dialog__body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+    </style>
+</head>
+<body class="hf-prompt-page-body min-h-screen">
+    {% include 'partials/hf_global_nav.html' %}
+
+    <div class="hf-prompt-page__bg" aria-hidden="true">
+        <img src="{{ url_for('static', filename='images/prompts/prompts-bg-page.png') }}?v=20260711prompt-orange5" alt="" class="hf-prompt-page__bg-img" width="1920" height="1600" loading="eager" decoding="async">
+        <div class="hf-prompt-page__bg-base"></div>
+        <div class="hf-prompt-page__bg-grid"></div>
+        <div class="hf-prompt-page__bg-orb hf-prompt-page__bg-orb--a"></div>
+        <div class="hf-prompt-page__bg-orb hf-prompt-page__bg-orb--b"></div>
+        <div class="hf-prompt-page__bg-orb hf-prompt-page__bg-orb--c"></div>
+        <div class="hf-prompt-page__bg-scan"></div>
+        <div class="hf-prompt-page__bg-scrim"></div>
+        <div class="hf-prompt-page__bg-deco"></div>
+        <div class="hf-prompt-page__bg-noise"></div>
+    </div>
+
+    <main class="hf-prompt-page-main container mx-auto px-4 py-8 sm:py-10 max-w-6xl">
+        <div class="hf-prompt-hero hf-prompt-hero--has-img rounded-3xl p-6 sm:p-8 md:p-10 text-white shadow-xl mb-8 sm:mb-10">
+            <div class="hf-prompt-hero__bg" aria-hidden="true">
+                <img src="{{ url_for('static', filename='images/prompts/prompts-bg-hero.png') }}?v=20260711prompt-orange5" alt="" class="hf-prompt-hero__bg-img" width="1920" height="337" loading="eager" decoding="async">
+                <div class="hf-prompt-hero__bg-scrim"></div>
+            </div>
+            <div class="relative z-10 max-w-2xl">
+                <p class="hf-prompt-pill text-[11px] sm:text-xs font-semibold uppercase text-orange-700 mb-3">Prompt library</p>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-orange-950 drop-shadow-sm">
+                    提示词库
+                </h2>
+                <p class="mt-3 text-sm sm:text-base text-orange-900/85 leading-relaxed">
+                    分类与搜索，一键复制到剪贴板。
+                </p>
+            </div>
+        </div>
+
+        <div class="hf-prompt-toolbar hf-prompt-toolbar--sticky">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div class="relative flex-1 max-w-md hf-prompt-search-wrap">
+                    <span class="hf-prompt-search-icon pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true">
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </span>
+                    <input type="search" id="hf-prompt-search" class="hf-prompt-search" placeholder="仅搜索卡片标题…" autocomplete="off" />
+                </div>
+                <div class="flex shrink-0 items-center gap-2 self-end sm:self-auto">
+                    <div id="hf-prompt-visibility-admin-wrap" class="hidden shrink-0">
+                        <button type="button" id="hf-prompt-visibility-toggle" class="inline-flex items-center gap-1.5 rounded-xl border border-amber-300/90 bg-gradient-to-r from-amber-500 to-orange-500 px-4 py-2.5 text-sm font-semibold text-white shadow-md hover:from-amber-400 hover:to-orange-400 focus:outline-none focus:ring-2 focus:ring-amber-400/40" title="全站提示词显隐（仅管理员）">
+                            隐藏提示词（全站）
+                        </button>
+                    </div>
+                    <button type="button" id="hf-prompt-add-btn" class="hf-prompt-add-btn inline-flex items-center gap-1.5 rounded-xl border border-indigo-300/80 bg-gradient-to-r from-indigo-600 to-sky-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md hover:from-indigo-500 hover:to-sky-500 focus:outline-none focus:ring-2 focus:ring-indigo-400/40" title="投稿后将邮件通知作者审核，通过前不会显示在页面">
+                        <svg class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        <span>投稿提示词（待审核）</span>
+                    </button>
+                </div>
+
+            </div>
+            <div id="hf-prompt-categories" class="mt-3 flex flex-wrap gap-2" role="tablist" aria-label="分类筛选：全部、测试日常（用例与报告）、自动化（接口与冒烟）"></div>
+        </div>
+
+        <p id="hf-prompt-empty" class="hidden text-center text-sm py-12">没有匹配的提示词，试试换关键词或分类。</p>
+        <div id="hf-prompt-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 max-w-6xl mx-auto w-full items-stretch"></div>
+    </main>
+
+
+    <div id="hf-prompt-add-modal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/40 p-4" role="dialog" aria-modal="true">
+        <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl" onclick="event.stopPropagation()">
+            <h3 class="text-lg font-semibold text-gray-900">投稿提示词 / Skill</h3>
+            <p class="mt-1 text-xs text-gray-500">提交后将发送到作者邮箱等待审核，审核通过前不会出现在本页列表。为保护系统，每个 IP 10 分钟内仅可投稿一次。</p>
+            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="form-label text-sm" for="hf-prompt-add-type">类型 <span class="text-red-500">*</span></label>
+                    <select id="hf-prompt-add-type" class="form-input mt-1">
+                        <option value="prompt">提示词 (Prompt)</option>
+                        <option value="skill">技能 (Skill)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label text-sm" for="hf-prompt-add-category">所属分类 <span class="text-red-500">*</span></label>
+                    <select id="hf-prompt-add-category" class="form-input mt-1">
+                        <option value="metersphere">MeterSphere 用例</option>
+                        <option value="test_report">版本测试报告</option>
+                        <option value="api_auto">接口自动化</option>
+                        <option value="smoke">冒烟测试</option>
+                    </select>
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="form-label text-sm" for="hf-prompt-add-title">标题 <span class="text-red-500">*</span></label>
+                    <input type="text" id="hf-prompt-add-title" class="form-input mt-1" maxlength="200" placeholder="卡片标题">
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="form-label text-sm" for="hf-prompt-add-kicker">副标题</label>
+                    <input type="text" id="hf-prompt-add-kicker" class="form-input mt-1" maxlength="200" placeholder="例如：用例设计 · MeterSphere">
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="form-label text-sm" for="hf-prompt-add-blurb">简介</label>
+                    <input type="text" id="hf-prompt-add-blurb" class="form-input mt-1" maxlength="500" placeholder="卡片下方简短说明">
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="form-label text-sm" for="hf-prompt-add-tags">标签</label>
+                    <input type="text" id="hf-prompt-add-tags" class="form-input mt-1" placeholder="多个标签用英文逗号分隔">
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="form-label text-sm" for="hf-prompt-add-body">正文 <span class="text-red-500">*</span></label>
+                    <textarea id="hf-prompt-add-body" class="form-input mt-1 min-h-[10rem] resize-y font-mono text-sm leading-relaxed" placeholder="完整提示词或 Skill 正文"></textarea>
+                </div>
+            </div>
+            <div class="mt-6 flex justify-end gap-3">
+                <button type="button" id="hf-prompt-add-cancel" class="btn btn-secondary">取消</button>
+                <button type="button" id="hf-prompt-add-submit" class="btn btn-primary">提交审核</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="hf-prompt-submit-done-modal" class="fixed inset-0 z-[75] hidden items-center justify-center bg-black/40 p-4" role="dialog" aria-modal="true">
+        <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl" onclick="event.stopPropagation()">
+            <h3 class="text-lg font-semibold text-gray-900">投稿已发送</h3>
+            <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+                您的提示词已发送到作者邮箱，请等待作者审核。审核通过前不会显示在本页面。
+            </p>
+            <p class="mt-3 text-sm text-amber-800 bg-amber-50 border border-amber-200/80 rounded-lg px-3 py-2.5 leading-relaxed">
+                为保护系统免受恶意刷稿，每个 IP 地址 <strong>10 分钟内只能投稿一次</strong>。这是必要的限制，感谢您的理解与体谅。
+            </p>
+            <div class="mt-5 flex justify-end">
+                <button type="button" id="hf-prompt-submit-done-ok" class="btn btn-primary">我知道了</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="hf-prompt-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-16 opacity-0 pointer-events-none transition-all duration-300 ease-out" role="status" aria-live="polite">
+        <div class="hf-prompt-toast__inner">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>已复制到剪贴板</span>
+        </div>
+    </div>
+
+    <div id="hf-prompt-modal" class="hf-prompt-dialog" role="dialog" aria-modal="true" aria-labelledby="hf-prompt-modal-title" aria-hidden="true">
+        <div class="hf-prompt-dialog__center">
+            <div class="hf-prompt-dialog__backdrop" data-hf-prompt-modal-backdrop aria-hidden="true"></div>
+            <div class="hf-prompt-dialog__panel" role="document">
+                <div class="hf-prompt-dialog__panel-deco" aria-hidden="true"></div>
+                <div class="hf-prompt-dialog__stack">
+                    <div class="hf-prompt-dialog__grid-bg" aria-hidden="true"></div>
+                    <div class="hf-prompt-dialog__head shrink-0">
+                        <div class="hf-prompt-dialog__head-main">
+                            <div class="min-w-0 flex-1 pr-1">
+                                <p class="hf-prompt-dialog__eyebrow">Prompt</p>
+                                <h2 id="hf-prompt-modal-title" class="hf-prompt-dialog__title"></h2>
+                            </div>
+                            <div class="hf-prompt-dialog__actions">
+                                <button type="button" id="hf-prompt-modal-copy" class="hf-prompt-dialog__copy" title="复制全部提示词到剪贴板" aria-label="复制全文">
+                                    <svg class="hf-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                                    复制
+                                </button>
+                                <button type="button" class="hf-prompt-dialog__close hf-prompt-modal-close" data-hf-prompt-modal-close aria-label="关闭">
+                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="hf-prompt-dialog__tagline">
+                            <span class="hf-prompt-dialog__tagline-en">Copy &amp; paste into ChatGPT, Claude, or your favorite AI — then tweak as you like.</span>
+                            支持粘贴到各类 AI 对话、文档、MeterSphere 等工具，可按现场再微调后使用。
+                        </p>
+                    </div>
+                    <p class="hf-prompt-dialog__hint" aria-hidden="true">— Full prompt below / 完整提示词见下方 —</p>
+                    <div class="hf-prompt-dialog__body-wrap">
+                        <div id="hf-prompt-modal-body" class="hf-prompt-dialog__body select-text"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/plain" id="hf-ssh-key-deploy-skill">
+---
+name: ssh-key-deploy
+description: >-
+  Generates a local SSH key pair, prompts for server credentials via an OS-native
+  dialog, deploys the public key to a remote server, and shows success paths.
+  Use when the user asks to set up SSH keys, deploy a public key to a server,
+  configure passwordless SSH login, or mentions ssh-key-deploy / 密钥部署 / 公钥上传.
+---
+
+# SSH 密钥部署
+
+纯 Skill，不使用 Python。Agent 先识别操作系统，再**只调用该系统内置的原生弹窗 API**，禁止手写/自定义任何 UI。
+
+## 弹窗原则（必须遵守）
+
+- **禁止**自定义 WinForms 窗体、Tkinter、zenity `--forms` 等自拼界面
+- **只允许**下表中的系统原生弹窗，不做样式设计
+
+| 系统 | 检测命令 | 登录弹窗（原生） | 成功提示（原生） |
+|------|----------|------------------|------------------|
+| Windows | `$IsWindows -or $env:OS -eq 'Windows_NT'` | `Get-Credential` | `[System.Windows.Forms.MessageBox]::Show()` |
+| macOS | `$(uname -s) = Darwin` | `osascript` → `display dialog` | `osascript` → `display dialog` |
+| Linux | `$(uname -s) = Linux` | `zenity --entry` + `--password`，无 zenity 则 `kdialog` | `zenity --info` 或 `kdialog --msgbox` |
+
+## 前置条件
+
+- OpenSSH（`ssh-keygen`、`ssh`）
+- Linux/macOS 需 `sshpass`
+- Windows 需 Posh-SSH（脚本内自动安装）
+
+## 执行流程
+
+```
+- [ ] 1. 确认服务器 IP/域名
+- [ ] 2. 识别操作系统，按上表选择弹窗方案
+- [ ] 3. 生成密钥 + 原生弹窗收集账号密码 + 部署公钥
+- [ ] 4. 原生弹窗提示路径，并向用户复述
+- [ ] 5. 清理 Windows 临时 ps1（如有）
+```
+
+密钥路径：`~/.ssh/id_ed25519_<HOST>`（Windows：`%USERPROFILE%\.ssh\id_ed25519_<HOST>`）
+
+---
+
+## Windows
+
+登录用 **`Get-Credential`**（Windows 凭据管理器标准窗口）。成功提示用 **`MessageBox.Show`**（系统内置对话框，非自定义窗体）。
+
+**必须用 `Start-Process -STA` 在新窗口运行**，否则 `Get-Credential` 无法输入：
+
+将下方脚本写入 `%TEMP%\ssh_deploy.ps1`（`<HOST>` 替换为实际 IP），脚本内容**只用 ASCII**，避免编码问题：
+
+```powershell
+$Host_ = "<HOST>"
+$KeyPath = "$env:USERPROFILE\.ssh\id_ed25519_$($Host_ -replace ':','_')"
+$PubPath = "$KeyPath.pub"
+
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.ssh" | Out-Null
+if (-not (Test-Path $KeyPath)) {
+  ssh-keygen -t ed25519 -f $KeyPath -N '""' -C "cursor-deploy-$Host_"
+}
+
+$Cred = Get-Credential -Message "SSH $Host_" -UserName "root"
+if (-not $Cred) { exit 1 }
+$User = $Cred.UserName
+if ($User -match '\\') { $User = $User.Split('\')[-1] }
+$Pass = $Cred.GetNetworkCredential().Password
+
+if (-not (Get-Module -ListAvailable Posh-SSH)) {
+  Install-Module Posh-SSH -Scope CurrentUser -Force -AllowClobber
+}
+Import-Module Posh-SSH
+$SecurePass = ConvertTo-SecureString $Pass -AsPlainText -Force
+$SshCred = New-Object System.Management.Automation.PSCredential($User, $SecurePass)
+$Session = New-SSHSession -ComputerName $Host_ -Credential $SshCred -AcceptKey -ErrorAction Stop
+$PubKey = (Get-Content $PubPath -Raw).Trim()
+$EscapedKey = $PubKey.Replace("'", "'\''")
+$Cmd = @"
+mkdir -p ~/.ssh && chmod 700 ~/.ssh && touch ~/.ssh/authorized_keys && grep -qxF '$EscapedKey' ~/.ssh/authorized_keys || echo '$EscapedKey' >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && echo ~/.ssh/authorized_keys
+"@
+$Result = Invoke-SSHCommand -SessionId $Session.SessionId -Command $Cmd
+Remove-SSHSession -SessionId $Session.SessionId | Out-Null
+$RemotePath = $Result.Output.Trim()
+
+$Msg = "Remote: $RemotePath`nPrivate: $KeyPath`nPublic: $PubPath"
+Add-Type -AssemblyName System.Windows.Forms
+[System.Windows.Forms.MessageBox]::Show($Msg, "SSH Deploy OK") | Out-Null
+Write-Output $Msg
+```
+
+执行（新窗口 + STA，等待用户完成弹窗）：
+
+```powershell
+Start-Process powershell.exe -ArgumentList '-NoProfile','-STA','-WindowStyle','Normal','-File',"$env:TEMP\ssh_deploy.ps1" -Wait
+Remove-Item -Force "$env:TEMP\ssh_deploy.ps1"
+```
+
+---
+
+## macOS
+
+登录 / 成功均用 **`osascript display dialog`**（macOS 系统原生对话框）：
+
+```bash
+HOST="<HOST>"
+KEY="$HOME/.ssh/id_ed25519_${HOST//:/_}"
+PUB="${KEY}.pub"
+
+mkdir -p "$HOME/.ssh"
+[ -f "$KEY" ] || ssh-keygen -t ed25519 -f "$KEY" -N "" -C "cursor-deploy-$HOST"
+
+USER=$(osascript -e 'text returned of (display dialog "Username:" default answer "root" with title "SSH Login")') || exit 1
+PASS=$(osascript -e 'text returned of (display dialog "Password:" default answer "" with hidden answer with title "SSH Login")') || exit 1
+
+PUBKEY=$(cat "$PUB")
+REMOTE_PATH=$(SSHPASS="$PASS" sshpass -e ssh -o StrictHostKeyChecking=accept-new "$USER@$HOST" \
+  "mkdir -p ~/.ssh && chmod 700 ~/.ssh && touch ~/.ssh/authorized_keys && \
+   grep -qxF '$PUBKEY' ~/.ssh/authorized_keys || echo '$PUBKEY' >> ~/.ssh/authorized_keys && \
+   chmod 600 ~/.ssh/authorized_keys && echo ~/.ssh/authorized_keys")
+
+MSG="Remote: $REMOTE_PATH
+Private: $KEY
+Public: $PUB"
+osascript -e "display dialog \"$MSG\" buttons {\"OK\"} default button \"OK\" with title \"SSH Deploy OK\""
+echo "$MSG"
+```
+
+无 `sshpass` 时：`brew install hudochenkov/sshpass/sshpass`
+
+---
+
+## Linux
+
+登录 / 成功均用 **`zenity`**（GNOME 原生）或 **`kdialog`**（KDE 原生）：
+
+```bash
+HOST="<HOST>"
+KEY="$HOME/.ssh/id_ed25519_${HOST//:/_}"
+PUB="${KEY}.pub"
+
+mkdir -p "$HOME/.ssh"
+[ -f "$KEY" ] || ssh-keygen -t ed25519 -f "$KEY" -N "" -C "cursor-deploy-$HOST"
+
+if command -v zenity &>/dev/null; then
+  USER=$(zenity --entry --title="SSH Login" --text="Username:" --entry-text="root") || exit 1
+  PASS=$(zenity --password --title="SSH Login" --text="Password:") || exit 1
+elif command -v kdialog &>/dev/null; then
+  USER=$(kdialog --title "SSH Login" --inputbox "Username:" "root") || exit 1
+  PASS=$(kdialog --title "SSH Login" --password "Password:") || exit 1
+else
+  echo "Install zenity or kdialog"; exit 1
+fi
+
+PUBKEY=$(cat "$PUB")
+REMOTE_PATH=$(SSHPASS="$PASS" sshpass -e ssh -o StrictHostKeyChecking=accept-new "$USER@$HOST" \
+  "mkdir -p ~/.ssh && chmod 700 ~/.ssh && touch ~/.ssh/authorized_keys && \
+   grep -qxF '$PUBKEY' ~/.ssh/authorized_keys || echo '$PUBKEY' >> ~/.ssh/authorized_keys && \
+   chmod 600 ~/.ssh/authorized_keys && echo ~/.ssh/authorized_keys")
+
+MSG="Remote: $REMOTE_PATH
+Private: $KEY
+Public: $PUB"
+if command -v zenity &>/dev/null; then
+  zenity --info --title="SSH Deploy OK" --text="$MSG"
+else
+  kdialog --title "SSH Deploy OK" --msgbox "$MSG"
+fi
+echo "$MSG"
+```
+
+---
+
+## 错误排查
+
+| 错误 | 处理 |
+|------|------|
+| 弹窗无法输入 | Windows 必须用 `Start-Process -STA -WindowStyle Normal` |
+| 连接失败 | 检查 IP、防火墙、SSH 服务 |
+| 认证失败 | 确认用户名密码 |
+| Posh-SSH 安装失败 | `Set-ExecutionPolicy RemoteSigned` |
+| 缺少 sshpass | Linux/macOS 安装 sshpass |
+
+## 注意事项
+
+- 密码仅用于本次连接，不保存
+- **禁止**自定义 UI；**禁止** Python 脚本
+- Windows 临时 ps1 执行后必须删除
+    </script>
+
+    <script type="text/plain" id="hf-smoke-skill">---
+name: smoke-test
+description: 触发：执行冒烟测试、跑冒烟测试、冒烟测试跑一下。读 config/servers YAML（含 smoke.git_branch），SSH 密钥远端 docker exec；Machine 凭据；远端 `git fetch` 遇超时/DNS 等网络类错误最多重试 3 次；fetch 成功后若 `origin/$BRANCH` 较 `HEAD` 有新提交则 `git pull --ff-only`（失败则 `reset --hard`），再 `reset --hard` 对齐后 python run.py；Allure 同步与静态站同原技能；回传 pytest 摘要、Allure、访问地址、ssh 断开、失败摘要。
+---
+
+## 触发
+
+执行冒烟测试 / 跑冒烟测试 / 运行冒烟测试 / 冒烟测试跑一下
+
+## 凭据（仅此来源）
+
+- **只读系统级（Machine）**：Windows 用 `[Environment]::GetEnvironmentVariable('AI_GIT_USER','Machine')` 与 `AI_GIT_PASS` 同名；**禁止**用进程内 `$env:`、`os.environ`、或 `User` 级作为来源。
+- 缺失任一 → 停止，一句说明：在「系统环境变量」配置二者后重试（不展开教程、不复述密码）。
+
+## 执行
+
+1. `yaml["servers"]`：有 `SMOKE_TEST_SERVER` 用其键；仅一条用该条；多条且无 env → 停止。
+2. 须 `type: ssh`、`auth_method: key`、`host`、`user`、`private_key_path`；`port` 默认 22。
+3. `sm = entry.get("smoke") or {}` → 默认 `CONT=jenkins`、`DU=root`、`VENV=/usr/local/src/virtual/api-automation/bin/activate`、`WD=/usr/local/src/virtual/api-automation/apiautomation`、`run_command=python -u run.py`；**报告与静态站（可覆盖）**：`REPORT_SUB=report`（相对 `WD`）、`HOST_REPORT_DIR=/root/latest_report`、`REPORT_HTTP_PORT=7000`。若 YAML 提供 `sm["host_report_dir"]`、`sm["report_http_port"]`、`sm["report_subdir"]` 则用之。**须存在 `sm["git_branch"]`（字符串）**；缺则停止。
+4. **`BRANCH = sm["git_branch"]`。取 Machine 级 `AI_GIT_USER`、`AI_GIT_PASS`，嵌入远端：`export`（凭据）→ `source <VENV>` → `cd <WD>` → **Git（必须按 `BRANCH` 操作，禁止对无分支名的裸仓库 URL 做 `git pull <url>` 以免 FETCH_HEAD 非目标分支）**：
+   - **`git fetch origin "$BRANCH"`**（HTTPS 须非交互鉴权，**禁止**打印密码）。
+   - **超时/网络重试**：若本次 `git fetch` 失败且可判定为**超时或网络类**（例如输出含 `timed out`、`Operation timed out`、`Connection timed out`、`Could not resolve host`、`GnuTLS recv error` / `recv failure`、`Empty reply from server` 等；或 `timeout` 包裹 fetch 时退出码 **124**），则**重试**；**连同首次最多 4 次 fetch**（即最多**再重试 3 次**）。每次重试前可短暂 `sleep`（递增可选）。**非网络类错误**（鉴权失败、分支不存在等）**不得**盲目重试，应立即失败退出。
+   - 若 **4 次 fetch 后仍**为上述网络类失败 → **终止整个冒烟流程并失败**（`exit 1`，SSH 非 0），日志写明「git fetch 超时或网络错误，已重试 3 次仍失败」或同类说明。
+   - fetch 成功后：`git checkout "$BRANCH" 2>/dev/null || git checkout -b "$BRANCH" "origin/$BRANCH"`。
+   - **有新提交时 `git pull`**：在已 `checkout` 到 `$BRANCH` 的前提下，若 `git rev-list --count HEAD.."origin/$BRANCH"` **大于 0**（即远端较本地有新提交，与 `git status` 中 “behind … can be fast-forwarded” 等价），则执行 **`git pull --ff-only origin "$BRANCH"`**，且 **HTTPS 须带与 fetch 相同的非交互鉴权**（如 `git -c http.extraheader="AUTHORIZATION: Basic …"`，**禁止**打印密码）。若 `pull --ff-only` 失败（非快进等），则回退为 **`git reset --hard "origin/$BRANCH"`** 以保证与远端一致。
+   - **最终对齐**：无论是否执行过 `pull`，最后执行 **`git reset --hard "origin/$BRANCH"`**（与仅 pull 成功时等价，且可纠正 pull 失败后的状态），再执行 **`python run.py`**（或 `sm["run_command"]`）。
+5. **容器内**跑用例的整行：`docker exec -u<DU> <CONT> bash -lc '<…>'`（与现网一致时可去掉 `-i`，避免 TTY 干扰）。
+6. **宿主机收尾（同一 SSH、接在步骤 5 之后，仍在远端一条 shell 内执行）** — **顺序固定且不可调换**：先拿到**本次** Allure 的容器内目录，再清宿主目录并全量复制，再用 **`ss`** 判断端口占用后停旧启新。
+   1. **保留步骤 5 完整输出**：将 `docker exec … bash -lc '<git + run.py>'` 的 stdout/stderr 落入变量或临时文件（便于下一步解析），并得到 pytest 退出码（**即使**用例失败，只要 Allure 已生成，仍须继续下面复制与启服务；shell 勿因 pytest 非 0 提前 `set -e` 中断而跳过收尾）。
+   2. **解析 Allure 目录（主路径）**：在步骤 5 输出中查找行 `Report successfully generated to <路径>`，取**本次运行**对应的一行（多行时取**最后一条**匹配），得到容器内绝对路径 `ALLURE_DIR`（去掉行尾空格；路径末尾 `/` 可有可无）。**禁止**在未解析成功时伪造路径。
+   3. **兜底（仅当步骤 2 未得到 `ALLURE_DIR`）**：`CONT_REPORT="<WD>/<REPORT_SUB>"`；`LATEST=$(docker exec -u<DU> <CONT> bash -lc 'cd "<WD>" && ls -1t <REPORT_SUB> 2>/dev/null | head -1')`；若 `LATEST` 非空则令 `ALLURE_DIR="${CONT_REPORT%/}/${LATEST}"`。若仍为空，在会话日志写明「未找到 Allure 报告路径」，**不执行**复制、杀端口、启服务，不伪造成功。
+   4. **清理宿主机目录**：`rm -rf "<HOST_REPORT_DIR>"/*`（或等价清空），再 `mkdir -p "<HOST_REPORT_DIR>"`。
+   5. **全量复制到宿主机**（仅当 `ALLURE_DIR` 已确定）：`docker cp "$CONT:$ALLURE_DIR/." "$HOST_REPORT_DIR/"`（`/.` 表示将该目录**内全部文件**拷入 `HOST_REPORT_DIR` 根下，使 `index.html` 等落在根目录）。`<CONT>` 为容器名；`$ALLURE_DIR` 为**容器内**绝对路径。
+   6. **用 `ss` 判断端口是否已有服务**：执行 `ss -anp 2>/dev/null | grep` 匹配 `REPORT_HTTP_PORT`。若**有**输出且含监听语义（如 `LISTEN` 与端口同时出现），视为端口已被占用。
+   7. **停止旧服务**：**仅当**上一步 `ss` 判定端口占用时执行；终止占用 `REPORT_HTTP_PORT` 的进程：可从 `ss` 输出中的 `pid=数字`（如 `users:(("python3",pid=1111,fd=3))`）解析后 `kill` / `kill -9`；或使用 `(fuser -k "${REPORT_HTTP_PORT}/tcp" 2>/dev/null) || true` 作为等价手段。**只针对该端口**。
+   8. **启动新静态服务**（仅当步骤 5 已成功 `docker cp`）：在宿主机以 `HOST_REPORT_DIR` 为站点根目录，监听 `REPORT_HTTP_PORT`：`nohup python3 -m http.server "$REPORT_HTTP_PORT" --directory "$HOST_REPORT_DIR" >>"/tmp/allure_http_${REPORT_HTTP_PORT}.log" 2>&1 &`；若 Python 无 `--directory`，改为 `nohup sh -c "cd \"$HOST_REPORT_DIR\" && exec python3 -m http.server \"$REPORT_HTTP_PORT\"" >>"/tmp/allure_http_${REPORT_HTTP_PORT}.log" 2>&1 &`。
+7. SSH（一次，结束即断）：`ssh ... '<步骤5 && 步骤6>'` — 禁止 `ssh -N`/`ssh -f`/无远端命令长交互。
+8. 全程 stdout/stderr 落盘到当前项目目录下的 `skill_log/` 文件夹（如不存在则先创建），文件名格式 `smoke_test_YYYYMMDDHHmmss.txt`；完整保留内容供解析；等 `ssh` 结束。在结束回复中注明日志文件完整路径。
+9. **pytest**：取末行 `= … =`；**Allure（容器内路径）**：与上文步骤 6 第 2 点相同，grep `Report successfully generated to ` 得 `ALLURE_DIR`（多行取最后一条）；**与宿主机同步目录**为 `HOST_REPORT_DIR`（默认 `/root/latest_report`，内容为步骤 6 第 5 点自 `ALLURE_DIR` 全量复制）。
+10. **失败摘要**（同一份全文）：有 `=== FAILURES ===` / `=== ERRORS ===` / `____ … ____` 则按块截取，每失败块 ≤50 行；否则对 `^FAILED test_`/`^ERROR test_` 向下抓至下一状态行或空行 ≥20，每用例 ≤40 行；grep `E   `、`Exception`、`assert` 等附 ±2 行作补充。先列 FAILED/ERROR 用例 id，再「用例 → 短摘录」；无栈则写请到 `ALLURE_DIR` 或本地 `-vv --tb=short`。
+
+## 结束回复（固定 6 条）
+
+pytest 摘要末行；容器内 `ALLURE_DIR`（来自 `Report successfully generated to …`）；宿主机已清空并自 `ALLURE_DIR` **全量**写入 `HOST_REPORT_DIR`（默认 `/root/latest_report`）；已用 `ss` 检查端口并在占用时释放后，静态报告 **`http://<HOST>:<REPORT_HTTP_PORT>/`**（默认端口 **7000**，勿在回复中暴露 token/密码）；ssh 已与 `<HOST>:<PORT>` 断开；失败摘要（过长则按模块各举前 N 条并标总数）。
+
+## 约束
+
+- SSH 仅公钥；禁止密码登 SSH、`sshpass`、`plink` 作 SSH 认证；禁止默认 `BatchMode=yes`。
+- 禁止打印私钥全文、密钥路径全文、密码及凭据原文。
+- 拼 `bash -lc` 时注意引号转义（密码含 `'`、`$`、`\` 等）；宿主机段与 `docker exec` 段分层转义，避免变量在错误一侧展开。
+</script>
+    <script>window.HF_TOOLKIT_RESTRICTED = {{ hf_toolkit_restricted_json | safe }};</script>
+    <script>window.HF_PROMPT_CARDS_BLURRED = {{ hf_prompt_cards_blurred_json | safe }};</script>
+    <script src="{{ url_for('static', filename='js/hf_toolkit_lock.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/hf_prompt_visibility_admin.js') }}?v=20260607vis1"></script>
+    <script>
+(function () {
+    function hfPromptCardsBlurred() {
+        return !!window.HF_PROMPT_CARDS_BLURRED;
+    }
+    document.addEventListener('hf-global-switches-updated', function (ev) {
+        if (ev.detail && typeof ev.detail.prompt_cards_blur !== 'undefined') {
+            window.HF_PROMPT_CARDS_BLURRED = !!ev.detail.prompt_cards_blur;
+        }
+        if (typeof renderCards === 'function') renderCards();
+    });
+    var elSshDeploy = document.getElementById("hf-ssh-key-deploy-skill");
+    var HF_SSH_KEY_DEPLOY_SKILL_TEXT = elSshDeploy ? elSshDeploy.textContent.replace(/^\uFEFF/, "").trim() : "";
+    var elSmoke = document.getElementById("hf-smoke-skill");
+    var HF_SMOKE_SKILL_TEXT = elSmoke ? elSmoke.textContent.replace(/^\uFEFF/, "").trim() : "";
+    var CATEGORIES = [
+        { id: "all", label: "全部" },
+        { id: "daily", label: "测试日常" },
+        { id: "automation", label: "自动化" }
+    ];
+    /** 卡片 category 与筛选分组的对应（条目内 category 仍为原值，仅筛选逻辑分组） */
+    var CATEGORY_GROUP = {
+        metersphere: "daily",
+        test_report: "daily",
+        api_auto: "automation",
+        smoke: "automation"
+    };
+    var PROMPTS = [
+        { id: "m1", category: "metersphere", kicker: "用例设计 · MeterSphere", title: "MeterSphere 用例生成（Kimi）", tags: ["MeterSphere", "YAML", "P0–P3"], blurb: "九列固定顺序、编辑模式 STEP、P0–P3 等级、步骤/预期 [1][2][3] 与 Python 列表样例。", text: "请严格按照以下所有规则生成测试用例，格式规则 + 内容规则严格遵守，禁止违规输出：\n一、固定格式规则\n1.固定字段顺序：用例名称、所属模块、标签、前置条件、步骤描述、预期结果、编辑模式、备注、用例等级\n2.编辑模式字段必须且只能填写：STEP（全大写，禁止使用 STMP 或其他值；每条用例的第 7 列必须为 STEP，不得留空），标签和备注固定留空即可\n3.用例等级仅限：P0、P1、P2、P3 四档\n    P0：核心主干流程，产品基础必备功能，阻断版本上线，必测不可遗漏。\n    P1：高频常用基础功能，正常用户高频操作，上线必须全部验证通过。\n    P2：低频场景、边界条件、异常交互、次要功能、UI 细节类场景。\n    P3：极冷门功能、小众场景、美化动效、极端兼容、非核心体验优化，按需抽样测试。\n4.步骤描述、预期结果必须使用 [1][2][3] 有序编号，前置条件必须使用1、2、3，每一条内容单独换行并添加 \\n 分隔\n5.步骤简洁客观，一个步骤对应一个结果，预期结果精准对应步骤操作，贴合业务场景，\n6.整体格式整洁，每条用例独立分段，严格以指定 python 的可复制的数组格式返回：\ntest_cases = [\n[\n\"用例名称\",\n\"所属模块\",\n\"标签\",\n\"前置条件\",\n\"步骤描述\",\n\"预期结果\",\n\"编辑模式\",\n\"备注\",\n\"用例等级\"\n]\n]\n7.内容输出在代码块中\n二、内容创作强制约束规则\n1.禁止臆想、脑补、虚构、捏造业务功能与场景，不胡思乱想，所有内容基于常规合理业务逻辑，无凭空编造内容。\n2.必须结合专业测试方法设计用例，包含但不限于：边界分析法、等价类划分法、错误推测法、场景法、正向测试、反向测试、异常测试等。\n3.全面覆盖测试场景：正常正向流程、边界极值场景、非法反向操作、空值 / 特殊字符 / 超长文本、重复操作、连续交互、异常状态等维度。\n4.所有描述保持客观中立，只写可落地、可执行、可校验的操作与结果，无主观评价、无模糊笼统话术。\n5.严格遵循单步骤对应单预期结果，逻辑闭环，内容精简无废话、无多余修饰语句。\n\n需求为：\n" },
+        { id: "tr1", category: "test_report", kicker: "报告产出 · Gamma", title: "版本测试报告（Gamma / PPT）", tags: ["AISSP", "测试报告", "PPT", "缺陷统计"], blurb: "硬性格式的缺陷统计表与三模块功能清单，适配 15–20 页 PPT，以下为示例项目内容可整体替换。", text: "请根据以下项目信息生成《AISSP V1.5.0测试报告》，适配15-20页PPT。\n\n【视觉风格要求】\n- 整体配色：暗色系背景（深灰/深蓝），高亮文字使用青蓝、亮绿、橙色\n- 布局风格：模块化卡片式布局，信息分区清晰\n- 数据呈现：缺陷统计使用表格+色块标识等级（P0红/P1橙/P2黄/P3蓝）\n- 字体：标题加粗16-18号，正文14号，无衬线字体\n\n【硬性内容结构】\n1. 封面页：报告名称、版本号、测试负责人、测试时间\n2. 测试概览页：项目信息、环境、用例执行数据、缺陷总数\n3. 缺陷统计页（独占1页）：表格含姓名、P3/P2/P1/P0\n4. 风险说明页：独立卡片\n5. 功能清单：\n   - xxxxxxx\n6. 测试结论页\n\n【项目数据】（严格使用以下原文，不修改）\n测试负责人：xx\n测试时间：xxxx-xxxx\n测试环境：xxxxxxxx\n需求文档：xxxxxxx\n公司文档：软件测试流程规范\n总用例xxx条（核心xx条），执行xxx条，通过率xxx%\n\n缺陷统计：\n张三(P0:x,P1:x,P2:x,P3:x)\n李四(P0:x,P1:x,P2:x,P3:x)\n王五(P0:x,P1:x,P2:x,P3:x)\n赵六(P0:x,P1:x,P2:x,P3:x)\n总计xx个，均已闭环\n\n风险说明：\nxxxxxxx\n【功能清单】（全部通过，逐条原文抄录，不增不减不改）\n\nxxxxxx\n\n测试结论：\nxxxxxx\n\n【输出要求】\n- 返回完整PPT脚本（每页标题+正文），正文仅含上述原文内容\n- 不对功能清单做任何增删改，不添加描述性文字\n- 不加真实图片，仅提供图标占位符描述（如“[环形图占位]”）\n- 每页标注卡片数量建议\n- **所有页面禁止出现页码**\n" },
+        { id: "a1", category: "api_auto", kicker: "接口自动化 · pytest", title: "API自动化用例（待调试）", tags: ["API", "pytest", "契约"], blurb: "基于接口说明生成可脚本化的用例要点：方法、鉴权、状态码、契约与异常。", text: "你是一个“接口自动化测试用例生成/维护”的资深工程师（Python + pytest 风格优先）。我会在这段提示词后面追加 一个接口的 OpenAPI/Apifox YAML（类似示例）。你的任务是：先全局分析当前项目里是否已存在该接口的自动化用例；存在则基于现有用例做最小代价改造与补齐，不存在则新增一套高质量用例。严格按以下规则执行。\n\n产出目标（必须同时满足）\n- 可直接落地：输出的用例代码、数据文件、配置改动应能在项目中运行（不写伪代码）。\n- 最小改动原则：若已存在类似/相同接口用例，优先复用与修改，避免重复造轮子。\n- 覆盖全面：至少包含正向、必填校验、鉴权、异常参数、边界与幂等/重复提交（若适用）。\n- 风格一致：遵循项目既有目录结构、命名、封装、断言方式、日志与报告风格。\n\n1. 输入与上下文规则\n- 接口信息以我追加的 OpenAPI YAML 为准：路径、方法、header、requestBody、响应结构、字段类型/必填、描述。\n- OpenAPI 可能存在问题（例如空字段名 ''、类型不严谨、示例缺失）。你要容错解析：  \n  - 空字段名：视为“无效字段”，不要在请求体中构造该字段；若它在 required 中出现，优先按“应修复 OpenAPI”的思路处理：在用例里不传该字段并记录为接口/文档缺陷点（写入测试说明或缺陷备注），同时保证用例仍可运行。\n  - options/answer 等复杂结构若 schema 不完整：以描述为准构造最小可用样例，并做 1-2 个异常变体。\n- 不要假设环境变量/账号/库一定存在：先从项目中读取现有实现（例如 token 获取、base_url、request 封装、fixture、config）。\n\n2. 必做的全局扫描（先做再产出）\n你必须先全局检索项目，判断是否已有该接口或同类接口用例：\n- 精确匹配：/xxx/yyy 路径、方法名、tag、summary、接口名称。\n- 模糊匹配：同模块目录、相似路径前缀、相似业务名（如 QuestionsBank / 题目 / save / create / update）。\n- 复用判断：如果找到同接口或高度相似接口（同 path + method，或同业务对象），则在其基础上改造；不要新建重复用例文件。\n\n3. 目录与命名规范（按项目现状对齐）\n- 如果项目已存在测试分层（如 tests/、api/、cases/、data/、conftest.py、client.py 等），严格复用。\n- 新增文件时命名遵循：模块_资源_动作，例如：\n  - 用例文件：test_questions_bank_save.py（或项目既有风格）\n  - 数据文件：questions_bank_save.json/yaml\n- 每个新增/修改点都要说明：改了哪些文件、为什么改、如何运行。\n\n4. 用例设计规则（必须包含）\n针对单个接口，至少生成/维护以下用例集合（可合并参数化）：\n- P0 正向成功：构造最小必填字段 + 合法值，断言 HTTP 状态码、业务码（若有）、响应类型/字段。\n- 必填字段校验：逐个移除必填字段（或置空/None/空串），断言失败表现（状态码/错误码/错误信息的稳定断言策略）。\n- 鉴权相关：\n  - 缺失 Authorization（若接口需要）：断言 401/403 或业务失败码\n  - 非法 token：断言 401/403 或失败码\n- 类型与边界（每类至少 1 条）：\n  - string 过长/为空/包含特殊字符\n  - integer 传字符串、负数、超大值\n  - array 为空、元素类型不对\n  - object 结构不对（例如 options 传 list）\n- 幂等/重复提交（若适用）：\n  - 连续两次相同请求：观察是否创建重复、是否返回一致、是否有唯一性约束；给出稳定断言\n- 字段组合的业务约束（从描述推断）：\n  - 题型 questionType 对 options/answer 的约束：single/multiple/judge/fill_in_the_blank 至少覆盖 2 种题型（若接口为保存题目则强相关）。\n\n注意：如果接口响应只有 boolean/简单结构，断言要更注重“请求是否真正生效”的可验证证据：例如二次查询接口、列表接口、或数据库不可用时至少做“稳定可重复的断言”（如返回值 + 状态码 + 关键错误信息）。如果项目已有查询/列表接口用例或 client，可复用做联动校验。\n\n5. 断言策略（稳定优先）\n- 优先断言：HTTP code + 响应 JSON 结构 + 关键字段/类型。\n- 对不稳定字段（时间戳、traceId、随机 id）不要做等值断言。\n- 如果存在统一返回体（如 {code, msg, data}），要遵循项目约定断言 code/msg。\n- 若仅返回 true/false，要结合前置/后置校验（能查则查；不能查则至少保证返回与错误场景可区分）。\n\n6. 数据构造与复用\n- 用例数据优先使用：\n  - 项目现有的 fixture / 工厂方法 / faker 工具（若已存在）\n  - 若没有再引入轻量方案（不要随意新增重量依赖）\n- 可参数化：题型维度、字段缺失维度、非法值维度。\n- 敏感信息不得写死：token/账号走已有登录或环境变量/配置。\n\n7. 与现有框架集成（必须遵守）\n- 严格使用项目现有的 HTTP 封装（例如 requests session、client、统一 headers、重试、日志、allure）。\n- 不要直接在用例里硬编码 base_url；从配置读取。\n- 若项目使用 Allure/报告：补齐 step 与关键 attachment（请求/响应摘要），但避免输出隐私字段。\n\n8. 输出格式（必须这样输出）\n你最终只输出以下三部分（按顺序）：\n1) 变更说明：列出发现了哪些现有用例（若有）、决定“改造/新增”的理由、覆盖了哪些场景。\n2) 代码改动：给出需要新增/修改的完整代码（按文件分块展示），确保可复制进项目。\n3) 运行方式：给出最小运行命令（pytest 目标文件/标记），以及必要的环境变量说明。\n\n9. 质量门槛（自检清单）\n在输出前必须自检并确保：\n- 用例能独立运行（fixture/导入路径正确）\n- 负向用例断言不脆弱\n- 不引入无必要依赖\n- 与项目风格一致（命名/结构/封装/日志）\n- 若 OpenAPI 有缺陷点，已记录为“测试备注/缺陷点”\n\n——\n现在开始：我会在下面追加一个接口的 OpenAPI YAML。你先按“全局扫描→判断复用→改造或新增→补齐用例集→给出可运行代码”的流程执行。\n" },
+        { id: "ssh_deploy1", category: "smoke", kicker: "运维 · SSH 密钥部署", title: "SSH 公钥部署（Cursor）", tags: ["SSH", "ed25519", "Cursor Agent", "免密登录", "Posh-SSH", "authorized_keys"], blurb: "按主机生成 ed25519 密钥，系统原生弹窗收集账号密码，写入 authorized_keys，支持 Windows / macOS / Linux 免密登录。", text: HF_SSH_KEY_DEPLOY_SKILL_TEXT },
+        { id: "smoke1", category: "smoke", kicker: "冒烟 · Cursor Agent", title: "冒烟测试（Cursor）", tags: ["SSH", "docker", "pytest", "Allure", "Git", "Machine"], blurb: "远端容器冒烟：YAML 选机、Machine 环境变量、git fetch 网络重试、pull/ff-only、Allure 同步与静态报告。", text: HF_SMOKE_SKILL_TEXT }
+    ];
+
+    var activeCategory = "all";
+    var searchQuery = "";
+    var grid = document.getElementById("hf-prompt-grid");
+    var empty = document.getElementById("hf-prompt-empty");
+    var searchInput = document.getElementById("hf-prompt-search");
+    var catContainer = document.getElementById("hf-prompt-categories");
+    var toast = document.getElementById("hf-prompt-toast");
+    var toastTimer;
+    var modalEl = document.getElementById("hf-prompt-modal");
+    var modalTitle = document.getElementById("hf-prompt-modal-title");
+    var modalBody = document.getElementById("hf-prompt-modal-body");
+    var currentModalText = "";
+
+    function openPromptModal(p) {
+        currentModalText = p.text;
+        modalTitle.textContent = p.title;
+        modalBody.textContent = p.text;
+        modalEl.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        function resetModalScroll() {
+            modalBody.scrollTop = 0;
+            modalEl.scrollTop = 0;
+        }
+        resetModalScroll();
+        requestAnimationFrame(resetModalScroll);
+        setTimeout(resetModalScroll, 0);
+        var copyBtn = document.getElementById("hf-prompt-modal-copy");
+        if (copyBtn) {
+            setTimeout(function () { copyBtn.focus(); }, 10);
+        }
+    }
+
+    function closePromptModal() {
+        modalEl.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        modalBody.textContent = "";
+        modalTitle.textContent = "";
+        currentModalText = "";
+    }
+
+    document.getElementById("hf-prompt-modal-copy").addEventListener("click", function () {
+        copyText(currentModalText);
+    });
+    modalEl.querySelector("[data-hf-prompt-modal-backdrop]").addEventListener("click", closePromptModal);
+    modalEl.querySelectorAll("[data-hf-prompt-modal-close]").forEach(function (btn) {
+        btn.addEventListener("click", closePromptModal);
+    });
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && modalEl && modalEl.getAttribute("aria-hidden") === "false") {
+            e.preventDefault();
+            closePromptModal();
+        }
+    });
+
+    function showToast() {
+        toast.classList.remove("translate-y-16", "opacity-0", "pointer-events-none");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+            toast.classList.add("translate-y-16", "opacity-0", "pointer-events-none");
+        }, 2200);
+    }
+
+    function copyText(t) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            return navigator.clipboard.writeText(t).then(showToast);
+        }
+        var ta = document.createElement("textarea");
+        ta.value = t;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); showToast(); } catch (e) {}
+        document.body.removeChild(ta);
+    }
+
+    function categoryLabel(id) {
+        var byCat = {
+            metersphere: "MeterSphere 用例",
+            test_report: "版本测试报告",
+            api_auto: "接口自动化",
+            smoke: "冒烟测试"
+        };
+        if (byCat[id]) return byCat[id];
+        var c = CATEGORIES.find(function (x) { return x.id === id; });
+        return c ? c.label : id;
+    }
+
+    function cardMatches(p) {
+        if (activeCategory !== "all") {
+            var g = CATEGORY_GROUP[p.category];
+            if (activeCategory === "daily" || activeCategory === "automation") {
+                if (g !== activeCategory) return false;
+            } else if (p.category !== activeCategory) {
+                return false;
+            }
+        }
+        if (!searchQuery) return true;
+        var q = searchQuery;
+        var title = String(p.title || "").toLowerCase();
+        return title.indexOf(q) !== -1;
+    }
+
+    function renderChips() {
+        catContainer.innerHTML = "";
+        if (CATEGORIES.length === 1 && CATEGORIES[0].id === "all") {
+            catContainer.classList.add("hidden");
+            return;
+        }
+        catContainer.classList.remove("hidden");
+        CATEGORIES.forEach(function (c) {
+            var b = document.createElement("button");
+            b.type = "button";
+            b.className = "hf-chip" + (activeCategory === c.id ? " is-active" : "");
+            b.setAttribute("aria-pressed", activeCategory === c.id ? "true" : "false");
+            b.setAttribute("data-cat", c.id);
+            b.textContent = c.label;
+            b.addEventListener("click", function () {
+                activeCategory = c.id;
+                renderChips();
+                renderCards();
+            });
+            catContainer.appendChild(b);
+        });
+    }
+
+    function renderCards() {
+        var q = (searchInput.value || "").trim().toLowerCase();
+        searchQuery = q;
+        var list = PROMPTS.filter(cardMatches);
+        grid.innerHTML = "";
+        if (list.length === 0) {
+            empty.classList.remove("hidden");
+            return;
+        }
+        empty.classList.add("hidden");
+        var cardsLocked = hfPromptCardsBlurred();
+        list.forEach(function (p) {
+            var el = document.createElement("article");
+            el.setAttribute("data-prompt-id", p.id);
+            var tags = (p.tags || []).map(function (t) {
+                return "<span class=\"hf-prompt-card__tag\">" + escapeHtml(t) + "</span>";
+            }).join(" ");
+            if (cardsLocked) {
+                el.className = "hf-prompt-card hf-dev-blur-wrap hf-dev-blur-wrap--locked h-full rounded-2xl p-5 flex flex-col min-w-0 overflow-hidden";
+                el.innerHTML = "\n" +
+                    "<div class=\"hf-dev-blur-wrap__content flex flex-col min-h-0 flex-1\">\n" +
+                    "<div class=\"flex items-start justify-between gap-2 mb-2\">\n" +
+                    "  <div class=\"min-w-0 flex-1\">\n" +
+                    "    <p class=\"text-[10px] font-bold uppercase tracking-wider text-cyan-700/80 mb-1\">" + escapeHtml(p.kicker || categoryLabel(p.category)) + "</p>\n" +
+                    "    <h3 class=\"text-base font-bold text-slate-900 leading-snug\">" + escapeHtml(p.title) + "</h3>\n" +
+                    "    <p class=\"text-xs text-slate-500 mt-1\">" + escapeHtml(p.blurb || "") + "</p>\n" +
+                    "  </div>\n" +
+                    "</div>\n" +
+                    "<div class=\"flex flex-wrap gap-1.5 mb-3\">" + tags + "</div>\n" +
+                    "<div class=\"hf-prompt-body--preview hf-prompt-card__preview whitespace-pre-wrap break-words\">" + escapeHtml(p.text) + "</div>\n" +
+                    "</div>\n" +
+                    "<div class=\"hf-dev-blur-wrap__lock\" role=\"presentation\" title=\"暂未开发\">\n" +
+                    "  <span class=\"hf-dev-blur-wrap__lock-label\" aria-hidden=\"true\">暂未开发</span>\n" +
+                    "</div>\n";
+                el.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+            } else {
+                el.className = "hf-prompt-card hf-prompt-card--open h-full rounded-2xl p-5 flex flex-col min-w-0 overflow-hidden";
+                el.innerHTML = "\n" +
+                    "<div class=\"flex items-start justify-between gap-2 mb-2 pointer-events-none\">\n" +
+                    "  <div class=\"min-w-0 flex-1\">\n" +
+                    "    <p class=\"text-[10px] font-bold uppercase tracking-wider text-cyan-700/80 mb-1\">" + escapeHtml(p.kicker || categoryLabel(p.category)) + "</p>\n" +
+                    "    <h3 class=\"text-base font-bold text-slate-900 leading-snug\">" + escapeHtml(p.title) + "</h3>\n" +
+                    "    <p class=\"text-xs text-slate-500 mt-1\">" + escapeHtml(p.blurb || "") + "</p>\n" +
+                    "  </div>\n" +
+                    "  <span class=\"pointer-events-auto inline-flex items-center self-start\">\n" +
+                    "  <button type=\"button\" class=\"hf-copy-btn shrink-0 inline-flex items-center gap-1 rounded-xl bg-slate-900 text-white text-xs font-semibold px-3 py-2 hover:bg-slate-800 shadow-sm\">\n" +
+                    "    <svg class=\"h-3.5 w-3.5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\"/></svg>\n" +
+                    "    复制\n" +
+                    "  </button>\n" +
+                    "  </span>\n" +
+                    "</div>\n" +
+                    "<div class=\"flex flex-wrap gap-1.5 mb-3 pointer-events-none\">" + tags + "</div>\n" +
+                    "<p class=\"mt-1.5 text-[10px] text-slate-400 pointer-events-none\">点击卡片查看全文</p>\n" +
+                    "<div class=\"hf-prompt-body--preview hf-prompt-card__preview whitespace-pre-wrap break-words pointer-events-none\">" + escapeHtml(p.text) + "</div>\n";
+                el.addEventListener("click", function (e) {
+                    if (e.target.closest(".hf-copy-btn")) return;
+                    openPromptModal(p);
+                });
+                var copyBtn = el.querySelector(".hf-copy-btn");
+                if (copyBtn) {
+                    copyBtn.addEventListener("click", function (e) {
+                        e.stopPropagation();
+                        copyText(p.text);
+                    });
+                }
+            }
+            grid.appendChild(el);
+        });
+    }
+
+    function escapeHtml(s) {
+        if (!s) return "";
+        return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    var debounceT;
+    searchInput.addEventListener("input", function () {
+        clearTimeout(debounceT);
+        debounceT = setTimeout(renderCards, 160);
+    });
+
+    var BUILTIN_FALLBACK = PROMPTS.slice();
+
+    function hfPromptModalVisible(id) {
+        var m = document.getElementById(id);
+        return m && !m.classList.contains('hidden');
+    }
+    function hfPromptSyncBodyScroll() {
+        var open = hfPromptModalVisible('hf-prompt-add-modal') || hfPromptModalVisible('hf-prompt-submit-done-modal');
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
+    function hfShowModal(el) {
+        if (!el) return;
+        el.classList.remove('hidden');
+        el.classList.add('flex');
+        hfPromptSyncBodyScroll();
+    }
+    function hfHideModal(el) {
+        if (!el) return;
+        el.classList.add('hidden');
+        el.classList.remove('flex');
+        hfPromptSyncBodyScroll();
+    }
+    function openPromptAddModal() {
+        hfShowModal(document.getElementById('hf-prompt-add-modal'));
+    }
+    function closePromptAddModal() {
+        hfHideModal(document.getElementById('hf-prompt-add-modal'));
+    }
+    function openPromptSubmitDoneModal() {
+        hfShowModal(document.getElementById('hf-prompt-submit-done-modal'));
+    }
+    function closePromptSubmitDoneModal() {
+        hfHideModal(document.getElementById('hf-prompt-submit-done-modal'));
+    }
+    function clearPromptAddForm() {
+        ['hf-prompt-add-title', 'hf-prompt-add-kicker', 'hf-prompt-add-blurb', 'hf-prompt-add-tags', 'hf-prompt-add-body'].forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.value = '';
+        });
+    }
+    function initPromptAddUi() {
+        var addBtn = document.getElementById('hf-prompt-add-btn');
+        var addModal = document.getElementById('hf-prompt-add-modal');
+        var addSubmit = document.getElementById('hf-prompt-add-submit');
+        var addCancel = document.getElementById('hf-prompt-add-cancel');
+        var doneOk = document.getElementById('hf-prompt-submit-done-ok');
+        var doneModal = document.getElementById('hf-prompt-submit-done-modal');
+        if (addBtn) {
+            addBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openPromptAddModal();
+            });
+        }
+        if (addModal) {
+            addModal.addEventListener('click', function(e) {
+                if (e.target === addModal) closePromptAddModal();
+            });
+        }
+        if (doneModal) {
+            doneModal.addEventListener('click', function(e) {
+                if (e.target === doneModal) closePromptSubmitDoneModal();
+            });
+        }
+        if (doneOk) doneOk.addEventListener('click', closePromptSubmitDoneModal);
+        if (addCancel) addCancel.addEventListener('click', closePromptAddModal);
+        document.addEventListener('keydown', function(e) {
+            if (e.key !== 'Escape') return;
+            if (hfPromptModalVisible('hf-prompt-submit-done-modal')) closePromptSubmitDoneModal();
+            else if (hfPromptModalVisible('hf-prompt-add-modal')) closePromptAddModal();
+        });
+        if (addSubmit) {
+            addSubmit.addEventListener('click', function() {
+                var payload = {
+                    page_url: window.location.href,
+                    entry_type: (document.getElementById('hf-prompt-add-type') || {}).value || 'prompt',
+                    category: (document.getElementById('hf-prompt-add-category') || {}).value || '',
+                    title: (document.getElementById('hf-prompt-add-title') || {}).value || '',
+                    kicker: (document.getElementById('hf-prompt-add-kicker') || {}).value || '',
+                    blurb: (document.getElementById('hf-prompt-add-blurb') || {}).value || '',
+                    tags: (document.getElementById('hf-prompt-add-tags') || {}).value || '',
+                    body: (document.getElementById('hf-prompt-add-body') || {}).value || ''
+                };
+                if (!payload.title.trim()) { alert('请填写标题'); return; }
+                if (!payload.body.trim()) { alert('请填写正文'); return; }
+                addSubmit.disabled = true;
+                var oldLabel = addSubmit.textContent;
+                addSubmit.textContent = '提交中…';
+                fetch('/api/prompt-library', {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).then(function(r) { return r.json().then(function(j) { return { ok: r.ok, status: r.status, j: j }; }); })
+                .then(function(res) {
+                    if (!res.ok || res.j.error) throw new Error(res.j.error || '投稿失败');
+                    closePromptAddModal();
+                    clearPromptAddForm();
+                    openPromptSubmitDoneModal();
+                })
+                .catch(function(err) {
+                    alert(err.message || '投稿失败');
+                })
+                .finally(function() {
+                    addSubmit.disabled = false;
+                    addSubmit.textContent = oldLabel;
+                });
+            });
+        }
+    }
+    function loadPromptsFromApi() {
+        return fetch('/api/prompt-library', { credentials: 'same-origin' })
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (data.error) throw new Error(data.error);
+                PROMPTS = (data.items && data.items.length) ? data.items : BUILTIN_FALLBACK;
+                renderChips();
+                renderCards();
+            })
+            .catch(function() {
+                PROMPTS = BUILTIN_FALLBACK;
+                renderChips();
+                renderCards();
+            });
+    }
+    initPromptAddUi();
+    loadPromptsFromApi();
+
+})();
+    </script>
+{% include 'partials/hf_site_footer.html' %}
+</body>
+</html>

@@ -1,0 +1,49 @@
+{# 生成进度横幅（增强版）- 含步骤指示器 + 进度条 + 实时统计 #}
+{# 与原有 tc-gen-batch-bar 共存，新组件用独立 ID #}
+<div id="tc-gen-stage-bar" class="tc-gen-stage-bar hidden" aria-live="polite" role="status">
+    <div class="tc-gen-stage-bar__main">
+        <div class="tc-gen-stage-bar__info-row">
+            <span class="tc-gen-stage-bar__done-icon" aria-hidden="true">&#10003;</span>
+            <span id="tc-gen-stage-title" class="tc-gen-stage-bar__title">本次生成</span>
+            <span id="tc-gen-stage-label" class="tc-gen-stage-bar__stage-label hidden"></span>
+        </div>
+
+        <div id="tc-gen-stepper" class="tc-gen-stepper" role="list" aria-label="生成步骤"></div>
+
+        <div class="tc-gen-stage-bar__footer">
+            <span id="tc-gen-stage-meta" class="tc-gen-stage-bar__meta">准备中…</span>
+            <div class="tc-gen-stage-bar__actions">
+                <button type="button" class="tc-gen-stage-bar__stop-btn" title="停止生成" aria-label="停止生成">停止生成</button>
+                <button type="button" class="tc-gen-stage-bar__close" title="关闭" aria-label="关闭进度条">
+                    <span class="tc-gen-stage-bar__close-icon" aria-hidden="true">&times;</span>
+                    <span class="tc-gen-stage-bar__close-label">关闭</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tc-gen-stage-bar__progress-widget" aria-label="生成进度">
+        <span class="tc-gen-stage-bar__percent" id="tc-gen-stage-percent">0%</span>
+        <div class="tc-gen-stage-bar__track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-labelledby="tc-gen-stage-percent">
+            <div class="tc-gen-stage-bar__fill" style="width: 0%"></div>
+        </div>
+    </div>
+</div>
+
+{# 生成摘要卡片 #}
+<div id="tc-gen-summary-card" class="tc-gen-summary-card hidden" aria-live="polite" role="status">
+    <div class="tc-gen-summary-card__header">
+        <span class="tc-gen-summary-card__icon" aria-hidden="true">&#9989;</span>
+        <span class="tc-gen-summary-card__title">生成完成！用例已写入表格。</span>
+        <button type="button" class="tc-gen-summary-card__close" aria-label="关闭摘要">&times;</button>
+    </div>
+    <div class="tc-gen-summary-card__stats">
+        <span class="tc-gen-summary-card__stat">
+            生成用例：<span class="tc-gen-summary-card__stat-value">0</span> 条
+        </span>
+        <span class="tc-gen-summary-card__stat">
+            状态：已完成
+        </span>
+    </div>
+
+</div>

@@ -1,0 +1,186 @@
+{# 管理员：AI 每日额度增额授予（独立弹窗，不影响用户建议 / AI 配置） #}
+<style>
+.hf-quota-bonus-admin-modal {
+    position: fixed; inset: 0; z-index: 10080;
+    align-items: center; justify-content: center;
+    padding: 1rem; background: rgba(15, 23, 42, .48);
+}
+.hf-quota-bonus-admin-modal.hidden { display: none !important; }
+.hf-quota-bonus-admin-modal.flex { display: flex !important; }
+.hf-quota-bonus-admin-modal__panel {
+    width: min(92vw, 42rem); max-height: min(90vh, 46rem);
+    overflow: auto; border-radius: 1rem;
+    background: #fff; color: #0f172a;
+    box-shadow: 0 24px 64px -16px rgba(15, 23, 42, .45);
+}
+.hf-quota-bonus-admin-modal__head {
+    position: sticky; top: 0; z-index: 1;
+    display: flex; align-items: flex-start; gap: .75rem;
+    padding: 1rem 1.15rem .85rem;
+    border-bottom: 1px solid #e2e8f0; background: #fff;
+}
+.hf-quota-bonus-admin-modal__head-main { flex: 1; min-width: 0; }
+.hf-quota-bonus-admin-modal__title {
+    margin: 0; font-size: 1.05rem; font-weight: 700; color: #0f172a;
+}
+.hf-quota-bonus-admin-modal__desc {
+    margin: .25rem 0 0; font-size: .8rem; color: #64748b; line-height: 1.45;
+}
+.hf-quota-bonus-admin-modal__close {
+    flex-shrink: 0; width: 2rem; height: 2rem; border-radius: .55rem;
+    border: 1px solid #e2e8f0; background: #f8fafc; color: #475569;
+    display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+}
+.hf-quota-bonus-admin-modal__close:hover { background: #f1f5f9; }
+.hf-quota-bonus-admin-modal__body { padding: 1rem 1.15rem 1.15rem; }
+.hf-quota-bonus-admin-modal__section {
+    margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #f1f5f9;
+}
+.hf-quota-bonus-admin-modal__section:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+.hf-quota-bonus-admin-modal__label {
+    display: block; font-size: .72rem; font-weight: 600; color: #64748b;
+    margin-bottom: .28rem; letter-spacing: .02em;
+}
+.hf-quota-bonus-admin-modal__row {
+    display: flex; flex-wrap: wrap; gap: .5rem; align-items: flex-end;
+}
+.hf-quota-bonus-admin-modal__field { flex: 1 1 8rem; min-width: 0; }
+.hf-quota-bonus-admin-modal__field--sm { flex: 1 1 5.5rem; }
+.hf-quota-bonus-admin-modal__field input,
+.hf-quota-bonus-admin-modal__field textarea {
+    width: 100%; box-sizing: border-box;
+    border: 1px solid #cbd5e1; border-radius: .55rem;
+    padding: .45rem .6rem; font-size: .875rem; color: #0f172a; background: #fff;
+}
+.hf-quota-bonus-admin-modal__field textarea { min-height: 2.6rem; resize: vertical; }
+.hf-quota-bonus-admin-modal__btn {
+    border-radius: .55rem; border: 1px solid transparent;
+    padding: .45rem .85rem; font-size: .8125rem; font-weight: 600; cursor: pointer;
+}
+.hf-quota-bonus-admin-modal__btn--primary {
+    background: #1d4ed8; color: #fff; border-color: #1d4ed8;
+}
+.hf-quota-bonus-admin-modal__btn--primary:hover { background: #1e40af; }
+.hf-quota-bonus-admin-modal__btn--ghost {
+    background: #f8fafc; color: #334155; border-color: #cbd5e1;
+}
+.hf-quota-bonus-admin-modal__btn--ghost:hover { background: #f1f5f9; }
+.hf-quota-bonus-admin-modal__btn--danger {
+    background: #fff; color: #b91c1c; border-color: #fecaca; padding: .28rem .55rem; font-size: .75rem;
+}
+.hf-quota-bonus-admin-modal__btn--danger:hover { background: #fef2f2; }
+.hf-quota-bonus-admin-modal__btn:disabled { opacity: .55; cursor: not-allowed; }
+.hf-quota-bonus-admin-modal__chips { display: flex; flex-wrap: wrap; gap: .35rem; margin: .55rem 0 .15rem; }
+.hf-quota-bonus-admin-modal__chip {
+    border: 1px solid #cbd5e1; background: #f8fafc; color: #334155;
+    border-radius: 999px; padding: .22rem .65rem; font-size: .72rem; font-weight: 600; cursor: pointer;
+}
+.hf-quota-bonus-admin-modal__chip:hover { background: #eff6ff; border-color: #93c5fd; color: #1d4ed8; }
+.hf-quota-bonus-admin-modal__preview {
+    margin-top: .65rem; padding: .65rem .75rem; border-radius: .65rem;
+    background: #f8fafc; border: 1px solid #e2e8f0; font-size: .8rem; color: #334155; line-height: 1.5;
+}
+.hf-quota-bonus-admin-modal__preview.is-hidden { display: none; }
+.hf-quota-bonus-admin-modal__error {
+    margin: .5rem 0 0; font-size: .8rem; color: #b91c1c;
+}
+.hf-quota-bonus-admin-modal__error.hidden { display: none; }
+.hf-quota-bonus-admin-modal__list { display: flex; flex-direction: column; gap: .55rem; max-height: 14rem; overflow: auto; }
+.hf-quota-bonus-admin-modal__card {
+    border: 1px solid #e2e8f0; border-radius: .65rem; padding: .65rem .75rem; background: #fff;
+}
+.hf-quota-bonus-admin-modal__card-top {
+    display: flex; justify-content: space-between; gap: .5rem; align-items: flex-start;
+}
+.hf-quota-bonus-admin-modal__card-meta { font-size: .72rem; color: #64748b; margin-top: .28rem; }
+.hf-quota-bonus-admin-modal__tag {
+    display: inline-block; font-size: .68rem; font-weight: 700; padding: .12rem .4rem;
+    border-radius: .35rem; margin-right: .35rem;
+}
+.hf-quota-bonus-admin-modal__tag--active { background: #ecfdf5; color: #047857; }
+.hf-quota-bonus-admin-modal__tag--revoked { background: #f1f5f9; color: #64748b; }
+.hf-quota-bonus-admin-modal__empty { margin: .35rem 0 0; font-size: .8rem; color: #94a3b8; }
+.hf-quota-bonus-admin-modal__empty.is-hidden { display: none; }
+</style>
+
+<div id="hf-quota-bonus-admin-modal" class="hf-quota-bonus-admin-modal hidden" role="dialog" aria-modal="true" aria-labelledby="hf-quota-bonus-admin-title" aria-hidden="true">
+    <div class="hf-quota-bonus-admin-modal__panel" onclick="event.stopPropagation()">
+        <div class="hf-quota-bonus-admin-modal__head">
+            <div class="hf-quota-bonus-admin-modal__head-main">
+                <h3 id="hf-quota-bonus-admin-title" class="hf-quota-bonus-admin-modal__title">额度增额</h3>
+                <p class="hf-quota-bonus-admin-modal__desc">为付费用户叠加每日额外 AI 次数（按北京时间自然日，可叠加、可撤销）</p>
+            </div>
+            <button type="button" class="hf-quota-bonus-admin-modal__close" data-hf-quota-bonus-admin-close aria-label="关闭">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <div class="hf-quota-bonus-admin-modal__body">
+            <section class="hf-quota-bonus-admin-modal__section" aria-label="查询用户">
+                <div class="hf-quota-bonus-admin-modal__row">
+                    <label class="hf-quota-bonus-admin-modal__field">
+                        <span class="hf-quota-bonus-admin-modal__label">账号（手机 / 邮箱 / user_id）</span>
+                        <input type="text" id="hf-quota-bonus-account" autocomplete="off" placeholder="例如 13800138000">
+                    </label>
+                    <button type="button" class="hf-quota-bonus-admin-modal__btn hf-quota-bonus-admin-modal__btn--ghost" id="hf-quota-bonus-lookup">查询</button>
+                </div>
+                <div id="hf-quota-bonus-preview" class="hf-quota-bonus-admin-modal__preview is-hidden" aria-live="polite"></div>
+            </section>
+
+            <section class="hf-quota-bonus-admin-modal__section" aria-label="新建授予">
+                <div class="hf-quota-bonus-admin-modal__chips" aria-label="快捷档位">
+                    <button type="button" class="hf-quota-bonus-admin-modal__chip" data-preset="text20">文本+20 / 30天</button>
+                    <button type="button" class="hf-quota-bonus-admin-modal__chip" data-preset="bundle">三件套+20/+5/+2 / 30天</button>
+                    <button type="button" class="hf-quota-bonus-admin-modal__chip" data-preset="cursor5">仅 Cursor+5 / 7天</button>
+                </div>
+                <div class="hf-quota-bonus-admin-modal__row" style="margin-top:.45rem">
+                    <label class="hf-quota-bonus-admin-modal__field hf-quota-bonus-admin-modal__field--sm">
+                        <span class="hf-quota-bonus-admin-modal__label">文本 +N</span>
+                        <input type="number" id="hf-quota-bonus-text" min="0" step="1" value="0">
+                    </label>
+                    <label class="hf-quota-bonus-admin-modal__field hf-quota-bonus-admin-modal__field--sm">
+                        <span class="hf-quota-bonus-admin-modal__label">视觉 +M</span>
+                        <input type="number" id="hf-quota-bonus-vision" min="0" step="1" value="0">
+                    </label>
+                    <label class="hf-quota-bonus-admin-modal__field hf-quota-bonus-admin-modal__field--sm">
+                        <span class="hf-quota-bonus-admin-modal__label">Cursor +K</span>
+                        <input type="number" id="hf-quota-bonus-cursor" min="0" step="1" value="0">
+                    </label>
+                </div>
+                <div class="hf-quota-bonus-admin-modal__row" style="margin-top:.45rem">
+                    <label class="hf-quota-bonus-admin-modal__field hf-quota-bonus-admin-modal__field--sm">
+                        <span class="hf-quota-bonus-admin-modal__label">开始日</span>
+                        <input type="date" id="hf-quota-bonus-start">
+                    </label>
+                    <label class="hf-quota-bonus-admin-modal__field hf-quota-bonus-admin-modal__field--sm">
+                        <span class="hf-quota-bonus-admin-modal__label">结束日</span>
+                        <input type="date" id="hf-quota-bonus-end">
+                    </label>
+                </div>
+                <label class="hf-quota-bonus-admin-modal__field" style="margin-top:.45rem;display:block">
+                    <span class="hf-quota-bonus-admin-modal__label">备注</span>
+                    <textarea id="hf-quota-bonus-note" placeholder="可选，如订单尾号"></textarea>
+                </label>
+                <div class="hf-quota-bonus-admin-modal__row" style="margin-top:.65rem;justify-content:flex-end">
+                    <button type="button" class="hf-quota-bonus-admin-modal__btn hf-quota-bonus-admin-modal__btn--primary" id="hf-quota-bonus-create">创建授予</button>
+                </div>
+            </section>
+
+            <section class="hf-quota-bonus-admin-modal__section" aria-label="授予列表">
+                <div class="hf-quota-bonus-admin-modal__row" style="justify-content:space-between;align-items:center;margin-bottom:.45rem">
+                    <span class="hf-quota-bonus-admin-modal__label" style="margin:0">授予记录</span>
+                    <label style="font-size:.75rem;color:#64748b;display:inline-flex;align-items:center;gap:.35rem">
+                        <input type="checkbox" id="hf-quota-bonus-only-active" checked>
+                        仅有效
+                    </label>
+                </div>
+                <div id="hf-quota-bonus-list" class="hf-quota-bonus-admin-modal__list" aria-live="polite"></div>
+                <p id="hf-quota-bonus-empty" class="hf-quota-bonus-admin-modal__empty">查询用户后显示授予记录</p>
+            </section>
+
+            <p id="hf-quota-bonus-error" class="hf-quota-bonus-admin-modal__error hidden"></p>
+            <div class="hf-quota-bonus-admin-modal__row" style="justify-content:flex-end;margin-top:.75rem">
+                <button type="button" class="hf-quota-bonus-admin-modal__btn hf-quota-bonus-admin-modal__btn--ghost" data-hf-quota-bonus-admin-close>关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

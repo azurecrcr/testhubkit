@@ -1,0 +1,384 @@
+/**
+ * 监听器弹窗形态修复（隔离模块 · 查看结果树/聚合报告/后端监听器 · Plan+TG）
+ * 强制居中弹窗，避免 body.lth-drawer-open 时退化为右侧抽屉。
+ */
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-plan-view-results-tree.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-plan-view-results-tree.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-plan-view-results-tree .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-plan-view-results-tree .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(920px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 40rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-plan-view-results-tree .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-plan-view-results-tree .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-plan-view-results-tree .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-plan-aggregate-report.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-plan-aggregate-report.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-plan-aggregate-report .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-plan-aggregate-report .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(860px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 36rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-plan-aggregate-report .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-plan-aggregate-report .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-plan-aggregate-report .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-view-results-tree.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-view-results-tree .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(920px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 40rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-aggregate-report.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-aggregate-report.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-aggregate-report .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-aggregate-report .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(860px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 36rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-aggregate-report .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-aggregate-report .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-aggregate-report .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-backend-listener.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-backend-listener.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-backend-listener .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-backend-listener .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(920px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 44rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-backend-listener .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-backend-listener .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-backend-listener .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-plan-view-results-tree.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-plan-view-results-tree.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-plan-view-results-tree .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-plan-view-results-tree .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(920px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 40rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-plan-view-results-tree .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-plan-view-results-tree .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-plan-view-results-tree .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-plan-aggregate-report.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-plan-aggregate-report.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-plan-aggregate-report .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-plan-aggregate-report .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(860px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 36rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-plan-aggregate-report .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-plan-aggregate-report .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-plan-aggregate-report .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-view-results-tree.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-view-results-tree.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-view-results-tree .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(920px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 40rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-aggregate-report.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-aggregate-report.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-aggregate-report .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-aggregate-report .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(860px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 36rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-aggregate-report .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-aggregate-report .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-aggregate-report .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-backend-listener.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-backend-listener.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-backend-listener .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-backend-listener .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(920px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 44rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-backend-listener .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-backend-listener .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-backend-listener .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}

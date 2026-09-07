@@ -1,0 +1,187 @@
+/**
+ * 逻辑控制器（随机/简单/事务/循环）· 树形卡片对齐 If 控制器（隔离样式 · 末位覆盖）
+ * 需在 jms_tg_*_controller_ui.css 之后加载
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random .jms-tree-node__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple .jms-tree-node__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction .jms-tree-node__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop .jms-tree-node__body {
+    display: block !important;
+}
+
+/* 卡片容器：对齐 If（flex 列布局使 head 可撑满行宽） */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random .jms-random-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple .jms-simple-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction .jms-transaction-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop .jms-loop-card {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(251, 191, 36, 0.35) !important;
+    background: rgba(255, 251, 235, 0.65) !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random .jms-random-card:not(.jms-random-card--collapsed),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple .jms-simple-card:not(.jms-simple-card--collapsed),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction .jms-transaction-card:not(.jms-transaction-card--collapsed),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop .jms-loop-card:not(.jms-loop-card--collapsed) {
+    width: 100% !important;
+}
+
+/* 头行：全宽 flex，操作区右对齐 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 0.28rem !important;
+    padding: 0.45rem 0.55rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    border-bottom: 1px solid rgba(251, 191, 36, 0.18) !important;
+    background: rgba(251, 191, 36, 0.08) !important;
+}
+
+/* 徽章：对齐 If 控制器 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 1.65rem !important;
+    padding: 0.1rem 0.4rem !important;
+    border-radius: 999px !important;
+    font-size: 0.625rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    color: #fcd34d !important;
+    background: rgba(251, 191, 36, 0.2) !important;
+    border: 1px solid rgba(251, 191, 36, 0.35) !important;
+    flex-shrink: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head .jms-http-name,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head .jms-http-name,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head .jms-http-name,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head .jms-http-name {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    font-weight: 600 !important;
+}
+
+/* meta 区：占满中间空间，子步骤徽章样式对齐 If */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head .jms-random-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head .jms-simple-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head .jms-transaction-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head .jms-loop-card__meta {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    flex-wrap: nowrap !important;
+    font-size: 0.68rem !important;
+    color: #64748b !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__meta-text,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__meta-text,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__meta-text,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__meta-text {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__child-count,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__child-count,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__child-count,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__child-count,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head > .jms-http-assert-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head > .jms-http-assert-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head > .jms-http-assert-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head > .jms-http-assert-badge {
+    flex: 0 0 auto !important;
+    margin-left: 0 !important;
+    white-space: nowrap !important;
+    font-size: 10px !important;
+    line-height: 1.25 !important;
+    padding: 0.05rem 0.35rem !important;
+    border-radius: 0.2rem !important;
+    color: #b45309 !important;
+    background: #fffbeb !important;
+    border: 1px solid #fde68a !important;
+}
+
+/* 启用/停用 + ⋯ 右对齐 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head .jms-config-card-toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head .jms-config-card-toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head .jms-config-card-toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head .jms-config-card-toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head .lth-step-actions {
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__body.jms-tree-if-children,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__body.jms-tree-if-children,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__body.jms-tree-if-children,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__body.jms-tree-if-children {
+    padding: 0.35rem 0.45rem 0.45rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.3rem !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card--collapsed .jms-random-card__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card--collapsed .jms-simple-card__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card--collapsed .jms-transaction-card__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card--collapsed .jms-loop-card__body {
+    display: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__body .jms-tree-node,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__body .jms-tree-node,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__body .jms-tree-node,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__body .jms-tree-node {
+    width: 100% !important;
+}
+
+@media (min-width: 900px) {
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node--random,
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node--simple,
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node--transaction,
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node--loop {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* 树形引导线：对齐 If 琥珀色 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random::before,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple::before,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction::before,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop::before {
+    background: linear-gradient(180deg, rgba(251, 191, 36, 0.35), rgba(251, 191, 36, 0.08)) !important;
+}

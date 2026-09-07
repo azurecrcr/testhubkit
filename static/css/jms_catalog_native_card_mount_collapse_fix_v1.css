@@ -1,0 +1,57 @@
+/**
+ * 原生 catalog 控制器卡片（TXN/LOOP/RND/SIM）· 挂载工具栏折叠联动
+ * 修复：polish 用 legacy *-card--collapsed，native 视图仅用 jms-catalog-card--collapsed，导致工具栏无法收回
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-card.jms-catalog-card--collapsed > .jms-catalog-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-card.jms-catalog-card--collapsed > .jms-if-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-card.jms-catalog-card--collapsed > .jms-if-mount-context--toolbar-only,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card.jms-catalog-card--collapsed > .jms-catalog-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card.jms-catalog-card--collapsed > .jms-if-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card.jms-catalog-card--collapsed > .jms-if-mount-context--toolbar-only,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card.jms-catalog-card--collapsed > .jms-catalog-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card.jms-catalog-card--collapsed > .jms-if-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card.jms-catalog-card--collapsed > .jms-if-mount-context--toolbar-only,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card.jms-catalog-card--collapsed > .jms-catalog-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card.jms-catalog-card--collapsed > .jms-if-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card.jms-catalog-card--collapsed > .jms-if-mount-context--toolbar-only,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-transaction-card.jms-catalog-card--collapsed > .jms-catalog-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-transaction-card.jms-catalog-card--collapsed > .jms-if-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-transaction-card.jms-catalog-card--collapsed > .jms-if-mount-context--toolbar-only,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-loop-card.jms-catalog-card--collapsed > .jms-catalog-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-loop-card.jms-catalog-card--collapsed > .jms-if-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-loop-card.jms-catalog-card--collapsed > .jms-if-mount-context--toolbar-only,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-random-card.jms-catalog-card--collapsed > .jms-catalog-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-random-card.jms-catalog-card--collapsed > .jms-if-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-random-card.jms-catalog-card--collapsed > .jms-if-mount-context--toolbar-only,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-simple-card.jms-catalog-card--collapsed > .jms-catalog-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-simple-card.jms-catalog-card--collapsed > .jms-if-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-simple-card.jms-catalog-card--collapsed > .jms-if-mount-context--toolbar-only,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card.jms-catalog-card--collapsed > .jms-catalog-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card.jms-catalog-card--collapsed > .jms-if-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card.jms-catalog-card--collapsed > .jms-if-mount-context--toolbar-only,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card.jms-catalog-card--collapsed > .jms-catalog-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card.jms-catalog-card--collapsed > .jms-if-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card.jms-catalog-card--collapsed > .jms-if-mount-context--toolbar-only,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card.jms-catalog-card--collapsed > .jms-catalog-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card.jms-catalog-card--collapsed > .jms-if-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card.jms-catalog-card--collapsed > .jms-if-mount-context--toolbar-only,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card.jms-catalog-card--collapsed > .jms-catalog-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card.jms-catalog-card--collapsed > .jms-if-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card.jms-catalog-card--collapsed > .jms-if-mount-context--toolbar-only {
+    display: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-card.jms-catalog-card--expandable:not(.jms-catalog-card--collapsed) > .jms-catalog-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-card.jms-catalog-card--expandable:not(.jms-catalog-card--collapsed) > .jms-if-mount-context--toolbar-only,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card.jms-catalog-card--expandable:not(.jms-catalog-card--collapsed) > .jms-catalog-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card.jms-catalog-card--expandable:not(.jms-catalog-card--collapsed) > .jms-if-mount-context--toolbar-only,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card.jms-catalog-card--expandable:not(.jms-catalog-card--collapsed) > .jms-catalog-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card.jms-catalog-card--expandable:not(.jms-catalog-card--collapsed) > .jms-if-mount-context--toolbar-only,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card.jms-catalog-card--expandable:not(.jms-catalog-card--collapsed) > .jms-catalog-mount-context,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card.jms-catalog-card--expandable:not(.jms-catalog-card--collapsed) > .jms-if-mount-context--toolbar-only,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card.jms-catalog-card--expandable:not(.jms-catalog-card--collapsed) > .jms-catalog-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card.jms-catalog-card--expandable:not(.jms-catalog-card--collapsed) > .jms-catalog-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card.jms-catalog-card--expandable:not(.jms-catalog-card--collapsed) > .jms-catalog-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card.jms-catalog-card--expandable:not(.jms-catalog-card--collapsed) > .jms-catalog-mount-context {
+    display: block !important;
+}

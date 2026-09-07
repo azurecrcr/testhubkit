@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册 / 登录 · {{ hf_site_brand_title }}</title>
+    {% include 'partials/hf_favicon.html' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toolkit.css') }}?v=20260556">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/page_shells.css') }}?v=20260556">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth_page_v2.css') }}?v=20260731agree2">
+    <script src="{{ url_for('static', filename='vendor/tailwindcss-cdn-3.4.10.js') }}"></script>
+</head>
+<body class="auth-page-v2 min-h-screen">
+    {% include 'partials/hf_global_nav.html' %}
+
+    <div class="auth-page-wrap">
+        <div class="auth-card">
+            <header class="auth-card__head">
+                <h1 class="auth-card__title">账号</h1>
+                <p class="auth-card__lead">登录后可使用暂存、AI 配置等功能。新用户请使用手机号注册（公安实名要求）；已绑定邮箱的用户仍可用邮箱登录。</p>
+            </header>
+
+            <div class="auth-tabs" role="tablist" aria-label="登录或注册">
+                <button type="button" class="auth-tab is-active" data-auth-main-tab="login" role="tab" aria-selected="true">登录</button>
+                <button type="button" class="auth-tab" data-auth-main-tab="register" role="tab" aria-selected="false">注册</button>
+            </div>
+
+            {# —— 登录：一个表单，账号类型内联切换 —— #}
+            <form id="auth-pane-login" class="auth-pane auth-pane--login" role="tabpanel">
+                <div class="auth-field-group">
+                    <div class="auth-label-row">
+                        <label class="auth-label" for="auth-login-account" id="auth-login-account-label">手机号</label>
+                        <div class="auth-type-switch" role="group" aria-label="账号类型">
+                            <button type="button" class="auth-type-switch__btn is-active" data-login-type="phone">手机</button>
+                            <button type="button" class="auth-type-switch__btn" data-login-type="email">邮箱</button>
+                        </div>
+                    </div>
+                    <input id="auth-login-account" type="tel" class="auth-field" inputmode="numeric" maxlength="11" autocomplete="tel" placeholder="请输入手机号">
+                </div>
+
+                <div id="auth-login-panel-password" class="auth-login-panel">
+                    <div class="auth-field-group">
+                        <div class="auth-label-row">
+                            <label class="auth-label" for="auth-login-password-inp">密码</label>
+                            <button type="button" class="auth-mode-link" data-login-mode="code">验证码登录</button>
+                        </div>
+                        <input id="auth-login-password-inp" type="password" class="auth-field" autocomplete="current-password" placeholder="请输入密码">
+                    </div>
+                </div>
+
+                <div id="auth-login-panel-code" class="auth-login-panel is-hidden">
+                    <div class="auth-label-row auth-label-row--panel">
+                        <button type="button" class="auth-mode-link" data-login-mode="password">密码登录</button>
+                    </div>
+                    <div class="auth-verify-block">
+                        <div class="auth-verify-row">
+                            <span id="auth-login-captcha-q" aria-live="polite">加载中…</span>
+                            <input id="auth-login-captcha-a" type="text" class="auth-field" inputmode="numeric" placeholder="计算结果" aria-label="图形验证码答案" autocomplete="off">
+                            <button type="button" class="auth-btn-secondary" id="auth-login-captcha-refresh">换一题</button>
+                        </div>
+                    </div>
+                    <div class="auth-verify-block auth-verify-block--spaced">
+                        <label class="auth-label" for="auth-login-code-inp" id="auth-login-code-label">短信验证码</label>
+                        <div class="auth-verify-row auth-verify-row--code">
+                            <input id="auth-login-code-inp" type="text" class="auth-field" inputmode="numeric" maxlength="8" placeholder="验证码" aria-label="验证码" autocomplete="one-time-code">
+                            <button type="button" class="auth-btn-secondary" id="auth-login-send-code">获取验证码</button>
+                        </div>
+                    </div>
+                </div>
+
+                <label class="auth-agree" for="auth-login-agree">
+                    <span class="auth-agree__box">
+                        <input id="auth-login-agree" type="checkbox" class="auth-agree__input">
+                        <span class="auth-agree__ui" aria-hidden="true"></span>
+                    </span>
+                    <span class="auth-agree__text">
+                        我已阅读并同意
+                        <a href="/legal/terms" target="_blank" rel="noopener noreferrer">《用户协议》</a>
+                        和
+                        <a href="/legal/privacy" target="_blank" rel="noopener noreferrer">《隐私政策》</a>
+                    </span>
+                </label>
+
+                <button type="submit" class="auth-btn-primary" id="auth-login-submit">登录</button>
+            </form>
+
+            {# —— 注册：一个表单，账号类型内联切换 —— #}
+            <div id="auth-pane-register" class="auth-pane auth-pane--register is-hidden" role="tabpanel">
+                <div class="auth-field-group">
+                    <label class="auth-label" for="auth-reg-display-name">昵称 <span class="auth-label__req">*</span></label>
+                    <input id="auth-reg-display-name" type="text" class="auth-field" autocomplete="nickname" maxlength="64" placeholder="怎么称呼你">
+                </div>
+
+                <div class="auth-field-group">
+                    <div class="auth-label-row">
+                        <label class="auth-label" for="auth-reg-account" id="auth-reg-account-label">手机号 <span class="auth-label__req">*</span></label>
+                    </div>
+                    <input id="auth-reg-account" type="tel" class="auth-field" inputmode="numeric" maxlength="11" autocomplete="tel" placeholder="请输入手机号">
+                    <p class="auth-field-hint" style="margin:0.35rem 0 0;font-size:0.78rem;color:#64748b;">按公安实名核验要求，仅支持手机号短信验证码注册</p>
+                </div>
+
+                <div class="auth-field-grid auth-field-grid--2">
+                    <div class="auth-field-group">
+                        <label class="auth-label" for="auth-reg-password">设置密码 <span class="auth-label__req">*</span></label>
+                        <input id="auth-reg-password" type="password" class="auth-field" autocomplete="new-password" placeholder="至少 8 位">
+                    </div>
+                    <div class="auth-field-group">
+                        <label class="auth-label" for="auth-reg-password2">确认密码 <span class="auth-label__req">*</span></label>
+                        <input id="auth-reg-password2" type="password" class="auth-field" autocomplete="new-password" placeholder="再次输入">
+                    </div>
+                </div>
+
+                <div class="auth-verify-block auth-verify-block--spaced">
+                    <label class="auth-label" for="auth-reg-captcha-a">图形验证码</label>
+                    <div class="auth-verify-row">
+                        <span id="auth-reg-captcha-q" aria-live="polite">加载中…</span>
+                        <input id="auth-reg-captcha-a" type="text" class="auth-field" inputmode="numeric" placeholder="计算结果" aria-label="图形验证码答案">
+                        <button type="button" class="auth-btn-secondary" id="auth-reg-captcha-refresh">换一题</button>
+                    </div>
+                </div>
+
+                <div class="auth-verify-block auth-verify-block--spaced">
+                    <label class="auth-label" for="auth-reg-code-inp" id="auth-reg-code-label">短信验证码</label>
+                    <div class="auth-verify-row auth-verify-row--code">
+                        <input id="auth-reg-code-inp" type="text" class="auth-field" inputmode="numeric" maxlength="8" placeholder="验证码" aria-label="验证码">
+                        <button type="button" class="auth-btn-secondary" id="auth-reg-send-code">获取验证码</button>
+                    </div>
+                </div>
+
+                <label class="auth-agree" for="auth-reg-agree">
+                    <span class="auth-agree__box">
+                        <input id="auth-reg-agree" type="checkbox" class="auth-agree__input">
+                        <span class="auth-agree__ui" aria-hidden="true"></span>
+                    </span>
+                    <span class="auth-agree__text">
+                        我已阅读并同意
+                        <a href="/legal/terms" target="_blank" rel="noopener noreferrer">《用户协议》</a>
+                        和
+                        <a href="/legal/privacy" target="_blank" rel="noopener noreferrer">《隐私政策》</a>
+                    </span>
+                </label>
+
+                <button type="button" class="auth-btn-primary" id="auth-reg-submit">注册并登录</button>
+            </div>
+
+            <p id="auth-page-msg" class="auth-msg" role="status" aria-live="polite"></p>
+        </div>
+    </div>
+
+    <div class="auth-agree-modal is-hidden" id="auth-agree-modal" role="dialog" aria-modal="true" aria-labelledby="auth-agree-modal-title">
+        <div class="auth-agree-modal__panel">
+            <div class="auth-agree-modal__badge" aria-hidden="true">协议</div>
+            <h2 class="auth-agree-modal__title" id="auth-agree-modal-title">服务协议及隐私保护</h2>
+            <p class="auth-agree-modal__body">
+                为保障您的合法权益，请阅读并同意
+                <a href="/legal/terms" target="_blank" rel="noopener noreferrer">《用户协议》</a>
+                和
+                <a href="/legal/privacy" target="_blank" rel="noopener noreferrer">《隐私政策》</a>
+                后再继续。
+            </p>
+            <div class="auth-agree-modal__actions">
+                <button type="button" class="auth-agree-modal__btn auth-agree-modal__btn--ghost" id="auth-agree-modal-cancel">不同意</button>
+                <button type="button" class="auth-agree-modal__btn auth-agree-modal__btn--primary" id="auth-agree-modal-ok">同意并继续</button>
+            </div>
+        </div>
+    </div>
+
+    {% include 'partials/hf_site_footer.html' %}
+    <script>
+        window.__HF_AUTH_PAGE__ = {
+            next: {{ auth_next | tojson }},
+            initialTab: {{ auth_tab | tojson }}
+        };
+    </script>
+    <script src="{{ url_for('static', filename='js/hf_auth_page.js') }}?v=20260811phone1"></script>
+</body>
+</html>

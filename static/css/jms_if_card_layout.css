@@ -1,0 +1,131 @@
+/**
+ * IfController 步骤卡片布局（隔离模块，仅 JMeter 压测工作区）
+ * 修复：JMX 导入后 If 控制器内 HTTP 子步骤未展开导致的样式变形
+ */
+body.lth-studio-v2 .lth-studio-workspace .jms-if-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 0.35rem;
+    border-radius: 10px;
+    border: 1px solid rgba(251, 191, 36, 0.28);
+    background: rgba(251, 191, 36, 0.06);
+    overflow: hidden;
+}
+
+body.lth-studio-v2 .lth-studio-workspace .jms-if-card__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.5rem;
+    padding: 0.45rem 0.55rem;
+    border-bottom: 1px solid rgba(251, 191, 36, 0.18);
+    background: rgba(251, 191, 36, 0.08);
+}
+
+body.lth-studio-v2 .lth-studio-workspace .jms-if-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.65rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 999px;
+    font-size: 0.625rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #fcd34d;
+    background: rgba(251, 191, 36, 0.2);
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    flex-shrink: 0;
+}
+
+body.lth-studio-v2 .lth-studio-workspace .jms-if-card__head .jms-http-name {
+    flex: 0 1 auto;
+    min-width: 0;
+    font-weight: 600;
+    color: var(--lth-text);
+}
+
+body.lth-studio-v2 .lth-studio-workspace .jms-if-card__condition {
+    flex: 1 1 6rem;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.68rem;
+    color: var(--lth-text-muted);
+    background: transparent;
+}
+
+body.lth-studio-v2 .lth-studio-workspace .jms-if-card__head .jms-http-assert-badge {
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+body.lth-studio-v2 .lth-studio-workspace .jms-if-card__body {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.45rem 0.55rem 0.55rem;
+}
+
+body.lth-studio-v2 .lth-studio-workspace .jms-if-card__body .jms-http-card {
+    margin-bottom: 0;
+}
+
+body.lth-studio-v2 .lth-studio-workspace .jms-if-card__body .jms-if-card {
+    margin-bottom: 0;
+}
+
+body.lth-studio-v2 .lth-studio-workspace .jms-if-card__empty {
+    margin: 0;
+    padding: 0.35rem 0;
+    font-size: 0.72rem;
+}
+
+/* glass19 修复：If 内 HTTP 子步骤不受固定行高约束（仅压测造数 JMeter Tab） */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-plan-tgs > .jms-tg-block .jms-if-card__body .jms-http-card {
+    min-height: 2.05rem !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-plan-tgs > .jms-tg-block .jms-if-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-self: stretch !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(251, 191, 36, 0.28) !important;
+    background: rgba(251, 191, 36, 0.06) !important;
+    overflow: hidden !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-plan-tgs > .jms-tg-block .jms-if-card__head {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 0.35rem 0.5rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-plan-tgs > .jms-tg-block .jms-if-card__head .jms-http-assert-badge {
+    margin-left: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-plan-tgs > .jms-tg-block .jms-if-card__head .lth-step-actions {
+    margin-left: auto !important;
+    flex-shrink: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-plan-tgs > .jms-tg-block .jms-if-card__condition {
+    flex: 1 1 5rem !important;
+    min-width: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-plan-tgs > .jms-tg-block .jms-if-card__body {
+    display: grid !important;
+    gap: 0.35rem !important;
+    padding: 0.45rem 0.55rem 0.55rem !important;
+}

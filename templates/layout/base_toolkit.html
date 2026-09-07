@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block page_title %}{{ hf_site_brand_title }}{% endblock %}</title>
+    {% include 'partials/hf_favicon.html' %}
+    <script src="{{ url_for('static', filename='js/hf_fetch_coalesce.js') }}?v=20260811perf1"></script>
+    {% block head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+{% block body %}{% endblock %}
+{% include 'partials/hf_site_footer.html' %}
+{% block scripts %}{% endblock %}
+</body>
+</html>

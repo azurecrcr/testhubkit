@@ -1,0 +1,218 @@
+/**
+ * If 控制器挂载区 · 固定定时器弹窗（隔离 v2 · #modal-if-mount-timer-edit）
+ * 视觉/布局对齐 HTTP 请求固定定时器 v3，class 独立维护。
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-mount-timer-edit,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-if-mount-timer-edit {
+    --jms-if-mount-timer-accent: #0284c7;
+    --jms-if-mount-timer-accent-deep: #0369a1;
+    --jms-if-mount-timer-accent-soft: rgba(2, 132, 199, 0.1);
+    --jms-if-mount-timer-border: #bae6fd;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10200 !important;
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+    background: rgba(15, 23, 42, 0.48) !important;
+    backdrop-filter: blur(4px);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-mount-timer-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-if-mount-timer-edit.jms-modal-open {
+    display: flex !important;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-modal__panel {
+    width: min(680px, 96vw) !important;
+    max-height: min(88vh, 28rem) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(186, 230, 253, 0.95) !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    box-shadow: 0 28px 72px rgba(2, 132, 199, 0.14), 0 0 0 1px rgba(2, 132, 199, 0.06) !important;
+    overflow: hidden !important;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-modal__head {
+    flex-shrink: 0;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.75rem !important;
+    padding: 1rem 1.35rem !important;
+    border-bottom: 1px solid var(--jms-if-mount-timer-border) !important;
+    background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%) !important;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-modal__head-main {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-modal__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.14rem 0.55rem;
+    font-size: 0.625rem;
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--jms-if-mount-timer-accent-deep) !important;
+    background: var(--jms-if-mount-timer-accent-soft) !important;
+    border: 1px solid rgba(2, 132, 199, 0.22);
+    border-radius: 999px;
+}
+
+#modal-if-mount-timer-edit .jms-step-modal__title {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+    font-size: 1.05rem !important;
+    font-weight: 650 !important;
+    color: #0c4a6e !important;
+    letter-spacing: 0.01em !important;
+    line-height: 1.35 !important;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-modal__close {
+    width: 1.85rem;
+    height: 1.85rem;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #64748b !important;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-modal__close:hover {
+    background: rgba(2, 132, 199, 0.1);
+    color: var(--jms-if-mount-timer-accent-deep) !important;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-modal__body {
+    flex: 1 1 auto;
+    overflow: auto;
+    padding: 1.15rem 1.35rem 0.85rem !important;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fcff 100%);
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-modal__foot {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.7rem 1.35rem 0.9rem !important;
+    border-top: 1px solid var(--jms-if-mount-timer-border) !important;
+    background: linear-gradient(180deg, #f8fcff 0%, #f0f9ff 100%) !important;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-modal__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 4.25rem;
+    height: 1.85rem;
+    padding: 0 0.85rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-modal__btn--ghost {
+    border: 1px solid #bae6fd;
+    background: #fff;
+    color: #475569 !important;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-modal__btn--ghost:hover {
+    border-color: #7dd3fc;
+    background: #f0f9ff;
+    color: #0369a1 !important;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-modal__btn--primary {
+    border: 1px solid transparent;
+    background: linear-gradient(135deg, #0284c7, #38bdf8);
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.28);
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-modal__btn--primary:hover {
+    background: linear-gradient(135deg, #0369a1, #0284c7);
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-v1 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-v1__row--meta {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 0.75rem;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-v1__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-v1__field--delay {
+    max-width: 12rem;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-v1__label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #334155 !important;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-v1__input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid #bae6fd;
+    border-radius: 8px;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: #0f172a !important;
+    background: #fff;
+    font-family: inherit;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-v1__input::placeholder {
+    color: #94a3b8 !important;
+}
+
+#modal-if-mount-timer-edit .jms-if-mount-timer-v1__input:focus {
+    outline: none;
+    border-color: rgba(2, 132, 199, 0.55);
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12);
+}
+
+@media (max-width: 560px) {
+    #modal-if-mount-timer-edit .jms-if-mount-timer-v1__row--meta {
+        grid-template-columns: 1fr;
+    }
+    #modal-if-mount-timer-edit .jms-if-mount-timer-v1__field--delay {
+        max-width: none;
+    }
+}

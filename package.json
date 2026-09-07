@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@xmldom/xmldom": "^0.9.10",
+    "js-yaml": "^5.2.1"
+  }
+}

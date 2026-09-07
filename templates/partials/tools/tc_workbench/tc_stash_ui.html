@@ -1,0 +1,79 @@
+{# 用例工作台：暂存 FAB / 列表 / 弹窗 #}
+<div id="tc-stash-split" class="tc-stash-rail tc-stash-rail--collapsed hidden" aria-hidden="true"></div>
+<div id="tc-stash-float-root" class="tc-stash-float-root">
+    <div id="tc-stash-rail-float-wrap" class="tc-stash-rail-float-wrap">
+        <button type="button" id="tc-stash-rail-expand-btn" class="tc-stash-rail-expand-btn" title="展开暂存列表" aria-expanded="false" aria-label="展开暂存列表">
+            <svg id="tc-stash-rail-fab-icon-show" class="tc-stash-rail-fab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="tc-stash-rail-fab-icon-hide" class="tc-stash-rail-fab-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <button type="button" id="tc-back-to-top-btn" aria-label="回到顶部" aria-hidden="true">
+            <svg id="tc-back-to-top-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 15l7-7 7 7"/></svg>
+        </button>
+    </div>
+    <div id="tc-stash-save-fab-wrap" class="tc-stash-save-fab-wrap">
+        <button type="button" id="tc-stash-open-btn" class="tc-stash-open-btn" title="保存当前为暂存" aria-label="保存当前为暂存">
+            <span id="tc-stash-open-label">暂存</span>
+        </button>
+        <span id="tc-stash-open-hint" class="sr-only"></span>
+    </div>
+</div>
+<div id="tc-stash-rail-col" class="tc-stash-rail-col tc-stash-rail-col--collapsed" aria-hidden="true">
+    <div id="tc-stash-rail-drag-handle" class="tc-stash-rail-drag-handle">
+        <span class="tc-stash-rail-drag-handle__title">暂存列表</span>
+        <span class="tc-stash-rail-drag-handle__count"><span id="tc-stash-count-badge">0</span>/<span id="tc-stash-max-badge">10</span></span>
+        <button type="button" id="tc-stash-rail-close-btn" class="tc-stash-rail-close-btn" aria-label="收起暂存列表">&times;</button>
+    </div>
+    <div id="tc-stash-external-rail" class="tc-stash-external-rail">
+        <p id="tc-stash-list-scope-hint" class="tc-stash-list-scope-hint"></p>
+        <div id="tc-stash-drawer-list-panel" class="tc-stash-drawer-list-panel">
+            <div id="tc-stash-storage-hint" class="tc-stash-storage-hint hidden"></div>
+            <div id="tc-stash-list" class="tc-stash-list"></div>
+        </div>
+    </div>
+</div>
+<div id="tc-stash-save-modal" class="tc-stash-modal fixed inset-0 z-[70] hidden items-center justify-center bg-black/40 p-4" role="dialog" aria-modal="true" aria-labelledby="tc-stash-save-modal-title">
+    <div class="tc-stash-modal__panel w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+        <h3 id="tc-stash-save-modal-title" class="text-lg font-semibold text-slate-900">保存暂存</h3>
+        <p id="tc-stash-save-modal-hint" class="mt-2 hidden text-xs leading-snug text-slate-600"></p>
+        <label class="mt-4 block text-sm font-medium text-slate-700" for="tc-stash-save-title">暂存名称 <span class="text-red-500">*</span></label>
+        <input type="text" id="tc-stash-save-title" class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm" maxlength="120" autocomplete="off" placeholder="例如：评审稿 v2">
+        <div class="mt-6 flex justify-end gap-3">
+            <button type="button" id="tc-stash-save-modal-cancel" class="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700">取消</button>
+            <button type="button" id="tc-stash-save-modal-submit" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">保存</button>
+        </div>
+    </div>
+</div>
+<div id="tc-stash-rename-modal" class="tc-stash-modal fixed inset-0 z-[70] hidden items-center justify-center bg-black/40 p-4" role="dialog" aria-modal="true">
+    <div class="tc-stash-modal__panel w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+        <h3 class="text-lg font-semibold text-slate-900">重命名暂存</h3>
+        <label class="mt-4 block text-sm font-medium text-slate-700" for="tc-stash-rename-title">新名称</label>
+        <input type="text" id="tc-stash-rename-title" class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm" maxlength="120" autocomplete="off">
+        <div class="mt-6 flex justify-end gap-3">
+            <button type="button" id="tc-stash-rename-modal-cancel" class="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700">取消</button>
+            <button type="button" id="tc-stash-rename-modal-submit" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">保存</button>
+        </div>
+    </div>
+</div>
+<div id="tc-stash-preview-modal" class="tc-stash-modal fixed inset-0 z-[70] hidden items-center justify-center bg-black/40 p-4" role="dialog" aria-modal="true" aria-labelledby="tc-stash-preview-modal-title">
+    <div class="tc-stash-modal__panel flex max-h-[90vh] w-full max-w-4xl flex-col rounded-2xl bg-white shadow-2xl">
+        <div class="flex items-center justify-between border-b border-slate-100 px-5 py-4">
+            <h3 id="tc-stash-preview-modal-title" class="text-lg font-semibold text-slate-900">暂存预览</h3>
+            <button type="button" id="tc-stash-preview-modal-close" class="rounded-full p-2 text-slate-400 hover:bg-slate-100" aria-label="关闭">&times;</button>
+        </div>
+        <div id="tc-stash-preview-table-wrap" class="min-h-0 flex-1 overflow-auto p-4"></div>
+        <div class="flex justify-end gap-3 border-t border-slate-100 px-5 py-4">
+            <button type="button" id="tc-stash-preview-restore-btn" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white" disabled>恢复</button>
+        </div>
+    </div>
+</div>
+<div id="tc-stash-restore-modal" class="tc-stash-modal fixed inset-0 z-[70] hidden items-center justify-center bg-black/40 p-4" role="dialog" aria-modal="true">
+    <div class="tc-stash-modal__panel w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+        <h3 class="text-lg font-semibold text-slate-900">恢复暂存</h3>
+        <p id="tc-stash-restore-modal-desc" class="mt-2 text-sm text-slate-600"></p>
+        <div class="mt-6 flex flex-wrap justify-end gap-3">
+            <button type="button" id="tc-stash-restore-cancel" class="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700">取消</button>
+            <button type="button" id="tc-stash-restore-append" class="rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700">追加到当前表格</button>
+            <button type="button" id="tc-stash-restore-overwrite" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">覆盖当前表格</button>
+        </div>
+    </div>
+</div>

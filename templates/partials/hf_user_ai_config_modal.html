@@ -1,0 +1,135 @@
+{# 登录用户：个人 AI 配置弹窗 #}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hf_user_ai_config_modal.css') }}?v=20260807qbonus1">
+
+<div id="hf-user-ai-modal" class="hf-user-ai-modal hidden" role="dialog" aria-modal="true" aria-labelledby="hf-user-ai-modal-title">
+    <div class="hf-user-ai-modal__panel">
+        <div class="hf-user-ai-modal__head">
+            <div class="hf-user-ai-modal__head-main">
+                <div class="hf-user-ai-modal__head-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/>
+                    </svg>
+                </div>
+                <div class="hf-user-ai-modal__head-text">
+                    <h3 id="hf-user-ai-modal-title">AI 配置</h3>
+                    <p class="hf-user-ai-modal__subtitle">个人账号专属，用例工作台 / RAG / Agent 等功能将使用本配置</p>
+                </div>
+            </div>
+            <button type="button" class="hf-user-ai-modal__close" data-hf-user-ai-close aria-label="关闭">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+        </div>
+
+        <div class="hf-user-ai-modal__body">
+            <section id="hf-user-ai-quota-panel" class="hf-user-ai-modal__card hf-user-ai-modal__card--quota" aria-labelledby="hf-user-ai-section-quota" hidden>
+                <div class="hf-user-ai-modal__card-head">
+                    <div class="hf-user-ai-modal__card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3v18M5 8h14M7 12h10M9 16h6"/></svg>
+                    </div>
+                    <h4 class="hf-user-ai-modal__section-title" id="hf-user-ai-section-quota">今日额度</h4>
+                </div>
+                <div class="hf-user-ai-modal__card-body">
+                    <p id="hf-user-ai-quota-summary" class="hf-user-ai-modal__quota-summary"></p>
+                    <p id="hf-user-ai-quota-bonus-hint" class="hf-user-ai-modal__quota-bonus is-hidden"></p>
+                </div>
+            </section>
+
+            <section class="hf-user-ai-modal__card" aria-labelledby="hf-user-ai-section-text">
+                <div class="hf-user-ai-modal__card-head">
+                    <div class="hf-user-ai-modal__card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 7h16M4 12h10M4 17h7"/></svg>
+                    </div>
+                    <h4 class="hf-user-ai-modal__section-title" id="hf-user-ai-section-text">文本 AI</h4>
+                </div>
+                <div class="hf-user-ai-modal__card-body">
+                    <div class="hf-user-ai-modal__grid">
+                        <label class="hf-user-ai-modal__field">
+                            <span>API Base URL</span>
+                            <input type="text" id="hf-user-ai-base-url" autocomplete="off" placeholder="http://host:port/v1">
+                        </label>
+                        <label class="hf-user-ai-modal__field">
+                            <span>API Key</span>
+                            <input type="password" id="hf-user-ai-api-key" autocomplete="off" placeholder="密钥">
+                        </label>
+                        <label class="hf-user-ai-modal__field">
+                            <span>文本模型</span>
+                            <input type="text" id="hf-user-ai-model" autocomplete="off" placeholder="如 Qwen3-30B-A3B">
+                        </label>
+                        <label class="hf-user-ai-modal__field">
+                            <span>Temperature</span>
+                            <input type="number" id="hf-user-ai-temperature" min="0" max="2" step="0.1" value="0.1">
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="hf-user-ai-modal__card" aria-labelledby="hf-user-ai-section-vision">
+                <div class="hf-user-ai-modal__card-head">
+                    <div class="hf-user-ai-modal__card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                    <h4 class="hf-user-ai-modal__section-title" id="hf-user-ai-section-vision">视觉模型（附件解析）</h4>
+                </div>
+                <div class="hf-user-ai-modal__card-body">
+                    <div class="hf-user-ai-modal__grid">
+                        <label class="hf-user-ai-modal__field">
+                            <span>视觉 API Base URL</span>
+                            <input type="text" id="hf-user-ai-vision-base-url" autocomplete="off" placeholder="https://dashscope.aliyuncs.com/compatible-mode/v1">
+                        </label>
+                        <label class="hf-user-ai-modal__field">
+                            <span>视觉 API Key</span>
+                            <input type="password" id="hf-user-ai-vision-api-key" autocomplete="off" placeholder="密钥">
+                        </label>
+                        <label class="hf-user-ai-modal__field hf-user-ai-modal__field--full">
+                            <span>视觉模型</span>
+                            <input type="text" id="hf-user-ai-vision-model" autocomplete="off" placeholder="如 qwen-vl-max">
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="hf-user-ai-modal__card is-hidden" aria-labelledby="hf-user-ai-section-cursor" hidden>
+                <div class="hf-user-ai-modal__card-head">
+                    <div class="hf-user-ai-modal__card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7-6.3-4.6L5.7 21l2.3-7-6-4.6h7.6L12 2z"/></svg>
+                    </div>
+                    <h4 class="hf-user-ai-modal__section-title" id="hf-user-ai-section-cursor">Cursor Agent</h4>
+                </div>
+                <div class="hf-user-ai-modal__card-body">
+                    <div class="hf-user-ai-modal__grid hf-user-ai-modal__grid--cursor-agent">
+                        <label class="hf-user-ai-modal__field hf-user-ai-modal__field--control">
+                            <span class="hf-user-ai-modal__field-label">Cursor API Key</span>
+                            <input type="password" id="hf-user-ai-cursor-api-key" autocomplete="off" placeholder="sk-…" spellcheck="false">
+                            <span class="hf-user-ai-modal__hint hf-user-ai-modal__hint--key">Cursor → Access Tokens 获取密钥，用于 Cursor Agent 执行</span>
+                        </label>
+                        <div class="hf-user-ai-modal__field hf-user-ai-modal__field--control" role="group" aria-labelledby="hf-user-ai-agent-model-label-wrap">
+                            <span id="hf-user-ai-agent-model-label-wrap" class="hf-user-ai-modal__field-label">Agent 模型<em class="hf-user-ai-modal__note-inline">仅国内可用</em></span>
+                            <div class="hf-user-ai-model-picker" id="hf-user-ai-agent-model-picker">
+                                <button type="button" id="hf-user-ai-agent-model-trigger" class="hf-user-ai-model-picker__trigger" disabled aria-haspopup="listbox" aria-expanded="false" aria-controls="hf-user-ai-agent-model-panel">
+                                    <span class="hf-user-ai-model-picker__value is-placeholder" id="hf-user-ai-agent-model-label">请先输入 Cursor API Key</span>
+                                    <svg class="hf-user-ai-model-picker__chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+                                </button>
+                                <div class="hf-user-ai-model-picker__panel is-hidden" id="hf-user-ai-agent-model-panel" role="listbox">
+                                    <ul class="hf-user-ai-model-picker__list" id="hf-user-ai-agent-model-list"></ul>
+                                </div>
+                                <select id="hf-user-ai-agent-model" class="hf-user-ai-model-picker__native" disabled tabindex="-1" aria-hidden="true">
+                                    <option value="">请先输入 Cursor API Key</option>
+                                </select>
+                            </div>
+                            <span id="hf-user-ai-agent-model-status" class="hf-user-ai-modal__hint hf-user-ai-modal__hint--model-status"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <div class="hf-user-ai-modal__actions">
+            <p id="hf-user-ai-source" class="hf-user-ai-modal__source"></p>
+            <div class="hf-user-ai-modal__actions-btns">
+                <button type="button" class="hf-user-ai-modal__btn hf-user-ai-modal__btn--ghost" data-hf-user-ai-close>取消</button>
+                <button type="button" class="hf-user-ai-modal__btn hf-user-ai-modal__btn--primary" id="hf-user-ai-save-btn">保存</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,208 @@
+/**
+ * JMX 解析弹窗 · 绿色专业主题（仅 #modal-jmx-import，高优先级覆盖）
+ */
+#modal-jmx-import.jms-modal-open {
+    background: rgba(6, 78, 59, 0.38) !important;
+    backdrop-filter: blur(12px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(140%) !important;
+}
+
+#modal-jmx-import .jmx-import-modal-card,
+body.lth-studio-v2 #modal-jmx-import .jmx-import-modal-card {
+    border: 1px solid rgba(167, 243, 208, 0.65) !important;
+    background: linear-gradient(
+        168deg,
+        rgba(255, 255, 255, 0.97) 0%,
+        rgba(236, 253, 245, 0.94) 42%,
+        rgba(209, 250, 229, 0.9) 100%
+    ) !important;
+    box-shadow:
+        0 24px 48px rgba(6, 78, 59, 0.18),
+        0 0 0 1px rgba(255, 255, 255, 0.55) inset !important;
+    color: #064e3b !important;
+}
+
+#modal-jmx-import .jmx-import-modal__head {
+    padding: 1rem 1.15rem 0.75rem !important;
+    border-bottom: 1px solid rgba(16, 185, 129, 0.22) !important;
+    background: rgba(255, 255, 255, 0.35);
+}
+
+#modal-jmx-import .jmx-import-modal__title,
+body.lth-studio-v2 #modal-jmx-import .jmx-import-modal__title {
+    color: #065f46 !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em;
+}
+
+#modal-jmx-import .jmx-import-modal__sub,
+#modal-jmx-import .jmx-import-modal__hint,
+#modal-jmx-import #jmx-import-filename,
+#modal-jmx-import #jmx-import-status,
+body.lth-studio-v2 #modal-jmx-import .jmx-import-modal__sub,
+body.lth-studio-v2 #modal-jmx-import .jmx-import-modal__hint,
+body.lth-studio-v2 #modal-jmx-import #jmx-import-filename,
+body.lth-studio-v2 #modal-jmx-import #jmx-import-status {
+    color: #047857 !important;
+    opacity: 1 !important;
+    font-size: 0.78rem !important;
+    line-height: 1.5 !important;
+}
+
+#modal-jmx-import #jmx-import-status {
+    font-weight: 600;
+    color: #065f46 !important;
+}
+
+#modal-jmx-import .jmx-import-modal__scroll {
+    padding: 0.85rem 1.15rem 0.75rem !important;
+}
+
+#modal-jmx-import .jmx-import-drop,
+body.lth-studio-v2 #modal-jmx-import .jmx-import-drop {
+    border: 2px dashed rgba(16, 185, 129, 0.45) !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+    padding: 1.15rem 1rem !important;
+}
+
+#modal-jmx-import .jmx-import-drop .text-sm,
+#modal-jmx-import .jmx-import-drop p,
+body.lth-studio-v2 #modal-jmx-import .jmx-import-drop .text-sm {
+    color: #065f46 !important;
+    font-weight: 600 !important;
+}
+
+#modal-jmx-import .jmx-import-drop:hover,
+#modal-jmx-import .jmx-import-drop.is-dragover {
+    border-color: rgba(5, 150, 105, 0.65) !important;
+    background: rgba(236, 253, 245, 0.92) !important;
+}
+
+#modal-jmx-import .jmx-import-summary-grid,
+body.lth-studio-v2 #modal-jmx-import .jmx-import-summary-grid {
+    gap: 0.45rem 0.65rem !important;
+    padding: 0.65rem 0.85rem !important;
+    border: 1px solid rgba(16, 185, 129, 0.32) !important;
+    background: rgba(255, 255, 255, 0.78) !important;
+}
+
+#modal-jmx-import .jmx-import-summary-grid__label,
+body.lth-studio-v2 #modal-jmx-import .jmx-import-summary-grid__label {
+    color: #059669 !important;
+    opacity: 1 !important;
+    font-size: 0.7rem !important;
+    font-weight: 700 !important;
+}
+
+#modal-jmx-import .jmx-import-summary-grid__value,
+body.lth-studio-v2 #modal-jmx-import .jmx-import-summary-grid__value {
+    color: #064e3b !important;
+    font-size: 0.86rem !important;
+    font-weight: 700 !important;
+}
+
+#modal-jmx-import #jmx-import-csv-panel,
+body.lth-studio-v2 #modal-jmx-import #jmx-import-csv-panel {
+    border-color: rgba(245, 158, 11, 0.35) !important;
+    background: rgba(255, 251, 235, 0.88) !important;
+}
+
+#modal-jmx-import .jmx-import-csv-panel__title,
+body.lth-studio-v2 #modal-jmx-import .jmx-import-csv-panel__title {
+    color: #92400e !important;
+}
+
+#modal-jmx-import .jmx-import-csv-row__name,
+body.lth-studio-v2 #modal-jmx-import .jmx-import-csv-row__name {
+    color: #0f172a !important;
+}
+
+#modal-jmx-import .jmx-import-modal__foot {
+    border-top: 1px solid rgba(16, 185, 129, 0.2) !important;
+    background: rgba(236, 253, 245, 0.55) !important;
+    padding: 0.9rem 1.15rem 1rem !important;
+}
+
+#modal-jmx-import .jmx-import-modal__btn--ghost,
+body.lth-studio-v2 #modal-jmx-import .jmx-import-modal__btn--ghost {
+    border-color: rgba(16, 185, 129, 0.35) !important;
+    background: rgba(255, 255, 255, 0.85) !important;
+    color: #047857 !important;
+}
+
+#modal-jmx-import .jmx-import-modal__btn--primary,
+body.lth-studio-v2 #modal-jmx-import .jmx-import-modal__btn--primary {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+    color: #ecfdf5 !important;
+    box-shadow: 0 4px 14px rgba(5, 150, 105, 0.28);
+}
+
+#modal-jmx-import .jmx-import-csv-row__pick-btn,
+body.lth-studio-v2 #modal-jmx-import .jmx-import-csv-row__pick-btn {
+    border-color: rgba(16, 185, 129, 0.4) !important;
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5) !important;
+    color: #047857 !important;
+}
+
+
+#modal-jmx-import .jmx-import-official-wrap__title { margin: 0 0 0.35rem; }
+#modal-jmx-import .jmx-official-tree {
+  max-height: 16rem;
+  overflow: auto;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 0.65rem;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 0.55rem 0.65rem;
+  font-size: 12px;
+}
+#modal-jmx-import .jmx-official-tree__meta {
+  margin: 0 0 0.45rem;
+  color: #475569;
+  font-size: 11px;
+}
+#modal-jmx-import .jmx-official-tree__root,
+#modal-jmx-import .jmx-official-tree__children {
+  list-style: none;
+  margin: 0;
+  padding-left: 0.85rem;
+}
+#modal-jmx-import .jmx-official-tree__item { margin: 0.15rem 0; }
+#modal-jmx-import .jmx-official-tree__summary,
+#modal-jmx-import .jmx-official-tree__item--leaf {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+#modal-jmx-import .jmx-official-tree__name { font-weight: 600; color: #0f172a; }
+#modal-jmx-import .jmx-official-tree__type {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: #64748b;
+  font-size: 11px;
+}
+#modal-jmx-import .jmx-official-tree__badge {
+  font-size: 10px;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+}
+#modal-jmx-import .jmx-official-tree__badge--off {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+#modal-jmx-import .jmx-import-status--pending .jmx-import-status__main {
+    color: #0f766e;
+    font-weight: 600;
+}
+#modal-jmx-import .jmx-import-queue-note {
+    margin: 7px 0 0;
+    padding: 0;
+    font-size: 11px;
+    line-height: 1.45;
+    font-weight: 400;
+    color: #64748b;
+}
+body.lth-studio-v2 #modal-jmx-import .jmx-import-queue-note {
+    color: #5f8278;
+}

@@ -1,0 +1,385 @@
+/**
+ * HTTP 步骤 · 察看结果树弹窗（隔离样式 v1 · modal-http-step-vrt）
+ * 布局对齐线程组循环控制器抽屉，独立配色（青绿）。
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-vrt,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-vrt {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10200;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    background: rgba(15, 23, 42, 0.42);
+    backdrop-filter: blur(10px);
+    --jms-http-step-vrt-accent: #0d9488;
+    --jms-http-step-vrt-accent-deep: #0f766e;
+    --jms-http-step-vrt-accent-soft: rgba(13, 148, 136, 0.1);
+    --jms-http-step-vrt-border: #e2e8f0;
+    --jms-http-step-vrt-text: #0f172a;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-vrt.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-vrt.jms-modal-open {
+    display: flex !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-vrt.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-vrt.jms-modal-open {
+    align-items: stretch !important;
+    justify-content: flex-end !important;
+    padding: 0 !important;
+    background: rgba(15, 23, 42, 0.36) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-vrt .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-vrt .jms-step-modal {
+    width: min(780px, 96vw) !important;
+    max-height: min(88vh, 36rem);
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(226, 232, 240, 0.95) !important;
+    background: #ffffff !important;
+    color: var(--jms-http-step-vrt-text) !important;
+    box-shadow: 0 28px 72px rgba(13, 148, 136, 0.12), 0 0 0 1px rgba(13, 148, 136, 0.06) !important;
+    overflow: hidden !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-vrt .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-vrt .jms-step-modal {
+    position: fixed !important;
+    top: calc(var(--lth-gnav-h, 3.875rem) + 0.35rem) !important;
+    right: 0.45rem !important;
+    bottom: calc(0.45rem + env(safe-area-inset-bottom, 0px)) !important;
+    left: auto !important;
+    width: min(780px, calc(100vw - 0.6rem)) !important;
+    max-height: none !important;
+    border-radius: 20px 0 0 20px !important;
+    box-shadow: -18px 0 52px rgba(13, 148, 136, 0.1), 0 0 0 1px rgba(13, 148, 136, 0.05) !important;
+    animation: jmsHttpStepVrtDrawerIn 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes jmsHttpStepVrtDrawerIn {
+    from { opacity: 0; transform: translateX(0.75rem); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-vrt .jms-http-step-vrt-drawer__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-vrt .jms-http-step-vrt-drawer__head {
+    flex-shrink: 0;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.75rem !important;
+    padding: 1.1rem 1.45rem !important;
+    border-bottom: 1px solid var(--jms-http-step-vrt-border) !important;
+    background: linear-gradient(180deg, #ffffff 0%, #f0fdfa 100%) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-vrt .jms-http-step-vrt-drawer__head-main {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-vrt .jms-http-step-vrt-drawer__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.16rem 0.6rem;
+    font-size: 0.625rem;
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--jms-http-step-vrt-accent-deep) !important;
+    background: var(--jms-http-step-vrt-accent-soft) !important;
+    border: 1px solid rgba(13, 148, 136, 0.22);
+    border-radius: 999px;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-vrt .jms-step-modal__title {
+    margin: 0 !important;
+    font-size: 1.075rem !important;
+    font-weight: 650 !important;
+    letter-spacing: -0.025em;
+    color: var(--jms-http-step-vrt-text) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-vrt .jms-http-step-vrt-drawer__close {
+    flex: 0 0 auto;
+    width: 2.1rem;
+    height: 2.1rem;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: #64748b;
+    font-size: 1.35rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-vrt .jms-http-step-vrt-drawer__close:hover {
+    background: rgba(13, 148, 136, 0.08);
+    color: var(--jms-http-step-vrt-accent-deep);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-vrt .jms-http-step-vrt-drawer__body {
+    flex: 1 1 auto;
+    overflow: auto;
+    padding: 1.25rem 1.5rem 1rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-vrt .jms-http-step-vrt-drawer__foot {
+    flex-shrink: 0;
+    padding: 0.9rem 1.5rem 1.1rem !important;
+    border-top: 1px solid var(--jms-http-step-vrt-border) !important;
+    background: #fafafa !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-vrt .jms-btn-primary {
+    background: linear-gradient(135deg, #0d9488, #14b8a6) !important;
+    border-color: transparent !important;
+    box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-vrt .jms-btn-primary:hover {
+    background: linear-gradient(135deg, #0f766e, #0d9488) !important;
+}
+
+.jms-http-step-vrt-v1 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.jms-http-step-vrt-v1__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.jms-http-step-vrt-v1__inline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.jms-http-step-vrt-v1__inline--name {
+    flex: 0 0 42%;
+    max-width: 16rem;
+}
+
+.jms-http-step-vrt-v1__inline--comments {
+    flex: 1 1 auto;
+}
+
+.jms-http-step-vrt-v1__inline-label {
+    flex: 0 0 auto;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #475569;
+    white-space: nowrap;
+}
+
+.jms-http-step-vrt-v1__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 9px;
+    font-size: 0.875rem;
+    color: #0f172a;
+    background: #fff;
+    font-family: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.jms-http-step-vrt-v1__input:focus {
+    outline: none;
+    border-color: rgba(13, 148, 136, 0.5);
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+}
+
+.jms-http-step-vrt-v1__input--filename {
+    flex: 1 1 auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.8125rem;
+}
+
+.jms-http-step-vrt-v1__browse {
+    flex: 0 0 auto;
+    padding: 0.45rem 0.75rem;
+    border-radius: 9px;
+    border: 1px solid rgba(13, 148, 136, 0.25);
+    background: #fff;
+    color: var(--jms-http-step-vrt-accent-deep);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.jms-http-step-vrt-v1__browse:hover {
+    background: rgba(13, 148, 136, 0.06);
+    border-color: rgba(13, 148, 136, 0.38);
+}
+
+.jms-http-step-vrt-v1__file-hidden {
+    display: none !important;
+}
+
+.jms-http-step-vrt-v1__file-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: 0.75rem 0.85rem;
+    border-radius: 11px;
+    border: 1px solid rgba(13, 148, 136, 0.14);
+    background: #f8fafc;
+}
+
+.jms-http-step-vrt-v1__file-head {
+    font-size: 0.8125rem;
+    font-weight: 650;
+    color: #334155;
+}
+
+.jms-http-step-vrt-v1__file-row {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.jms-http-step-vrt-v1__file-label {
+    flex: 0 0 auto;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #475569;
+    white-space: nowrap;
+}
+
+.jms-http-step-vrt-v1__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 10px;
+    border: 1px solid rgba(13, 148, 136, 0.12);
+    background: #fff;
+    flex-wrap: wrap;
+}
+
+.jms-http-step-vrt-v1__bar-label {
+    flex: 0 0 auto;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #475569;
+    white-space: nowrap;
+}
+
+.jms-http-step-vrt-v1__bar-options {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+}
+
+.jms-http-step-vrt-v1__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.28rem 0.65rem;
+    border-radius: 999px;
+    border: 1px solid rgba(13, 148, 136, 0.2);
+    background: #fff;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.jms-http-step-vrt-v1__pill:has(input:checked) {
+    background: rgba(13, 148, 136, 0.1);
+    border-color: rgba(13, 148, 136, 0.35);
+}
+
+.jms-http-step-vrt-v1__pill input[type="checkbox"] {
+    width: 0.9rem;
+    height: 0.9rem;
+    margin: 0;
+    accent-color: #0d9488;
+}
+
+.jms-http-step-vrt-v1__pill span {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #334155;
+}
+
+.jms-http-step-vrt-v1__configure {
+    padding: 0.28rem 0.65rem;
+    border-radius: 999px;
+    border: 1px solid rgba(13, 148, 136, 0.25);
+    background: #fff;
+    color: var(--jms-http-step-vrt-accent-deep);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.jms-http-step-vrt-v1__configure:hover,
+.jms-http-step-vrt-v1__configure.is-open {
+    background: rgba(13, 148, 136, 0.08);
+    border-color: rgba(13, 148, 136, 0.38);
+}
+
+.jms-http-step-vrt-v1__enabled {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-left: auto;
+    padding: 0.28rem 0.55rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.jms-http-step-vrt-v1__enabled input[type="checkbox"] {
+    width: 0.9rem;
+    height: 0.9rem;
+    margin: 0;
+    accent-color: #0d9488;
+}
+
+.jms-http-step-vrt-v1__enabled span {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #334155;
+}
+
+@media (max-width: 560px) {
+    .jms-http-step-vrt-v1__meta {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .jms-http-step-vrt-v1__inline--name {
+        flex: 1 1 auto;
+        max-width: none;
+    }
+    .jms-http-step-vrt-v1__bar {
+        flex-wrap: wrap;
+    }
+    .jms-http-step-vrt-v1__enabled {
+        margin-left: 0;
+    }
+}

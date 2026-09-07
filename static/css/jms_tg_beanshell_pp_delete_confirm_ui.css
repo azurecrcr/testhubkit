@@ -1,0 +1,123 @@
+/**
+ * BeanShell PostProcessor · 删除确认弹窗（隔离样式）
+ */
+body.lth-hub-jmeter-tab.jms-bspp-del-confirm-lock {
+    overflow: hidden !important;
+}
+
+body.lth-hub-jmeter-tab .jms-bspp-del-confirm {
+    position: fixed;
+    inset: 0;
+    z-index: 12055;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+}
+
+body.lth-hub-jmeter-tab .jms-bspp-del-confirm--open {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+body.lth-hub-jmeter-tab .jms-bspp-del-confirm__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.36);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+body.lth-hub-jmeter-tab .jms-bspp-del-confirm__panel {
+    position: relative;
+    width: min(100%, 22.5rem);
+    padding: 1.35rem 1.35rem 1.15rem;
+    border-radius: 0.875rem;
+    border: 1px solid rgba(226, 232, 240, 0.96);
+    background: #ffffff;
+    box-shadow:
+        0 24px 48px rgba(15, 23, 42, 0.12),
+        0 1px 0 rgba(255, 255, 255, 0.85) inset;
+    transform: translateY(8px) scale(0.988);
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.lth-hub-jmeter-tab .jms-bspp-del-confirm--open .jms-bspp-del-confirm__panel {
+    transform: translateY(0) scale(1);
+}
+
+body.lth-hub-jmeter-tab .jms-bspp-del-confirm__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 650;
+    letter-spacing: -0.015em;
+    color: #0f172a;
+    line-height: 1.35;
+}
+
+body.lth-hub-jmeter-tab .jms-bspp-del-confirm__message {
+    margin: 0.65rem 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    color: #64748b;
+    word-break: break-word;
+}
+
+body.lth-hub-jmeter-tab .jms-bspp-del-confirm__foot {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+}
+
+body.lth-hub-jmeter-tab .jms-bspp-del-confirm__btn {
+    min-width: 4.5rem;
+    padding: 0.48rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+body.lth-hub-jmeter-tab .jms-bspp-del-confirm__btn--ghost {
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    color: #475569;
+}
+
+body.lth-hub-jmeter-tab .jms-bspp-del-confirm__btn--ghost:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #334155;
+}
+
+body.lth-hub-jmeter-tab .jms-bspp-del-confirm__btn--danger {
+    border: 1px solid #e11d48;
+    background: #e11d48;
+    color: #ffffff;
+}
+
+body.lth-hub-jmeter-tab .jms-bspp-del-confirm__btn--danger:hover {
+    background: #be123c;
+    border-color: #be123c;
+}
+
+body.lth-hub-jmeter-tab .jms-bspp-del-confirm__btn:focus-visible {
+    outline: 2px solid rgba(13, 148, 136, 0.45);
+    outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+    body.lth-hub-jmeter-tab .jms-bspp-del-confirm__foot {
+        flex-direction: column-reverse;
+    }
+
+    body.lth-hub-jmeter-tab .jms-bspp-del-confirm__btn {
+        width: 100%;
+    }
+}

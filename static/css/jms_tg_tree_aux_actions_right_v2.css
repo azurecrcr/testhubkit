@@ -1,0 +1,49 @@
+/**
+ * Studio v2 · Aux/后置处理器卡片 ⋯ 靠右（覆盖 aux_compact / row_layout_fit，POST-JS 末位）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node__body {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node .jms-aux-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--regex .jms-aux-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--xpath .jms-aux-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--jdbc .jms-aux-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--beanshell .jms-aux-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--json .jms-aux-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--jsr223 .jms-aux-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--debug .jms-aux-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--config .jms-aux-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--tg-listener .jms-aux-card {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+    align-self: stretch !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card__content,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card__content--tree {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card .jms-config-card-toolbar,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card .jms-config-card-toolbar .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-processor-row .lth-step-actions {
+    margin-left: auto !important;
+    margin-right: 0.35rem !important;
+    flex: 0 0 auto !important;
+    align-self: center !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card .jms-config-card-toolbar .lth-step-actions {
+    margin-left: auto !important;
+    margin-right: 0.35rem !important;
+}

@@ -1,0 +1,90 @@
+/**
+ * ResultCollector 弹窗 · saveConfig 面板样式（TG 查看结果树 / 聚合报告共享）
+ */
+.jms-tg-rc-savecfg {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.jms-tg-rc-savecfg__head {
+    font-size: 0.8125rem;
+    font-weight: 650;
+    color: #334155;
+}
+
+.jms-tg-rc-savecfg__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+    gap: 0.35rem 0.55rem;
+    max-height: 14rem;
+    overflow: auto;
+    padding: 0.15rem 0.05rem;
+}
+
+.jms-tg-rc-savecfg__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.22rem 0.35rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.75rem;
+    color: #475569;
+    transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.jms-tg-rc-savecfg__item:hover {
+    background: rgba(15, 23, 42, 0.04);
+    border-color: #e2e8f0;
+}
+
+.jms-tg-rc-savecfg__item input[type="checkbox"] {
+    width: 0.85rem;
+    height: 0.85rem;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.jms-tg-rc-savecfg__hint {
+    margin: 0;
+    font-size: 0.72rem;
+    line-height: 1.5;
+    color: #94a3b8;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-tg-vrt-v1__configure-panel:not([hidden]),
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-aggregate-report .jms-tg-agg-v1__configure-panel:not([hidden]) {
+    display: block !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-view-results-tree .jms-tg-vrt-v1__configure,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-aggregate-report .jms-tg-agg-v1__configure {
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.jms-tg-rc-filename--readonly {
+    background: #f8fafc !important;
+    color: #475569 !important;
+    border-color: #e2e8f0 !important;
+    cursor: default;
+    user-select: all;
+}
+
+.jms-tg-rc-filename__hint {
+    margin: 0.35rem 0 0;
+    font-size: 0.72rem;
+    line-height: 1.5;
+    color: #94a3b8;
+}
+
+.jms-tg-rc-filename__hint code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.7rem;
+    padding: 0.05rem 0.25rem;
+    border-radius: 4px;
+    background: rgba(15, 23, 42, 0.05);
+}

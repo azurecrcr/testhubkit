@@ -1,0 +1,268 @@
+{% extends "layout/base_toolkit.html" %}
+{% set tc_view = active_tool and active_tool.id == 'test-cases' %}
+{% set media_data_view = active_tool and active_tool.id == 'media-data-hub' %}
+{% set hf_tool_page = tc_view or media_data_view %}
+{% block body_class %}{% if not active_tool %}agh-home-body{% elif media_data_view %}mdh-hub-page{% elif tc_view %}tc-hub-page{% endif %}{% endblock %}
+
+{% block page_title %}{{ hf_site_brand_title }}{% endblock %}
+
+{% block head %}
+    {% if not active_tool %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app_home_grove.css') }}?v=20260716agh3">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/agh_gnav_glass.css') }}?v=20260731aghmsg1">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="{{ url_for('static', filename='js/app_home_grove.js') }}?v=20260716agh3" defer></script>
+    {% endif %}
+
+    <!-- 引入 Tailwind（同源托管，避免 Chrome 扩展等拦截第三方 CDN 脚本） -->
+    <script>(function(){var w=console.warn;console.warn=function(){var a=arguments[0];if(typeof a==="string"&&(a.indexOf("cdn.tailwindcss.com")!==-1||a.indexOf("should not be used in production")!==-1))return;return w.apply(console,arguments);};})();</script>
+    <script src="{{ url_for('static', filename='vendor/tailwindcss-cdn-3.4.10.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toolkit.css') }}?v=20260726tcfab1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/page_shells.css') }}?v=20260716roses2">
+    {% if tc_view %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tc_lavender_chrome.css') }}?v=20260729msgnav4">
+    {% endif %}
+    {% if media_data_view %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mdh_pink_chrome.css') }}?v=20260729msgnav4">
+    {% endif %}
+    {% if tc_view %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/jsmind-0.8.7.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/smm/simpleMindMap.esm.min.css') }}">
+<script src="{{ url_for('static', filename='vendor/jsmind-0.8.7.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='vendor/jsmind.draggable-node-0.8.7.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/mindmap_view_zoom.js') }}?v=20260530" defer></script>
+    <script src="{{ url_for('static', filename='js/mindmap_free_drag.js') }}?v=20260616b" defer></script>
+    <script src="{{ url_for('static', filename='vendor/smm/simpleMindMap.umd.min.js') }}?v=20260710quota4" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_ai_config_bridge.js') }}?v=20260622casedot1" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='dist/tc-workbench/tc-workbench-page.css') }}?v=20260811perf2">
+    <script src="{{ url_for('static', filename='js/tc_table_area_compact_ro_guard.js') }}?v=20260618fill11"></script>
+    <script src="{{ url_for('static', filename='js/tc_ai_generate_notify.js') }}?v=20260710attachclean1"></script>
+    <script src="{{ url_for('static', filename='js/tc_workbench_data.js') }}?v=20260614datasplit2"></script>
+    {% if TC_WB_BUNDLE_ENABLED %}
+    <script src="{{ url_for('static', filename='dist/tc-workbench/tc-workbench-enhancements.js') }}?v=20260804reasonperf1" defer></script>
+    {% else %}
+    <script src="{{ url_for('static', filename='js/tc_workbench_enhancements.js') }}?v=20260804reasonperf1" defer></script>
+    {% endif %}
+    <script src="{{ url_for('static', filename='js/tc_share_review_case_tabs.js') }}?v=20260624reviewtabs3" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_share_mindmap_preview_meta.js') }}?v=20260624previewmindmap1" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_share_requirement_picker.js') }}?v=20260624previewmindmap1" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_workbench_modal_viewport.js') }}?v=20260625modalvp1" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_share_workbench.js') }}?v=20260624previewmindmap1" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_login_merge.js') }}?v=20260618qcbar1" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_table_productivity.js') }}?v=20260710quota4" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_ai_form_prefs.js') }}?v=20260614lanhuclear3" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_tree_gen_btn.js') }}?v=20260618genbtn1" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_workbench/l3_ui/tc_gen_stage_ui.js') }}?v=20260620qcbarfast1" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_workbench/l3_ui/tc_gen_table_overlay.js') }}?v=20260622genoverlay6" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_workbench/l3_ui/tc_qc_table_overlay.js') }}?v=20260622qcoverlay1" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_workbench/l3_ui/tc_fill_table_overlay.js') }}?v=20260622filloverlay1" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_workbench/l3_ui/tc_fill_progress_scroll_layout.js') }}?v=20260622fillscrollbar2" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_workbench/l3_ui/tc_gen_anim_hooks.js') }}" defer></script>
+
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% include 'partials/toolkit_header.html' %}
+
+    {% if not active_tool %}{# Three.js canvas removed; decoration lives in home_dashboard #}{% endif %}
+
+    {% if tc_view %}
+    <div class="tc-ai-page__bg" aria-hidden="true">
+        <picture>
+            <source srcset="{{ url_for('static', filename='images/test-cases/tc-ai-page-bg.webp') }}?v=20260716lavender2" type="image/webp">
+            <img src="{{ url_for('static', filename='images/test-cases/tc-ai-page-bg.png') }}?v=20260716lavender2" alt="" class="tc-ai-page__bg-img" width="1920" height="900" loading="eager" decoding="async">
+        </picture>
+        <div class="tc-ai-page__bg-scrim"></div>
+    </div>
+    {% elif media_data_view %}
+    <div class="mdh-page__bg" aria-hidden="true">
+        <picture>
+            <source srcset="{{ url_for('static', filename='images/media/mdh-page-bg.webp') }}?v=20260716roses2" type="image/webp">
+            <img src="{{ url_for('static', filename='images/media/mdh-page-bg.png') }}?v=20260716roses2" alt="" class="mdh-page__bg-img" width="1920" height="1280" loading="lazy" decoding="async">
+        </picture>
+        <div class="mdh-page__bg-scrim"></div>
+    </div>
+    {% endif %}
+
+    <!-- 主内容区域 -->
+    <main class="min-h-screen relative {% if not active_tool %}agh-home-main {% endif %}{% if hf_tool_page %}hf-tool-page-main {% endif %}{% if tc_view %}tc-page-main-testcase overflow-x-auto overflow-y-visible{% elif not active_tool %}overflow-x-hidden{% else %}overflow-hidden{% endif %}{% if active_tool and not tc_view and not media_data_view %} bg-[radial-gradient(circle_at_15%_10%,#dbeafe_0%,#eef2ff_30%,#f8fafc_70%)]{% endif %}">
+        <div class="container mx-auto relative z-[1] {% if hf_tool_page %}px-3 py-5 sm:px-4 sm:py-7 lg:py-9{% else %}px-4 py-12{% endif %}">
+            {% if not active_tool %}
+            {% include 'partials/home_dashboard.html' %}
+            {% else %}
+            <!-- 工具页面 -->
+            {% if tc_view %}
+            {% include 'partials/tools/test_case_shell.html' %}
+            {% else %}
+            <!-- 其他工具（媒体与数据工具箱等）：外卡与测试用例页一致；工具箱页不展示外层工具标题栏 -->
+            <div class="mx-auto {% if media_data_view %}max-w-7xl{% else %}max-w-4xl{% endif %}">
+                <div class="ds-tool-outer-card{% if media_data_view %} ds-tool-outer-card--media-studio{% endif %}">
+                    {% if active_tool and not media_data_view %}
+                    <div class="ds-tool-header-shell relative">
+                        <div class="ds-tool-header-bar">
+                            <div class="ds-tool-header-title-block">
+                                <h2 class="text-base sm:text-lg leading-tight">{{ active_tool.name }}</h2>
+                                {% if active_tool.description %}
+                                <p class="ds-tool-header-desc">{{ active_tool.description }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="ds-tool-main-shell p-4 sm:p-5 lg:p-6 ds-tool-body{% if media_data_view %} ds-tool-main-shell--media-studio{% endif %}">
+            {% endif %}
+                        {% if media_data_view %}
+                        {% include 'partials/tools/media_data_hub.html' %}
+                        {% endif %}
+
+                        <!-- 数据编解码工具（JSON + Base64） -->
+
+                        <!-- 测试用例生成工具：主白卡片（见 partials/tools/test_case_main.html） -->
+                        {% if tc_view %}
+                        {% include 'partials/tools/test_cases_hub.html' %}
+                        {% endif %}
+                        <!-- 图片格式转换工具（已合并到图片工具工作台） -->
+                        {% if false %}
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <!-- 左侧：上传和预览 -->
+                            <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                                <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6">
+                                    <div class="flex items-center">
+                                        <span class="text-3xl mr-4">🔄</span>
+                                        <div>
+                                            <h3 class="text-2xl font-bold">图片格式转换</h3>
+                                            <p class="text-sm opacity-80 mt-1">上传图片并转换格式</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-8">
+                                    <!-- 图片上传 -->
+                                    <div class="form-group mb-6">
+                                        <label class="form-label">上传图片</label>
+                                        <div class="upload-section" id="format-upload-section">
+                                            <div class="text-4xl mb-3">📁</div>
+                                            <div class="text-base text-gray-600 mb-4">点击或拖拽图片到此处</div>
+                                            <input type="file" id="format-image-input" accept="image/png,image/jpeg,image/bmp,image/tiff,image/webp" class="hidden">
+                                            <button class="upload-btn" onclick="document.getElementById('format-image-input').click()">选择文件</button>
+                                            <p class="text-xs text-slate-500 mt-3 text-center leading-relaxed">单张不超过 {{ IMAGE_MAX_UPLOAD_MB }} MB；请求超时或服务器繁忙时会自动重试最多 {{ IMAGE_TOOL_MAX_RETRIES }} 次。</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- 图片预览 -->
+                                    <div id="format-image-preview" class="mt-6" style="display: none;">
+                                        <div class="bg-gray-50 p-4 rounded-xl">
+                                            <img id="format-preview-img" class="preview-image mx-auto" src="" alt="预览">
+                                            <div class="file-info mt-4 flex flex-wrap gap-2 justify-between items-center">
+                                                <div class="flex flex-wrap gap-2">
+                                                    <span class="info-tag info-tag-blue">
+                                                        📄 <span id="format-original-name">-</span>
+                                                    </span>
+                                                    <span class="info-tag info-tag-green">
+                                                        📐 <span id="format-original-format">-</span>
+                                                    </span>
+                                                </div>
+                                                <button type="button" id="format-reupload-btn" class="btn btn-secondary text-sm py-1 px-3">
+                                                    重新上传
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 右侧：格式选择和转换 -->
+                            <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                                <div class="bg-gradient-to-r from-orange-500 to-red-500 text-white p-6">
+                                    <div class="flex items-center">
+                                        <span class="text-3xl mr-4">🎨</span>
+                                        <div>
+                                            <h3 class="text-2xl font-bold">选择目标格式</h3>
+                                            <p class="text-sm opacity-80 mt-1">选择要转换的格式</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-8">
+                                    <!-- 目标格式选择 -->
+                                    <div class="form-group mb-6">
+                                        <label class="form-label">目标格式</label>
+                                        <div id="format-options" class="grid grid-cols-2 gap-3">
+                                            <!-- 动态生成格式选项 -->
+                                        </div>
+                                    </div>
+
+                                    <!-- 质量选项（仅对有损格式显示） -->
+                                    <div id="quality-section" class="form-group mb-6" style="display: none;">
+                                        <label class="form-label">质量 (仅有损格式)</label>
+                                        <input type="range" id="format-quality" min="1" max="100" value="85" class="w-full">
+                                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                            <span>低质量</span>
+                                            <span id="quality-value">85</span>
+                                            <span>高质量</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 转换按钮 -->
+                                    <div class="flex gap-3 mb-6">
+                                        <button id="convert-format-btn" class="btn btn-primary flex-1" style="background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);" disabled>
+                                            转换格式
+                                        </button>
+                                    </div>
+
+                                    <!-- 转换结果 -->
+                                    <div class="form-group">
+                                        <label class="form-label">转换结果</label>
+                                        <div id="format-result" class="ds-output-well">
+                                            <div class="ds-empty">
+                                                <span class="ds-empty__icon" aria-hidden="true">🖼</span>
+                                                <div class="ds-empty__title">尚无转换结果</div>
+                                                <div class="ds-empty__desc">选择目标格式并点击「转换格式」后，在此下载文件</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+            {% if tc_view %}
+            {% else %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+    </main>
+
+    {% if hf_tool_page and not tc_view %}
+    <div id="hf-float-toast" class="hf-float-toast hf-float-toast--top" role="status" aria-live="polite" aria-atomic="true">
+        <div id="hf-float-toast-inner" class="hf-float-toast__inner"></div>
+    </div>
+    {% endif %}
+
+    {% if tc_view %}
+    {% include 'partials/tools/test_case_overlays.html' %}
+    {% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script>window.HF_TOOLKIT_RESTRICTED = {{ hf_toolkit_restricted_json | safe }};</script>
+    <script src="{{ url_for('static', filename='js/hf_toolkit_lock.js') }}?v=20260603lb0"></script>
+    {# 用例工作台脚本仅在 test-cases 页加载，避免 /app 首页误拉大包 #}
+    {% if tc_view %}
+    <script src="{{ url_for('static', filename='js/tc_lanhu_tree_case_status.js') }}?v=20260622casedot1" defer></script>
+    {% include 'partials/tools/tc_workbench/_config.html' %}
+    {% include 'partials/tools/tc_workbench/_scripts_manifest.html' %}
+    <script src="{{ url_for('static', filename='js/tc_table_area_compact.js') }}?v=20260618fill11"></script>
+    {% elif media_data_view %}
+    {# 媒体工具页：轻量 Tab 切换 + 媒体/编解码业务脚本（不含 VXE/用例表） #}
+    {% include 'partials/tools/tc_workbench/_config.html' %}
+    <script src="{{ url_for('static', filename='js/mdh_tool_tabs.js') }}?v=20260804matrixalign1"></script>
+    <script src="{{ url_for('static', filename='js/tc-workbench-shell.js') }}?v=20260804matrixalign1"></script>
+    {% endif %}
+{% endblock %}

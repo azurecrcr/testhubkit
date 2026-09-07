@@ -1,0 +1,87 @@
+<div id="tc-share-requirement-modal" class="tc-share-review-modal tc-share-modal hidden" aria-hidden="true">
+    <div class="tc-share-review-modal__backdrop" aria-hidden="true"></div>
+    <div class="tc-share-review-modal__panel" role="dialog" aria-modal="true" aria-labelledby="tc-share-requirement-title">
+        <div class="tc-share-review-modal__header">
+            <div class="tc-share-review-modal__header-main">
+                <div class="tc-share-review-modal__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path stroke-linecap="round" d="M9 12h6M9 16h4"/></svg>
+                </div>
+                <div class="tc-share-review-modal__titles">
+                    <h3 id="tc-share-requirement-title" class="tc-share-review-modal__title">用例评审</h3>
+                    <p class="tc-share-review-modal__subtitle">选择需求页并配置评审链接，多选时按勾选顺序合并</p>
+                </div>
+            </div>
+            <button type="button" id="tc-share-requirement-close" class="tc-share-review-modal__close" aria-label="关闭">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+        </div>
+        <div class="tc-share-review-modal__scroll">
+            <section class="tc-share-review-modal__section" aria-labelledby="tc-share-review-req-label">
+                <div class="tc-share-review-modal__section-head">
+                    <span id="tc-share-review-req-label" class="tc-share-review-modal__section-label">选择需求</span>
+                    <span id="tc-share-requirement-summary" class="tc-share-review-modal__summary">加载中…</span>
+                </div>
+                <div id="tc-share-review-case-tabs" class="tc-share-review-case-tabs" role="tablist" aria-label="用例类型">
+                    <button type="button" id="tc-share-review-tab-table" class="tc-share-review-case-tabs__btn tc-share-review-case-tabs__btn--active" role="tab" aria-selected="true" aria-controls="tc-share-requirement-list">表格用例</button>
+                    <button type="button" id="tc-share-review-tab-mindmap" class="tc-share-review-case-tabs__btn" role="tab" aria-selected="false" aria-controls="tc-share-requirement-list">导图用例</button>
+                </div>
+                <div class="tc-share-review-modal__list-wrap">
+                    <div id="tc-share-requirement-loading" class="tc-share-review-modal__state tc-share-requirement-loading" role="status">加载中…</div>
+                    <div id="tc-share-requirement-empty" class="tc-share-review-modal__state tc-share-requirement-empty hidden">暂无可选需求</div>
+                    <div id="tc-share-requirement-list" class="tc-share-requirement-list"></div>
+                </div>
+            </section>
+            <section class="tc-share-review-modal__section tc-share-review-modal__section--settings" aria-labelledby="tc-share-review-settings-label">
+                <span id="tc-share-review-settings-label" class="tc-share-review-modal__section-label">评审设置</span>
+                <div class="tc-share-review-modal__settings">
+                    <label class="tc-share-review-modal__field">
+                        <span class="tc-share-review-modal__field-label">标题</span>
+                        <input type="text" id="tc-share-create-title" class="tc-share-review-modal__input" maxlength="200" placeholder="如：登录模块 v2 评审" autocomplete="off">
+                    </label>
+                    <label class="tc-share-review-modal__field tc-share-review-modal__field--compact">
+                        <span class="tc-share-review-modal__field-label">有效期</span>
+                        <select id="tc-share-create-expires" class="tc-share-review-modal__input tc-share-review-modal__select">
+                            <option value="1">1 天</option>
+                            <option value="7">7 天</option>
+                            <option value="30" selected>30 天</option>
+                        </select>
+                    </label>
+                    <label class="tc-share-review-modal__toggle">
+                        <input type="checkbox" id="tc-share-create-comments" checked>
+                        <span class="tc-share-review-modal__toggle-box" aria-hidden="true"></span>
+                        <span class="tc-share-review-modal__toggle-text">允许匿名评论</span>
+                    </label>
+                </div>
+            </section>
+        </div>
+        <div class="tc-share-review-modal__footer">
+            <button type="button" id="tc-share-requirement-cancel" class="tc-share-review-modal__btn tc-share-review-modal__btn--ghost">取消</button>
+            <button type="button" id="tc-share-requirement-submit" class="tc-share-review-modal__btn tc-share-review-modal__btn--primary" disabled>创建并复制链接</button>
+        </div>
+    </div>
+</div>
+
+{# 协作评审：我的分享 / 评论（旁路模块，不改表格核心逻辑） #}
+
+
+<div id="tc-share-list-modal" class="tc-share-modal fixed inset-0 z-[86] hidden items-center justify-center bg-black/45 p-4" aria-hidden="true">
+    <div class="tc-share-modal__panel tc-share-modal__panel--wide relative flex max-h-[88vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+        <div class="tc-share-modal__head flex items-center justify-between border-b border-slate-100 px-5 py-3.5">
+            <h3 class="tc-share-modal__title m-0">我的评审</h3>
+            <button type="button" id="tc-share-list-close" class="rounded-full p-2 text-slate-400 hover:bg-slate-100" aria-label="关闭">✕</button>
+        </div>
+        <div id="tc-share-list-body" class="tc-share-modal__body overflow-auto p-5 text-sm">
+            <p class="text-slate-500">加载中…</p>
+        </div>
+    </div>
+</div>
+
+<div id="tc-share-comments-modal" class="tc-share-modal fixed inset-0 z-[87] hidden items-center justify-center bg-black/45 p-4" aria-hidden="true">
+    <div class="tc-share-modal__panel tc-share-modal__panel--wide relative flex max-h-[88vh] w-full max-w-xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+        <div class="tc-share-modal__head flex items-center justify-between border-b border-slate-100 px-5 py-3.5">
+            <h3 id="tc-share-comments-modal-title" class="tc-share-modal__title m-0">评论</h3>
+            <button type="button" id="tc-share-comments-close" class="rounded-full p-2 text-slate-400 hover:bg-slate-100" aria-label="关闭">✕</button>
+        </div>
+        <div id="tc-share-comments-body" class="tc-share-modal__body overflow-auto p-5 text-sm"></div>
+    </div>
+</div>

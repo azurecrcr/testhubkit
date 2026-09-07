@@ -1,0 +1,19 @@
+{
+  "version": "1",
+  "templates": {
+    "Dummy Sampler": {
+      "alias": "Dummy Sampler",
+      "testclass": "Dummy Sampler",
+      "guiclass": "DummySamplerGui",
+      "class": "",
+      "jmx_fragment": "<Dummy Sampler guiclass=\"DummySamplerGui\" testclass=\"Dummy Sampler\" testname=\"NEW\" enabled=\"true\">\n</Dummy Sampler>"
+    },
+    "PerfMon Metrics Collector": {
+      "alias": "PerfMon Metrics Collector",
+      "testclass": "PerfMon Metrics Collector",
+      "guiclass": "PerfMonGui",
+      "class": "",
+      "jmx_fragment": "<PerfMon Metrics Collector guiclass=\"PerfMonGui\" testclass=\"PerfMon Metrics Collector\" testname=\"NEW\" enabled=\"true\">\n</PerfMon Metrics Collector>"
+    }
+  }
+}

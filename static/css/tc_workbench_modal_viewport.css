@@ -1,0 +1,90 @@
+/**
+ * 用例工作台 · 需求选择 / 用例评审弹窗视口自适应（隔离模块，不影响其它弹窗）
+ * 解决：小屏时弹窗被顶部 .hf-gnav (z-index:100) 遮挡、高度溢出不可见
+ */
+:root {
+    --tc-wb-modal-edge-x: max(0.75rem, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+    --tc-wb-modal-edge-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+    --tc-wb-modal-nav-offset: max(env(safe-area-inset-top, 0px), var(--hf-gnav-height, 3.5rem));
+    --tc-wb-modal-top-pad: calc(var(--tc-wb-modal-nav-offset) + 0.65rem);
+}
+
+#tc-export-requirement-modal.tc-req-picker-modal,
+#tc-export-xmind-modal.tc-req-picker-modal,
+#tc-share-requirement-modal.tc-share-review-modal {
+    z-index: 110 !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding:
+        var(--tc-wb-modal-top-pad)
+        var(--tc-wb-modal-edge-x)
+        var(--tc-wb-modal-edge-bottom) !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+#tc-export-requirement-modal .tc-req-picker-modal__panel,
+#tc-export-xmind-modal .tc-req-picker-modal__panel,
+#tc-share-requirement-modal .tc-share-review-modal__panel {
+    max-height: min(
+        88vh,
+        calc(100dvh - var(--tc-wb-modal-top-pad) - var(--tc-wb-modal-edge-bottom))
+    ) !important;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    flex-shrink: 0;
+}
+
+#tc-share-requirement-modal .tc-share-requirement-list {
+    max-height: min(
+        36vh,
+        calc(100dvh - var(--tc-wb-modal-top-pad) - var(--tc-wb-modal-edge-bottom) - 17rem)
+    );
+}
+
+@media (max-width: 640px) {
+    :root {
+        --tc-wb-modal-edge-x: max(0.5rem, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+    }
+
+    #tc-export-requirement-modal .tc-req-picker-modal__header,
+    #tc-export-xmind-modal .tc-req-picker-modal__header,
+    #tc-share-requirement-modal .tc-share-review-modal__header {
+        padding-top: 0.85rem;
+        padding-bottom: 0.75rem;
+    }
+
+    #tc-share-requirement-modal .tc-share-review-modal__settings {
+        grid-template-columns: 1fr;
+    }
+
+    #tc-share-requirement-modal .tc-share-review-modal__field--compact {
+        width: 100%;
+    }
+}
+
+@media (max-height: 720px) {
+    #tc-export-requirement-modal .tc-req-picker-modal__subtitle,
+    #tc-export-xmind-modal .tc-req-picker-modal__subtitle,
+    #tc-share-requirement-modal .tc-share-review-modal__subtitle {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    #tc-share-requirement-modal .tc-share-requirement-list {
+        max-height: min(28vh, 10rem);
+    }
+}
+
+@media (max-height: 560px) {
+    #tc-share-requirement-modal .tc-share-review-modal__subtitle,
+    #tc-export-requirement-modal .tc-req-picker-modal__subtitle,
+    #tc-export-xmind-modal .tc-req-picker-modal__subtitle {
+        display: none;
+    }
+}

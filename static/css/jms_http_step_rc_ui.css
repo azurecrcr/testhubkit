@@ -1,0 +1,35 @@
+/**
+ * HTTP 步骤 · ResultCollector 弹窗共享片段（文件名只读、saveConfig 面板）
+ */
+.jms-http-step-rc-filename--readonly {
+    background: #f8fafc !important;
+    color: #475569 !important;
+    border-color: #e2e8f0 !important;
+    cursor: default;
+    user-select: all;
+}
+
+.jms-http-step-rc-filename__hint {
+    margin: 0.35rem 0 0;
+    font-size: 0.72rem;
+    line-height: 1.5;
+    color: #94a3b8;
+}
+
+.jms-http-step-rc-filename__hint code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.7rem;
+    padding: 0.05rem 0.25rem;
+    border-radius: 4px;
+    background: rgba(15, 23, 42, 0.05);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-vrt .jms-http-step-vrt-v1__configure-panel:not([hidden]),
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-agg .jms-http-step-agg-v1__configure-panel:not([hidden]) {
+    display: block !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-vrt .jms-tg-rc-savecfg,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-agg .jms-tg-rc-savecfg {
+    margin-top: 0.5rem;
+}

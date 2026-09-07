@@ -1,0 +1,236 @@
+/* =================================================================
+   用例生成 — 表格区域蒙层（仅 TcGenTableOverlay 使用）
+   ================================================================= */
+.tc-workbench-scope #tc-vxe-table-view-panel.tc-vxe-table-view-panel--gen-overlay {
+    position: relative;
+}
+
+.tc-gen-table-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 24;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.tc-gen-table-overlay.hidden {
+    display: none !important;
+}
+
+.tc-gen-table-overlay.tc-gen-table-overlay--visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.tc-gen-table-overlay__backdrop {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(99, 102, 241, 0.08), transparent 70%),
+        rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(10px) saturate(1.15);
+    -webkit-backdrop-filter: blur(10px) saturate(1.15);
+}
+
+.tc-gen-table-overlay__content {
+    position: relative;
+    z-index: 1;
+    width: min(18rem, calc(100% - 2rem));
+    padding: 1.35rem 1.25rem 1.15rem;
+    border-radius: 16px;
+    border: 1px solid rgba(99, 102, 241, 0.12);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.65) inset;
+    text-align: center;
+}
+
+.tc-gen-table-overlay__mark {
+    position: relative;
+    width: 3.25rem;
+    height: 3.25rem;
+    margin: 0 auto 0.85rem;
+}
+
+.tc-gen-table-overlay__ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid rgba(99, 102, 241, 0.18);
+    animation: tc-gen-table-overlay-ring 2.4s ease-out infinite;
+}
+
+.tc-gen-table-overlay__ring--delay {
+    animation-delay: 1.2s;
+}
+
+.tc-gen-table-overlay__core {
+    position: absolute;
+    inset: 0.55rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #6366f1;
+    background: linear-gradient(145deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.08));
+    box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.1) inset;
+}
+
+.tc-gen-table-overlay__core svg {
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+.tc-gen-table-overlay__title {
+    margin: 0 0 0.35rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: #1e293b;
+}
+
+.tc-gen-table-overlay__stage {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #6366f1;
+}
+
+.tc-gen-table-overlay__meta {
+    margin: 0.45rem 0 0;
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: #64748b;
+}
+
+.tc-gen-table-overlay__meta.hidden {
+    display: none;
+}
+
+.tc-gen-table-overlay__progress {
+    margin-top: 0.95rem;
+}
+
+.tc-gen-table-overlay__progress-track {
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(99, 102, 241, 0.12);
+    overflow: hidden;
+}
+
+.tc-gen-table-overlay__progress-fill {
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #818cf8, #6366f1 55%, #8b5cf6);
+    transition: width 0.35s ease;
+}
+
+@keyframes tc-gen-table-overlay-ring {
+    0% {
+        transform: scale(0.72);
+        opacity: 0.85;
+    }
+    70% {
+        transform: scale(1.08);
+        opacity: 0.15;
+    }
+    100% {
+        transform: scale(1.12);
+        opacity: 0;
+    }
+}
+
+
+/* 写入表格阶段：平滑过渡到「表格可见 + 高透明只读遮罩 + 右下角卡片」 */
+.tc-gen-table-overlay__table-shield {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.03);
+    transition: opacity 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tc-gen-table-overlay__backdrop {
+    transition:
+        opacity 0.52s cubic-bezier(0.4, 0, 0.2, 1),
+        backdrop-filter 0.52s cubic-bezier(0.4, 0, 0.2, 1),
+        -webkit-backdrop-filter 0.52s cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tc-gen-table-overlay__content {
+    transition:
+        transform 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+        width 0.48s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.48s ease;
+}
+
+.tc-gen-table-overlay.tc-gen-table-overlay--table-peek {
+    background: transparent;
+    pointer-events: auto;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 0.85rem 1rem 1rem;
+}
+
+.tc-gen-table-overlay.tc-gen-table-overlay--table-peek .tc-gen-table-overlay__backdrop {
+    opacity: 0;
+    visibility: hidden;
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
+    pointer-events: none;
+}
+
+.tc-gen-table-overlay.tc-gen-table-overlay--table-peek .tc-gen-table-overlay__table-shield {
+    opacity: 1;
+    pointer-events: auto;
+    cursor: default;
+}
+
+.tc-gen-table-overlay.tc-gen-table-overlay--table-peek .tc-gen-table-overlay__content {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+    width: min(16.5rem, calc(100% - 1.5rem));
+    box-shadow:
+        0 12px 32px rgba(15, 23, 42, 0.14),
+        0 0 0 1px rgba(99, 102, 241, 0.1);
+}
+
+.tc-gen-table-overlay.tc-gen-table-overlay--table-peek.tc-gen-table-overlay--peek-animate .tc-gen-table-overlay__content {
+    animation: tc-gen-table-overlay-card-relocate 0.52s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes tc-gen-table-overlay-card-relocate {
+    0% {
+        transform: translate(-36%, -40%) scale(1.04);
+        opacity: 0.94;
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+}
+
+.tc-workbench-scope #tc-vxe-table-view-panel.tc-vxe-table-view-panel--gen-overlay-peek {
+    position: relative;
+}
+
+.tc-workbench-scope #tc-vxe-table-view-panel.tc-vxe-table-view-panel--gen-overlay-readonly {
+    user-select: none;
+}
+
+.tc-workbench-scope #tc-vxe-table-view-panel.tc-vxe-table-view-panel--gen-overlay-readonly .tc-vxe-table-mount,
+.tc-workbench-scope #tc-vxe-table-view-panel.tc-vxe-table-view-panel--gen-overlay-readonly .vxe-table--body-wrapper {
+    pointer-events: none;
+}

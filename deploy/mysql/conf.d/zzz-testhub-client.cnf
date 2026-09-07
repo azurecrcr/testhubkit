@@ -1,0 +1,19 @@
+# TestHub MySQL — Navicat 长连接稳定性（不影响应用 SQL 逻辑）
+[mysqld]
+# 空闲 2 小时后断开会话（用户主动断开除外）
+wait_timeout = 7200
+interactive_timeout = 7200
+
+# 避免每次连接做 DNS 反查导致延迟
+skip-name-resolve = 1
+
+# 应用 + Navicat + 管理工具连接数余量
+max_connections = 300
+
+# 长查询/慢网络下避免误判断连（秒）
+net_read_timeout = 7200
+net_write_timeout = 7200
+
+# MySQL X Protocol（Navicat 若走 X 协议）
+mysqlx_wait_timeout = 7200
+mysqlx_interactive_timeout = 7200

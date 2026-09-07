@@ -1,0 +1,31 @@
+/**
+ * 树形线程组详情顶栏：去除生硬竖线、弱化底部分割（隔离）
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-head--single .jms-tg-tree-head__sep {
+    display: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-head--single .jms-tg-tree-tools--inline {
+    gap: 0.38rem !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-head--single .jms-tg-tree-head__group--add {
+    padding-right: 0.28rem !important;
+    margin-right: 0.12rem !important;
+    border-right: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-head--single .jms-tg-tree-head__group--settings {
+    margin-left: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-head--single {
+    border-bottom: none !important;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%) !important;
+    box-shadow: inset 0 -1px 0 rgba(226, 232, 240, 0.28) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-head--single .jms-tg-tree-head__group--listeners {
+    background: rgba(248, 250, 252, 0.88) !important;
+    border-color: rgba(226, 232, 240, 0.55) !important;
+}

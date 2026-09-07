@@ -1,0 +1,213 @@
+/**
+ * JMeter 压测工作台 · 绿色主基调（隔离覆盖，仅 jmeter-tab 相关弹窗与底栏）
+ */
+:root {
+    --jms-green-50: #ecfdf5;
+    --jms-green-100: #d1fae5;
+    --jms-green-200: #a7f3d0;
+    --jms-green-600: #059669;
+    --jms-green-700: #047857;
+    --jms-green-800: #065f46;
+    --jms-green-900: #064e3b;
+    --jms-green-primary: linear-gradient(135deg, #10b981 0%, #059669 55%, #047857 100%);
+    --jms-green-panel: linear-gradient(168deg, #ffffff 0%, #f0fdf4 45%, #ecfdf5 100%);
+    --jms-green-overlay: rgba(6, 78, 59, 0.42);
+}
+
+/* ===== 底部操作栏 ===== */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock {
+    border: 1px solid rgba(16, 185, 129, 0.35) !important;
+    background: linear-gradient(168deg, #ecfdf5 0%, #d1fae5 38%, #a7f3d0 72%, #d1fae5 100%) !important;
+    box-shadow: 0 -3px 22px -10px rgba(5, 150, 105, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.55) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .jms-action-btn,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .lth-dock-btn {
+    border: 1px solid rgba(16, 185, 129, 0.38) !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+    color: var(--jms-green-800) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .jms-action-btn:hover:not(:disabled),
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .lth-dock-btn:hover:not(:disabled) {
+    background: rgba(236, 253, 245, 0.95) !important;
+    border-color: rgba(5, 150, 105, 0.55) !important;
+    color: var(--jms-green-900) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock #btn-generate-result,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .lth-dock-btn--primary {
+    background: var(--jms-green-primary) !important;
+    border-color: rgba(4, 120, 87, 0.35) !important;
+    color: #f0fdf4 !important;
+    box-shadow: 0 2px 12px -2px rgba(5, 150, 105, 0.45) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-more-panel {
+    border-color: rgba(16, 185, 129, 0.35) !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    box-shadow: 0 12px 28px rgba(6, 78, 59, 0.14) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-more-item {
+    color: var(--jms-green-800) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-more-item:hover {
+    background: var(--jms-green-50) !important;
+    color: var(--jms-green-900) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-count-badge {
+    color: var(--jms-green-700) !important;
+}
+
+/* ===== 通用弹窗 overlay ===== */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-jmx-import.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-jms-confirm.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-scene-monitor.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-load.jms-modal-open,
+    background: var(--jms-green-overlay) !important;
+    backdrop-filter: blur(10px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(130%) !important;
+}
+
+/* ===== 生成结果弹窗 ===== */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal {
+    border: 1px solid rgba(167, 243, 208, 0.65) !important;
+    background: var(--jms-green-panel) !important;
+    color: var(--jms-green-900) !important;
+    box-shadow: 0 24px 48px rgba(6, 78, 59, 0.2) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__head {
+    border-bottom-color: rgba(16, 185, 129, 0.22) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__title,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-tab,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary__title {
+    color: var(--jms-green-800) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-tab.is-active {
+    background: rgba(16, 185, 129, 0.18) !important;
+    color: var(--jms-green-900) !important;
+    border-color: rgba(16, 185, 129, 0.35) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output #out-jmx,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output #out-readme {
+    background: #0f172a !important;
+    color: #e2e8f0 !important;
+    border-color: rgba(16, 185, 129, 0.25) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__foot .jms-output-action-btn--primary {
+    background: var(--jms-green-primary) !important;
+    color: #ecfdf5 !important;
+    border: none !important;
+}
+
+/* ===== 重置确认 / JMS 确认弹窗 ===== */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-jms-confirm .jms-modal-card {
+    border: 1px solid rgba(167, 243, 208, 0.6) !important;
+    background: var(--jms-green-panel) !important;
+    color: var(--jms-green-900) !important;
+    box-shadow: 0 20px 40px rgba(6, 78, 59, 0.18) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-jms-confirm .jms-confirm-title {
+    color: var(--jms-green-800) !important;
+    font-weight: 700 !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-jms-confirm .jms-confirm-msg {
+    color: #14532d !important;
+    line-height: 1.55 !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-jms-confirm #btn-jms-confirm-ok {
+    background: var(--jms-green-primary) !important;
+    color: #ecfdf5 !important;
+    border: none !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-jms-confirm #btn-jms-confirm-cancel {
+    border: 1px solid rgba(16, 185, 129, 0.35) !important;
+    background: rgba(255, 255, 255, 0.85) !important;
+    color: var(--jms-green-700) !important;
+}
+
+/* ===== 暂存弹窗 ===== */
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-save-modal > div,
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-list-modal > div,
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-restore-modal > div {
+    border: 1px solid rgba(167, 243, 208, 0.55) !important;
+    background: var(--jms-green-panel) !important;
+    color: var(--jms-green-900) !important;
+    box-shadow: 0 22px 44px rgba(6, 78, 59, 0.2) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-save-modal h3,
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-list-modal h3,
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-restore-modal h3 {
+    color: var(--jms-green-800) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-save-modal p,
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-restore-modal p,
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-save-modal label {
+    color: #166534 !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-save-submit,
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-restore-overwrite {
+    background: var(--jms-green-primary) !important;
+    color: #ecfdf5 !important;
+    border: none !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-save-cancel,
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-list-close,
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-restore-cancel {
+    border: 1px solid rgba(16, 185, 129, 0.35) !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    color: var(--jms-green-700) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-list .text-slate-800 {
+    color: var(--jms-green-900) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .jm-stash-restore {
+    color: var(--jms-green-700) !important;
+}
+
+/* ===== 场景与监控 / 压测负载 ===== */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-scene-monitor .jms-vars-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-load .jms-vars-modal,
+    border: 1px solid rgba(167, 243, 208, 0.55) !important;
+    background: var(--jms-green-panel) !important;
+    color: var(--jms-green-900) !important;
+    box-shadow: 0 22px 44px rgba(6, 78, 59, 0.18) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-scene-monitor .jms-vars-modal__title,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-load .jms-vars-modal__title,
+    color: var(--jms-green-800) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-scene-monitor .jms-vars-modal__sub,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-load .jms-vars-modal__sub,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-scene-monitor label,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-load label,
+    color: #166534 !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-scene-monitor input,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-load input,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-scene-monitor select,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-load select,
+    border-color: rgba(16, 185, 129, 0.35) !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: var(--jms-green-900) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-scene-monitor .jms-vars-modal__foot button[type="submit"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-load .jms-vars-modal__foot button[type="submit"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-scene-monitor #btn-scene-monitor-save,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-load #btn-tg-load-save,
+    background: var(--jms-green-primary) !important;
+    color: #ecfdf5 !important;
+    border: none !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-scene-monitor .jms-vars-modal__foot button[type="button"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-load .jms-vars-modal__foot button[type="button"],
+    border: 1px solid rgba(16, 185, 129, 0.35) !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    color: var(--jms-green-700) !important;
+}
+
+/* ===== JMX 解析弹窗主按钮 ===== */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-jmx-import .jmx-import-modal__btn--primary {
+    background: var(--jms-green-primary) !important;
+    color: #ecfdf5 !important;
+    box-shadow: 0 4px 14px rgba(5, 150, 105, 0.28) !important;
+}

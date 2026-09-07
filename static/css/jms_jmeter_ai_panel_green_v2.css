@@ -1,0 +1,242 @@
+/* AI 步骤助手 · 绿色护眼主题 v2（scoped，覆盖 jms_jmeter_ai_panel.css） */
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__shell,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__shell {
+    border: 1px solid rgba(110, 231, 183, 0.42) !important;
+    border-radius: 1rem !important;
+    background: linear-gradient(
+        165deg,
+        rgba(236, 253, 245, 0.97) 0%,
+        rgba(209, 250, 229, 0.94) 42%,
+        rgba(240, 253, 250, 0.96) 100%
+    ) !important;
+    box-shadow:
+        0 18px 42px rgba(13, 148, 136, 0.14),
+        0 0 0 1px rgba(255, 255, 255, 0.65) inset,
+        0 1px 0 rgba(255, 255, 255, 0.9) inset !important;
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__shell {
+    background: linear-gradient(
+        165deg,
+        rgba(6, 78, 59, 0.92) 0%,
+        rgba(4, 47, 46, 0.9) 48%,
+        rgba(15, 23, 42, 0.88) 100%
+    ) !important;
+    border-color: rgba(52, 211, 153, 0.38) !important;
+    box-shadow:
+        0 20px 48px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(110, 231, 183, 0.12) inset,
+        0 0 32px rgba(16, 185, 129, 0.1) !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__head,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__head {
+    padding: 0.8rem 0.95rem 0.65rem !important;
+    border-bottom: 1px solid rgba(110, 231, 183, 0.28) !important;
+    background: linear-gradient(
+        125deg,
+        rgba(255, 255, 255, 0.72) 0%,
+        rgba(167, 243, 208, 0.35) 100%
+    ) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__head {
+    background: linear-gradient(
+        125deg,
+        rgba(16, 185, 129, 0.16) 0%,
+        rgba(6, 95, 70, 0.22) 100%
+    ) !important;
+    border-bottom-color: rgba(52, 211, 153, 0.22) !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__title,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__title {
+    color: #065f46 !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.01em;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__title {
+    color: #a7f3d0 !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__subtitle,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__subtitle {
+    color: #047857 !important;
+    opacity: 0.88;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__subtitle {
+    color: rgba(167, 243, 208, 0.82) !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__close,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__close {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(110, 231, 183, 0.35);
+    background: rgba(255, 255, 255, 0.65);
+    color: #047857 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__close {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(110, 231, 183, 0.25);
+    color: #6ee7b7 !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__close:hover,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__close:hover {
+    background: rgba(167, 243, 208, 0.55);
+    color: #065f46 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__close:hover {
+    background: rgba(16, 185, 129, 0.22);
+    color: #ecfdf5 !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__messages,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__messages {
+    padding: 0.75rem 0.85rem !important;
+    background: linear-gradient(180deg, rgba(240, 253, 250, 0.55), rgba(236, 253, 245, 0.25));
+    scrollbar-color: rgba(16, 185, 129, 0.45) transparent;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__messages {
+    background: linear-gradient(180deg, rgba(6, 78, 59, 0.18), rgba(15, 23, 42, 0.08));
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__msg--user .jms-ai-panel__bubble,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__msg--user .jms-ai-panel__bubble {
+    background: linear-gradient(135deg, #14b8a6, #0d9488) !important;
+    color: #f0fdfa !important;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 2px 8px rgba(13, 148, 136, 0.22);
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__msg--assistant .jms-ai-panel__bubble,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__msg--assistant .jms-ai-panel__bubble {
+    background: rgba(255, 255, 255, 0.88) !important;
+    color: #134e4a !important;
+    border: 1px solid rgba(110, 231, 183, 0.35);
+    box-shadow: 0 1px 4px rgba(16, 185, 129, 0.08);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__msg--assistant .jms-ai-panel__bubble {
+    background: rgba(15, 23, 42, 0.55) !important;
+    color: #d1fae5 !important;
+    border-color: rgba(52, 211, 153, 0.22);
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__msg--system .jms-ai-panel__bubble,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__msg--system .jms-ai-panel__bubble {
+    background: rgba(167, 243, 208, 0.45) !important;
+    color: #065f46 !important;
+    font-size: 0.75rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__msg--system .jms-ai-panel__bubble {
+    background: rgba(16, 185, 129, 0.14) !important;
+    color: #99f6e4 !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__msg--error .jms-ai-panel__bubble {
+    background: rgba(254, 226, 226, 0.92) !important;
+    color: #991b1b !important;
+    border: 1px solid rgba(248, 113, 113, 0.35);
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__composer,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__composer {
+    padding: 0.65rem 0.85rem 0.8rem !important;
+    border-top: 1px solid rgba(110, 231, 183, 0.28) !important;
+    background: rgba(255, 255, 255, 0.45);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__composer {
+    background: rgba(4, 47, 46, 0.35);
+    border-top-color: rgba(52, 211, 153, 0.2) !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__input,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__input {
+    border: 1px solid rgba(16, 185, 129, 0.35) !important;
+    border-radius: 0.65rem !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #064e3b !important;
+    box-shadow: inset 0 1px 2px rgba(16, 185, 129, 0.06);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__input {
+    background: rgba(15, 23, 42, 0.62) !important;
+    color: #ecfdf5 !important;
+    border-color: rgba(52, 211, 153, 0.28) !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__input::placeholder,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__input::placeholder {
+    color: rgba(5, 150, 105, 0.55);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__input::placeholder {
+    color: rgba(167, 243, 208, 0.45);
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__input:focus,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__input:focus {
+    outline: none;
+    border-color: rgba(16, 185, 129, 0.65) !important;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.16);
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__send,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__send {
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.28);
+    min-width: 3.25rem;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__send:hover:not(:disabled),
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__send:hover:not(:disabled) {
+    filter: brightness(1.05);
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.34);
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-fab,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-fab.jms-ai-fab--dock {
+    border-color: rgba(110, 231, 183, 0.55) !important;
+    background: linear-gradient(145deg, #10b981 0%, #047857 100%) !important;
+    box-shadow:
+        0 2px 10px rgba(16, 185, 129, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel.jms-ai-panel--dock-above,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel.jms-ai-panel--dock-above {
+    box-shadow:
+        0 -6px 32px rgba(16, 185, 129, 0.12),
+        0 18px 42px rgba(13, 148, 136, 0.18) !important;
+}
+
+/* AI 标题旁：测试计划级不改提示 */
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__scope-note,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__scope-note {
+    border-color: rgba(16, 185, 129, 0.32) !important;
+    background: rgba(16, 185, 129, 0.08) !important;
+    color: #047857 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel__scope-note {
+    border-color: rgba(110, 231, 183, 0.35) !important;
+    background: rgba(6, 78, 59, 0.35) !important;
+    color: rgba(167, 243, 208, 0.88) !important;
+}

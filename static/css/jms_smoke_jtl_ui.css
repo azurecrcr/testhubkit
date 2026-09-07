@@ -1,0 +1,87 @@
+/* JMeter 试跑 UI — 绿色护眼主题 */
+#smoke-result-box.jms-smoke-result {
+    margin: 0 0 10px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    border: 1px solid transparent;
+}
+#smoke-result-box.jms-smoke-result.hidden { display: none !important; }
+#smoke-result-box.jms-smoke-result--pending {
+    background: linear-gradient(135deg, rgba(236, 253, 245, 0.98), rgba(209, 250, 229, 0.92));
+    border-color: rgba(110, 231, 183, 0.55);
+    color: #065f46;
+}
+body.lth-studio-v2 #smoke-result-box.jms-smoke-result--pending {
+    background: linear-gradient(135deg, rgba(6, 78, 59, 0.55), rgba(4, 47, 46, 0.45));
+    border-color: rgba(52, 211, 153, 0.35);
+    color: #a7f3d0;
+}
+#smoke-result-box.jms-smoke-result--pass {
+    background: rgba(236, 253, 245, 0.95);
+    border-color: rgba(52, 211, 153, 0.5);
+    color: #047857;
+}
+body.lth-studio-v2 #smoke-result-box.jms-smoke-result--pass {
+    background: rgba(6, 78, 59, 0.45);
+    border-color: rgba(52, 211, 153, 0.35);
+    color: #6ee7b7;
+}
+#smoke-result-box.jms-smoke-result--fail {
+    background: rgba(254, 242, 242, 0.95);
+    border-color: rgba(252, 165, 165, 0.55);
+    color: #991b1b;
+}
+#smoke-result-box.jms-smoke-result--timeout {
+    background: rgba(255, 251, 235, 0.95);
+    border-color: rgba(252, 211, 77, 0.55);
+    color: #92400e;
+}
+.jms-smoke-result__elapsed {
+    margin: 0.35rem 0 0;
+    font-size: 12px;
+    opacity: 0.88;
+}
+.jms-smoke-result__progress {
+    margin-top: 0.65rem;
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(16, 185, 129, 0.15);
+    overflow: hidden;
+}
+.jms-smoke-result__progress span {
+    display: block;
+    height: 100%;
+    width: 38%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #34d399, #10b981, #34d399);
+    background-size: 200% 100%;
+    animation: jms-smoke-progress 1.4s ease-in-out infinite;
+}
+@keyframes jms-smoke-progress {
+    0% { transform: translateX(-100%); background-position: 0% 50%; }
+    100% { transform: translateX(260%); background-position: 100% 50%; }
+}
+.jms-smoke-result__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1.1rem;
+    margin: 0.55rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+}
+.jms-smoke-result__stats strong { color: inherit; font-weight: 700; }
+.jms-smoke-result__fail-head {
+    margin-top: 0.55rem;
+    font-weight: 600;
+    font-size: 12px;
+}
+.jms-smoke-result__fail-list {
+    margin: 0.35rem 0 0;
+    padding-left: 1.1rem;
+    font-size: 12px;
+}
+.jms-smoke-result__dl { margin-top: 0.55rem; }
+

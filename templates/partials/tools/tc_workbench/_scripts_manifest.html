@@ -1,0 +1,6 @@
+{# TC Workbench script manifest router #}
+{% if TC_WB_BUNDLE_ENABLED %}
+{% include 'partials/tools/tc_workbench/_scripts_manifest.bundle.html' %}
+{% else %}
+{% include 'partials/tools/tc_workbench/_scripts_manifest.legacy.html' %}
+{% endif %}

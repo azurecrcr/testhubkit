@@ -1,0 +1,98 @@
+/* HTTP 添加位置选项（合并进「添加 HTTP 请求」弹窗） */
+#modal-http-add-choice .jms-http-add-placement-wrap {
+    margin-top: 0.85rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(226, 232, 240, 0.95);
+}
+#modal-http-add-choice .jms-http-add-placement-wrap.hidden {
+    display: none !important;
+}
+#modal-http-add-choice .jms-http-add-placement-label {
+    margin: 0 0 0.2rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+#modal-http-add-choice .jms-http-add-placement-sub {
+    margin: 0 0 0.55rem;
+    font-size: 0.75rem;
+    color: #64748b;
+    line-height: 1.45;
+}
+#modal-http-add-choice .jms-http-add-placement-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+}
+@media (max-width: 520px) {
+    #modal-http-add-choice .jms-http-add-placement-options {
+        grid-template-columns: 1fr;
+    }
+}
+#modal-http-add-choice .jms-http-add-placement-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    min-width: 0;
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.85rem;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    background: #f8fafc;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+#modal-http-add-choice .jms-http-add-placement-option:has(input:checked) {
+    border-color: rgba(45, 212, 191, 0.65);
+    background: rgba(240, 253, 250, 0.95);
+}
+#modal-http-add-choice .jms-http-add-placement-option input {
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+}
+#modal-http-add-choice .jms-http-add-placement-option__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
+    min-width: 0;
+}
+#modal-http-add-choice .jms-http-add-placement-option__title {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+#modal-http-add-choice .jms-http-add-placement-option__hint {
+    font-size: 0.75rem;
+    color: #64748b;
+    word-break: break-all;
+}
+#modal-http-add-choice .jms-http-add-choice-btn.is-selected {
+    box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.35);
+}
+#modal-http-add-choice .jms-http-add-choice-btn--blank.is-selected {
+    border-color: #14b8a6;
+    background: #f0fdfa;
+}
+#modal-http-add-choice .jms-http-add-choice-btn--curl.is-selected {
+    border-color: #6366f1;
+    background: #eef2ff;
+}
+#modal-http-add-choice .jms-http-add-choice-btn--step.is-selected {
+    border-color: #f59e0b;
+    background: #fffbeb;
+}
+#modal-http-add-choice .jms-http-add-choice-foot {
+    gap: 0.45rem;
+}
+#modal-http-add-choice .jms-http-add-choice-confirm {
+    border-radius: 0.5rem;
+    border: 1px solid rgba(45, 212, 191, 0.55);
+    background: linear-gradient(180deg, #ecfdf5 0%, #d1fae5 100%);
+    padding: 0.45rem 1rem;
+    font-size: 12px;
+    font-weight: 600;
+    color: #047857;
+    cursor: pointer;
+}
+#modal-http-add-choice .jms-http-add-choice-confirm:hover {
+    filter: brightness(0.98);
+}

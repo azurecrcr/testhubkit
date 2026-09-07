@@ -1,0 +1,969 @@
+/* ????? ? ?????? + ??????? account-profile-page? */
+
+body.account-profile-page {
+    margin: 0;
+    min-height: 100vh;
+    color: #1e293b;
+    background:
+        radial-gradient(980px 560px at 8% -6%, rgba(199, 210, 254, 0.55), transparent 58%),
+        radial-gradient(820px 520px at 96% 2%, rgba(251, 207, 232, 0.28), transparent 52%),
+        radial-gradient(720px 480px at 70% 88%, rgba(165, 243, 252, 0.22), transparent 55%),
+        linear-gradient(180deg, #f8fafc 0%, #eef2ff 48%, #f8fafc 100%) !important;
+}
+
+body.account-profile-page .profile-page__bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+body.account-profile-page .profile-page__bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(72px);
+    will-change: transform;
+}
+
+body.account-profile-page .profile-page__bg-orb--a {
+    width: min(42vw, 480px);
+    height: min(42vw, 480px);
+    top: -8%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(129, 140, 248, 0.28);
+}
+
+body.account-profile-page .profile-page__bg-orb--b {
+    width: min(30vw, 360px);
+    height: min(30vw, 360px);
+    bottom: 8%;
+    left: -4%;
+    background: rgba(244, 114, 182, 0.14);
+}
+
+body.account-profile-page .profile-page__bg-orb--c {
+    width: min(28vw, 320px);
+    height: min(28vw, 320px);
+    top: 42%;
+    right: -6%;
+    background: rgba(56, 189, 248, 0.14);
+}
+
+body.account-profile-page .profile-page__bg-grid {
+    position: absolute;
+    inset: -1px;
+    opacity: 0.4;
+    background-image:
+        linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 85% 70% at 50% 40%, #000 20%, transparent 78%);
+    -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 40%, #000 20%, transparent 78%);
+}
+
+body.account-profile-page .profile-wrap {
+    max-width: 36rem;
+    margin: 0 auto;
+    padding: 2rem 1rem 3.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+body.account-profile-page .profile-card {
+    background:
+        linear-gradient(
+            155deg,
+            rgba(255, 255, 255, 0.88) 0%,
+            rgba(238, 242, 255, 0.82) 55%,
+            rgba(255, 255, 255, 0.86) 100%
+        ) !important;
+    border: 1px solid rgba(129, 140, 248, 0.28) !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.7) inset,
+        0 1px 2px rgba(79, 70, 229, 0.06),
+        0 18px 48px rgba(79, 70, 229, 0.1) !important;
+    backdrop-filter: blur(16px) saturate(1.1);
+    -webkit-backdrop-filter: blur(16px) saturate(1.1);
+}
+
+body.account-profile-page .profile-card h1 {
+    color: #312e81 !important;
+}
+
+body.account-profile-page .profile-card .sub {
+    color: #64748b !important;
+}
+
+/* ??? ???? ??? */
+body.account-profile-page .hf-gnav {
+    background:
+        linear-gradient(
+            118deg,
+            rgba(255, 255, 255, 0.74) 0%,
+            rgba(238, 242, 255, 0.70) 42%,
+            rgba(224, 231, 255, 0.62) 100%
+        ) !important;
+    border-bottom: 1px solid rgba(129, 140, 248, 0.28) !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.55) inset,
+        0 8px 28px -16px rgba(79, 70, 229, 0.16) !important;
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+body.account-profile-page .hf-gnav::before {
+    opacity: 0.22 !important;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0,
+        transparent 47px,
+        rgba(99, 102, 241, 0.045) 47px,
+        rgba(99, 102, 241, 0.045) 48px
+    ) !important;
+}
+
+body.account-profile-page .hf-gnav::after {
+    background:
+        radial-gradient(ellipse 70% 120% at 8% -30%, rgba(199, 210, 254, 0.4), transparent 58%),
+        radial-gradient(ellipse 55% 90% at 96% 0%, rgba(129, 140, 248, 0.18), transparent 52%) !important;
+    opacity: 1 !important;
+}
+
+body.account-profile-page .hf-gnav__brand,
+body.account-profile-page .hf-gnav__titles strong {
+    color: #312e81 !important;
+}
+
+body.account-profile-page .hf-gnav__titles span {
+    color: rgba(67, 56, 202, 0.65) !important;
+}
+
+body.account-profile-page .hf-gnav__mark {
+    box-shadow:
+        0 2px 12px rgba(99, 102, 241, 0.28),
+        0 0 0 1px rgba(199, 210, 254, 0.45) !important;
+}
+
+body.account-profile-page .hf-gnav__brand:hover .hf-gnav__mark {
+    box-shadow:
+        0 4px 16px rgba(99, 102, 241, 0.35),
+        0 0 0 1px rgba(79, 70, 229, 0.3) !important;
+}
+
+body.account-profile-page .hf-gnav__mega-btn {
+    border-color: rgba(129, 140, 248, 0.32) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    color: #4338ca !important;
+}
+
+body.account-profile-page .hf-gnav__mega-btn:hover {
+    background: rgba(238, 242, 255, 0.92) !important;
+    border-color: rgba(99, 102, 241, 0.45) !important;
+}
+
+body.account-profile-page .hf-gnav__mega-btn[aria-expanded="true"] {
+    background: rgba(224, 231, 255, 0.95) !important;
+    border-color: rgba(79, 70, 229, 0.4) !important;
+    box-shadow: 0 0 0 1px rgba(199, 210, 254, 0.3) !important;
+}
+
+body.account-profile-page .hf-gnav__prompts {
+    color: #4338ca !important;
+    border-color: rgba(129, 140, 248, 0.38) !important;
+    background: linear-gradient(120deg, rgba(238, 242, 255, 0.92), rgba(224, 231, 255, 0.88)) !important;
+    box-shadow: 0 1px 4px rgba(79, 70, 229, 0.08) !important;
+}
+
+body.account-profile-page .hf-gnav__prompts:hover {
+    border-color: rgba(79, 70, 229, 0.45) !important;
+    box-shadow: 0 4px 16px -6px rgba(99, 102, 241, 0.35) !important;
+}
+
+body.account-profile-page .hf-gnav__feedback {
+    color: #4338ca !important;
+    border-color: rgba(199, 210, 254, 0.7) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+}
+
+body.account-profile-page .hf-gnav__feedback:hover {
+    background: rgba(238, 242, 255, 0.92) !important;
+    border-color: rgba(129, 140, 248, 0.5) !important;
+}
+
+body.account-profile-page .hf-gnav__auth {
+    color: #4338ca !important;
+    border-color: rgba(129, 140, 248, 0.4) !important;
+    background: linear-gradient(120deg, rgba(238, 242, 255, 0.95), rgba(224, 231, 255, 0.88)) !important;
+}
+
+body.account-profile-page .hf-gnav__user-email {
+    color: #312e81 !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    border: 1px solid rgba(129, 140, 248, 0.25);
+}
+
+body.account-profile-page .hf-gnav__logout {
+    color: #4338ca !important;
+    border-color: rgba(129, 140, 248, 0.3) !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+}
+
+body.account-profile-page .hf-gnav__logout:hover {
+    background: rgba(238, 242, 255, 0.92) !important;
+}
+
+body.account-profile-page .hf-gnav__burger {
+    border-color: rgba(129, 140, 248, 0.32) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    color: #4338ca !important;
+}
+
+body.account-profile-page .hf-gnav__burger span {
+    background: #4338ca !important;
+}
+
+body.account-profile-page .hf-gnav__drawer {
+    background: rgba(49, 46, 129, 0.16) !important;
+}
+
+body.account-profile-page .hf-gnav__sheet {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(238, 242, 255, 0.98) 100%) !important;
+    border-left: 1px solid rgba(129, 140, 248, 0.28) !important;
+    box-shadow: -12px 0 40px rgba(79, 70, 229, 0.12) !important;
+}
+
+body.account-profile-page .hf-gnav__sheet-top {
+    border-bottom-color: rgba(129, 140, 248, 0.2) !important;
+}
+
+body.account-profile-page .hf-gnav__sheet-top p,
+body.account-profile-page .hf-gnav__sheet-sec h3 {
+    color: rgba(67, 56, 202, 0.72) !important;
+}
+
+body.account-profile-page .hf-gnav__sheet-x {
+    border-color: rgba(129, 140, 248, 0.3) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    color: #4338ca !important;
+}
+
+body.account-profile-page .hf-gnav__sheet a {
+    color: #312e81 !important;
+}
+
+body.account-profile-page .hf-gnav__sheet a:hover {
+    background: rgba(224, 231, 255, 0.85) !important;
+}
+
+body.account-profile-page .hf-gnav__sheet a[aria-current="page"] {
+    background: rgba(224, 231, 255, 0.95) !important;
+    border-color: rgba(129, 140, 248, 0.4) !important;
+}
+
+body.account-profile-page .hf-gnav__sheet-prompts {
+    border-top-color: rgba(129, 140, 248, 0.2) !important;
+}
+
+body.account-profile-page .hf-gnav__sheet-prompts a {
+    background: linear-gradient(120deg, rgba(238, 242, 255, 0.9), rgba(224, 231, 255, 0.85)) !important;
+    border-color: rgba(129, 140, 248, 0.32) !important;
+}
+
+body.account-profile-page .hf-gnav__sheet-feedback {
+    border-color: rgba(129, 140, 248, 0.32) !important;
+    background: rgba(238, 242, 255, 0.9) !important;
+    color: #4338ca !important;
+}
+
+body.account-profile-page .hf-gnav__sheet-auth {
+    border-color: rgba(129, 140, 248, 0.38) !important;
+    background: rgba(224, 231, 255, 0.95) !important;
+    color: #4338ca !important;
+}
+
+body.account-profile-page .hf-gnav__sheet-user {
+    background: rgba(255, 255, 255, 0.65) !important;
+    border-color: rgba(129, 140, 248, 0.22) !important;
+}
+
+body.account-profile-page .hf-gnav__sheet-user p {
+    color: rgba(67, 56, 202, 0.65) !important;
+}
+
+body.account-profile-page .hf-gnav__sheet-user strong {
+    color: #312e81 !important;
+}
+
+
+/* ???????? account-profile-page ??/?????????? */
+body.account-password-page .pwd-wrap {
+    max-width: 36rem;
+    margin: 0 auto;
+    padding: 2rem 1rem 3.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+body.account-password-page .pwd-card {
+    background:
+        linear-gradient(
+            155deg,
+            rgba(255, 255, 255, 0.88) 0%,
+            rgba(238, 242, 255, 0.82) 55%,
+            rgba(255, 255, 255, 0.86) 100%
+        ) !important;
+    border: 1px solid rgba(129, 140, 248, 0.28) !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.7) inset,
+        0 1px 2px rgba(79, 70, 229, 0.06),
+        0 18px 48px rgba(79, 70, 229, 0.1) !important;
+    backdrop-filter: blur(16px) saturate(1.1);
+    -webkit-backdrop-filter: blur(16px) saturate(1.1);
+}
+
+body.account-password-page .pwd-card h1 {
+    color: #312e81 !important;
+}
+
+/* ?????? ????????????20260724?? ?????? */
+body.account-profile-page .profile-card {
+    padding: 1.5rem !important;
+    border-radius: 1rem !important;
+}
+body.account-profile-page .profile-card__head { margin-bottom: 1.1rem; }
+body.account-profile-page .profile-card__head h1 {
+    margin: 0 0 0.25rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+body.account-profile-page .profile-card__lead {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #64748b;
+}
+body.account-profile-page .profile-avatar-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.15rem;
+    padding-bottom: 1.15rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+}
+body.account-profile-page .profile-avatar-ring {
+    width: 6.5rem;
+    height: 6.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(167, 243, 208, 0.7);
+    background: linear-gradient(135deg, #ecfdf5, #f8fafc);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body.account-profile-page .profile-avatar-ring img { width: 100%; height: 100%; object-fit: cover; display: block; }
+body.account-profile-page .profile-avatar-fallback { font-size: 1.75rem; font-weight: 800; color: #0f766e; }
+body.account-profile-page .profile-upload-btn {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #0f766e;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.85rem;
+    cursor: pointer;
+}
+body.account-profile-page .profile-upload-btn:hover { background: #d1fae5; }
+body.account-profile-page #profile-avatar-input { display: none; }
+body.account-profile-page .profile-hint { font-size: 0.75rem; color: #94a3b8; margin: 0.25rem 0 0; }
+body.account-profile-page .profile-section {
+    margin-top: 1.1rem;
+    padding-top: 1.05rem;
+    border-top: 1px solid rgba(226, 232, 240, 0.9);
+}
+body.account-profile-page .profile-section:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+body.account-profile-page .profile-section__title {
+    margin: 0 0 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #64748b;
+}
+body.account-profile-page .profile-field { display: block; margin-bottom: 0.95rem; }
+body.account-profile-page .profile-field__label {
+    display: block;
+    width: fit-content;
+    position: relative;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 0.35rem;
+}
+body.account-profile-page .profile-field__req {
+    position: absolute;
+    top: 0;
+    right: -0.45em;
+    color: #dc2626;
+    font-size: 0.75em;
+    font-weight: 700;
+}
+body.account-profile-page .profile-field input {
+    width: 100%;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.875rem;
+    box-sizing: border-box;
+}
+body.account-profile-page .profile-field input:focus {
+    outline: 2px solid rgba(13, 148, 136, 0.28);
+    border-color: #2dd4bf;
+}
+body.account-profile-page .profile-account-block {
+    margin-top: 0.15rem;
+    padding: 0.75rem 0.85rem;
+    border-radius: 0.7rem;
+    border: 1px solid rgba(167, 243, 208, 0.55);
+    background: rgba(236, 253, 245, 0.55);
+}
+body.account-profile-page .profile-account-block__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.45rem;
+}
+body.account-profile-page .profile-account-block__tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.12rem 0.45rem;
+    border-radius: 999px;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    background: #fff;
+    color: #0f766e;
+    border: 1px solid #a7f3d0;
+}
+body.account-profile-page .profile-account-block__tag.is-email {
+    color: #4338ca;
+    border-color: #c7d2fe;
+}
+body.account-profile-page .profile-account-block__label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #475569;
+}
+body.account-profile-page .profile-account-block__value {
+    width: 100%;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.875rem;
+    background: #f8fafc;
+    color: #64748b;
+    cursor: not-allowed;
+    box-sizing: border-box;
+}
+body.account-profile-page .profile-security {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.7rem 0.85rem;
+    border-radius: 0.65rem;
+    border: 1px solid rgba(167, 243, 208, 0.55);
+    background: rgba(236, 253, 245, 0.45);
+}
+body.account-profile-page .profile-security__label {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 650;
+    color: #334155;
+}
+body.account-profile-page .profile-security__hint {
+    margin: 0.15rem 0 0;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    line-height: 1.35;
+}
+body.account-profile-page .profile-security__btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.85rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(45, 212, 191, 0.45);
+    background: #fff;
+    color: #0f766e;
+    font-size: 0.8125rem;
+    font-weight: 650;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    font-family: inherit;
+    line-height: inherit;
+}
+body.account-profile-page .profile-security__btn:hover {
+    background: #ecfdf5;
+}
+body.account-profile-page .profile-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.35rem;
+}
+body.account-profile-page .profile-btn {
+    flex: 1;
+    border-radius: 0.5rem;
+    padding: 0.65rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+}
+body.account-profile-page .profile-btn--primary {
+    background: linear-gradient(135deg, #14b8a6, #0f766e);
+    color: #fff;
+}
+body.account-profile-page .profile-btn--primary:disabled { opacity: 0.55; cursor: not-allowed; }
+body.account-profile-page .profile-btn--ghost {
+    background: #f8fafc;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+body.account-profile-page .profile-msg { min-height: 1.25rem; margin-top: 0.75rem; font-size: 0.8125rem; }
+body.account-profile-page .profile-msg--err { color: #b91c1c; }
+body.account-profile-page .profile-msg--ok { color: #047857; }
+
+/* ?????? ????????? ?????? */
+body.account-password-page .pwd-card { padding: 1.5rem !important; border-radius: 1rem !important; }
+body.account-password-page .pwd-card__head { margin-bottom: 1.15rem; }
+body.account-password-page .pwd-card__head h1 {
+    margin: 0 0 0.25rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+body.account-password-page .pwd-card__lead {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #64748b;
+}
+body.account-password-page .pwd-field { display: block; margin-bottom: 1rem; }
+body.account-password-page .pwd-field__label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 0.35rem;
+}
+body.account-password-page .pwd-field input {
+    width: 100%;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.875rem;
+    box-sizing: border-box;
+}
+body.account-password-page .pwd-field input:focus {
+    outline: 2px solid rgba(13, 148, 136, 0.28);
+    border-color: #2dd4bf;
+}
+body.account-password-page .pwd-field input[readonly] {
+    background: #f8fafc;
+    color: #64748b;
+}
+body.account-password-page .pwd-row { display: flex; gap: 0.5rem; align-items: stretch; }
+body.account-password-page .pwd-row input { flex: 1; }
+body.account-password-page .pwd-captcha-q {
+    display: inline-flex;
+    align-items: center;
+    min-width: 4.5rem;
+    padding: 0 0.65rem;
+    border-radius: 0.5rem;
+    background: #ecfdf5;
+    color: #0f766e;
+    font-weight: 700;
+    font-size: 0.875rem;
+    border: 1px solid #a7f3d0;
+    white-space: nowrap;
+}
+body.account-password-page .pwd-btn {
+    border-radius: 0.5rem;
+    padding: 0.55rem 0.85rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: #334155;
+    white-space: nowrap;
+}
+body.account-password-page .pwd-btn:hover { background: #f1f5f9; }
+body.account-password-page .pwd-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+body.account-password-page .pwd-hint {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin: -0.5rem 0 0.85rem;
+}
+body.account-password-page .pwd-actions { display: flex; gap: 0.5rem; margin-top: 1.25rem; }
+body.account-password-page .pwd-btn--primary {
+    flex: 1;
+    border: none;
+    background: linear-gradient(135deg, #14b8a6, #0f766e);
+    color: #fff;
+    padding: 0.65rem 1rem;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+body.account-password-page .pwd-btn--ghost {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8fafc;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+    padding: 0.65rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+}
+body.account-password-page .pwd-msg { min-height: 1.25rem; margin-top: 0.75rem; font-size: 0.8125rem; }
+body.account-password-page .pwd-msg--err { color: #b91c1c; }
+body.account-password-page .pwd-msg--ok { color: #047857; }
+
+/* ?????? ??/??????? ?????? */
+body.account-profile-page .is-hidden { display: none !important; }
+body.account-profile-page .profile-field-input {
+    width: 100%;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.875rem;
+    box-sizing: border-box;
+}
+body.account-profile-page .profile-inline-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: stretch;
+}
+body.account-profile-page .profile-inline-row .profile-field-input { flex: 1; }
+body.account-profile-page .profile-captcha-q {
+    display: inline-flex;
+    align-items: center;
+    min-width: 4.5rem;
+    padding: 0 0.65rem;
+    border-radius: 0.5rem;
+    background: #ecfdf5;
+    color: #0f766e;
+    font-weight: 700;
+    font-size: 0.875rem;
+    border: 1px solid #a7f3d0;
+    white-space: nowrap;
+}
+body.account-profile-page .profile-mini-btn {
+    border-radius: 0.5rem;
+    padding: 0.55rem 0.85rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: #334155;
+    white-space: nowrap;
+}
+body.account-profile-page .profile-mini-btn:hover { background: #f1f5f9; }
+body.account-profile-page .profile-mini-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+body.account-profile-page .profile-mini-btn--primary {
+    border: none;
+    background: linear-gradient(135deg, #14b8a6, #0f766e);
+    color: #fff;
+}
+body.account-profile-page .profile-mini-btn--ghost {
+    background: #fff;
+}
+body.account-profile-page .profile-bind-panel {
+    margin-top: 0.85rem;
+    padding: 0.9rem 0.95rem;
+    border-radius: 0.7rem;
+    border: 1px dashed rgba(45, 212, 191, 0.55);
+    background: rgba(255, 255, 255, 0.72);
+}
+body.account-profile-page .profile-bind-panel__title {
+    margin: 0 0 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #0f766e;
+}
+body.account-profile-page .profile-bind-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    margin-top: 0.35rem;
+}
+body.account-profile-page .profile-phone-actions { margin-top: 0.55rem; }
+body.account-profile-page .profile-link-btn {
+    border: none;
+    background: transparent;
+    color: #0f766e;
+    font-size: 0.8125rem;
+    font-weight: 650;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+}
+body.account-profile-page .profile-account-block__tag.is-phone {
+    color: #0f766e;
+    border-color: #a7f3d0;
+}
+
+/* ??????????? */
+body.account-password-page .pwd-channel-switch {
+    display: inline-flex;
+    margin-bottom: 1rem;
+}
+body.account-password-page .auth-type-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    padding: 0.12rem;
+    border-radius: 999px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+}
+body.account-password-page .auth-type-switch__btn {
+    border: none;
+    background: transparent;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.32rem 0.7rem;
+    border-radius: 999px;
+    color: #64748b;
+    cursor: pointer;
+}
+body.account-password-page .auth-type-switch__btn.is-active {
+    background: #fff;
+    color: #0f766e;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+body.account-password-page .is-hidden { display: none !important; }
+
+/* ?????? ?????? + ???????? ?????? */
+body.account-profile-page .profile-id-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+body.account-profile-page .profile-id-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.8rem 0.9rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    background: rgba(255, 255, 255, 0.72);
+}
+body.account-profile-page .profile-id-row__main {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-width: 0;
+}
+body.account-profile-page .profile-id-row__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
+    min-width: 0;
+}
+body.account-profile-page .profile-id-row__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b;
+}
+body.account-profile-page .profile-id-row__value {
+    font-size: 0.9rem;
+    font-weight: 650;
+    color: #0f172a;
+    word-break: break-all;
+}
+body.account-profile-page .profile-id-row__action {
+    flex-shrink: 0;
+    border: 1px solid rgba(45, 212, 191, 0.45);
+    background: #ecfdf5;
+    color: #0f766e;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 0.42rem 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+body.account-profile-page .profile-id-row__action:hover {
+    background: #d1fae5;
+}
+
+body.account-profile-page.profile-drawer-open {
+    overflow: hidden;
+}
+/* ??? 3.5rem????????????????? */
+body.account-profile-page .profile-drawer {
+    --profile-drawer-nav-offset: 3.75rem;
+    position: fixed;
+    top: var(--profile-drawer-nav-offset);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 90;
+    pointer-events: none;
+}
+body.account-profile-page .profile-drawer.is-open {
+    pointer-events: auto;
+}
+body.account-profile-page .profile-drawer__mask {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.38);
+    opacity: 0;
+    transition: opacity 0.28s ease;
+}
+body.account-profile-page .profile-drawer.is-open .profile-drawer__mask {
+    opacity: 1;
+}
+body.account-profile-page .profile-drawer__panel {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    bottom: auto;
+    height: auto;
+    max-height: calc(100% - 1.5rem);
+    width: min(22.5rem, calc(100vw - 1.5rem));
+    background:
+        linear-gradient(165deg, rgba(255,255,255,0.99) 0%, rgba(236,253,245,0.94) 100%);
+    border: 1px solid rgba(167, 243, 208, 0.65);
+    border-radius: 1rem;
+    box-shadow: -8px 12px 36px rgba(15, 23, 42, 0.18);
+    transform: translateX(calc(100% + 1.25rem));
+    transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+body.account-profile-page .profile-drawer.is-open .profile-drawer__panel {
+    transform: translateX(0);
+}
+body.account-profile-page .profile-drawer__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem 0.7rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    flex-shrink: 0;
+}
+body.account-profile-page .profile-drawer__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #0f766e;
+}
+body.account-profile-page .profile-drawer__desc {
+    margin: 0.2rem 0 0;
+    font-size: 0.78rem;
+    color: #64748b;
+}
+body.account-profile-page .profile-drawer__close {
+    width: 1.85rem;
+    height: 1.85rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #f1f5f9;
+    color: #475569;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+body.account-profile-page .profile-drawer__close:hover {
+    background: #e2e8f0;
+}
+body.account-profile-page .profile-drawer__body {
+    flex: 0 1 auto;
+    overflow: auto;
+    padding: 0.85rem 1rem 0.35rem;
+}
+body.account-profile-page .profile-drawer__foot {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    padding: 0.7rem 1rem 0.9rem;
+    border-top: 1px solid rgba(226, 232, 240, 0.9);
+    background: rgba(255,255,255,0.72);
+    flex-shrink: 0;
+}
+body.account-profile-page .profile-drawer__foot .profile-mini-btn--primary {
+    min-width: 7.5rem;
+}
+@media (max-width: 480px) {
+    body.account-profile-page .profile-drawer {
+        --profile-drawer-nav-offset: 3.5rem;
+    }
+    body.account-profile-page .profile-drawer__panel {
+        top: 0.5rem;
+        right: 0.5rem;
+        left: 0.5rem;
+        width: auto;
+        max-height: calc(100% - 1rem);
+    }
+}
+
+/* ?????????? */
+body.account-profile-page .profile-drawer-channel {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    padding: 0.12rem;
+    margin-bottom: 0.85rem;
+    border-radius: 999px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+}
+body.account-profile-page .profile-drawer-channel__btn {
+    border: none;
+    background: transparent;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.35rem 0.72rem;
+    border-radius: 999px;
+    color: #64748b;
+    cursor: pointer;
+    font-family: inherit;
+}
+body.account-profile-page .profile-drawer-channel__btn.is-active {
+    background: #fff;
+    color: #0f766e;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+body.account-profile-page #profile-pwd-account[readonly] {
+    background: #f8fafc;
+    color: #334155;
+    cursor: default;
+}

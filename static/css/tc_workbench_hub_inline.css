@@ -1,0 +1,214 @@
+/* 用例工作台 Hub 内联切换 + 页面铺满（仅 test-cases Hub，不影响压测/媒体 Hub） */
+
+/* —— 减少外层留白，让工作区更高 —— */
+body.tc-hub-ai-tab main.tc-page-main-testcase > .container,
+body.tc-hub-excel-tab main.tc-page-main-testcase > .container {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+body.tc-hub-ai-tab .ds-tool-main-shell,
+body.tc-hub-excel-tab .ds-tool-main-shell {
+    padding: 0.5rem 0.85rem 0.35rem !important;
+}
+
+body.tc-hub-ai-tab .tc-hub-scope,
+body.tc-hub-excel-tab .tc-hub-scope {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+body.tc-hub-ai-tab .tc-hub-panel:not(.hidden),
+body.tc-hub-excel-tab .tc-hub-panel:not(.hidden) {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* —— AI 生成：标题旁内联 Hub 切换 —— */
+body.tc-hub-ai-tab .tc-workbench-scope .tc-right-panel-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 0.65rem;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope .tc-right-panel-head .tc-hub-mode-switch--title-inline {
+    flex: 0 0 auto;
+    margin: 0;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope .tc-hub-mode-switch--title-inline {
+    display: inline-flex;
+    width: auto;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    padding: 0.16rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(99, 102, 241, 0.32);
+    background: rgba(99, 102, 241, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 1px 3px rgba(15, 23, 42, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope .tc-hub-mode-switch--title-inline .tc-hub-mode--compact {
+    padding: 0.28rem 0.62rem;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope .tc-hub-mode-switch--title-inline .tc-hub-mode--compact:not(.tc-hub-mode--active) {
+    color: #64748b;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope .tc-hub-mode-switch--title-inline .tc-hub-mode--compact:not(.tc-hub-mode--active):hover {
+    background: rgba(255, 255, 255, 0.55);
+    color: #334155;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope .tc-hub-mode-switch--title-inline .tc-hub-mode--compact.tc-hub-mode--active {
+    border-color: rgba(99, 102, 241, 0.45);
+    background: rgba(255, 255, 255, 0.88);
+    color: #312e81;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1);
+}
+
+/* —— Excel 转导图：标题行 + 内联切换 —— */
+body.tc-hub-excel-tab .ctm-hub-title-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 0.65rem;
+    margin-bottom: 0.55rem;
+    padding: 0.35rem 0.45rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(99, 102, 241, 0.28);
+    background: rgba(99, 102, 241, 0.08);
+}
+
+body.tc-hub-excel-tab .ctm-hub-title-row__title {
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    flex: 0 0 auto;
+}
+
+body.tc-hub-excel-tab .ctm-hub-title-row .tc-hub-mode-switch--title-inline {
+    display: inline-flex;
+    width: auto;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    padding: 0.16rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(99, 102, 241, 0.32);
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+/* —— 页面铺满：工作台卡片高度（与 lanhu-fill 共用 --tc-wb-grid-h） —— */
+body.tc-hub-ai-tab .tc-workbench-scope.tc-workbench-scope--page-fill {
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope.tc-workbench-scope--page-fill.tc-workbench-scope--lanhu-fill {
+    height: var(--tc-wb-grid-h, auto);
+    max-height: var(--tc-wb-grid-h, none);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope--page-fill #tc-main-content-shell.tc-main-wb-surface {
+    padding: 0.45rem 0.55rem 0.4rem;
+}
+
+/* Excel 面板铺满 */
+body.tc-hub-excel-tab .ctm-page-decor--hub-fill {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    height: var(--tc-ctm-fill-h, auto);
+    max-height: var(--tc-ctm-fill-h, none);
+    overflow: hidden;
+}
+
+body.tc-hub-excel-tab .ctm-page-decor--hub-fill .ctm-page-decor__content {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 0.5rem;
+}
+
+body.tc-hub-excel-tab .ctm-page-decor--hub-fill .ctm-workbench-head {
+    flex: 0 0 auto;
+}
+
+body.tc-hub-excel-tab .ctm-page-decor--hub-fill #ctm-preview-panel,
+body.tc-hub-excel-tab .ctm-page-decor--hub-fill .ctm-mindmap-view-panel {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body.tc-hub-excel-tab .ctm-page-decor--hub-fill .ctm-mindmap-stage,
+body.tc-hub-excel-tab .ctm-page-decor--hub-fill #ctm-smm-container {
+    flex: 1 1 auto;
+    min-height: 12rem;
+}
+
+@media (max-width: 639px) {
+    body.tc-hub-ai-tab .tc-workbench-scope .tc-right-panel-head,
+    body.tc-hub-excel-tab .ctm-hub-title-row {
+        gap: 0.35rem;
+    }
+
+    body.tc-hub-ai-tab .tc-workbench-scope .tc-hub-mode-switch--title-inline .tc-hub-mode__title,
+    body.tc-hub-excel-tab .ctm-hub-title-row .tc-hub-mode__title {
+        font-size: 0.8125rem;
+    }
+}
+
+/* —— 单层卡片：去掉外层透明玻璃壳 + 中层渐变底，仅保留 table-workspace 实体卡 —— */
+body.tc-hub-ai-tab .tc-workbench-scope.tc-workbench-scope--page-fill {
+    border: none !important;
+    border-color: transparent !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope.tc-workbench-scope--page-fill #tc-main-content-shell.tc-main-wb-surface {
+    background: transparent !important;
+    border-top: none !important;
+    box-shadow: none !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope.tc-workbench-scope--page-fill #tc-main-content-shell::before {
+    display: none !important;
+    content: none !important;
+    opacity: 0 !important;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope.tc-workbench-scope--page-fill #right-panel,
+body.tc-hub-ai-tab .tc-workbench-scope.tc-workbench-scope--page-fill #right-panel.tc-main-grid__workspace {
+    border-radius: 0;
+    background: transparent;
+}
+
+body.tc-hub-ai-tab .tc-workbench-scope.tc-workbench-scope--page-fill #right-panel #table-workspace {
+    border-radius: 16px;
+}

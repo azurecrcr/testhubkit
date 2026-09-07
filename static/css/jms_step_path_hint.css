@@ -1,0 +1,30 @@
+/* 压测造数 HTTP 编辑抽屉：路径标签右下角提示（隔离，不影响其它 lth-step-hint） */
+body.lth-studio-v2.lth-drawer-open #modal-step-edit .lth-step-field--path-with-hint .lth-step-path-label-wrap {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.4rem;
+    width: 100%;
+    margin-bottom: 0.28rem;
+}
+body.lth-studio-v2.lth-drawer-open #modal-step-edit .lth-step-field--path-with-hint .lth-step-path-label-text {
+    flex: 0 0 auto;
+    line-height: 1.2;
+}
+body.lth-studio-v2.lth-drawer-open #modal-step-edit .lth-step-field--path-with-hint .lth-step-path-label-hint {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 0.625rem;
+    font-weight: 400;
+    line-height: 1.35;
+    color: #64748b;
+    text-align: right;
+}
+body.lth-studio-v2.lth-drawer-open #modal-step-edit .lth-step-field--path-with-hint .lth-step-path-label-hint code {
+    font-size: 0.6rem;
+}
+body.lth-studio-v2.lth-drawer-open #modal-step-edit .lth-step-field--path-with-hint input {
+    margin-top: 0 !important;
+}

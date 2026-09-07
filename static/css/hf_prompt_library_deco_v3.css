@@ -1,0 +1,20 @@
+/**
+ * 提示词库 · 卡片全幅背景 v3（仅 hf-prompt-page-body）
+ */
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.42) 38%, rgba(255, 251, 245, 0.48) 100%),
+        url("/static/images/prompts/prompt-card-bg-full.png?v=20260711prompt-neutral7") center center / cover no-repeat,
+        #f8fafc !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card::before {
+    opacity: 0 !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card.hf-prompt-card--open {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.45) 38%, rgba(255, 251, 245, 0.5) 100%),
+        url("/static/images/prompts/prompt-card-bg-full.png?v=20260711prompt-neutral7") center center / cover no-repeat,
+        #f8fafc !important;
+}

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TestHub — 测试工程师在线工具箱：可视化压测、AI 用例、提示词库、编解码与多媒体小工具一页集齐。">
+    <title>{{ hf_site_brand_title }} · 测试工程师在线工具箱</title>
+    {% include 'partials/hf_favicon.html' %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing_grove.css') }}?v=20260811gongan2">
+</head>
+<body class="grove-page">
+    <div class="grove-sky" aria-hidden="true">
+        <div class="grove-sky__sun"></div>
+        <div class="grove-sky__haze"></div>
+        <div class="grove-sky__ring grove-sky__ring--1"></div>
+        <div class="grove-sky__ring grove-sky__ring--2"></div>
+        <div class="grove-sky__ring grove-sky__ring--3"></div>
+        <svg class="grove-deco grove-deco--1" viewBox="0 0 80 80" fill="none">
+            <defs>
+                <linearGradient id="gd1" x1="10" y1="70" x2="70" y2="8" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#2FAE78"/><stop offset=".55" stop-color="#7EB6F5"/><stop offset="1" stop-color="#2F7DE1"/>
+                </linearGradient>
+            </defs>
+            <path d="M42 68C24 60 14 42 16 24c22 2 40 18 44 40-10-2-18 2-24 10 8-10 16-20 6-30" stroke="url(#gd1)" stroke-width="1.4" opacity=".55"/>
+            <path d="M40 66C22 52 18 30 28 14c18 10 28 30 24 48-6-6-12-4-18 0" fill="url(#gd1)" opacity=".28"/>
+            <path d="M34 22c8 10 12 24 8 36" stroke="#fff" stroke-width=".8" opacity=".45"/>
+            <circle cx="28" cy="14" r="2.2" fill="#8AD9B4"/>
+            <circle cx="52" cy="54" r="1.6" fill="#7EB6F5"/>
+        </svg>
+        <svg class="grove-deco grove-deco--2" viewBox="0 0 80 80" fill="none">
+            <defs>
+                <linearGradient id="gd2" x1="70" y1="12" x2="12" y2="68" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#F07AB8"/><stop offset="1" stop-color="#F9B4D8"/>
+                </linearGradient>
+            </defs>
+            <path d="M18 22C34 10 56 14 66 32 48 40 30 52 22 66 18 50 12 34 18 22Z" fill="url(#gd2)" opacity=".32"/>
+            <path d="M22 28C36 18 52 22 60 34" stroke="#fff" stroke-width="1" opacity=".5"/>
+            <path d="M26 40c10-6 22-6 32 0" stroke="#F07AB8" stroke-width=".9" opacity=".45"/>
+            <circle cx="64" cy="34" r="2" fill="#F9B4D8"/>
+            <circle cx="30" cy="52" r="1.4" fill="#F07AB8" opacity=".7"/>
+        </svg>
+        <svg class="grove-deco grove-deco--3" viewBox="0 0 80 80" fill="none">
+            <defs>
+                <linearGradient id="gd3" x1="12" y1="16" x2="68" y2="64" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#2F7DE1"/><stop offset="1" stop-color="#7EB6F5"/>
+                </linearGradient>
+            </defs>
+            <path d="M20 56C18 34 30 16 50 14c4 20-2 40-18 52-4-8-8-14-12-10" fill="url(#gd3)" opacity=".26"/>
+            <path d="M48 16c-12 8-20 24-18 42" stroke="#fff" stroke-width=".9" opacity=".42"/>
+            <circle cx="50" cy="14" r="2.4" fill="#7EB6F5"/>
+            <circle cx="28" cy="58" r="1.5" fill="#2F7DE1" opacity=".65"/>
+            <path d="M36 28h10M34 38h14M32 48h12" stroke="#2F7DE1" stroke-width=".7" opacity=".28" stroke-linecap="round"/>
+        </svg>
+        <svg class="grove-deco grove-deco--4" viewBox="0 0 80 80" fill="none">
+            <defs>
+                <linearGradient id="gd4" x1="16" y1="64" x2="64" y2="12" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#F08A3A"/><stop offset="1" stop-color="#F7C08A"/>
+                </linearGradient>
+            </defs>
+            <path d="M58 18C42 12 24 22 18 40c16 10 36 12 48-2-8 2-14-2-20-8 10 4 18 8 12-12" fill="url(#gd4)" opacity=".3"/>
+            <path d="M54 22C40 20 28 30 24 42" stroke="#fff" stroke-width=".9" opacity=".5"/>
+            <circle cx="58" cy="18" r="2.2" fill="#F7C08A"/>
+            <circle cx="22" cy="44" r="1.5" fill="#F08A3A" opacity=".7"/>
+        </svg>
+        <svg class="grove-deco grove-deco--5" viewBox="0 0 64 64" fill="none">
+            <circle cx="32" cy="32" r="14" stroke="#2FAE78" stroke-width="1" opacity=".25"/>
+            <circle cx="32" cy="32" r="7" fill="#8AD9B4" opacity=".22"/>
+            <circle cx="32" cy="32" r="2.5" fill="#2FAE78" opacity=".55"/>
+        </svg>
+        <svg class="grove-deco grove-deco--6" viewBox="0 0 64 64" fill="none">
+            <path d="M12 40 L32 12 L52 40 Z" stroke="#F07AB8" stroke-width="1" opacity=".22"/>
+            <circle cx="32" cy="30" r="3" fill="#F9B4D8" opacity=".35"/>
+        </svg>
+    </div>
+
+    <div class="grove-wrap">
+        <header class="grove-nav">
+            <div class="grove-nav__inner">
+                <a href="/" class="grove-brand" aria-label="Test Hub Kit 首页">
+                    <span class="grove-brand__mark" aria-hidden="true">{% set mark_uid = 'grove' %}{% include 'partials/hf_brand_mark.html' %}</span>
+                    <span class="grove-brand__text">Test Hub Kit</span>
+                </a>
+                <nav class="grove-nav__links" aria-label="页面导航">
+                    <a href="#feature-jmeter">压测</a>
+                    <a href="#feature-ai">AI用例</a>
+                    <a href="#feature-prompts">提示词</a>
+                    <a href="#feature-toolkit">工具箱</a>
+                </nav>
+                <div class="grove-nav__actions">
+                    {% if grove_show_login %}
+                    <a id="grove-nav-login" href="/auth?next=/app" class="grove-btn grove-btn--login grove-magnetic">登录</a>
+                    {% endif %}
+                    <a href="/app" class="grove-btn grove-btn--primary grove-magnetic">进入工具台 →</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="grove-hero" data-grove-hero>
+            <h1 class="grove-hero__brand">Test Hub Kit</h1>
+            <p class="grove-hero__title">测试工程师在线工具箱</p>
+            <p class="grove-hero__sub">零代码搭压测场景、AI 读蓝湖写用例、实战验证的提示词库，以及 JSON / Diff / 时间戳 / 多媒体——浏览器打开即用。</p>
+            <div class="grove-hero__actions">
+                <a href="/app" class="grove-btn grove-btn--primary grove-magnetic">免费开始使用</a>
+                <a href="#feature-jmeter" class="grove-btn grove-btn--ghost grove-magnetic">浏览能力模块 ↓</a>
+            </div>
+            <div class="grove-chip-row" aria-hidden="true">
+                <span class="grove-chip"><i class="grove-chip__dot grove-chip__dot--b"></i>可视化压测</span>
+                <span class="grove-chip"><i class="grove-chip__dot grove-chip__dot--p"></i>AI 用例</span>
+                <span class="grove-chip"><i class="grove-chip__dot grove-chip__dot--o"></i>提示词库</span>
+            </div>
+            <div class="grove-hero__plant" aria-hidden="true">
+                <svg viewBox="0 0 440 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="gStem" x1="220" y1="340" x2="220" y2="70" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#2FAE78"/><stop offset=".5" stop-color="#5B9CF0"/><stop offset="1" stop-color="#7EB6F5"/>
+                        </linearGradient>
+                        <linearGradient id="gLeafA" x1="70" y1="250" x2="210" y2="170" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#2FAE78"/><stop offset="1" stop-color="#A8E6C9"/>
+                        </linearGradient>
+                        <linearGradient id="gLeafB" x1="230" y1="150" x2="360" y2="230" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#F07AB8"/><stop offset="1" stop-color="#FDC4E0"/>
+                        </linearGradient>
+                        <linearGradient id="gLeafC" x1="90" y1="150" x2="210" y2="90" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#2F7DE1"/><stop offset="1" stop-color="#A8D0FF"/>
+                        </linearGradient>
+                        <linearGradient id="gLeafD" x1="230" y1="90" x2="330" y2="140" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#F08A3A"/><stop offset="1" stop-color="#FFD2A1"/>
+                        </linearGradient>
+                        <radialGradient id="gCore" cx="50%" cy="50%" r="50%">
+                            <stop stop-color="#FFF6DF"/><stop offset=".55" stop-color="#F7C08A"/><stop offset="1" stop-color="#F08A3A" stop-opacity="0"/>
+                        </radialGradient>
+                        <filter id="gSoft" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="2.2"/>
+                        </filter>
+                    </defs>
+                    <ellipse cx="220" cy="332" rx="110" ry="18" fill="rgba(47,125,225,0.1)"/>
+                    <circle cx="220" cy="86" r="46" fill="url(#gCore)" opacity=".55" filter="url(#gSoft)"/>
+                    <path d="M220 328 C218 250 224 170 220 96" stroke="url(#gStem)" stroke-width="5.5" stroke-linecap="round"/>
+                    <path d="M220 328 C218 250 224 170 220 96" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity=".35"/>
+                    <g class="js-leaf">
+                        <path d="M214 248 C150 210 88 228 68 278 C128 292 182 278 214 248Z" fill="url(#gLeafA)" opacity=".78"/>
+                        <path d="M214 248 C150 210 88 228 68 278 C128 292 182 278 214 248Z" stroke="#fff" stroke-width="1.1" opacity=".35"/>
+                        <path d="M196 252 C160 240 122 250 100 270" stroke="#fff" stroke-width=".9" opacity=".4"/>
+                    </g>
+                    <g class="js-leaf">
+                        <path d="M226 208 C292 170 352 192 372 246 C316 260 262 242 226 208Z" fill="url(#gLeafB)" opacity=".76"/>
+                        <path d="M226 208 C292 170 352 192 372 246 C316 260 262 242 226 208Z" stroke="#fff" stroke-width="1.1" opacity=".35"/>
+                        <path d="M244 214 C286 200 324 214 346 236" stroke="#fff" stroke-width=".9" opacity=".4"/>
+                    </g>
+                    <g class="js-leaf">
+                        <path d="M214 156 C156 118 106 132 90 178 C140 188 182 176 214 156Z" fill="url(#gLeafC)" opacity=".8"/>
+                        <path d="M214 156 C156 118 106 132 90 178 C140 188 182 176 214 156Z" stroke="#fff" stroke-width="1.1" opacity=".38"/>
+                        <path d="M198 158 C162 144 128 152 110 170" stroke="#fff" stroke-width=".9" opacity=".42"/>
+                    </g>
+                    <g class="js-leaf">
+                        <path d="M226 128 C278 96 326 110 340 152 C298 160 258 148 226 128Z" fill="url(#gLeafD)" opacity=".8"/>
+                        <path d="M226 128 C278 96 326 110 340 152 C298 160 258 148 226 128Z" stroke="#fff" stroke-width="1.1" opacity=".38"/>
+                        <path d="M240 130 C274 118 302 128 318 146" stroke="#fff" stroke-width=".9" opacity=".42"/>
+                    </g>
+                    <circle cx="220" cy="88" r="16" fill="#FFE8B8" opacity=".95"/>
+                    <circle cx="220" cy="88" r="8.5" fill="#FFF9EB"/>
+                    <circle cx="220" cy="88" r="22" stroke="#F08A3A" stroke-width="1" opacity=".28"/>
+                    <circle cx="220" cy="88" r="30" stroke="#7EB6F5" stroke-width=".8" opacity=".2" stroke-dasharray="3 4"/>
+                    <circle cx="148" cy="108" r="3.2" fill="#7EB6F5" opacity=".75"/>
+                    <circle cx="298" cy="124" r="2.6" fill="#F9B4D8" opacity=".8"/>
+                    <circle cx="112" cy="196" r="2.4" fill="#8AD9B4" opacity=".75"/>
+                    <circle cx="340" cy="210" r="2.2" fill="#F7C08A" opacity=".8"/>
+                    <path d="M156 112 L176 128" stroke="#7EB6F5" stroke-width=".8" opacity=".35"/>
+                    <path d="M292 128 L268 142" stroke="#F07AB8" stroke-width=".8" opacity=".35"/>
+                </svg>
+            </div>
+        </section>
+
+        <div class="grove-chapters">
+            <article id="feature-jmeter" class="grove-chapter grove-chapter--blue" data-grove-chapter>
+                <div class="grove-chapter__grid grove-chapter__grid--flip">
+                    <div class="grove-chapter__copy">
+                        <p class="grove-chapter__tag">01 · Load Orchestration</p>
+                        <h2 class="grove-chapter__title">可视化搭压测场景，<em>0 代码</em></h2>
+                        <p class="grove-chapter__text">拖拽式编排测试计划、线程组与 HTTP 请求，像搭积木一样拼出完整压测链路。自动生成 JMX，支持 YAML 高级模式；可写入 <strong>InfluxDB</strong> 并对接 <strong>Grafana</strong>，实时观测 QPS、响应时间与错误率。</p>
+                        <ul class="grove-chapter__list">
+                            <li>测试计划 → 线程组 → HTTP → 断言 → 导出</li>
+                            <li>公共变量、curl 导入、校验与一键 ZIP</li>
+                            <li>压测与 HTTP 批量造数，工作台 Tab 切换</li>
+                        </ul>
+                        <a href="/tool/api-scenario-studio?tab=jmeter" class="grove-btn grove-btn--primary grove-magnetic">打开压测工作台 →</a>
+                    </div>
+                    <div class="grove-visual" aria-hidden="true">
+                        <span class="grove-visual__orb grove-visual__orb--1"></span>
+                        <span class="grove-visual__orb grove-visual__orb--2"></span>
+                        <div class="grove-visual__panel">
+                            <div class="grove-visual__row"><strong>压测编排链</strong><span>live</span></div>
+                            <div class="grove-visual__bar"><i style="--w:78%"></i></div>
+                            <div class="grove-visual__row"><span>计划 → 线程 → HTTP</span><strong>JMX</strong></div>
+                            <div class="grove-visual__row"><span>Influx → Grafana</span><strong>QPS</strong></div>
+                        </div>
+<svg class="grove-visual__plant" viewBox="0 0 120 120" fill="none">
+                            <path d="M78 18C48 28 30 56 32 92c30-2 56-26 60-58-12 6-22 18-28 34 10-16 20-30 14-50z" fill="#2F7DE1" opacity=".18"/>
+                            <path d="M76 22C52 34 40 58 42 84" stroke="#2F7DE1" stroke-width="1.2" opacity=".35"/>
+                            <circle cx="78" cy="18" r="3" fill="#7EB6F5" opacity=".7"/>
+                        </svg>
+                    </div>
+                </div>
+            </article>
+
+            <article id="feature-ai" class="grove-chapter grove-chapter--pink" data-grove-chapter>
+                <div class="grove-chapter__grid">
+                    <div class="grove-chapter__copy">
+                        <p class="grove-chapter__tag">02 · AI Cases</p>
+                        <h2 class="grove-chapter__title">AI 读蓝湖，<em>写出可执行用例</em></h2>
+                        <p class="grove-chapter__text">从蓝湖需求一键拉取页面与交互说明，AI 生成结构化测试用例；支持会话编辑、智能改写与附件上下文，把需求分析到用例落地串成一条流水线。</p>
+                        <ul class="grove-chapter__list">
+                            <li>蓝湖需求解析 → 用例生成 → 会话精修</li>
+                            <li>智能编辑流式输出，边看边改</li>
+                            <li>附件与上下文可注入，贴近真实业务</li>
+                        </ul>
+                        <a href="/tool/test-cases" class="grove-btn grove-btn--primary grove-btn--pink grove-magnetic">打开用例工作台 →</a>
+                    </div>
+                    <div class="grove-visual" aria-hidden="true">
+                        <span class="grove-visual__orb grove-visual__orb--2"></span>
+                        <span class="grove-visual__orb grove-visual__orb--3"></span>
+                        <div class="grove-visual__panel">
+                            <div class="grove-visual__row"><strong>蓝湖 → 用例</strong><span>AI</span></div>
+                            <div class="grove-visual__bar"><i style="--w:86%;background:linear-gradient(90deg,#F07AB8,#F08A3A)"></i></div>
+                            <div class="grove-visual__row"><span>需求解析</span><strong>完成</strong></div>
+                            <div class="grove-visual__row"><span>用例生成</span><strong>流式</strong></div>
+                        </div>
+<svg class="grove-visual__plant" viewBox="0 0 120 120" fill="none">
+                            <path d="M28 26c30-10 54 10 60 40-28 14-56 6-68-22 12 2 24 12 34 26C44 54 32 38 28 26z" fill="#F07AB8" opacity=".18"/>
+                            <path d="M34 34c20-8 38 2 46 20" stroke="#F07AB8" stroke-width="1.2" opacity=".35"/>
+                            <circle cx="84" cy="58" r="3" fill="#F9B4D8" opacity=".7"/>
+                        </svg>
+                    </div>
+                </div>
+            </article>
+
+            <article id="feature-prompts" class="grove-chapter grove-chapter--orange" data-grove-chapter>
+                <div class="grove-chapter__grid grove-chapter__grid--flip">
+                    <div class="grove-chapter__copy">
+                        <p class="grove-chapter__tag">03 · Prompt Library</p>
+                        <h2 class="grove-chapter__title">实战验证的<em>提示词库</em></h2>
+                        <p class="grove-chapter__text">按场景分类浏览模板，一键复制到 Cursor / Agent 即用。覆盖测试设计、缺陷分析、接口与自动化等高频场景，减少从零写 prompt 的成本。</p>
+                        <ul class="grove-chapter__list">
+                            <li>分类浏览 → 选择模板 → 一键复制</li>
+                            <li>面向测试工程师的实战措辞</li>
+                            <li>持续补充，适配 Agent 工作流</li>
+                        </ul>
+                        <a href="/prompts" class="grove-btn grove-btn--primary grove-btn--orange grove-magnetic">浏览提示词库 →</a>
+                    </div>
+                    <div class="grove-visual" aria-hidden="true">
+                        <span class="grove-visual__orb grove-visual__orb--1"></span>
+                        <span class="grove-visual__orb grove-visual__orb--2"></span>
+                        <div class="grove-visual__panel">
+                            <div class="grove-visual__row"><strong>提示词栈</strong><span>copy</span></div>
+                            <div class="grove-visual__bar"><i style="--w:72%;background:linear-gradient(90deg,#F08A3A,#F07AB8)"></i></div>
+                            <div class="grove-visual__row"><span>分类模板</span><strong>就绪</strong></div>
+                            <div class="grove-visual__row"><span>Agent ready</span><strong>∞</strong></div>
+                        </div>
+<svg class="grove-visual__plant" viewBox="0 0 120 120" fill="none">
+                            <path d="M86 24C56 16 32 34 26 64c28 12 54-2 64-28-12 4-22 14-30 28 12-12 22-24 26-40z" fill="#F08A3A" opacity=".18"/>
+                            <path d="M80 30C58 26 40 40 34 56" stroke="#F08A3A" stroke-width="1.2" opacity=".35"/>
+                            <circle cx="86" cy="24" r="3" fill="#F7C08A" opacity=".75"/>
+                        </svg>
+                    </div>
+                </div>
+            </article>
+
+            <article id="feature-toolkit" class="grove-chapter grove-chapter--mix" data-grove-chapter>
+                <div class="grove-chapter__grid grove-chapter__grid--flip">
+                    <div class="grove-chapter__copy">
+                        <p class="grove-chapter__tag">05 · Toolkit</p>
+                        <h2 class="grove-chapter__title">开发测试<em>常用能力一页集齐</em></h2>
+                        <p class="grove-chapter__text">媒体处理与开发助手 Tab 切换：图片压缩、格式转换、音频生成，以及 JSON、Base64、文本 Diff、时间戳、URL 编解码。</p>
+                        <a href="/tool/media-data-hub" class="grove-btn grove-btn--primary grove-btn--green grove-magnetic">打开媒体与数据工具箱 →</a>
+                    </div>
+                    <div class="grove-visual" aria-hidden="true">
+                        <span class="grove-visual__orb grove-visual__orb--1"></span>
+                        <span class="grove-visual__orb grove-visual__orb--2"></span>
+                        <span class="grove-visual__orb grove-visual__orb--3"></span>
+                        <div class="grove-visual__panel">
+                            <div class="grove-visual__row"><strong>Tool Matrix</strong><span>modular</span></div>
+                            <div class="grove-visual__bar"><i style="--w:64%"></i></div>
+                            <div class="grove-visual__row"><span>JSON · Diff · 时间戳</span><strong>即用</strong></div>
+                            <div class="grove-visual__row"><span>图片 · 音频</span><strong>一页</strong></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grove-matrix">
+                    <div class="grove-matrix__item"><strong>数据编解码</strong><p>JSON · Base64 · Diff · 时间戳 · URL</p></div>
+                    <div class="grove-matrix__item"><strong>多媒体处理</strong><p>图片压缩 · 格式转换 · TTS 音频</p></div>
+                    <div class="grove-matrix__item"><strong>文档工具</strong><p>Excel 列批量写入等</p></div>
+                    <div class="grove-matrix__item"><strong>即开即用</strong><p>无需安装客户端</p></div>
+                </div>
+            </article>
+        </div>
+
+        <section class="grove-cta" aria-labelledby="grove-cta-h">
+            <div class="grove-cta__inner">
+                <h2 id="grove-cta-h">准备好提升测试效率了吗？</h2>
+                <p>五大能力一页集齐，浏览器打开即用。个人学习与日用均可免费体验。</p>
+                <div class="grove-cta__actions">
+                    <a href="/app" class="grove-btn grove-btn--primary grove-magnetic">进入 TestHub 工具台</a>
+                    <a href="/prompts" class="grove-btn grove-btn--ghost grove-magnetic">先看提示词库</a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="grove-footer">
+            <div class="grove-footer__inner">
+                <div class="grove-footer__brand">
+                    <strong>Test Hub Kit</strong>
+                    <span>测试工程师在线工具箱 · 个人免费体验</span>
+                </div>
+                <nav class="grove-footer__nav" aria-label="页脚导航">
+                    <a href="/app">工具台</a>
+                    <a href="/prompts">提示词库</a>
+                    <a href="#feature-jmeter">功能介绍</a>
+                    <a href="/legal/terms" target="_blank" rel="noopener noreferrer">用户协议</a>
+                    <a href="/legal/privacy" target="_blank" rel="noopener noreferrer">隐私政策</a>
+                    <button type="button" class="grove-footer__community" data-hf-community-open>交流群</button>
+                </nav>
+            </div>
+            <div class="grove-footer__legal" role="contentinfo" aria-label="版权与备案">
+                <span>© 2026 Test Hub Kit</span>
+                <span aria-hidden="true">·</span>
+                <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">豫ICP备2026025141号-1</a>
+                <span aria-hidden="true">·</span>
+                <a class="grove-footer__gongan" href="https://beian.mps.gov.cn/#/query/webSearch?code=31011502406933" target="_blank" rel="noopener noreferrer">
+                    <img class="grove-footer__gongan-icon" src="{{ url_for('static', filename='img/gongan_beian.png') }}?v=20260811gongan2" width="16" height="17" alt="公安备案" decoding="async">
+                    <span>沪公网安备31011502406933号</span>
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <button type="button" id="grove-back-top" class="grove-top" aria-label="回到页面顶部" title="回到顶部" aria-hidden="true">
+        <span class="grove-top__ring" aria-hidden="true"></span>
+        <span class="grove-top__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+                <path d="M12 18V7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M7.5 11.5L12 7l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9.2 5.2C10.4 4.2 11.4 4 12 4c.6 0 1.6.2 2.8 1.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".75"/>
+            </svg>
+        </span>
+    </button>
+
+    {% include 'partials/hf_page_nav_loading.html' %}
+    {% include 'partials/hf_community_panel.html' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hf_community.css') }}?v=20260811wxadmin2">
+    <script src="{{ url_for('static', filename='js/hf_community.js') }}?v=20260811wxadmin2" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="{{ url_for('static', filename='js/landing_grove.js') }}?v=20260731login2" defer></script>
+</body>
+</html>

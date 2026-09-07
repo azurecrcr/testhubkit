@@ -1,0 +1,471 @@
+/* HTTP 步骤 · 用户参数弹窗 v5（隔离 · #modal-http-step-user-params-edit） */
+#modal-http-step-user-params-edit {
+    --jms-up-accent: #2563eb;
+    --jms-up-accent-2: #3b82f6;
+    --jms-up-accent-soft: #eff6ff;
+    --jms-up-border: #dbeafe;
+    --jms-up-text: #0f172a;
+    --jms-up-muted: #64748b;
+}
+
+#modal-http-step-user-params-edit {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 13100 !important;
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    background: rgba(15, 23, 42, 0.52) !important;
+    backdrop-filter: blur(6px) !important;
+    pointer-events: auto !important;
+}
+
+#modal-http-step-user-params-edit.jms-modal-open {
+    display: flex !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4-modal__panel {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: min(820px, 96vw) !important;
+    max-height: min(92vh, 820px) !important;
+    margin: 0 !important;
+    border-radius: 16px !important;
+    border: 1px solid #e2e8f0 !important;
+    background: #fff !important;
+    box-shadow: 0 28px 64px rgba(15, 23, 42, 0.24) !important;
+    overflow: hidden !important;
+    pointer-events: auto !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4-modal__head {
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    padding: 0.85rem 1.25rem !important;
+    border-bottom: 1px solid #eef2f7 !important;
+    background: linear-gradient(135deg, #f8fbff 0%, #f1f5f9 100%) !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4-modal__head-accent {
+    width: 4px !important;
+    align-self: stretch !important;
+    border-radius: 4px !important;
+    background: linear-gradient(180deg, var(--jms-up-accent), var(--jms-up-accent-2)) !important;
+    flex-shrink: 0 !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4-modal__head-main {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.2rem !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4-modal__badge {
+    display: inline-flex !important;
+    width: fit-content !important;
+    padding: 0.12rem 0.5rem !important;
+    border-radius: 999px !important;
+    background: var(--jms-up-accent-soft) !important;
+    border: 1px solid var(--jms-up-border) !important;
+    color: var(--jms-up-accent) !important;
+    font-size: 0.625rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4-modal__title {
+    margin: 0 !important;
+    font-size: 1.0625rem !important;
+    font-weight: 650 !important;
+    color: var(--jms-up-text) !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4-modal__close {
+    flex-shrink: 0 !important;
+    width: 2rem !important;
+    height: 2rem !important;
+    border: none !important;
+    border-radius: 8px !important;
+    background: transparent !important;
+    color: var(--jms-up-muted) !important;
+    font-size: 1.25rem !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4-modal__close:hover {
+    background: var(--jms-up-accent-soft) !important;
+    color: var(--jms-up-accent) !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4-modal__body {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0.85rem 1.25rem 0.65rem !important;
+    background: #fff !important;
+    pointer-events: auto !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4 {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    gap: 0.65rem !important;
+}
+
+/* 名称 / 注释 / 每次迭代 — 同一行 */
+#modal-http-step-user-params-edit .jms-http-up-v4__meta {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto !important;
+    gap: 0.65rem 0.75rem !important;
+    align-items: end !important;
+    width: 100% !important;
+    padding: 0.72rem 0.85rem !important;
+    border-radius: 12px !important;
+    border: 1px solid var(--jms-up-border) !important;
+    background: linear-gradient(180deg, #f8fbff 0%, #f1f5f9 100%) !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+}
+
+#modal-http-step-user-params-edit label.jms-http-up-v4__field {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.3rem !important;
+    margin: 0 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__label {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    color: #475569 !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__input {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0.42rem 0.6rem !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    font-size: 0.8125rem !important;
+    color: var(--jms-up-text) !important;
+    -webkit-text-fill-color: var(--jms-up-text) !important;
+    caret-color: var(--jms-up-text) !important;
+    background: #fff !important;
+    font-family: inherit !important;
+    height: 2rem !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__input::placeholder {
+    color: #94a3b8 !important;
+    -webkit-text-fill-color: #94a3b8 !important;
+    opacity: 1 !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__input:focus {
+    outline: none !important;
+    border-color: var(--jms-up-accent-2) !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14) !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__check {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+    width: fit-content !important;
+    margin: 0 !important;
+    padding: 0.35rem 0.55rem !important;
+    border-radius: 8px !important;
+    border: 1px solid #e2e8f0 !important;
+    background: #f8fafc !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    height: 2rem !important;
+    box-sizing: border-box !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__check--inline {
+    align-self: end !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__check input {
+    position: absolute !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    pointer-events: none !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__check-box {
+    width: 0.9rem !important;
+    height: 0.9rem !important;
+    border: 1.5px solid #94a3b8 !important;
+    border-radius: 4px !important;
+    background: #fff !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__check input:checked + .jms-http-up-v4__check-box {
+    border-color: var(--jms-up-accent) !important;
+    background: var(--jms-up-accent) !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__check input:checked + .jms-http-up-v4__check-box::after {
+    content: '' !important;
+    width: 0.28rem !important;
+    height: 0.5rem !important;
+    border: solid #fff !important;
+    border-width: 0 2px 2px 0 !important;
+    transform: rotate(45deg) translate(-1px, -1px) !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__check-text {
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    color: #334155 !important;
+    line-height: 1.2 !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__table-block {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__table-scroll {
+    flex: 1 1 auto !important;
+    min-height: min(42vh, 360px) !important;
+    max-height: min(52vh, 440px) !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 10px !important;
+    overflow: auto !important;
+    background: #f8fafc !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__empty {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 8rem !important;
+    padding: 1.5rem 1rem !important;
+    font-size: 0.8125rem !important;
+    color: #94a3b8 !important;
+    text-align: center !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__thead,
+#modal-http-step-user-params-edit .jms-http-up-v4__trow {
+    display: grid !important;
+    grid-template-columns: 2.5rem minmax(8rem, 11rem) repeat(var(--up-user-cols, 1), minmax(7rem, 1fr)) !important;
+    align-items: stretch !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__thead {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 2 !important;
+    background: #e8eef5 !important;
+    border-bottom: 1px solid #dbeafe !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__tcell {
+    padding: 0.32rem 0.4rem !important;
+    display: flex !important;
+    align-items: center !important;
+    min-width: 0 !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__thead .jms-http-up-v4__tcell {
+    font-size: 0.6875rem !important;
+    font-weight: 700 !important;
+    color: #64748b !important;
+    text-transform: none !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__trow {
+    border-bottom: 1px solid #eef2f7 !important;
+    background: #fff !important;
+    cursor: pointer !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__trow:last-child {
+    border-bottom: none !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__trow.is-selected {
+    background: rgba(37, 99, 235, 0.07) !important;
+    box-shadow: inset 3px 0 0 var(--jms-up-accent) !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__tcell--idx {
+    justify-content: center !important;
+    font-size: 0.6875rem !important;
+    font-weight: 600 !important;
+    color: #94a3b8 !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__tinput {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0.3rem 0.45rem !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 6px !important;
+    font-size: 0.75rem !important;
+    background: #fff !important;
+    color: var(--jms-up-text) !important;
+    -webkit-text-fill-color: var(--jms-up-text) !important;
+    caret-color: var(--jms-up-text) !important;
+    min-width: 0 !important;
+    height: 1.75rem !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__tinput::placeholder {
+    color: #94a3b8 !important;
+    -webkit-text-fill-color: #94a3b8 !important;
+    opacity: 1 !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__tinput:focus {
+    outline: none !important;
+    border-color: var(--jms-up-accent-2) !important;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.14) !important;
+}
+
+/* 暗色 Studio 主题下继承浅色字色，白底输入框需强制深色文字（仅本弹窗） */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__input,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__tinput,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit input.hf-mono {
+    color: #0f172a !important;
+    -webkit-text-fill-color: #0f172a !important;
+    caret-color: #0f172a !important;
+    background: #fff !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__input::placeholder,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__tinput::placeholder {
+    color: #94a3b8 !important;
+    -webkit-text-fill-color: #94a3b8 !important;
+    opacity: 1 !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4-modal__actions {
+    flex-shrink: 0 !important;
+    position: relative !important;
+    z-index: 12 !important;
+    padding: 0.42rem 1.25rem !important;
+    border-top: 1px solid #eef2f7 !important;
+    background: #f8fafc !important;
+    pointer-events: auto !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__toolbar {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0.38rem !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__tool {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid #dbeafe !important;
+    background: #fff !important;
+    color: #334155 !important;
+    border-radius: 7px !important;
+    padding: 0 0.5rem !important;
+    min-height: 1.625rem !important;
+    height: 1.625rem !important;
+    font-size: 0.71875rem !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    font-family: inherit !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    white-space: nowrap !important;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4__tool:hover {
+    background: var(--jms-up-accent-soft) !important;
+    border-color: #93c5fd !important;
+    color: var(--jms-up-accent) !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4-modal__foot {
+    flex-shrink: 0 !important;
+    position: relative !important;
+    z-index: 6 !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.55rem 1.25rem 0.75rem !important;
+    border-top: 1px solid #e2e8f0 !important;
+    background: linear-gradient(180deg, #f8fafc, #fff) !important;
+    pointer-events: auto !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4-modal__btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 4.75rem !important;
+    height: 1.875rem !important;
+    padding: 0 0.95rem !important;
+    border-radius: 8px !important;
+    font-size: 0.78125rem !important;
+    font-weight: 600 !important;
+    font-family: inherit !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    line-height: 1 !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4-modal__btn--ghost {
+    border: 1px solid #cbd5e1 !important;
+    background: #fff !important;
+    color: #475569 !important;
+}
+
+#modal-http-step-user-params-edit .jms-http-up-v4-modal__btn--primary {
+    border: none !important;
+    background: linear-gradient(135deg, #2563eb, #3b82f6) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.28) !important;
+}
+
+@media (max-width: 720px) {
+    #modal-http-step-user-params-edit .jms-http-up-v4__meta {
+        grid-template-columns: 1fr 1fr !important;
+    }
+    #modal-http-step-user-params-edit .jms-http-up-v4__check--inline {
+        grid-column: 1 / -1 !important;
+        justify-self: start !important;
+    }
+    #modal-http-step-user-params-edit .jms-http-up-v4__toolbar {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}

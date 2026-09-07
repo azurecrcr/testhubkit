@@ -1,0 +1,417 @@
+/* 用例录入 — 提示词 Composer（Cursor 风格紧凑输入 + 发送） */
+
+.tc-prompt-composer.tc-left-section {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+#left-panel .tc-prompt-composer.tc-entry-card {
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: #ffffff;
+}
+
+#left-panel .tc-prompt-composer__box {
+    border: 1px solid #e4e4e7;
+    border-radius: 9999px;
+    background: #ffffff;
+    overflow: visible;
+    transition: border-color 0.15s ease, border-radius 0.15s ease;
+}
+
+#left-panel .tc-prompt-composer__box:focus-within {
+    border-color: #d4d4d8;
+    background: #ffffff;
+    box-shadow: none;
+}
+
+#left-panel .tc-prompt-composer__box--drag {
+    border-color: #c7d2fe;
+    background: rgba(99, 102, 241, 0.06);
+    box-shadow: none;
+}
+
+#left-panel .tc-prompt-composer__send-btn {
+    background: #e4e4e7;
+    color: #a1a1aa;
+    border: none;
+    cursor: not-allowed;
+}
+
+#left-panel .tc-prompt-composer__send-btn--active,
+#left-panel .tc-prompt-composer__send-btn:not(:disabled) {
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+
+#left-panel .tc-prompt-composer__send-btn--active:hover:not(:disabled),
+#left-panel .tc-prompt-composer__send-btn:not(:disabled):hover {
+    background: #000000;
+    color: #ffffff;
+}
+
+#left-panel .tc-prompt-composer__send-icon {
+    color: #ffffff;
+    stroke: #ffffff;
+}
+
+#left-panel .tc-prompt-composer__send-btn:disabled .tc-prompt-composer__send-icon {
+    stroke: #a1a1aa;
+    color: #a1a1aa;
+}
+
+#left-panel .tc-prompt-composer__send-btn:not(:disabled) .tc-prompt-composer__send-icon {
+    stroke: #ffffff;
+    color: #ffffff;
+}
+
+#left-panel .tc-prompt-composer__send-btn--stop {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+#left-panel .tc-prompt-composer__send-btn--stop:hover:not(:disabled) {
+    background: #b91c1c;
+    color: #ffffff;
+}
+
+#left-panel .tc-prompt-composer__send-btn--stop .tc-prompt-composer__send-icon--send {
+    display: none;
+}
+
+#left-panel .tc-prompt-composer__send-btn--stop .tc-prompt-composer__send-icon--stop {
+    display: block;
+    fill: #ffffff;
+}
+
+#left-panel #tc-prompt-composer-box.tc-prompt-composer__box--multiline {
+    border-radius: 10px !important;
+}
+
+.tc-prompt-composer__box:focus-within {
+    border-color: #d4d4d8;
+    background: #ffffff;
+    box-shadow: none;
+}
+
+.tc-prompt-composer__box--drag {
+    border-color: #c7d2fe;
+    background: rgba(99, 102, 241, 0.06);
+    box-shadow: none;
+}
+
+.tc-prompt-composer__input-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
+    min-height: 2rem;
+    padding: 2px 4px 2px 6px;
+}
+
+#left-panel #tc-prompt-composer-box.tc-prompt-composer__box--multiline .tc-prompt-composer__input-wrap {
+    align-items: flex-end;
+}
+
+.tc-prompt-composer__attachments {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0;
+    min-height: 0;
+}
+
+.tc-prompt-composer__attachments:not(:empty) {
+    padding: 0.35rem 0.625rem 0.2rem;
+}
+
+.tc-prompt-composer__input {
+    display: block;
+    flex: 1 1 auto;
+    width: 0;
+    min-width: 0;
+    min-height: 1rem;
+    max-height: none;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    resize: none;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding: 0.125rem 0.15rem 0.125rem 0.05rem;
+    box-shadow: none;
+    font-size: 0.6875rem;
+    line-height: 1.35;
+    color: #18181b;
+}
+
+#left-panel .tc-prompt-composer__box #ai-prompt.tc-prompt-composer__input,
+#left-panel .tc-prompt-composer__box .tc-prompt-composer__input.tc-prompt-block__input {
+    min-height: 1rem !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+#left-panel .tc-prompt-composer__box #ai-prompt.tc-prompt-composer__input:focus,
+#left-panel .tc-prompt-composer__box .tc-prompt-composer__input.tc-prompt-block__input:focus {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.tc-prompt-composer__input::placeholder {
+    color: #a1a1aa;
+}
+
+.tc-prompt-composer__input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.tc-prompt-composer__attach-btn {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: #ececee;
+    color: #71717a;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.15s ease, background 0.15s ease, transform 0.12s ease;
+}
+
+.tc-prompt-composer__attach-plus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    line-height: 0;
+}
+
+.tc-prompt-composer__attach-icon {
+    width: 0.8125rem;
+    height: 0.8125rem;
+    color: currentColor;
+    stroke: currentColor;
+    flex: 0 0 auto;
+}
+
+.tc-prompt-composer__attach-btn:hover:not(:disabled) {
+    background: #dcdcdf;
+    color: #52525b;
+}
+
+.tc-prompt-composer__attach-btn:active:not(:disabled) {
+    transform: scale(0.96);
+}
+
+.tc-prompt-composer__attach-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.tc-prompt-composer__send-btn {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: #e4e4e7;
+    color: #a1a1aa;
+    cursor: not-allowed;
+    transition: transform 0.12s ease, opacity 0.15s ease;
+}
+
+.tc-prompt-composer__send-btn--active,
+.tc-prompt-composer__send-btn:not(:disabled) {
+    background: #000000;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.tc-prompt-composer__send-btn--active:hover:not(:disabled),
+.tc-prompt-composer__send-btn:not(:disabled):hover {
+    background: #000000;
+    color: #ffffff;
+}
+
+.tc-prompt-composer__send-btn--active:active:not(:disabled) {
+    transform: scale(0.94);
+}
+
+.tc-prompt-composer__send-btn:disabled {
+    opacity: 1;
+}
+
+.tc-prompt-composer__send-icon {
+    width: 0.8125rem;
+    height: 0.8125rem;
+    color: currentColor;
+    stroke: currentColor;
+}
+
+.tc-prompt-composer__send-icon--stop {
+    display: none;
+    stroke: none;
+}
+
+.tc-prompt-composer__send-btn--stop {
+    background: #dc2626;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.tc-prompt-composer__send-btn--stop:hover:not(:disabled) {
+    background: #b91c1c;
+    color: #ffffff;
+}
+
+.tc-prompt-composer__send-btn--stop .tc-prompt-composer__send-icon--send {
+    display: none;
+}
+
+.tc-prompt-composer__send-btn--stop .tc-prompt-composer__send-icon--stop {
+    display: block;
+}
+
+.tc-prompt-composer__meta {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.tc-prompt-budget-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.15rem 0.35rem 0;
+    min-height: 0;
+}
+
+.tc-prompt-budget-bar__text {
+    font-size: 0.625rem;
+    line-height: 1.35;
+    color: #a1a1aa;
+}
+
+.tc-prompt-budget-bar__track {
+    height: 3px;
+    border-radius: 999px;
+    background: #ececee;
+    overflow: hidden;
+}
+
+.tc-prompt-budget-bar__fill {
+    height: 100%;
+    width: 0%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #a1a1aa 0%, #71717a 100%);
+    transition: width 0.15s ease, background 0.15s ease;
+}
+
+.tc-prompt-budget-bar--warn .tc-prompt-budget-bar__fill {
+    background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
+}
+
+.tc-prompt-budget-bar--warn .tc-prompt-budget-bar__text {
+    color: #b45309;
+}
+
+.tc-prompt-budget-bar--hot .tc-prompt-budget-bar__fill {
+    background: linear-gradient(90deg, #fb7185 0%, #e11d48 100%);
+}
+
+.tc-prompt-budget-bar--hot .tc-prompt-budget-bar__text {
+    color: #be123c;
+}
+
+.tc-attach-card {
+    position: relative;
+    width: 4.5rem;
+    height: 4.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: #fff;
+}
+
+.tc-attach-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tc-attach-card__doc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #475569;
+    background: #f1f5f9;
+    text-transform: uppercase;
+}
+
+.tc-attach-card__badge {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.125rem 0.25rem;
+    font-size: 0.625rem;
+    text-align: center;
+    color: #fff;
+    background: rgba(15, 23, 42, 0.62);
+}
+
+.tc-attach-card__badge--error { background: rgba(220, 38, 38, 0.85); }
+.tc-attach-card__badge--pending { background: rgba(99, 102, 241, 0.78); }
+
+.tc-attach-card__remove {
+    position: absolute;
+    top: 0.125rem;
+    right: 0.125rem;
+    width: 1rem;
+    height: 1rem;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.72);
+    color: #fff;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    cursor: pointer;
+}
+
+.hf-float-toast.hf-float-toast--above-modal {
+    z-index: 10950 !important;
+}
+
+.tc-prompt-composer--attach-full .tc-prompt-composer__attach-btn {
+    opacity: 0.45;
+    cursor: not-allowed;
+}

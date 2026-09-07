@@ -1,0 +1,291 @@
+﻿/**
+ * HTTP 步骤 · JSON 断言弹窗（隔离样式 v2 · #modal-tg-json-assert-edit）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10320;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.36);
+    backdrop-filter: blur(6px);
+    --jms-tg-ja-accent: #4f46e5;
+    --jms-tg-ja-accent-soft: rgba(99, 102, 241, 0.12);
+    --jms-tg-ja-border: #e5e9ef;
+    --jms-tg-ja-surface: #ffffff;
+    --jms-tg-ja-text: #111827;
+    --jms-tg-ja-field-text: #0f172a;
+    --jms-tg-ja-label: #374151;
+    --jms-tg-ja-muted: #64748b;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit.jms-modal-open {
+    display: flex !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-step-modal {
+    width: min(840px, 96vw) !important;
+    max-height: min(96vh, 56rem);
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(229, 233, 239, 0.98) !important;
+    background: var(--jms-tg-ja-surface) !important;
+    color: var(--jms-tg-ja-text) !important;
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.12) !important;
+    overflow: hidden !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-drawer__head {
+    flex-shrink: 0;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 1rem 1.35rem !important;
+    border-bottom: 1px solid var(--jms-tg-ja-border) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-drawer__head-main {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-drawer__badge {
+    padding: 0.12rem 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--jms-tg-ja-accent);
+    background: var(--jms-tg-ja-accent-soft);
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    border-radius: 999px;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-step-modal__title {
+    margin: 0 !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: var(--jms-tg-ja-text) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-drawer__close {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #94a3b8;
+    font-size: 1.35rem;
+    cursor: pointer;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-drawer__close:hover {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-drawer__body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 1rem 1.35rem 0.75rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__grid--meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem 0.75rem;
+}
+
+@media (max-width: 560px) {
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__grid--meta {
+        grid-template-columns: 1fr;
+    }
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__card {
+    padding: 0.8rem 0.9rem;
+    border: 1px solid #eef2f7;
+    border-radius: 10px;
+    background: #fafbfc;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__textarea:disabled {
+    color: #94a3b8;
+    background: #f1f5f9;
+    cursor: not-allowed;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__chip input:disabled + span {
+    color: #94a3b8;
+    cursor: not-allowed;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__card-title {
+    margin: 0 0 0.55rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--jms-tg-ja-muted);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.32rem;
+    margin: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__label {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--jms-tg-ja-label) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__label-en {
+    font-weight: 500;
+    color: #9ca3af !important;
+    font-size: 0.68rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__input,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__textarea,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit input.hf-mono,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit textarea.hf-mono {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem 0.65rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--jms-tg-ja-field-text) !important;
+    -webkit-text-fill-color: var(--jms-tg-ja-field-text) !important;
+    caret-color: var(--jms-tg-ja-field-text) !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__input--mono,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__textarea.jms-tg-ja-v2__input--mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.84rem;
+    letter-spacing: 0.01em;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__textarea {
+    min-height: 8.5rem;
+    resize: vertical;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__input::placeholder,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__textarea::placeholder {
+    color: #94a3b8 !important;
+    -webkit-text-fill-color: #94a3b8 !important;
+    opacity: 1;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__input:focus,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__textarea:focus {
+    outline: none;
+    border-color: #818cf8;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__input:-webkit-autofill,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__textarea:-webkit-autofill {
+    -webkit-text-fill-color: var(--jms-tg-ja-field-text) !important;
+    box-shadow: 0 0 0 1000px #ffffff inset !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__chip-row--foot {
+    margin-top: 0.55rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid #eef2f7;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__chip {
+    position: relative;
+    cursor: pointer;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__chip input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__chip span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0.32rem 0.72rem;
+    font-size: 0.76rem;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--jms-tg-ja-muted) !important;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    transition: border-color 0.15s, background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__chip:hover span {
+    border-color: #c7d2fe;
+    color: #4338ca !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-v2__chip input:checked + span {
+    color: #4338ca !important;
+    background: rgba(99, 102, 241, 0.1);
+    border-color: #818cf8;
+    box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.2);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-drawer__foot {
+    flex-shrink: 0;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0.9rem 1.35rem calc(0.9rem + env(safe-area-inset-bottom, 0px)) !important;
+    border-top: 1px solid var(--jms-tg-ja-border) !important;
+    background: #fafbfc !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-drawer__foot-actions {
+    display: flex;
+    gap: 0.6rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-drawer__enabled span {
+    font-weight: 600;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__assert-type--ja {
+    background: rgba(224, 231, 255, 0.95) !important;
+    color: #4338ca !important;
+}

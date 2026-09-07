@@ -1,0 +1,745 @@
+/* ============================================================
+   TestHub — 生成阶段 UI 增强（生成过程可视化）
+   独立样式文件，不影响现有功能
+   ============================================================ */
+
+/* ----- 批次条升级为生成进度横幅 ----- */
+.tc-gen-stage-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.65rem;
+    margin: 0.25rem 0 0.25rem;
+    padding: 0.38rem 0.65rem 0.38rem 0.6rem;
+    border-radius: 0.625rem;
+    border: 1px solid rgb(199 210 254);
+    background: linear-gradient(135deg, rgb(238 242 255), rgb(240 249 255));
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    transition: border-color 0.3s ease, background 0.3s ease;
+    min-height: 2.35rem;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.tc-gen-stage-bar__main {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem 0.5rem;
+}
+
+.tc-gen-stage-bar__footer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+    margin-left: auto;
+}
+
+.tc-gen-stage-bar.hidden {
+    display: none !important;
+}
+
+.tc-gen-stage-bar--done {
+    border-color: rgb(167 243 208);
+    background: linear-gradient(135deg, rgb(236 253 245), rgb(240 253 244));
+}
+
+.tc-gen-stage-bar--error {
+    border-color: rgb(252 165 165);
+    background: linear-gradient(135deg, rgb(254 242 242), rgb(255 251 251));
+}
+
+.tc-gen-stage-bar--cancelled {
+    border-color: rgb(226 232 240);
+    background: linear-gradient(135deg, rgb(248 250 252), rgb(241 245 249));
+}
+
+/* ----- 步骤指示器（水平） ----- */
+.tc-gen-stepper {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex-shrink: 0;
+    min-width: 0;
+}
+.tc-gen-stepper::-webkit-scrollbar { display: none; }
+
+.tc-gen-stepper__step {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.18rem;
+    padding: 0.08rem 0.3rem;
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: rgb(148 163 184);
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: color 0.25s ease, background 0.25s ease;
+}
+
+.tc-gen-stepper__step--pending {
+    color: rgb(148 163 184);
+}
+
+.tc-gen-stepper__step--active {
+    color: rgb(79 70 229);
+    background: rgba(99, 102, 241, 0.08);
+    font-weight: 600;
+}
+
+.tc-gen-stepper__step--done {
+    color: rgb(5 150 105);
+}
+
+.tc-gen-stepper__step--skip {
+    color: rgb(148 163 184);
+    text-decoration: line-through;
+}
+
+.tc-gen-stepper__step--error {
+    color: rgb(220 38 38);
+    font-weight: 600;
+}
+
+.tc-gen-stepper__step--cancelled {
+    color: rgb(148 163 184);
+}
+
+.tc-gen-stepper__dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: currentColor;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tc-gen-stepper__step--active .tc-gen-stepper__dot {
+    transform: scale(1.6);
+    box-shadow: 0 0 4px rgba(99, 102, 241, 0.45);
+    animation: tc-gen-stepper-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes tc-gen-stepper-pulse {
+    0%, 100% { box-shadow: 0 0 4px rgba(99, 102, 241, 0.35); }
+    50% { box-shadow: 0 0 10px rgba(99, 102, 241, 0.65); }
+}
+
+.tc-gen-stepper__check {
+    display: inline-block;
+    font-size: 0.625rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.tc-gen-stepper__separator {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 0 0.05rem;
+    color: rgb(203 213 225);
+    font-size: 0.5rem;
+    user-select: none;
+}
+
+/* ----- 进度条区域（横幅最右侧） ----- */
+.tc-gen-stage-bar__progress-widget {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0.28rem;
+    width: 10.5rem;
+    min-width: 9rem;
+    margin-left: 0.35rem;
+    padding: 0.28rem 0.55rem 0.3rem;
+    border-radius: 0.55rem;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(199, 210, 254, 0.85);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.tc-gen-stage-bar__percent {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: right;
+    letter-spacing: 0.01em;
+    color: rgb(67 56 202);
+    font-variant-numeric: tabular-nums;
+}
+
+.tc-gen-stage-bar__track {
+    position: relative;
+    width: 100%;
+    height: 0.625rem;
+    border-radius: 999px;
+    background: rgb(226 232 240);
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.tc-gen-stage-bar__fill {
+    position: relative;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, rgb(99 102 241) 0%, rgb(129 140 248) 52%, rgb(56 189 248) 100%);
+    border-radius: 999px;
+    transition: none;
+    min-width: 0;
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.32);
+}
+
+.tc-gen-stage-bar__fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.38) 50%, transparent 100%);
+    animation: tc-gen-stage-fill-shimmer 1.8s ease-in-out infinite;
+}
+
+@keyframes tc-gen-stage-fill-shimmer {
+    0% { transform: translateX(-120%); opacity: 0; }
+    35% { opacity: 0.85; }
+    100% { transform: translateX(120%); opacity: 0; }
+}
+
+.tc-gen-stage-bar--done .tc-gen-stage-bar__fill {
+    background: linear-gradient(90deg, rgb(16 185 129), rgb(52 211 153));
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.28);
+}
+
+.tc-gen-stage-bar--done .tc-gen-stage-bar__fill::after {
+    animation: none;
+    opacity: 0;
+}
+
+.tc-gen-stage-bar--error .tc-gen-stage-bar__fill {
+    background: linear-gradient(90deg, rgb(239 68 68), rgb(248 113 113));
+    box-shadow: none;
+}
+
+.tc-gen-stage-bar--error .tc-gen-stage-bar__fill::after {
+    animation: none;
+    opacity: 0;
+}
+
+.tc-gen-stage-bar--done .tc-gen-stage-bar__percent {
+    color: rgb(5 150 105);
+}
+
+@media (max-width: 720px) {
+    .tc-gen-stage-bar {
+        flex-wrap: wrap;
+    }
+    .tc-gen-stage-bar__progress-widget {
+        width: 100%;
+        min-width: 0;
+        margin-left: 0;
+        order: 99;
+    }
+    .tc-gen-stage-bar__footer {
+        margin-left: 0;
+    }
+}
+
+/* ----- 统计信息行 ----- */
+.tc-gen-stage-bar__info-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 0.75rem;
+}
+
+.tc-gen-stage-bar__title {
+    font-weight: 600;
+    color: rgb(30 41 59);
+    font-size: 0.75rem;
+}
+
+.tc-gen-stage-bar__meta {
+    font-size: 0.6875rem;
+    color: rgb(100 116 139);
+    font-variant-numeric: tabular-nums;
+}
+
+.tc-gen-stage-bar__stage-label {
+    display: none;
+}
+
+@keyframes tc-gen-stage-label-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+}
+
+/* ----- 操作区 ----- */
+.tc-gen-stage-bar__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+.tc-gen-stage-bar__stop-btn {
+    padding: 0.15rem 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 500;
+    color: rgb(220 38 38);
+    border: 1px solid rgb(252 165 165);
+    border-radius: 6px;
+    background: rgb(255 255 255);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.tc-gen-stage-bar__stop-btn:hover {
+    background: rgb(254 242 242);
+    border-color: rgb(239 68 68);
+}
+
+.tc-gen-stage-bar__stop-btn.hidden {
+    display: none !important;
+}
+
+.tc-gen-stage-bar__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    padding: 0.1rem 0.35rem;
+    color: rgb(100 116 139);
+    border: none;
+    border-radius: 0.375rem;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.75rem;
+    line-height: 1;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tc-gen-stage-bar__close-icon {
+    font-size: 0.875rem;
+    line-height: 1;
+}
+
+.tc-gen-stage-bar__close-label {
+    display: none;
+    font-size: 0.625rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.tc-gen-stage-bar__close:hover {
+    background: rgb(255 255 255 / 0.7);
+}
+
+/* 质量检测横幅：关闭按钮显式按钮样式（与「停止生成」同级可识别） */
+.tc-gen-stage-bar--quality .tc-gen-stage-bar__close {
+    padding: 0.18rem 0.55rem;
+    min-height: 1.375rem;
+    color: rgb(51 65 85);
+    border: 1px solid rgb(203 213 225);
+    border-radius: 6px;
+    background: rgb(255 255 255);
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.06);
+}
+
+.tc-gen-stage-bar--quality .tc-gen-stage-bar__close-label {
+    display: inline;
+}
+
+.tc-gen-stage-bar--quality .tc-gen-stage-bar__close:hover {
+    color: rgb(30 41 59);
+    border-color: rgb(148 163 184);
+    background: rgb(248 250 252);
+}
+
+.tc-gen-stage-bar--quality .tc-gen-stage-bar__close:focus-visible {
+    outline: 2px solid rgb(59 130 246 / 0.45);
+    outline-offset: 1px;
+}
+
+.tc-gen-stage-bar--quality .tc-gen-stage-bar__close:active {
+    background: rgb(241 245 249);
+    box-shadow: none;
+}
+
+/* ----- 完成庆祝动画 ----- */
+.tc-gen-stage-bar--done {
+    animation: tc-stage-celebrate 0.6s ease-out;
+}
+
+@keyframes tc-stage-celebrate {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.015); }
+    100% { transform: scale(1); }
+}
+
+.tc-gen-stage-bar__done-icon {
+    display: none;
+    font-size: 0.875rem;
+}
+
+.tc-gen-stage-bar--done .tc-gen-stage-bar__done-icon {
+    display: inline;
+    animation: tc-stage-bounce-in 0.4s ease-out;
+}
+
+@keyframes tc-stage-bounce-in {
+    0% { transform: scale(0); }
+    60% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* ----- 摘要卡片 ----- */
+.tc-gen-summary-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin: 0.25rem 0 0.25rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgb(167 243 208);
+    background: rgb(240 253 244);
+    animation: tc-summary-slide-in 0.35s ease-out;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* 5 秒后自动消失 */
+.tc-gen-summary-card--fading {
+    animation: tc-summary-fade-out 0.45s ease-in forwards;
+    pointer-events: none;
+}
+
+@keyframes tc-summary-fade-out {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-8px); max-height: 0; margin: 0; padding-top: 0; padding-bottom: 0; border-width: 0; overflow: hidden; }
+}
+
+.tc-gen-summary-card.hidden {
+    display: none !important;
+}
+
+@keyframes tc-summary-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tc-gen-summary-card__header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tc-gen-summary-card__icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.tc-gen-summary-card__title {
+    font-weight: 600;
+    color: rgb(6 95 70);
+    font-size: 0.875rem;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tc-gen-summary-card__close {
+    color: rgb(5 150 105);
+    font-size: 0.875rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    line-height: 1;
+}
+
+.tc-gen-summary-card__close:hover {
+    background: rgba(5, 150, 105, 0.1);
+}
+
+.tc-gen-summary-card__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.tc-gen-summary-card__stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    color: rgb(6 95 70);
+}
+
+.tc-gen-summary-card__stat-value {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.tc-gen-summary-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.tc-gen-summary-card__action-btn {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 6px;
+    border: 1px solid rgb(167 243 208);
+    background: rgb(255 255 255);
+    color: rgb(6 95 70);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.tc-gen-summary-card__action-btn:hover {
+    background: rgb(236 253 245);
+    border-color: rgb(52 211 153);
+}
+/* 生成暂停提示（琥珀色，与绿色完成摘要区分） */
+.tc-gen-summary-card--paused {
+    border-color: rgb(253 186 116);
+    background: linear-gradient(135deg, rgb(255 251 235) 0%, rgb(254 243 199) 100%);
+    box-shadow: 0 1px 3px rgba(180, 83, 9, 0.08);
+}
+.tc-gen-summary-card--paused .tc-gen-summary-card__icon {
+    color: rgb(217 119 6);
+}
+.tc-gen-summary-card--paused .tc-gen-summary-card__title,
+.tc-gen-summary-card--paused .tc-gen-summary-card__stat {
+    color: rgb(146 64 14);
+}
+.tc-gen-summary-card--paused .tc-gen-summary-card__stat-value {
+    color: rgb(180 83 9);
+}
+.tc-gen-summary-card--paused .tc-gen-summary-card__close {
+    color: rgb(180 83 9);
+}
+.tc-gen-summary-card--paused .tc-gen-summary-card__close:hover {
+    background: rgba(217, 119, 6, 0.12);
+}
+
+
+/* ----- 流式行入场动画升级 ----- */
+#table-body tr.tc-row-streaming-entering {
+    animation: tc-row-streaming-enter 0.4s ease-out;
+}
+
+@keyframes tc-row-streaming-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+        background: rgb(239 246 255);
+        box-shadow: inset 3px 0 0 rgb(59 130 246);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        background: transparent;
+        box-shadow: inset 3px 0 0 transparent;
+    }
+}
+
+/* VxeTable 流式行 */
+.vxe-body--row.tc-row-streaming-entering .vxe-body--column {
+    animation: tc-row-streaming-cell 0.5s ease-out;
+}
+
+@keyframes tc-row-streaming-cell {
+    from { background-color: rgb(239 246 255); }
+    to { background-color: transparent; }
+}
+
+/* ----- 思维导图渐进生成 ----- */
+.tc-mindmap-progressive-node {
+    animation: tc-mm-node-appear 0.35s ease-out;
+}
+
+@keyframes tc-mm-node-appear {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.tc-mindmap-loading-stage {
+    text-align: center;
+    padding: 1rem;
+    color: rgb(100 116 139);
+    font-size: 0.8125rem;
+}
+
+.tc-mindmap-loading-stage__text {
+    margin-top: 0.35rem;
+    font-size: 0.75rem;
+    color: rgb(148 163 184);
+}
+
+/* ----- 取消确认弹窗 ----- */
+.tc-cancel-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(2px);
+}
+
+.tc-cancel-confirm-overlay.hidden {
+    display: none !important;
+}
+
+.tc-cancel-confirm-card {
+    width: min(90vw, 22rem);
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.25);
+    animation: tc-cancel-confirm-in 0.2s ease-out;
+}
+
+@keyframes tc-cancel-confirm-in {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.tc-cancel-confirm-card__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(30 41 59);
+    margin-bottom: 0.5rem;
+}
+
+.tc-cancel-confirm-card__desc {
+    font-size: 0.8125rem;
+    color: rgb(100 116 139);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.tc-cancel-confirm-card__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.tc-cancel-confirm-card__btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.tc-cancel-confirm-card__btn--secondary {
+    border: 1px solid rgb(226 232 240);
+    background: rgb(255 255 255);
+    color: rgb(100 116 139);
+}
+
+.tc-cancel-confirm-card__btn--secondary:hover {
+    background: rgb(248 250 252);
+}
+
+.tc-cancel-confirm-card__btn--danger {
+    border: 1px solid rgb(252 165 165);
+    background: rgb(220 38 38);
+    color: #fff;
+}
+
+.tc-cancel-confirm-card__btn--danger:hover {
+    background: rgb(185 28 28);
+}
+
+/* ----- 生成中左侧面板状态锁定指示 ----- */
+#left-panel .tc-gen-stage-streaming-indicator {
+    display: none;
+    padding: 0.35rem 0.75rem;
+    margin: 0 0.5rem 0.35rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgb(238 242 255), rgb(224 231 255));
+    border: 1px solid rgb(199 210 254);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: rgb(79 70 229);
+    text-align: center;
+}
+
+#left-panel.tc-left-panel--gen-streaming .tc-gen-stage-streaming-indicator {
+    display: block;
+}
+
+/* ----- 生成完成弹窗增强 ----- */
+.tc-gen-modal-v2-card--celebrate .tc-gen-modal-v2__badge {
+    animation: tc-celebrate-badge 0.5s ease-out;
+}
+
+@keyframes tc-celebrate-badge {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* 质量检测完成后短暂停留再快速渐隐（仅质量检测横幅） */
+.tc-gen-stage-bar--quality-fading {
+    animation: tc-quality-bar-fade-out 0.32s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes tc-quality-bar-fade-out {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 12rem;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-8px);
+        max-height: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        border-width: 0;
+        overflow: hidden;
+    }
+}

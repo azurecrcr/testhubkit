@@ -1,0 +1,19 @@
+{# 全站统一提示弹窗 DOM（无 Tailwind 依赖；配合 tc_dialog.js + toolkit.css 或页面内 #tc-app-dialog 样式） #}
+<div id="tc-app-dialog" class="tc-app-dialog-root hidden" role="dialog" aria-modal="true" aria-labelledby="tc-app-dialog-title">
+    <div class="tc-app-dialog__scrim" aria-hidden="true"></div>
+    <div class="tc-app-dialog__panel">
+        <div class="tc-app-dialog__accent" aria-hidden="true"></div>
+        <div class="tc-app-dialog__body">
+            <div class="tc-app-dialog__body-inner">
+                <div id="tc-app-dialog-icon" class="tc-app-dialog-icon tc-app-dialog-icon--info" aria-hidden="true">i</div>
+                <h3 id="tc-app-dialog-title" class="tc-app-dialog__title">提示</h3>
+                <p id="tc-app-dialog-message" class="tc-app-dialog-message"></p>
+                <p id="tc-app-dialog-hint" class="tc-app-dialog__hint hidden"></p>
+            </div>
+        </div>
+        <div class="tc-app-dialog__footer">
+            <button type="button" id="tc-app-dialog-cancel" class="tc-app-dialog__btn tc-app-dialog__btn--secondary hidden">取消</button>
+            <button type="button" id="tc-app-dialog-confirm" class="tc-app-dialog__btn tc-app-dialog__btn--primary">知道了</button>
+        </div>
+    </div>
+</div>

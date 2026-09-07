@@ -1,0 +1,137 @@
+{# 智能编辑 #}
+<div class="cf-doc-wb overflow-hidden">
+    <div id="cf-main-content-shell" class="cf-doc-surface ">
+        <div id="cf-table-toolbar" class="cf-doc-toolbar">
+            <div class="cf-doc-toolbar__main">
+                <div class="cf-doc-toolbar__intro">
+                    <h3 class="cf-doc-toolbar__title">智能编辑</h3>
+                    <p class="cf-doc-toolbar__desc">上传 Excel 导入下方表格，在表格中直接编辑，并可通过 AI 辅助处理内容。</p>
+                </div>
+                <div class="cf-doc-toolbar__actions">
+                    <div class="cf-doc-upload cf-doc-upload--status">
+                        <input type="file" id="column-fill-excel-input" accept=".xlsx,.xls" class="cf-doc-upload__input">
+                        <div class="cf-doc-file-actions hidden" id="cf-file-actions">
+                            <button type="button" id="cf-reimport-btn" class="cf-doc-reimport-btn" aria-label="重新导入 Excel">
+                                <span class="cf-doc-reimport-btn__icon" aria-hidden="true">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                                </span>
+                                <span class="cf-doc-reimport-btn__text">重新导入</span>
+                            </button>
+                            <button type="button" id="cf-export-btn" class="cf-doc-export-btn" aria-label="导出 Excel">
+                                <span class="cf-doc-export-btn__icon" aria-hidden="true">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                </span>
+                                <span class="cf-doc-export-btn__text">导出</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="dtk-hidden-columns-slot" class="dtk-hidden-columns-slot" aria-live="polite"></div>
+        </div>
+
+        <section class="dtk-vxe-table-workspace" id="dtk-vxe-table-root">
+            <div class="dtk-vxe-table-mount-wrap">
+                <div id="dtk-vxe-table-mount" class="dtk-vxe-table-mount" role="region" aria-label="智能编辑工作区"></div>
+                <div id="cf-table-import-overlay" class="cf-doc-table-overlay" role="presentation" aria-hidden="false">
+                    <div class="cf-doc-table-overlay__panel">
+                        <label class="cf-doc-table-overlay__btn" for="column-fill-excel-input">
+                            <span class="cf-doc-table-overlay__icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                            </span>
+                            <span>导入 Excel</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div id="cf-export-confirm-modal" class="cf-export-confirm-modal hidden" role="dialog" aria-modal="true" aria-labelledby="cf-export-confirm-title" aria-hidden="true">
+    <div class="cf-export-confirm-modal__panel">
+        <button type="button" id="cf-export-confirm-close" class="cf-export-confirm-modal__close" aria-label="关闭">&times;</button>
+        <div class="cf-export-confirm-modal__head">
+            <h4 id="cf-export-confirm-title" class="cf-export-confirm-modal__title">确认导出 Excel？</h4>
+            <p class="cf-export-confirm-modal__desc">将导出当前表格中的全部内容，包括您在表格中的编辑。</p>
+        </div>
+        <div class="cf-export-confirm-modal__body">
+            <p id="cf-export-confirm-filename" class="cf-export-confirm-modal__filename"></p>
+        </div>
+        <div class="cf-export-confirm-modal__actions">
+            <button type="button" id="cf-export-confirm-cancel" class="btn btn-secondary">取消</button>
+            <button type="button" id="cf-export-confirm-submit" class="btn btn-primary cf-export-confirm-modal__submit">确认导出</button>
+        </div>
+    </div>
+</div>
+<div id="cf-nav-leave-modal" class="cf-nav-leave-modal hidden" role="dialog" aria-modal="true" aria-labelledby="cf-nav-leave-title" aria-hidden="true">
+    <div class="cf-nav-leave-modal__panel">
+        <button type="button" id="cf-nav-leave-close" class="cf-nav-leave-modal__close" aria-label="关闭">&times;</button>
+        <div class="cf-nav-leave-modal__head">
+            <h4 id="cf-nav-leave-title" class="cf-nav-leave-modal__title">当前表格未导出</h4>
+            <p class="cf-nav-leave-modal__desc">切换页面后，当前表格中的未导出内容将会丢失。是否继续切换？</p>
+        </div>
+        <div class="cf-nav-leave-modal__actions">
+            <button type="button" id="cf-nav-leave-cancel" class="btn btn-secondary">留在此页</button>
+            <button type="button" id="cf-nav-leave-submit" class="btn btn-primary cf-nav-leave-modal__submit">继续切换</button>
+        </div>
+    </div>
+</div>
+<div id="dtk-delete-confirm-modal" class="dtk-delete-confirm-modal hidden" role="alertdialog" aria-modal="true" aria-labelledby="dtk-delete-confirm-title" aria-describedby="dtk-delete-confirm-message" aria-hidden="true">
+    <div class="dtk-delete-confirm-modal__panel">
+        <button type="button" id="dtk-delete-confirm-close" class="dtk-delete-confirm-modal__close" aria-label="关闭">&times;</button>
+        <div class="dtk-delete-confirm-modal__head">
+            <span class="dtk-delete-confirm-modal__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </span>
+            <h4 id="dtk-delete-confirm-title" class="dtk-delete-confirm-modal__title">确认删除</h4>
+            <p id="dtk-delete-confirm-message" class="dtk-delete-confirm-modal__desc"></p>
+        </div>
+        <div class="dtk-delete-confirm-modal__actions">
+            <button type="button" id="dtk-delete-confirm-cancel" class="btn btn-secondary">取消</button>
+            <button type="button" id="dtk-delete-confirm-submit" class="btn btn-primary dtk-delete-confirm-modal__submit">确认删除</button>
+        </div>
+    </div>
+</div>
+<button type="button" id="cf-doc-ai-fab" class="cf-doc-ai-fab hidden" aria-label="打开 AI 编辑助手" aria-expanded="false" aria-controls="cf-doc-ai-panel">
+    <span class="cf-doc-ai-fab__icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/><path d="M5 19h14"/><path d="M8 19v2"/><path d="M16 19v2"/></svg>
+    </span>
+    <span class="cf-doc-ai-fab__text">AI</span>
+</button>
+
+<div id="cf-doc-ai-panel" class="cf-doc-ai-panel hidden" role="dialog" aria-modal="false" aria-labelledby="cf-doc-ai-panel-title" aria-hidden="true">
+    <div class="cf-doc-ai-panel__shell">
+        <header class="cf-doc-ai-panel__head">
+            <div class="cf-doc-ai-panel__head-main">
+                <h4 id="cf-doc-ai-panel-title" class="cf-doc-ai-panel__title">AI 编辑助手</h4>
+                <p class="cf-doc-ai-panel__subtitle">当前会话有效，关闭页面后对话将清空</p>
+            </div>
+            <button type="button" id="cf-doc-ai-panel-close" class="cf-doc-ai-panel__close" aria-label="关闭">&times;</button>
+        </header>
+        <div id="cf-doc-ai-panel-messages" class="cf-doc-ai-panel__messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+        <footer class="cf-doc-ai-panel__composer">
+            <textarea id="cf-doc-ai-panel-input" class="cf-doc-ai-panel__input" rows="2" maxlength="4000" placeholder="输入需要编辑的内容"></textarea>
+            <button type="button" id="cf-doc-ai-panel-send" class="cf-doc-ai-panel__send" aria-label="发送">发送</button>
+        </footer>
+    </div>
+    <div class="cf-doc-ai-panel__resize cf-doc-ai-panel__resize--edge-top" data-resize="n" aria-hidden="true"></div>
+    <div class="cf-doc-ai-panel__resize cf-doc-ai-panel__resize--edge-left" data-resize="w" aria-hidden="true"></div>
+    <button type="button" class="cf-doc-ai-panel__resize cf-doc-ai-panel__resize--corner-nw" data-resize="nw" aria-label="拖拽调整面板大小" tabindex="-1"></button>
+</div>
+<div id="cf-doc-ai-config-modal" class="cf-doc-ai-config-modal hidden" role="alertdialog" aria-modal="true" aria-labelledby="cf-doc-ai-config-title" aria-describedby="cf-doc-ai-config-desc" aria-hidden="true">
+    <div class="cf-doc-ai-config-modal__panel">
+        <button type="button" id="cf-doc-ai-config-close" class="cf-doc-ai-config-modal__close" aria-label="关闭">&times;</button>
+        <div class="cf-doc-ai-config-modal__head">
+            <span class="cf-doc-ai-config-modal__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/><path d="M5 19h14"/></svg>
+            </span>
+            <h4 id="cf-doc-ai-config-title" class="cf-doc-ai-config-modal__title">请先配置 AI 模型</h4>
+            <p id="cf-doc-ai-config-desc" class="cf-doc-ai-config-modal__desc">使用 AI 编辑助手前，请先在账户菜单中配置您的个人文本 AI 模型（Base URL、API Key、Model）。</p>
+        </div>
+        <div class="cf-doc-ai-config-modal__actions">
+            <button type="button" id="cf-doc-ai-config-cancel" class="btn btn-secondary">取消</button>
+            <button type="button" id="cf-doc-ai-config-open" class="btn btn-primary cf-doc-ai-config-modal__submit">去配置 AI</button>
+        </div>
+    </div>
+</div>
+

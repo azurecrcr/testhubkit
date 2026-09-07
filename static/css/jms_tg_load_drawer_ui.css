@@ -1,0 +1,104 @@
+/**
+ * 压测负载抽屉 UI（隔离模块 · 仅 #modal-tg-load）
+ */
+#modal-tg-load .jms-vars-modal__head {
+    background: linear-gradient(
+        125deg,
+        rgba(238, 242, 255, 0.98) 0%,
+        rgba(245, 243, 255, 0.94) 52%,
+        rgba(255, 255, 255, 0.99) 100%
+    );
+    border-bottom: 1px solid rgba(99, 102, 241, 0.22);
+}
+
+#modal-tg-load .jms-vars-modal__icon--load {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    box-shadow: 0 2px 10px rgba(79, 70, 229, 0.28);
+}
+
+#modal-tg-load .jms-vars-modal__title {
+    color: #3730a3 !important;
+    font-weight: 800;
+    letter-spacing: 0.012em;
+}
+
+#modal-tg-load .jms-vars-modal__sub {
+    color: #64748b !important;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+body.lth-studio-v2.lth-drawer-open #modal-tg-load .jms-vars-modal__title {
+    color: #4338ca !important;
+}
+
+body.lth-studio-v2.lth-drawer-open #modal-tg-load .jms-vars-modal__sub {
+    color: #64748b !important;
+}
+
+#modal-tg-load .jms-tg-load-kind-badge {
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: none;
+    border-radius: 999px;
+    padding: 0.15rem 0.5rem;
+}
+
+#modal-tg-load .jms-tg-load-kind-badge--setup {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #86efac;
+}
+
+#modal-tg-load .jms-tg-load-kind-badge--post {
+    background: #ffedd5;
+    color: #9a3412;
+    border: 1px solid #fdba74;
+}
+
+#modal-tg-load .jms-tg-load-kind-badge--thread {
+    background: #e0e7ff;
+    color: #3730a3;
+    border: 1px solid #c7d2fe;
+}
+
+#modal-tg-load .jms-vars-plan__head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+#modal-tg-load .jms-tg-load-card__name {
+    font-size: 12px;
+    font-weight: 700;
+    color: #334155;
+    line-height: 1.35;
+    min-width: 0;
+    word-break: break-word;
+}
+
+#modal-tg-load .jms-tg-load-card--setup {
+    border-color: #bbf7d0;
+}
+
+#modal-tg-load .jms-tg-load-card--setup .jms-vars-plan__head {
+    background: #f0fdf4;
+    border-bottom-color: #bbf7d0;
+}
+
+#modal-tg-load .jms-tg-load-card--post {
+    border-color: #fed7aa;
+}
+
+#modal-tg-load .jms-tg-load-card--post .jms-vars-plan__head {
+    background: #fff7ed;
+    border-bottom-color: #fed7aa;
+}
+
+#modal-tg-load .jms-tg-load-card--thread .jms-vars-plan__head {
+    background: #f5f3ff;
+    border-bottom-color: #e0e7ff;
+}

@@ -1,0 +1,29 @@
+<main class="jmb-page-main w-full px-2 sm:px-3 py-1">
+    <section class="jmb-hub rounded-2xl border border-teal-200/30 shadow-sm" aria-label="JMeter 组件目录">
+        <header class="jmb-hub__head">
+            <div class="jmb-hub__head-left">
+                <h2 class="jmb-hub__title">JMeter 搭建 · 组件全景</h2>
+                <p class="jmb-hub__sub">基于服务器 JMeter 5.6.3 · saveservice 注册表 + 常用插件</p>
+            </div>
+            <div class="jmb-hub__runtime" id="jmb-runtime-badges" aria-live="polite"></div>
+        </header>
+        <div class="jmb-hub__toolbar">
+            <input type="search" id="jmb-search" class="jmb-search" placeholder="搜索组件名称 / alias / Java 类…" autocomplete="off" />
+            <select id="jmb-filter-category" class="jmb-select" aria-label="按分类筛选">
+                <option value="">全部分类</option>
+            </select>
+            <span class="jmb-count" id="jmb-count-label">加载中…</span>
+        </div>
+        <div class="jmb-layout">
+            <aside class="jmb-tree-panel" aria-label="测试计划结构">
+                <h3 class="jmb-panel-title">测试计划结构</h3>
+                <div id="jmb-tree-root" class="jmb-tree-root"></div>
+            </aside>
+            <div class="jmb-main-panel">
+                <div class="jmb-cat-strip" id="jmb-cat-strip" aria-label="分类概览"></div>
+                <div id="jmb-grid" class="jmb-grid" role="list"></div>
+                <p id="jmb-empty" class="jmb-empty hidden">无匹配组件</p>
+            </div>
+        </div>
+    </section>
+</main>

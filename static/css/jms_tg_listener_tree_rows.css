@@ -1,0 +1,14 @@
+/**
+ * 线程组 · 监听器树形行样式（隔离）
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--tg-listener .jms-aux-card--tg-listener .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #8b5cf6, #a78bfa) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--tg-listener .jms-aux-card--tg-listener .jms-aux-card__icon {
+    color: #7c3aed !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--tg-listener.jms-tree-node--dragging {
+    opacity: 0.45 !important;
+}

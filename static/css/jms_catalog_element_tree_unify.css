@@ -1,0 +1,136 @@
+/**
+ * catalog_element · 树形步骤区样式对齐（逻辑控制器 / HTTP 卡片，隔离模块 · 末位覆盖）
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-tree-node__body {
+    display: block !important;
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-card {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(251, 191, 36, 0.35) !important;
+    background: rgba(255, 251, 235, 0.65) !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    margin: 0.15rem 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-card__head {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 0.28rem !important;
+    padding: 0.45rem 0.55rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    border-bottom: 1px solid rgba(251, 191, 36, 0.18) !important;
+    background: rgba(251, 191, 36, 0.08) !important;
+    cursor: pointer;
+    user-select: none;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 1.65rem !important;
+    padding: 0.1rem 0.4rem !important;
+    border-radius: 999px !important;
+    font-size: 0.625rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    color: #fcd34d !important;
+    background: rgba(251, 191, 36, 0.2) !important;
+    border: 1px solid rgba(251, 191, 36, 0.35) !important;
+    flex-shrink: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-card__head .jms-http-name {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    font-weight: 600 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-card__meta {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    margin-left: auto !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    flex-wrap: nowrap !important;
+    font-size: 0.58rem !important;
+    color: #64748b !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-card__meta-text {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-card__child-count {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 0.08rem 0.4rem !important;
+    border-radius: 999px !important;
+    font-size: 0.58rem !important;
+    font-weight: 600 !important;
+    color: #c2410c !important;
+    background: rgba(251, 191, 36, 0.22) !important;
+    border: 1px solid rgba(251, 191, 36, 0.35) !important;
+    white-space: nowrap !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-card__head .jms-btn-edit-catalog,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-card__head .jms-btn-del-catalog {
+    flex-shrink: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-card__body {
+    padding: 0.35rem 0.45rem 0.5rem 0.65rem !important;
+    border-top: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-card--collapsed .jms-catalog-card__body {
+    display: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-card--expandable .jms-catalog-card__head::before {
+    content: '▾';
+    display: inline-block;
+    width: 0.85rem;
+    color: #64748b;
+    font-size: 0.62rem;
+    flex-shrink: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-card--expandable.jms-catalog-card--collapsed .jms-catalog-card__head::before {
+    content: '▸';
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-card.is-disabled {
+    opacity: 0.55 !important;
+}
+
+/* 叶子节点（非容器）在树形区也呈现为紧凑卡片 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-card:not(.jms-catalog-card--container) {
+    display: inline-flex !important;
+    flex-direction: column !important;
+    width: auto !important;
+    max-width: 100% !important;
+    align-self: flex-start !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-catalog-card:not(.jms-catalog-card--container) .jms-catalog-card__head {
+    border-bottom: none !important;
+}

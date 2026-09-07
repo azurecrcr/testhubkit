@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用例管理 · {{ hf_site_brand_title }}</title>
+    {% include 'partials/hf_favicon.html' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toolkit.css') }}?v=20260556">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cm_gnav_glass.css') }}?v=20260725cmgnav2">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/case_management.css') }}?v=20260726cm29">
+</head>
+<body class="cm-page">
+    <div class="cm-page__bg" aria-hidden="true" id="cm-page-bg">
+        <div class="cm-page__bg-base"></div>
+        <div class="cm-page__bg-grid"></div>
+        <div class="cm-page__bg-orb cm-page__bg-orb--a"></div>
+        <div class="cm-page__bg-orb cm-page__bg-orb--b"></div>
+        <div class="cm-page__bg-orb cm-page__bg-orb--c"></div>
+        <div class="cm-page__bg-icons" id="cm-bg-icons">
+            <!-- 四角装饰：由 JS 按视口分辨率定位到内容区外侧 -->
+            <svg class="cm-page__icon cm-page__icon--tree" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="22" y="6" width="20" height="14" rx="4" stroke="currentColor" stroke-width="2"/>
+                <path d="M32 20v10M20 40V30h24v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <rect x="8" y="40" width="18" height="14" rx="4" stroke="currentColor" stroke-width="2"/>
+                <rect x="38" y="40" width="18" height="14" rx="4" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <svg class="cm-page__icon cm-page__icon--checklist" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="10" y="8" width="44" height="48" rx="8" stroke="currentColor" stroke-width="2"/>
+                <path d="M20 22h18M20 32h24M20 42h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M44 20l4 4 8-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg class="cm-page__icon cm-page__icon--doc" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M18 10h20l12 12v32a6 6 0 0 1-6 6H18a6 6 0 0 1-6-6V16a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="2"/>
+                <path d="M38 10v12h12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M24 34h16M24 42h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg class="cm-page__icon cm-page__icon--pass" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="32" cy="32" r="22" stroke="currentColor" stroke-width="2"/>
+                <path d="M20 33l8 8 16-18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div class="cm-page__bg-scrim"></div>
+        <div class="cm-page__bg-noise"></div>
+    </div>
+    {% include 'partials/hf_global_nav.html' %}
+    {% include 'partials/hf_float_toast.html' %}
+
+    <main class="cm-shell" id="cm-app">
+        <header class="cm-topbar">
+            <div class="cm-topbar__left">
+                <h1 class="cm-title">用例管理</h1>
+                <p class="cm-sub">项目 · 目录树 · 用例库 · 手工执行（独立于用例工作台）</p>
+            </div>
+            <div class="cm-topbar__right">
+                <button type="button" class="cm-btn cm-btn--ghost" id="cm-btn-import-excel">导入 Excel</button>
+                <button type="button" class="cm-btn cm-btn--ghost" id="cm-btn-export-excel">导出 Excel</button>
+                <button type="button" class="cm-btn cm-btn--primary" id="cm-btn-import-wb">从工作台导入</button>
+                <input type="file" id="cm-excel-file" accept=".xlsx,.xls" hidden>
+            </div>
+        </header>
+
+        <div class="cm-login-gate is-hidden" id="cm-login-gate">
+            <p>用例管理需要登录后使用。</p>
+            <a class="cm-btn cm-btn--primary" href="/auth">去登录 / 注册</a>
+        </div>
+
+        <div class="cm-workspace is-hidden" id="cm-workspace">
+            <aside class="cm-tree-panel">
+                <div class="cm-panel-head cm-panel-head--project">
+                    <select id="cm-project-select" class="cm-select cm-select--project" aria-label="选择项目"></select>
+                    <button type="button" class="cm-icon-btn cm-icon-btn--labeled cm-icon-btn--project" id="cm-btn-new-project" title="新建项目" aria-label="新建项目"><span class="cm-icon-btn__plus" aria-hidden="true">＋</span><span class="cm-icon-btn__text">项目</span></button>
+                </div>
+                <div class="cm-panel-head cm-panel-head--suite">
+                    <span class="cm-panel-label">目录</span>
+                    <button type="button" class="cm-icon-btn cm-icon-btn--labeled cm-icon-btn--suite" id="cm-btn-add-suite" title="新建目录" aria-label="新建目录"><span class="cm-icon-btn__plus" aria-hidden="true">＋</span><span class="cm-icon-btn__text">目录</span></button>
+                </div>
+                <ul class="cm-tree" id="cm-tree">
+                    <li class="cm-tree__item is-active" data-suite="__all__"><button type="button">全部用例</button></li>
+                </ul>
+            </aside>
+
+            <section class="cm-list-panel">
+                <div class="cm-toolbar">
+                    <input type="search" id="cm-search" class="cm-input" placeholder="搜索用例标题…">
+                    <select id="cm-filter-priority" class="cm-select cm-filter-select" data-cm-filter="priority" aria-label="筛选优先级">
+                        <option value="">全部优先级</option>
+                        <option value="P0">P0 紧急</option>
+                        <option value="P1">P1 高</option>
+                        <option value="P2">P2 中</option>
+                        <option value="P3">P3 低</option>
+                    </select>
+                    <select id="cm-filter-status" class="cm-select cm-filter-select" data-cm-filter="status" aria-label="筛选状态">
+                        <option value="">全部状态</option>
+                        <option value="draft">草稿 draft</option>
+                        <option value="ready">就绪 ready</option>
+                        <option value="deprecated">废弃 deprecated</option>
+                    </select>
+                    <button type="button" class="cm-btn cm-btn--primary" id="cm-btn-new-case">新建用例</button>
+                    <button type="button" class="cm-btn cm-btn--ghost cm-btn--sm is-hidden" id="cm-btn-select-suite-all">全选本目录</button>
+                    <button type="button" class="cm-btn cm-btn--danger cm-btn--sm" id="cm-btn-batch-delete" disabled title="请先勾选用例">删除</button>
+                </div>
+                <div class="cm-case-empty is-hidden" id="cm-case-empty" aria-live="polite">
+                    <div class="cm-case-empty__card">
+                        <p class="cm-case-empty__title" id="cm-case-empty-title">还没有用例</p>
+                        <p class="cm-case-empty__desc" id="cm-case-empty-desc">可以点击「新建用例」，或通过「导入 Excel / 从工作台导入」添加。首次导入会锁定本目录列头。</p>
+                        <div class="cm-case-empty__actions">
+                            <button type="button" class="cm-btn cm-btn--primary cm-btn--sm" id="cm-case-empty-new">新建用例</button>
+                            <button type="button" class="cm-btn cm-btn--ghost cm-btn--sm" id="cm-case-empty-import-wb">从工作台导入</button>
+                            <button type="button" class="cm-btn cm-btn--ghost cm-btn--sm" id="cm-case-empty-import-excel">导入 Excel</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cm-table-wrap" id="cm-table-wrap">
+                    <table class="cm-table">
+                        <thead>
+                            <tr id="cm-case-thead-row">
+                                <th>标题</th>
+                                <th>优先级</th>
+                                <th>状态</th>
+                                <th>更新时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cm-case-tbody">
+                            <tr><td colspan="5" class="cm-empty">请选择或创建一个项目</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cm-pager">
+                    <button type="button" class="cm-btn cm-btn--ghost" id="cm-page-prev">上一页</button>
+                    <span id="cm-page-info">—</span>
+                    <button type="button" class="cm-btn cm-btn--ghost" id="cm-page-next">下一页</button>
+                </div>
+            </section>
+        </div>
+        <div class="cm-shell__spacer" aria-hidden="true"></div>
+    </main>
+
+    <!-- 详情抽屉 -->
+    <div class="cm-drawer-mask is-hidden" id="cm-drawer-mask"></div>
+    <aside class="cm-drawer is-hidden" id="cm-drawer" aria-hidden="true">
+        <div class="cm-drawer__head">
+            <div class="cm-drawer__head-main">
+                <strong id="cm-drawer-title">用例详情</strong>
+                <label class="cm-drawer__suite" id="cm-drawer-suite-wrap">
+                    <span class="cm-drawer__suite-label">目录</span>
+                    <select id="cm-f-suite" class="cm-select cm-filter-select cm-suite-select" aria-label="所属目录"></select>
+                </label>
+            </div>
+            <button type="button" class="cm-icon-btn" id="cm-drawer-close" aria-label="关闭">×</button>
+        </div>
+        <div class="cm-drawer__tabs">
+            <button type="button" class="is-active" data-tab="edit">编辑</button>
+            <button type="button" data-tab="exec">执行记录</button>
+        </div>
+        <div class="cm-drawer__body" id="cm-tab-edit">
+            <label class="cm-field"><span>标题</span><input id="cm-f-title" class="cm-input"></label>
+            <div class="cm-field-row">
+                <label class="cm-field"><span>优先级</span>
+                    <select id="cm-f-priority" class="cm-select">
+                        <option>P0</option><option>P1</option><option selected>P2</option><option>P3</option>
+                    </select>
+                </label>
+                <label class="cm-field"><span>状态</span>
+                    <select id="cm-f-status" class="cm-select">
+                        <option value="draft">draft</option>
+                        <option value="ready">ready</option>
+                        <option value="deprecated">deprecated</option>
+                    </select>
+                </label>
+            </div>
+            <label class="cm-field"><span>前置条件</span><textarea id="cm-f-pre" class="cm-textarea" rows="3"></textarea></label>
+            <label class="cm-field"><span>标签（逗号分隔）</span><input id="cm-f-tags" class="cm-input"></label>
+            <div class="cm-field">
+                <div class="cm-panel-head"><span>步骤</span>
+                    <button type="button" class="cm-btn cm-btn--ghost cm-btn--sm" id="cm-btn-add-step">加一步</button>
+                </div>
+                <div id="cm-steps" class="cm-steps"></div>
+            </div>
+            <div class="cm-drawer__actions">
+                <button type="button" class="cm-btn cm-btn--primary" id="cm-btn-save-case">保存</button>
+                <button type="button" class="cm-btn cm-btn--danger" id="cm-btn-delete-case">删除</button>
+            </div>
+        </div>
+        <div class="cm-drawer__body is-hidden" id="cm-tab-exec">
+            <div class="cm-exec-form">
+                <select id="cm-exec-result" class="cm-select">
+                    <option value="pass">pass</option>
+                    <option value="fail">fail</option>
+                    <option value="blocked">blocked</option>
+                    <option value="skip">skip</option>
+                </select>
+                <input id="cm-exec-comment" class="cm-input" placeholder="备注（可选）">
+                <button type="button" class="cm-btn cm-btn--primary" id="cm-btn-add-exec">记录执行</button>
+            </div>
+            <ul class="cm-exec-list" id="cm-exec-list"></ul>
+        </div>
+    </aside>
+
+    <!-- 导出范围弹层 -->
+    <div class="cm-modal-mask is-hidden" id="cm-export-suite-mask">
+        <div class="cm-modal cm-modal--cyan cm-modal--import-suite" role="dialog" aria-labelledby="cm-export-suite-title">
+            <div class="cm-modal__head">
+                <div>
+                    <p class="cm-modal__eyebrow">Export</p>
+                    <strong id="cm-export-suite-title">选择导出范围</strong>
+                </div>
+                <button type="button" class="cm-icon-btn" id="cm-export-suite-close" aria-label="关闭">×</button>
+            </div>
+            <p class="cm-hint">可导出全部用例，或仅导出某一目录下的用例。</p>
+            <div class="cm-import-suite-form" id="cm-export-suite-form">
+                <label class="cm-field">
+                    <span>导出范围</span>
+                    <select id="cm-export-suite-select" class="cm-select cm-filter-select cm-suite-select cm-export-suite-select" aria-label="选择导出范围"></select>
+                </label>
+            </div>
+            <div class="cm-modal__actions">
+                <button type="button" class="cm-btn cm-btn--ghost" id="cm-export-suite-cancel">取消</button>
+                <button type="button" class="cm-btn cm-btn--primary" id="cm-export-suite-ok">导出 Excel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 首次导入：确认锁定列结构 -->
+    <div class="cm-modal-mask is-hidden" id="cm-schema-define-mask">
+        <div class="cm-modal cm-modal--cyan cm-modal--import-suite" role="dialog" aria-labelledby="cm-schema-define-title">
+            <div class="cm-modal__head">
+                <div>
+                    <p class="cm-modal__eyebrow">Schema</p>
+                    <strong id="cm-schema-define-title">确认目录列结构</strong>
+                </div>
+                <button type="button" class="cm-icon-btn" id="cm-schema-define-close" aria-label="关闭">×</button>
+            </div>
+            <p class="cm-hint" id="cm-schema-define-hint">确认后将锁定本目录列结构。</p>
+            <ul class="cm-schema-define-list" id="cm-schema-define-list"></ul>
+            <div class="cm-modal__actions">
+                <button type="button" class="cm-btn cm-btn--ghost" id="cm-schema-define-cancel">取消</button>
+                <button type="button" class="cm-btn cm-btn--primary" id="cm-schema-define-ok">确认并导入</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 后续导入：字段映射 -->
+    <div class="cm-modal-mask is-hidden" id="cm-schema-map-mask">
+        <div class="cm-modal cm-modal--cyan cm-modal--schema-map" role="dialog" aria-labelledby="cm-schema-map-title">
+            <div class="cm-modal__head">
+                <div>
+                    <p class="cm-modal__eyebrow">Mapping</p>
+                    <strong id="cm-schema-map-title">字段映射</strong>
+                </div>
+                <button type="button" class="cm-icon-btn" id="cm-schema-map-close" aria-label="关闭">×</button>
+            </div>
+            <p class="cm-hint" id="cm-schema-map-hint">请将源列映射到本目录已锁定的列。</p>
+            <div class="cm-schema-map-rows" id="cm-schema-map-rows"></div>
+            <div class="cm-modal__actions">
+                <button type="button" class="cm-btn cm-btn--ghost" id="cm-schema-map-cancel">取消</button>
+                <button type="button" class="cm-btn cm-btn--primary" id="cm-schema-map-ok">确认导入</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 导入目标目录弹层（Excel / 工作台共用） -->
+    <div class="cm-modal-mask is-hidden" id="cm-import-suite-mask">
+        <div class="cm-modal cm-modal--cyan cm-modal--import-suite" role="dialog" aria-labelledby="cm-import-suite-title">
+            <div class="cm-modal__head">
+                <div>
+                    <p class="cm-modal__eyebrow">Import</p>
+                    <strong id="cm-import-suite-title">选择导入目录</strong>
+                </div>
+                <button type="button" class="cm-icon-btn" id="cm-import-suite-close" aria-label="关闭">×</button>
+            </div>
+            <p class="cm-hint" id="cm-import-suite-hint">导入前必须选择目标目录，用例将全部写入该目录。</p>
+            <div class="cm-import-suite-empty is-hidden" id="cm-import-suite-empty">
+                <p>当前项目还没有目录，请先创建目录后再导入用例。</p>
+                <button type="button" class="cm-btn cm-btn--primary" id="cm-import-suite-create">立即新建目录</button>
+            </div>
+            <div class="cm-import-suite-form" id="cm-import-suite-form">
+                <label class="cm-field">
+                    <span>目标目录</span>
+                    <select id="cm-import-suite-select" class="cm-select cm-filter-select cm-import-suite-select" aria-label="选择导入目录"></select>
+                </label>
+            </div>
+            <div class="cm-modal__actions">
+                <button type="button" class="cm-btn cm-btn--ghost" id="cm-import-suite-cancel">取消</button>
+                <button type="button" class="cm-btn cm-btn--primary" id="cm-import-suite-next" disabled>下一步</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 工作台导入弹层 -->
+    <div class="cm-modal-mask is-hidden" id="cm-wb-mask">
+        <div class="cm-modal cm-modal--cyan" role="dialog" aria-labelledby="cm-wb-title">
+            <div class="cm-modal__head">
+                <div>
+                    <p class="cm-modal__eyebrow">Import</p>
+                    <strong id="cm-wb-title">从用例工作台导入</strong>
+                </div>
+                <button type="button" class="cm-icon-btn" id="cm-wb-close" aria-label="关闭">×</button>
+            </div>
+            <p class="cm-hint" id="cm-wb-suite-hint">只读读取工作台已保存数据，不会写回工作台。</p>
+            <div class="cm-wb-list" id="cm-wb-list"></div>
+        </div>
+    </div>
+
+    <!-- 用例管理专用对话框（替代系统 prompt / confirm） -->
+    <div class="cm-dialog-mask is-hidden" id="cm-dialog" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="cm-dialog-title">
+        <div class="cm-dialog">
+            <div class="cm-dialog__glow" aria-hidden="true"></div>
+            <div class="cm-dialog__head">
+                <p class="cm-dialog__eyebrow" id="cm-dialog-eyebrow">Case Management</p>
+                <h2 class="cm-dialog__title" id="cm-dialog-title">提示</h2>
+                <p class="cm-dialog__desc is-hidden" id="cm-dialog-desc"></p>
+            </div>
+            <div class="cm-dialog__body">
+                <label class="cm-dialog__field is-hidden" id="cm-dialog-field">
+                    <span id="cm-dialog-label">名称</span>
+                    <input type="text" class="cm-dialog__input" id="cm-dialog-input" autocomplete="off" maxlength="200">
+                </label>
+                <p class="cm-dialog__error is-hidden" id="cm-dialog-error" role="alert"></p>
+            </div>
+            <div class="cm-dialog__actions">
+                <button type="button" class="cm-btn cm-btn--ghost" id="cm-dialog-cancel">取消</button>
+                <button type="button" class="cm-btn cm-btn--primary" id="cm-dialog-ok">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/hf_float_toast.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/case_management/dialogs.js') }}?v=20260726cmdlg2"></script>
+    <script src="{{ url_for('static', filename='js/case_management/filter_select.js') }}?v=20260726cmfs3"></script>
+    <script src="{{ url_for('static', filename='js/case_management/schema_ui.js') }}?v=20260726cmschema3"></script>
+    <script src="{{ url_for('static', filename='js/case_management/app.js') }}?v=20260726cmimport16"></script>
+    {% include 'partials/hf_site_footer.html' %}
+</body>
+</html>

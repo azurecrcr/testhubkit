@@ -1,0 +1,53 @@
+/**
+ * JMeter Tab · 首屏 FOUC 兜底（隔离）
+ * 1) 抑制深色「场景搭建」空画布色闪
+ * 2) 关闭态弹窗（If/BeanShell 等）必须在首屏即 display:none，
+ *    否则大包 CSS 到达前会裸露在文档流底部，闪出深蓝表单。
+ */
+body.lth-hub-jmeter-tab .lth-studio-workspace .jms-section-title {
+    display: none !important;
+}
+
+body.lth-hub-jmeter-tab:not(.lth-jms-studio-ready) .lth-studio-workspace,
+body.lth-hub-jmeter-tab:not(.lth-jms-studio-ready) .lth-studio-canvas {
+    min-height: 0 !important;
+}
+body.lth-hub-jmeter-tab:not(.lth-jms-studio-ready) #jms-visual-wrap {
+    min-height: 6.5rem !important;
+}
+
+body.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white {
+    background:
+        radial-gradient(ellipse 120% 80% at 100% -15%, rgba(52, 211, 153, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 70% at -10% 110%, rgba(45, 212, 191, 0.14) 0%, transparent 50%),
+        linear-gradient(168deg, rgba(255, 255, 255, 0.94) 0%, rgba(236, 253, 245, 0.9) 42%, rgba(209, 250, 229, 0.8) 100%) !important;
+    background-color: #f0fdf4 !important;
+    border-color: rgba(16, 185, 129, 0.28) !important;
+}
+
+/* ---- 关闭态弹窗：首屏强制隐藏（打开态 .jms-modal-open 除外） ---- */
+body.lth-hub-jmeter-tab [id^="modal-"]:not(.jms-modal-open),
+body.lth-hub-jmeter-tab [id^="modal-"][aria-hidden="true"]:not(.jms-modal-open),
+body.lth-hub-jmeter-tab #jm-stash-save-modal.hidden,
+body.lth-hub-jmeter-tab #jm-stash-list-modal.hidden,
+body.lth-hub-jmeter-tab #jm-stash-restore-modal.hidden,
+body.lth-hub-jmeter-tab > .jms-modal:not(.jms-modal-open),
+body.lth-hub-jmeter-tab > .jms-modal[aria-hidden="true"]:not(.jms-modal-open) {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    position: fixed !important;
+    inset: auto !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    z-index: -1 !important;
+}
+
+body.lth-hub-jmeter-tab [id^="modal-"]:not(.jms-modal-open) .jms-step-modal,
+body.lth-hub-jmeter-tab [id^="modal-"][aria-hidden="true"]:not(.jms-modal-open) .jms-step-modal,
+body.lth-hub-jmeter-tab > .jms-modal:not(.jms-modal-open) .jms-step-modal {
+    display: none !important;
+    visibility: hidden !important;
+}

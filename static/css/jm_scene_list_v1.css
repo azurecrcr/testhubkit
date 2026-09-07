@@ -1,0 +1,17 @@
+/* 我的场景 · 列表分隔线（不依赖 Tailwind 动态类） */
+#jm-stash-list {
+  padding: 0.35rem 0.5rem 0.6rem;
+}
+#jm-stash-list .jm-scene-list-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0.25rem;
+  padding: 0.65rem 0.35rem;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.28);
+}
+#jm-stash-list .jm-scene-list-row:last-child {
+  border-bottom: none;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #jm-stash-list .jm-scene-list-row {
+  border-bottom-color: rgba(5, 150, 105, 0.22);
+}

@@ -1,0 +1,90 @@
+{# 用例工作台增强：二次校验、快照对比、个人 RAG（批次条见 tc_gen_batch_bar.html） #}
+
+{% macro tc_validate_drawer_body(scope, title) %}
+    <div class="tc-validate-drawer-tabs" role="tablist" aria-label="{{ title }}视图">
+        <div class="tc-validate-drawer-tabs__nav">
+            <button type="button" id="tc-validate-tab-issues-{{ scope }}" class="tc-validate-tab tc-validate-tab--active" role="tab" aria-selected="true" aria-controls="tc-validate-issue-list-{{ scope }}">问题清单</button>
+            <button type="button" id="tc-validate-tab-coverage-{{ scope }}" class="tc-validate-tab" role="tab" aria-selected="false" aria-controls="tc-validate-coverage-panel-{{ scope }}">覆盖率</button>
+        </div>
+    </div>
+    <div id="tc-issues-actions-toolbar-{{ scope }}" class="tc-issues-actions-toolbar hidden" aria-hidden="true" data-tc-issues-actions="1">
+        <div class="tc-issues-actions-toolbar__actions">
+            <button type="button" id="tc-issues-delete-over-btn-{{ scope }}" class="btn btn-secondary btn-sm tc-issues-delete-over-btn" disabled>删除过度生成 (0)</button>
+            <button type="button" id="tc-issues-fill-all-btn-{{ scope }}" class="btn btn-secondary btn-sm tc-issues-fill-all-btn" disabled>补充用例 (0)</button>
+        </div>
+    </div>
+    <div id="tc-validate-issue-list-{{ scope }}" class="tc-side-drawer__body tc-validate-float-panel__body"></div>
+    <div id="tc-validate-coverage-panel-{{ scope }}" class="tc-side-drawer__body tc-validate-float-panel__body hidden" aria-hidden="true">
+                <div id="tc-coverage-toolbar-{{ scope }}" class="tc-coverage-toolbar">
+            <div id="tc-coverage-filter-{{ scope }}" class="tc-coverage-filter-seg" role="group" aria-label="筛选问题类型">
+                <button type="button" class="tc-coverage-filter-chip tc-coverage-filter-chip--active" data-filter="all" aria-pressed="true">全部</button>
+                <button type="button" class="tc-coverage-filter-chip" data-filter="uncovered" aria-pressed="false">遗漏</button>
+                <button type="button" class="tc-coverage-filter-chip" data-filter="over" aria-pressed="false">过度生成</button>
+            </div>
+            <div class="tc-coverage-toolbar__actions">
+                <button type="button" id="tc-coverage-delete-over-btn-{{ scope }}" class="btn btn-secondary btn-sm tc-coverage-delete-over-btn" disabled>删除过度生成 (0)</button>
+                <button type="button" id="tc-coverage-fill-all-btn-{{ scope }}" class="btn btn-secondary btn-sm tc-coverage-fill-all-btn" disabled>补充用例 (0)</button>
+            </div>
+        </div>
+        <div id="tc-coverage-matrix-list-{{ scope }}" class="tc-coverage-matrix-list"></div>
+    </div>
+{% endmacro %}
+
+{% macro tc_validate_drawer(scope, title) %}
+{% if scope == 'single' %}
+<aside id="tc-validate-drawer-{{ scope }}" class="tc-validate-float-panel tc-validate-drawer tc-validate-drawer--side tc-validate-drawer--scope-{{ scope }} hidden" data-validate-scope="{{ scope }}" aria-label="{{ title }}" aria-hidden="true">
+    <div class="tc-validate-float-panel__head" data-validate-drag-handle="{{ scope }}">
+        <div class="tc-validate-float-panel__head-main">
+            <h3 class="tc-side-drawer__title">{{ title }}</h3>
+            <p id="tc-validate-drawer-summary-{{ scope }}" class="tc-side-drawer__subtitle">尚未运行检查</p>
+        </div>
+        <div class="tc-validate-float-panel__winbtns">
+            <button type="button" id="tc-validate-drawer-close-{{ scope }}" class="tc-validate-float-panel__winbtn" aria-label="关闭">✕</button>
+        </div>
+    </div>
+    {{ tc_validate_drawer_body(scope, title) }}
+</aside>
+{% else %}
+<button type="button" id="tc-validate-float-reopen-btn-{{ scope }}" class="tc-validate-float-reopen tc-validate-float-reopen--{{ scope }} hidden" aria-label="打开{{ title }}" title="{{ title }}">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+    <span id="tc-validate-float-reopen-label-{{ scope }}">{{ title }}</span>
+    <span id="tc-validate-float-reopen-badge-{{ scope }}" class="tc-validate-float-reopen__badge hidden"></span>
+</button>
+<aside id="tc-validate-drawer-{{ scope }}" class="tc-validate-float-panel tc-validate-drawer tc-validate-drawer--scope-{{ scope }} hidden" data-validate-scope="{{ scope }}" aria-label="{{ title }}" aria-hidden="true">
+    <div class="tc-validate-float-panel__head" data-validate-drag-handle="{{ scope }}">
+        <div class="tc-validate-float-panel__head-main">
+            <h3 class="tc-side-drawer__title">{{ title }}</h3>
+            <p id="tc-validate-drawer-summary-{{ scope }}" class="tc-side-drawer__subtitle">尚未运行检查</p>
+        </div>
+        <div class="tc-validate-float-panel__winbtns">
+            <button type="button" id="tc-validate-float-shrink-{{ scope }}" class="tc-validate-float-panel__winbtn" aria-label="缩小">−</button>
+            <button type="button" id="tc-validate-float-expand-{{ scope }}" class="tc-validate-float-panel__winbtn" aria-label="放大">+</button>
+            <button type="button" id="tc-validate-drawer-close-{{ scope }}" class="tc-validate-float-panel__winbtn" aria-label="关闭">✕</button>
+        </div>
+    </div>
+    {{ tc_validate_drawer_body(scope, title) }}
+    <div class="tc-validate-float-resize" aria-hidden="true" title="拖拽调整大小"></div>
+</aside>
+{% endif %}
+{% endmacro %}
+
+<!-- 质量检查浮窗（快速 / 规划隔离） -->
+{{ tc_validate_drawer('single', '质量检查') }}
+
+<!-- 导出报告弹层 -->
+<div id="tc-export-report-modal" class="fixed inset-0 z-[86] hidden items-center justify-center bg-black/45 p-4">
+    <div class="tc-export-report-modal__panel relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+        <div class="flex flex-shrink-0 items-center justify-between gap-3 border-b border-gray-100 px-5 py-3">
+            <div>
+                <h3 class="text-lg font-semibold text-gray-900">导出报告</h3>
+                <p id="tc-export-report-subtitle" class="mt-0.5 text-xs text-slate-500"></p>
+            </div>
+            <button type="button" id="tc-export-report-close" class="rounded-full p-2 text-gray-400 hover:bg-gray-100" aria-label="关闭">✕</button>
+        </div>
+        <div id="tc-export-report-summary" class="flex-shrink-0 border-b border-gray-100 px-5 py-3 text-sm"></div>
+        <div id="tc-export-report-table-wrap" class="min-h-0 flex-1 overflow-auto p-4 text-sm"></div>
+        <div class="flex flex-shrink-0 flex-wrap justify-end gap-2 border-t border-gray-100 px-5 py-3">
+            <button type="button" id="tc-export-report-copy" class="btn btn-secondary btn-sm">复制摘要</button>
+        </div>
+    </div>
+</div>

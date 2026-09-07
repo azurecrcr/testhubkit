@@ -1,0 +1,58 @@
+/**
+ * 底部蓝色 Dock · 左侧 AI + 主操作布局（隔离 · 仅 jmeter-tab）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock__inner {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.5rem !important;
+    padding: 0.32rem 0.45rem 0.32rem 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock__left {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock__leading {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    padding-left: 0.625rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock__primary {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.42rem;
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock__right {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    padding-right: 0.35rem;
+}
+
+@media (max-width: 640px) {
+    body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock__inner {
+        flex-wrap: wrap !important;
+        padding-left: 0 !important;
+    }
+    body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock__left {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock__right {
+        width: 100%;
+        justify-content: flex-end;
+        padding-right: 0.625rem;
+        padding-bottom: 0.15rem;
+    }
+}

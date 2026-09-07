@@ -1,0 +1,74 @@
+/**
+ * 线程组后置处理器 · 树形卡片启用/停用（隔离样式，对齐配置元件）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-postproc-enable-seg {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 2px;
+    margin-right: 0.15rem;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.12);
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-postproc-enable-seg__btn {
+    border: none;
+    background: transparent;
+    padding: 0.16rem 0.48rem;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #64748b;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-postproc-enable-seg__btn:hover:not(.is-active) {
+    color: #334155;
+    background: rgba(255, 255, 255, 0.45);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-postproc-enable-seg__btn.is-active[data-postproc-enable-val="1"] {
+    background: #fff;
+    color: #0f766e;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-postproc-enable-seg__btn.is-active[data-postproc-enable-val="0"] {
+    background: #fff;
+    color: #94a3b8;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-aux-card.is-disabled .jms-aux-name,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-aux-card.is-disabled .jms-aux-meta {
+    color: #94a3b8 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-aux-card.is-disabled .jms-aux-card__stripe {
+    opacity: 0.45;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node .jms-config-card-toolbar {
+    flex-shrink: 0;
+    align-self: center;
+    margin-left: auto;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-processor-row {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-processor-row.is-disabled .jms-tree-processor-row__name {
+    color: #94a3b8;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-processor-row .jms-config-card-toolbar {
+    flex-shrink: 0;
+    margin-left: auto;
+}

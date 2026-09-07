@@ -1,0 +1,136 @@
+/**
+ * Studio v2 · JMeter 全部编辑/配置弹窗统一居中（post-js 最后加载，覆盖 legacy drawer）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-scene-monitor,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-load,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-http-mgr,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-step-edit,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-step-assert,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-if-edit,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-mount-timer-edit,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-if-edit,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit,
+body.lth-studio-v2.lth-hub-jmeter-tab [id^="modal-tg-"],
+body.lth-studio-v2.lth-hub-jmeter-tab [id^="modal-http-"] {
+    display: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-scene-monitor.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-load.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-http-mgr.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-step-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-step-assert.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-if-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-mount-timer-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-if-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab [id^="modal-tg-"].jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab [id^="modal-http-"].jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-scene-monitor.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-load.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-http-mgr.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-step-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-step-assert.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-if-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-beanshell-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-debug-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open [id^="modal-tg-"].jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open [id^="modal-http-"].jms-modal-open {
+    display: flex !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10200 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    background: rgba(15, 23, 42, 0.55) !important;
+    pointer-events: auto !important;
+    overflow: auto !important;
+    transform: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-vars-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: min(36rem, 96vw) !important;
+    max-height: 90vh !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    padding: 1.25rem !important;
+    display: block !important;
+    flex: 0 0 auto !important;
+    flex-direction: unset !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    border-radius: 1rem !important;
+    border: 1px solid #e2e8f0 !important;
+    background: #fff !important;
+    color: #0f172a !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    animation: none !important;
+    pointer-events: auto !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-step-edit.jms-modal-open .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-step-assert.jms-modal-open .jms-step-modal {
+    max-width: min(42rem, 96vw) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab [id*="assert-edit"].jms-modal-open .jms-step-modal {
+    max-width: min(1040px, 96vw) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-step-modal__title,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-step-modal > h3,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-step-edit-title,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-vars-modal__title,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-output-modal__title,
+body.lth-studio-v2.lth-hub-jmeter-tab [id^="modal-"] .jms-step-modal__title,
+body.lth-studio-v2.lth-hub-jmeter-tab [id^="modal-"] .jms-step-modal > h3 {
+    color: #020617 !important;
+    font-weight: 800 !important;
+    opacity: 1 !important;
+    -webkit-text-fill-color: #020617 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-step-modal .lth-step-sec__title,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-step-modal summary.lth-step-sec__title {
+    color: #0f172a !important;
+    font-weight: 700 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-step-modal .jms-step-form,
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-step-modal .lth-step-edit-form {
+    margin-top: 0.75rem !important;
+    color: #0f172a !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-step-modal .jms-assert-foot {
+    margin-top: 1.25rem !important;
+    padding-top: 1rem !important;
+    border-top: 1px solid rgba(148, 163, 184, 0.22) !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}

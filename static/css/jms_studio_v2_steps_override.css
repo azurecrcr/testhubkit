@@ -1,0 +1,162 @@
+/**
+ * Studio v2 · legacy 网格步骤区最终覆盖（POST-JS 最后加载 · 20260707v2style5）
+ * 修复：逻辑控制器 / Debug Sampler 无卡片样式（此前 ctrl_cards 未进 bundle）
+ */
+/**
+ * Studio v2 · legacy 网格内逻辑控制器 + catalog 卡片（对齐 If 控制器 jms_if_card_layout）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-transaction-card,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-loop-card,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-simple-card,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-random-card,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-catalog-plan-native {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin-bottom: 0.35rem !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(251, 191, 36, 0.28) !important;
+    background: rgba(251, 191, 36, 0.06) !important;
+    overflow: hidden !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-transaction-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-loop-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-simple-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-random-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-catalog-plan-card__head {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 0.35rem 0.5rem !important;
+    padding: 0.45rem 0.55rem !important;
+    border-bottom: 1px solid rgba(251, 191, 36, 0.18) !important;
+    background: rgba(251, 191, 36, 0.08) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-transaction-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-loop-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-simple-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-random-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-catalog-plan-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 1.65rem !important;
+    padding: 0.1rem 0.4rem !important;
+    border-radius: 999px !important;
+    font-size: 0.625rem !important;
+    font-weight: 800 !important;
+    color: #fcd34d !important;
+    background: rgba(251, 191, 36, 0.2) !important;
+    border: 1px solid rgba(251, 191, 36, 0.35) !important;
+    flex-shrink: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-transaction-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-loop-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-simple-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-random-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-catalog-plan-card__body {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.35rem !important;
+    padding: 0.45rem 0.55rem 0.55rem !important;
+    background: rgba(255, 255, 255, 0.35) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-transaction-card__body .jms-http-card,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-loop-card__body .jms-http-card,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-simple-card__body .jms-http-card,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-random-card__body .jms-http-card {
+    margin-bottom: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-aux-card.jms-aux-card--debug,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-aux-card.jms-catalog-plan-native {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    width: 100% !important;
+    padding: 0.45rem 0.55rem !important;
+    margin-bottom: 0.35rem !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(148, 163, 184, 0.45) !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-http-assert-badge {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-if-card {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+}
+
+
+/* --- aux card inner (from jms_aux_step_cards, steps-scoped) --- */
+/* 兼容非 hub tab 场景（API 场景页） */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-aux-card {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    min-height: 3rem;
+    margin-bottom: 0.35rem;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    background: #fff;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-aux-card__stripe { flex: 0 0 4px; }
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-aux-card--beanshell .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #22c55e, #15803d);
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-aux-card--debug .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-aux-card__content {
+    flex: 1; min-width: 0; padding: 0.4rem 0.5rem 0.4rem 0;
+    display: flex; flex-direction: column; gap: 0.12rem;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-aux-name {
+    font-size: 0.8125rem; font-weight: 600; color: #0f172a;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-if-card__head .lth-step-actions {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-simple-card__head .jms-http-name,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-random-card__head .jms-http-name,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-transaction-card__head .jms-http-name,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-loop-card__head .jms-http-name {
+    font-size: 0.8125rem !important;
+    font-weight: 600 !important;
+    color: #0f172a !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-aux-card__icon {
+    flex: 0 0 2.4rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-aux-card--debug .jms-aux-card__icon {
+    color: #1d4ed8 !important;
+    background: rgba(59, 130, 246, 0.1) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-aux-card--debug .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #3b82f6, #1d4ed8) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps:not(.jms-tg-tree-steps) .jms-aux-card--debug .jms-aux-type {
+    color: #1e40af !important;
+    background: rgba(59, 130, 246, 0.14) !important;
+    border: 1px solid rgba(59, 130, 246, 0.28) !important;
+}

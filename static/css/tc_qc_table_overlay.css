@@ -1,0 +1,149 @@
+/* =================================================================
+   质量检查 — 表格区域蒙层（仅 TcQcTableOverlay 使用）
+   ================================================================= */
+.tc-workbench-scope #tc-vxe-table-view-panel.tc-vxe-table-view-panel--qc-overlay {
+    position: relative;
+}
+
+.tc-qc-table-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.tc-qc-table-overlay.hidden {
+    display: none !important;
+}
+
+.tc-qc-table-overlay.tc-qc-table-overlay--visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.tc-qc-table-overlay__backdrop {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(16, 185, 129, 0.07), transparent 70%),
+        rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px) saturate(1.12);
+    -webkit-backdrop-filter: blur(10px) saturate(1.12);
+}
+
+.tc-qc-table-overlay__content {
+    position: relative;
+    z-index: 1;
+    width: min(18rem, calc(100% - 2rem));
+    padding: 1.35rem 1.25rem 1.15rem;
+    border-radius: 16px;
+    border: 1px solid rgba(16, 185, 129, 0.14);
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.07),
+        0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+    text-align: center;
+}
+
+.tc-qc-table-overlay__mark {
+    position: relative;
+    width: 3.25rem;
+    height: 3.25rem;
+    margin: 0 auto 0.85rem;
+}
+
+.tc-qc-table-overlay__ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid rgba(16, 185, 129, 0.2);
+    animation: tc-qc-table-overlay-ring 2.4s ease-out infinite;
+}
+
+.tc-qc-table-overlay__ring--delay {
+    animation-delay: 1.2s;
+}
+
+.tc-qc-table-overlay__core {
+    position: absolute;
+    inset: 0.55rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #059669;
+    background: linear-gradient(145deg, rgba(16, 185, 129, 0.12), rgba(5, 150, 105, 0.08));
+    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.12) inset;
+}
+
+.tc-qc-table-overlay__core svg {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.tc-qc-table-overlay__title {
+    margin: 0 0 0.35rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: #1e293b;
+}
+
+.tc-qc-table-overlay__stage {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #059669;
+}
+
+.tc-qc-table-overlay__meta {
+    margin: 0.45rem 0 0;
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: #64748b;
+}
+
+.tc-qc-table-overlay__meta.hidden {
+    display: none;
+}
+
+.tc-qc-table-overlay__progress {
+    margin-top: 0.95rem;
+}
+
+.tc-qc-table-overlay__progress-track {
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(16, 185, 129, 0.14);
+    overflow: hidden;
+}
+
+.tc-qc-table-overlay__progress-fill {
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #34d399, #10b981 55%, #059669);
+    transition: width 0.35s ease;
+}
+
+@keyframes tc-qc-table-overlay-ring {
+    0% {
+        transform: scale(0.72);
+        opacity: 0.85;
+    }
+    70% {
+        transform: scale(1.08);
+        opacity: 0.15;
+    }
+    100% {
+        transform: scale(1.12);
+        opacity: 0;
+    }
+}

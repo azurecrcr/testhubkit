@@ -1,0 +1,106 @@
+/* 生成结果弹窗 · 视口自适应（避免小屏顶栏遮挡） */
+:root {
+    --jms-output-modal-nav-offset: 3.75rem;
+}
+
+#modal-output.jms-modal-open {
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding:
+        max(0.75rem, env(safe-area-inset-top, 0px))
+        max(0.65rem, env(safe-area-inset-right, 0px))
+        max(0.65rem, env(safe-area-inset-bottom, 0px))
+        max(0.65rem, env(safe-area-inset-left, 0px)) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+#modal-output .jms-output-modal,
+body.lth-studio-v2 #modal-output .jms-output-modal {
+    width: min(52rem, calc(100vw - 1.25rem)) !important;
+    max-width: min(52rem, calc(100vw - 1.25rem)) !important;
+    max-height: min(
+        44rem,
+        calc(100dvh - var(--jms-output-modal-nav-offset) - 1.25rem),
+        calc(100svh - var(--jms-output-modal-nav-offset) - 1.25rem)
+    ) !important;
+    margin: var(--jms-output-modal-nav-offset) auto 0.75rem !important;
+    flex-shrink: 0;
+}
+
+#modal-output .jms-output-modal__main {
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+#modal-output .hf-out {
+    max-height: min(28rem, calc(100dvh - var(--jms-output-modal-nav-offset) - 16rem));
+    overflow: auto !important;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --jms-output-modal-nav-offset: 3.25rem;
+    }
+
+    #modal-output .jms-output-modal,
+    body.lth-studio-v2 #modal-output .jms-output-modal {
+        width: calc(100vw - 1rem) !important;
+        max-width: calc(100vw - 1rem) !important;
+        max-height: calc(100dvh - var(--jms-output-modal-nav-offset) - 0.75rem) !important;
+        border-radius: 0.875rem !important;
+    }
+
+    #modal-output .jms-output-modal__head,
+    body.lth-studio-v2 #modal-output .jms-output-modal__head {
+        padding: 0.6rem 2.75rem 0.6rem 0.75rem !important;
+    }
+
+    #modal-output .jms-output-modal__head-main {
+        gap: 0.5rem !important;
+    }
+
+    #modal-output .jms-output-modal__title {
+        font-size: 0.95rem !important;
+    }
+
+    #modal-output .jms-output-summary-grid,
+    body.lth-studio-v2 #modal-output .jms-output-summary-grid,
+    #modal-output #summary-list,
+    body.lth-studio-v2 #modal-output #summary-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    #modal-output .hf-out {
+        max-height: min(22rem, calc(100dvh - var(--jms-output-modal-nav-offset) - 14rem));
+        font-size: 11px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --jms-output-modal-nav-offset: 2.85rem;
+    }
+
+    #modal-output .jms-output-modal__tabs {
+        min-width: 100% !important;
+    }
+
+    #modal-output .jms-output-tab.tab-btn {
+        min-width: 3.5rem !important;
+        padding: 0.4rem 0.5rem !important;
+        font-size: 11px !important;
+    }
+}
+
+@media (max-height: 640px) {
+    #modal-output .jms-output-modal,
+    body.lth-studio-v2 #modal-output .jms-output-modal {
+        max-height: calc(100dvh - var(--jms-output-modal-nav-offset) - 0.5rem) !important;
+    }
+
+    #modal-output .hf-out {
+        max-height: min(16rem, calc(100dvh - var(--jms-output-modal-nav-offset) - 12rem));
+    }
+}

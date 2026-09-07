@@ -1,0 +1,27 @@
+/**
+ * catalog 取样器/控制器 · 折叠态与头行点击（挂载区样式由 logic_mount_toolbar_polish 统一）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-catalog-card--expandable .jms-catalog-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-if-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-random-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-simple-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-transaction-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-loop-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card--expandable .jms-catalog-card__head {
+    cursor: pointer;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-catalog-card--expandable,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card--expandable {
+    cursor: pointer;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card--collapsed .jms-catalog-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card--collapsed .jms-if-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card--collapsed .jms-catalog-card__body {
+    display: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-aux-card.jms-catalog-card--expandable.jms-catalog-card--collapsed .jms-catalog-card__body {
+    display: none !important;
+}

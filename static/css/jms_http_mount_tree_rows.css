@@ -1,0 +1,76 @@
+/* HTTP 请求挂载 · 树形行样式（隔离模块） */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-mount-children {
+    display: block;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--http-mount {
+    position: relative;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--http-mount .jms-tree-node__body {
+    padding-left: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-aux-card--http-mount {
+    min-height: 2rem;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-aux-card--http-mount-config .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #6366f1 0%, #4f46e5 100%);
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-aux-card--http-mount-preproc .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #0ea5e9 0%, #0284c7 100%);
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-aux-card--http-mount-timer .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-aux-card--http-mount-logic .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-aux-card--http-mount-proc .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-aux-card--http-mount-assert .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-aux-card--http-mount-listener .jms-aux-card__stripe {
+    background: linear-gradient(180deg, #64748b 0%, #475569 100%);
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-mount-drag-handle {
+    cursor: grab;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-mount-dragging .jms-http-mount-drag-handle {
+    cursor: grabbing;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--http-mount .lth-step-actions {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-aux-card--http-mount .jms-aux-card__content--tree {
+    flex: 1;
+    min-width: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--http-mount.jms-tree-node--dragging {
+    opacity: 0.55;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--http-mount.jms-tree-node--drop-before::before,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--http-mount.jms-tree-node--drop-after::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background: #6366f1;
+    border-radius: 1px;
+    margin: 2px 0 2px calc(var(--jms-tree-depth, 1) * 1.25rem + 1.5rem);
+}

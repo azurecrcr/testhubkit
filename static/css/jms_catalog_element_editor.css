@@ -1,0 +1,227 @@
+/**
+ * JMeter catalog_element · 添加后配置弹窗
+ */
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 12100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    pointer-events: none;
+    color: #1e293b;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal.jms-modal-open {
+    display: flex !important;
+    pointer-events: auto;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.36);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-modal__panel {
+    position: relative;
+    width: min(100%, 34rem);
+    max-height: min(80vh, 40rem);
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.875rem;
+    border: 1px solid rgba(226, 232, 240, 0.96);
+    background: #ffffff;
+    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.18);
+    overflow: hidden;
+    color: #1e293b;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-modal__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1rem 1.15rem 0.75rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-modal__title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-modal__close {
+    border: 0;
+    background: transparent;
+    color: #475569;
+    font-size: 1.35rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.15rem 0.35rem;
+    border-radius: 0.375rem;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-modal__close:hover {
+    color: #0f172a;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-modal__body {
+    padding: 0.85rem 1.15rem;
+    overflow: auto;
+    color: #1e293b;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-modal__foot {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.75rem 1.15rem 1rem;
+    border-top: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-catalog-editor__alias {
+    font-size: 0.8125rem;
+    color: #334155;
+    margin: 0 0 0.65rem;
+    font-weight: 500;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field {
+    margin-bottom: 0.65rem;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #1e293b;
+    margin-bottom: 0.3rem;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field label input[type="checkbox"] {
+    margin-right: 0.35rem;
+    accent-color: #4f46e5;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field input[type="text"],
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field input[type="number"],
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field textarea,
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field select {
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    padding: 0.45rem 0.55rem;
+    border: 1px solid #94a3b8;
+    border-radius: 6px;
+    color: #0f172a !important;
+    -webkit-text-fill-color: #0f172a !important;
+    caret-color: #0f172a;
+    background: #ffffff !important;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field input::placeholder,
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field textarea::placeholder {
+    color: #64748b;
+    opacity: 1;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field input:focus,
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field textarea:focus,
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field select:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field input:-webkit-autofill,
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field input:-webkit-autofill:focus,
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field textarea:-webkit-autofill,
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field textarea:-webkit-autofill:focus {
+    -webkit-text-fill-color: #0f172a !important;
+    box-shadow: 0 0 0 1000px #ffffff inset !important;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field textarea {
+    min-height: 5.5rem;
+    font-family: ui-monospace, monospace;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-field select option {
+    color: #0f172a;
+    background: #ffffff;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-catalog-kv-add {
+    color: #1e293b;
+    font-size: 0.8125rem;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-catalog-kv-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 0.35rem;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-catalog-kv-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 0.35rem;
+    align-items: center;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-catalog-kv-row input {
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    padding: 0.45rem 0.55rem;
+    border: 1px solid #94a3b8;
+    border-radius: 6px;
+    color: #0f172a !important;
+    -webkit-text-fill-color: #0f172a !important;
+    caret-color: #0f172a;
+    background: #ffffff !important;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-catalog-kv-del {
+    color: #475569;
+    font-size: 1rem;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal .jms-catalog-kv-del:hover {
+    color: #dc2626;
+}
+
+/* 非计划级：隐藏绿色主题专用 chrome，保留紧凑布局 */
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal:not([data-plan-level="1"]) .jms-pcat-editor__badge,
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal:not([data-plan-level="1"]) .jms-pcat-editor__icon {
+    display: none;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal:not([data-plan-level="1"]) .jms-pcat-editor__alias {
+    font-size: 0.8125rem;
+    color: #334155;
+    margin: 0.15rem 0 0;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal:not([data-plan-level="1"]) .jms-pcat-editor__row--meta {
+    display: block;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal:not([data-plan-level="1"]) .jms-pcat-editor__chip--enabled {
+    display: block;
+    margin: 0.35rem 0 0.65rem;
+}
+
+body.lth-hub-jmeter-tab #jms-catalog-element-editor-modal:not([data-plan-level="1"]) .jms-pcat-editor__sheet {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}

@@ -1,0 +1,95 @@
+/**
+ * Studio v2 · legacy 网格内逻辑控制器 + catalog 卡片（对齐 If 控制器 jms_if_card_layout）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-transaction-card,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-loop-card,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-simple-card,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-random-card,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-catalog-plan-native {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin-bottom: 0.35rem !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(251, 191, 36, 0.28) !important;
+    background: rgba(251, 191, 36, 0.06) !important;
+    overflow: hidden !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-transaction-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-loop-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-simple-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-random-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-catalog-plan-card__head {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 0.35rem 0.5rem !important;
+    padding: 0.45rem 0.55rem !important;
+    border-bottom: 1px solid rgba(251, 191, 36, 0.18) !important;
+    background: rgba(251, 191, 36, 0.08) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-transaction-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-loop-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-simple-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-random-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-catalog-plan-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 1.65rem !important;
+    padding: 0.1rem 0.4rem !important;
+    border-radius: 999px !important;
+    font-size: 0.625rem !important;
+    font-weight: 800 !important;
+    color: #fcd34d !important;
+    background: rgba(251, 191, 36, 0.2) !important;
+    border: 1px solid rgba(251, 191, 36, 0.35) !important;
+    flex-shrink: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-transaction-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-loop-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-simple-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-random-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-catalog-plan-card__body {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.35rem !important;
+    padding: 0.45rem 0.55rem 0.55rem !important;
+    background: rgba(255, 255, 255, 0.35) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-transaction-card__body .jms-http-card,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-loop-card__body .jms-http-card,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-simple-card__body .jms-http-card,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-random-card__body .jms-http-card {
+    margin-bottom: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-aux-card.jms-aux-card--debug,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-aux-card.jms-catalog-plan-native {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    width: 100% !important;
+    padding: 0.45rem 0.55rem !important;
+    margin-bottom: 0.35rem !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(148, 163, 184, 0.45) !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-http-assert-badge {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps .jms-if-card {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+}

@@ -1,0 +1,410 @@
+/* 媒体工具箱 · 粉色浅底专属字色与玻璃透明度（仅 mdh-hub-page，不影响其他工具页） */
+
+/* —— 顶栏：媒体处理 / 开发助手 —— */
+body.mdh-hub-page .mdh-hub-scope .tc-hub-mode-switch--compact {
+    border-color: rgba(244, 114, 182, 0.28) !important;
+    background: rgba(255, 255, 255, 0.42) !important;
+    box-shadow:
+        0 1px 3px rgba(190, 24, 93, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55) !important;
+}
+
+body.mdh-hub-page .mdh-hub-scope .tc-hub-mode--compact:not(.tc-hub-mode--active) {
+    color: #9d174d !important;
+}
+
+body.mdh-hub-page .mdh-hub-scope .tc-hub-mode--compact:not(.tc-hub-mode--active) .tc-hub-mode__title {
+    color: #9d174d !important;
+}
+
+body.mdh-hub-page .mdh-hub-scope .tc-hub-mode--compact:not(.tc-hub-mode--active):hover {
+    background: rgba(255, 241, 242, 0.75) !important;
+    border-color: rgba(244, 114, 182, 0.35) !important;
+    color: #be185d !important;
+}
+
+body.mdh-hub-page .mdh-hub-scope .tc-hub-mode--compact:not(.tc-hub-mode--active):hover .tc-hub-mode__title {
+    color: #be185d !important;
+}
+
+body.mdh-hub-page .mdh-hub-scope .tc-hub-mode--compact.tc-hub-mode--active,
+body.mdh-hub-page .mdh-hub-scope .tc-hub-mode--compact.tc-hub-mode--active:hover {
+    border-color: rgba(219, 39, 119, 0.4) !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    color: #9f1239 !important;
+    box-shadow: 0 1px 4px rgba(190, 24, 93, 0.12) !important;
+}
+
+body.mdh-hub-page .mdh-hub-scope .tc-hub-mode--compact.tc-hub-mode--active .tc-hub-mode__title,
+body.mdh-hub-page .mdh-hub-scope .tc-hub-mode--compact.tc-hub-mode--active:hover .tc-hub-mode__title {
+    color: #9f1239 !important;
+}
+
+body.mdh-hub-page .mdh-hub-scope .tc-hub-mode__icon {
+    color: #db2777 !important;
+}
+
+body.mdh-hub-page .mdh-hub-scope .tc-hub-mode--compact.tc-hub-mode--active .tc-hub-mode__icon {
+    color: #be185d !important;
+}
+
+/* —— 子导航：图片大小 / 格式转换 / 音频生成 + 注释 —— */
+body.mdh-hub-page .media-workbench-scope .media-tool-nav {
+    border-color: rgba(244, 114, 182, 0.26) !important;
+    background: rgba(255, 255, 255, 0.4) !important;
+}
+
+body.mdh-hub-page .media-workbench-scope .media-tool-nav__btn {
+    color: #9d174d !important;
+}
+
+body.mdh-hub-page .media-workbench-scope .media-tool-nav__label {
+    color: #9d174d !important;
+}
+
+body.mdh-hub-page .media-workbench-scope .media-tool-nav__hint {
+    color: rgba(157, 23, 77, 0.62) !important;
+}
+
+body.mdh-hub-page .media-workbench-scope .media-tool-nav__btn:hover {
+    background: rgba(255, 241, 242, 0.8) !important;
+    border-color: rgba(244, 114, 182, 0.35) !important;
+    color: #be185d !important;
+}
+
+body.mdh-hub-page .media-workbench-scope .media-tool-nav__btn:hover .media-tool-nav__label {
+    color: #be185d !important;
+}
+
+body.mdh-hub-page .media-workbench-scope .media-tool-nav__btn:hover .media-tool-nav__hint {
+    color: rgba(190, 24, 93, 0.72) !important;
+}
+
+body.mdh-hub-page .media-workbench-scope .media-tool-nav__btn.is-active {
+    border-color: rgba(219, 39, 119, 0.42) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #9f1239 !important;
+}
+
+body.mdh-hub-page .media-workbench-scope .media-tool-nav__btn.is-active .media-tool-nav__label {
+    color: #9f1239 !important;
+}
+
+body.mdh-hub-page .media-workbench-scope .media-tool-nav__btn.is-active .media-tool-nav__hint {
+    color: rgba(159, 18, 57, 0.7) !important;
+}
+
+/* —— 开发助手侧栏文案 —— */
+body.mdh-hub-page .mdh-sidebar-label {
+    color: rgba(157, 23, 77, 0.55) !important;
+}
+
+body.mdh-hub-page .mdh-sidebar-btn,
+body.mdh-hub-page .mdh-sidebar-btn__title {
+    color: #9d174d !important;
+}
+
+body.mdh-hub-page .mdh-sidebar-btn__hint,
+body.mdh-hub-page .mdh-sidebar-desc {
+    color: rgba(157, 23, 77, 0.58) !important;
+}
+
+body.mdh-hub-page .mdh-sidebar-btn:hover {
+    background: rgba(255, 241, 242, 0.85) !important;
+    border-color: rgba(244, 114, 182, 0.3) !important;
+}
+
+body.mdh-hub-page .mdh-sidebar-btn.is-active,
+body.mdh-hub-page .data-workbench-scope .data-tool-tab-btn.is-active,
+body.mdh-hub-page .data-workbench-scope .data-tool-tab-btn.border-indigo-300,
+body.mdh-hub-page .data-workbench-scope .data-tool-tab-btn.bg-indigo-50 {
+    border-color: rgba(219, 39, 119, 0.4) !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    color: #9f1239 !important;
+    box-shadow: 0 1px 3px rgba(190, 24, 93, 0.1) !important;
+}
+
+body.mdh-hub-page .mdh-sidebar-btn.is-active .mdh-sidebar-btn__title {
+    color: #9f1239 !important;
+}
+
+body.mdh-hub-page .mdh-sidebar-btn.is-active .mdh-sidebar-btn__hint {
+    color: rgba(159, 18, 57, 0.65) !important;
+}
+
+body.mdh-hub-page .mdh-sidebar-btn__icon {
+    background: rgba(252, 231, 243, 0.9) !important;
+    color: #db2777 !important;
+}
+
+body.mdh-hub-page .mdh-sidebar-btn.is-active .mdh-sidebar-btn__icon {
+    background: linear-gradient(145deg, #fce7f3 0%, #fbcfe8 100%) !important;
+    color: #be185d !important;
+}
+
+/* —— 媒体处理 / 开发助手：设置、上传预览、编解码主区更透（覆盖 page_shells 0.76） —— */
+body.mdh-hub-page .mdh-hub-scope .tool-tab-panel > .rounded-2xl,
+body.mdh-hub-page .mdh-hub-scope .mdh-tool-main .rounded-2xl.border,
+body.mdh-hub-page .mdh-hub-panel--media .tool-tab-panel > .rounded-2xl,
+body.mdh-hub-page .media-workbench-scope .tool-tab-panel > .rounded-2xl,
+body.mdh-hub-page .mdh-hub-panel--codec .tool-tab-panel > .rounded-2xl,
+body.mdh-hub-page .data-workbench-scope .tool-tab-panel > .rounded-2xl {
+    background: rgba(255, 255, 255, 0.42) !important;
+    border-color: rgba(244, 114, 182, 0.22) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 1px 3px rgba(190, 24, 93, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45) !important;
+}
+
+/* —— 开发助手：侧栏更透 —— */
+body.mdh-hub-page .mdh-tool-sidebar,
+body.mdh-hub-page .mdh-hub-panel--codec .mdh-tool-sidebar,
+body.mdh-hub-page .data-workbench-scope .mdh-tool-sidebar {
+    background: rgba(255, 255, 255, 0.36) !important;
+    border-color: rgba(244, 114, 182, 0.2) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+body.mdh-hub-page .mdh-panel-card {
+    border-color: rgba(244, 114, 182, 0.22) !important;
+    background: rgba(255, 255, 255, 0.28) !important;
+}
+
+body.mdh-hub-page .ds-tool-outer-card--media-studio {
+    border-color: rgba(244, 114, 182, 0.18) !important;
+    background: rgba(255, 255, 255, 0.22) !important;
+}
+
+/* 面板内标题略偏玫红，适配浅粉底 */
+body.mdh-hub-page .mdh-hub-scope .ds-section-title {
+    color: #9f1239 !important;
+}
+
+/* —— 媒体工具箱顶栏：浅粉玻璃（仅 mdh-hub-page） —— */
+body.mdh-hub-page .hf-gnav {
+    background:
+        linear-gradient(
+            118deg,
+            rgba(255, 255, 255, 0.74) 0%,
+            rgba(255, 241, 242, 0.70) 42%,
+            rgba(252, 231, 243, 0.62) 100%
+        ) !important;
+    border-bottom: 1px solid rgba(244, 114, 182, 0.24) !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.55) inset,
+        0 8px 28px -16px rgba(190, 24, 93, 0.16) !important;
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+body.mdh-hub-page .hf-gnav::before {
+    opacity: 0.22 !important;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0,
+        transparent 47px,
+        rgba(244, 114, 182, 0.045) 47px,
+        rgba(244, 114, 182, 0.045) 48px
+    ) !important;
+}
+
+body.mdh-hub-page .hf-gnav::after {
+    background:
+        radial-gradient(ellipse 70% 120% at 8% -30%, rgba(251, 207, 232, 0.4), transparent 58%),
+        radial-gradient(ellipse 55% 90% at 96% 0%, rgba(244, 114, 182, 0.16), transparent 52%) !important;
+    opacity: 1 !important;
+}
+
+body.mdh-hub-page .hf-gnav__brand,
+body.mdh-hub-page .hf-gnav__titles strong {
+    color: #9f1239 !important;
+}
+
+body.mdh-hub-page .hf-gnav__titles span {
+    color: rgba(190, 24, 93, 0.62) !important;
+}
+
+body.mdh-hub-page .hf-gnav__mark {
+    box-shadow:
+        0 2px 12px rgba(244, 114, 182, 0.28),
+        0 0 0 1px rgba(251, 207, 232, 0.45) !important;
+}
+
+body.mdh-hub-page .hf-gnav__brand:hover .hf-gnav__mark {
+    box-shadow:
+        0 4px 16px rgba(244, 114, 182, 0.35),
+        0 0 0 1px rgba(219, 39, 119, 0.3) !important;
+}
+
+body.mdh-hub-page .hf-gnav__mega-btn {
+    border-color: rgba(244, 114, 182, 0.3) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    color: #be185d !important;
+}
+
+body.mdh-hub-page .hf-gnav__mega-btn:hover {
+    background: rgba(255, 241, 242, 0.92) !important;
+    border-color: rgba(244, 114, 182, 0.42) !important;
+}
+
+body.mdh-hub-page .hf-gnav__mega-btn[aria-expanded="true"] {
+    background: rgba(252, 231, 243, 0.95) !important;
+    border-color: rgba(219, 39, 119, 0.4) !important;
+    box-shadow: 0 0 0 1px rgba(251, 207, 232, 0.35) !important;
+}
+
+body.mdh-hub-page .hf-gnav__prompts {
+    color: #be185d !important;
+    border-color: rgba(244, 114, 182, 0.35) !important;
+    background: linear-gradient(120deg, rgba(255, 241, 242, 0.92), rgba(252, 231, 243, 0.88)) !important;
+    box-shadow: 0 1px 4px rgba(190, 24, 93, 0.08) !important;
+}
+
+body.mdh-hub-page .hf-gnav__prompts:hover {
+    border-color: rgba(219, 39, 119, 0.45) !important;
+    box-shadow: 0 4px 16px -6px rgba(244, 114, 182, 0.35) !important;
+}
+
+body.mdh-hub-page .hf-gnav__feedback {
+    color: #be185d !important;
+    border-color: rgba(251, 207, 232, 0.65) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+}
+
+body.mdh-hub-page .hf-gnav__feedback:hover {
+    background: rgba(255, 241, 242, 0.92) !important;
+    border-color: rgba(244, 114, 182, 0.45) !important;
+}
+
+body.mdh-hub-page .hf-gnav__messages {
+    color: #be185d !important;
+    border-color: rgba(244, 114, 182, 0.45) !important;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 241, 242, 0.82)) !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.85) inset,
+        0 1px 3px rgba(190, 24, 93, 0.1) !important;
+}
+
+body.mdh-hub-page .hf-gnav__messages:hover {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border-color: rgba(219, 39, 119, 0.55) !important;
+}
+
+body.mdh-hub-page .hf-gnav__messages[data-has-unread="1"] {
+    border-color: rgba(244, 63, 94, 0.5) !important;
+    box-shadow:
+        0 0 0 3px rgba(251, 113, 133, 0.16),
+        0 2px 10px rgba(190, 24, 93, 0.1) !important;
+}
+
+body.mdh-hub-page .hf-gnav__messages-badge {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.95) !important;
+}
+
+body.mdh-hub-page .hf-gnav__auth {
+    color: #be185d !important;
+    border-color: rgba(244, 114, 182, 0.4) !important;
+    background: linear-gradient(120deg, rgba(255, 241, 242, 0.95), rgba(252, 231, 243, 0.88)) !important;
+}
+
+body.mdh-hub-page .hf-gnav__user-email {
+    color: #9f1239 !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    border: 1px solid rgba(244, 114, 182, 0.22);
+}
+
+body.mdh-hub-page .hf-gnav__logout {
+    color: #be185d !important;
+    border-color: rgba(244, 114, 182, 0.28) !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+}
+
+body.mdh-hub-page .hf-gnav__logout:hover {
+    background: rgba(255, 241, 242, 0.92) !important;
+}
+
+body.mdh-hub-page .hf-gnav__burger {
+    border-color: rgba(244, 114, 182, 0.3) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    color: #be185d !important;
+}
+
+body.mdh-hub-page .hf-gnav__burger span {
+    background: #be185d !important;
+}
+
+body.mdh-hub-page .hf-gnav__drawer {
+    background: rgba(159, 18, 57, 0.14) !important;
+}
+
+body.mdh-hub-page .hf-gnav__sheet {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 241, 242, 0.98) 100%) !important;
+    border-left: 1px solid rgba(244, 114, 182, 0.25) !important;
+    box-shadow: -12px 0 40px rgba(190, 24, 93, 0.12) !important;
+}
+
+body.mdh-hub-page .hf-gnav__sheet-top {
+    border-bottom-color: rgba(244, 114, 182, 0.18) !important;
+}
+
+body.mdh-hub-page .hf-gnav__sheet-top p,
+body.mdh-hub-page .hf-gnav__sheet-sec h3 {
+    color: rgba(190, 24, 93, 0.7) !important;
+}
+
+body.mdh-hub-page .hf-gnav__sheet-x {
+    border-color: rgba(244, 114, 182, 0.28) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    color: #be185d !important;
+}
+
+body.mdh-hub-page .hf-gnav__sheet a {
+    color: #9f1239 !important;
+}
+
+body.mdh-hub-page .hf-gnav__sheet a:hover {
+    background: rgba(252, 231, 243, 0.85) !important;
+}
+
+body.mdh-hub-page .hf-gnav__sheet a[aria-current="page"] {
+    background: rgba(252, 231, 243, 0.95) !important;
+    border-color: rgba(244, 114, 182, 0.35) !important;
+}
+
+body.mdh-hub-page .hf-gnav__sheet-prompts {
+    border-top-color: rgba(244, 114, 182, 0.18) !important;
+}
+
+body.mdh-hub-page .hf-gnav__sheet-prompts a {
+    background: linear-gradient(120deg, rgba(255, 241, 242, 0.9), rgba(252, 231, 243, 0.85)) !important;
+    border-color: rgba(244, 114, 182, 0.3) !important;
+}
+
+body.mdh-hub-page .hf-gnav__sheet-feedback {
+    border-color: rgba(244, 114, 182, 0.3) !important;
+    background: rgba(255, 241, 242, 0.9) !important;
+    color: #be185d !important;
+}
+
+body.mdh-hub-page .hf-gnav__sheet-auth {
+    border-color: rgba(244, 114, 182, 0.35) !important;
+    background: rgba(252, 231, 243, 0.95) !important;
+    color: #be185d !important;
+}
+
+body.mdh-hub-page .hf-gnav__sheet-user {
+    background: rgba(255, 255, 255, 0.65) !important;
+    border-color: rgba(244, 114, 182, 0.22) !important;
+}
+
+body.mdh-hub-page .hf-gnav__sheet-user p {
+    color: rgba(190, 24, 93, 0.65) !important;
+}
+
+body.mdh-hub-page .hf-gnav__sheet-user strong {
+    color: #9f1239 !important;
+}

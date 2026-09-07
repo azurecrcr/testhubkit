@@ -1,0 +1,15 @@
+{# 内网预设 / 暂存解锁弹窗 — Hub 级共用，勿放在 hidden 的 Tab 面板内 #}
+<div id="tc-feature-unlock-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/40 p-4" role="dialog" aria-modal="true" aria-labelledby="tc-feature-unlock-modal-title">
+    <div class="relative w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl">
+        <h3 id="tc-feature-unlock-modal-title" class="text-lg font-semibold text-gray-900">功能已锁定</h3>
+        <p id="tc-feature-unlock-modal-desc" class="mt-1 text-xs text-gray-500">请输入密码后继续使用。</p>
+        <div class="mt-4">
+            <label class="form-label text-sm" for="tc-feature-unlock-password">密码</label>
+            <input type="password" id="tc-feature-unlock-password" class="form-input mt-1" autocomplete="off" placeholder="请输入密码">
+        </div>
+        <div class="mt-6 flex justify-end gap-3">
+            <button type="button" id="tc-feature-unlock-cancel" class="btn btn-secondary">取消</button>
+            <button type="button" id="tc-feature-unlock-submit" class="btn btn-primary">解锁</button>
+        </div>
+    </div>
+</div>

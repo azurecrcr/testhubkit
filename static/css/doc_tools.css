@@ -1,0 +1,1817 @@
+/* 文档工具独立页 — 对齐用例工作台视觉（扁平选择器，不依赖 toolkit 嵌套） */
+
+/*
+ * 本页未引入 Tailwind，需自行 border-box。
+ * 否则 .hf-gnav__inner 的 width:100% + padding 会撑出视口，右侧头像被裁切
+ *（提示词库页靠 Tailwind preflight 正常）。
+ */
+html.doc-tools-html {
+    overflow-x: hidden;
+}
+
+body.doc-tools-page,
+body.doc-tools-page *,
+body.doc-tools-page *::before,
+body.doc-tools-page *::after {
+    box-sizing: border-box;
+}
+
+.doc-tools-page {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    position: relative;
+    background-color: #0f172a;
+    margin: 0;
+    color: #0f172a;
+    min-height: 100vh;
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+.doc-tools-page__bg {
+    background-image: var(--doc-tools-bg-fallback, var(--doc-tools-bg-url));
+    background-color: #0f172a;
+}
+
+@supports (background-image: image-set(url('x.webp') type('image/webp'))) {
+    .doc-tools-page__bg {
+        background-image: image-set(
+            var(--doc-tools-bg-url) type('image/webp'),
+            var(--doc-tools-bg-fallback, var(--doc-tools-bg-url)) type('image/png')
+        );
+    }
+}
+
+.doc-tools-page__bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    background-color: #0f172a;
+    background-image: var(--doc-tools-bg-url);
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+}
+
+.doc-tools-page__bg-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.42) 0%, rgba(30, 41, 59, 0.36) 42%, rgba(15, 23, 42, 0.4) 100%),
+        radial-gradient(ellipse 80% 55% at 50% 0%, rgba(99, 102, 241, 0.14), transparent 68%);
+}
+
+.doc-tools-page .doc-tools-shell {
+    position: relative;
+    z-index: 1;
+}
+
+.doc-tools-page .hidden {
+    display: none !important;
+}
+
+/* —— 投稿/建议弹窗（扁平选择器，不依赖 toolkit 嵌套；对齐全站玻璃态） —— */
+.doc-tools-page .hf-feedback-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10075;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    background: rgba(15, 23, 42, 0.42);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+.doc-tools-page .hf-feedback-modal.hidden {
+    display: none !important;
+}
+.doc-tools-page .hf-feedback-modal.flex,
+.doc-tools-page .hf-feedback-modal:not(.hidden) {
+    display: flex;
+}
+.doc-tools-page .hf-feedback-modal__panel {
+    position: relative;
+    width: 100%;
+    max-width: 28rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    background: rgba(99, 102, 241, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 1px 3px rgba(15, 23, 42, 0.1),
+        0 16px 48px rgba(15, 23, 42, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    padding: 0.65rem 0.7rem 0.75rem;
+}
+.doc-tools-page .hf-feedback-modal__head {
+    position: relative;
+    padding: 0.85rem 2.85rem 0.75rem 0.85rem;
+    border-radius: 0.75rem 0.75rem 0 0;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.22);
+    background: linear-gradient(
+        180deg,
+        rgba(99, 102, 241, 0.16) 0%,
+        rgba(99, 102, 241, 0.06) 100%
+    );
+}
+.doc-tools-page .hf-feedback-modal__close {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid rgba(148, 163, 184, 0.55);
+    border-radius: 0.5rem;
+    background: #ffffff;
+    color: #64748b;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.doc-tools-page .hf-feedback-modal__close:hover {
+    background: #ffffff;
+    border-color: rgba(99, 102, 241, 0.45);
+    color: #3730a3;
+    box-shadow: 0 2px 6px rgba(79, 70, 229, 0.16);
+}
+.doc-tools-page .hf-feedback-modal__close:focus-visible {
+    outline: 2px solid rgba(99, 102, 241, 0.45);
+    outline-offset: 2px;
+}
+.doc-tools-page .hf-feedback-modal__title {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #0f172a;
+}
+.doc-tools-page .hf-feedback-modal__desc {
+    margin: 0.35rem 0 0;
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: rgba(241, 245, 249, 0.92);
+}
+.doc-tools-page .hf-feedback-modal__body {
+    margin-top: 0.55rem;
+    padding: 1rem 1.05rem 1.1rem;
+    border-radius: 0.85rem;
+    border: 1px solid rgba(148, 163, 184, 0.48);
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+.doc-tools-page .hf-feedback-modal__field {
+    margin-top: 0;
+}
+.doc-tools-page .hf-feedback-modal__field--contact {
+    margin-top: 0.85rem;
+}
+.doc-tools-page .hf-feedback-modal__label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 0.35rem;
+}
+.doc-tools-page .hf-feedback-modal__req {
+    color: #ef4444;
+}
+.doc-tools-page .hf-feedback-modal__hint {
+    margin: 0.35rem 0 0;
+    font-size: 0.6875rem;
+    color: #94a3b8;
+}
+.doc-tools-page .hf-feedback-modal .form-input,
+.doc-tools-page .hf-feedback-modal textarea.form-input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid rgba(148, 163, 184, 0.62);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.875rem;
+    color: #0f172a;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.doc-tools-page .hf-feedback-modal__textarea {
+    min-height: 8rem;
+    resize: vertical;
+    line-height: 1.55;
+}
+.doc-tools-page .hf-feedback-modal .form-input:focus,
+.doc-tools-page .hf-feedback-modal textarea.form-input:focus {
+    outline: none;
+    border-color: rgba(99, 102, 241, 0.6);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.16);
+}
+.doc-tools-page .hf-feedback-modal__error {
+    margin: 0.75rem 0 0;
+    padding: 0.45rem 0.65rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(248, 113, 113, 0.5);
+    background: rgba(255, 255, 255, 0.92);
+    font-size: 0.8125rem;
+    color: #b91c1c;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+.doc-tools-page .hf-feedback-modal__error.hidden {
+    display: none !important;
+}
+.doc-tools-page .hf-feedback-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.65rem;
+    margin-top: 1.25rem;
+}
+.doc-tools-page #hf-feedback-modal .btn-secondary {
+    background: #ffffff;
+    border: 1px solid rgba(148, 163, 184, 0.62);
+    color: #334155;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+.doc-tools-page #hf-feedback-modal .btn-secondary:hover {
+    background: #ffffff;
+    border-color: rgba(99, 102, 241, 0.45);
+    color: #1e293b;
+    box-shadow: 0 2px 6px rgba(79, 70, 229, 0.14);
+}
+.doc-tools-page #hf-feedback-modal #hf-feedback-submit.btn-primary {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    border: 1px solid rgba(99, 102, 241, 0.45);
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(79, 70, 229, 0.28);
+    filter: none;
+}
+.doc-tools-page #hf-feedback-modal #hf-feedback-submit.btn-primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+    filter: none;
+}
+.doc-tools-page #hf-feedback-modal #hf-feedback-submit.btn-primary:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+.doc-tools-page .hf-feedback-toast {
+    pointer-events: none;
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    z-index: 10080;
+    width: min(92vw, 22rem);
+    transform: translateX(-50%) translateY(0.75rem);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.doc-tools-page .hf-feedback-toast.hf-feedback-toast--visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+.doc-tools-page .hf-feedback-toast__inner {
+    border-radius: 0.75rem;
+    border: 1px solid rgba(99, 102, 241, 0.32);
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0.75rem 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #047857;
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.06),
+        0 8px 24px rgba(15, 23, 42, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.doc-tools-page .hf-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.doc-tools-page .cf-req {
+    color: #ef4444;
+}
+
+.doc-tools-shell {
+    width: 100%;
+    max-width: min(100vw - 0.25rem, 100vw);
+    margin: 0 auto;
+    padding: 0.25rem 0.25rem 0.25rem;
+    box-sizing: border-box;
+}
+
+/* ---------- 工作台主卡片 ---------- */
+.doc-tools-page .cf-doc-wb {
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.06),
+        0 12px 40px rgba(15, 23, 42, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    overflow: hidden;
+}
+
+.doc-tools-page .cf-doc-surface,
+.doc-tools-page #cf-main-content-shell.cf-doc-surface {
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.06) 0%,
+        rgba(248, 250, 252, 0.04) 45%,
+        rgba(241, 245, 249, 0.05) 100%
+    );
+    padding: 0.25rem 0.35rem 0.35rem;
+    position: relative;
+    height: calc(100vh - 170px);
+    max-height: calc(100vh - 170px);
+    min-height: calc(100vh - 170px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ---------- 顶栏：导入 + AI 编辑 ---------- */
+.doc-tools-page .cf-doc-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 0.25rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 0.875rem;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.94) 0%,
+        rgba(248, 250, 252, 0.88) 100%
+    );
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.06),
+        0 10px 28px rgba(15, 23, 42, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.doc-tools-page .cf-doc-toolbar__main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 1.25rem;
+}
+
+.doc-tools-page .cf-doc-toolbar__intro {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.35rem 1rem;
+    max-width: 100%;
+}
+
+.doc-tools-page .cf-doc-toolbar__title {
+    margin: 0;
+    flex: 0 0 auto;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #0f172a;
+    line-height: 1.35;
+    white-space: nowrap;
+}
+
+.doc-tools-page .cf-doc-toolbar__desc {
+    margin: 0;
+    flex: 1 1 14rem;
+    min-width: 0;
+    font-size: 0.7rem;
+    line-height: 1.55;
+    color: #64748b;
+}
+
+.doc-tools-page .cf-doc-toolbar__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem 0.75rem;
+    flex: 0 1 auto;
+}
+
+.doc-tools-page .cf-doc-upload {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.doc-tools-page .cf-doc-upload__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.doc-tools-page .cf-doc-upload__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #4f46e5;
+}
+
+.doc-tools-page .cf-doc-upload__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.95rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    border: 1px solid rgba(79, 70, 229, 0.35);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.28);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.doc-tools-page .cf-doc-upload__btn:hover {
+    filter: brightness(1.05);
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.34);
+    transform: translateY(-1px);
+}
+
+
+
+/* ---------- 重新导入按钮（文档工具专用） ---------- */
+.doc-tools-page .cf-doc-reimport-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.38rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: #4338ca;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.94) 100%);
+    border: 1px solid rgba(99, 102, 241, 0.32);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- AI 悬浮助手（文档工具专用） ---------- */
+.doc-tools-page .cf-doc-ai-fab {
+    position: fixed;
+    right: 1.35rem;
+    bottom: 1.35rem;
+    z-index: 10060;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.72rem 1rem 0.72rem 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 55%, #0891b2 100%);
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    box-shadow:
+        0 4px 18px rgba(79, 70, 229, 0.38),
+        0 2px 8px rgba(15, 23, 42, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.doc-tools-page .cf-doc-ai-fab.hidden {
+    display: none !important;
+}
+
+.doc-tools-page .cf-doc-ai-fab__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.doc-tools-page .cf-doc-ai-fab:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.04);
+    box-shadow:
+        0 8px 26px rgba(79, 70, 229, 0.42),
+        0 4px 12px rgba(15, 23, 42, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.doc-tools-page .cf-doc-ai-fab:active {
+    transform: translateY(0);
+}
+
+.doc-tools-page .cf-doc-ai-fab[aria-expanded="true"] {
+    box-shadow:
+        0 2px 10px rgba(79, 70, 229, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.doc-tools-page .cf-doc-ai-panel {
+    position: fixed;
+    right: 1.35rem;
+    bottom: 4.65rem;
+    z-index: 10061;
+    width: min(92vw, 22rem);
+    height: min(70vh, 32rem);
+    min-width: 17.5rem;
+    min-height: 18.75rem;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.doc-tools-page .cf-doc-ai-panel.hidden {
+    display: none !important;
+}
+
+.doc-tools-page .cf-doc-ai-panel__shell {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    border-radius: 1rem;
+    border: 1px solid rgba(148, 163, 184, 0.42);
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.06),
+        0 18px 48px rgba(15, 23, 42, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92);
+    overflow: hidden;
+    animation: cfDocAiPanelIn 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes cfDocAiPanelIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.doc-tools-page .cf-doc-ai-panel__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.85rem 0.95rem 0.7rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.95);
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.95) 0%, rgba(255, 255, 255, 0.88) 100%);
+}
+
+.doc-tools-page .cf-doc-ai-panel__head-main {
+    min-width: 0;
+}
+
+.doc-tools-page .cf-doc-ai-panel__title {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+}
+
+.doc-tools-page .cf-doc-ai-panel__subtitle {
+    margin: 0.25rem 0 0;
+    font-size: 0.6875rem;
+    line-height: 1.45;
+    color: #94a3b8;
+}
+
+.doc-tools-page .cf-doc-ai-panel__close {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid rgba(148, 163, 184, 0.55);
+    border-radius: 0.5rem;
+    background: #fff;
+    color: #64748b;
+    font-size: 1.125rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.doc-tools-page .cf-doc-ai-panel__close:hover {
+    color: #3730a3;
+    border-color: rgba(99, 102, 241, 0.45);
+}
+
+.doc-tools-page .cf-doc-ai-panel__messages {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 0.85rem 0.85rem 0.65rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    background: rgba(248, 250, 252, 0.55);
+}
+
+.doc-tools-page .cf-doc-ai-panel__msg {
+    display: flex;
+    width: 100%;
+}
+
+.doc-tools-page .cf-doc-ai-panel__msg--assistant {
+    justify-content: flex-start;
+}
+
+.doc-tools-page .cf-doc-ai-panel__msg--user {
+    justify-content: flex-end;
+}
+
+.doc-tools-page .cf-doc-ai-panel__bubble {
+    max-width: 88%;
+    padding: 0.55rem 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+.doc-tools-page .cf-doc-ai-panel__msg--assistant .cf-doc-ai-panel__bubble {
+    background: #fff;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    color: #334155;
+    border-bottom-left-radius: 0.25rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.doc-tools-page .cf-doc-ai-panel__msg--user .cf-doc-ai-panel__bubble {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    color: #fff;
+    border-bottom-right-radius: 0.25rem;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.22);
+}
+
+.doc-tools-page .cf-doc-ai-panel__composer {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.55rem;
+    padding: 0.75rem 0.85rem 0.85rem;
+    border-top: 1px solid rgba(226, 232, 240, 0.95);
+    background: #fff;
+}
+
+.doc-tools-page .cf-doc-ai-panel__input {
+    flex: 1 1 auto;
+    min-height: 2.5rem;
+    max-height: 7.5rem;
+    resize: none;
+    border: 1px solid rgba(148, 163, 184, 0.55);
+    border-radius: 0.65rem;
+    padding: 0.55rem 0.7rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: #0f172a;
+    background: #fff;
+    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.doc-tools-page .cf-doc-ai-panel__input:focus {
+    outline: none;
+    border-color: rgba(99, 102, 241, 0.55);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
+}
+
+.doc-tools-page .cf-doc-ai-panel__send {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-width: 2.75rem;
+    min-height: 2.35rem;
+    flex-shrink: 0;
+    padding: 0.55rem 0.95rem;
+    border: 1px solid rgba(79, 70, 229, 0.35);
+    border-radius: 0.65rem;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.24);
+    transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.doc-tools-page .cf-doc-ai-panel__send:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+}
+
+
+.doc-tools-page .cf-doc-ai-panel__send-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+}
+
+.doc-tools-page .cf-doc-ai-panel__send.is-pause {
+    background: linear-gradient(135deg, #475569 0%, #334155 100%);
+    border-color: rgba(51, 65, 85, 0.45);
+    box-shadow: 0 2px 8px rgba(51, 65, 85, 0.22);
+}
+
+.doc-tools-page .cf-doc-ai-panel__send.is-pause:hover {
+    filter: brightness(1.06);
+}
+
+.doc-tools-page .cf-doc-ai-panel__send:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    filter: none;
+    transform: none;
+    box-shadow: none;
+}
+
+.doc-tools-page .cf-doc-ai-panel__msg--pending .cf-doc-ai-panel__bubble {
+    opacity: 0.82;
+    font-style: italic;
+}
+
+
+.doc-tools-page .cf-doc-ai-panel__resize {
+    position: absolute;
+    z-index: 3;
+    touch-action: none;
+    border: none;
+    padding: 0;
+    background: transparent;
+}
+
+.doc-tools-page .cf-doc-ai-panel__resize--edge-top {
+    top: -3px;
+    left: 14px;
+    right: 14px;
+    height: 8px;
+    cursor: ns-resize;
+}
+
+.doc-tools-page .cf-doc-ai-panel__resize--edge-left {
+    top: 14px;
+    left: -3px;
+    bottom: 14px;
+    width: 8px;
+    cursor: ew-resize;
+}
+
+.doc-tools-page .cf-doc-ai-panel__resize--corner-nw {
+    top: -2px;
+    left: -2px;
+    width: 18px;
+    height: 18px;
+    cursor: nwse-resize;
+    border-radius: 0.35rem 0 0 0;
+    background:
+        linear-gradient(135deg, transparent 0 42%, rgba(99, 102, 241, 0.55) 42% 48%, transparent 48% 58%, rgba(99, 102, 241, 0.55) 58% 64%, transparent 64%);
+    opacity: 0.75;
+    transition: opacity 0.15s ease;
+}
+
+.doc-tools-page .cf-doc-ai-panel__resize--corner-nw:hover,
+.doc-tools-page .cf-doc-ai-panel__resize--corner-nw:focus-visible {
+    opacity: 1;
+}
+
+.doc-tools-page .cf-doc-ai-panel:hover .cf-doc-ai-panel__resize--corner-nw {
+    opacity: 0.92;
+}
+
+body.doc-tools-page.cf-doc-ai-panel-resizing {
+    user-select: none !important;
+}
+
+body.doc-tools-page.cf-doc-ai-panel-resizing * {
+    cursor: inherit !important;
+}
+
+.doc-tools-page .cf-doc-ai-panel__msg--error .cf-doc-ai-panel__bubble {
+    border-color: rgba(239, 68, 68, 0.35);
+    background: rgba(254, 242, 242, 0.95);
+    color: #b91c1c;
+}
+
+@media (max-width: 640px) {
+    .doc-tools-page .cf-doc-ai-panel {
+        right: 0.75rem;
+        left: 0.75rem;
+        width: auto;
+        height: min(70vh, 32rem);
+    }
+
+    .doc-tools-page .cf-doc-ai-panel__resize {
+        display: none;
+    }
+
+    .doc-tools-page .cf-doc-ai-fab {
+        right: 0.85rem;
+        bottom: 0.85rem;
+    }
+}
+/* ---------- 表格右键菜单（文档工具专用，Teleport 到 body） ---------- */
+body.doc-tools-page .dtk-vxe-fallback-menu,
+body.doc-tools-page .dtk-vxe-context-menu.vxe-table--context-menu-wrapper {
+    position: fixed;
+    min-width: 11.5rem;
+    max-width: 15rem;
+    padding: 0.35rem;
+    border-radius: 0.8rem;
+    border: 1px solid rgba(148, 163, 184, 0.38);
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.06),
+        0 10px 32px rgba(15, 23, 42, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92);
+    overflow: hidden;
+    animation: dtkContextMenuIn 0.16s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes dtkContextMenuIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+body.doc-tools-page .dtk-vxe-context-menu .vxe-table--context-menu-group-wrapper {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body.doc-tools-page .dtk-vxe-context-menu .vxe-table--context-menu-group-wrapper + .vxe-table--context-menu-group-wrapper {
+    margin-top: 0.3rem;
+    padding-top: 0.3rem;
+    border-top: 1px solid rgba(226, 232, 240, 0.95);
+}
+
+body.doc-tools-page .dtk-vxe-context-menu .vxe-table--context-menu--option {
+    margin: 0.12rem 0;
+    padding: 0;
+    list-style: none;
+    border-radius: 0.55rem;
+    overflow: hidden;
+}
+
+body.doc-tools-page .dtk-vxe-context-menu .vxe-context-menu--link {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.48rem 0.65rem;
+    border-radius: 0.55rem;
+    text-decoration: none;
+    color: #334155;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.35;
+    background: transparent;
+    transition: background 0.14s ease, color 0.14s ease;
+    cursor: pointer;
+}
+
+body.doc-tools-page .dtk-vxe-context-menu .vxe-table--context-menu--option:hover:not(.link--disabled) > .vxe-context-menu--link {
+    background: rgba(99, 102, 241, 0.09);
+    color: #3730a3;
+}
+
+body.doc-tools-page .dtk-vxe-context-menu .vxe-table--context-menu--option.link--disabled > .vxe-context-menu--link {
+    opacity: 0.42;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+body.doc-tools-page .dtk-vxe-context-menu .vxe-context-menu--link-prefix {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1rem;
+    flex-shrink: 0;
+    color: #6366f1;
+    font-size: 0.875rem;
+}
+
+body.doc-tools-page .dtk-vxe-context-menu .vxe-context-menu--link-content {
+    flex: 1 1 auto;
+    min-width: 0;
+    white-space: nowrap;
+}
+
+body.doc-tools-page .dtk-vxe-context-menu .vxe-table--context-menu--option.dtk-vxe-menu-danger > .vxe-context-menu--link {
+    color: #dc2626;
+}
+
+body.doc-tools-page .dtk-vxe-context-menu .vxe-table--context-menu--option.dtk-vxe-menu-danger .vxe-context-menu--link-prefix {
+    color: #ef4444;
+}
+
+body.doc-tools-page .dtk-vxe-context-menu .vxe-table--context-menu--option.dtk-vxe-menu-danger:hover:not(.link--disabled) > .vxe-context-menu--link {
+    background: rgba(239, 68, 68, 0.09);
+    color: #b91c1c;
+}
+/* ---------- 表格删除确认弹窗（文档工具专用） ---------- */
+.doc-tools-page .dtk-delete-confirm-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10085;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    background: rgba(15, 23, 42, 0.48);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.doc-tools-page .dtk-delete-confirm-modal:not(.hidden) {
+    display: flex;
+}
+
+.doc-tools-page .dtk-delete-confirm-modal.hidden {
+    display: none !important;
+}
+
+.doc-tools-page .dtk-delete-confirm-modal__panel {
+    position: relative;
+    width: 100%;
+    max-width: 22.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(239, 68, 68, 0.28);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(254, 242, 242, 0.96) 100%);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:
+        0 1px 3px rgba(15, 23, 42, 0.08),
+        0 20px 50px rgba(15, 23, 42, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    overflow: hidden;
+    padding: 0.65rem 0.7rem 0.75rem;
+}
+
+.doc-tools-page .dtk-delete-confirm-modal__close {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid rgba(148, 163, 184, 0.55);
+    border-radius: 0.5rem;
+    background: #ffffff;
+    color: #64748b;
+    cursor: pointer;
+    font-size: 1.125rem;
+    line-height: 1;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.doc-tools-page .dtk-delete-confirm-modal__close:hover {
+    border-color: rgba(239, 68, 68, 0.45);
+    color: #b91c1c;
+}
+
+.doc-tools-page .dtk-delete-confirm-modal__head {
+    padding: 0.85rem 2.85rem 0.75rem 0.85rem;
+    border-bottom: 1px solid rgba(239, 68, 68, 0.14);
+    text-align: center;
+}
+
+.doc-tools-page .dtk-delete-confirm-modal__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 auto 0.55rem;
+    border-radius: 999px;
+    background: rgba(254, 226, 226, 0.85);
+    color: #dc2626;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.doc-tools-page .dtk-delete-confirm-modal__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #0f172a;
+}
+
+.doc-tools-page .dtk-delete-confirm-modal__desc {
+    margin: 0.45rem 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    color: #64748b;
+}
+
+.doc-tools-page .dtk-delete-confirm-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.65rem;
+    padding: 0.75rem 0.85rem 0.15rem;
+}
+
+.doc-tools-page .dtk-delete-confirm-modal__submit.btn-primary {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    border: 1px solid rgba(239, 68, 68, 0.45);
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(220, 38, 38, 0.28);
+}
+
+.doc-tools-page .dtk-delete-confirm-modal__submit.btn-primary:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.35);
+}
+/* ---------- 导航切换确认弹窗（文档工具专用） ---------- */
+.doc-tools-page .cf-nav-leave-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10072;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    background: rgba(15, 23, 42, 0.42);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.doc-tools-page .cf-nav-leave-modal:not(.hidden) {
+    display: flex;
+}
+
+.doc-tools-page .cf-nav-leave-modal.hidden {
+    display: none !important;
+}
+
+.doc-tools-page .cf-nav-leave-modal__panel {
+    position: relative;
+    width: 100%;
+    max-width: 24rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 1px 3px rgba(15, 23, 42, 0.1),
+        0 16px 48px rgba(15, 23, 42, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    overflow: hidden;
+    padding: 0.65rem 0.7rem 0.75rem;
+}
+
+.doc-tools-page .cf-nav-leave-modal__close {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid rgba(148, 163, 184, 0.55);
+    border-radius: 0.5rem;
+    background: #ffffff;
+    color: #64748b;
+    cursor: pointer;
+    font-size: 1.125rem;
+    line-height: 1;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.doc-tools-page .cf-nav-leave-modal__close:hover {
+    border-color: rgba(99, 102, 241, 0.45);
+    color: #3730a3;
+}
+
+.doc-tools-page .cf-nav-leave-modal__head {
+    padding: 0.85rem 2.85rem 0.65rem 0.85rem;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.18);
+}
+
+.doc-tools-page .cf-nav-leave-modal__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.doc-tools-page .cf-nav-leave-modal__desc {
+    margin: 0.35rem 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: #64748b;
+}
+
+.doc-tools-page .cf-nav-leave-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.65rem;
+    padding: 0.75rem 0.85rem 0.15rem;
+}
+
+.doc-tools-page .cf-nav-leave-modal__submit.btn-primary {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    border: 1px solid rgba(99, 102, 241, 0.45);
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(79, 70, 229, 0.28);
+}
+
+.doc-tools-page .cf-nav-leave-modal__submit.btn-primary:hover {
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+}
+/* ---------- 导出确认弹窗（文档工具专用） ---------- */
+.doc-tools-page .cf-export-confirm-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10070;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    background: rgba(15, 23, 42, 0.42);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.doc-tools-page .cf-export-confirm-modal:not(.hidden) {
+    display: flex;
+}
+
+.doc-tools-page .cf-export-confirm-modal.hidden {
+    display: none !important;
+}
+
+.doc-tools-page .cf-export-confirm-modal__panel {
+    position: relative;
+    width: 100%;
+    max-width: 24rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 1px 3px rgba(15, 23, 42, 0.1),
+        0 16px 48px rgba(15, 23, 42, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    overflow: hidden;
+    padding: 0.65rem 0.7rem 0.75rem;
+}
+
+.doc-tools-page .cf-export-confirm-modal__close {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid rgba(148, 163, 184, 0.55);
+    border-radius: 0.5rem;
+    background: #ffffff;
+    color: #64748b;
+    cursor: pointer;
+    font-size: 1.125rem;
+    line-height: 1;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.doc-tools-page .cf-export-confirm-modal__close:hover {
+    border-color: rgba(16, 185, 129, 0.45);
+    color: #047857;
+}
+
+.doc-tools-page .cf-export-confirm-modal__head {
+    padding: 0.85rem 2.85rem 0.65rem 0.85rem;
+    border-bottom: 1px solid rgba(16, 185, 129, 0.18);
+}
+
+.doc-tools-page .cf-export-confirm-modal__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.doc-tools-page .cf-export-confirm-modal__desc {
+    margin: 0.35rem 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: #64748b;
+}
+
+.doc-tools-page .cf-export-confirm-modal__body {
+    padding: 0.75rem 0.85rem 0.25rem;
+}
+
+.doc-tools-page .cf-export-confirm-modal__filename {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #475569;
+    word-break: break-all;
+}
+
+.doc-tools-page .cf-export-confirm-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.65rem;
+    padding: 0.65rem 0.85rem 0.15rem;
+}
+
+.doc-tools-page .cf-export-confirm-modal__submit.btn-primary {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: 1px solid rgba(16, 185, 129, 0.45);
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(5, 150, 105, 0.28);
+}
+
+.doc-tools-page .cf-export-confirm-modal__submit.btn-primary:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    box-shadow: 0 2px 8px rgba(5, 150, 105, 0.35);
+}
+/* ---------- 导入后操作按钮组（文档工具专用） ---------- */
+.doc-tools-page .cf-doc-file-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.doc-tools-page .cf-doc-file-actions.hidden {
+    display: none !important;
+}
+
+.doc-tools-page .cf-doc-export-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.38rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: #047857;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 253, 250, 0.94) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.32);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+}
+
+.doc-tools-page .cf-doc-export-btn__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #10b981;
+    flex-shrink: 0;
+}
+
+.doc-tools-page .cf-doc-export-btn__text {
+    line-height: 1;
+}
+
+.doc-tools-page .cf-doc-export-btn:hover {
+    color: #065f46;
+    background: #fff;
+    border-color: rgba(16, 185, 129, 0.52);
+    box-shadow:
+        0 2px 8px rgba(16, 185, 129, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    transform: translateY(-1px);
+}
+
+.doc-tools-page .cf-doc-export-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.doc-tools-page .cf-doc-export-btn:focus-visible {
+    outline: 2px solid rgba(16, 185, 129, 0.45);
+    outline-offset: 2px;
+}
+
+.doc-tools-page .cf-doc-reimport-btn.hidden {
+    display: none !important;
+}
+
+.doc-tools-page .cf-doc-reimport-btn__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #6366f1;
+    flex-shrink: 0;
+}
+
+.doc-tools-page .cf-doc-reimport-btn__text {
+    line-height: 1;
+}
+
+.doc-tools-page .cf-doc-reimport-btn:hover {
+    color: #3730a3;
+    background: #fff;
+    border-color: rgba(99, 102, 241, 0.52);
+    box-shadow:
+        0 2px 8px rgba(79, 70, 229, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    transform: translateY(-1px);
+}
+
+.doc-tools-page .cf-doc-reimport-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.doc-tools-page .cf-doc-reimport-btn:focus-visible {
+    outline: 2px solid rgba(99, 102, 241, 0.45);
+    outline-offset: 2px;
+}
+
+.doc-tools-page .cf-doc-upload__name {
+    font-size: 0.75rem;
+    color: #475569;
+    max-width: 11rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.doc-tools-page .cf-doc-upload__clear {
+    border: none;
+    background: transparent;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 0.875rem;
+    line-height: 1;
+    padding: 0.25rem;
+}
+
+.doc-tools-page .cf-doc-upload__clear:hover {
+    color: #64748b;
+}
+
+.doc-tools-page .cf-doc-toolbar .btn-secondary {
+    background: rgba(255, 255, 255, 0.82);
+    border-color: rgba(148, 163, 184, 0.55);
+    color: #1e293b;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+.doc-tools-page .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.doc-tools-page .btn-primary {
+    color: #fff;
+    background: linear-gradient(135deg, #059669 0%, #0891b2 100%);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 18px rgba(5, 150, 105, 0.22);
+}
+
+.doc-tools-page .btn-secondary {
+    color: #1e293b;
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(148, 163, 184, 0.55);
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+.doc-tools-page .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(100, 116, 139, 0.65);
+}
+
+.doc-tools-page .btn-primary:hover {
+    filter: brightness(1.05);
+}
+
+.doc-tools-page #cf-download-btn:not(.hidden) {
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+}
+
+/* ---------- 文档工具独立表格 dtk-sheet（与工作台表格完全隔离） ---------- */
+/* ---------- 文档工具 VXE 表格挂载区（与 tc-vxe-table 完全隔离） ---------- */
+.doc-tools-page .dtk-vxe-table-workspace {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.2rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    background: linear-gradient(165deg, rgba(15, 23, 42, 0.72) 0%, rgba(30, 41, 59, 0.58) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 8px 32px rgba(15, 23, 42, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    padding: 0.15rem;
+}
+
+.doc-tools-page .dtk-vxe-table-mount-wrap {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.doc-tools-page .dtk-vxe-table-mount {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.doc-tools-page .cf-doc-table-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(248, 250, 252, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.doc-tools-page .cf-doc-table-overlay.hidden {
+    display: none;
+}
+
+.doc-tools-page .cf-doc-table-overlay__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.doc-tools-page .cf-doc-table-overlay__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.doc-tools-page .cf-doc-table-overlay__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    border: 1px solid rgba(79, 70, 229, 0.35);
+    border-radius: 0.625rem;
+    cursor: pointer;
+    box-shadow: 0 4px 18px rgba(79, 70, 229, 0.34);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.doc-tools-page .cf-doc-table-overlay__btn:hover {
+    filter: brightness(1.05);
+    box-shadow: 0 6px 22px rgba(79, 70, 229, 0.4);
+    transform: translateY(-1px);
+}
+
+
+.doc-tools-page .dtk-hidden-columns-slot {
+    flex: 0 0 auto;
+    min-height: 0;
+    width: 100%;
+}
+
+.doc-tools-page .dtk-hidden-columns-slot:empty {
+    display: none;
+}
+
+.doc-tools-page .dtk-hidden-columns-slot:not(:empty) {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed rgba(148, 163, 184, 0.45);
+}
+
+.doc-tools-page .dtk-vxe-hidden-columns-bar {
+    flex-shrink: 0;
+}
+
+.doc-tools-page .dtk-vxe-table-shell {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.doc-tools-page .dtk-vxe-grid {
+    flex: 1 1 auto;
+}
+
+.doc-tools-page .form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 0.35rem;
+}
+@media (max-width: 768px) {
+    .doc-tools-page .cf-doc-toolbar__main {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .doc-tools-page .cf-doc-toolbar__title {
+        white-space: normal;
+    }
+
+    .doc-tools-page .cf-doc-toolbar__intro {
+        align-items: flex-end;
+    }
+
+    .doc-tools-page .cf-doc-toolbar__actions {
+        justify-content: flex-start;
+    }
+
+}
+
+/* ---------- AI 配置引导弹窗（文档工具专用） ---------- */
+.doc-tools-page .cf-doc-ai-config-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10080;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    background: rgba(15, 23, 42, 0.42);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.doc-tools-page .cf-doc-ai-config-modal:not(.hidden) {
+    display: flex;
+}
+
+.doc-tools-page .cf-doc-ai-config-modal.hidden {
+    display: none !important;
+}
+
+.doc-tools-page .cf-doc-ai-config-modal__panel {
+    position: relative;
+    width: 100%;
+    max-width: 24rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(79, 70, 229, 0.35);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 1px 3px rgba(15, 23, 42, 0.1),
+        0 16px 48px rgba(15, 23, 42, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    overflow: hidden;
+    padding: 0.65rem 0.7rem 0.75rem;
+}
+
+.doc-tools-page .cf-doc-ai-config-modal__close {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border: none;
+    border-radius: 0.45rem;
+    background: transparent;
+    color: #64748b;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.doc-tools-page .cf-doc-ai-config-modal__close:hover {
+    background: rgba(148, 163, 184, 0.16);
+    color: #334155;
+}
+
+.doc-tools-page .cf-doc-ai-config-modal__head {
+    padding: 0.35rem 1.75rem 0.55rem 0.15rem;
+}
+
+.doc-tools-page .cf-doc-ai-config-modal__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 0.45rem;
+    border-radius: 0.55rem;
+    background: rgba(99, 102, 241, 0.12);
+    color: #4f46e5;
+}
+
+.doc-tools-page .cf-doc-ai-config-modal__title {
+    margin: 0 0 0.35rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.doc-tools-page .cf-doc-ai-config-modal__desc {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    color: #475569;
+}
+
+.doc-tools-page .cf-doc-ai-config-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.doc-tools-page .cf-doc-ai-config-modal__submit.btn-primary {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    border-color: rgba(79, 70, 229, 0.35);
+}
+
+.doc-tools-page .cf-doc-ai-config-modal__submit.btn-primary:hover {
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+}
+
+/* ---------- 文档工具：列/行拖拽调整手柄（隔离，不影响其他页） ---------- */
+body.doc-tools-page #dtk-vxe-table-mount .vxe-cell--col-resizable,
+body.doc-tools-page #dtk-vxe-table-mount .vxe-table--header-column-resizable-area,
+body.doc-tools-page #dtk-vxe-table-mount .vxe-table--resizable-column-bar {
+    z-index: 30 !important;
+    pointer-events: auto !important;
+    cursor: col-resize !important;
+}
+
+body.doc-tools-page #dtk-vxe-table-mount .vxe-cell--row-resizable,
+body.doc-tools-page #dtk-vxe-table-mount .vxe-table--row-resizable-area {
+    z-index: 30 !important;
+    pointer-events: auto !important;
+    cursor: row-resize !important;
+}
+
+/* 隐藏 vxe 行高/列宽拖拽时的蓝色指示线（自定义拖拽仍生效） */
+body.doc-tools-page #dtk-vxe-table-mount .vxe-table--resizable-drag-line,
+body.doc-tools-page #dtk-vxe-table-mount .vxe-table--resizable-row-bar,
+body.doc-tools-page #dtk-vxe-table-mount .vxe-table--resizable-bar,
+body.doc-tools-page #dtk-vxe-table-mount .vxe-table--resizable-wrapper,
+body.doc-tools-page #dtk-vxe-table-mount .vxe-table--resizable-number-tip {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+body.doc-tools-page #dtk-vxe-table-mount .dtk-vxe-grid--all-cells-selected .vxe-cell--col-resizable,
+body.doc-tools-page #dtk-vxe-table-mount .dtk-vxe-grid--all-cells-selected .vxe-table--header-column-resizable-area,
+body.doc-tools-page #dtk-vxe-table-mount .dtk-vxe-grid--all-cells-selected .vxe-cell--row-resizable,
+body.doc-tools-page #dtk-vxe-table-mount .dtk-vxe-grid--all-cells-selected .vxe-table--row-resizable-area,
+body.doc-tools-page #dtk-vxe-table-mount .dtk-vxe-grid--col-area-selected .vxe-cell--col-resizable,
+body.doc-tools-page #dtk-vxe-table-mount .dtk-vxe-grid--row-area-selected .vxe-cell--row-resizable {
+    z-index: 40 !important;
+}
+
+body.doc-tools-page #dtk-vxe-table-mount .vxe-header--column,
+body.doc-tools-page #dtk-vxe-table-mount .vxe-body--column.col--seq {
+    overflow: visible !important;
+}
+
+
+/* ---------- 文档工具：单元格内无滚动条浏览（WPS 交互，仅 doc-tools-page） ---------- */
+body.doc-tools-page #dtk-vxe-table-mount .vxe-body--column:not(.col--seq) > .vxe-cell {
+    overflow: hidden;
+}
+
+body.doc-tools-page #dtk-vxe-table-mount .vxe-body--column:not(.col--seq) .vxe-cell--wrapper {
+    overflow: hidden;
+    min-height: 0;
+    max-height: 100%;
+}
+
+body.doc-tools-page #dtk-vxe-table-mount .vxe-body--column:not(.col--seq) .vxe-cell--label {
+    display: block;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+body.doc-tools-page #dtk-vxe-table-mount .dtk-vxe-grid--inline-edit .vxe-body--column.col--active > .vxe-cell,
+body.doc-tools-page #dtk-vxe-table-mount .dtk-vxe-grid--inline-edit .vxe-body--column.col--active .vxe-cell--wrapper,
+body.doc-tools-page #dtk-vxe-table-mount .dtk-vxe-grid--inline-edit .vxe-body--column.col--active .vxe-cell--edit,
+body.doc-tools-page #dtk-vxe-table-mount .dtk-vxe-grid--inline-edit .vxe-body--column.col--active .vxe-textarea {
+    overflow: hidden !important;
+    min-height: 0;
+}
+
+body.doc-tools-page #dtk-vxe-table-mount .dtk-vxe-grid--inline-edit .vxe-body--column.col--active .vxe-textarea--inner,
+body.doc-tools-page #dtk-vxe-table-mount .dtk-vxe-grid--inline-edit .vxe-body--column.col--active textarea {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 4px 6px !important;
+}
+
+body.doc-tools-page #dtk-vxe-table-mount .dtk-vxe-grid--inline-edit .vxe-body--column.col--active .vxe-textarea--inner::-webkit-scrollbar,
+body.doc-tools-page #dtk-vxe-table-mount .dtk-vxe-grid--inline-edit .vxe-body--column.col--active textarea::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}

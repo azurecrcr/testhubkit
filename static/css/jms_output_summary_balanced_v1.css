@@ -1,0 +1,64 @@
+/* 生成结果弹窗 · JMX 摘要平衡布局（参考本地 grid，适度紧凑 v1） */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary--balanced-v1 {
+    margin: 0 0 0.5rem !important;
+    padding: 0.55rem 0.65rem !important;
+    border-radius: 0.55rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary--balanced-v1 .jms-output-summary__title {
+    margin: 0 0 0.4rem !important;
+    font-size: 0.7rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-balanced {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 0.38rem 0.48rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-balanced .jms-output-summary-grid__item {
+    padding: 0.38rem 0.48rem !important;
+    border-radius: 0.42rem !important;
+    min-height: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-balanced .jms-output-summary-grid__label {
+    font-size: 0.58rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.12rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-balanced .jms-output-summary-grid__value {
+    font-size: 0.72rem !important;
+    line-height: 1.3 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-balanced .jms-output-summary-grid__item--plan {
+    grid-column: span 2 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-balanced .jms-output-summary-grid__item--wide,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-balanced .jms-output-summary-grid__item--sub {
+    grid-column: span 2 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-balanced .jms-output-summary-grid__item--sub .jms-output-summary-grid__value {
+    font-size: 0.68rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-balanced__item--warn .jms-output-summary-grid__value {
+    color: #b45309 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-balanced__item--err .jms-output-summary-grid__value {
+    color: #b91c1c !important;
+}
+
+@media (max-width: 720px) {
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-balanced {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}

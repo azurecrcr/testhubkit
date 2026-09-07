@@ -1,0 +1,380 @@
+/**
+ * HTTP 挂载编辑弹窗 · 绿色玻璃风 v5 · 呼吸感布局
+ * 用户参数 / 响应状态码 · 仅 CSS，不改动 JS/HTML
+ * 目标：更大间距、统一字色、护眼绿色玻璃、简约科技感
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab,
+body.lth-tg-view-tree.lth-hub-jmeter-tab {
+    --jms-ed5-g-700: #047857;
+    --jms-ed5-g-800: #065f46;
+    --jms-ed5-text: #064e3b;
+    --jms-ed5-text-soft: #3d6b5f;
+    --jms-ed5-label: #5f7a72;
+    --jms-ed5-placeholder: #94b8ab;
+    --jms-ed5-surface: rgba(255, 255, 255, 0.78);
+    --jms-ed5-surface-soft: rgba(236, 253, 245, 0.55);
+    --jms-ed5-border: rgba(16, 185, 129, 0.2);
+    --jms-ed5-space-xs: 0.5rem;
+    --jms-ed5-space-sm: 1rem;
+    --jms-ed5-space-md: 1.5rem;
+    --jms-ed5-space-lg: 2rem;
+    --jms-ed5-radius: 14px;
+    --jms-ed5-input-h: 2.625rem;
+}
+
+/* ---- 遮罩：更柔和的绿色光晕 ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-user-params-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-response-assert-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-user-params-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-response-assert-edit.jms-modal-open {
+    background:
+        radial-gradient(ellipse 90% 60% at 50% -10%, rgba(52, 211, 153, 0.14), transparent 68%),
+        radial-gradient(ellipse 70% 50% at 100% 100%, rgba(45, 212, 191, 0.08), transparent 55%),
+        rgba(2, 44, 34, 0.28) !important;
+    backdrop-filter: blur(18px) saturate(1.1) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(1.1) !important;
+    padding: 2rem 1.25rem !important;
+}
+
+/* ==================== 用户参数 ==================== */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit.jms-modal-open .jms-http-up-v4-modal__panel,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit.jms-modal-open .jms-http-up-v4-modal__panel {
+    width: min(920px, 96vw) !important;
+    font-size: 0.9375rem !important;
+    line-height: 1.6 !important;
+    color: var(--jms-ed5-text) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4-modal__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4-modal__head {
+    padding: 1.35rem 1.75rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4-modal__title,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4-modal__title {
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    color: var(--jms-ed5-g-800) !important;
+    letter-spacing: 0.01em !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4-modal__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4-modal__body {
+    padding: var(--jms-ed5-space-md) 1.75rem 1rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4 {
+    gap: var(--jms-ed5-space-md) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__meta {
+    gap: var(--jms-ed5-space-sm) 1.25rem !important;
+    padding: 1.25rem 1.35rem !important;
+    border-radius: var(--jms-ed5-radius) !important;
+    background: var(--jms-ed5-surface) !important;
+    border-color: var(--jms-ed5-border) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit label.jms-http-up-v4__field,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit label.jms-http-up-v4__field {
+    gap: 0.55rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__label,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__label {
+    font-size: 0.8125rem !important;
+    font-weight: 600 !important;
+    color: var(--jms-ed5-label) !important;
+    letter-spacing: 0.02em !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__input,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__input {
+    min-height: var(--jms-ed5-input-h) !important;
+    height: auto !important;
+    padding: 0.65rem 0.9rem !important;
+    font-size: 0.9375rem !important;
+    color: var(--jms-ed5-text) !important;
+    -webkit-text-fill-color: var(--jms-ed5-text) !important;
+    border-radius: 11px !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__check,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__check {
+    min-height: var(--jms-ed5-input-h) !important;
+    padding: 0.55rem 0.9rem !important;
+    border-radius: 11px !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__check-text,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__check-text {
+    font-size: 0.875rem !important;
+    color: var(--jms-ed5-text-soft) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__table-block,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__table-block {
+    border-radius: var(--jms-ed5-radius) !important;
+    padding: 0.35rem !important;
+    background: var(--jms-ed5-surface-soft) !important;
+    border: 1px solid var(--jms-ed5-border) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__thead .jms-http-up-v4__tcell,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__thead .jms-http-up-v4__tcell {
+    padding: 0.75rem 0.65rem !important;
+    font-size: 0.8125rem !important;
+    color: var(--jms-ed5-g-700) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__tcell,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__tcell {
+    padding: 0.55rem 0.65rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__tinput,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__tinput {
+    min-height: 2.25rem !important;
+    padding: 0.5rem 0.65rem !important;
+    font-size: 0.875rem !important;
+    color: var(--jms-ed5-text) !important;
+    border-radius: 9px !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__empty,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__empty {
+    padding: 2.75rem 1.25rem !important;
+    font-size: 0.875rem !important;
+    color: var(--jms-ed5-placeholder) !important;
+    line-height: 1.65 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4-modal__actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4-modal__actions {
+    padding: 0.85rem 1.75rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__toolbar {
+    gap: 0.65rem !important;
+    flex-wrap: wrap !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__tool,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4__tool {
+    min-height: 2.25rem !important;
+    padding: 0 1rem !important;
+    font-size: 0.8125rem !important;
+    color: var(--jms-ed5-text-soft) !important;
+    border-radius: 9px !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4-modal__foot,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4-modal__foot {
+    padding: 1.15rem 1.75rem 1.35rem !important;
+    gap: 0.75rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4-modal__btn,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-user-params-edit .jms-http-up-v4-modal__btn {
+    min-height: 2.375rem !important;
+    padding: 0 1.35rem !important;
+    font-size: 0.9375rem !important;
+}
+
+/* ==================== 响应断言 ==================== */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit.jms-modal-open .jms-step-modal {
+    width: min(980px, 96vw) !important;
+    font-size: 0.9375rem !important;
+    line-height: 1.6 !important;
+    color: var(--jms-ed5-text) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-drawer__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-drawer__head {
+    padding: 1.35rem 1.75rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-step-modal__title,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-step-modal__title {
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    color: var(--jms-ed5-g-800) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-drawer__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-drawer__body {
+    padding: 1.35rem 1.75rem 1.15rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1 {
+    gap: var(--jms-ed5-space-md) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__grid--meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__grid--meta {
+    gap: var(--jms-ed5-space-sm) 1.25rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__grid--scope,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__grid--bottom,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__grid--scope,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__grid--bottom {
+    gap: var(--jms-ed5-space-md) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__card {
+    padding: 1.25rem 1.4rem !important;
+    border-radius: var(--jms-ed5-radius) !important;
+    background: var(--jms-ed5-surface) !important;
+    border-color: var(--jms-ed5-border) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__card-title,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__card-title {
+    margin: 0 0 0.85rem !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    color: var(--jms-ed5-g-700) !important;
+    letter-spacing: 0.06em !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__field,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__field {
+    gap: 0.55rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__label,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__label {
+    font-size: 0.8125rem !important;
+    font-weight: 600 !important;
+    color: var(--jms-ed5-label) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__input,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__textarea,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__input,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__textarea {
+    min-height: var(--jms-ed5-input-h) !important;
+    padding: 0.65rem 0.9rem !important;
+    font-size: 0.9375rem !important;
+    color: var(--jms-ed5-text) !important;
+    -webkit-text-fill-color: var(--jms-ed5-text) !important;
+    border-radius: 11px !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__card--message .jms-http-ra-v1__textarea,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__card--message .jms-http-ra-v1__textarea {
+    min-height: 7.5rem !important;
+    padding: 0.85rem 1rem !important;
+}
+
+/* 单选：双列呼吸布局，避免横向挤满 */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__radio-grid,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__radio-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem 1.15rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__card--field-test .jms-http-ra-v1__radio-grid,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__card--field-test .jms-http-ra-v1__radio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+@media (min-width: 900px) {
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__card--field-test .jms-http-ra-v1__radio-grid,
+    body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__card--field-test .jms-http-ra-v1__radio-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__radio,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__radio {
+    gap: 0.55rem !important;
+    padding: 0.45rem 0.55rem !important;
+    margin: 0 !important;
+    border-radius: 10px !important;
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+    color: var(--jms-ed5-text-soft) !important;
+    transition: background 0.15s ease !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__radio:hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__radio:hover {
+    background: rgba(16, 185, 129, 0.06) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__radio input,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__radio input {
+    margin-top: 0.2rem !important;
+    width: 1rem !important;
+    height: 1rem !important;
+    flex-shrink: 0 !important;
+}
+
+/* 模式匹配：分段控件换行 + 更大间距 */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__match-inline,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__match-inline {
+    flex-wrap: wrap !important;
+    gap: 0.85rem 1rem !important;
+    align-items: flex-start !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__seg-grid,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__seg-grid {
+    flex-wrap: wrap !important;
+    gap: 0.55rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__match-flags,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__match-flags {
+    flex-wrap: wrap !important;
+    gap: 0.55rem !important;
+    padding-left: 0 !important;
+    border-left: none !important;
+    padding-top: 0.35rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__seg span,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__seg span {
+    min-height: 2.375rem !important;
+    padding: 0.45rem 1rem !important;
+    font-size: 0.8125rem !important;
+    border-radius: 10px !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__patterns,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-v1__patterns {
+    gap: 0.75rem !important;
+    padding: 0.85rem !important;
+    border-radius: 11px !important;
+    background: var(--jms-ed5-surface-soft) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-drawer__foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-assert-foot,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-drawer__foot,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-assert-foot {
+    padding: 1.15rem 1.75rem 1.35rem !important;
+    gap: 0.75rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-btn-ghost,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-btn-primary,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-btn-ghost,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-btn-primary {
+    min-height: 2.375rem !important;
+    padding: 0 1.35rem !important;
+    font-size: 0.9375rem !important;
+}

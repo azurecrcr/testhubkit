@@ -1,0 +1,115 @@
+/**
+ * 添加线程组 · 类型选择弹窗（隔离模块，仅 #modal-tg-add-choice）
+ */
+#modal-tg-add-choice {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.5);
+}
+
+#modal-tg-add-choice.jms-modal-open {
+    display: flex !important;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-card {
+    width: 100%;
+    max-width: 32rem;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    padding: 1.25rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-sub {
+    margin-top: 0.45rem;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #475569;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-actions {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+}
+
+@media (max-width: 640px) {
+    #modal-tg-add-choice .jms-tg-add-choice-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    padding: 0.85rem 0.95rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-btn:hover {
+    border-color: #cbd5e1;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-btn--setup:hover {
+    border-color: #86efac;
+    background: #f0fdf4;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-btn--teardown:hover {
+    border-color: #fdba74;
+    background: #fff7ed;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-btn--thread:hover {
+    border-color: #93c5fd;
+    background: #eff6ff;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-btn__label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-btn__hint {
+    font-size: 11px;
+    line-height: 1.45;
+    color: #64748b;
+}
+
+body.lth-studio-v2 #modal-tg-add-choice.jms-modal-open {
+    z-index: 10300 !important;
+    background: rgba(255, 255, 255, 0.38) !important;
+    backdrop-filter: blur(12px) saturate(1.25) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(1.25) !important;
+}
+
+body.lth-studio-v2 #modal-tg-add-choice .jms-tg-add-choice-card {
+    max-width: 28rem;
+    border: 1px solid rgba(255, 255, 255, 0.95) !important;
+    border-radius: 16px !important;
+    background: linear-gradient(148deg, rgba(255, 255, 255, 0.97) 0%, rgba(248, 250, 252, 0.94) 100%) !important;
+    box-shadow: 0 18px 48px -12px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(148, 163, 184, 0.12) !important;
+}

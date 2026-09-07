@@ -1,0 +1,20 @@
+/* 蓝湖需求树 — 已设计用例页：绿点独立节点，避免长标题 ellipsis 裁切 */
+.tc-lanhu-tree-node--designed > .tc-lanhu-tree-node__row .tc-lanhu-tree-node__label::after {
+    content: none;
+    display: none;
+}
+
+.tc-lanhu-tree-node__case-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    margin-left: 5px;
+    border-radius: 50%;
+    background: #10b981;
+}
+
+.tc-lanhu-tree-rail__subtitle--progress {
+    color: #059669;
+    font-weight: 600;
+}

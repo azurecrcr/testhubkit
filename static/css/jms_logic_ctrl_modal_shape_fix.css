@@ -1,0 +1,614 @@
+/**
+ * 逻辑控制器弹窗形态修复（隔离模块 · 随机/简单/循环 · TG+HTTP）
+ * 修复抽屉样式剥离后残留 CSS 片段导致的变形，并强制居中弹窗。
+ */
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-random-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-random-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-random-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-random-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(680px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 44rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-random-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-random-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-random-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-simple-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-simple-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-simple-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-simple-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(640px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 40rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-simple-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-simple-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-simple-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-loop-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-loop-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-loop-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-loop-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(780px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 32rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-loop-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-loop-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-loop-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-random-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-random-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-random-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-random-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(680px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 44rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-random-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-random-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-random-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-simple-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-simple-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-simple-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-simple-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(640px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 40rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-simple-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-simple-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-simple-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-loop-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-loop-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-loop-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-loop-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(780px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 32rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-loop-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-loop-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-loop-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-random-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-random-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-random-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-random-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(680px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 44rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-random-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-random-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-random-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-simple-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-simple-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-simple-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-simple-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(640px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 40rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-simple-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-simple-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-simple-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-loop-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-loop-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-loop-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-loop-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(780px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 32rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-loop-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-loop-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-loop-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-random-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-random-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-random-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-random-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(680px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 44rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-random-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-random-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-random-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-simple-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-simple-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-simple-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-simple-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(640px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 40rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-simple-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-simple-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-simple-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-loop-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-loop-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-loop-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-loop-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(780px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 32rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-loop-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-loop-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-loop-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+/* --- 事务控制器弹窗形态（追加） ---
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-transaction-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-transaction-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-transaction-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-transaction-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(820px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 32rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-transaction-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-transaction-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-transaction-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-transaction-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-transaction-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-transaction-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-transaction-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(780px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 32rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-transaction-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-transaction-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-transaction-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-transaction-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-transaction-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-transaction-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-transaction-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(820px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 32rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-transaction-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-transaction-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-transaction-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-transaction-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-transaction-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-transaction-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-transaction-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(780px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 32rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-transaction-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-transaction-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-transaction-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}

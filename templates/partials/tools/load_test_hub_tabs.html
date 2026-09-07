@@ -1,0 +1,76 @@
+{# 压测造数工作台：JMeter 场景 + HTTP 批量造数 #}
+{% set _lth_tab = lth_tab | default('jmeter') %}
+{% if _lth_tab == 'data' %}<script>document.body.classList.add('lth-hub-data-tab');</script>{% else %}<script>document.body.classList.add('lth-hub-jmeter-tab');</script>{% endif %}
+<div class="tc-hub-scope lth-hub-scope" data-initial-tab="{{ _lth_tab }}">
+    <header class="lth-studio-topbar hf-jmeter-hero lth-hub-shared-topbar mb-2 rounded-xl border border-teal-200/30 px-4 py-2.5 text-white shadow sm:px-5">
+        <div class="lth-studio-topbar__inner hf-jmeter-hero__row relative z-10">
+            <div class="lth-studio-topbar__brand hf-jmeter-hero__main">
+                <div class="lth-studio-topbar__brand-row">
+<p class="lth-studio-topbar__eyebrow">压测场景工作台</p>
+                </div>
+            </div>
+            <div class="lth-studio-topbar__center">
+                <div class="tc-hub-mode-bar tc-hub-mode-bar--compact lth-hub-tab-bar lth-hub-tab-bar--in-topbar">
+                    <nav class="tc-hub-mode-switch tc-hub-mode-switch--compact" role="tablist" aria-label="压测造数工作模式">
+                        <a href="/tool/api-scenario-studio"
+                           class="tc-hub-mode tc-hub-mode--compact tc-hub-mode--ai{% if _lth_tab == 'jmeter' %} tc-hub-mode--active{% endif %}"
+                           role="tab"
+                           aria-selected="{{ 'true' if _lth_tab == 'jmeter' else 'false' }}">
+                            <span class="tc-hub-mode__icon tc-hub-mode__icon--ai" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </span>
+                            <span class="tc-hub-mode__title">JMeter 压测</span>
+                        </a>
+                        <a href="/tool/api-scenario-studio?tab=data"
+                           class="tc-hub-mode tc-hub-mode--compact tc-hub-mode--excel{% if _lth_tab == 'data' %} tc-hub-mode--active{% endif %}"
+                           role="tab"
+                           aria-selected="{{ 'true' if _lth_tab == 'data' else 'false' }}">
+                            <span class="tc-hub-mode__icon tc-hub-mode__icon--excel" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                                </svg>
+                            </span>
+                            <span class="tc-hub-mode__title">数据构建</span>
+                        </a>
+
+                    </nav>
+                </div>
+                {% if _lth_tab == 'jmeter' %}
+                <ol class="lth-studio-steps" aria-label="操作流程">
+                    <li class="lth-studio-step lth-studio-step--active"><span class="lth-studio-step__num">1</span>可视化搭建</li>
+                    <li class="lth-studio-step"><span class="lth-studio-step__num">2</span>校验 → 生成</li>
+                    <li class="lth-studio-step"><span class="lth-studio-step__num">3</span>生成结果</li>
+                </ol>
+                {% endif %}
+            </div>
+            <div id="tpl-select-wrap" class="lth-studio-topbar__tpl hf-jmeter-hero__tpl{% if _lth_tab != 'jmeter' %} hidden{% endif %}">
+                <div class="lth-tpl-controls-row">
+                    <button type="button" id="btn-scenario-reset" title="清空当前场景，恢复为空白计划">清空重做</button>
+                    <div class="lth-tpl-select-col">
+                        <label class="lth-studio-topbar__tpl-label" for="tpl-select">场景模板</label>
+                        <div class="lth-tpl-select-slot">
+                            <select id="tpl-select" aria-label="场景模板示例">
+                                <option value="order" selected>全元件压测全景</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="lth-hub-panel-jmeter"
+         class="tc-hub-panel lth-hub-panel{% if _lth_tab != 'jmeter' %} hidden{% endif %}"
+         role="tabpanel">
+        {% include 'partials/tools/api_scenario_studio_panel.html' %}
+        {% include 'partials/tools/load_test_hub_ai_panel.html' %}
+    </div>
+
+    <div id="lth-hub-panel-data"
+         class="tc-hub-panel lth-hub-panel lth-hub-panel--data{% if _lth_tab != 'data' %} hidden{% endif %}"
+         role="tabpanel">
+        {% include 'partials/tools/test_data_builder_panel.html' %}
+    </div>
+</div>

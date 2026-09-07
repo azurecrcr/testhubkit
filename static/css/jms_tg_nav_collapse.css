@@ -1,0 +1,71 @@
+/**
+ * 压测造数 · 线程组左侧导航收起/展开（隔离：body.lth-tg-view-tree）
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-nav__collapse-btn,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-nav__expand-btn {
+    flex: 0 0 auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 1.65rem !important;
+    height: 1.65rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0.4rem !important;
+    background: #fff !important;
+    color: #64748b !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    transition: background 0.15s, color 0.15s !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-nav__collapse-btn:hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-nav__expand-btn:hover {
+    background: #f1f5f9 !important;
+    color: #334155 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-nav__collapse-btn:focus-visible,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-nav__expand-btn:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.35) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-nav__chevron {
+    display: block !important;
+    flex-shrink: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-nav__expand-btn {
+    display: none !important;
+    align-self: flex-start !important;
+    margin: 0.65rem 0 0 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-workspace.is-nav-collapsed .jms-tg-tree-nav {
+    display: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-workspace.is-nav-collapsed .jms-tg-tree-nav__expand-btn {
+    display: inline-flex !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-workspace.is-nav-collapsed .jms-tg-tree-main {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+@media (max-width: 960px) {
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-workspace.is-nav-collapsed .jms-tg-tree-nav__expand-btn {
+        margin: 0 0 0.35rem 0 !important;
+    }
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-nav__title-group {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+    flex: 0 0 auto !important;
+}

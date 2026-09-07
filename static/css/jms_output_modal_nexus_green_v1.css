@@ -1,0 +1,480 @@
+/**
+ * 生成结果弹窗 · Nexus Sky Green v2
+ * 浅绿 / 天绿主基调 · 无深绿 · 无碧绿
+ * 仅 #modal-output · lth-hub-jmeter-tab
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output {
+  --nx-sky-50: #f4fdfa;
+  --nx-sky-100: #ecfdf5;
+  --nx-sky-200: #d1fae5;
+  --nx-sky-300: #bbf7d0;
+  --nx-sky-400: #a7f3d0;
+  --nx-sky-accent: #86efac;
+  --nx-sky-glow: rgba(167, 243, 208, 0.55);
+  --nx-sky-line: rgba(186, 230, 253, 0.75);
+  --nx-ink: #4a6b62;
+  --nx-ink-soft: #5f8278;
+  --nx-muted: #8aa89f;
+  --nx-code-bg: #f6fffb;
+  --nx-code-text: #4d6f66;
+  --nx-radius: 18px;
+}
+
+/* ---- Overlay：浅天绿雾面 ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output.jms-modal-open {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  padding: 1rem !important;
+  background:
+    radial-gradient(ellipse 75% 60% at 50% 35%, rgba(186, 230, 253, 0.28), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(167, 243, 208, 0.22), transparent 65%),
+    rgba(236, 253, 245, 0.52) !important;
+  backdrop-filter: blur(16px) saturate(1.15) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.15) !important;
+}
+
+/* ---- Panel shell ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal {
+  position: relative !important;
+  isolation: isolate !important;
+  width: min(54rem, 96vw) !important;
+  max-width: min(54rem, 96vw) !important;
+  border-radius: var(--nx-radius) !important;
+  border: 1px solid rgba(186, 230, 253, 0.55) !important;
+  background:
+    linear-gradient(168deg, #ffffff 0%, var(--nx-sky-50) 38%, #eefbf6 72%, #e8faf3 100%) !important;
+  color: var(--nx-ink) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.85) inset,
+    0 24px 56px -18px rgba(148, 196, 184, 0.35),
+    0 0 40px -10px var(--nx-sky-glow) !important;
+  overflow: hidden !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  opacity: 0.5 !important;
+  background:
+    linear-gradient(125deg, rgba(255, 255, 255, 0.72) 0%, transparent 45%),
+    repeating-linear-gradient(
+      -28deg,
+      rgba(186, 230, 253, 0.08) 0,
+      rgba(186, 230, 253, 0.08) 1px,
+      transparent 1px,
+      transparent 14px
+    ) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 10% !important;
+  right: 10% !important;
+  height: 2px !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(186, 230, 253, 0.65) 22%,
+    rgba(167, 243, 208, 0.95) 50%,
+    rgba(186, 230, 253, 0.65) 78%,
+    transparent
+  ) !important;
+  box-shadow: 0 0 14px rgba(186, 230, 253, 0.45) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* ---- Header ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__head {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0.75rem !important;
+  padding: 1rem 1rem 0.85rem 3.4rem !important;
+  border-bottom: 1px solid rgba(186, 230, 253, 0.45) !important;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(240, 253, 250, 0.72) 100%
+  ) !important;
+  overflow: visible !important;
+  z-index: 2 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__head::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 1.05rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 2rem !important;
+  height: 2rem !important;
+  border-radius: 0.55rem !important;
+  border: 1px solid rgba(186, 230, 253, 0.55) !important;
+  box-shadow:
+    0 4px 12px rgba(186, 230, 253, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%235f8278' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3E%3Cpolyline points='14 2 14 8 20 8'/%3E%3Cline x1='16' y1='13' x2='8' y2='13'/%3E%3Cline x1='16' y1='17' x2='8' y2='17'/%3E%3Cpolyline points='10 9 9 9 8 9'/%3E%3C/svg%3E"),
+    linear-gradient(145deg, #ecfdf5 0%, #d1fae5 55%, #bae6fd 100%) !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 1rem, 100% 100% !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__title {
+  margin: 0 !important;
+  font-size: 1.0625rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.01em !important;
+  color: var(--nx-ink) !important;
+  line-height: 1.25 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__title::before {
+  content: "OUTPUT · 压测产物" !important;
+  display: block !important;
+  margin-bottom: 0.12rem !important;
+  font-size: 0.625rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  color: var(--nx-ink-soft) !important;
+  opacity: 0.92 !important;
+}
+
+/* 关闭钮：标题栏内 flex 靠右，避免 absolute + overflow:hidden 被裁切 */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__head-main {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__close,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output #btn-output-close {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  left: auto !important;
+  inset: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  float: none !important;
+  order: 0 !important;
+  z-index: 5 !important;
+  margin: 0 0 0 auto !important;
+  flex: 0 0 auto !important;
+  align-self: center !important;
+  width: 2.1rem !important;
+  height: 2.1rem !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(186, 230, 253, 0.55) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: var(--nx-ink-soft) !important;
+  font-size: 1.35rem !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__close:hover,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output #btn-output-close:hover {
+  background: var(--nx-sky-100) !important;
+  border-color: rgba(167, 243, 208, 0.65) !important;
+  box-shadow: 0 0 0 3px rgba(186, 230, 253, 0.25) !important;
+  transform: scale(1.04) !important;
+}
+
+/* ---- Tab rail ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__tabs-bar {
+  padding: 0.55rem 1rem 0 !important;
+  background: transparent !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__tabs {
+  display: flex !important;
+  gap: 0.35rem !important;
+  padding: 0.28rem !important;
+  border-radius: 0.75rem !important;
+  border: 1px solid rgba(186, 230, 253, 0.45) !important;
+  background: rgba(255, 255, 255, 0.55) !important;
+  box-shadow: inset 0 1px 2px rgba(186, 230, 253, 0.12) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-tab.tab-btn {
+  flex: 1 1 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0.08rem !important;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 0.55rem !important;
+  border: 1px solid transparent !important;
+  background: transparent !important;
+  cursor: pointer !important;
+  transition: background 0.18s, border-color 0.18s, box-shadow 0.18s !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-tab.tab-btn .jms-output-tab__label {
+  font-size: 0.75rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  color: var(--nx-muted) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-tab.tab-btn .jms-output-tab__hint {
+  font-size: 0.625rem !important;
+  font-weight: 500 !important;
+  color: #9cb5ae !important;
+  opacity: 1 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-tab.tab-btn:hover {
+  background: rgba(236, 253, 245, 0.85) !important;
+  border-color: rgba(186, 230, 253, 0.45) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-tab.tab-btn:hover .jms-output-tab__label {
+  color: var(--nx-ink) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-tab.tab-btn.hf-tab-active {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 48%, #bae6fd 100%) !important;
+  border-color: rgba(186, 230, 253, 0.65) !important;
+  box-shadow:
+    0 3px 12px rgba(186, 230, 253, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-tab.tab-btn.hf-tab-active .jms-output-tab__label {
+  color: var(--nx-ink) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-tab.tab-btn.hf-tab-active .jms-output-tab__hint {
+  color: var(--nx-ink-soft) !important;
+  opacity: 0.9 !important;
+}
+
+/* ---- Main body ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__main {
+  padding: 0.85rem 1rem 0.65rem !important;
+  gap: 0.7rem !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, rgba(240, 253, 250, 0.35) 100%) !important;
+}
+
+/* Summary grid */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output #summary-box,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary {
+  position: relative !important;
+  padding: 0.85rem 0.95rem 0.85rem 1.05rem !important;
+  border-radius: 0.75rem !important;
+  border: 1px solid rgba(186, 230, 253, 0.42) !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(236, 253, 245, 0.82) 100%) !important;
+  box-shadow: 0 4px 16px rgba(186, 230, 253, 0.15) !important;
+  overflow: hidden !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output #summary-box::before,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0.65rem !important;
+  bottom: 0.65rem !important;
+  width: 3px !important;
+  border-radius: 0 3px 3px 0 !important;
+  background: linear-gradient(180deg, #bae6fd, #a7f3d0) !important;
+  box-shadow: 0 0 10px rgba(186, 230, 253, 0.45) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary__title {
+  color: var(--nx-ink-soft) !important;
+  font-size: 0.6875rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  margin: 0 0 0.6rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-grid__item {
+  border: 1px solid rgba(186, 230, 253, 0.35) !important;
+  background: rgba(255, 255, 255, 0.82) !important;
+  border-radius: 0.55rem !important;
+  transition: border-color 0.15s, box-shadow 0.15s !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-grid__item:hover {
+  border-color: rgba(167, 243, 208, 0.55) !important;
+  box-shadow: 0 2px 8px rgba(186, 230, 253, 0.18) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-grid__item--plan {
+  background: linear-gradient(135deg, rgba(236, 253, 245, 0.75), rgba(255, 255, 255, 0.92)) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-grid__label {
+  color: var(--nx-ink-soft) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-grid__value {
+  color: #334155 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-grid__item--plan .jms-output-summary-grid__value {
+  color: var(--nx-ink) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-grid__item--sub .jms-output-summary-grid__label {
+  color: var(--nx-muted) !important;
+}
+
+/* Toolbar */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__toolbar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.45rem !important;
+  padding: 0.15rem 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__toolbar .jms-output-tool-btn,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output #link-grafana.jms-output-tool-btn {
+  border: 1px solid rgba(186, 230, 253, 0.55) !important;
+  background: rgba(255, 255, 255, 0.82) !important;
+  color: var(--nx-ink) !important;
+  font-size: 0.6875rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  padding: 0.38rem 0.72rem !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 1px 3px rgba(186, 230, 253, 0.15) !important;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.12s !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output #btn-download-file {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 50%, #bae6fd 100%) !important;
+  border-color: rgba(167, 243, 208, 0.65) !important;
+  color: var(--nx-ink) !important;
+  box-shadow: 0 3px 12px rgba(186, 230, 253, 0.28) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__toolbar .jms-output-tool-btn:hover:not(:disabled),
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output #link-grafana.jms-output-tool-btn:hover {
+  background: var(--nx-sky-100) !important;
+  border-color: rgba(167, 243, 208, 0.65) !important;
+  transform: translateY(-1px) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output #btn-download-file:hover {
+  background: linear-gradient(135deg, #d1fae5 0%, #bbf7d0 50%, #bae6fd 100%) !important;
+  box-shadow: 0 5px 16px rgba(186, 230, 253, 0.35) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-tool-btn--disabled,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output #btn-smoke-run:disabled {
+  opacity: 0.45 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Code blocks：浅天绿代码区 */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__body {
+  position: relative !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output #out-jmx,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output #out-readme,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .hf-out {
+  margin: 0 !important;
+  padding: 0.95rem 1.05rem 0.95rem 1.15rem !important;
+  border-radius: 0.75rem !important;
+  border: 1px solid rgba(186, 230, 253, 0.55) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, var(--nx-code-bg) 100%) !important;
+  color: var(--nx-code-text) !important;
+  font-size: 0.75rem !important;
+  line-height: 1.58 !important;
+  font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 3px 0 0 rgba(167, 243, 208, 0.75),
+    0 4px 18px rgba(186, 230, 253, 0.18) !important;
+  scrollbar-color: rgba(186, 230, 253, 0.65) rgba(240, 253, 250, 0.8) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output #out-readme {
+  color: #5f8278 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__body::before {
+  content: "PREVIEW" !important;
+  position: absolute !important;
+  top: 0.45rem !important;
+  right: 0.65rem !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  font-size: 0.5625rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.16em !important;
+  color: rgba(127, 168, 158, 0.65) !important;
+}
+
+/* Footer：浅绿状态条 */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__foot {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  margin: 0 !important;
+  padding: 0.55rem 1.15rem 0.65rem !important;
+  border-top: 1px solid rgba(186, 230, 253, 0.42) !important;
+  background: linear-gradient(180deg, rgba(236, 253, 245, 0.92) 0%, rgba(240, 253, 250, 0.98) 100%) !important;
+  color: var(--nx-muted) !important;
+  font-size: 0.6875rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+  font-family: ui-monospace, Consolas, monospace !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__foot::before {
+  content: "" !important;
+  flex: 0 0 auto !important;
+  width: 0.45rem !important;
+  height: 0.45rem !important;
+  border-radius: 999px !important;
+  background: #a7f3d0 !important;
+  box-shadow: 0 0 8px rgba(186, 230, 253, 0.65) !important;
+  animation: nx-output-pulse 2.4s ease-in-out infinite !important;
+}
+
+@keyframes nx-output-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.88); }
+}
+
+@media (max-width: 640px) {
+  body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__head {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-modal__head::before {
+    display: none !important;
+  }
+
+  body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-tab.tab-btn {
+    padding: 0.42rem 0.5rem !important;
+  }
+}

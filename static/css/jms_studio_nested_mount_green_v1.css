@@ -1,0 +1,31 @@
+/**
+ * 场景搭建 · 二/三/四级嵌套挂载行绿色玻璃风
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--if-mount .jms-aux-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--if-mount .jms-aux-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--http-mount .jms-aux-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--http-mount .jms-aux-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-catalog-card__body > .jms-tree-node--if-mount .jms-aux-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card__body > .jms-tree-node--if-mount .jms-aux-card {
+    border: 1px solid rgba(16, 185, 129, 0.22) !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(236, 253, 245, 0.88) 100%) !important;
+    box-shadow: 0 2px 10px rgba(5, 150, 105, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+    border-radius: 10px !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-catalog-card__body.jms-tree-if-children,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card__body.jms-tree-if-children {
+    background: rgba(248, 253, 250, 0.45) !important;
+    border-top: 1px solid rgba(16, 185, 129, 0.1) !important;
+    padding-top: 0.35rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-if-mount-row-actions .lth-step-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-row-actions .lth-step-menu,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tree-node--http-mount .lth-step-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--http-mount .lth-step-menu {
+    border: 1px solid rgba(16, 185, 129, 0.22) !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    box-shadow: 0 8px 24px rgba(5, 150, 105, 0.12) !important;
+    border-radius: 10px !important;
+}

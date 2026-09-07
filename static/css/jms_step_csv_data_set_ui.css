@@ -1,0 +1,240 @@
+/**
+ * HTTP 步骤配置元件 · CSV 数据文件设置弹窗（隔离样式，仅 #modal-http-step-config-csv-edit）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit {
+    --jms-step-csv-bg-modal: #eef1f7;
+    --jms-step-csv-bg-body: #f3f5f9;
+    --jms-step-csv-bg-card: #f8f9fc;
+    --jms-step-csv-bg-input: #fbfcfe;
+    --jms-step-csv-bg-elevated: #e9edf4;
+    --jms-step-csv-border: rgba(199, 210, 224, 0.9);
+    --jms-step-csv-border-soft: rgba(214, 222, 232, 0.95);
+    --jms-step-csv-accent: #7c3aed;
+    --jms-step-csv-accent-soft: rgba(124, 58, 237, 0.14);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-modal {
+    width: min(780px, 96vw) !important;
+    background: var(--jms-step-csv-bg-modal) !important;
+    border: 1px solid var(--jms-step-csv-border-soft);
+    box-shadow: 0 18px 46px rgba(15, 23, 42, 0.13), 0 2px 8px rgba(15, 23, 42, 0.05) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-http-step-config-drawer__body {
+    background: var(--jms-step-csv-bg-body) !important;
+    padding: 0.5rem 0.65rem 0.65rem !important;
+    max-height: min(72vh, 34rem);
+    overflow-y: auto;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-http-step-config-drawer__foot {
+    background: var(--jms-step-csv-bg-elevated) !important;
+    border-top-color: var(--jms-step-csv-border-soft) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-config-csv-edit .jms-step-modal {
+    width: min(780px, calc(100vw - 0.5rem)) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-http-step-config-drawer__head {
+    background: linear-gradient(135deg, #ede9fe 0%, #e9edf5 52%, #e4e9f2 100%) !important;
+    border-bottom-color: var(--jms-step-csv-border-soft) !important;
+    padding: 0.55rem 0.65rem 0.5rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-http-step-config-drawer__badge {
+    color: #6d28d9 !important;
+    background: rgba(237, 233, 254, 0.9) !important;
+    border-color: rgba(167, 139, 250, 0.45) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-http-step-config-drawer__head .jms-step-modal__title {
+    margin-bottom: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__card {
+    border: 1px solid var(--jms-step-csv-border-soft);
+    border-radius: 8px;
+    background: var(--jms-step-csv-bg-card);
+    padding: 0.45rem 0.58rem 0.5rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.025);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__card-title {
+    margin: 0 0 0.38rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #475569;
+    letter-spacing: 0.01em;
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__meta-row {
+    display: grid;
+    grid-template-columns: minmax(7rem, 0.9fr) 1.35fr;
+    gap: 0.4rem 0.5rem;
+    align-items: end;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__grid {
+    display: grid;
+    gap: 0.38rem 0.5rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__grid--2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__grid--1 {
+    grid-template-columns: 1fr;
+    margin-top: 0.38rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__field--full {
+    margin-top: 0.38rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #475569;
+    line-height: 1.25;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.4rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__hint {
+    font-size: 0.62rem;
+    font-weight: 500;
+    color: #94a3b8;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__input,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__select {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 0.71rem;
+    padding: 0.28rem 0.42rem;
+    border: 1px solid var(--jms-step-csv-border);
+    border-radius: 5px;
+    color: #0f172a;
+    background: var(--jms-step-csv-bg-input);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__encoding-input {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__select {
+    cursor: pointer;
+    padding-right: 1.5rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__input:focus,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__select:focus {
+    outline: none;
+    border-color: var(--jms-step-csv-accent);
+    background: #fcfdff;
+    box-shadow: 0 0 0 2px var(--jms-step-csv-accent-soft);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__filename-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0.35rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__filename-row .jms-step-csv-v2__input {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__browse-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 4.5rem;
+    padding: 0 0.55rem;
+    border: 1px solid var(--jms-step-csv-border);
+    border-radius: 5px;
+    background: var(--jms-step-csv-bg-elevated);
+    color: #475569;
+    font-size: 0.68rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__browse-btn:hover {
+    border-color: rgba(167, 139, 250, 0.55);
+    background: rgba(237, 233, 254, 0.65);
+    color: #6d28d9;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__browse-btn input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__hint {
+    font-size: 0.62rem;
+    font-weight: 500;
+    color: #94a3b8;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__hint--filename {
+    flex: 1 1 100%;
+    line-height: 1.4;
+    color: #64748b;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__path-hint {
+    margin: 0.28rem 0 0;
+    font-size: 0.64rem;
+    line-height: 1.35;
+    color: #64748b;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__path-hint--error {
+    color: #b45309;
+}
+
+@media (max-width: 680px) {
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__meta-row,
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__grid--2 {
+        grid-template-columns: 1fr;
+    }
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__filename-row {
+        flex-direction: column;
+    }
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-csv-edit .jms-step-csv-v2__browse-btn {
+        min-height: 1.85rem;
+    }
+}

@@ -1,0 +1,149 @@
+/* 表格顶栏「表格操作」下拉 — 替代紫色浮动编辑 FAB */
+.tc-table-ops-anchor {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.tc-table-ops-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 5px 12px 5px 10px;
+    border-radius: 9999px;
+    border: 1.5px solid #e2e8f0;
+    background: #ffffff;
+    cursor: pointer;
+    outline: none;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #475569;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 32px;
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.tc-table-ops-trigger:hover {
+    border-color: #a78bfa;
+    background: #f5f3ff;
+    color: #6d28d9;
+    box-shadow: 0 2px 6px rgba(124, 58, 237, 0.12);
+    transform: translateY(-0.5px);
+}
+
+.tc-table-ops-trigger:active {
+    transform: translateY(0);
+}
+
+.tc-table-ops-trigger:focus-visible {
+    outline: 2px solid #a78bfa;
+    outline-offset: 2px;
+}
+
+.tc-table-ops-trigger--open {
+    border-color: #a78bfa;
+    background: #ede9fe;
+    color: #6d28d9;
+}
+
+.tc-table-ops-trigger__icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+}
+
+.tc-table-ops-trigger__label {
+    white-space: nowrap;
+}
+
+.tc-table-ops-trigger__caret {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    opacity: 0.55;
+    transition: transform 0.2s ease;
+}
+
+.tc-table-ops-trigger--open .tc-table-ops-trigger__caret {
+    transform: rotate(180deg);
+    opacity: 0.85;
+}
+
+.tc-table-ops-anchor .tc-table-ops-menu,
+.tc-table-ops-anchor #tc-table-fab-sheet {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: auto;
+    bottom: auto;
+    margin: 0 !important;
+    transform: none !important;
+    z-index: 140;
+    min-width: 9.5rem;
+}
+
+.tc-table-ops-anchor .tc-table-ops-menu:not(.hidden),
+.tc-table-ops-anchor #tc-table-fab-sheet:not(.hidden) {
+    display: block;
+}
+
+/* 顶栏「表格操作」与浮动 FAB 共用 id，需覆盖 toolkit 中 #tc-table-fab-toggle 的圆形紫钮样式 */
+#table-toolbar .tc-table-ops-anchor #tc-table-fab-toggle.tc-table-ops-trigger {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 32px !important;
+    padding: 5px 12px 5px 10px !important;
+    border-radius: 9999px !important;
+    border: 1.5px solid #e2e8f0 !important;
+    background: #ffffff !important;
+    background-image: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+    color: #475569 !important;
+    font-size: 0.78rem !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+}
+
+#table-toolbar .tc-table-ops-anchor #tc-table-fab-toggle.tc-table-ops-trigger:hover {
+    background: #f5f3ff !important;
+    background-image: none !important;
+    border-color: #a78bfa !important;
+    color: #6d28d9 !important;
+    box-shadow: 0 2px 6px rgba(124, 58, 237, 0.12) !important;
+}
+
+#table-toolbar .tc-table-ops-anchor #tc-table-fab-toggle.tc-table-ops-trigger .tc-table-ops-trigger__icon {
+    width: 15px !important;
+    height: 15px !important;
+}
+
+#table-toolbar .tc-table-ops-anchor #tc-table-fab-toggle.tc-table-ops-trigger .tc-table-fab-toggle__icon {
+    display: none !important;
+}
+
+/* 下拉须浮于下方 Vxe 表格之上：抬升顶栏 stacking context，避免被兄弟节点 tc-table-list-panel 盖住 */
+.tc-workbench-scope #table-toolbar.tc-table-workspace__head {
+    position: relative;
+    z-index: 50;
+    overflow: visible;
+}
+.tc-workbench-scope #table-toolbar .tc-right-panel-head,
+.tc-workbench-scope #table-toolbar .tc-table-ops-anchor {
+    overflow: visible;
+}
+.tc-workbench-scope #table-toolbar .tc-table-ops-anchor {
+    z-index: 55;
+}
+/* 顶栏模式下挂 body 的 fixed 定位菜单，层级高于表格固定表头 */
+#tc-table-fab-sheet.tc-table-ops-menu.tc-fab-sheet--placed {
+    z-index: 160 !important;
+}

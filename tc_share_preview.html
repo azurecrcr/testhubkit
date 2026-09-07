@@ -1,0 +1,36 @@
+{% extends "layout/base_toolkit.html" %}
+{% block page_title %}用例评审 · Hugo Feng Toolkit{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tc_table_productivity.css') }}?v=20260611a">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tc_share_preview.css') }}?v=20260611a">
+{% endblock %}
+{% block body_class %}tc-share-preview-body{% endblock %}
+{% block body %}
+<main class="tc-share-preview" data-share-token="{{ token|e }}">
+    <header class="tc-share-preview__head">
+        <a href="/" class="tc-share-preview__brand">Hugo Feng Toolkit</a>
+        <span class="tc-share-preview__badge">只读评审</span>
+    </header>
+    <div id="tc-share-preview-status" class="tc-share-preview__status">加载中…</div>
+    <div id="tc-share-preview-main" class="tc-share-preview__main hidden">
+        <h1 id="tc-share-preview-title" class="tc-share-preview__title"></h1>
+        <p id="tc-share-preview-meta" class="tc-share-preview__meta"></p>
+        <div id="tc-share-preview-table-wrap" class="tc-share-preview__table-wrap overflow-x-auto"></div>
+        <section id="tc-share-comments-section" class="tc-share-preview__comments">
+            <h2 class="tc-share-preview__comments-title">评论</h2>
+            <div id="tc-share-comments-list" class="tc-share-preview__comments-list"></div>
+            <form id="tc-share-comment-form" class="tc-share-preview__comment-form" autocomplete="off">
+                <p class="tc-share-preview__comment-form-label">全局评论</p>
+                <div class="tc-share-preview__comment-form-row">
+                    <input type="text" id="tc-share-comment-name" class="form-input" placeholder="您的昵称" maxlength="64" required>
+                    <textarea id="tc-share-comment-content" class="form-input" rows="3" placeholder="写下评审意见…" maxlength="2000" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">提交评论</button>
+            </form>
+        </section>
+    </div>
+</main>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/tc_share_preview.js') }}?v=20260613sharetpl1"></script>
+{% endblock %}

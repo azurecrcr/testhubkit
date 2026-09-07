@@ -1,0 +1,154 @@
+{# 全站页脚：单屏内容时贴底可见；可滚动页仅在滚到底部时滑入 #}
+<style>
+    #hf-site-footer.hf-site-footer {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 40;
+        margin: 0;
+        padding: 0.45rem 1rem;
+        text-align: center;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: rgb(100 116 139);
+        background: rgba(248, 250, 252, 0.94);
+        border-top: 1px solid rgb(226 232 240 / 0.95);
+        box-shadow: 0 -4px 20px rgba(15, 23, 42, 0.04);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transform: translate3d(0, 100%, 0);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease, visibility 0s linear 0.28s;
+    }
+    #hf-site-footer.hf-site-footer.hf-site-footer--visible {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease, visibility 0s linear 0s;
+    }
+    #hf-site-footer .hf-site-footer__row {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.3rem 0.45rem;
+        line-height: 1.35;
+    }
+    #hf-site-footer .hf-site-footer__copy {
+        color: inherit;
+        font-weight: 500;
+    }
+    #hf-site-footer .hf-site-footer__sep {
+        color: rgb(203 213 225);
+        font-weight: 300;
+        user-select: none;
+        opacity: 0.85;
+    }
+    #hf-site-footer .hf-site-footer__icp,
+    #hf-site-footer .hf-site-footer__gongan {
+        color: rgb(148 163 184);
+        text-decoration: none;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+        transition: color 0.2s ease;
+    }
+    #hf-site-footer .hf-site-footer__gongan {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.22rem;
+        vertical-align: middle;
+    }
+    #hf-site-footer .hf-site-footer__gongan-icon {
+        width: 16px;
+        height: 17px;
+        flex-shrink: 0;
+        display: block;
+        object-fit: contain;
+    }
+    #hf-site-footer .hf-site-footer__icp:hover,
+    #hf-site-footer .hf-site-footer__icp:focus-visible,
+    #hf-site-footer .hf-site-footer__gongan:hover,
+    #hf-site-footer .hf-site-footer__gongan:focus-visible,
+    #hf-site-footer .hf-site-footer__link:hover,
+    #hf-site-footer .hf-site-footer__link:focus-visible {
+        color: rgb(71 85 105);
+        text-decoration: none;
+        outline: none;
+    }
+    #hf-site-footer .hf-site-footer__link {
+        color: rgb(148 163 184);
+        text-decoration: none;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+        transition: color 0.2s ease;
+    }
+    #hf-site-footer button.hf-site-footer__link {
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0;
+        font: inherit;
+        color: rgb(148 163 184);
+    }
+</style>
+<footer id="hf-site-footer" class="hf-site-footer" role="contentinfo" aria-label="版权">
+    <div class="hf-site-footer__row">
+        <span class="hf-site-footer__copy">© 2026 {{ hf_site_footer_brand | default(hf_site_brand_title) }}</span>
+        <span class="hf-site-footer__sep" aria-hidden="true">·</span>
+        <a class="hf-site-footer__link" href="/legal/terms" target="_blank" rel="noopener noreferrer">用户协议</a>
+        <span class="hf-site-footer__sep" aria-hidden="true">·</span>
+        <a class="hf-site-footer__link" href="/legal/privacy" target="_blank" rel="noopener noreferrer">隐私政策</a>
+        <span class="hf-site-footer__sep" aria-hidden="true">·</span>
+        <button type="button" class="hf-site-footer__link hf-community-open" data-hf-community-open>交流群</button>
+        <span class="hf-site-footer__sep" aria-hidden="true">·</span>
+        <a class="hf-site-footer__icp" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">豫ICP备2026025141号-1</a>
+        <span class="hf-site-footer__sep" aria-hidden="true">·</span>
+        <a class="hf-site-footer__gongan" href="https://beian.mps.gov.cn/#/query/webSearch?code=31011502406933" target="_blank" rel="noopener noreferrer">
+            <img class="hf-site-footer__gongan-icon" src="{{ url_for('static', filename='img/gongan_beian.png') }}?v=20260811gongan2" width="16" height="17" alt="公安备案" decoding="async">
+            <span>沪公网安备31011502406933号</span>
+        </a>
+    </div>
+</footer>
+{% include 'partials/hf_community_panel.html' %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hf_community.css') }}?v=20260811wxadmin2">
+<script src="{{ url_for('static', filename='js/hf_community.js') }}?v=20260811wxadmin2" defer></script>
+<script>
+(function () {
+    if (window.__hfSiteFooterBound) return;
+    window.__hfSiteFooterBound = true;
+    var ft = document.getElementById("hf-site-footer");
+    if (!ft) return;
+    var VIS = "hf-site-footer--visible";
+    var eps = 6;
+    function tick() {
+        var root = document.documentElement;
+        var sh = root.scrollHeight;
+        var vh = window.innerHeight || root.clientHeight;
+        var y = window.scrollY || window.pageYOffset || 0;
+        var shortPage = sh <= vh + eps;
+        var atBottom = y + vh >= sh - eps;
+        ft.classList.toggle(VIS, shortPage || atBottom);
+    }
+    window.addEventListener("scroll", tick, { passive: true });
+    window.addEventListener("resize", tick);
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", tick);
+    } else {
+        tick();
+    }
+    window.addEventListener("load", tick);
+    if (window.ResizeObserver) {
+        try {
+            var ro = new ResizeObserver(function () {
+                requestAnimationFrame(tick);
+            });
+            ro.observe(document.body);
+        } catch (e) {}
+    }
+})();
+</script>

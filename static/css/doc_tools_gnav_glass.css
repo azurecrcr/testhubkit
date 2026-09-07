@@ -1,0 +1,257 @@
+/* 智能编辑 / 文档工具 · 顶栏靛紫玻璃（仅 doc-tools-page） */
+
+body.doc-tools-page .hf-gnav {
+    background:
+        linear-gradient(
+            118deg,
+            rgba(255, 255, 255, 0.74) 0%,
+            rgba(238, 242, 255, 0.70) 42%,
+            rgba(224, 231, 255, 0.62) 100%
+        ) !important;
+    border-bottom: 1px solid rgba(129, 140, 248, 0.28) !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.55) inset,
+        0 8px 28px -16px rgba(79, 70, 229, 0.16) !important;
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+body.doc-tools-page .hf-gnav::before {
+    opacity: 0.22 !important;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0,
+        transparent 47px,
+        rgba(99, 102, 241, 0.045) 47px,
+        rgba(99, 102, 241, 0.045) 48px
+    ) !important;
+}
+
+body.doc-tools-page .hf-gnav::after {
+    background:
+        radial-gradient(ellipse 70% 120% at 8% -30%, rgba(199, 210, 254, 0.4), transparent 58%),
+        radial-gradient(ellipse 55% 90% at 96% 0%, rgba(129, 140, 248, 0.18), transparent 52%) !important;
+    opacity: 1 !important;
+}
+
+body.doc-tools-page .hf-gnav__brand,
+body.doc-tools-page .hf-gnav__titles strong {
+    color: #312e81 !important;
+}
+
+body.doc-tools-page .hf-gnav__titles span {
+    color: rgba(67, 56, 202, 0.65) !important;
+}
+
+body.doc-tools-page .hf-gnav__mark {
+    box-shadow:
+        0 2px 12px rgba(99, 102, 241, 0.28),
+        0 0 0 1px rgba(199, 210, 254, 0.45) !important;
+}
+
+body.doc-tools-page .hf-gnav__brand:hover .hf-gnav__mark {
+    box-shadow:
+        0 4px 16px rgba(99, 102, 241, 0.35),
+        0 0 0 1px rgba(79, 70, 229, 0.3) !important;
+}
+
+body.doc-tools-page .hf-gnav__mega-btn {
+    border-color: rgba(129, 140, 248, 0.32) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    color: #4338ca !important;
+}
+
+body.doc-tools-page .hf-gnav__mega-btn:hover {
+    background: rgba(238, 242, 255, 0.92) !important;
+    border-color: rgba(99, 102, 241, 0.45) !important;
+}
+
+body.doc-tools-page .hf-gnav__mega-btn[aria-expanded="true"] {
+    background: rgba(224, 231, 255, 0.95) !important;
+    border-color: rgba(79, 70, 229, 0.4) !important;
+    box-shadow: 0 0 0 1px rgba(199, 210, 254, 0.3) !important;
+}
+
+body.doc-tools-page .hf-gnav__prompts {
+    color: #4338ca !important;
+    border-color: rgba(129, 140, 248, 0.38) !important;
+    background: linear-gradient(120deg, rgba(238, 242, 255, 0.92), rgba(224, 231, 255, 0.88)) !important;
+    box-shadow: 0 1px 4px rgba(79, 70, 229, 0.08) !important;
+}
+
+body.doc-tools-page .hf-gnav__prompts:hover {
+    border-color: rgba(79, 70, 229, 0.45) !important;
+    box-shadow: 0 4px 16px -6px rgba(99, 102, 241, 0.35) !important;
+}
+
+body.doc-tools-page .hf-gnav__feedback {
+    color: #4338ca !important;
+    border-color: rgba(199, 210, 254, 0.7) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+}
+
+body.doc-tools-page .hf-gnav__feedback:hover {
+    background: rgba(238, 242, 255, 0.92) !important;
+    border-color: rgba(129, 140, 248, 0.5) !important;
+}
+
+body.doc-tools-page .hf-gnav__messages {
+    color: #4338ca !important;
+    border-color: rgba(129, 140, 248, 0.45) !important;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(238, 242, 255, 0.82)) !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.85) inset,
+        0 1px 3px rgba(67, 56, 202, 0.1) !important;
+}
+
+body.doc-tools-page .hf-gnav__messages:hover {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border-color: rgba(79, 70, 229, 0.55) !important;
+}
+
+body.doc-tools-page .hf-gnav__messages[data-has-unread="1"] {
+    border-color: rgba(244, 63, 94, 0.5) !important;
+    box-shadow:
+        0 0 0 3px rgba(251, 113, 133, 0.16),
+        0 2px 10px rgba(67, 56, 202, 0.1) !important;
+}
+
+body.doc-tools-page .hf-gnav__messages-badge {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.95) !important;
+}
+
+body.doc-tools-page .hf-gnav__auth {
+    color: #4338ca !important;
+    border-color: rgba(129, 140, 248, 0.4) !important;
+    background: linear-gradient(120deg, rgba(238, 242, 255, 0.95), rgba(224, 231, 255, 0.88)) !important;
+}
+
+body.doc-tools-page .hf-gnav__user-email {
+    color: #312e81 !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    border: 1px solid rgba(129, 140, 248, 0.25);
+}
+
+body.doc-tools-page .hf-gnav__logout {
+    color: #4338ca !important;
+    border-color: rgba(129, 140, 248, 0.3) !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+}
+
+body.doc-tools-page .hf-gnav__logout:hover {
+    background: rgba(238, 242, 255, 0.92) !important;
+}
+
+body.doc-tools-page .hf-gnav__burger {
+    border-color: rgba(129, 140, 248, 0.32) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    color: #4338ca !important;
+}
+
+body.doc-tools-page .hf-gnav__burger span {
+    background: #4338ca !important;
+}
+
+body.doc-tools-page .hf-gnav__drawer {
+    background: rgba(49, 46, 129, 0.16) !important;
+}
+
+body.doc-tools-page .hf-gnav__sheet {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(238, 242, 255, 0.98) 100%) !important;
+    border-left: 1px solid rgba(129, 140, 248, 0.28) !important;
+    box-shadow: -12px 0 40px rgba(79, 70, 229, 0.12) !important;
+}
+
+body.doc-tools-page .hf-gnav__sheet-top {
+    border-bottom-color: rgba(129, 140, 248, 0.2) !important;
+}
+
+body.doc-tools-page .hf-gnav__sheet-top p,
+body.doc-tools-page .hf-gnav__sheet-sec h3 {
+    color: rgba(67, 56, 202, 0.72) !important;
+}
+
+body.doc-tools-page .hf-gnav__sheet-x {
+    border-color: rgba(129, 140, 248, 0.3) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    color: #4338ca !important;
+}
+
+body.doc-tools-page .hf-gnav__sheet a {
+    color: #312e81 !important;
+}
+
+body.doc-tools-page .hf-gnav__sheet a:hover {
+    background: rgba(224, 231, 255, 0.85) !important;
+}
+
+body.doc-tools-page .hf-gnav__sheet a[aria-current="page"] {
+    background: rgba(224, 231, 255, 0.95) !important;
+    border-color: rgba(129, 140, 248, 0.4) !important;
+}
+
+body.doc-tools-page .hf-gnav__sheet-prompts {
+    border-top-color: rgba(129, 140, 248, 0.2) !important;
+}
+
+body.doc-tools-page .hf-gnav__sheet-prompts a {
+    background: linear-gradient(120deg, rgba(238, 242, 255, 0.9), rgba(224, 231, 255, 0.85)) !important;
+    border-color: rgba(129, 140, 248, 0.32) !important;
+}
+
+body.doc-tools-page .hf-gnav__sheet-feedback {
+    border-color: rgba(129, 140, 248, 0.32) !important;
+    background: rgba(238, 242, 255, 0.9) !important;
+    color: #4338ca !important;
+}
+
+body.doc-tools-page .hf-gnav__sheet-auth {
+    border-color: rgba(129, 140, 248, 0.38) !important;
+    background: rgba(224, 231, 255, 0.95) !important;
+    color: #4338ca !important;
+}
+
+body.doc-tools-page .hf-gnav__sheet-user {
+    background: rgba(255, 255, 255, 0.65) !important;
+    border-color: rgba(129, 140, 248, 0.22) !important;
+}
+
+body.doc-tools-page .hf-gnav__sheet-user p {
+    color: rgba(67, 56, 202, 0.65) !important;
+}
+
+body.doc-tools-page .hf-gnav__sheet-user strong {
+    color: #312e81 !important;
+}
+
+body.doc-tools-page .hf-gnav__user-menu-btn {
+    color: #4338ca !important;
+    background: rgba(255, 255, 255, 0.58) !important;
+    border-color: rgba(129, 140, 248, 0.36) !important;
+}
+
+body.doc-tools-page .hf-gnav__user-menu-btn--avatar-only {
+    border-color: rgba(129, 140, 248, 0.45) !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+    box-shadow: 0 2px 10px rgba(79, 70, 229, 0.14) !important;
+    overflow: visible !important;
+    flex-shrink: 0;
+}
+
+body.doc-tools-page .hf-gnav__end,
+body.doc-tools-page .hf-gnav__auth-slot,
+body.doc-tools-page .hf-gnav__user-menu {
+    flex-shrink: 0;
+    min-width: 0;
+}
+
+body.doc-tools-page .hf-gnav {
+    overflow: visible;
+}
+
+body.doc-tools-page .hf-gnav__inner {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}

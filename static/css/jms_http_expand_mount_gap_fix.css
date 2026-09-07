@@ -1,0 +1,39 @@
+/**
+ * HTTP 取样器展开 · 挂载区紧贴工具栏（隔离模块，覆盖 row_layout_fit 在 Studio v2 单列下的纵向拉伸）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps > .jms-tree-node--http.is-selected,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps > .jms-tree-node--http:has(> .jms-tree-node__body > .jms-http-card:not(.jms-http-card--collapsed)) {
+    flex: 0 0 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    align-self: stretch !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps > .jms-tree-node--http.is-selected > .jms-tree-node__body,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps > .jms-tree-node--http:has(> .jms-tree-node__body > .jms-http-card:not(.jms-http-card--collapsed)) > .jms-tree-node__body {
+    flex: 0 0 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps > .jms-tree-node--http.is-selected + .jms-http-mount-children,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps > .jms-tree-node--http:has(> .jms-tree-node__body > .jms-http-card:not(.jms-http-card--collapsed)) + .jms-http-mount-children {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 0 !important;
+}
+
+/* 非 Studio v2 单列树（tree_layout column）同样避免纵向撑满 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab:not(.lth-studio-v2) .jms-tg-tree-steps > .jms-tree-node--http.is-selected,
+body.lth-tg-view-tree.lth-hub-jmeter-tab:not(.lth-studio-v2) .jms-tg-tree-steps > .jms-tree-node--http:has(> .jms-tree-node__body > .jms-http-card:not(.jms-http-card--collapsed)) {
+    flex: 0 0 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab:not(.lth-studio-v2) .jms-tg-tree-steps > .jms-tree-node--http.is-selected > .jms-tree-node__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab:not(.lth-studio-v2) .jms-tg-tree-steps > .jms-tree-node--http:has(> .jms-tree-node__body > .jms-http-card:not(.jms-http-card--collapsed)) > .jms-tree-node__body {
+    flex: 0 0 auto !important;
+    height: auto !important;
+}

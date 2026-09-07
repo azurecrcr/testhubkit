@@ -1,0 +1,51 @@
+/**
+ * JMeter 压测 · 添加辅助步骤菜单样式（隔离）
+ */
+body.lth-hub-jmeter-tab .lth-tg-add-more-menu {
+    min-width: 9.5rem !important;
+}
+
+body.lth-hub-jmeter-tab .lth-tg-add-more-menu .jms-add-chip--aux {
+    margin: 0 !important;
+    text-align: left !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    padding: 0.32rem 0.55rem !important;
+    white-space: nowrap !important;
+}
+
+body.lth-hub-jmeter-tab .jms-add-chip--if {
+    border-color: #c4b5fd !important;
+    color: #5b21b6 !important;
+    background: #faf5ff !important;
+}
+
+body.lth-hub-jmeter-tab .jms-add-chip--if:hover {
+    border-color: #8b5cf6 !important;
+    background: #f3e8ff !important;
+    color: #4c1d95 !important;
+}
+
+body.lth-hub-jmeter-tab .jms-add-chip--beanshell {
+    border-color: #6ee7b7 !important;
+    color: #047857 !important;
+    background: #ecfdf5 !important;
+}
+
+body.lth-hub-jmeter-tab .jms-add-chip--beanshell:hover {
+    border-color: #10b981 !important;
+    background: #d1fae5 !important;
+    color: #065f46 !important;
+}
+
+body.lth-hub-jmeter-tab .jms-add-chip--debug {
+    border-color: #cbd5e1 !important;
+    color: #475569 !important;
+    background: #f8fafc !important;
+}
+
+body.lth-hub-jmeter-tab .jms-add-chip--debug:hover {
+    border-color: #94a3b8 !important;
+    background: #f1f5f9 !important;
+    color: #334155 !important;
+}

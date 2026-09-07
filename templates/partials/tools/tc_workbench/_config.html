@@ -1,0 +1,30 @@
+{# TC Workbench — server-injected config only (Jinja) #}
+    <script>
+        window.TC_STREAM_GENERATION = true;
+        window.TC_GEN_CHAT_STATUS_ENABLED = true;
+        window.TC_GEN_CHAT_PIPELINE_ENABLED = false;
+        window.TC_WB_BUNDLE_ENABLED = true;
+        window.TC_WB_FEATURE_FLAGS = {
+            bundle: true,
+            eventBus: true,
+            generationFacade: false,
+            enhancementsSplit: true
+        };
+        window.TC_IMAGE_UPLOAD_LIMITS = {
+            maxBytes: {{ IMAGE_MAX_UPLOAD_BYTES | int }},
+            maxMb: {{ IMAGE_MAX_UPLOAD_MB }},
+            timeoutMs: {{ IMAGE_TOOL_TIMEOUT_MS | int }},
+            maxRetries: {{ IMAGE_TOOL_MAX_RETRIES | int }},
+            retryDelayMs: {{ IMAGE_TOOL_RETRY_DELAY_MS | int }}
+        };
+        const IMAGE_UPLOAD_LIMITS = window.TC_IMAGE_UPLOAD_LIMITS;
+        function getImageFileSizeError(file) {
+            if (!file) return '请先选择文件';
+            if (file.size === 0) return '文件为空，请重新选择';
+            if (file.size > IMAGE_UPLOAD_LIMITS.maxBytes) {
+                const cur = (file.size / (1024 * 1024)).toFixed(1);
+                return '文件过大：单张不超过 ' + IMAGE_UPLOAD_LIMITS.maxMb + ' MB（当前约 ' + cur + ' MB）';
+            }
+            return '';
+        }
+    </script>

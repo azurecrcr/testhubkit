@@ -1,0 +1,100 @@
+/* 压测造数 · 测试计划设置左栏重构（plan4） */
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1 .lth-plan-name-input {
+  display: block;
+  width: 100%;
+  margin: 0.25rem 0 0.15rem;
+  padding: 0.38rem 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.3;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1 .lth-plan-name-input:focus {
+  outline: none;
+  border-color: rgba(59, 130, 246, 0.55);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1 .lth-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+  margin-bottom: 0.35rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px dashed rgba(148, 163, 184, 0.28);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1 .lth-nav-group:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0.15rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1 .lth-studio-nav__heading--inline {
+  margin: 0 !important;
+  flex: 1 1 auto;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1 .lth-studio-nav__heading--mode {
+  margin-top: 0.45rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1 .lth-nav-item--action {
+  border-style: dashed !important;
+  border-color: rgba(16, 185, 129, 0.45) !important;
+  background: linear-gradient(180deg, rgba(236, 253, 245, 0.55), rgba(255, 255, 255, 0.92)) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1 .lth-nav-item--action:hover {
+  border-color: rgba(16, 185, 129, 0.65) !important;
+  background: rgba(236, 253, 245, 0.85) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1 .lth-nav-item--action.is-active {
+  border-style: solid !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1 .lth-nav-item__icon--action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 0.4rem;
+  background: rgba(16, 185, 129, 0.14);
+  color: #047857;
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* 左栏已承接计划名/添加线程组：隐藏区头占位条与离屏同步宿主 */
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1 .lth-studio-workspace__head #jms-studio-plan-toolbar,
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1 #jms-studio-plan-toolbar.jms-studio-plan-toolbar--sync-host {
+  display: none !important;
+}
+
+/* 计划壳内 toolbar 已迁至左栏，隐藏占位 */
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1.jms-plan-shell-v1 .jms-plan-shell__toolbar-host {
+  display: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1.jms-plan-shell-v1 .jms-plan-shell__header {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1 .jms-studio-plan-toolbar--sidebar-sync,
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1 #jms-studio-plan-toolbar .jms-plan-name--sync,
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-settings-nav-v1 #jms-studio-plan-toolbar .jms-btn-add-tg--sync {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+}

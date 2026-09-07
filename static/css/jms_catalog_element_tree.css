@@ -1,0 +1,91 @@
+/* JMeter catalog_element · 树节点与卡片 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card {
+    border: 1px solid rgba(148, 163, 184, 0.55);
+    border-radius: 8px;
+    background: #fff;
+    margin: 0.15rem 0;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card__head {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.45rem;
+    font-size: 0.68rem;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-badge {
+    font-size: 0.58rem;
+    font-weight: 700;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    background: #ecfeff;
+    color: #0e7490;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card.is-disabled {
+    opacity: 0.55;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__catalog-children {
+    margin-top: 0.45rem;
+    padding: 0.35rem 0.5rem;
+    border-top: 1px dashed rgba(148, 163, 184, 0.45);
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__catalog-child-row {
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+    font-size: 0.62rem;
+    padding: 0.2rem 0;
+    cursor: pointer;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__catalog-child-row:hover {
+    color: #0f766e;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card--expandable .jms-catalog-card__head {
+    cursor: pointer;
+    user-select: none;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card--expandable .jms-catalog-card__head::before {
+    content: '▾';
+    display: inline-block;
+    width: 0.85rem;
+    color: #64748b;
+    font-size: 0.62rem;
+    flex-shrink: 0;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card--expandable.jms-catalog-card--collapsed .jms-catalog-card__head::before {
+    content: '▸';
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card--expandable.jms-catalog-card--collapsed .jms-catalog-card__body {
+    display: none;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card__body--summary {
+    padding: 0.35rem 0.55rem 0.45rem 1.25rem;
+    font-size: 0.62rem;
+    border-top: 1px dashed rgba(148, 163, 184, 0.35);
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card__summary-row {
+    display: flex;
+    gap: 0.35rem;
+    padding: 0.12rem 0;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card__summary-label {
+    color: #64748b;
+    min-width: 5.5rem;
+    flex-shrink: 0;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card__summary-val {
+    color: #0f172a;
+    word-break: break-all;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card__summary-comments {
+    margin-top: 0.25rem;
+    color: #475569;
+    font-style: italic;
+}
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card__meta {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.58rem;
+    color: #64748b;
+}

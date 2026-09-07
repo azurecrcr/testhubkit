@@ -1,0 +1,169 @@
+/**
+ * 查看结果树 · 删除确认弹窗（隔离样式 v2 · 高对比按钮）
+ */
+body.lth-hub-jmeter-tab.jms-vrt-del-confirm-lock {
+    overflow: hidden !important;
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm {
+    position: fixed;
+    inset: 0;
+    z-index: 12056;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm--open {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.42);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm__panel {
+    position: relative;
+    width: min(100%, 23rem);
+    padding: 1.25rem 1.25rem 1.1rem;
+    border-radius: 0.875rem;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    box-shadow:
+        0 28px 56px rgba(15, 23, 42, 0.16),
+        0 1px 0 rgba(255, 255, 255, 0.9) inset;
+    transform: translateY(8px) scale(0.988);
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm--open .jms-vrt-del-confirm__panel {
+    transform: translateY(0) scale(1);
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.15rem;
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm__title {
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+    font-size: 1.0625rem;
+    font-weight: 650;
+    letter-spacing: -0.018em;
+    color: #0f172a;
+    line-height: 1.35;
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm__close {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    margin: -0.2rem -0.25rem 0 0;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: #475569;
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm__close:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm__close:focus-visible {
+    outline: 2px solid rgba(13, 148, 136, 0.5);
+    outline-offset: 2px;
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm__message {
+    margin: 0.55rem 0 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #475569;
+    word-break: break-word;
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm__foot {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.625rem;
+    margin-top: 1.35rem;
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm__panel .jms-vrt-del-confirm__btn {
+    min-width: 5rem;
+    padding: 0.5625rem 1.125rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm__panel .jms-vrt-del-confirm__btn--ghost {
+    border: 1px solid #94a3b8;
+    background: #f8fafc;
+    color: #1e293b;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset;
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm__panel .jms-vrt-del-confirm__btn--ghost:hover {
+    background: #e2e8f0;
+    border-color: #64748b;
+    color: #0f172a;
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm__panel .jms-vrt-del-confirm__btn--danger {
+    border: 1px solid #b91c1c;
+    background: #dc2626;
+    color: #ffffff;
+    box-shadow: 0 1px 2px rgba(185, 28, 28, 0.28);
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm__panel .jms-vrt-del-confirm__btn--danger:hover {
+    background: #b91c1c;
+    border-color: #991b1b;
+    color: #ffffff;
+}
+
+body.lth-hub-jmeter-tab .jms-vrt-del-confirm__panel .jms-vrt-del-confirm__btn:focus-visible {
+    outline: 2px solid rgba(13, 148, 136, 0.5);
+    outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+    body.lth-hub-jmeter-tab .jms-vrt-del-confirm__foot {
+        flex-direction: column-reverse;
+    }
+
+    body.lth-hub-jmeter-tab .jms-vrt-del-confirm__panel .jms-vrt-del-confirm__btn {
+        width: 100%;
+    }
+}

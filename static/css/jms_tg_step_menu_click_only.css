@@ -1,0 +1,6 @@
+/**
+ * JMeter · 步骤 ⋯ 菜单仅点击展开（隔离样式）
+ */
+body.lth-hub-jmeter-tab.lth-studio-v2 .lth-step-actions.is-hover:not(.is-open):not(.is-measuring) .lth-step-menu {
+    display: none !important;
+}

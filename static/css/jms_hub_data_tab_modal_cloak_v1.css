@@ -1,0 +1,44 @@
+/**
+ * 数据构建 Tab · JMeter 弹窗 FOUC 兜底（隔离模块）
+ * 原因：多数弹窗 display:none 写在 body.lth-hub-jmeter-tab 下，
+ * 切到 data tab 后规则失效，#modal-if-edit / BeanShell 等会短暂裸露。
+ */
+body.lth-hub-data-tab #lth-hub-panel-jmeter {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+body.lth-hub-data-tab #lth-hub-panel-jmeter [id^="modal-"],
+body.lth-hub-data-tab [id^="modal-if-"],
+body.lth-hub-data-tab [id^="modal-beanshell"],
+body.lth-hub-data-tab [id^="modal-debug"],
+body.lth-hub-data-tab [id^="modal-step"],
+body.lth-hub-data-tab [id^="modal-http-"],
+body.lth-hub-data-tab [id^="modal-tg-"],
+body.lth-hub-data-tab [id^="modal-jms-"],
+body.lth-hub-data-tab [id^="modal-jmx"],
+body.lth-hub-data-tab [id^="modal-output"],
+body.lth-hub-data-tab [id^="modal-import"],
+body.lth-hub-data-tab [id^="modal-scene"],
+body.lth-hub-data-tab #jm-stash-save-modal,
+body.lth-hub-data-tab #jm-stash-list-modal,
+body.lth-hub-data-tab #jm-stash-restore-modal,
+body.lth-hub-data-tab > .jms-modal,
+body.lth-hub-data-tab > [role="dialog"][id^="modal-"],
+body.lth-hub-data-tab .jms-ai-panel,
+body.lth-hub-data-tab #jms-ai-fab,
+body.lth-hub-data-tab [class*="jms-jmeter-ai"] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* 弹窗内部卡片也不参与布局 */
+body.lth-hub-data-tab [id^="modal-"] .jms-step-modal,
+body.lth-hub-data-tab > .jms-modal .jms-step-modal {
+    display: none !important;
+}

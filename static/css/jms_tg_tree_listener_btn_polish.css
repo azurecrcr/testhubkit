@@ -1,0 +1,8 @@
+/**
+ * 线程组树形详情 · 配置按钮选中态（隔离）
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-tools--inline .jms-tg-config-btn.jms-tg-tree-btn-ghost.is-on {
+    border-color: rgba(45, 212, 191, 0.55) !important;
+    background: rgba(240, 253, 250, 0.95) !important;
+    color: #0f766e !important;
+}

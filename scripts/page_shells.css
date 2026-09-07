@@ -1,0 +1,658 @@
+/* 全站页面背景壳 + Hub 顶栏/英雄区（与 landing-hero 同模式，避免装饰图以文档流撑开布局） */
+
+/* —— 整页固定背景（首页 / 用例 AI / 媒体工具箱） —— */
+.hf-app-home-page__bg,
+.tc-ai-page__bg,
+.mdh-page__bg {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.hf-app-home-page__bg-img,
+.tc-ai-page__bg-img,
+.mdh-page__bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+.hf-app-home-page__bg-scrim,
+.tc-ai-page__bg-scrim,
+.mdh-page__bg-scrim {
+    position: absolute;
+    inset: 0;
+}
+
+.hf-app-home-page__bg-scrim {
+    background:
+        linear-gradient(180deg, rgba(248, 250, 252, 0.35) 0%, rgba(238, 242, 255, 0.55) 40%, rgba(248, 250, 252, 0.78) 100%),
+        linear-gradient(100deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.16) 100%);
+}
+
+.tc-ai-page__bg-scrim {
+    background:
+        linear-gradient(180deg, rgba(248, 250, 252, 0.28) 0%, rgba(238, 242, 255, 0.48) 38%, rgba(248, 250, 252, 0.72) 100%),
+        linear-gradient(100deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.14) 100%);
+}
+
+.mdh-page__bg-scrim {
+    background:
+        linear-gradient(180deg, rgba(248, 250, 252, 0.3) 0%, rgba(224, 242, 254, 0.5) 35%, rgba(248, 250, 252, 0.75) 100%),
+        linear-gradient(100deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0.15) 100%);
+}
+
+body.hf-app-home-body,
+body.tc-hub-ai-tab,
+body.mdh-hub-page {
+    background-color: #f8fafc;
+}
+
+main.hf-app-home-main,
+main.hf-tool-page-main {
+    position: relative;
+    z-index: 1;
+}
+
+main.tc-page-main-testcase {
+    background: transparent !important;
+}
+
+main.hf-tool-page-main.overflow-hidden {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* —— 首页英雄卡片内背景 —— */
+.hf-home-hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hf-home-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hf-home-hero__bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    display: block;
+}
+
+.hf-home-hero__bg-scrim {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(118deg, rgba(79, 70, 229, 0.82) 0%, rgba(37, 99, 235, 0.78) 42%, rgba(8, 145, 178, 0.72) 100%),
+        radial-gradient(ellipse 70% 55% at 12% 20%, rgba(255, 255, 255, 0.18), transparent 55%);
+}
+
+/* —— 媒体与数据工具箱：页内英雄区 —— */
+.mdh-hub-hero {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 16px 40px -24px rgba(15, 23, 42, 0.12);
+}
+
+.mdh-hub-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.mdh-hub-hero__bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    display: block;
+}
+
+.mdh-hub-hero__bg-scrim {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(125deg, rgba(15, 23, 42, 0.55) 0%, rgba(8, 145, 178, 0.45) 55%, rgba(99, 102, 241, 0.35) 100%),
+        radial-gradient(ellipse 60% 80% at 100% 0%, rgba(255, 255, 255, 0.12), transparent 50%);
+}
+
+.mdh-hub-hero__content {
+    padding: 1.5rem 1.25rem 1.35rem;
+}
+
+@media (min-width: 640px) {
+    .mdh-hub-hero__content {
+        padding: 1.75rem 1.75rem 1.5rem;
+    }
+}
+
+.mdh-hub-hero__eyebrow {
+    margin: 0 0 0.35rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(165, 243, 252, 0.9);
+}
+
+.mdh-hub-hero__title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: #fff;
+}
+
+@media (min-width: 640px) {
+    .mdh-hub-hero__title {
+        font-size: 1.75rem;
+    }
+}
+
+.mdh-hub-hero__desc {
+    margin: 0.5rem 0 0;
+    max-width: 42rem;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: rgba(241, 245, 249, 0.92);
+}
+
+.mdh-hub-hero__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mdh-hub-hero__tags li {
+    padding: 0.28rem 0.65rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(248, 250, 252, 0.95);
+}
+
+/* —— Hub 模式切换条（用例 / 压测造数 / 媒体工具箱共用） —— */
+.tc-hub-scope {
+    position: relative;
+    z-index: 1;
+}
+
+.tc-hub-mode-bar {
+    margin-bottom: 1rem;
+}
+
+.tc-hub-mode-switch {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    padding: 0.35rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(248, 250, 252, 0.88) 100%);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 639px) {
+    .tc-hub-mode-switch {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tc-hub-mode {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid transparent;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    color: #475569;
+    background: transparent;
+    transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+}
+
+.tc-hub-mode:hover {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(203, 213, 225, 0.85);
+    color: #0f172a;
+}
+
+.tc-hub-mode--active,
+.tc-hub-mode--active:hover {
+    border-color: rgba(99, 102, 241, 0.35);
+    background: #fff;
+    color: #312e81;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 6px 18px -8px rgba(79, 70, 229, 0.28);
+}
+
+.tc-hub-mode__icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.65rem;
+    background: rgba(241, 245, 249, 0.95);
+    color: #64748b;
+}
+
+.tc-hub-mode__icon svg {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.tc-hub-mode--active .tc-hub-mode__icon {
+    background: linear-gradient(145deg, #eef2ff 0%, #e0e7ff 100%);
+    color: #4f46e5;
+}
+
+.tc-hub-mode__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+}
+
+.tc-hub-mode__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+}
+
+.tc-hub-mode--active .tc-hub-mode__title {
+    color: #312e81;
+}
+
+.tc-hub-mode__hint {
+    font-size: 0.6875rem;
+    color: #94a3b8;
+    line-height: 1.3;
+}
+
+.tc-hub-mode--active .tc-hub-mode__hint {
+    color: #6366f1;
+}
+
+.tc-hub-panel.hidden {
+    display: none !important;
+}
+
+.tc-hub-mode__icon--ai {
+    color: #4f46e5;
+    background: linear-gradient(145deg, #eef2ff 0%, #e0e7ff 100%);
+}
+
+.tc-hub-mode__icon--excel {
+    color: #059669;
+    background: linear-gradient(145deg, #ecfdf5 0%, #d1fae5 100%);
+}
+
+.tc-hub-mode--active .tc-hub-mode__icon--ai {
+    color: #4338ca;
+    background: linear-gradient(145deg, #e0e7ff 0%, #c7d2fe 100%);
+}
+
+.tc-hub-mode--active .tc-hub-mode__icon--excel {
+    color: #047857;
+    background: linear-gradient(145deg, #d1fae5 0%, #a7f3d0 100%);
+}
+
+/* —— 压测造数：整页固定背景 —— */
+.lth-jmeter-page__bg,
+.lth-data-page__bg {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.lth-jmeter-page__bg-img,
+.lth-data-page__bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+.lth-jmeter-page__bg-scrim,
+.lth-data-page__bg-scrim {
+    position: absolute;
+    inset: 0;
+}
+
+.lth-jmeter-page__bg-scrim {
+    background:
+        linear-gradient(180deg, rgba(248, 250, 252, 0.32) 0%, rgba(224, 242, 254, 0.5) 40%, rgba(248, 250, 252, 0.78) 100%),
+        linear-gradient(100deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0.14) 100%);
+}
+
+.lth-data-page__bg-scrim {
+    background:
+        linear-gradient(180deg, rgba(248, 250, 252, 0.3) 0%, rgba(237, 233, 254, 0.48) 38%, rgba(248, 250, 252, 0.75) 100%),
+        linear-gradient(100deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.16) 100%);
+}
+
+body.lth-hub-jmeter-tab,
+body.lth-hub-data-tab {
+    background-color: #f8fafc;
+}
+
+.jms-page > .mx-auto {
+    position: relative;
+    z-index: 1;
+}
+
+/* —— 媒体工具箱：工作台卡片内背景（避免装饰图撑开文档流） —— */
+.mdh-panel-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.25rem;
+}
+
+.mdw-wb-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: inherit;
+}
+
+.mdw-wb-bg__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+    object-position: center 28%;
+    display: block;
+}
+
+.mdw-wb-bg__scrim {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(248, 250, 252, 0.42) 0%, rgba(241, 245, 249, 0.72) 55%, rgba(248, 250, 252, 0.88) 100%),
+        linear-gradient(118deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+}
+
+.mdw-wb-bg__content {
+    position: relative;
+    z-index: 1;
+}
+
+/* —— Hub 紧凑胶囊切换（无副标题，占宽更小） —— */
+.tc-hub-mode-bar--compact {
+    margin-bottom: 0.65rem;
+}
+
+.tc-hub-mode-switch--compact {
+    display: inline-flex;
+    width: auto;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    padding: 0.18rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+@media (max-width: 639px) {
+    .tc-hub-mode-switch--compact {
+        display: inline-flex;
+        grid-template-columns: unset;
+    }
+}
+
+.tc-hub-mode--compact {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.32rem 0.75rem;
+    border-radius: 9999px;
+    flex: 0 0 auto;
+    min-width: 0;
+}
+
+.tc-hub-mode--compact .tc-hub-mode__icon {
+    width: 1.45rem;
+    height: 1.45rem;
+    border-radius: 0.4rem;
+}
+
+.tc-hub-mode--compact .tc-hub-mode__icon svg {
+    width: 0.85rem;
+    height: 0.85rem;
+}
+
+.tc-hub-mode--compact .tc-hub-mode__title {
+    font-size: 0.8125rem;
+    line-height: 1.2;
+}
+
+.tc-hub-mode--compact.tc-hub-mode--active,
+.tc-hub-mode--compact.tc-hub-mode--active:hover {
+    box-shadow: 0 1px 3px rgba(79, 70, 229, 0.14);
+}
+
+.tc-hub-mode-switch--compact .tc-hub-mode__hint,
+.tc-hub-mode--compact .tc-hub-mode__hint {
+    display: none !important;
+}
+
+/* —— 开发助手：卡片背景 + 侧栏主区布局 —— */
+.mdc-wb-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: inherit;
+}
+
+.mdc-wb-bg__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+}
+
+.mdc-wb-bg__scrim {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(248, 250, 252, 0.45) 0%, rgba(241, 245, 249, 0.75) 55%, rgba(248, 250, 252, 0.9) 100%),
+        linear-gradient(118deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.04) 100%);
+}
+
+.mdc-wb-bg__content {
+    position: relative;
+    z-index: 1;
+}
+
+.mdh-split-layout {
+    display: grid;
+    grid-template-columns: minmax(10.5rem, 12.5rem) minmax(0, 1fr);
+    gap: 0.85rem 1rem;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .mdh-split-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.mdh-tool-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding: 0.65rem 0.55rem;
+    border-radius: 0.85rem;
+    border: 1px solid rgba(226, 232, 240, 0.92);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.mdh-sidebar-eyebrow {
+    margin: 0 0 0.15rem;
+    padding: 0 0.35rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #64748b;
+}
+
+.mdh-sidebar-desc {
+    margin: 0 0 0.35rem;
+    padding: 0 0.35rem;
+    font-size: 0.6875rem;
+    line-height: 1.35;
+    color: #94a3b8;
+}
+
+.mdh-sidebar-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.mdh-sidebar-label {
+    margin: 0.25rem 0 0.1rem;
+    padding: 0 0.35rem;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #94a3b8;
+}
+
+.mdh-sidebar-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    width: 100%;
+    margin: 0;
+    padding: 0.4rem 0.45rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: #334155;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mdh-sidebar-btn:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(203, 213, 225, 0.85);
+}
+
+.mdh-sidebar-btn.is-active,
+.data-workbench-scope .data-tool-tab-btn.is-active {
+    border-color: rgba(99, 102, 241, 0.3);
+    background: #fff;
+    color: #312e81;
+    box-shadow: 0 1px 3px rgba(79, 70, 229, 0.1);
+}
+
+.mdh-sidebar-btn__icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 0.4rem;
+    font-size: 0.65rem;
+    font-weight: 800;
+    background: rgba(241, 245, 249, 0.95);
+    color: #64748b;
+}
+
+.mdh-sidebar-btn.is-active .mdh-sidebar-btn__icon {
+    background: linear-gradient(145deg, #eef2ff 0%, #e0e7ff 100%);
+    color: #4f46e5;
+}
+
+.mdh-sidebar-btn__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-width: 0;
+}
+
+.mdh-sidebar-btn__title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.mdh-sidebar-btn__hint {
+    font-size: 0.625rem;
+    color: #94a3b8;
+    line-height: 1.2;
+}
+
+.mdh-tool-main {
+    min-width: 0;
+}
+
+.mdh-tool-main .ds-split {
+    min-width: 0;
+}
+
+.mdh-hub-panel--codec .tool-tab-panel {
+    min-width: 0;
+}
+
+.mdh-hub-panel--codec .tool-tab-panel.hidden {
+    display: none !important;
+}

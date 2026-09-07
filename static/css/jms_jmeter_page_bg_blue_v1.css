@@ -1,0 +1,76 @@
+/**
+ * JMeter ???? ? ???? ? ??????? v1
+ * ??? .lth-jmeter-page__bg / scrim / body ????? PNG ???
+ * ??????? tab??????????????????
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab {
+    --jmeter-bg-blue-50: #eff6ff;
+    --jmeter-bg-blue-100: #dbeafe;
+    --jmeter-bg-blue-200: #bfdbfe;
+    --jmeter-bg-blue-400: #60a5fa;
+    --jmeter-bg-blue-500: #3b82f6;
+    --jmeter-bg-blue-600: #2563eb;
+    --jmeter-bg-slate-100: #f1f5f9;
+    --jmeter-bg-slate-200: #e2e8f0;
+    background-color: #eef2f9 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-jmeter-page__bg {
+    background-color: #e8eef7 !important;
+}
+
+/* ?????????? CSS ???? */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-jmeter-page__bg-img {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-jmeter-page__bg-scrim {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(248, 250, 252, 0.94) 0%,
+            rgba(241, 245, 249, 0.9) 38%,
+            rgba(226, 232, 240, 0.88) 72%,
+            rgba(219, 234, 254, 0.86) 100%
+        ),
+        radial-gradient(ellipse 88% 58% at 92% -8%, rgba(59, 130, 246, 0.14), transparent 62%),
+        radial-gradient(ellipse 72% 52% at 6% 108%, rgba(14, 165, 233, 0.1), transparent 55%),
+        radial-gradient(ellipse 60% 45% at 48% 42%, rgba(99, 102, 241, 0.05), transparent 68%) !important;
+}
+
+/* ???????????????? */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-jmeter-page__bg::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    opacity: 0.42 !important;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(59, 130, 246, 0.035) 0,
+            rgba(59, 130, 246, 0.035) 1px,
+            transparent 1px,
+            transparent 48px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            rgba(59, 130, 246, 0.028) 0,
+            rgba(59, 130, 246, 0.028) 1px,
+            transparent 1px,
+            transparent 48px
+        ) !important;
+}
+
+/* ??????????????????? */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-jmeter-page__bg::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    background: radial-gradient(ellipse 70% 45% at 50% -12%, rgba(255, 255, 255, 0.55), transparent 58%) !important;
+}

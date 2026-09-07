@@ -1,0 +1,591 @@
+    <main class="jms-page-main w-full px-2 sm:px-3 py-1 sm:py-1.5">
+        {% include 'partials/tools/jmeter_stash_ui.html' %}
+        <div class="lth-studio-shell">
+            <div class="lth-studio-body">
+            <aside class="lth-studio-nav" id="lth-studio-nav" aria-label="场景配置导航">
+                <div class="lth-studio-nav__head">
+                    <p class="lth-studio-nav__heading">场景配置</p>
+                </div>
+                <div class="lth-studio-nav__body" id="lth-studio-nav-body">
+                <button type="button" class="lth-nav-item" data-lth-trigger="btn-tg-load-config">
+                    <span class="lth-nav-item__icon" aria-hidden="true">⚡</span>
+                    <span class="lth-nav-item__label">压测负载</span>
+                </button>
+                <p class="lth-studio-nav__heading">编辑模式</p>
+                <div class="lth-nav-modes" id="lth-nav-modes"></div>
+                </div>
+            </aside>
+
+            <div class="lth-studio-canvas">
+                <section class="lth-studio-workspace rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+                <div class="jms-section-head lth-studio-workspace__head">
+                    <div class="jms-section-head__left">
+                        <h2 class="jms-section-title">场景搭建</h2>
+                    </div>
+                    <div class="jms-section-head__center">
+                        <div class="jms-editor-modes">
+                            <button type="button" class="jms-editor-mode-btn is-active" data-mode="visual">可视化搭建</button>
+                            <button type="button" class="jms-editor-mode-btn" data-mode="yaml">YAML 高级</button>
+                        </div>
+                    </div>
+                    <div class="jms-section-head__right lth-studio-config-menu">
+                        <div id="jms-visual-toolbar">
+                            <button type="button" id="btn-tg-load-config" class="jms-panel-btn jms-panel-btn--load">压测负载</button>
+                        </div>
+                        <div id="jms-yaml-toolbar" class="hidden">
+                            <button type="button" id="btn-panel-quick" class="jms-panel-btn jms-panel-btn--quick" aria-expanded="false" aria-controls="panel-quick">快速添加接口</button>
+                            <button type="button" id="btn-panel-load" class="jms-panel-btn jms-panel-btn--load" aria-expanded="false" aria-controls="panel-load">负载 load</button>
+                            <button type="button" id="btn-curl-import" class="jms-panel-btn">粘贴 curl</button>
+                            <button type="button" id="btn-step-import" class="jms-panel-btn jms-panel-btn--quick">粘贴 Step</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="jms-studio-plan-toolbar" class="jms-studio-plan-toolbar jms-studio-plan-toolbar--sync-host" aria-hidden="true" hidden></div>
+
+                <div id="jms-visual-wrap">
+                    <div id="jms-visual-root">
+                        <div id="jms-plans-container"></div>
+                    </div>
+                </div>
+
+                <div id="jms-yaml-wrap" class="hidden">
+                <p class="mb-2 text-[11px] leading-relaxed text-slate-500">被测地址与 Influx 观测请写在 <code class="hf-mono text-[10px]">plan_catalog_items</code>（HTTP 请求默认值 + Backend Listener）；旧版 <code class="hf-mono text-[10px]">base_url</code> / <code class="hf-mono text-[10px]">influxdb</code> 根字段会在加载时自动迁移。</p>
+                <div id="panel-quick" class="jms-config-panel rounded-xl border border-violet-100 bg-violet-50/40" role="region" aria-label="快速添加接口">
+                    <p class="text-[11px] leading-relaxed text-slate-500">填 URL、Token、请求体，点「添加为 Step」合并进下方 YAML。也可使用工具栏「粘贴 curl / 粘贴 Step」。</p>
+                    <div class="mt-2 grid gap-2">
+                        <label class="block text-xs text-slate-600">
+                            接口 URL <span class="text-red-500">*</span>
+                            <input id="qa-url" type="url" class="mt-0.5 w-full rounded-lg border border-slate-200 px-2 py-1.5 text-xs hf-mono" placeholder="https://api.example.com/v1/users" />
+                        </label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <label class="block text-xs text-slate-600">方法
+                                <select id="qa-method" class="mt-0.5 w-full rounded-lg border border-slate-200 px-2 py-1.5 text-xs bg-white">
+                                    <option value="POST" selected>POST</option>
+                                    <option value="GET">GET</option>
+                                    <option value="PUT">PUT</option>
+                                    <option value="PATCH">PATCH</option>
+                                    <option value="DELETE">DELETE</option>
+                                    <option value="HEAD">HEAD</option>
+                                    <option value="OPTIONS">OPTIONS</option>
+                                </select>
+                            </label>
+                            <label class="block text-xs text-slate-600">Token（可选）
+                                <input id="qa-token" type="password" class="mt-0.5 w-full rounded-lg border border-slate-200 px-2 py-1.5 text-xs hf-mono" placeholder="Bearer Token" autocomplete="off" />
+                            </label>
+                        </div>
+                        <label class="block text-xs text-slate-600">请求体 JSON（POST/PUT 等）
+                            <textarea id="qa-body" rows="3" class="mt-0.5 w-full rounded-lg border border-slate-200 px-2 py-1.5 text-xs hf-mono" spellcheck="false" placeholder='{"name":"test"}'></textarea>
+                        </label>
+                        <button type="button" id="btn-quick-add" class="rounded-lg bg-violet-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-violet-700">添加为 Step</button>
+                    </div>
+                </div>
+
+                <div id="panel-load" class="jms-config-panel rounded-xl border border-indigo-100 bg-indigo-50/30" role="region" aria-label="负载 load">
+                    <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                        <label class="block text-xs text-slate-600">users
+                            <input id="ld-users" type="number" min="1" class="mt-0.5 w-full rounded-lg border border-slate-200 px-2 py-1.5 text-xs" />
+                        </label>
+                        <label class="block text-xs text-slate-600">spawn_rate (ramp 秒)
+                            <input id="ld-spawn" type="number" min="1" class="mt-0.5 w-full rounded-lg border border-slate-200 px-2 py-1.5 text-xs font-xs" />
+                        </label>
+                        <label class="block text-xs text-slate-600">duration_sec
+                            <input id="ld-duration" type="number" min="1" class="mt-0.5 w-full rounded-lg border border-slate-200 px-2 py-1.5 text-xs" />
+                        </label>
+                        <label class="block text-xs text-slate-600">loops
+                            <input id="ld-loops" type="number" class="mt-0.5 w-full rounded-lg border border-slate-200 px-2 py-1.5 text-xs" value="-1" />
+                        </label>
+                        <button type="button" id="btn-sync-load" class="col-span-2 sm:col-span-4 rounded-lg border border-indigo-200 bg-white px-3 py-1.5 text-xs font-semibold text-indigo-900 hover:bg-indigo-50">同步到 YAML</button>
+                    </div>
+                </div>
+
+                <textarea id="yaml-input" class="hf-yaml hf-mono mt-3 w-full rounded-xl border border-slate-200 bg-slate-50/80 p-3 text-slate-800 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20" spellcheck="false" aria-label="场景 YAML"></textarea>
+                </div>
+
+                </section>
+            </div>
+            </div>
+
+                        <footer class="lth-studio-dock" id="lth-studio-dock">
+                <div class="lth-studio-dock__inner">
+                    <div class="lth-studio-dock__left">
+                        <div class="lth-studio-dock__leading" id="lth-studio-dock-ai-slot" aria-hidden="true"></div>
+                        <div class="lth-studio-dock__primary">
+                            <button type="button" id="btn-validate" class="jms-action-btn lth-dock-btn lth-dock-btn--ghost">校验配置</button>
+                            <button type="button" id="btn-generate-result" class="jms-action-btn lth-dock-btn lth-dock-btn--primary">生成结果</button>
+</div>
+                    </div>
+                    <div class="lth-studio-dock__right">
+                    <div class="lth-more-menu" id="lth-more-menu">
+                        <button type="button" id="lth-more-trigger" class="lth-dock-btn lth-dock-btn--ghost" aria-expanded="false" aria-controls="lth-more-panel">更多 ▾</button>
+                        <div id="lth-more-panel" class="lth-more-panel hidden" role="menu">
+                            <button type="button" id="jm-stash-save-btn" class="lth-more-item jms-action-btn jms-action-btn--stash" role="menuitem">保存</button>
+                            <button type="button" id="jm-stash-list-btn" class="lth-more-item jms-action-btn jms-action-btn--stash" role="menuitem">我的场景 <span id="jm-stash-count-badge" class="text-indigo-600">0/10</span></button>
+                            <button type="button" id="btn-jmx-parse" class="lth-more-item jms-action-btn" role="menuitem">JMX 解析</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    {% include 'partials/hf_float_toast.html' %}
+
+    <!-- 生成结果弹窗 -->
+    <div id="modal-output" role="dialog" aria-modal="true" aria-labelledby="modal-output-title" aria-hidden="true">
+        <div class="jms-output-modal">
+            <div class="jms-output-modal__head">
+                <div class="jms-output-modal__head-main">
+                    <h3 id="modal-output-title" class="jms-output-modal__title">生成结果</h3>
+                </div>
+                <button type="button" id="btn-output-close" class="jms-output-modal__close" aria-label="关闭">×</button>
+            </div>
+            <div class="jms-output-modal__tabs-bar">
+                <div class="jms-output-modal__tabs" role="tablist" aria-label="生成结果视图">
+                    <button type="button" data-tab="jmx" class="jms-output-tab tab-btn hf-tab-active" role="tab" aria-selected="true">
+                        <span class="jms-output-tab__label">JMX</span>
+                        <span class="jms-output-tab__hint">测试计划</span>
+                    </button>
+                    <button type="button" data-tab="readme" class="jms-output-tab tab-btn" role="tab" aria-selected="false">
+                        <span class="jms-output-tab__label">README</span>
+                        <span class="jms-output-tab__hint">运行说明</span>
+                    </button>
+                </div>
+            </div>
+            <div class="jms-output-modal__main">
+                                <div id="smoke-result-box" class="jms-smoke-result hidden" aria-live="polite"></div>
+<div id="summary-box" class="hidden jms-output-summary">
+                    <p class="jms-output-summary__title">JMX 结构摘要</p>
+                    <ul id="summary-list" class="jms-output-summary-grid"></ul>
+                </div>
+                <div class="jms-output-modal__toolbar">
+                    <button type="button" id="btn-copy" class="jms-output-tool-btn">复制当前 Tab</button>
+                    <button type="button" id="btn-smoke-run" class="jms-output-tool-btn jms-output-tool-btn--disabled" disabled title="试跑功能即将开放">试跑一遍</button>
+                    <button type="button" id="btn-download-file" class="jms-output-tool-btn">下载当前 Tab</button>
+<a id="link-grafana" href="#" target="_blank" rel="noopener" class="hidden jms-output-tool-btn" style="text-decoration:none;display:inline-flex;align-items:center">打开 Grafana</a>
+                </div>
+                <div class="jms-output-modal__body">
+                    <pre id="out-jmx" class="hf-out hf-mono overflow-auto rounded-xl border border-slate-200 bg-slate-900 p-3 text-xs leading-relaxed text-sky-100"></pre>
+                    <pre id="out-readme" class="hf-out hf-mono hidden overflow-auto rounded-xl border border-slate-200 bg-slate-900 p-3 text-xs leading-relaxed text-emerald-100"></pre>
+                </div>
+            </div>
+            <p class="jms-output-modal__foot">JMeter 5.6 · InfluxdbBackendListenerClient · 非 GUI 模式运行</p>
+        </div>
+    </div>
+</div>
+
+    <!-- 压测负载（各线程组 users / spawn / duration / loops / scenario） -->
+    <div id="modal-tg-load" role="dialog" aria-modal="true" aria-labelledby="jms-tg-load-modal-title" aria-hidden="true">
+        <div class="jms-vars-modal">
+            <div class="jms-vars-modal__head">
+                <div class="jms-vars-modal__icon jms-vars-modal__icon--load" aria-hidden="true">L</div>
+                <div class="jms-tg-load-modal__head-text">
+                    <div id="jms-tg-load-modal-title" class="jms-vars-modal__title jms-tg-load-modal__title" role="heading" aria-level="3">压测负载</div>
+                    <p class="jms-vars-modal__sub">自动识别 SetUp、主线程组与 tearDown，配置并发与 Influx scenario 标签</p>
+                </div>
+            </div>
+            <div class="jms-vars-modal__body">
+                <div id="jms-tg-load-modal-banner" class="jms-vars-banner jms-vars-banner--ok hidden"></div>
+                <div id="jms-tg-load-modal-list" class="jms-vars-plans"></div>
+            </div>
+            <div class="jms-vars-modal__foot">
+                <button type="button" id="btn-tg-load-cancel" class="jms-vars-btn-cancel">取消</button>
+                <button type="button" id="btn-tg-load-apply" class="jms-vars-btn-apply is-hidden">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 线程组配置元件（HTTP 请求默认值 / 请求头 / Cookie / 缓存） -->
+    <div id="modal-tg-http-mgr" role="dialog" aria-modal="true" aria-labelledby="modal-tg-http-mgr-title" aria-hidden="true">
+        <div class="jms-vars-modal jms-tg-config-modal">
+            <div class="jms-vars-modal__head">
+                <div class="jms-vars-modal__icon jms-vars-modal__icon--scene" aria-hidden="true">C</div>
+                <div class="jms-tg-config-head__main">
+                    <div class="jms-tg-config-head__title-row">
+                        <div>
+                            <h3 id="modal-tg-http-mgr-title" class="jms-vars-modal__title">配置元件</h3>
+                            <p id="modal-tg-http-mgr-sub" class="jms-vars-modal__sub">HTTP 默认值、请求头、Cookie、缓存、CSV、计数器（对应 JMeter 配置元件）</p>
+                        </div>
+                        <div class="jms-tg-config-picker" id="tg-config-picker">
+                            <button type="button" id="tg-config-picker-trigger" class="jms-tg-config-picker__trigger"
+                                aria-haspopup="listbox" aria-expanded="false" aria-label="选择配置元件类型">
+                                <span id="tg-config-picker-label">请选择配置元件</span>
+                                <span class="jms-tg-config-picker__caret" aria-hidden="true">▾</span>
+                            </button>
+                            <div id="tg-config-picker-menu" class="jms-tg-config-picker__menu hidden" role="listbox" aria-multiselectable="true">
+                                <button type="button" class="jms-tg-config-picker__option" data-tab="http_defaults" role="option" aria-selected="false"><span class="jms-tg-config-picker__check" aria-hidden="true">✓</span><span>HTTP 请求默认值</span></button>
+                                <button type="button" class="jms-tg-config-picker__option" data-tab="header_manager" role="option" aria-selected="false"><span class="jms-tg-config-picker__check" aria-hidden="true">✓</span><span>HTTP 请求头管理器</span></button>
+                                <button type="button" class="jms-tg-config-picker__option" data-tab="cookie_manager" role="option" aria-selected="false"><span class="jms-tg-config-picker__check" aria-hidden="true">✓</span><span>HTTP Cookie 管理器</span></button>
+                                <button type="button" class="jms-tg-config-picker__option" data-tab="cache_manager" role="option" aria-selected="false"><span class="jms-tg-config-picker__check" aria-hidden="true">✓</span><span>HTTP 缓存管理器</span></button>
+                                <button type="button" class="jms-tg-config-picker__option" data-tab="csv_data_set" role="option" aria-selected="false"><span class="jms-tg-config-picker__check" aria-hidden="true">✓</span><span>CSV 数据文件设置</span></button>
+                                <button type="button" class="jms-tg-config-picker__option" data-tab="counter" role="option" aria-selected="false"><span class="jms-tg-config-picker__check" aria-hidden="true">✓</span><span>计数器</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="jms-vars-modal__body jms-tg-mgr-form">
+                <p id="tg-config-pick-hint" class="jms-empty-hint">请从标题栏右侧多选要配置的元件类型（可勾选多项）</p>
+                <div id="tg-config-tabs-wrap" class="hidden">
+                    <p class="jms-tg-config-tabs-label">切换页面</p>
+                    <div id="tg-config-tabs" class="jms-tg-config-tabs" role="tablist"></div>
+                </div>
+                <div class="jms-tg-mgr-panel hidden" data-mgr-panel="http_defaults">
+                    <p class="jms-tg-mgr-panel-desc">对应 JMeter「HTTP 请求默认值」(ConfigTestElement / HttpDefaultsGui)</p>
+                    <p id="tg-hd-scene-hint" class="jms-empty-hint" style="margin-bottom:0.5rem"></p>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label>协议 (Protocol)<input type="text" id="tg-hd-protocol" class="hf-mono" placeholder="https" /></label>
+                        <label>服务器名称 (Server Name)<input type="text" id="tg-hd-domain" class="hf-mono" placeholder="api.example.com" /></label>
+                        <label>端口号 (Port)<input type="text" id="tg-hd-port" class="hf-mono" placeholder="443" /></label>
+                        <label>路径 (Path)<input type="text" id="tg-hd-path" class="hf-mono" placeholder="/" /></label>
+                        <label>连接超时 ms (connect_timeout)<input type="text" id="tg-hd-connect-timeout" class="hf-mono" placeholder="" /></label>
+                        <label>响应超时 ms (response_timeout)<input type="text" id="tg-hd-response-timeout" class="hf-mono" placeholder="" /></label>
+                        <label>实现 (Implementation)
+                            <select id="tg-hd-implementation">
+                                <option value="HttpClient4">HttpClient4</option>
+                                <option value="">空</option>
+                            </select>
+                        </label>
+                        <label>内容编码 (contentEncoding)<input type="text" id="tg-hd-content-encoding" class="hf-mono" placeholder="UTF-8" /></label>
+                    </div>
+                    <div class="jms-tg-hd-bools mt-2">
+                        <label class="jms-tg-mgr-check"><input type="checkbox" id="tg-hd-follow-redirects" checked /> 跟随重定向 (follow_redirects)</label>
+                        <label class="jms-tg-mgr-check"><input type="checkbox" id="tg-hd-auto-redirects" /> 自动重定向 (auto_redirects)</label>
+                        <label class="jms-tg-mgr-check"><input type="checkbox" id="tg-hd-use-keepalive" checked /> 使用 KeepAlive (use_keepalive)</label>
+                    </div>
+                </div>
+                <div class="jms-tg-mgr-panel hidden" data-mgr-panel="header_manager">
+                    <p class="jms-tg-mgr-panel-desc">对应 JMeter「HTTP 信息头管理器」(HeaderManager / HeaderPanel)</p>
+                    <div class="grid grid-cols-1 gap-2 mb-2">
+                        <label>名称 (testname)<input type="text" id="tg-hm-name" class="hf-mono w-full" placeholder="HTTP 信息头管理器" /></label>
+                        <label>注释 (comments)<textarea id="tg-hm-comments" rows="2" class="hf-mono w-full lth-step-textarea" spellcheck="false" placeholder="可选"></textarea></label>
+                    </div>
+                    <div class="jms-subhead"><span>信息头存储在信息头管理器中</span><button type="button" id="btn-tg-hm-add-header" class="jms-add-chip" style="margin:0">+ 请求头</button></div>
+                    <div id="tg-hm-headers"></div>
+                </div>
+                <div class="jms-tg-mgr-panel hidden" data-mgr-panel="cookie_manager">
+                    <label class="jms-tg-mgr-check"><input type="checkbox" id="tg-cm-clear" checked /> 每次迭代清除 Cookie (clearEachIteration)</label>
+                    <label class="jms-tg-mgr-check"><input type="checkbox" id="tg-cm-controlled" /> 由线程组控制 (controlledByThreadGroup)</label>
+                    <div class="jms-subhead mt-2"><span>Cookie 列表</span><button type="button" id="btn-tg-cm-add-cookie" class="jms-add-chip" style="margin:0">+ Cookie</button></div>
+                    <div id="tg-cm-cookies"></div>
+                </div>
+                <div class="jms-tg-mgr-panel hidden" data-mgr-panel="cache_manager">
+                    <label class="jms-tg-mgr-check"><input type="checkbox" id="tg-cache-clear" checked /> 每次迭代清除缓存 (clearEachIteration)</label>
+                    <label class="jms-tg-mgr-check"><input type="checkbox" id="tg-cache-expires" checked /> 使用 expires 头 (useExpires)</label>
+                </div>
+                <div class="jms-tg-mgr-panel hidden" data-mgr-panel="csv_data_set">
+                    <p class="jms-tg-mgr-panel-desc">对应 JMeter「CSV 数据文件设置」(CSVDataSet / TestBeanGUI)</p>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="col-span-2">文件名 (filename)
+                            <input type="text" id="tg-csv-filename" class="hf-mono w-full" placeholder="data/users.csv" />
+                        </label>
+                        <label class="col-span-2">变量名称 (variableNames，逗号分隔)
+                            <input type="text" id="tg-csv-variable-names" class="hf-mono w-full" placeholder="username,password" />
+                        </label>
+                        <label>文件编码 (fileEncoding)
+                            <input type="text" id="tg-csv-file-encoding" class="hf-mono" placeholder="UTF-8" value="UTF-8" />
+                        </label>
+                        <label>分隔符 (delimiter)
+                            <input type="text" id="tg-csv-delimiter" class="hf-mono" placeholder="," maxlength="4" />
+                        </label>
+                        <label>共享模式 (shareMode)
+                            <select id="tg-csv-share-mode">
+                                <option value="shareMode.all">所有线程 (shareMode.all)</option>
+                                <option value="shareMode.group">当前线程组 (shareMode.group)</option>
+                                <option value="shareMode.thread">当前线程 (shareMode.thread)</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="jms-tg-hd-bools mt-2">
+                        <label class="jms-tg-mgr-check"><input type="checkbox" id="tg-csv-ignore-first-line" /> 忽略首行 (ignoreFirstLine)</label>
+                        <label class="jms-tg-mgr-check"><input type="checkbox" id="tg-csv-quoted-data" /> 带引号的数据 (quotedData)</label>
+                        <label class="jms-tg-mgr-check"><input type="checkbox" id="tg-csv-recycle" checked /> 循环读取 (recycle)</label>
+                        <label class="jms-tg-mgr-check"><input type="checkbox" id="tg-csv-stop-thread" /> 文件结束停止线程 (stopThread)</label>
+                    </div>
+                    <div class="mt-2 jms-tg-csv-legacy-pick">
+                        <label class="block text-xs text-slate-600 mb-1">CSV 文件（本地选择，用于打包下载；JMeter 运行机需能访问 filename 路径）</label>
+                        <input type="file" id="tg-csv-legacy-fallback-upload" accept=".csv,text/csv" class="hidden" tabindex="-1" aria-hidden="true" />
+                        <button type="button" id="btn-tg-csv-legacy-browse" class="jms-add-chip text-xs">浏览选择 CSV 文件…</button>
+                        <p id="tg-csv-legacy-pick-hint" class="jms-empty-hint mt-1">未选择文件</p>
+                    </div>
+                </div>
+                <div class="jms-tg-mgr-panel hidden" data-mgr-panel="counter">
+                    <p class="jms-tg-mgr-panel-desc">对应 JMeter「计数器」(CounterConfig / CounterConfigGui)</p>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label>变量名 (Counter.name)<input type="text" id="tg-counter-var" class="hf-mono" placeholder="counter" value="counter" /></label>
+                        <label>起始值 (start)<input type="text" id="tg-counter-start" class="hf-mono" placeholder="1" value="1" /></label>
+                        <label>递增 (incr)<input type="text" id="tg-counter-incr" class="hf-mono" placeholder="1" value="1" /></label>
+                        <label>最大值 (end)<input type="text" id="tg-counter-max" class="hf-mono" placeholder="999999" value="999999" /></label>
+                        <label class="col-span-2">格式 (format，可选)<input type="text" id="tg-counter-format" class="hf-mono w-full" placeholder="" /></label>
+                    </div>
+                    <label class="jms-tg-mgr-check mt-2"><input type="checkbox" id="tg-counter-per-user" checked /> 每用户独立计数 (per_user)</label>
+                </div>
+            </div>
+            <div class="jms-vars-modal__foot">
+                <button type="button" id="btn-tg-mgr-cancel" class="jms-vars-btn-cancel">取消</button>
+                <button type="button" id="btn-tg-mgr-save" class="jms-vars-btn-apply">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- If 控制器编辑（JMX 导入隔离） -->
+    <div id="modal-if-edit" role="dialog" aria-modal="true" aria-labelledby="modal-if-edit-title" aria-hidden="true">
+        <div class="jms-step-modal">
+            <h3 id="modal-if-edit-title" class="jms-step-modal__title">编辑 If 控制器</h3>
+            <div class="jms-step-form lth-step-edit-form" style="margin-top:0.75rem">
+                <label class="lth-step-field">名称
+                    <input type="text" id="if-edit-name" placeholder="如：学员执行" />
+                </label>
+                <label class="lth-step-field">条件（JEXL）
+                    <textarea id="if-edit-condition" rows="3" class="hf-mono w-full lth-step-textarea" spellcheck="false" placeholder="${__jexl3(...)}"></textarea>
+                </label>
+                <label class="lth-step-field"><input type="checkbox" id="if-edit-evaluate-all" /> 评估所有子项 (evaluateAll)</label>
+                <label class="lth-step-field"><input type="checkbox" id="if-edit-use-expression" checked /> 使用表达式 (useExpression)</label>
+                <label class="lth-step-field"><input type="checkbox" id="if-edit-enabled" checked /> 启用</label>
+            </div>
+            <div class="jms-assert-foot">
+                <button type="button" id="btn-if-edit-cancel" class="jms-assert-btn-cancel">取消</button>
+                <button type="button" id="btn-if-edit-save" class="jms-assert-btn-save">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BeanShell 后置处理器编辑（JMX 导入隔离） -->
+    <div id="modal-beanshell-edit" role="dialog" aria-modal="true" aria-labelledby="modal-beanshell-edit-title" aria-hidden="true">
+        <div class="jms-step-modal">
+            <h3 id="modal-beanshell-edit-title" class="jms-step-modal__title">编辑 BeanShell 后置处理器</h3>
+            <div class="jms-step-form lth-step-edit-form" style="margin-top:0.75rem">
+                <label class="lth-step-field">名称
+                    <input type="text" id="beanshell-edit-name" />
+                </label>
+                <label class="lth-step-field">脚本
+                    <textarea id="beanshell-edit-script" rows="10" class="hf-mono w-full lth-step-textarea" spellcheck="false"></textarea>
+                </label>
+                <label class="lth-step-field"><input type="checkbox" id="beanshell-edit-enabled" checked /> 启用</label>
+            </div>
+            <div class="jms-assert-foot">
+                <button type="button" id="btn-beanshell-edit-cancel" class="jms-assert-btn-cancel">取消</button>
+                <button type="button" id="btn-beanshell-edit-save" class="jms-assert-btn-save">保存</button>
+            </div>
+        </div>
+    </div>
+
+
+                        <!-- JSON 提取器后置处理器（由 jms_http_json_extract_processor_ui.js 动态挂载 v4） -->
+    <div id="modal-json-extract-proc-edit" class="jms-modal jms-http-json-proc-drawer" role="dialog" aria-modal="true" aria-hidden="true"></div>
+
+    <!-- Debug Sampler 编辑（JMX 导入隔离） -->
+    <div id="modal-debug-edit" role="dialog" aria-modal="true" aria-labelledby="modal-debug-edit-title" aria-hidden="true">
+        <div class="jms-step-modal">
+            <h3 id="modal-debug-edit-title" class="jms-step-modal__title">编辑 Debug Sampler</h3>
+            <div class="jms-step-form lth-step-edit-form" style="margin-top:0.75rem">
+                <label class="lth-step-field">名称
+                    <input type="text" id="debug-edit-name" />
+                </label>
+                <label class="lth-step-field">备注
+                    <textarea id="debug-edit-comments" rows="2" class="hf-mono w-full lth-step-textarea" spellcheck="false"></textarea>
+                </label>
+                <label class="lth-step-field"><input type="checkbox" id="debug-edit-show-vars" checked /> 显示 JMeter 变量</label>
+                <label class="lth-step-field"><input type="checkbox" id="debug-edit-show-props" /> 显示 JMeter 属性</label>
+                <label class="lth-step-field"><input type="checkbox" id="debug-edit-show-sys" /> 显示系统属性</label>
+            </div>
+            <div class="jms-assert-foot">
+                <button type="button" id="btn-debug-edit-cancel" class="jms-assert-btn-cancel">取消</button>
+                <button type="button" id="btn-debug-edit-save" class="jms-assert-btn-save">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HTTP 请求编辑弹窗 -->
+    <div id="modal-step-edit" role="dialog" aria-modal="true" aria-labelledby="modal-step-edit-title" aria-hidden="true">
+        <div class="jms-step-modal">
+            <h3 id="modal-step-edit-title" class="text-lg font-semibold text-slate-900">编辑 HTTP 请求</h3>
+            <div class="jms-step-modes">
+                <button type="button" class="jms-step-mode-btn is-active" data-mode="form">表单</button>
+                <button type="button" class="jms-step-mode-btn" data-mode="yaml">YAML 片段</button>
+            </div>
+            <div id="step-edit-form-panel" class="jms-step-form lth-step-edit-form">
+                <details class="lth-step-sec" open>
+                    <summary class="lth-step-sec__title">基本信息</summary>
+                    <div class="lth-step-sec__body">
+                        <div class="lth-step-row lth-step-row--2 lth-step-row--name-encoding">
+                            <label class="lth-step-field lth-step-field--grow">步骤名称
+                                <input type="text" id="step-edit-name" placeholder="如：登录、创建订单" />
+                            </label>
+                            <label class="lth-step-field">内容编码
+                                <input type="text" id="step-edit-encoding" class="hf-mono" placeholder="UTF-8（可选）" />
+                            </label>
+                        </div>
+                        <div class="lth-step-row lth-step-row--method-path">
+                            <label class="lth-step-field lth-step-field--method">方法
+                                <select id="step-edit-method">
+                                    <option value="GET">GET</option>
+                                    <option value="POST">POST</option>
+                                    <option value="PUT">PUT</option>
+                                    <option value="PATCH">PATCH</option>
+                                    <option value="DELETE">DELETE</option>
+                                    <option value="HEAD">HEAD</option>
+                                    <option value="OPTIONS">OPTIONS</option>
+                                </select>
+                            </label>
+                            <label class="lth-step-field lth-step-field--grow lth-step-field--path-with-hint">
+                                <span class="lth-step-path-label-wrap">
+                                    <span class="lth-step-path-label-text">路径</span>
+                                    <span class="lth-step-path-label-hint">路径与 Query 写在一起，例如 <code class="hf-mono">/oauth/token?grant_type=password</code></span>
+                                </span>
+                                <input type="text" id="step-edit-path" class="hf-mono" placeholder="/api/foo?bar=1&amp;state=LIVE" />
+                            </label>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="lth-step-sec" id="step-edit-body-section" open>
+                    <summary class="lth-step-sec__title">请求体</summary>
+                    <div class="lth-step-sec__body lth-step-body-wrap">
+                        <div class="jms-step-body-type-row">
+                            <div class="jms-step-body-modes">
+                                <button type="button" class="jms-step-body-mode-btn is-active" data-body-mode="json">JSON</button>
+                                <button type="button" class="jms-step-body-mode-btn" data-body-mode="form">表单</button>
+                            </div>
+                            <p id="step-edit-body-lock-hint" class="jms-step-body-lock-hint hidden">已填写内容，不可切换 JSON / 表单</p>
+                        </div>
+                        <div id="step-edit-body-json">
+                            <textarea id="step-edit-body" rows="5" class="hf-mono w-full lth-step-textarea" spellcheck="false" placeholder='{"key":"value"}'></textarea>
+                        </div>
+                        <div id="step-edit-body-form" class="hidden">
+                            <div class="jms-subhead"><span>表单参数</span><button type="button" id="btn-step-add-body-param" class="jms-add-chip">+ 参数</button></div>
+                            <div id="step-edit-body-params" class="lth-step-kv-list"></div>
+                        </div>
+                        <div id="step-edit-body-upload" class="lth-step-upload-block">
+                            <div class="jms-subhead"><span>文件上传</span>
+                                <span class="lth-step-subhead-actions">
+                                    <button type="button" id="btn-step-add-mp-field" class="jms-add-chip">+ 文本字段</button>
+                                    <button type="button" id="btn-step-add-upload-file" class="jms-add-chip">+ 文件</button>
+                                </span>
+                            </div>
+                            <p class="lth-step-hint">multipart 文本字段与文件路径（JMeter 运行机本地路径）</p>
+                            <div id="step-edit-multipart-fields" class="lth-step-kv-list"></div>
+                            <div id="step-edit-upload-files" class="lth-step-kv-list"></div>
+                        </div>
+                    </div>
+                </details>
+
+                            </div>
+            <div id="step-edit-yaml-panel" class="hidden">
+                <textarea id="step-edit-yaml" class="hf-mono min-h-[12rem] w-full rounded-lg border border-slate-200 bg-slate-50 p-2 text-xs" spellcheck="false"></textarea>
+            </div>
+            <div class="mt-4 flex justify-end gap-2 lth-step-edit-foot">
+                <button type="button" id="btn-step-edit-cancel" class="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700">取消</button>
+                <button type="button" id="btn-step-edit-save" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 可视化搭建：删除确认 -->
+    <div id="modal-jms-confirm" role="dialog" aria-modal="true" aria-labelledby="modal-jms-confirm-title" aria-hidden="true">
+        <div class="jms-modal-card">
+            <h3 id="modal-jms-confirm-title" class="jms-confirm-title">确认删除</h3>
+            <p id="modal-jms-confirm-msg" class="jms-confirm-msg"></p>
+            <div class="jms-confirm-foot">
+                <button type="button" id="btn-jms-confirm-cancel" class="jms-confirm-btn-cancel">取消</button>
+                <button type="button" id="btn-jms-confirm-ok" class="jms-confirm-btn-ok">删除</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- + 线程组：选择类型 -->
+    <div id="modal-tg-add-choice" role="dialog" aria-modal="true" aria-labelledby="modal-tg-add-choice-title" aria-hidden="true">
+        <div class="jms-modal-card jms-tg-add-choice-card">
+            <h3 id="modal-tg-add-choice-title" class="jms-tg-add-choice-title">添加线程组</h3>
+            <p class="jms-tg-add-choice-sub">选择要添加的线程组类型，点击卡片即可创建。</p>
+            <div class="jms-tg-add-choice-actions">
+                <button type="button" id="btn-tg-add-setup" class="jms-tg-add-choice-btn jms-tg-add-choice-btn--setup">
+                    <span class="jms-tg-add-choice-btn__label">setUp 线程组</span>
+                    <span class="jms-tg-add-choice-btn__hint">测试开始前执行，用于数据预热等前置准备</span>
+                </button>
+                <button type="button" id="btn-tg-add-teardown" class="jms-tg-add-choice-btn jms-tg-add-choice-btn--teardown">
+                    <span class="jms-tg-add-choice-btn__label">tearDown 线程组</span>
+                    <span class="jms-tg-add-choice-btn__hint">测试结束后执行，用于清理资源等收尾工作</span>
+                </button>
+                <button type="button" id="btn-tg-add-thread" class="jms-tg-add-choice-btn jms-tg-add-choice-btn--thread">
+                    <span class="jms-tg-add-choice-btn__label">线程组</span>
+                    <span class="jms-tg-add-choice-btn__hint">主要压测负载，承载 HTTP 请求与断言步骤</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- + HTTP 请求：选择新增方式 -->
+    <div id="modal-http-add-choice" role="dialog" aria-modal="true" aria-labelledby="modal-http-add-choice-title" aria-hidden="true">
+        <div class="jms-modal-card jms-http-add-choice-card">
+            <h3 id="modal-http-add-choice-title" class="jms-http-add-choice-title">添加 HTTP 请求</h3>
+            <p class="jms-http-add-choice-sub">点击卡片即可添加；从 curl 导入或粘贴 Step 将打开对应导入框。</p>
+            <div class="jms-http-add-choice-actions">
+                <button type="button" id="btn-http-add-blank" class="jms-http-add-choice-btn jms-http-add-choice-btn--blank">
+                    <span class="jms-http-add-choice-btn__label">新增空白请求</span>
+                    <span class="jms-http-add-choice-btn__hint">从空表单开始配置</span>
+                </button>
+                <button type="button" id="btn-http-add-curl" class="jms-http-add-choice-btn jms-http-add-choice-btn--curl">
+                    <span class="jms-http-add-choice-btn__label">从 curl 导入</span>
+                    <span class="jms-http-add-choice-btn__hint">粘贴命令，自动解析 URL / 方法 / 请求体</span>
+                </button>
+                <button type="button" id="btn-http-add-step" class="jms-http-add-choice-btn jms-http-add-choice-btn--step">
+                    <span class="jms-http-add-choice-btn__label">粘贴 Step</span>
+                    <span class="jms-http-add-choice-btn__hint">粘贴 YAML 片段，解析为 HTTP 请求</span>
+                </button>
+            </div>
+            <div id="http-add-placement-wrap" class="jms-http-add-placement-wrap hidden" aria-hidden="true">
+                <p class="jms-http-add-placement-label">添加位置</p>
+                <p class="jms-http-add-placement-sub">当前线程组包含 If 控制器，请选择新请求添加到哪里。</p>
+                <div id="http-add-placement-options" class="jms-http-add-placement-options"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JMX 文件解析 -->
+    <div id="modal-jmx-import" role="dialog" aria-modal="true" aria-labelledby="modal-jmx-import-title" aria-hidden="true">
+        <div class="jms-modal-card jmx-import-modal-card">
+            <div class="jmx-import-modal__head">
+                <h3 id="modal-jmx-import-title" class="jmx-import-modal__title text-slate-900">JMX 解析</h3>
+                <p class="jmx-import-modal__sub text-slate-500">仅支持 .jmx 文件，在前端解析并导入为场景 YAML（不超过 2MB）</p>
+            </div>
+            <div class="jmx-import-modal__scroll">
+                <div id="jmx-import-drop" class="jmx-import-drop mt-1" tabindex="0" role="button" aria-label="选择 JMX 文件">
+                    <input type="file" id="jmx-import-file" accept=".jmx,application/xml,text/xml" class="sr-only" aria-hidden="true" />
+                    <p class="text-sm font-semibold text-slate-700">点击或拖拽 JMX 文件到此处</p>
+                    <p id="jmx-import-filename" class="mt-1 text-xs text-slate-500">未选择文件</p>
+                </div>
+                <p id="jmx-import-status" class="mt-2 text-xs text-slate-600"></p>
+                <div id="jmx-import-summary" class="mt-1 hidden"></div>
+                <div id="jmx-import-csv-panel" class="mt-3 hidden rounded-lg border border-amber-200 bg-amber-50 p-3">
+                    <div class="jmx-import-csv-panel__head">
+                        <p class="jmx-import-csv-panel__title text-amber-900">CSV 附件（导入后请上传对应文件，打包时会写入 data/ 目录）</p>
+                        <button type="button" id="btn-jmx-csv-bulk-upload" class="jmx-import-csv-bulk-btn">一键上传</button>
+                        <input type="file" id="jmx-import-csv-bulk-files" accept=".csv,text/csv" multiple class="sr-only" aria-hidden="true" />
+                    </div>
+                    <p id="jmx-import-csv-bulk-status" class="jmx-import-csv-bulk-status hidden" aria-live="polite"></p>
+                    <div id="jmx-import-csv-list"></div>
+                </div>
+                <p class="jmx-import-modal__hint text-slate-500">高级脚本（SetupThreadGroup / IfController / BeanShell）将保留结构；也可在生成时选择 Raw JMX 直通模式。</p>
+            </div>
+            <div class="jmx-import-modal__foot">
+                <button type="button" id="btn-jmx-import-cancel" class="jmx-import-modal__btn jmx-import-modal__btn--ghost text-slate-700">取消</button>
+                <button type="button" id="btn-jmx-import-apply" class="jmx-import-modal__btn jmx-import-modal__btn--primary" disabled>导入到场景</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- curl / step 导入弹窗 -->
+    <div id="modal-import" role="dialog" aria-modal="true" aria-labelledby="modal-import-title" aria-hidden="true">
+        <div class="jms-modal-card">
+            <h3 id="modal-import-title" class="text-lg font-semibold text-slate-900">粘贴 curl</h3>
+            <textarea id="import-text" class="hf-mono mt-3 min-h-[10rem] w-full rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs" spellcheck="false"></textarea>
+            <p id="import-err" class="mt-2 hidden text-xs text-red-600"></p>
+            <div class="mt-4 flex justify-end gap-2">
+                <button type="button" id="btn-import-cancel" class="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700">取消</button>
+                <button type="button" id="btn-import-apply" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">合并到 YAML</button>
+            </div>
+        </div>
+    </div>

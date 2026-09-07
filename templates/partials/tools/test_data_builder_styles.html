@@ -1,0 +1,362 @@
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+        .hf-mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+        /* 日志区：默认更矮，少占纵向；内容多时在框内滚动 */
+        .hf-out { min-height: 6rem; max-height: min(36vh, 16rem); }
+        @media (min-width: 1280px) {
+            .hf-out { max-height: min(52vh, 22rem); }
+        }
+        /* 数据构建整页背景见 page_shells.css（lth-data-page__bg） */
+        body.lth-hub-data-tab .lth-hub-scope {
+            position: relative;
+            z-index: 1;
+        }
+        /* 底部略增空白，便于轻微上下滚动 */
+        body.lth-hub-data-tab .tdb-page-shell {
+            padding-bottom: 14.25rem !important;
+        }
+        @media (min-width: 640px) {
+            body.lth-hub-data-tab .tdb-page-shell {
+                padding-bottom: 15rem !important;
+            }
+        }
+        .tdb-page-shell {
+            position: relative;
+            width: 100%;
+            max-width: min(100vw - 1rem, 1280px);
+            margin-left: auto;
+            margin-right: auto;
+            background: transparent;
+        }
+        .tdb-page-shell__content {
+            position: relative;
+            z-index: 1;
+        }
+        @media (min-width: 1536px) {
+            .tdb-page-shell { max-width: 1440px; }
+        }
+        .tdb-page-header {
+            margin-bottom: 0.75rem;
+        }
+        .tdb-page-header__card {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.85rem 1rem;
+            border-radius: 0.75rem;
+        }
+        .tdb-page-header__icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.625rem;
+            background: linear-gradient(145deg, rgb(99 102 241), rgb(6 182 212));
+            font-size: 1.15rem;
+            line-height: 1;
+            box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+        }
+        .tdb-page-header__eyebrow {
+            margin: 0;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .tdb-page-header__title {
+            margin: 0.15rem 0 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        @media (min-width: 640px) {
+            .tdb-page-header__title { font-size: 1.5rem; }
+        }
+        .tdb-config-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 0.625rem;
+        }
+        .tdb-config-panel > .tdb-config-panel__toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.125rem;
+            border-bottom: 1px solid rgb(241 245 249);
+        }
+        .tdb-field label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgb(30 41 59);
+            line-height: 1.25;
+        }
+        .tdb-field .tdb-input {
+            margin-top: 0.25rem;
+            width: 100%;
+            border-radius: 0.5rem;
+            padding: 0.4rem 0.55rem;
+            font-size: 0.8125rem;
+            line-height: 1.35;
+        }
+        .tdb-field .tdb-input:focus {
+            outline: none;
+            border-color: rgb(139 92 246);
+            box-shadow: 0 0 0 2px rgb(139 92 246 / 0.18);
+        }
+        .tdb-field .tdb-input.hf-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+        .tdb-config-meta {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 0.5rem 0.65rem;
+        }
+        .tdb-json-split { display: grid; gap: 0.5rem; grid-template-columns: 1fr; }
+        @media (min-width: 1024px) {
+            .tdb-json-split { grid-template-columns: 1fr 1fr; gap: 0.65rem; align-items: start; }
+        }
+        .tdb-json-split textarea.tdb-input {
+            min-height: 5rem;
+            padding: 0.45rem 0.5rem;
+            font-size: 0.6875rem;
+            line-height: 1.45;
+        }
+        .tdb-inc-block {
+            border-radius: 0.5rem;
+            padding: 0.55rem 0.65rem;
+        }
+        @media (min-width: 640px) {
+            .tdb-inc-block { padding: 0.6rem 0.75rem; }
+        }
+        .tdb-help > summary {
+            cursor: pointer;
+            list-style: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgb(91 33 182);
+            user-select: none;
+        }
+        .tdb-help > summary::-webkit-details-marker { display: none; }
+        .tdb-help > summary::after { content: " ▾"; font-size: 0.65rem; opacity: 0.7; }
+        .tdb-help[open] > summary::after { content: " ▴"; }
+        .tdb-help .tdb-help-body { margin-top: 0.5rem; font-size: 0.75rem; line-height: 1.55; color: rgb(71 85 105); }
+        .tdb-help .tdb-help-body ul { margin: 0.35rem 0 0.35rem 1.1rem; padding: 0; }
+        .tdb-help .tdb-help-body li { margin: 0.25rem 0; }
+        #tdb-inc-fields-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.5rem 0.75rem;
+            align-items: end;
+        }
+        @media (max-width: 639px) {
+            #tdb-inc-fields-list { grid-template-columns: 1fr; }
+        }
+        .tdb-inc-field-row { display: flex; align-items: flex-end; gap: 0.35rem; width: 100%; min-width: 0; }
+        .tdb-inc-field-body { flex: 1; min-width: 0; }
+        .tdb-inc-field-controls { display: flex; align-items: center; margin-top: 0.125rem; }
+        .tdb-inc-path-input {
+            width: 100%;
+            min-width: 0;
+            border-radius: 0.5rem;
+            border: 1px solid rgb(226 232 240);
+            padding: 0.375rem 0.5rem;
+            font-size: 0.6875rem;
+            line-height: 1.25;
+            color: #000;
+            background-color: #fff;
+        }
+        .tdb-inc-path-input::placeholder {
+            color: rgb(148 163 184);
+        }
+        @media (min-width: 640px) {
+            .tdb-inc-path-input { font-size: 0.75rem; padding: 0.375rem 0.625rem; }
+        }
+        .tdb-inc-path-input:focus {
+            outline: none;
+            border-color: rgb(139 92 246);
+            box-shadow: 0 0 0 2px rgb(139 92 246 / 0.18);
+        }
+        .tdb-inc-field-row .tdb-inc-field-remove {
+            flex-shrink: 0;
+            width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 0.375rem;
+            border: 1px solid rgb(226 232 240);
+            background: white;
+            color: rgb(100 116 139);
+            font-size: 1rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .tdb-inc-field-row .tdb-inc-field-remove:hover { border-color: rgb(252 165 165); color: rgb(185 28 28); background: rgb(254 242 242); }
+        .tdb-inc-range-fields .tdb-inc-range-row { background: rgb(248 250 252 / 0.6); }
+        .tdb-inc-range-loop-wrap.hidden,
+        .tdb-inc-range-omit-wrap.hidden { display: none !important; }
+        .tdb-inc-range-loop-wrap:not(.hidden),
+        .tdb-inc-range-omit-wrap:not(.hidden) {
+            padding-top: 0.35rem;
+            border-top: 1px dashed rgb(226 232 240);
+        }
+        .tdb-inc-range-omit-wrap .tdb-inc-range-omit-hint { line-height: 1.35; }
+        .tdb-inc-range-fields .tdb-inc-range-path {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgb(51 65 85);
+            word-break: break-all;
+        }
+        .tdb-inc-fields-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; }
+        .tdb-legal-body { font-size: 0.8125rem; line-height: 1.6; color: rgb(51 65 85); }
+        .tdb-legal-body ul { margin: 0.35rem 0 0.35rem 1.1rem; padding: 0; }
+        .tdb-legal-body li { margin: 0.3rem 0; }
+        .tdb-legal-body p + p { margin-top: 0.65rem; }
+        /* 弹层用 JS 打开时加 .tdb-modal-open，避免 Tailwind 未扫描到动态 classList.add("flex") 导致不显示 */
+        #modal-curl.tdb-modal-open,
+        #modal-curl-view.tdb-modal-open,
+        #modal-py-export.tdb-modal-open,
+        #modal-dup.tdb-modal-open,
+        #modal-inc-range.tdb-modal-open,
+        #modal-usage.tdb-modal-open,
+        #modal-disclaimer.tdb-modal-open {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+        #modal-inc-range .tdb-input,
+        #modal-inc-range input.tdb-inc-range-min,
+        #modal-inc-range input.tdb-inc-range-max {
+            color: #000;
+            background-color: #fff;
+        }
+        #modal-curl #curl-input {
+            color: #000;
+            background-color: #fff;
+        }
+        #modal-curl #curl-input::placeholder {
+            color: rgb(148 163 184);
+        }
+        .tdb-code-preview {
+            min-height: 8rem;
+            max-height: min(55vh, 24rem);
+            overflow: auto;
+            border-radius: 0.5rem;
+            border: 1px solid rgb(226 232 240);
+            background: rgb(248 250 252);
+            color: rgb(15 118 110);
+            padding: 0.75rem 1rem;
+            font-size: 0.75rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        /* 悬浮提示：视口上方居中，淡入淡出 + 轻微位移动画（不用 display:none，才能过渡） */
+        #tdb-toast.tdb-toast {
+            position: fixed;
+            left: 50%;
+            top: 12vh;
+            z-index: 10000;
+            max-width: min(92vw, 26rem);
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.75rem;
+            font-size: 0.875rem;
+            line-height: 1.45;
+            text-align: center;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(-50%, -12px) scale(0.97);
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+            transition:
+                opacity 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.38s ease,
+                visibility 0s linear 0.4s;
+        }
+        #tdb-toast.tdb-toast.tdb-toast--visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0) scale(1);
+            box-shadow: 0 12px 40px rgba(15, 23, 42, 0.2);
+            transition:
+                opacity 0.36s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.4s ease,
+                visibility 0s linear 0s;
+        }
+        #tdb-toast.tdb-toast.tdb-toast--err {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+        }
+        #tdb-toast.tdb-toast.tdb-toast--ok {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+        }
+
+        /* 压测造数 · 数据构建 Tab — 浅色玻璃态（与 Tailwind 深色正文 class 对齐，避免撞色） */
+        body.lth-studio-v2.lth-hub-data-tab .tdb-page-header {
+            display: none !important;
+        }
+        body.lth-studio-v2.lth-hub-data-tab .tdb-config-panel,
+        body.lth-studio-v2.lth-hub-data-tab .tdb-page-shell .grid > section.rounded-xl {
+            border-color: rgba(99, 102, 241, 0.28) !important;
+            background: rgba(255, 255, 255, 0.9) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: #0f172a;
+            box-shadow:
+                0 1px 3px rgba(15, 23, 42, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+        body.lth-studio-v2.lth-hub-data-tab .tdb-config-panel__toolbar {
+            border-bottom-color: rgba(226, 232, 240, 0.95);
+        }
+        body.lth-studio-v2.lth-hub-data-tab .tdb-field label {
+            color: #334155;
+        }
+        body.lth-studio-v2.lth-hub-data-tab .tdb-input,
+        body.lth-studio-v2.lth-hub-data-tab .tdb-inc-path-input,
+        body.lth-studio-v2.lth-hub-data-tab select.tdb-input {
+            background: #ffffff !important;
+            border-color: rgba(148, 163, 184, 0.55) !important;
+            color: #0f172a !important;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+        }
+        body.lth-studio-v2.lth-hub-data-tab .tdb-input::placeholder,
+        body.lth-studio-v2.lth-hub-data-tab .tdb-inc-path-input::placeholder {
+            color: #94a3b8;
+        }
+        body.lth-studio-v2.lth-hub-data-tab .tdb-inc-block {
+            background: rgba(248, 250, 252, 0.96);
+            border: 1px solid rgba(199, 210, 254, 0.65);
+        }
+        body.lth-studio-v2.lth-hub-data-tab .tdb-inc-field-row .tdb-inc-field-remove {
+            background: #ffffff;
+            border-color: #e2e8f0;
+            color: #64748b;
+        }
+        body.lth-studio-v2.lth-hub-data-tab .tdb-help > summary {
+            color: #6d28d9;
+        }
+        body.lth-studio-v2.lth-hub-data-tab .tdb-help .tdb-help-body {
+            color: #475569;
+        }
+        body.lth-studio-v2.lth-hub-data-tab #out-log {
+            background: #f8fafc !important;
+            color: #1e293b !important;
+            border-color: #e2e8f0 !important;
+        }
+        body.lth-studio-v2.lth-hub-data-tab .lth-data-page__bg {
+            background-color: #eef8f3;
+        }
+        body.lth-studio-v2.lth-hub-data-tab .lth-data-page__bg-scrim {
+            background:
+                linear-gradient(180deg, rgba(244, 251, 247, 0.18) 0%, rgba(236, 248, 241, 0.08) 50%, rgba(220, 240, 230, 0.16) 100%),
+                radial-gradient(ellipse 75% 50% at 50% 0%, rgba(110, 185, 150, 0.06), transparent 70%);
+        }
+
+    </style>

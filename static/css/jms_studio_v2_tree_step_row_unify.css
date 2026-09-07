@@ -1,0 +1,424 @@
+/**
+ * Studio v2 树形 · 步骤行视觉统一：类型标签 + 名称 + 次要信息
+ * /tool/api-scenario-studio?tab=jmeter
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps {
+    --jms-tree-row-h: 2.25rem;
+    --jms-tree-pill-fs: 0.5625rem;
+    --jms-tree-name-fs: 0.6875rem;
+    --jms-tree-meta-fs: 0.625rem;
+    --jms-tree-row-border: rgba(226, 232, 240, 0.95);
+    --jms-tree-row-bg: rgba(255, 255, 255, 0.97);
+}
+
+/* ── 类型 Pill（HTTP / 后置 / 逻辑 / Catalog 统一规格） ── */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-method,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-method,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-type,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-type,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-if-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-if-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-transaction-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-random-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-simple-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-loop-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-catalog-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-catalog-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    min-width: 2.1rem !important;
+    max-width: 4.8rem !important;
+    padding: 0.06rem 0.36rem !important;
+    border-radius: 999px !important;
+    font-size: var(--jms-tree-pill-fs) !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    border: 1px solid rgba(148, 163, 184, 0.32) !important;
+    background: #f8fafc !important;
+    color: #475569 !important;
+    box-shadow: none !important;
+}
+
+/* ── 名称 ── */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-name,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-name,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-name,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-name {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    max-width: 14rem !important;
+    font-size: var(--jms-tree-name-fs) !important;
+    font-weight: 600 !important;
+    color: #0f172a !important;
+    line-height: 1.25 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* ── 次要信息（path / 条件 / 脚本摘要） ── */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-path,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-path,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-meta,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-if-card__condition,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-if-card__condition,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-card__meta-text,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-transaction-card__meta-text,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card__meta-text,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-random-card__meta-text,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card__meta-text,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-simple-card__meta-text,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card__meta-text,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-loop-card__meta-text,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-catalog-card__meta-text,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-catalog-card__meta-text {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    font-size: var(--jms-tree-meta-fs) !important;
+    color: #94a3b8 !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* ── 右侧计数 Chip ── */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-assert-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-assert-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-if-card__child-count,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-if-card__child-count,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-card__child-count,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-transaction-card__child-count,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card__child-count,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-random-card__child-count,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card__child-count,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-simple-card__child-count,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card__child-count,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-loop-card__child-count,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-catalog-card__child-count,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-catalog-card__child-count {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+    padding: 0.04rem 0.32rem !important;
+    border-radius: 999px !important;
+    font-size: 0.5625rem !important;
+    line-height: 1.2 !important;
+    font-weight: 600 !important;
+    color: #64748b !important;
+    background: #f1f5f9 !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+/* ── HTTP / Aux 行：统一白底卡片 ── */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card {
+    min-height: var(--jms-tree-row-h) !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 0.34rem 0.46rem !important;
+    background: var(--jms-tree-row-bg) !important;
+    border: 1px solid var(--jms-tree-row-border) !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card::before,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card::before {
+    display: none !important;
+    content: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card__stripe,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card__stripe,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card__icon,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card__icon {
+    display: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card__main,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card__main,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card__content,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card__content,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card__content--tree,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card__content--tree {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 0.34rem !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+}
+
+/* ── 逻辑控制器：头行与 HTTP 行一致 ── */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-if-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-if-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-transaction-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-random-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-simple-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-loop-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-catalog-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-catalog-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-if-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-if-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-transaction-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-random-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-simple-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-loop-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-catalog-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-catalog-card__head {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 0.34rem !important;
+    width: 100% !important;
+    min-height: var(--jms-tree-row-h) !important;
+    padding: 0.34rem 0.46rem !important;
+    background: var(--jms-tree-row-bg) !important;
+    border: 1px solid var(--jms-tree-row-border) !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-if-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-if-card__meta,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-transaction-card__meta,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-random-card__meta,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-simple-card__meta,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-loop-card__meta {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 0.34rem !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-if-card__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-if-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-card__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-transaction-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-random-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-simple-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-loop-card__body,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-catalog-card__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-catalog-card__body {
+    margin-top: 0.06rem !important;
+    padding: 0.1rem 0 0.12rem 0.28rem !important;
+    background: transparent !important;
+    border: none !important;
+    gap: 0.06rem !important;
+}
+
+/* ── 类型 Pill 语义色（低饱和） ── */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-if-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-if-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-transaction-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-random-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-simple-badge,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-loop-badge {
+    color: #92400e !important;
+    background: #fffbeb !important;
+    border-color: #fde68a !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card--regex .jms-aux-type,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card--regex .jms-aux-type {
+    color: #6d28d9 !important;
+    background: #f5f3ff !important;
+    border-color: #ddd6fe !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card--xpath .jms-aux-type,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card--xpath .jms-aux-type {
+    color: #0369a1 !important;
+    background: #f0f9ff !important;
+    border-color: #bae6fd !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card--jdbc .jms-aux-type,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card--jdbc .jms-aux-type {
+    color: #047857 !important;
+    background: #ecfdf5 !important;
+    border-color: #a7f3d0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card--beanshell .jms-aux-type,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card--beanshell .jms-aux-type,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card--jsr223 .jms-aux-type,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card--jsr223 .jms-aux-type {
+    color: #334155 !important;
+    background: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card--json .jms-aux-type,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card--json .jms-aux-type {
+    color: #0f766e !important;
+    background: #f0fdfa !important;
+    border-color: #99f6e4 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card--debug .jms-aux-type,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card--debug .jms-aux-type {
+    color: #64748b !important;
+    background: #f1f5f9 !important;
+    border-color: #e2e8f0 !important;
+}
+
+/* ── ⋯ 操作列：固定宽度 + 统一右缘（覆盖 HTTP/Aux margin-right 与 Logic 不一致） ── */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node__body {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-if-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-if-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-transaction-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-random-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-simple-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-loop-card__head,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-catalog-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-catalog-card__head {
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding-right: 0.3rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card__main,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card__main,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card__content,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card__content,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card__content--tree,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card__content--tree,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-if-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-if-card__meta,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-transaction-card__meta,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-random-card__meta,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-simple-card__meta,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-loop-card__meta {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card__actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card__actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-aux-card .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-if-card__head .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-if-card__head .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-transaction-card__head .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-transaction-card__head .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card__head .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-random-card__head .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card__head .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-simple-card__head .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card__head .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-loop-card__head .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-catalog-card__head .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-catalog-card__head .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-config-card-toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-config-card-toolbar {
+    flex: 0 0 1.65rem !important;
+    width: 1.65rem !important;
+    min-width: 1.65rem !important;
+    max-width: 1.65rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-right: 0 !important;
+    margin-left: auto !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    align-self: center !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-config-card-toolbar .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-config-card-toolbar .lth-step-actions {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .lth-step-menu-btn,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .lth-step-menu-btn {
+    width: 1.45rem !important;
+    height: 1.45rem !important;
+    min-width: 1.45rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    box-sizing: border-box !important;
+}

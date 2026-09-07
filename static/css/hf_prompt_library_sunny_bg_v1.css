@@ -1,0 +1,56 @@
+/**
+ * 提示词库 · 浅橘阳光风背景 v1
+ * 仅 body.hf-prompt-page-body，覆盖 page_shells 深色/紫色 scrim
+ */
+body.hf-prompt-page-body {
+    background-color: #fff7ed !important;
+    color: #431407 !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg {
+    background-color: #fff7ed !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg-scrim {
+    background:
+        linear-gradient(180deg, rgba(255, 251, 235, 0.55) 0%, rgba(255, 237, 213, 0.35) 50%, rgba(254, 215, 170, 0.28) 100%),
+        radial-gradient(ellipse 90% 60% at 50% 0%, rgba(253, 186, 116, 0.22), transparent 70%) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-hero {
+    background: linear-gradient(135deg, #fdba74 0%, #fb923c 45%, #fbbf24 100%) !important;
+    border-color: rgba(251, 146, 60, 0.35) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-hero::before {
+    background:
+        radial-gradient(ellipse 70% 55% at 100% 0%, rgba(255, 255, 255, 0.45) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 45% at 0% 100%, rgba(254, 243, 199, 0.5) 0%, transparent 50%) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-hero--has-img {
+    border: 1px solid rgba(251, 146, 60, 0.32) !important;
+    box-shadow:
+        0 1px 3px rgba(251, 146, 60, 0.08),
+        0 12px 32px -8px rgba(249, 115, 22, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-hero--has-img .hf-prompt-hero__bg-scrim {
+    background: linear-gradient(
+        125deg,
+        rgba(255, 247, 237, 0.35) 0%,
+        rgba(254, 215, 170, 0.28) 45%,
+        rgba(251, 191, 36, 0.22) 100%
+    ) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-hero .hf-prompt-pill {
+    color: rgba(255, 255, 255, 0.92) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main #hf-prompt-empty {
+    color: #9a3412 !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-hero--has-img .hf-prompt-hero__bg-img { object-position: 72% center !important; }

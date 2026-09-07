@@ -1,0 +1,77 @@
+/**
+ * 树形视图 · 启用/停用 紧贴 ⋮ 菜单（最高优先级覆盖 row_unify 1.65rem 限宽）
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card__head {
+    position: relative !important;
+}
+
+/* 启用+⋮ 操作簇：始终靠右，宽度随内容 */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-config-card-toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-config-card-toolbar,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card__actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card__actions {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    padding: 0 !important;
+    gap: 0.22rem !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+}
+
+/* 在 head-actions 内：标签在左，启用+⋮ 作为整体贴右 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-actions {
+    display: inline-flex !important;
+    align-items: center !important;
+    flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    gap: 0.28rem !important;
+    white-space: nowrap !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-actions .jms-config-card-toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-actions .jms-http-card__actions {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-config-card-toolbar [class*="-enable-seg"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-config-card-toolbar .jms-step-enable-seg {
+    flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-config-card-toolbar .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-config-card-toolbar .lth-step-actions,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card__actions.lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card__actions.lth-step-actions {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: 1.45rem !important;
+    max-width: none !important;
+    margin: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .lth-step-menu-btn,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .lth-step-menu-btn {
+    flex: 0 0 auto !important;
+    width: 1.45rem !important;
+    min-width: 1.45rem !important;
+    max-width: 1.45rem !important;
+}

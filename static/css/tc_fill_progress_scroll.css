@@ -1,0 +1,27 @@
+/* 用例补充进度 — 内容区垂直滚动条（仅 .tc-qc-fill-progress--scrollable，由 TcFillProgressScrollLayout 启用） */
+#tc-validate-drawer-single.tc-validate-drawer--fill-active #tc-validate-fill-progress-inner-single.tc-qc-fill-progress--scrollable {
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99, 102, 241, 0.5) rgba(15, 23, 42, 0.08);
+}
+
+#tc-validate-drawer-single.tc-validate-drawer--fill-active #tc-validate-fill-progress-inner-single.tc-qc-fill-progress--scrollable::-webkit-scrollbar {
+    width: 8px;
+}
+
+#tc-validate-drawer-single.tc-validate-drawer--fill-active #tc-validate-fill-progress-inner-single.tc-qc-fill-progress--scrollable::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.06);
+    border-radius: 999px;
+}
+
+#tc-validate-drawer-single.tc-validate-drawer--fill-active #tc-validate-fill-progress-inner-single.tc-qc-fill-progress--scrollable::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.45);
+    border-radius: 999px;
+}
+
+#tc-validate-drawer-single.tc-validate-drawer--fill-active #tc-validate-fill-progress-inner-single.tc-qc-fill-progress--scrollable::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.62);
+}

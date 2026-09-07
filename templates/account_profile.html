@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人资料 · {{ hf_site_brand_title }}</title>
+    {% include 'partials/hf_favicon.html' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toolkit.css') }}?v=20260556">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/page_shells.css') }}?v=20260556">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/account_profile_chrome.css') }}?v=20260725pwd1">
+    <script src="{{ url_for('static', filename='vendor/tailwindcss-cdn-3.4.10.js') }}"></script>
+</head>
+<body class="min-h-screen account-profile-page">
+    {% include 'partials/hf_global_nav.html' %}
+    <div class="profile-page__bg" aria-hidden="true">
+        <div class="profile-page__bg-orb profile-page__bg-orb--a"></div>
+        <div class="profile-page__bg-orb profile-page__bg-orb--b"></div>
+        <div class="profile-page__bg-orb profile-page__bg-orb--c"></div>
+        <div class="profile-page__bg-grid"></div>
+    </div>
+    <div class="profile-wrap">
+        <div class="profile-card">
+            <header class="profile-card__head">
+                <h1>个人资料</h1>
+                <p class="profile-card__lead">管理昵称与登录身份</p>
+            </header>
+
+            <div class="profile-avatar-block">
+                <div class="profile-avatar-ring" id="profile-avatar-preview">
+                    <span class="profile-avatar-fallback" id="profile-avatar-fallback">?</span>
+                    <img id="profile-avatar-img" alt="头像" class="hidden">
+                </div>
+                <input type="file" id="profile-avatar-input" accept="image/jpeg,image/png,image/webp,image/gif">
+                <button type="button" class="profile-upload-btn" id="profile-avatar-pick">更换头像</button>
+                <p class="profile-hint">支持 JPG / PNG / WebP / GIF，最大 5 MB</p>
+            </div>
+
+            <section class="profile-section" aria-labelledby="profile-basic-title">
+                <h2 id="profile-basic-title" class="profile-section__title">基本信息</h2>
+                <label class="profile-field">
+                    <span class="profile-field__label">昵称<span class="profile-field__req" aria-hidden="true">*</span></span>
+                    <input type="text" id="profile-display-name" maxlength="64" autocomplete="nickname" required placeholder="设置您的显示昵称">
+                </label>
+
+                <div class="profile-id-list">
+                    <div class="profile-id-row" id="profile-email-block">
+                        <div class="profile-id-row__main">
+                            <span class="profile-account-block__tag is-email">邮箱</span>
+                            <div class="profile-id-row__text">
+                                <span class="profile-id-row__label">登录邮箱</span>
+                                <span class="profile-id-row__value" id="profile-email-text">—</span>
+                            </div>
+                        </div>
+                        <button type="button" class="profile-id-row__action is-hidden" id="profile-email-action-btn">绑定邮箱</button>
+                    </div>
+
+                    <div class="profile-id-row" id="profile-phone-block">
+                        <div class="profile-id-row__main">
+                            <span class="profile-account-block__tag is-phone">手机</span>
+                            <div class="profile-id-row__text">
+                                <span class="profile-id-row__label" id="profile-phone-label">登录手机号</span>
+                                <span class="profile-id-row__value" id="profile-phone-display">未绑定</span>
+                            </div>
+                        </div>
+                        <button type="button" class="profile-id-row__action is-hidden" id="profile-phone-action-btn">绑定手机号</button>
+                    </div>
+                </div>
+                <p class="profile-hint" id="profile-phone-hint">绑定后可用手机号登录与短信改密</p>
+            </section>
+
+            <section class="profile-section" aria-labelledby="profile-security-title">
+                <h2 id="profile-security-title" class="profile-section__title">账户安全</h2>
+                <div class="profile-security">
+                    <div class="profile-security__text">
+                        <p class="profile-security__label">登录密码</p>
+                        <p class="profile-security__hint" id="profile-security-hint">通过验证码验证后可设置新密码</p>
+                    </div>
+                    <button type="button" class="profile-security__btn" id="profile-pwd-open">修改密码</button>
+                </div>
+            </section>
+
+            <div class="profile-actions">
+                <a href="/app" class="profile-btn profile-btn--ghost">返回</a>
+                <button type="button" class="profile-btn profile-btn--primary" id="profile-save-btn">保存</button>
+            </div>
+            <p id="profile-msg" class="profile-msg" aria-live="polite"></p>
+        </div>
+    </div>
+
+    {# 右侧绑定抽屉：手机 / 邮箱共用 #}
+    <div id="profile-bind-drawer" class="profile-drawer" aria-hidden="true">
+        <div class="profile-drawer__mask" id="profile-bind-drawer-mask" tabindex="-1"></div>
+        <aside class="profile-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="profile-bind-title">
+            <header class="profile-drawer__head">
+                <div>
+                    <h2 id="profile-bind-title" class="profile-drawer__title">绑定手机号</h2>
+                    <p class="profile-drawer__desc" id="profile-bind-desc">验证通过后即可绑定</p>
+                </div>
+                <button type="button" class="profile-drawer__close" id="profile-bind-drawer-close" aria-label="关闭">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </header>
+            <div class="profile-drawer__body">
+                <div id="profile-bind-phone-fields">
+                    <label class="profile-field">
+                        <span class="profile-field__label" id="profile-bind-phone-label">手机号</span>
+                        <input type="tel" id="profile-bind-phone" class="profile-field-input" inputmode="numeric" maxlength="11" placeholder="11 位手机号" autocomplete="tel">
+                    </label>
+                </div>
+                <div id="profile-bind-email-fields" class="is-hidden">
+                    <label class="profile-field">
+                        <span class="profile-field__label">邮箱</span>
+                        <input type="email" id="profile-bind-email" class="profile-field-input" placeholder="name@example.com" autocomplete="email">
+                    </label>
+                </div>
+                <label class="profile-field">
+                    <span class="profile-field__label">图形验证码</span>
+                    <div class="profile-inline-row">
+                        <span class="profile-captcha-q" id="profile-bind-captcha-q" aria-live="polite">…</span>
+                        <input id="profile-bind-captcha-a" type="text" class="profile-field-input" inputmode="numeric" placeholder="计算结果" autocomplete="off">
+                        <button type="button" class="profile-mini-btn" id="profile-bind-captcha-refresh">换一题</button>
+                    </div>
+                </label>
+                <label class="profile-field">
+                    <span class="profile-field__label" id="profile-bind-code-label">短信验证码</span>
+                    <div class="profile-inline-row">
+                        <input id="profile-bind-code" type="text" class="profile-field-input" inputmode="numeric" maxlength="8" placeholder="验证码" autocomplete="one-time-code">
+                        <button type="button" class="profile-mini-btn" id="profile-bind-send-code">获取验证码</button>
+                    </div>
+                </label>
+                <p id="profile-drawer-msg" class="profile-msg" aria-live="polite"></p>
+            </div>
+            <footer class="profile-drawer__foot">
+                <button type="button" class="profile-mini-btn profile-mini-btn--ghost" id="profile-bind-cancel">取消</button>
+                <button type="button" class="profile-mini-btn profile-mini-btn--primary" id="profile-bind-submit">确认绑定</button>
+            </footer>
+        </aside>
+    </div>
+
+    {# 右侧修改密码抽屉 #}
+    <div id="profile-pwd-drawer" class="profile-drawer" aria-hidden="true">
+        <div class="profile-drawer__mask" id="profile-pwd-drawer-mask" tabindex="-1"></div>
+        <aside class="profile-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="profile-pwd-title">
+            <header class="profile-drawer__head">
+                <div>
+                    <h2 id="profile-pwd-title" class="profile-drawer__title">修改密码</h2>
+                    <p class="profile-drawer__desc" id="profile-pwd-desc">验证通过后即可设置新密码</p>
+                </div>
+                <button type="button" class="profile-drawer__close" id="profile-pwd-drawer-close" aria-label="关闭">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </header>
+            <div class="profile-drawer__body">
+                <div id="profile-pwd-channel-switch" class="profile-drawer-channel is-hidden" role="group" aria-label="验证方式">
+                    <button type="button" class="profile-drawer-channel__btn is-active" data-pwd-channel="sms">短信验证码</button>
+                    <button type="button" class="profile-drawer-channel__btn" data-pwd-channel="email">邮箱验证码</button>
+                </div>
+                <label class="profile-field">
+                    <span class="profile-field__label" id="profile-pwd-account-label">登录账号</span>
+                    <input type="text" id="profile-pwd-account" class="profile-field-input" readonly autocomplete="username">
+                </label>
+                <label class="profile-field">
+                    <span class="profile-field__label">图形验证码</span>
+                    <div class="profile-inline-row">
+                        <span class="profile-captcha-q" id="profile-pwd-captcha-q" aria-live="polite">…</span>
+                        <input id="profile-pwd-captcha-a" type="text" class="profile-field-input" inputmode="numeric" placeholder="计算结果" autocomplete="off">
+                        <button type="button" class="profile-mini-btn" id="profile-pwd-captcha-refresh">换一题</button>
+                    </div>
+                </label>
+                <label class="profile-field">
+                    <span class="profile-field__label" id="profile-pwd-code-label">验证码</span>
+                    <div class="profile-inline-row">
+                        <input id="profile-pwd-code" type="text" class="profile-field-input" inputmode="numeric" maxlength="8" placeholder="验证码" autocomplete="one-time-code">
+                        <button type="button" class="profile-mini-btn" id="profile-pwd-send-code">获取验证码</button>
+                    </div>
+                </label>
+                <label class="profile-field">
+                    <span class="profile-field__label">新密码</span>
+                    <input id="profile-pwd-new" type="password" class="profile-field-input" autocomplete="new-password" placeholder="至少 8 位" minlength="8">
+                </label>
+                <label class="profile-field">
+                    <span class="profile-field__label">确认新密码</span>
+                    <input id="profile-pwd-confirm" type="password" class="profile-field-input" autocomplete="new-password" placeholder="再次输入新密码" minlength="8">
+                </label>
+                <p id="profile-pwd-drawer-msg" class="profile-msg" aria-live="polite"></p>
+            </div>
+            <footer class="profile-drawer__foot">
+                <button type="button" class="profile-mini-btn profile-mini-btn--ghost" id="profile-pwd-cancel">取消</button>
+                <button type="button" class="profile-mini-btn profile-mini-btn--primary" id="profile-pwd-submit">确认修改</button>
+            </footer>
+        </aside>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/hf_auth_nav.js') }}?v=20260622logouttree2"></script>
+    <script src="{{ url_for('static', filename='js/hf_float_toast.js') }}?v=20260611toast1"></script>
+    <script src="{{ url_for('static', filename='js/hf_account_profile_page.js') }}?v=20260725pwd1"></script>
+    {% include 'partials/hf_site_footer.html' %}
+</body>
+</html>

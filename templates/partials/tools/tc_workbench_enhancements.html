@@ -1,0 +1,239 @@
+{# 用例工作台增强：二次校验、个人 RAG（批次条见 tc_gen_batch_bar.html） #}
+
+{% macro tc_validate_drawer_body(scope, title) %}
+    <div class="tc-validate-drawer-tabs" role="tablist" aria-label="{{ title }}视图">
+        <div class="tc-validate-drawer-tabs__nav">
+            <button type="button" id="tc-validate-tab-issues-{{ scope }}" class="tc-validate-tab tc-validate-tab--active" role="tab" aria-selected="true" aria-controls="tc-validate-issue-list-{{ scope }}">问题清单</button>
+            <button type="button" id="tc-validate-tab-coverage-{{ scope }}" class="tc-validate-tab" role="tab" aria-selected="false" aria-controls="tc-validate-coverage-panel-{{ scope }}">问题清单矩阵</button>
+        </div>
+    </div>
+    {# 问题清单动作条：迁入删过度/全部补充；矩阵 Tab 可隐藏，引擎与 coverage panel 仍保留 #}
+    <div id="tc-issues-actions-toolbar-{{ scope }}" class="tc-issues-actions-toolbar hidden" aria-hidden="true" data-tc-issues-actions="1">
+        <div class="tc-issues-actions-toolbar__actions">
+            <button type="button" id="tc-issues-delete-over-btn-{{ scope }}" class="btn btn-secondary btn-sm tc-issues-delete-over-btn" disabled>删除过度生成 (0)</button>
+            <button type="button" id="tc-issues-fill-all-btn-{{ scope }}" class="btn btn-secondary btn-sm tc-issues-fill-all-btn" disabled>补充用例 (0)</button>
+        </div>
+    </div>
+    <div id="tc-validate-issue-list-{{ scope }}" class="tc-side-drawer__body tc-validate-float-panel__body"></div>
+    <div id="tc-validate-coverage-panel-{{ scope }}" class="tc-side-drawer__body tc-validate-float-panel__body hidden" aria-hidden="true">
+                <div id="tc-coverage-toolbar-{{ scope }}" class="tc-coverage-toolbar">
+            <div id="tc-coverage-filter-{{ scope }}" class="tc-coverage-filter-seg" role="group" aria-label="筛选问题类型">
+                <button type="button" class="tc-coverage-filter-chip tc-coverage-filter-chip--active" data-filter="all" aria-pressed="true">全部</button>
+                <button type="button" class="tc-coverage-filter-chip" data-filter="uncovered" aria-pressed="false">遗漏</button>
+                <button type="button" class="tc-coverage-filter-chip" data-filter="over" aria-pressed="false">过度生成</button>
+            </div>
+            <div class="tc-coverage-toolbar__actions">
+                <button type="button" id="tc-coverage-delete-over-btn-{{ scope }}" class="btn btn-secondary btn-sm tc-coverage-delete-over-btn" disabled>删除过度生成 (0)</button>
+                <button type="button" id="tc-coverage-fill-all-btn-{{ scope }}" class="btn btn-secondary btn-sm tc-coverage-fill-all-btn" disabled>补充用例 (0)</button>
+            </div>
+        </div>
+        <div id="tc-coverage-matrix-list-{{ scope }}" class="tc-coverage-matrix-list"></div>
+    </div>
+    <div id="tc-validate-fill-progress-{{ scope }}" class="tc-validate-fill-progress-panel tc-side-drawer__body tc-validate-float-panel__body hidden" aria-hidden="true" aria-label="用例补充进度">
+        <div id="tc-validate-fill-progress-inner-{{ scope }}" class="tc-qc-fill-progress"></div>
+        <div class="tc-qc-fill-progress__foot">
+            <button type="button" id="tc-validate-fill-cancel-{{ scope }}" class="btn btn-secondary btn-sm hidden">取消补充</button>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro tc_validate_drawer(scope, title) %}
+{% if scope == 'single' %}
+<button type="button" id="tc-validate-float-reopen-btn-{{ scope }}" class="tc-validate-float-reopen tc-validate-float-reopen--{{ scope }} hidden" aria-label="打开{{ title }}" title="{{ title }}">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+    <span id="tc-validate-float-reopen-label-{{ scope }}">{{ title }}</span>
+    <span id="tc-validate-float-reopen-badge-{{ scope }}" class="tc-validate-float-reopen__badge hidden"></span>
+</button>
+<aside id="tc-validate-drawer-{{ scope }}" class="tc-validate-float-panel tc-validate-drawer tc-validate-drawer--side tc-validate-drawer--scope-{{ scope }} hidden" data-validate-scope="{{ scope }}" aria-label="{{ title }}" aria-hidden="true">
+    <div class="tc-validate-float-panel__head" data-validate-drag-handle="{{ scope }}">
+        <div class="tc-validate-float-panel__head-main">
+            <h3 class="tc-side-drawer__title">{{ title }}</h3>
+            <p id="tc-validate-drawer-summary-{{ scope }}" class="tc-side-drawer__subtitle">尚未运行检查</p>
+        </div>
+        <div class="tc-validate-float-panel__winbtns">
+            <button type="button" id="tc-validate-drawer-minimize-{{ scope }}" class="tc-validate-drawer-minimize-btn" aria-label="收回" title="收回">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-width="2" d="M5 12h14"/></svg>
+            </button>
+            <button type="button" id="tc-validate-drawer-close-{{ scope }}" class="tc-validate-float-panel__winbtn" aria-label="关闭">✕</button>
+        </div>
+    </div>
+    {{ tc_validate_drawer_body(scope, title) }}
+    <div class="tc-validate-single-resize tc-validate-single-resize--w" data-validate-single-resize="w" title="拖动左边缘调整宽度" aria-hidden="true"></div>
+    <div class="tc-validate-single-resize tc-validate-single-resize--nw" data-validate-single-resize="nw" title="拖动左上角调整大小" aria-hidden="true"></div>
+</aside>
+{% else %}
+<button type="button" id="tc-validate-float-reopen-btn-{{ scope }}" class="tc-validate-float-reopen tc-validate-float-reopen--{{ scope }} hidden" aria-label="打开{{ title }}" title="{{ title }}">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+    <span id="tc-validate-float-reopen-label-{{ scope }}">{{ title }}</span>
+    <span id="tc-validate-float-reopen-badge-{{ scope }}" class="tc-validate-float-reopen__badge hidden"></span>
+</button>
+<aside id="tc-validate-drawer-{{ scope }}" class="tc-validate-float-panel tc-validate-drawer tc-validate-drawer--scope-{{ scope }} hidden" data-validate-scope="{{ scope }}" aria-label="{{ title }}" aria-hidden="true">
+    <div class="tc-validate-float-panel__head" data-validate-drag-handle="{{ scope }}">
+        <div class="tc-validate-float-panel__head-main">
+            <h3 class="tc-side-drawer__title">{{ title }}</h3>
+            <p id="tc-validate-drawer-summary-{{ scope }}" class="tc-side-drawer__subtitle">尚未运行检查</p>
+        </div>
+        <div class="tc-validate-float-panel__winbtns">
+            <button type="button" id="tc-validate-float-shrink-{{ scope }}" class="tc-validate-float-panel__winbtn" aria-label="缩小">−</button>
+            <button type="button" id="tc-validate-float-expand-{{ scope }}" class="tc-validate-float-panel__winbtn" aria-label="放大">+</button>
+            <button type="button" id="tc-validate-drawer-close-{{ scope }}" class="tc-validate-float-panel__winbtn" aria-label="关闭">✕</button>
+        </div>
+    </div>
+    {{ tc_validate_drawer_body(scope, title) }}
+    <div class="tc-validate-float-resize" aria-hidden="true" title="拖拽调整大小"></div>
+</aside>
+{% endif %}
+{% endmacro %}
+
+<!-- 质量检查浮窗（快速 / 规划隔离） -->
+{{ tc_validate_drawer('single', '质量检查') }}
+
+<!-- 缺口补全 / 补充用例 Agent 流程抽屉 -->
+<aside id="tc-agent-drawer" class="tc-validate-float-panel tc-agent-drawer tc-agent-drawer--side hidden" aria-label="补充用例" aria-hidden="true">
+    <div class="tc-validate-float-panel__head" data-agent-drag-handle>
+        <div class="tc-validate-float-panel__head-main">
+            <h3 class="tc-side-drawer__title">补充用例</h3>
+            <p id="tc-agent-drawer-summary" class="tc-side-drawer__subtitle">准备中…</p>
+        </div>
+        <div class="tc-validate-float-panel__winbtns">
+            <button type="button" id="tc-agent-open-coverage-btn" class="tc-agent-coverage-head-btn btn btn-secondary btn-sm hidden" aria-label="查看覆盖率矩阵">查看覆盖率</button>
+            <button type="button" id="tc-agent-drawer-minimize" class="tc-validate-drawer-minimize-btn tc-agent-drawer-minimize-btn" aria-label="最小化" title="最小化">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-width="2" d="M5 12h14"/></svg>
+            </button>
+            <button type="button" id="tc-agent-drawer-close" class="tc-validate-float-panel__winbtn" aria-label="关闭">✕</button>
+        </div>
+    </div>
+    <div id="tc-agent-step-list" class="tc-side-drawer__body tc-validate-float-panel__body"></div>
+    <div class="tc-side-drawer__foot tc-validate-float-panel__foot">
+        <button type="button" id="tc-agent-cancel-btn" class="btn btn-secondary btn-sm hidden">取消任务</button>
+        <button type="button" id="tc-agent-retry-btn" class="btn btn-primary btn-sm hidden">重试</button>
+    </div>
+</aside>
+
+
+
+<!-- 导出来源列选择弹层 -->
+<div id="tc-export-provenance-modal" class="fixed inset-0 z-[87] hidden items-center justify-center bg-black/45 p-4">
+    <div class="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+        <h3 class="text-lg font-semibold text-gray-900">选择来源写入列</h3>
+        <p class="mt-2 text-sm text-gray-600">部分用例带有 AI 识别来源，但当前模板中没有可自动匹配的列。请选择要写入来源的列，或直接导出不带来源。</p>
+        <div class="mt-4">
+            <label class="form-label text-xs" for="tc-export-provenance-col-select">写入列</label>
+            <select id="tc-export-provenance-col-select" class="form-input mt-1"></select>
+        </div>
+        <div class="mt-5 flex flex-wrap justify-end gap-2">
+            <button type="button" id="tc-export-provenance-cancel" class="btn btn-secondary btn-sm">取消</button>
+            <button type="button" id="tc-export-provenance-skip" class="btn btn-secondary btn-sm">直接导出</button>
+            <button type="button" id="tc-export-provenance-apply" class="btn btn-primary btn-sm">导出并写入来源</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- 导出需求选择弹层 -->
+<div id="tc-export-requirement-modal" class="tc-req-picker-modal tc-req-picker-modal--export hidden" aria-hidden="true">
+    <div class="tc-req-picker-modal__backdrop" aria-hidden="true"></div>
+    <div class="tc-export-requirement-modal__panel tc-req-picker-modal__panel" role="dialog" aria-modal="true" aria-labelledby="tc-export-requirement-title">
+        <div class="tc-req-picker-modal__header">
+            <div class="tc-req-picker-modal__header-main">
+                <div class="tc-req-picker-modal__icon tc-req-picker-modal__icon--export" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v10m0 0l3.5-3.5M12 13l-3.5-3.5"/><path stroke-linecap="round" stroke-linejoin="round" d="M5 17h14a2 2 0 002-2v-1H3v1a2 2 0 002 2z"/></svg>
+                </div>
+                <div class="tc-req-picker-modal__titles">
+                    <h3 id="tc-export-requirement-title" class="tc-req-picker-modal__title">选择导出需求</h3>
+                    <p class="tc-req-picker-modal__subtitle">勾选已有用例的需求页，导出顺序按勾选先后</p>
+                </div>
+            </div>
+            <button type="button" id="tc-export-requirement-close" class="tc-req-picker-modal__close" aria-label="关闭">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+        </div>
+        <div class="tc-req-picker-modal__summary-bar">
+            <span id="tc-export-requirement-summary" class="tc-req-picker-modal__summary">加载中…</span>
+        </div>
+        <div class="tc-req-picker-modal__body">
+            <div id="tc-export-requirement-loading" class="tc-req-picker-modal__state tc-export-requirement-loading" role="status">加载中…</div>
+            <div id="tc-export-requirement-empty" class="tc-req-picker-modal__state tc-export-requirement-empty hidden">暂无可选需求</div>
+            <div id="tc-export-requirement-list" class="tc-export-requirement-list"></div>
+        </div>
+        <div id="tc-export-requirement-mode-wrap" class="tc-export-requirement-mode-wrap hidden" aria-hidden="true">
+            <div class="tc-export-requirement-mode-wrap__label">多需求导出方式</div>
+            <div class="tc-export-requirement-mode-list">
+                <label class="tc-export-requirement-mode">
+                    <input type="radio" name="tc-export-requirement-mode" value="merge" checked>
+                    <span class="tc-export-requirement-mode__card">
+                        <span class="tc-export-requirement-mode__title">合并导出</span>
+                        <span class="tc-export-requirement-mode__desc">合并到一个 Excel，按勾选顺序追加行</span>
+                    </span>
+                </label>
+                <label class="tc-export-requirement-mode">
+                    <input type="radio" name="tc-export-requirement-mode" value="separate">
+                    <span class="tc-export-requirement-mode__card">
+                        <span class="tc-export-requirement-mode__title">分文件导出</span>
+                        <span class="tc-export-requirement-mode__desc">每个需求单独生成一个 Excel 文件</span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="tc-req-picker-modal__footer">
+            <button type="button" id="tc-export-requirement-cancel" class="tc-req-picker-modal__btn tc-req-picker-modal__btn--ghost">取消</button>
+            <button type="button" id="tc-export-requirement-submit" class="tc-req-picker-modal__btn tc-req-picker-modal__btn--primary tc-req-picker-modal__btn--export" disabled>导出 Excel</button>
+        </div>
+    </div>
+</div>
+
+<!-- 导出报告弹层 -->
+<div id="tc-export-report-modal" class="fixed inset-0 z-[86] hidden items-center justify-center bg-black/45 p-4">
+    <div class="tc-export-report-modal__panel relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+        <div class="flex flex-shrink-0 items-center justify-between gap-3 border-b border-gray-100 px-5 py-3">
+            <div>
+                <h3 class="text-lg font-semibold text-gray-900">导出报告</h3>
+                <p id="tc-export-report-subtitle" class="mt-0.5 text-xs text-slate-500"></p>
+            </div>
+            <button type="button" id="tc-export-report-close" class="rounded-full p-2 text-gray-400 hover:bg-gray-100" aria-label="关闭">✕</button>
+        </div>
+        <div id="tc-export-report-summary" class="flex-shrink-0 border-b border-gray-100 px-5 py-3 text-sm"></div>
+        <div id="tc-export-report-table-wrap" class="min-h-0 flex-1 overflow-auto p-4 text-sm"></div>
+        <div class="flex flex-shrink-0 flex-wrap justify-end gap-2 border-t border-gray-100 px-5 py-3">
+            <button type="button" id="tc-export-report-copy" class="btn btn-secondary btn-sm">复制摘要</button>
+</div>
+    </div>
+</div>
+
+<!-- 导图批次逐条评审弹层 -->
+<!-- 思维导图 XMind 多页导出 -->
+<div id="tc-export-xmind-modal" class="tc-req-picker-modal tc-req-picker-modal--export hidden" aria-hidden="true">
+    <div class="tc-req-picker-modal__backdrop" aria-hidden="true"></div>
+    <div class="tc-export-xmind-modal__panel tc-req-picker-modal__panel" role="dialog" aria-modal="true" aria-labelledby="tc-export-xmind-title">
+        <div class="tc-req-picker-modal__header">
+            <div class="tc-req-picker-modal__header-main">
+                <div class="tc-req-picker-modal__icon tc-req-picker-modal__icon--export" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v10m0 0l3.5-3.5M12 13l-3.5-3.5"/><path stroke-linecap="round" stroke-linejoin="round" d="M5 17h14a2 2 0 002-2v-1H3v1a2 2 0 002 2z"/></svg>
+                </div>
+                <div class="tc-req-picker-modal__titles">
+                    <h3 id="tc-export-xmind-title" class="tc-req-picker-modal__title">选择导出思维导图</h3>
+                    <p class="tc-req-picker-modal__subtitle">勾选已有导图用例的需求页；单页按原逻辑导出，多页合并为一个 XMind</p>
+                </div>
+            </div>
+            <button type="button" id="tc-export-xmind-close" class="tc-req-picker-modal__close" aria-label="关闭">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+        </div>
+        <div class="tc-req-picker-modal__summary-bar tc-req-picker-modal__summary-bar--actions">
+            <span id="tc-export-xmind-summary" class="tc-req-picker-modal__summary">加载中…</span>
+            <div class="tc-req-picker-modal__quick-actions">
+                <button type="button" id="tc-export-xmind-select-all" class="tc-req-picker-modal__link">全选</button>
+                <button type="button" id="tc-export-xmind-select-none" class="tc-req-picker-modal__link">清空</button>
+            </div>
+        </div>
+        <div class="tc-req-picker-modal__body">
+            <div id="tc-export-xmind-loading" class="tc-req-picker-modal__state" role="status">加载中…</div>
+            <div id="tc-export-xmind-empty" class="tc-req-picker-modal__state hidden">暂无可导出的思维导图用例</div>
+            <div id="tc-export-xmind-list" class="tc-export-xmind-list"></div>
+        </div>
+        <div class="tc-req-picker-modal__footer">
+            <button type="button" id="tc-export-xmind-cancel" class="tc-req-picker-modal__btn tc-req-picker-modal__btn--ghost">取消</button>
+            <button type="button" id="tc-export-xmind-submit" class="tc-req-picker-modal__btn tc-req-picker-modal__btn--primary tc-req-picker-modal__btn--export" disabled>导出 XMind</button>
+        </div>
+    </div>
+</div>

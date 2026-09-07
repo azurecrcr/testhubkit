@@ -1,0 +1,202 @@
+/* 提示词库 · 浅橘/天橘主基调背景 v5（参照 WebUI 自动化分层，仅 hf-prompt-page-body） */
+
+body.hf-prompt-page-body {
+  --hf-prompt-orange-1: #fffbf5;
+  --hf-prompt-orange-2: #fff7ed;
+  --hf-prompt-orange-3: #ffedd5;
+  --hf-prompt-orange-4: #fed7aa;
+  --hf-prompt-orange-glow: rgba(251, 146, 60, 0.22);
+  --hf-prompt-orange-soft: rgba(253, 186, 116, 0.18);
+  --hf-prompt-orange-grid: rgba(249, 115, 22, 0.065);
+  background-color: var(--hf-prompt-orange-1) !important;
+  color: #334155 !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  background: linear-gradient(168deg, #fffbf5 0%, #fff7ed 32%, #ffedd5 58%, #fef3c7 100%) !important;
+  background-color: #fffbf5 !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg-img {
+  display: none !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg-base {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 92% 58% at 50% -10%, var(--hf-prompt-orange-glow), transparent 62%),
+    radial-gradient(ellipse 52% 44% at 92% 70%, rgba(251, 191, 36, 0.14), transparent 58%),
+    radial-gradient(ellipse 46% 40% at 6% 74%, var(--hf-prompt-orange-soft), transparent 55%);
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg-grid {
+  position: absolute;
+  inset: -1px;
+  z-index: 2;
+  opacity: 0.48;
+  background-image:
+    linear-gradient(var(--hf-prompt-orange-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hf-prompt-orange-grid) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse 88% 72% at 50% 40%, #000 18%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 88% 72% at 50% 40%, #000 18%, transparent 78%);
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg-orb {
+  position: absolute;
+  z-index: 2;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform;
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg-orb--a {
+  width: min(44vw, 540px);
+  height: min(44vw, 540px);
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(251, 146, 60, 0.22);
+  animation: hf-prompt-bg-drift-a 28s ease-in-out infinite alternate;
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg-orb--b {
+  width: min(34vw, 400px);
+  height: min(34vw, 400px);
+  bottom: 6%;
+  left: -5%;
+  background: rgba(253, 186, 116, 0.2);
+  animation: hf-prompt-bg-drift-b 34s ease-in-out infinite alternate;
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg-orb--c {
+  width: min(30vw, 360px);
+  height: min(30vw, 360px);
+  top: 44%;
+  right: -3%;
+  background: rgba(251, 191, 36, 0.16);
+  animation: hf-prompt-bg-drift-c 30s ease-in-out infinite alternate;
+}
+
+@keyframes hf-prompt-bg-drift-a {
+  0% { transform: translateX(-50%) translateY(0); opacity: 0.82; }
+  100% { transform: translateX(-48%) translateY(16px); opacity: 1; }
+}
+
+@keyframes hf-prompt-bg-drift-b {
+  0% { transform: translate(0, 0); opacity: 0.72; }
+  100% { transform: translate(20px, -14px); opacity: 0.94; }
+}
+
+@keyframes hf-prompt-bg-drift-c {
+  0% { transform: translate(0, 0); opacity: 0.68; }
+  100% { transform: translate(-18px, 10px); opacity: 0.9; }
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg-scan {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.028;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 3px,
+    rgba(251, 146, 60, 0.38) 3px,
+    rgba(251, 146, 60, 0.38) 4px
+  );
+  mix-blend-mode: soft-light;
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background:
+    linear-gradient(180deg, rgba(255, 251, 245, 0.3) 0%, rgba(255, 237, 213, 0.16) 48%, rgba(254, 215, 170, 0.2) 100%),
+    radial-gradient(ellipse 85% 50% at 50% 0%, rgba(253, 186, 116, 0.14), transparent 68%) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg-deco {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background:
+    linear-gradient(180deg, rgba(255, 247, 237, 0.16) 0%, rgba(254, 215, 170, 0.1) 100%),
+    url("/static/images/prompts/prompts-bg-page.png?v=20260711prompt-orange5") center center / cover no-repeat;
+  opacity: 0.48;
+  pointer-events: none;
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg-noise {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  opacity: 0.03;
+  background-image: url(data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E);
+  background-size: 180px 180px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.hf-prompt-page-body .hf-prompt-page__bg-orb {
+    animation: none !important;
+  }
+}
+
+/* —— 组件：橘色玻璃风 —— */
+body.hf-prompt-page-body .hf-prompt-hero {
+  background: linear-gradient(128deg, #fffdf9 0%, #ffedd5 38%, #fdba74 100%) !important;
+  border-color: rgba(251, 146, 60, 0.28) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-hero--has-img .hf-prompt-hero__bg-scrim {
+  background: linear-gradient(180deg, rgba(255, 253, 250, 0.26) 0%, rgba(255, 237, 213, 0.14) 55%, rgba(255, 247, 237, 0.12) 100%) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-hero--has-img {
+  border: 1px solid rgba(251, 146, 60, 0.22) !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(249, 115, 22, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.75) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-toolbar {
+  border: 1px solid rgba(251, 146, 60, 0.32) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 247, 237, 0.72) 50%, rgba(254, 215, 170, 0.66) 100%), url("/static/images/prompts/prompts-bg-toolbar.png?v=20260711prompt-orange5") center center / cover no-repeat, #fff7ed !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -10px rgba(249, 115, 22, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.78) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-search {
+  border: 1px solid rgba(251, 191, 36, 0.35) !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-search:focus {
+  border-color: rgba(249, 115, 22, 0.45) !important;
+  box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.14) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-chip {
+  border: 1px solid rgba(251, 191, 36, 0.32) !important;
+  background: rgba(255, 255, 255, 0.84) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card {
+  border: 1px solid rgba(251, 191, 36, 0.3) !important;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.84) 0%, rgba(255, 247, 237, 0.8) 48%, rgba(254, 215, 170, 0.72) 100%), url("/static/images/prompts/prompt-card-bg-full.png?v=20260711prompt-orange5") center center / cover no-repeat, #fffbf5 !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6) inset, 0 1px 2px rgba(15, 23, 42, 0.05), 0 14px 36px rgba(249, 115, 22, 0.1) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card.hf-prompt-card--open {
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.86) 0%, rgba(255, 247, 237, 0.82) 48%, rgba(254, 215, 170, 0.74) 100%), url("/static/images/prompts/prompt-card-bg-full.png?v=20260711prompt-orange5") center center / cover no-repeat, #fffbf5 !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card__preview {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 251, 245, 0.92) 100%) !important;
+  border: 1px solid rgba(251, 191, 36, 0.26) !important;
+}

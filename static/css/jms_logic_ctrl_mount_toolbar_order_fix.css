@@ -1,0 +1,16 @@
+/**
+ * 逻辑控制器挂载工具栏 flex order 补全（loop / random / simple）
+ * 问题：jms_tg_logic_mount_toolbar_polish 仅给 if/transaction/catalog 设 order:2，
+ *       loop/random/simple 工具栏默认 order:0，展开时会跑到头行上方。
+ * 范围：仅补缺失的 order，不改已有 polish 规则。
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-loop-card:not(.jms-loop-card--collapsed) > .jms-if-mount-context--toolbar-only,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-loop-card:not(.jms-loop-card--collapsed) > .jms-if-mount-context--toolbar-only,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-random-card:not(.jms-random-card--collapsed) > .jms-if-mount-context--toolbar-only,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-random-card:not(.jms-random-card--collapsed) > .jms-if-mount-context--toolbar-only,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-simple-card:not(.jms-simple-card--collapsed) > .jms-if-mount-context--toolbar-only,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-simple-card:not(.jms-simple-card--collapsed) > .jms-if-mount-context--toolbar-only,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-catalog-card:not(.jms-catalog-card--collapsed) > .jms-if-mount-context--toolbar-only,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-catalog-card:not(.jms-catalog-card--collapsed) > .jms-if-mount-context--toolbar-only {
+    order: 2 !important;
+}

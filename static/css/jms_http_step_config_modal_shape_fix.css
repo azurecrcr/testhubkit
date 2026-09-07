@@ -1,0 +1,139 @@
+/**
+ * HTTP 步骤配置弹窗形态修复（隔离模块 · 默认值 / 信息头 / 缓存管理器）
+ * If 挂载区点击后强制居中弹窗，避免 drawerIds 或 lth-drawer-open 退化为抽屉。
+ */
+
+/* ── HTTP 请求默认值 ── */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-defaults-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-config-defaults-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-config-defaults-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-config-defaults-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+    backdrop-filter: blur(6px);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-defaults-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-config-defaults-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-config-defaults-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-config-defaults-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(760px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 56rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+/* ── HTTP 信息头管理器 ── */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-headers-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-config-headers-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-config-headers-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-config-headers-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+    backdrop-filter: blur(6px);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-headers-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-config-headers-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-config-headers-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-config-headers-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(720px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 54rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+/* ── HTTP 缓存管理器 ── */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cache-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-config-cache-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-config-cache-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-config-cache-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+    backdrop-filter: blur(6px);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cache-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-config-cache-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-config-cache-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-config-cache-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(680px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 48rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-defaults-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-defaults-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-defaults-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-headers-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-headers-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-headers-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cache-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cache-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cache-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-config-defaults-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-config-defaults-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-config-defaults-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-config-headers-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-config-headers-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-config-headers-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-config-cache-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-config-cache-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-config-cache-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}

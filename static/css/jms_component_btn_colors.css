@@ -1,0 +1,153 @@
+/**
+ * JMeter 压测 · 线程组 / HTTP 请求挂载区组件按钮统一配色（隔离覆盖层）
+ * 加载于各模块样式之后，仅作用于树形视图，不修改模块内既有规则文件。
+ *
+ * 色系（与 JMeter 执行生命周期对齐）：
+ * 配置元件 indigo · 逻辑控制器 violet · 取样器/前置 emerald
+ * 定时器 sky · 后置处理器 orange · 断言 amber · 监听器 teal
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab {
+    --jms-btn-config-fg: #4338ca;
+    --jms-btn-config-border: rgba(99, 102, 241, 0.5);
+    --jms-btn-config-bg: rgba(238, 242, 255, 0.98);
+    --jms-btn-config-bg-idle: rgba(248, 250, 255, 0.95);
+
+    --jms-btn-logic-fg: #6d28d9;
+    --jms-btn-logic-border: rgba(139, 92, 246, 0.5);
+    --jms-btn-logic-bg: rgba(245, 243, 255, 0.98);
+
+    --jms-btn-sampler-fg: #047857;
+    --jms-btn-sampler-border: rgba(52, 211, 153, 0.5);
+    --jms-btn-sampler-bg: rgba(236, 253, 245, 0.98);
+
+    --jms-btn-timer-fg: #0369a1;
+    --jms-btn-timer-border: rgba(56, 189, 248, 0.55);
+    --jms-btn-timer-bg: rgba(240, 249, 255, 0.98);
+
+    --jms-btn-post-fg: #c2410c;
+    --jms-btn-post-border: rgba(251, 146, 60, 0.55);
+    --jms-btn-post-bg: rgba(255, 247, 237, 0.98);
+
+    --jms-btn-assert-fg: #b45309;
+    --jms-btn-assert-border: rgba(251, 191, 36, 0.6);
+    --jms-btn-assert-bg: rgba(255, 251, 235, 0.98);
+    --jms-btn-assert-bg-on: rgba(254, 243, 199, 0.98);
+
+    --jms-btn-listener-fg: #475569;
+    --jms-btn-listener-border: rgba(148, 163, 184, 0.75);
+    --jms-btn-listener-bg: rgba(248, 250, 252, 0.98);
+    --jms-btn-listener-fg-on: #0f766e;
+    --jms-btn-listener-border-on: rgba(45, 212, 191, 0.55);
+    --jms-btn-listener-bg-on: rgba(240, 253, 250, 0.98);
+}
+
+/* ── 配置元件 · indigo ── */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-config-trigger.jms-tg-tree-btn-ghost,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-tools--inline .jms-tg-config-btn.jms-tg-tree-btn-ghost,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-config {
+    color: var(--jms-btn-config-fg) !important;
+    border-color: var(--jms-btn-config-border) !important;
+    background: var(--jms-btn-config-bg-idle) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-config-trigger.jms-tg-tree-btn-ghost.is-on,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-tools--inline .jms-tg-config-btn.jms-tg-tree-btn-ghost.is-on,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-config.is-configured {
+    color: var(--jms-btn-config-fg) !important;
+    border-color: var(--jms-btn-config-border) !important;
+    background: var(--jms-btn-config-bg) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-config.is-empty {
+    color: var(--jms-btn-config-fg) !important;
+    border-color: var(--jms-btn-config-border) !important;
+    background: var(--jms-btn-config-bg-idle) !important;
+    opacity: 0.88 !important;
+}
+
+/* ── 逻辑控制器 · violet（仅线程组 / If 挂载区，HTTP 请求挂载区不提供入口） ── */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-logic-ctrl-trigger.jms-tg-tree-btn-ghost,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-ctx-btn-logic {
+    color: var(--jms-btn-logic-fg) !important;
+    border-color: var(--jms-btn-logic-border) !important;
+    background: var(--jms-btn-logic-bg) !important;
+}
+
+/* ── 取样器 · emerald（线程组） ── */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-sampler-trigger.jms-tg-tree-btn-ghost {
+    color: var(--jms-btn-sampler-fg) !important;
+    border-color: var(--jms-btn-sampler-border) !important;
+    background: var(--jms-btn-sampler-bg) !important;
+}
+
+/* ── 前置处理器 · emerald（HTTP） ── */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-preprocessors {
+    color: var(--jms-btn-sampler-fg) !important;
+    border-color: var(--jms-btn-sampler-border) !important;
+    background: var(--jms-btn-sampler-bg) !important;
+}
+
+/* ── 定时器 · sky（HTTP） ── */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-timers {
+    color: var(--jms-btn-timer-fg) !important;
+    border-color: var(--jms-btn-timer-border) !important;
+    background: var(--jms-btn-timer-bg) !important;
+}
+
+/* ── 后置处理器 · orange ── */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-post-proc-trigger.jms-tg-tree-btn-ghost,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-processors {
+    color: var(--jms-btn-post-fg) !important;
+    border-color: var(--jms-btn-post-border) !important;
+    background: var(--jms-btn-post-bg) !important;
+}
+
+/* ── 断言 · amber ── */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-assert-trigger.jms-tg-tree-btn-ghost,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-assert-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-assert {
+    color: var(--jms-btn-assert-fg) !important;
+    border-color: var(--jms-btn-assert-border) !important;
+    background: var(--jms-btn-assert-bg) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-assert-trigger.jms-tg-tree-btn-ghost.is-configured,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-assert-menu.is-configured,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-assert.is-configured {
+    color: var(--jms-btn-assert-fg) !important;
+    border-color: rgba(245, 158, 11, 0.75) !important;
+    background: var(--jms-btn-assert-bg-on) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-assert.is-empty {
+    color: var(--jms-btn-assert-fg) !important;
+    border-color: var(--jms-btn-assert-border) !important;
+    background: var(--jms-btn-assert-bg) !important;
+    opacity: 0.88 !important;
+}
+
+/* ── 监听器 · slate / teal(on) ── */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-listener-menu-trigger.jms-tg-tree-btn-ghost,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-listeners {
+    color: var(--jms-btn-listener-fg) !important;
+    border-color: var(--jms-btn-listener-border) !important;
+    background: var(--jms-btn-listener-bg) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-listener-menu-trigger.jms-tg-tree-btn-ghost.is-on {
+    color: var(--jms-btn-listener-fg-on) !important;
+    border-color: var(--jms-btn-listener-border-on) !important;
+    background: var(--jms-btn-listener-bg-on) !important;
+}
+
+/* ── 统一 hover（略加深，保持色相） ── */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-head__group--settings .jms-tg-config-trigger.jms-tg-tree-btn-ghost:hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-logic-ctrl-trigger.jms-tg-tree-btn-ghost:hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-sampler-trigger.jms-tg-tree-btn-ghost:hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-post-proc-trigger.jms-tg-tree-btn-ghost:hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-assert-trigger.jms-tg-tree-btn-ghost:hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-listener-menu-trigger.jms-tg-tree-btn-ghost:hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__toolbar-main .jms-http-ctx-btn:hover {
+    filter: brightness(0.97) !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06) !important;
+}

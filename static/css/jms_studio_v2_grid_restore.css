@@ -1,0 +1,70 @@
+/**
+ * Studio v2 · legacy 线程组网格（仅非树形视图；树形由 jms_tg_tree_layout.css 接管）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab:not(.lth-tg-view-tree) .jms-tg-tree-host {
+    display: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab:not(.lth-tg-view-tree) .jms-plan-card > .jms-plan-tgs,
+body.lth-studio-v2.lth-hub-jmeter-tab:not(.lth-tg-view-tree) .jms-plan-tgs--legacy,
+body.lth-studio-v2.lth-hub-jmeter-tab:not(.lth-tg-view-tree) .jms-plan-tgs {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    white-space: normal !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab:not(.lth-tg-view-tree) .lth-studio-workspace .jms-plan-tgs,
+body.lth-studio-v2.lth-hub-jmeter-tab:not(.lth-tg-view-tree) .lth-hub-scope section.lth-studio-workspace .jms-plan-tgs {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.5rem !important;
+    padding: 0.625rem 0.75rem !important;
+    align-items: start !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+@media (max-width: 720px) {
+    body.lth-studio-v2.lth-hub-jmeter-tab:not(.lth-tg-view-tree) .lth-studio-workspace .jms-plan-tgs {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab:not(.lth-tg-view-tree) .lth-studio-workspace .jms-plan-tgs > .jms-tg-block {
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab:not(.lth-tg-view-tree) .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-steps {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.35rem !important;
+    flex: 1 1 auto !important;
+    min-height: 8rem !important;
+    padding: 0.45rem 0.55rem 0.55rem !important;
+    overflow: visible !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab:not(.lth-tg-view-tree) .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-tools {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.35rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab:not(.lth-tg-view-tree) .lth-studio-workspace .jms-plan-tgs > .jms-tg-block .jms-tg-add-row {
+    display: flex !important;
+    flex-shrink: 0 !important;
+}

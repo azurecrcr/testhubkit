@@ -1,0 +1,325 @@
+﻿/**
+ * HTTP 步骤 · 大小断言弹窗（隔离样式 v2 · #modal-tg-size-assert-edit）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10320;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.36);
+    backdrop-filter: blur(6px);
+    --jms-tg-sa-accent: #0d9488;
+    --jms-tg-sa-accent-soft: rgba(13, 148, 136, 0.12);
+    --jms-tg-sa-border: #e5e9ef;
+    --jms-tg-sa-surface: #ffffff;
+    --jms-tg-sa-text: #111827;
+    --jms-tg-sa-field-text: #0f172a;
+    --jms-tg-sa-label: #374151;
+    --jms-tg-sa-muted: #64748b;
+    --jms-tg-sa-option-text: #1e293b;
+    --jms-tg-sa-title: #0f766e;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit.jms-modal-open {
+    display: flex !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-step-modal {
+    width: min(860px, 96vw) !important;
+    max-height: min(96vh, 54rem);
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(229, 233, 239, 0.98) !important;
+    background: var(--jms-tg-sa-surface) !important;
+    color: var(--jms-tg-sa-text) !important;
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.12) !important;
+    overflow: hidden !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-drawer__head {
+    flex-shrink: 0;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 1rem 1.35rem !important;
+    border-bottom: 1px solid var(--jms-tg-sa-border) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-drawer__head-main {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-drawer__badge {
+    padding: 0.12rem 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--jms-tg-sa-accent);
+    background: var(--jms-tg-sa-accent-soft);
+    border: 1px solid rgba(13, 148, 136, 0.35);
+    border-radius: 999px;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-step-modal__title {
+    margin: 0 !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: var(--jms-tg-sa-title) !important;
+    -webkit-text-fill-color: var(--jms-tg-sa-title) !important;
+    letter-spacing: -0.01em;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-drawer__close {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #94a3b8;
+    font-size: 1.35rem;
+    cursor: pointer;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-drawer__close:hover {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-drawer__body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 1rem 1.35rem 0.75rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__grid--meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem 0.75rem;
+}
+
+@media (max-width: 560px) {
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__grid--meta {
+        grid-template-columns: 1fr;
+    }
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__card {
+    padding: 0.7rem 0.8rem;
+    border: 1px solid #eef2f7;
+    border-radius: 10px;
+    background: #fafbfc;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__card-title {
+    margin: 0 0 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--jms-tg-sa-muted);
+    letter-spacing: 0.02em;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__field.is-hidden {
+    display: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__field--var {
+    margin-top: 0.55rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--jms-tg-sa-label) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__input,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit input.hf-mono {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.48rem 0.62rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--jms-tg-sa-field-text) !important;
+    -webkit-text-fill-color: var(--jms-tg-sa-field-text) !important;
+    caret-color: var(--jms-tg-sa-field-text) !important;
+    background: #fff !important;
+    background-color: #fff !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__input--bytes {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.84rem;
+    letter-spacing: 0.01em;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__input:-webkit-autofill,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit input.hf-mono:-webkit-autofill {
+    -webkit-text-fill-color: var(--jms-tg-sa-field-text) !important;
+    box-shadow: 0 0 0 1000px #ffffff inset !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__input:focus {
+    outline: none;
+    border-color: #2dd4bf;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.14);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__radio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.35rem 0.75rem;
+}
+
+@media (min-width: 640px) {
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__card:not(.jms-tg-sa-v1__card--size) .jms-tg-sa-v1__radio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__radio {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.35rem;
+    font-size: 0.76rem;
+    color: var(--jms-tg-sa-option-text) !important;
+    cursor: pointer;
+    line-height: 1.35;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__radio span {
+    color: var(--jms-tg-sa-option-text) !important;
+    -webkit-text-fill-color: var(--jms-tg-sa-option-text) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__radio input:checked + span {
+    color: #0f766e !important;
+    -webkit-text-fill-color: #0f766e !important;
+    font-weight: 600;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__radio input {
+    margin-top: 0.12rem;
+    accent-color: #0d9488;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__size-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 0.75rem 1rem;
+    align-items: start;
+}
+
+@media (max-width: 560px) {
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__size-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__op-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.15rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__op {
+    position: relative;
+    cursor: pointer;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__op input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__op span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.25rem;
+    padding: 0.35rem 0.55rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #334155 !important;
+    -webkit-text-fill-color: #334155 !important;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__op input:checked + span {
+    color: #0f766e !important;
+    -webkit-text-fill-color: #0f766e !important;
+    background: rgba(13, 148, 136, 0.1);
+    border-color: #2dd4bf;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__op:hover span {
+    border-color: #99f6e4;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__chk {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.76rem;
+    color: var(--jms-tg-sa-option-text) !important;
+    cursor: pointer;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__chk span {
+    color: var(--jms-tg-sa-option-text) !important;
+    -webkit-text-fill-color: var(--jms-tg-sa-option-text) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-v1__chk input {
+    accent-color: #0d9488;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-drawer__foot {
+    flex-shrink: 0;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0.9rem 1.35rem calc(0.9rem + env(safe-area-inset-bottom, 0px)) !important;
+    border-top: 1px solid var(--jms-tg-sa-border) !important;
+    background: #fafbfc !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-drawer__foot-actions {
+    display: flex;
+    gap: 0.6rem;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__assert-type--sa {
+    background: rgba(204, 251, 241, 0.95) !important;
+    color: #0f766e !important;
+}

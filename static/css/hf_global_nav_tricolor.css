@@ -1,0 +1,219 @@
+/* Test Hub Kit · 全站顶栏三色主题（蓝 / 绿 / 粉）— 独立文件，缓解视觉疲劳 */
+
+.hf-gnav {
+  background: linear-gradient(
+    118deg,
+    #0a1220 0%,
+    #0f2744 30%,
+    #0c3540 55%,
+    #122845 80%,
+    #0a1220 100%
+  );
+  border-bottom: 1px solid rgba(147, 197, 253, 0.11);
+  box-shadow:
+    0 4px 26px rgba(2, 6, 23, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.hf-gnav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 47px,
+    rgba(59, 130, 246, 0.025) 47px,
+    rgba(59, 130, 246, 0.025) 48px
+  );
+  mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
+}
+
+.hf-gnav::after {
+  background:
+    radial-gradient(ellipse 88% 115% at 6% -18%, rgba(37, 99, 235, 0.19), transparent 56%),
+    radial-gradient(ellipse 62% 88% at 50% -8%, rgba(16, 185, 129, 0.11), transparent 54%),
+    radial-gradient(ellipse 58% 82% at 98% 0%, rgba(236, 72, 153, 0.1), transparent 50%);
+  opacity: 0.92;
+}
+
+.hf-gnav__mark {
+  box-shadow:
+    0 2px 14px rgba(37, 99, 235, 0.34),
+    0 0 0 1px rgba(255, 255, 255, 0.16);
+}
+
+.hf-gnav__brand:hover .hf-gnav__mark {
+  box-shadow:
+    0 4px 18px rgba(16, 185, 129, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.24);
+}
+
+.hf-gnav__titles span {
+  color: rgba(110, 231, 183, 0.76);
+  letter-spacing: 0.13em;
+}
+
+.hf-gnav__mega-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(147, 197, 253, 0.22);
+}
+
+.hf-gnav__mega-btn[aria-expanded="true"] {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(59, 130, 246, 0.42);
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.18);
+}
+
+.hf-gnav__mega a:hover {
+  background: rgba(37, 99, 235, 0.07);
+}
+
+.hf-gnav__mega a[aria-current="page"] {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.13), rgba(16, 185, 129, 0.09));
+  outline: 1px solid rgba(59, 130, 246, 0.22);
+}
+
+.hf-gnav__prompts {
+  border: 1px solid rgba(244, 114, 182, 0.38);
+  background: linear-gradient(120deg, rgba(236, 72, 153, 0.26), rgba(37, 99, 235, 0.16));
+  box-shadow: 0 2px 12px rgba(236, 72, 153, 0.14);
+}
+
+.hf-gnav__prompts:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(236, 72, 153, 0.2);
+  border-color: rgba(251, 113, 133, 0.48);
+}
+
+.hf-gnav__prompts[aria-current="page"] {
+  box-shadow:
+    0 0 0 2px rgba(252, 231, 243, 0.28),
+    0 6px 20px rgba(236, 72, 153, 0.26);
+}
+
+.hf-gnav__feedback {
+  border: 1px solid rgba(52, 211, 153, 0.38);
+  background: linear-gradient(120deg, rgba(16, 185, 129, 0.22), rgba(37, 99, 235, 0.12));
+  color: rgba(240, 253, 250, 0.96);
+}
+
+.hf-gnav__feedback:hover {
+  background: linear-gradient(120deg, rgba(16, 185, 129, 0.3), rgba(37, 99, 235, 0.18));
+  border-color: rgba(110, 231, 183, 0.45);
+}
+
+.hf-gnav__auth {
+  border: 1px solid rgba(59, 130, 246, 0.48);
+  background: linear-gradient(120deg, rgba(37, 99, 235, 0.36), rgba(16, 185, 129, 0.2));
+}
+
+.hf-gnav__auth:hover {
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.22);
+}
+
+.hf-gnav__sheet {
+  background: linear-gradient(180deg, #0a1220 0%, #0f2744 52%, #0c3538 100%);
+  border-left: 1px solid rgba(147, 197, 253, 0.1);
+}
+
+.hf-gnav__sheet a[aria-current="page"] {
+  background: rgba(37, 99, 235, 0.18);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.hf-gnav__sheet-prompts a {
+  background: linear-gradient(120deg, rgba(236, 72, 153, 0.18), rgba(37, 99, 235, 0.14));
+  border-color: rgba(244, 114, 182, 0.28);
+}
+
+.hf-gnav__sheet-auth {
+  border: 1px solid rgba(59, 130, 246, 0.32);
+  background: rgba(37, 99, 235, 0.16);
+  color: #eff6ff;
+}
+
+.hf-gnav__sheet-feedback {
+  border-color: rgba(52, 211, 153, 0.32) !important;
+  background: rgba(16, 185, 129, 0.12) !important;
+  color: #ecfdf5 !important;
+}
+
+/* 首页 studio 玻璃态变体 */
+.hf-gnav.hf-gnav--studio-home {
+  background: rgba(8, 14, 26, 0.64);
+  border-bottom: 1px solid rgba(147, 197, 253, 0.08);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.03) inset,
+    0 8px 32px -12px rgba(0, 0, 0, 0.42);
+}
+
+.hf-gnav.hf-gnav--studio-home::after {
+  background:
+    radial-gradient(ellipse 58% 100% at 0% 0%, rgba(37, 99, 235, 0.09), transparent 55%),
+    radial-gradient(ellipse 48% 78% at 55% 0%, rgba(16, 185, 129, 0.06), transparent 50%),
+    radial-gradient(ellipse 42% 72% at 100% 0%, rgba(236, 72, 153, 0.05), transparent 48%);
+  opacity: 1;
+}
+
+.hf-gnav.hf-gnav--studio-home .hf-gnav__titles span {
+  color: rgba(110, 231, 183, 0.62);
+}
+
+.hf-gnav.hf-gnav--studio-home .hf-gnav__mark {
+  box-shadow: 0 2px 12px rgba(37, 99, 235, 0.26), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.hf-gnav.hf-gnav--studio-home .hf-gnav__brand:hover .hf-gnav__mark {
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.hf-gnav.hf-gnav--studio-home .hf-gnav__mega-btn[aria-expanded="true"] {
+  background: rgba(37, 99, 235, 0.11);
+  border-color: rgba(59, 130, 246, 0.26);
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.1);
+}
+
+.hf-gnav.hf-gnav--studio-home .hf-gnav__prompts {
+  border-color: rgba(244, 114, 182, 0.24);
+  background: rgba(236, 72, 153, 0.1);
+  color: rgba(252, 231, 243, 0.95);
+}
+
+.hf-gnav.hf-gnav--studio-home .hf-gnav__prompts:hover {
+  background: rgba(236, 72, 153, 0.15);
+  border-color: rgba(251, 113, 133, 0.34);
+  box-shadow: 0 4px 18px -6px rgba(236, 72, 153, 0.28);
+}
+
+.hf-gnav.hf-gnav--studio-home .hf-gnav__auth {
+  border-color: rgba(59, 130, 246, 0.28);
+  background: rgba(37, 99, 235, 0.12);
+}
+
+.hf-gnav.hf-gnav--studio-home .hf-gnav__auth:hover {
+  background: rgba(37, 99, 235, 0.2);
+  box-shadow: 0 4px 16px -4px rgba(37, 99, 235, 0.32);
+}
+
+.hf-gnav.hf-gnav--studio-home .hf-gnav__sheet a[aria-current="page"] {
+  background: rgba(37, 99, 235, 0.13);
+  border-color: rgba(59, 130, 246, 0.22);
+}
+
+.hf-gnav.hf-gnav--studio-home .hf-gnav__sheet-prompts a {
+  background: rgba(236, 72, 153, 0.11);
+  border-color: rgba(244, 114, 182, 0.22);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hf-gnav__prompts:hover,
+  .hf-gnav__auth:hover,
+  .hf-gnav__feedback:hover,
+  .hf-gnav__brand:hover .hf-gnav__mark {
+    transform: none;
+  }
+}

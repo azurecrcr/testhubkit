@@ -1,0 +1,1 @@
+(function(){function r(){if(window.tailwind&&typeof window.tailwind.refresh==='function')window.tailwind.refresh();}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',r);else r();window.addEventListener('load',r);})();

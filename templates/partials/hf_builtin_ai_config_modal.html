@@ -1,0 +1,139 @@
+{# 全站管理员：全局 AI 配置弹窗 #}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hf_builtin_ai_config_modal.css') }}?v=20260710pickerabove1">
+
+<div id="hf-builtin-ai-modal" class="hf-builtin-ai-modal hidden" role="dialog" aria-modal="true" aria-labelledby="hf-builtin-ai-modal-title">
+    <div class="hf-builtin-ai-modal__panel">
+        <div class="hf-builtin-ai-modal__head">
+            <div class="hf-builtin-ai-modal__head-main">
+                <div class="hf-builtin-ai-modal__head-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/>
+                        <path d="M5 19h14"/>
+                        <path d="M8 16h8"/>
+                    </svg>
+                </div>
+                <div class="hf-builtin-ai-modal__head-text">
+                    <h3 id="hf-builtin-ai-modal-title">全站 AI 配置</h3>
+                    <p class="hf-builtin-ai-modal__subtitle">配置全站文本模型、视觉模型与 Cursor Agent</p>
+                </div>
+            </div>
+            <button type="button" class="hf-builtin-ai-modal__close" data-hf-builtin-ai-close aria-label="关闭">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+        </div>
+
+        <div class="hf-builtin-ai-modal__body">
+            <section class="hf-builtin-ai-modal__section hf-builtin-ai-modal__card" aria-labelledby="hf-builtin-ai-section-text">
+                <div class="hf-builtin-ai-modal__card-head">
+                    <div class="hf-builtin-ai-modal__card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 7h16M4 12h10M4 17h7"/></svg>
+                    </div>
+                    <h4 class="hf-builtin-ai-modal__section-title" id="hf-builtin-ai-section-text">文本 AI</h4>
+                </div>
+                <div class="hf-builtin-ai-modal__card-body">
+                    <div class="hf-builtin-ai-modal__grid">
+                        <label class="hf-builtin-ai-modal__field">
+                            <span>API Base URL</span>
+                            <input type="text" id="hf-builtin-ai-base-url" autocomplete="off" placeholder="https://dashscope.aliyuncs.com/compatible-mode/v1">
+                        </label>
+                        <label class="hf-builtin-ai-modal__field">
+                            <span>API Key</span>
+                            <input type="password" id="hf-builtin-ai-api-key" autocomplete="off" placeholder="密钥">
+                        </label>
+                        <label class="hf-builtin-ai-modal__field">
+                            <span>文本模型</span>
+                            <input type="text" id="hf-builtin-ai-model" autocomplete="off" placeholder="如 qwen-plus">
+                        </label>
+                        <label class="hf-builtin-ai-modal__field">
+                            <span>Temperature</span>
+                            <input type="number" id="hf-builtin-ai-temperature" min="0" max="2" step="0.1" value="0.1">
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="hf-builtin-ai-modal__section hf-builtin-ai-modal__card" aria-labelledby="hf-builtin-ai-section-vision">
+                <div class="hf-builtin-ai-modal__card-head">
+                    <div class="hf-builtin-ai-modal__card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                    <h4 class="hf-builtin-ai-modal__section-title" id="hf-builtin-ai-section-vision">视觉 AI</h4>
+                </div>
+                <div class="hf-builtin-ai-modal__card-body">
+                    <div class="hf-builtin-ai-modal__grid">
+                        <label class="hf-builtin-ai-modal__field">
+                            <span>视觉 API Base URL</span>
+                            <input type="text" id="hf-builtin-ai-vision-base-url" autocomplete="off" placeholder="https://dashscope.aliyuncs.com/compatible-mode/v1">
+                        </label>
+                        <label class="hf-builtin-ai-modal__field">
+                            <span>视觉 API Key</span>
+                            <input type="password" id="hf-builtin-ai-vision-api-key" autocomplete="off" placeholder="密钥">
+                        </label>
+                        <label class="hf-builtin-ai-modal__field hf-builtin-ai-modal__field--full">
+                            <span>视觉模型</span>
+                            <input type="text" id="hf-builtin-ai-vision-model" autocomplete="off" placeholder="如 qwen-vl-max">
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="hf-builtin-ai-modal__section hf-builtin-ai-modal__card" aria-labelledby="hf-builtin-ai-section-cursor">
+                <div class="hf-builtin-ai-modal__card-head">
+                    <div class="hf-builtin-ai-modal__card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7-6.3-4.6L5.7 21l2.3-7-6-4.6h7.6L12 2z"/></svg>
+                    </div>
+                    <h4 class="hf-builtin-ai-modal__section-title" id="hf-builtin-ai-section-cursor">Cursor Agent</h4>
+                </div>
+                <div class="hf-builtin-ai-modal__card-body">
+                    <div class="hf-builtin-ai-modal__grid hf-builtin-ai-modal__grid--cursor-agent">
+                        <label class="hf-builtin-ai-modal__field hf-builtin-ai-modal__field--control">
+                            <span class="hf-builtin-ai-modal__field-label">Cursor API Key</span>
+                            <input type="password" id="hf-builtin-ai-cursor-api-key" autocomplete="off" placeholder="sk-…" spellcheck="false">
+                            <span class="hf-builtin-ai-modal__hint hf-builtin-ai-modal__hint--key">Cursor → Access Tokens 获取密钥，用于 Cursor Agent 执行</span>
+                        </label>
+                        <div class="hf-builtin-ai-modal__field hf-builtin-ai-modal__field--control" role="group" aria-labelledby="hf-builtin-ai-agent-model-label-wrap">
+                            <span id="hf-builtin-ai-agent-model-label-wrap" class="hf-builtin-ai-modal__field-label">Agent 模型<em class="hf-builtin-ai-modal__note-inline">仅国内可用</em></span>
+                            <div class="hf-builtin-ai-model-picker" id="hf-builtin-ai-agent-model-picker">
+                                <button type="button" id="hf-builtin-ai-agent-model-trigger" class="hf-builtin-ai-model-picker__trigger" disabled aria-haspopup="listbox" aria-expanded="false" aria-controls="hf-builtin-ai-agent-model-panel">
+                                    <span class="hf-builtin-ai-model-picker__value is-placeholder" id="hf-builtin-ai-agent-model-label">请先输入 Cursor API Key</span>
+                                    <svg class="hf-builtin-ai-model-picker__chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+                                </button>
+                                <div class="hf-builtin-ai-model-picker__panel is-hidden" id="hf-builtin-ai-agent-model-panel" role="listbox">
+                                    <ul class="hf-builtin-ai-model-picker__list" id="hf-builtin-ai-agent-model-list"></ul>
+                                </div>
+                                <select id="hf-builtin-ai-agent-model" class="hf-builtin-ai-model-picker__native" disabled tabindex="-1" aria-hidden="true">
+                                    <option value="">请先输入 Cursor API Key</option>
+                                </select>
+                            </div>
+                            <span id="hf-builtin-ai-agent-model-status" class="hf-builtin-ai-modal__hint hf-builtin-ai-modal__hint--model-status"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <input type="hidden" id="hf-builtin-ai-image-model" value="dall-e-3">
+
+        <div class="hf-builtin-ai-modal__actions">
+            <button type="button" class="hf-builtin-ai-modal__btn hf-builtin-ai-modal__btn--ghost" data-hf-builtin-ai-close>取消</button>
+            <button type="button" class="hf-builtin-ai-modal__btn hf-builtin-ai-modal__btn--primary" id="hf-builtin-ai-save-btn">保存配置</button>
+        </div>
+    </div>
+</div>
+
+<style>
+.hf-gnav__user-menu { position: relative; display: inline-flex; }
+.hf-gnav__user-menu-btn { display: inline-flex; align-items: center; gap: .25rem; max-width: 11rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .75rem; font-weight: 600; color: rgba(248,250,252,.92); padding: .35rem .55rem; border-radius: .45rem; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); cursor: pointer; }
+.hf-gnav__user-menu-btn svg { width: .65rem; height: .65rem; opacity: .75; flex-shrink: 0; }
+.hf-gnav__user-menu-avatar { width: 1.35rem; height: 1.35rem; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 1px solid rgba(255,255,255,.25); }
+.hf-gnav__user-menu-btn--avatar-only { width: 2.25rem; height: 2.25rem; padding: 0; border-radius: 50%; justify-content: center; align-items: center; max-width: none; overflow: visible; border: 2px solid rgba(255,255,255,.22); background: rgba(255,255,255,.08); box-shadow: 0 2px 10px rgba(15,23,42,.18); }
+.hf-gnav__user-menu-btn--avatar-only .hf-gnav__user-menu-avatar { width: 100%; height: 100%; border: none; }
+.hf-gnav__user-menu-panel { position: absolute; right: 0; top: calc(100% + .35rem); min-width: 9rem; padding: .35rem; border-radius: .65rem; background: rgba(255,255,255,.98); border: 1px solid rgba(148,163,184,.35); box-shadow: 0 12px 32px rgba(15,23,42,.2); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .18s ease; z-index: 120; }
+.hf-gnav__user-menu-panel.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+.hf-gnav__user-menu-panel button,
+.hf-gnav__user-menu-panel a[role="menuitem"] { display: flex; width: 100%; align-items: center; gap: .35rem; border: none; background: transparent; text-align: left; padding: .45rem .55rem; border-radius: .45rem; font-size: .82rem; font-weight: 600; color: #0f172a; cursor: pointer; text-decoration: none; box-sizing: border-box; }
+.hf-gnav__user-menu-panel button:hover,
+.hf-gnav__user-menu-panel a[role="menuitem"]:hover { background: rgba(99,102,241,.08); }
+.hf-gnav__user-menu-panel button.hf-gnav__user-menu-logout { margin-top: .25rem; border-top: 1px solid rgba(148,163,184,.25); border-radius: 0 0 .45rem .45rem; color: #b91c1c; }
+.hf-gnav__user-menu-panel button.hf-gnav__user-menu-logout:hover { background: rgba(239,68,68,.08); }
+</style>

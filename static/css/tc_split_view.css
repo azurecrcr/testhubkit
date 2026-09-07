@@ -1,0 +1,147 @@
+/* ============================================================
+   TestHub — 分栏视图（Plan B 布局）
+   固定左栏 + 右侧实时预览，不再浮动遮挡
+   通过 body.tc-split-view-mode 激活
+   ============================================================ */
+
+/* ===== 分栏容器 ===== */
+body.tc-split-view-mode .tc-workbench-scope .tc-main-wb-surface {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0 !important;
+    padding: 0.75rem !important;
+    height: calc(100vh - 5rem) !important;
+    min-height: 32rem !important;
+    overflow: hidden !important;
+}
+
+/* 左栏：从 fixed 切换为 flex 子项 */
+body.tc-split-view-mode #left-panel.tc-left-float-panel {
+    position: relative !important;
+    z-index: auto !important;
+    left: auto !important;
+    top: auto !important;
+    width: min(24rem, 38vw) !important;
+    min-width: 18rem !important;
+    max-width: 50vw !important;
+    height: auto !important;
+    max-height: none !important;
+    flex: 0 0 auto !important;
+    border-radius: 12px !important;
+    margin-right: 0.75rem !important;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06) !important;
+    border: 1px solid #e2e8f0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* 分栏模式下隐藏拖动手柄、调整大小的边 */
+body.tc-split-view-mode .tc-left-float-resize {
+    display: none !important;
+}
+
+body.tc-split-view-mode .tc-left-float-panel__head {
+    cursor: default !important;
+}
+
+/* 分栏模式下隐藏折叠/展开后的 FAB dock */
+body.tc-split-view-mode #tc-left-float-dock,
+body.tc-split-view-mode #tc-left-input-float-wrap {
+    display: none !important;
+}
+
+/* 分栏模式下隐藏 backdrop */
+body.tc-split-view-mode .tc-left-float-backdrop {
+    display: none !important;
+}
+
+/* 右栏：填充剩余空间 */
+body.tc-split-view-mode #main-grid.tc-main-grid {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+}
+
+body.tc-split-view-mode #right-panel.tc-main-grid__workspace {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+body.tc-split-view-mode #table-workspace {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+}
+
+body.tc-split-view-mode #tc-table-list-panel {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow: auto !important;
+}
+
+/* 分栏模式下的导图视图 */
+body.tc-split-view-mode #tc-mindmap-view-panel {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+}
+
+/* ===== 分栏切换按钮 ===== */
+.tc-split-view-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.tc-split-view-toggle:hover {
+    border-color: #c7d2fe;
+    background: #f8fafc;
+    color: #4338ca;
+}
+
+.tc-split-view-toggle--active {
+    border-color: #a5b4fc;
+    background: #eef2ff;
+    color: #4338ca;
+    font-weight: 600;
+}
+
+.tc-split-view-toggle__icon {
+    width: 0.875rem;
+    height: 0.875rem;
+    flex-shrink: 0;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 1024px) {
+    body.tc-split-view-mode .tc-main-wb-surface {
+        flex-direction: column !important;
+    }
+    body.tc-split-view-mode #left-panel.tc-left-float-panel {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        max-height: 45vh !important;
+        margin-right: 0 !important;
+        margin-bottom: 0.5rem !important;
+    }
+}

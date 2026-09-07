@@ -1,0 +1,235 @@
+/**
+ * 断言弹窗面板视觉修复（隔离模块 · TG+HTTP 共 8 个断言弹窗）
+ * 补全 step-modal / head / body / foot 不透明背景，避免退化为透明弹窗。
+ * 加载顺序：须在 jms-load-test-tail.css 之后。
+ */
+
+/* ---- 共享：覆盖 studio 全局深色 .jms-step-modal 主题 ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-step-modal {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid rgba(229, 233, 239, 0.98) !important;
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.12) !important;
+    opacity: 1 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-step-modal > [class*="drawer__head"] {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-step-modal > [class*="drawer__body"] {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-assert-foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-assert-foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-assert-foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-assert-foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-assert-foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-assert-foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-assert-foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-assert-foot,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-assert-foot,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-assert-foot,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-assert-foot,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-assert-foot,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-assert-foot,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-assert-foot,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-assert-foot,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-assert-foot {
+    background: #f8fafc !important;
+    background-color: #f8fafc !important;
+    border-top: 1px solid #e5e9ef !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-step-modal__title,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-step-modal__title,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-step-modal__title,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-step-modal__title,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-step-modal__title,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-step-modal__title,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-step-modal__title,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-step-modal__title,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-step-modal__title,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-step-modal__title,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-step-modal__title,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-step-modal__title,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-step-modal__title,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-step-modal__title,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-step-modal__title,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-step-modal__title {
+    color: #111827 !important;
+}
+
+/* ---- 响应断言 · 琥珀色头 ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-tg-ra-drawer__head,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-drawer__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-response-assert-edit .jms-tg-ra-drawer__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit .jms-http-ra-drawer__head {
+    background: linear-gradient(180deg, #ffffff 0%, #fffbeb 100%) !important;
+    border-bottom: 1px solid #e5e9ef !important;
+}
+
+/* ---- JSON 断言 · 蓝色头 ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-drawer__head,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-http-ja-drawer__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-json-assert-edit .jms-tg-ja-drawer__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-json-assert-edit .jms-http-ja-drawer__head {
+    background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%) !important;
+    border-bottom: 1px solid #e5e9ef !important;
+}
+
+/* ---- 大小断言 · 青色头 ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-drawer__head,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-http-sa-drawer__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-size-assert-edit .jms-tg-sa-drawer__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-size-assert-edit .jms-http-sa-drawer__head {
+    background: linear-gradient(180deg, #ffffff 0%, #f0fdfa 100%) !important;
+    border-bottom: 1px solid #e5e9ef !important;
+}
+
+/* ---- MD5Hex 断言 · 紫色头 ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-tg-m5-drawer__head,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-drawer__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit .jms-tg-m5-drawer__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-drawer__head {
+    background: linear-gradient(180deg, #ffffff 0%, #f5f3ff 100%) !important;
+    border-bottom: 1px solid #e5e9ef !important;
+}
+
+/* ---- 兜底 CSS 变量（modal 挂 body 时仍可用） ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-response-assert-edit,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-response-assert-edit {
+    --jms-tg-ra-surface: #ffffff;
+    --jms-tg-ra-text: #111827;
+    --jms-tg-ra-border: #e5e9ef;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit {
+    --jms-http-ra-surface: #ffffff;
+    --jms-http-ra-text: #111827;
+    --jms-http-ra-border: #e5e9ef;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-json-assert-edit {
+    --jms-tg-ja-surface: #ffffff;
+    --jms-tg-ja-text: #111827;
+    --jms-tg-ja-border: #e5e9ef;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-json-assert-edit,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-json-assert-edit {
+    --jms-http-ja-surface: #ffffff;
+    --jms-http-ja-text: #111827;
+    --jms-http-ja-border: #e5e9ef;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-size-assert-edit {
+    --jms-tg-sa-surface: #ffffff;
+    --jms-tg-sa-text: #111827;
+    --jms-tg-sa-border: #e5e9ef;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-size-assert-edit,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-size-assert-edit {
+    --jms-http-sa-surface: #ffffff;
+    --jms-http-sa-text: #111827;
+    --jms-http-sa-border: #e5e9ef;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit {
+    --jms-tg-m5-surface: #ffffff;
+    --jms-tg-m5-text: #111827;
+    --jms-tg-m5-border: #e5e9ef;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit {
+    --jms-http-m5-surface: #ffffff;
+    --jms-http-m5-text: #111827;
+    --jms-http-m5-border: #e5e9ef;
+}
+
+/* ---- 仅打开态生效（避免关闭态 inner panel 被误显示） ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-response-assert-edit:not(.jms-modal-open) .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit:not(.jms-modal-open) .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit:not(.jms-modal-open) .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit:not(.jms-modal-open) .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit:not(.jms-modal-open) .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-json-assert-edit:not(.jms-modal-open) .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-size-assert-edit:not(.jms-modal-open) .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit:not(.jms-modal-open) .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-response-assert-edit:not(.jms-modal-open) .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-json-assert-edit:not(.jms-modal-open) .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-size-assert-edit:not(.jms-modal-open) .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit:not(.jms-modal-open) .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit:not(.jms-modal-open) .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-json-assert-edit:not(.jms-modal-open) .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-size-assert-edit:not(.jms-modal-open) .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit:not(.jms-modal-open) .jms-step-modal {
+    display: none !important;
+    visibility: hidden !important;
+}

@@ -1,0 +1,128 @@
+/**
+ * 组件删除 · 统一确认弹窗（绿色玻璃风）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-comp-del-confirm-lock {
+    overflow: hidden !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-comp-del-confirm {
+    position: fixed;
+    inset: 0;
+    z-index: 12080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-comp-del-confirm--open {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-comp-del-confirm__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(2, 44, 34, 0.36);
+    backdrop-filter: blur(10px) saturate(1.1);
+    -webkit-backdrop-filter: blur(10px) saturate(1.1);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-comp-del-confirm__panel {
+    position: relative;
+    width: min(100%, 23rem);
+    padding: 1.35rem 1.35rem 1.15rem;
+    border-radius: 16px;
+    border: 1px solid rgba(16, 185, 129, 0.22);
+    background: linear-gradient(165deg, #fefffe 0%, #f0fdf8 100%);
+    box-shadow:
+        0 24px 56px rgba(6, 78, 59, 0.14),
+        0 0 0 1px rgba(16, 185, 129, 0.06);
+    transform: translateY(8px) scale(0.988);
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    text-align: center;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-comp-del-confirm--open .jms-comp-del-confirm__panel {
+    transform: translateY(0) scale(1);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-comp-del-confirm__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin: 0 auto 0.65rem;
+    border-radius: 999px;
+    background: rgba(254, 226, 226, 0.92);
+    border: 1px solid rgba(248, 113, 113, 0.35);
+    color: #dc2626;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-comp-del-confirm__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #065f46;
+    line-height: 1.35;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-comp-del-confirm__message {
+    margin: 0.55rem 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    color: #5b7a72;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-comp-del-confirm__foot {
+    display: flex;
+    justify-content: center;
+    gap: 0.55rem;
+    margin-top: 1.2rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-comp-del-confirm__btn {
+    min-width: 4.75rem;
+    padding: 0.48rem 1rem;
+    border-radius: 0.55rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-comp-del-confirm__btn--ghost {
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    background: #fff;
+    color: #475569;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-comp-del-confirm__btn--ghost:hover {
+    background: #f8fafc;
+    border-color: rgba(100, 116, 139, 0.55);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-comp-del-confirm__btn--danger {
+    border: 1px solid rgba(239, 68, 68, 0.45);
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.22);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-comp-del-confirm__btn--danger:hover {
+    background: linear-gradient(135deg, #f87171, #ef4444);
+    border-color: rgba(220, 38, 38, 0.55);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-comp-del-confirm__btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.28);
+}

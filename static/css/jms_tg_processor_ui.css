@@ -1,0 +1,70 @@
+/**
+ * 树形视图 · 线程组后置处理器 添加/删除/编辑（隔离）
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-processors__head {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.35rem !important;
+    margin-bottom: 0.25rem !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-processors__head .jms-tree-processors__label {
+    margin-bottom: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-btn-add-tg-processor {
+    flex: 0 0 auto !important;
+    font-size: 0.625rem !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    padding: 0.12rem 0.45rem !important;
+    border-radius: 999px !important;
+    border: 1px solid rgba(124, 58, 237, 0.35) !important;
+    background: #fff !important;
+    color: #6d28d9 !important;
+    cursor: pointer !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-btn-add-tg-processor:hover {
+    background: rgba(237, 233, 254, 0.9) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-processor-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    padding: 0.2rem 0 !important;
+    position: relative !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-processor-row__name {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-processor-row .lth-step-actions {
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-processors:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-processors:has(.lth-step-actions.is-hover) {
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 4 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-processor-row:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-processor-row:has(.lth-step-actions.is-hover) {
+    z-index: 5 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-processors__empty {
+    font-size: 0.625rem !important;
+    color: #94a3b8 !important;
+    padding: 0.1rem 0 0.2rem !important;
+}

@@ -1,0 +1,81 @@
+/**
+ * HTTP 步骤 · BeanShell PreProcessor 弹窗形态修复（隔离模块）
+ * 强制居中弹窗，避免 drawerIds / lth-drawer-open 退化为右侧抽屉。
+ */
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-beanshell-preproc-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-beanshell-preproc-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-beanshell-preproc-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-beanshell-preproc-edit.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    background: rgba(15, 23, 42, 0.42) !important;
+    backdrop-filter: blur(6px);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-beanshell-preproc-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-beanshell-preproc-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-beanshell-preproc-edit .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-beanshell-preproc-edit .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(640px, 96vw) !important;
+    max-width: 96vw !important;
+    max-height: min(92vh, 52rem) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    animation: none !important;
+    transform: none !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(229, 233, 239, 0.98) !important;
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.12) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-beanshell-preproc-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-beanshell-preproc-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-beanshell-preproc-edit .jms-step-modal > [class*="drawer__foot"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-beanshell-preproc-edit .jms-step-modal > [class*="drawer__head"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-beanshell-preproc-edit .jms-step-modal > [class*="drawer__body"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-step-beanshell-preproc-edit .jms-step-modal > [class*="drawer__foot"] {
+    min-width: 0;
+}
+
+/* 兼容旧 class 名（jms_http_step_preprocessor_ui.css 遗留） */
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-http-step-beanshell-preproc-modal.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open .jms-http-step-beanshell-preproc-modal.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-step-beanshell-preproc-modal.jms-modal-open {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-http-step-beanshell-preproc-modal .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open .jms-http-step-beanshell-preproc-modal .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-step-beanshell-preproc-modal .jms-step-modal {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: min(640px, 96vw) !important;
+    max-height: min(92vh, 52rem) !important;
+    border-radius: 16px !important;
+    animation: none !important;
+    transform: none !important;
+}

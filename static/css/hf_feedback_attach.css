@@ -1,0 +1,181 @@
+/* 投稿建议图片：+ 叠在 textarea 右下角，不改变输入框尺寸 / 不改弹窗玻璃态 */
+
+.hf-feedback-composer {
+  position: relative;
+  display: block;
+}
+/* 保持与原 textarea 一致，外层不额外占高 */
+.hf-feedback-composer > .hf-feedback-modal__textarea,
+.hf-feedback-composer > textarea.form-input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  /* 给右下角 + 留出可点区域，不改变外框尺寸意图下仅内边距 */
+  padding-right: 2.5rem !important;
+  padding-bottom: 2.25rem !important;
+}
+/* 右下角 +：紧贴底边与右边，盖住缩放斜线 */
+.hf-feedback-attach__add {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 2rem;
+  height: 2rem;
+  /* 四角统一圆角，贴合输入框右下角，避免单角椭圆违和 */
+  border-radius: 0.4rem;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: #fff;
+  color: #64748b;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1;
+  box-shadow: none;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.hf-feedback-attach__add:hover {
+  border-color: rgba(99, 102, 241, 0.55);
+  color: #4f46e5;
+  background: #fff;
+}
+.hf-feedback-attach__add.is-hidden {
+  display: none !important;
+}
+
+/* 缩略图：输入框下方一行，不挤占输入框 */
+.hf-feedback-attach__thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.hf-feedback-attach__thumbs:empty {
+  display: none;
+}
+.hf-feedback-attach__thumb {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(203, 213, 225, 0.9);
+  background: #fff;
+  flex: 0 0 auto;
+  cursor: zoom-in;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+.hf-feedback-attach__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.hf-feedback-attach__remove {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+  width: 0.78rem;
+  height: 0.78rem;
+  border: none;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.55);
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  font-size: 0.58rem;
+  font-weight: 600;
+  z-index: 2;
+}
+.hf-feedback-attach__remove:hover {
+  background: rgba(15, 23, 42, 0.78);
+}
+
+/* 投稿图片预览层（仅投稿用，不影响其它弹窗） */
+.hf-feedback-attach-preview {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10120;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  box-sizing: border-box;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.hf-feedback-attach-preview.is-open {
+  display: flex;
+}
+.hf-feedback-attach-preview__img {
+  max-width: min(92vw, 56rem);
+  max-height: min(86vh, 56rem);
+  border-radius: 0.75rem;
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.28);
+  background: #fff;
+  object-fit: contain;
+}
+.hf-feedback-attach-preview__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.55);
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+.hf-feedback-attach__err {
+  margin: 0.35rem 0 0;
+  font-size: 0.75rem;
+  color: #b91c1c;
+}
+.hf-feedback-attach__err.is-hidden {
+  display: none !important;
+}
+.hf-feedback-attach__file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.hf-feedback-admin-card__images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+}
+.hf-feedback-admin-card__images a {
+  display: block;
+  width: 3.1rem;
+  height: 3.1rem;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  border: 1px solid rgba(203, 213, 225, 0.95);
+  background: #f8fafc;
+}
+.hf-feedback-admin-card__images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

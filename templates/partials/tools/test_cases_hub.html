@@ -1,0 +1,26 @@
+{# 测试用例 Hub #}
+{% set _hub_tab = tc_hub_tab | default('ai') %}
+<script>document.body.classList.add('tc-hub-ai-tab');</script>
+<div class="tc-hub-scope" data-initial-tab="ai">
+    <div id="tc-hub-panel-ai" class="tc-hub-panel" role="tabpanel">
+        {% include 'partials/tools/test_case_main.html' %}
+    </div>
+
+    {% include 'partials/tools/tc_preset_model_modal.html' %}
+    {% include 'partials/tools/tc_feature_unlock_modal.html' %}
+</div>
+<script>
+(function() {
+    'use strict';
+    // 抑制 VXE Table 已知 bug：表格销毁后全局右键菜单处理器访问已移除的 DOM 节点
+    window.addEventListener('error', function(e) {
+        if (e && e.error && e.error instanceof TypeError &&
+            String(e.error.message || '').indexOf('parentNode') > -1 &&
+            e.filename && e.filename.indexOf('tc-vxe-table.js') > -1) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+    }, true);
+})();
+</script>

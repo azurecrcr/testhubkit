@@ -1,0 +1,132 @@
+/**
+ * JMeter 搭建 Tab · 管理员组件全景（隔离：body.lth-hub-build-tab）
+ */
+body.lth-hub-build-tab .lth-hub-tab-wrap { max-width: none !important; }
+body.lth-hub-build-tab .jmb-page-main { max-width: none !important; padding-bottom: 2rem !important; }
+
+body.lth-hub-build-tab .jmb-hub {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 0.85rem 0.9rem 1rem;
+    background: linear-gradient(128deg, rgba(30,58,95,0.94) 0%, rgba(15,118,110,0.9) 45%, rgba(14,116,144,0.88) 100%);
+    border: 1px solid rgba(45,212,191,0.28) !important;
+    backdrop-filter: blur(12px) saturate(1.2);
+    -webkit-backdrop-filter: blur(12px) saturate(1.2);
+    box-shadow: 0 16px 40px -12px rgba(15,118,110,0.35);
+    min-height: calc(100vh - 9rem);
+}
+body.lth-hub-build-tab .jmb-hub__head {
+    display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between;
+    gap: 0.65rem 1rem; margin-bottom: 0.65rem;
+}
+body.lth-hub-build-tab .jmb-hub__title {
+    margin: 0; font-size: 1rem; font-weight: 800; color: #ecfdf5; letter-spacing: 0.02em;
+}
+body.lth-hub-build-tab .jmb-hub__sub {
+    margin: 0.2rem 0 0; font-size: 0.72rem; color: rgba(204,251,241,0.78);
+}
+body.lth-hub-build-tab .jmb-hub__runtime {
+    display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: flex-end;
+}
+body.lth-hub-build-tab .jmb-badge {
+    font-size: 0.65rem; font-weight: 700; padding: 0.22rem 0.5rem; border-radius: 999px;
+    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22); color: #ecfdf5;
+    backdrop-filter: blur(8px);
+}
+body.lth-hub-build-tab .jmb-hub__toolbar {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem;
+    margin-bottom: 0.65rem; padding: 0.45rem 0.55rem; border-radius: 0.65rem;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.16);
+}
+body.lth-hub-build-tab .jmb-search {
+    flex: 1 1 12rem; min-width: 10rem; padding: 0.35rem 0.55rem; border-radius: 0.45rem;
+    border: 1px solid rgba(255,255,255,0.28); background: rgba(255,255,255,0.92); font-size: 0.78rem;
+}
+body.lth-hub-build-tab .jmb-select {
+    padding: 0.35rem 0.55rem; border-radius: 0.45rem; border: 1px solid rgba(255,255,255,0.28);
+    background: rgba(255,255,255,0.92); font-size: 0.75rem; min-width: 8rem;
+}
+body.lth-hub-build-tab .jmb-count { font-size: 0.72rem; color: rgba(236,253,245,0.85); margin-left: auto; }
+
+body.lth-hub-build-tab .jmb-layout {
+    display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 0.65rem; min-height: calc(100vh - 14rem);
+}
+body.lth-hub-build-tab .jmb-tree-panel {
+    border-radius: 0.75rem; padding: 0.55rem 0.5rem;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px); overflow: auto; max-height: calc(100vh - 14rem);
+}
+body.lth-hub-build-tab .jmb-panel-title {
+    margin: 0 0 0.45rem; padding: 0 0.25rem; font-size: 0.72rem; font-weight: 800;
+    color: rgba(236,253,245,0.92); letter-spacing: 0.04em; text-transform: uppercase;
+}
+body.lth-hub-build-tab .jmb-tree-node {
+    margin: 0.15rem 0; padding: 0.28rem 0.4rem; border-radius: 0.4rem; cursor: pointer;
+    font-size: 0.72rem; color: rgba(241,245,249,0.88); border: 1px solid transparent;
+}
+body.lth-hub-build-tab .jmb-tree-node:hover { background: rgba(255,255,255,0.1); }
+body.lth-hub-build-tab .jmb-tree-node.is-active {
+    background: rgba(45,212,191,0.18); border-color: rgba(45,212,191,0.35); color: #ecfdf5;
+}
+body.lth-hub-build-tab .jmb-tree-node--child { margin-left: 0.65rem; }
+body.lth-hub-build-tab .jmb-tree-node__meta { display: block; font-size: 0.62rem; opacity: 0.72; margin-top: 0.1rem; }
+
+body.lth-hub-build-tab .jmb-main-panel {
+    border-radius: 0.75rem; padding: 0.55rem;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+    overflow: auto; max-height: calc(100vh - 14rem);
+}
+body.lth-hub-build-tab .jmb-cat-strip {
+    display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.55rem;
+}
+body.lth-hub-build-tab .jmb-cat-chip {
+    font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.45rem; border-radius: 999px;
+    background: rgba(255,255,255,0.82); color: #0f766e; border: 1px solid rgba(45,212,191,0.35);
+    cursor: pointer;
+}
+body.lth-hub-build-tab .jmb-cat-chip.is-active { background: #0f766e; color: #ecfdf5; }
+
+body.lth-hub-build-tab .jmb-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.45rem;
+}
+body.lth-hub-build-tab .jmb-card {
+    padding: 0.55rem 0.6rem; border-radius: 0.65rem;
+    background: rgba(255,255,255,0.94); border: 1px solid rgba(226,232,240,0.95);
+    box-shadow: 0 2px 8px rgba(15,23,42,0.06);
+}
+body.lth-hub-build-tab .jmb-card__head { display: flex; align-items: center; gap: 0.35rem; margin-bottom: 0.25rem; }
+body.lth-hub-build-tab .jmb-card__icon {
+    width: 1.35rem; height: 1.35rem; border-radius: 0.35rem; display: inline-flex;
+    align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 800; color: #fff;
+}
+body.lth-hub-build-tab .jmb-card__icon--thread_group { background: #0f766e; }
+body.lth-hub-build-tab .jmb-card__icon--controller { background: #6366f1; }
+body.lth-hub-build-tab .jmb-card__icon--config { background: #0284c7; }
+body.lth-hub-build-tab .jmb-card__icon--sampler { background: #059669; }
+body.lth-hub-build-tab .jmb-card__icon--timer { background: #d97706; }
+body.lth-hub-build-tab .jmb-card__icon--preprocessor { background: #7c3aed; }
+body.lth-hub-build-tab .jmb-card__icon--postprocessor { background: #db2777; }
+body.lth-hub-build-tab .jmb-card__icon--assertion { background: #dc2626; }
+body.lth-hub-build-tab .jmb-card__icon--listener { background: #0891b2; }
+body.lth-hub-build-tab .jmb-card__icon--test_plan { background: #334155; }
+body.lth-hub-build-tab .jmb-card__icon--other { background: #64748b; }
+
+body.lth-hub-build-tab .jmb-card__title { font-size: 0.78rem; font-weight: 800; color: #0f172a; line-height: 1.3; }
+body.lth-hub-build-tab .jmb-card__alias { font-size: 0.65rem; color: #64748b; font-family: ui-monospace, monospace; }
+body.lth-hub-build-tab .jmb-card__class {
+    margin-top: 0.35rem; font-size: 0.62rem; color: #475569; word-break: break-all;
+    font-family: ui-monospace, monospace; line-height: 1.35;
+}
+body.lth-hub-build-tab .jmb-card__tag {
+    display: inline-block; margin-top: 0.35rem; font-size: 0.6rem; font-weight: 700;
+    padding: 0.12rem 0.38rem; border-radius: 999px; background: #ecfdf5; color: #065f46;
+}
+body.lth-hub-build-tab .jmb-card__tag--plugin { background: #fef3c7; color: #92400e; }
+body.lth-hub-build-tab .jmb-empty { text-align: center; padding: 2rem; color: rgba(236,253,245,0.8); font-size: 0.85rem; }
+body.lth-hub-build-tab .jmb-empty.hidden { display: none !important; }
+
+@media (max-width: 900px) {
+    body.lth-hub-build-tab .jmb-layout { grid-template-columns: 1fr; }
+    body.lth-hub-build-tab .jmb-tree-panel { max-height: 12rem; }
+}

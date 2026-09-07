@@ -1,0 +1,121 @@
+/* 蓝湖需求文档：配额 / 重复提示弹窗 */
+.tc-lanhu-doc-notice {
+  position: fixed;
+  inset: 0;
+  z-index: 10070;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.tc-lanhu-doc-notice.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tc-lanhu-doc-notice.is-hidden {
+  display: none;
+}
+
+.tc-lanhu-doc-notice__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.42);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.tc-lanhu-doc-notice__panel {
+  position: relative;
+  z-index: 1;
+  width: min(24rem, 92vw);
+  padding: 0;
+  border-radius: 1.125rem;
+  background: #fff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.92) inset,
+    0 28px 56px rgba(15, 23, 42, 0.16),
+    0 10px 24px rgba(15, 23, 42, 0.06);
+  transform: translateY(10px) scale(0.98);
+  transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+}
+
+.tc-lanhu-doc-notice.is-open .tc-lanhu-doc-notice__panel {
+  transform: translateY(0) scale(1);
+}
+
+.tc-lanhu-doc-notice__accent {
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 52%, #a78bfa 100%);
+}
+
+.tc-lanhu-doc-notice--duplicate .tc-lanhu-doc-notice__accent {
+  background: linear-gradient(90deg, #f59e0b 0%, #f97316 100%);
+}
+
+.tc-lanhu-doc-notice--quota .tc-lanhu-doc-notice__accent {
+  background: linear-gradient(90deg, #6366f1 0%, #4f46e5 100%);
+}
+
+.tc-lanhu-doc-notice__body {
+  padding: 1.375rem 1.5rem 0.25rem;
+}
+
+.tc-lanhu-doc-notice__title {
+  margin: 0 0 0.625rem;
+  font-size: 1.0625rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: #0f172a;
+  line-height: 1.35;
+}
+
+.tc-lanhu-doc-notice__message {
+  margin: 0 0 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  font-weight: 450;
+  color: #475569;
+  letter-spacing: 0.01em;
+  white-space: pre-line;
+}
+
+.tc-lanhu-doc-notice__actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1.5rem 1.375rem;
+}
+
+.tc-lanhu-doc-notice__btn {
+  min-width: 5.5rem;
+  padding: 0.5rem 1.125rem;
+  border: none;
+  border-radius: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  box-shadow: 0 1px 2px rgba(79, 70, 229, 0.25), 0 4px 12px rgba(99, 102, 241, 0.28);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tc-lanhu-doc-notice__btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(79, 70, 229, 0.28), 0 6px 16px rgba(99, 102, 241, 0.32);
+}
+
+.tc-lanhu-doc-notice__btn:active {
+  transform: translateY(0);
+}
+
+body.tc-lanhu-doc-notice-open {
+  overflow: hidden;
+}

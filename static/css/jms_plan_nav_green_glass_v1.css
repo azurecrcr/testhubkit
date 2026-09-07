@@ -1,0 +1,335 @@
+/* 鍘嬫祴閫犳暟 路 娴嬭瘯璁″垝宸︽爮缁胯壊绉戞妧鐜荤拑椋庯紙plan6 路 寮虹敓鏁堢増锛?*/
+
+body.lth-studio-v2.lth-hub-jmeter-tab {
+  --lth-nav-emerald: #059669;
+  --lth-nav-teal: #0d9488;
+  --lth-nav-text: #065f46;
+  --lth-nav-text-soft: #047857;
+  --lth-nav-muted: #5a9a8a;
+}
+
+/* ===== 宸︽爮瀹瑰櫒 ===== */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-nav {
+  position: relative !important;
+  overflow: hidden !important;
+  padding: 0.65rem 0.55rem 0.7rem !important;
+  border: 1px solid rgba(16, 185, 129, 0.42) !important;
+  background:
+    radial-gradient(ellipse 130% 90% at 100% -10%, rgba(52, 211, 153, 0.35) 0%, transparent 58%),
+    radial-gradient(ellipse 100% 80% at -15% 105%, rgba(45, 212, 191, 0.28) 0%, transparent 52%),
+    linear-gradient(
+      168deg,
+      rgba(236, 253, 245, 0.98) 0%,
+      rgba(209, 250, 229, 0.92) 48%,
+      rgba(204, 251, 241, 0.82) 100%
+    ) !important;
+  backdrop-filter: blur(20px) saturate(1.4) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+  box-shadow:
+    0 4px 16px rgba(5, 150, 105, 0.12),
+    0 18px 40px -12px rgba(4, 120, 87, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    inset 0 0 0 1px rgba(167, 243, 208, 0.35) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 6%;
+  right: 6%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(52, 211, 153, 0.85) 25%,
+    rgba(45, 212, 191, 1) 50%,
+    rgba(52, 211, 153, 0.85) 75%,
+    transparent
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-nav__head {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0.4rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid rgba(52, 211, 153, 0.32) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-nav__head--plan {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0.35rem !important;
+  padding-right: 0.38rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-nav__body {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== 璁″垝鍚嶇О杈撳叆 ===== */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-plan-name-input {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.48rem 0.55rem 0.48rem 1.75rem !important;
+  border-radius: 0.58rem !important;
+  border: 1px solid rgba(16, 185, 129, 0.5) !important;
+  color: #047857 !important;
+  font-size: 0.74rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
+  box-shadow:
+    inset 0 1px 3px rgba(5, 150, 105, 0.06),
+    0 1px 0 rgba(255, 255, 255, 0.75) !important;
+  background-color: rgba(240, 253, 250, 0.95) !important;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E"),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.85) 0%, rgba(236, 253, 245, 0.95) 100%) !important;
+  background-repeat: no-repeat, no-repeat !important;
+  background-position: 0.52rem center, 0 0 !important;
+  background-size: 0.85rem, 100% 100% !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-plan-name-input::placeholder {
+  color: rgba(90, 154, 138, 0.85) !important;
+  font-weight: 500;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-plan-name-input:focus {
+  outline: none !important;
+  border-color: rgba(5, 150, 105, 0.65) !important;
+  color: #065f46 !important;
+  background-color: #f0fdf4 !important;
+  box-shadow:
+    0 0 0 3px rgba(52, 211, 153, 0.22),
+    inset 0 1px 3px rgba(5, 150, 105, 0.05) !important;
+}
+
+/* ===== 鍒嗙粍 & 瀵艰埅椤?===== */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-nav__heading,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-nav__heading--sub,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-nav__heading--mode {
+  color: #059669 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.07em !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-group {
+  border-bottom-color: rgba(52, 211, 153, 0.28) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item {
+  color: #065f46 !important;
+  border: 1px solid rgba(167, 243, 208, 0.45) !important;
+  background: rgba(255, 255, 255, 0.45) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item:hover {
+  background: rgba(167, 243, 208, 0.42) !important;
+  border-color: rgba(16, 185, 129, 0.45) !important;
+  box-shadow: 0 3px 12px rgba(16, 185, 129, 0.1) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item.is-active {
+  background: linear-gradient(135deg, rgba(187, 247, 208, 0.75), rgba(236, 253, 245, 0.85)) !important;
+  border-color: rgba(5, 150, 105, 0.48) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(52, 211, 153, 0.18),
+    0 4px 14px rgba(16, 185, 129, 0.12) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item.is-active .lth-nav-item__label {
+  color: #047857 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item__label {
+  color: #134e4a !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item__hint {
+  color: #5a9a8a !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item__icon {
+  color: #0d9488 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-listener-help {
+  border-color: rgba(52, 211, 153, 0.55) !important;
+  background: rgba(236, 253, 245, 0.9) !important;
+  color: #059669 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item--plan-listener.is-on {
+  border-color: rgba(5, 150, 105, 0.48) !important;
+  background: linear-gradient(180deg, rgba(220, 252, 231, 0.95), rgba(255, 255, 255, 0.78)) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item__state {
+  background: rgba(236, 253, 245, 0.95) !important;
+  color: #5a9a8a !important;
+  border-color: rgba(110, 231, 183, 0.55) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item--plan-listener.is-on .lth-nav-item__state {
+  background: rgba(187, 247, 208, 0.95) !important;
+  color: #047857 !important;
+  border-color: rgba(52, 211, 153, 0.55) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item--action {
+  border-color: rgba(16, 185, 129, 0.52) !important;
+  background: linear-gradient(180deg, rgba(220, 252, 231, 0.82), rgba(255, 255, 255, 0.88)) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item__icon--action {
+  background: rgba(16, 185, 129, 0.2) !important;
+  color: #059669 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-modes .jms-editor-mode-btn {
+  color: #5a9a8a !important;
+  border-color: rgba(110, 231, 183, 0.5) !important;
+  background: rgba(255, 255, 255, 0.42) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-modes .jms-editor-mode-btn.is-active {
+  color: #047857 !important;
+  border-color: rgba(5, 150, 105, 0.48) !important;
+  background: linear-gradient(135deg, rgba(187, 247, 208, 0.88), rgba(236, 253, 245, 0.72)) !important;
+}
+
+/* ===== 椤舵爮鍦烘櫙妯℃澘閫夋嫨 ===== */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar .lth-tpl-combobox__trigger {
+  border-color: rgba(110, 231, 183, 0.62) !important;
+  background: linear-gradient(148deg, rgba(236, 253, 245, 0.96), rgba(224, 247, 250, 0.88)) !important;
+  color: #047857 !important;
+  box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.12), 0 4px 14px rgba(5, 150, 105, 0.1) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar .lth-tpl-combobox__trigger:hover {
+  border-color: rgba(16, 185, 129, 0.72) !important;
+  color: #065f46 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar .lth-tpl-combobox__chevron {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23059669' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar .lth-tpl-combobox__option {
+  color: #047857 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar .lth-tpl-combobox__option:hover {
+  background: rgba(187, 247, 208, 0.55) !important;
+  color: #065f46 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar .lth-tpl-combobox__option.is-selected {
+  background: linear-gradient(135deg, rgba(187, 247, 208, 0.92), rgba(224, 247, 250, 0.78)) !important;
+  color: #047857 !important;
+}
+
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-nav__plan-label {
+  margin: 0 !important;
+  padding: 0.15rem 0 0.38rem 0.2rem !important;
+  text-align: left !important;
+  color: #065f46 !important;
+  font-size: 0.8125rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-collapse-btn--plan-nav {
+  flex: 0 0 auto !important;
+  margin: 0 0 0.12rem 0 !important;
+}
+
+body.lth-studio-v2.lth-nav-collapsed.lth-hub-jmeter-tab .lth-studio-nav__plan-label {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+body.lth-studio-v2.lth-nav-collapsed.lth-hub-jmeter-tab .lth-studio-nav__head--plan {
+  justify-content: center !important;
+  padding-right: 0 !important;
+}
+
+/* ===== 收起态：保留窄条 + 展开按钮（覆盖 bundle 全隐藏规则） ===== */
+body.lth-studio-v2.lth-nav-collapsed.lth-hub-jmeter-tab .lth-studio-body {
+  grid-template-columns: 44px minmax(0, 1fr) !important;
+  gap: 0.45rem !important;
+}
+
+body.lth-studio-v2.lth-nav-collapsed.lth-hub-jmeter-tab .lth-studio-nav {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  padding: 0.42rem 0.16rem !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  cursor: pointer !important;
+  min-height: 3.25rem !important;
+}
+
+body.lth-studio-v2.lth-nav-collapsed.lth-hub-jmeter-tab .lth-studio-nav__body {
+  display: none !important;
+}
+
+body.lth-studio-v2.lth-nav-collapsed.lth-hub-jmeter-tab .lth-studio-nav__head--plan {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  min-height: 2.55rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-bottom: none !important;
+  gap: 0.12rem !important;
+}
+
+body.lth-studio-v2.lth-nav-collapsed.lth-hub-jmeter-tab .lth-studio-nav__head--plan::after {
+  content: "\25B6" !important;
+  display: block !important;
+  font-size: 0.5rem !important;
+  color: rgba(5, 150, 105, 0.45) !important;
+  line-height: 1 !important;
+  pointer-events: none !important;
+}
+
+body.lth-studio-v2.lth-nav-collapsed.lth-hub-jmeter-tab .lth-nav-collapse-btn--plan-nav {
+  width: 1.85rem !important;
+  height: 1.85rem !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 3 !important;
+}
+
+body.lth-studio-v2.lth-nav-collapsed.lth-hub-jmeter-tab .lth-nav-collapse-btn--plan-nav .lth-nav-collapse-btn__icon {
+  transform: rotate(-135deg) translate(-1px, -1px) !important;
+}

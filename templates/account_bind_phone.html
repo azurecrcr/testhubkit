@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绑定手机号 · {{ hf_site_brand_title }}</title>
+    {% include 'partials/hf_favicon.html' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toolkit.css') }}?v=20260556">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/page_shells.css') }}?v=20260556">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/account_profile_chrome.css') }}?v=20260725pwd1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hf_phone_bind_gate.css') }}?v=20260811phone1">
+    <script src="{{ url_for('static', filename='vendor/tailwindcss-cdn-3.4.10.js') }}"></script>
+</head>
+<body class="min-h-screen account-profile-page hf-bind-phone-page" data-hf-phone-bind-page="1">
+    {% include 'partials/hf_global_nav.html' %}
+    <div class="profile-page__bg" aria-hidden="true">
+        <div class="profile-page__bg-orb profile-page__bg-orb--a"></div>
+        <div class="profile-page__bg-orb profile-page__bg-orb--b"></div>
+        <div class="profile-page__bg-grid"></div>
+    </div>
+    <div class="profile-wrap">
+        <div class="profile-card hf-bind-phone-card">
+            <header class="profile-card__head">
+                <p class="hf-bind-phone-card__badge">公安实名要求</p>
+                <h1>绑定手机号</h1>
+                <p class="profile-card__lead">按网络安全与公安实名核验要求，使用本平台前须通过手机短信验证码完成实名验证。绑定后即可继续使用全部功能。</p>
+            </header>
+
+            <label class="profile-field">
+                <span class="profile-field__label">手机号<span class="profile-field__req" aria-hidden="true">*</span></span>
+                <input type="tel" id="hf-bind-phone-input" class="auth-field" inputmode="numeric" maxlength="11" autocomplete="tel" placeholder="请输入中国大陆手机号">
+            </label>
+
+            <label class="profile-field">
+                <span class="profile-field__label">图形验证码<span class="profile-field__req" aria-hidden="true">*</span></span>
+                <div class="hf-bind-phone-row">
+                    <span id="hf-bind-captcha-q" class="hf-bind-captcha-q" aria-live="polite">加载中…</span>
+                    <input type="text" id="hf-bind-captcha-a" class="auth-field" inputmode="numeric" placeholder="计算结果" aria-label="图形验证码">
+                    <button type="button" class="profile-id-row__action" id="hf-bind-captcha-refresh">换一题</button>
+                </div>
+            </label>
+
+            <label class="profile-field">
+                <span class="profile-field__label">短信验证码<span class="profile-field__req" aria-hidden="true">*</span></span>
+                <div class="hf-bind-phone-row">
+                    <input type="text" id="hf-bind-sms-code" class="auth-field" inputmode="numeric" maxlength="8" placeholder="短信验证码" autocomplete="one-time-code">
+                    <button type="button" class="profile-id-row__action" id="hf-bind-send-code">获取验证码</button>
+                </div>
+            </label>
+
+            <p id="hf-bind-phone-msg" class="profile-msg" role="status" aria-live="polite"></p>
+
+            <div class="hf-bind-phone-actions">
+                <button type="button" class="profile-save-btn" id="hf-bind-phone-submit">确认绑定并继续</button>
+                <button type="button" class="hf-bind-phone-logout" id="hf-bind-phone-logout" data-hf-auth-logout>退出登录</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+      window.__HF_BIND_PHONE_NEXT__ = {{ bind_next|tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='js/hf_float_toast.js') }}?v=20260622logouttree2"></script>
+    <script src="{{ url_for('static', filename='js/hf_auth_nav.js') }}?v=20260811phone1"></script>
+    <script src="{{ url_for('static', filename='js/hf_account_bind_phone.js') }}?v=20260811phone1" defer></script>
+</body>
+</html>

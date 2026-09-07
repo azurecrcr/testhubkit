@@ -1,0 +1,15 @@
+/**
+ * 树形视图 · If 控制器区域滚轮链式传递（隔离，不影响左侧导航 overscroll contain）
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps {
+    overscroll-behavior-y: auto !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__body.jms-tree-if-children,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__body.jms-tree-if-children,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__body.jms-tree-if-children,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__body.jms-tree-if-children,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__body.jms-tree-if-children {
+    overflow: visible !important;
+    max-height: none !important;
+}

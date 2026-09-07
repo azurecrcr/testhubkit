@@ -1,0 +1,58 @@
+/* 生成结果弹窗 · JMX 结构摘要紧凑展示（隔离 v2） */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary--compact-v2 {
+    margin: 0 0 0.45rem !important;
+    padding: 0.42rem 0.55rem !important;
+    border-radius: 0.5rem !important;
+    background: rgba(16, 185, 129, 0.06) !important;
+    border: 1px solid rgba(16, 185, 129, 0.16) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary--compact-v2 .jms-output-summary__title {
+    margin: 0 0 0.28rem !important;
+    font-size: 0.68rem !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    color: rgba(6, 95, 70, 0.92) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-compact {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 0.28rem 0.55rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-compact__chip {
+    display: inline-flex !important;
+    align-items: baseline !important;
+    gap: 0.28rem !important;
+    font-size: 0.68rem !important;
+    line-height: 1.25 !important;
+    color: rgba(15, 23, 42, 0.88) !important;
+    white-space: nowrap !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-compact__chip--name {
+    font-weight: 700 !important;
+    color: rgba(4, 120, 87, 0.95) !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-compact__chip--warn {
+    color: #b45309 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-compact__chip--err {
+    color: #b91c1c !important;
+    font-weight: 600 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-output .jms-output-summary-compact__sep {
+    color: rgba(100, 116, 139, 0.55) !important;
+    font-size: 0.62rem !important;
+    user-select: none !important;
+}

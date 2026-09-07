@@ -1,0 +1,196 @@
+/**
+ * 提示词库 · 专业浅橘 v2
+ * 仅 body.hf-prompt-page-body — 缓解视觉疲劳 + 卡片阳光科技感
+ */
+body.hf-prompt-page-body {
+    background-color: #ffedd5 !important;
+    color: #7c2d12 !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg {
+    background-color: #fed7aa !important;
+}
+
+/* 压低左上角过亮区域，整体偏暖柔雾 */
+body.hf-prompt-page-body .hf-prompt-page__bg-img {
+    filter: saturate(0.88) brightness(0.94) contrast(0.98) !important;
+    object-position: 55% 30% !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page__bg-scrim {
+    background:
+        radial-gradient(ellipse 85% 65% at 0% 0%, rgba(234, 88, 12, 0.28) 0%, rgba(251, 146, 60, 0.14) 42%, transparent 72%),
+        radial-gradient(ellipse 70% 50% at 100% 100%, rgba(253, 186, 116, 0.2) 0%, transparent 60%),
+        linear-gradient(165deg, rgba(254, 215, 170, 0.72) 0%, rgba(255, 237, 213, 0.58) 38%, rgba(254, 243, 199, 0.48) 100%) !important;
+}
+
+/* Banner：简约专业，减少高光 */
+body.hf-prompt-page-body .hf-prompt-hero {
+    background: linear-gradient(128deg, #fdba74 0%, #fb923c 52%, #f59e0b 100%) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-hero::before {
+    background:
+        radial-gradient(ellipse 60% 50% at 100% 20%, rgba(255, 255, 255, 0.22) 0%, transparent 58%),
+        radial-gradient(ellipse 50% 40% at 0% 90%, rgba(254, 243, 199, 0.28) 0%, transparent 52%) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-hero--has-img .hf-prompt-hero__bg-scrim {
+    background: linear-gradient(
+        118deg,
+        rgba(254, 215, 170, 0.52) 0%,
+        rgba(251, 146, 60, 0.32) 48%,
+        rgba(245, 158, 11, 0.26) 100%
+    ) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-hero--has-img {
+    box-shadow:
+        0 1px 2px rgba(234, 88, 12, 0.06),
+        0 10px 28px -10px rgba(249, 115, 22, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+}
+
+/* 搜索栏：浅橘玻璃 */
+body.hf-prompt-page-body .hf-prompt-toolbar {
+    border: 1px solid rgba(251, 146, 60, 0.22) !important;
+    background:
+        linear-gradient(135deg, rgba(255, 251, 245, 0.88) 0%, rgba(255, 237, 213, 0.82) 100%) !important;
+    backdrop-filter: blur(14px) saturate(1.04) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(1.04) !important;
+    box-shadow:
+        0 1px 2px rgba(234, 88, 12, 0.05),
+        0 8px 24px -10px rgba(249, 115, 22, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-search {
+    border: 1px solid rgba(251, 146, 60, 0.28) !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+    color: #7c2d12 !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-search::placeholder {
+    color: #c2785a !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-search:focus {
+    border-color: rgba(249, 115, 22, 0.45) !important;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-chip {
+    border: 1px solid rgba(251, 146, 60, 0.28) !important;
+    background: rgba(255, 255, 255, 0.65) !important;
+    color: #9a3412 !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-chip.is-active {
+    background: linear-gradient(135deg, #fb923c, #f97316) !important;
+    color: #fff !important;
+    border-color: transparent !important;
+    box-shadow: 0 2px 8px -2px rgba(234, 88, 12, 0.35) !important;
+}
+
+/* —— 提示词卡片：浅橘阳光 +  subtle 科技网格 —— */
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid rgba(251, 146, 60, 0.26) !important;
+    background:
+        radial-gradient(ellipse 90% 60% at 100% 0%, rgba(253, 186, 116, 0.18) 0%, transparent 58%),
+        linear-gradient(152deg, rgba(255, 251, 245, 0.94) 0%, rgba(255, 237, 213, 0.9) 45%, rgba(254, 215, 170, 0.86) 100%) !important;
+    backdrop-filter: blur(14px) saturate(1.06) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(1.06) !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.45) inset,
+        0 1px 2px rgba(234, 88, 12, 0.05),
+        0 12px 28px -14px rgba(249, 115, 22, 0.14) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.55;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 31px,
+            rgba(251, 146, 60, 0.045) 31px,
+            rgba(251, 146, 60, 0.045) 32px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 31px,
+            rgba(251, 146, 60, 0.035) 31px,
+            rgba(251, 146, 60, 0.035) 32px
+        );
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card:not(.hf-dev-blur-wrap--locked):hover {
+    border-color: rgba(249, 115, 22, 0.42) !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.55) inset,
+        0 4px 14px -4px rgba(249, 115, 22, 0.18),
+        0 18px 36px -18px rgba(234, 88, 12, 0.16) !important;
+    transform: translateY(-1px);
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card__preview {
+    background: rgba(255, 255, 255, 0.62) !important;
+    border: 1px solid rgba(251, 146, 60, 0.22) !important;
+    color: #78350f !important;
+    box-shadow: inset 0 1px 2px rgba(234, 88, 12, 0.04) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card__tag {
+    background: rgba(255, 237, 213, 0.92) !important;
+    color: #c2410c !important;
+    border: 1px solid rgba(253, 186, 116, 0.55) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card .hf-copy-btn {
+    background: linear-gradient(135deg, #ea580c, #f97316) !important;
+    border: 1px solid rgba(234, 88, 12, 0.28) !important;
+    box-shadow: 0 2px 8px -2px rgba(234, 88, 12, 0.3) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card .hf-copy-btn:hover {
+    background: linear-gradient(135deg, #c2410c, #ea580c) !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card h3 {
+    color: #7c2d12 !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card .text-slate-600,
+body.hf-prompt-page-body .hf-prompt-page-main .hf-prompt-card .text-slate-500 {
+    color: #9a3412 !important;
+}
+
+body.hf-prompt-page-body .hf-prompt-page-main #hf-prompt-empty {
+    color: #c2410c !important;
+}

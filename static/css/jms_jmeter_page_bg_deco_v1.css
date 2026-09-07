@@ -1,0 +1,16 @@
+/**
+ * JMeter 压测页 · 背景装饰图标层 v1
+ * 不改现有渐变/玻璃/配色，仅在 scrim 之上叠加浅绿主题图标水印
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-jmeter-page__bg-scrim {
+  z-index: 1;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-jmeter-page__bg-deco {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: url("/static/images/load-test/lth-jmeter-page-bg-deco.png?v=20260711lth-deco1") center center / cover no-repeat;
+  opacity: 0.48;
+}

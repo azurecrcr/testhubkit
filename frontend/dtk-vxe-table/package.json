@@ -1,0 +1,18 @@
+{
+  "name": "testhub-dtk-vxe-table",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "vue": "^3.5.13",
+    "vxe-pc-ui": "^4.3.67",
+    "vxe-table": "^4.9.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^6.0.3"
+  }
+}

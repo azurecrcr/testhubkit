@@ -1,0 +1,1420 @@
+{# 测试用例工作台主卡片与表格区；仅 tc_view 时 include #}
+                            <div class="tc-workbench-scope rounded-xl border border-slate-200/90 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.05),0_20px_50px_-32px_rgba(15,23,42,0.12)] overflow-hidden sm:rounded-2xl">
+                                <div id="tc-wb-session-limit-banner" class="tc-wb-session-limit-banner hidden" role="status" aria-live="polite" aria-hidden="true">
+                                    <span class="tc-wb-session-limit-banner__text"></span>
+                                    <button type="button" class="tc-wb-session-limit-banner__close" aria-label="关闭提示">×</button>
+                                </div>
+                                <div id="tc-main-content-shell" class="tc-main-wb-surface p-4 sm:p-5 lg:p-6 tc-left-float--collapsed">
+                                    <div id="tc-left-float-backdrop" class="tc-left-float-backdrop hidden" aria-hidden="true"></div>
+                                    <aside id="left-panel" class="tc-left-float-panel tc-left-float-panel--resizable tc-left-float-panel--collapsed" aria-label="智能编辑面板" aria-hidden="true">
+                                        <div id="tc-left-float-drag-handle" class="tc-left-float-panel__head" title="拖动标题栏移动面板">
+                                            <span class="tc-left-float-panel__grip" aria-hidden="true"></span>
+                                            <p class="tc-left-float-panel__title">智能编辑</p>
+                                            <button type="button" id="collapse-btn" class="tc-panel-collapse-btn tc-left-float-panel__close" onclick="toggleCollapse()" title="收起智能编辑" aria-label="收起智能编辑" aria-expanded="false">
+                                                <svg id="collapse-icon" class="tc-panel-collapse-btn__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15 19l-7-7 7-7"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="tc-left-float-panel__scroll">
+                                        <div class="tc-left-panel tc-left-float-panel__body">
+                                            <div id="tc-drawer-tabs-root" class="tc-left-panel__head tc-left-panel__head--mode">
+                                                <p class="tc-drawer-mode-nav tc-drawer-mode-nav__solo min-w-0 flex-1" role="heading" aria-level="3">智能编辑</p>
+                                                <div class="tc-wb-head-actions">
+                                                    <button type="button" id="tc-wb-new-chat-btn" class="tc-lanhu-section-toggle tc-wb-new-chat-btn" title="开启新对话，清空当前对话区">
+                                                        <span class="tc-lanhu-section-toggle__label">开启新对话</span>
+                                                        <svg class="tc-lanhu-section-toggle__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                                        </svg>
+                                                    </button>
+                                                    <div class="tc-wb-history-wrap">
+                                                        <button type="button" id="tc-wb-history-toggle" class="tc-lanhu-section-toggle tc-wb-history-toggle" aria-expanded="false" aria-controls="tc-wb-history-panel" title="查看历史会话">
+                                                            <span class="tc-lanhu-section-toggle__label">历史记录</span>
+                                                            <svg class="tc-lanhu-section-toggle__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                            </svg>
+                                                        </button>
+                                                        <div id="tc-wb-history-panel" class="tc-wb-history-panel hidden" role="dialog" aria-label="历史会话" aria-hidden="true">
+                                                            <div class="tc-wb-history-panel__head">
+                                                                <span class="tc-wb-history-panel__title">历史会话</span>
+                                                                <span id="tc-wb-history-limit-hint" class="tc-wb-history-panel__hint">最多保留 5 条</span>
+                                                                <button type="button" id="tc-wb-history-new" class="tc-wb-history-panel__new" title="新建会话">新建</button>
+                                                                <button type="button" id="tc-wb-history-close" class="tc-wb-history-panel__close" aria-label="关闭">×</button>
+                                                            </div>
+                                                            <ul id="tc-wb-history-list" class="tc-wb-history-list"></ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="left-content-wrapper" class="tc-left-panel__body transition-opacity duration-300">
+                                            <div id="tc-gen-legacy-stubs" class="hidden" aria-hidden="true">
+                                                <input type="password" id="lanhu-cookie" autocomplete="off" tabindex="-1">
+                                                <input type="password" id="lanhu-url" autocomplete="off" tabindex="-1">
+                                                <textarea id="ai-prompt" tabindex="-1"></textarea>
+                                                <div id="ai-config-mode-root"></div>
+                                                <div id="tc-gen-chat-panel"><div id="tc-gen-chat-thread"></div></div>
+                                            </div>
+
+                                            <div id="drawer-edit-content" class="tc-drawer-edit-layout" aria-hidden="false">
+                                                <div class="tc-drawer-1-main">
+                                                    <div id="tc-edit-instruction-zone" class="tc-edit-instruction-zone">
+                                                        <div class="tc-edit-instruction-body">
+                                                            <div id="tc-edit-chat-panel" class="tc-edit-chat-panel" aria-label="编辑对话">
+                                                                <div id="tc-edit-chat-thread" class="tc-edit-chat-thread" role="log" aria-live="polite"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tc-drawer-1-footer">
+                                                            <div class="tc-edit-actions-row">
+                                                                <button type="button" id="tc-edit-undo-btn" class="tc-edit-undo-btn" disabled title="撤销上一次智能编辑">撤销上次编辑</button>
+                                                            </div>
+                                                            <div id="tc-edit-prompt-composer" class="tc-prompt-composer tc-entry-card tc-left-section tc-prompt-block" data-edit-attach-root="1">
+                                                                <div id="tc-edit-prompt-composer-attachments" class="tc-prompt-composer__attachments" aria-label="编辑附件预览"></div>
+                                                                <div id="tc-edit-prompt-composer-box" class="tc-prompt-composer__box">
+                                                                    <div class="tc-prompt-composer__input-wrap">
+                                                                        <button type="button" id="tc-edit-attach-upload-btn" class="tc-prompt-composer__attach-btn" title="上传 PNG/JPG/WebP/PDF/TXT" aria-label="上传附件">
+                                                                            <span class="tc-prompt-composer__attach-plus" aria-hidden="true">
+                                                                                <svg class="tc-prompt-composer__attach-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 5v14M5 12h14"></path>
+                                                                                </svg>
+                                                                            </span>
+                                                                        </button>
+                                                                        <textarea id="ai-edit-prompt" rows="1" wrap="soft" placeholder="描述要如何编辑当前表格用例…" class="tc-prompt-composer__input tc-prompt-block__input" autocomplete="off" spellcheck="true"></textarea>
+                                                                        <button type="button" id="tc-edit-send-btn" class="tc-prompt-composer__send-btn" disabled title="发送编辑指令" aria-label="发送编辑指令">
+                                                                            <svg class="tc-prompt-composer__send-icon tc-prompt-composer__send-icon--send" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 19V5m0 0l-6 6m6-6l6 6"></path>
+                                                                            </svg>
+                                                                            <svg class="tc-prompt-composer__send-icon tc-prompt-composer__send-icon--stop" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                                                <rect x="7" y="7" width="10" height="10" rx="1.5"></rect>
+                                                                            </svg>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="file" id="tc-edit-attach-file-input" class="hidden" multiple accept=".png,.jpg,.jpeg,.webp,.pdf,.txt,image/png,image/jpeg,image/webp,application/pdf,text/plain">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <div class="tc-left-float-resize tc-left-float-resize--n" data-tc-resize="n" title="拖动上边缘调整高度"></div>
+                                        <div class="tc-left-float-resize tc-left-float-resize--s" data-tc-resize="s" title="拖动下边缘调整高度"></div>
+                                        <div class="tc-left-float-resize tc-left-float-resize--e" data-tc-resize="e" title="拖动右边缘调整宽度"></div>
+                                        <div class="tc-left-float-resize tc-left-float-resize--w" data-tc-resize="w" title="拖动左边缘调整宽度"></div>
+                                        <div class="tc-left-float-resize tc-left-float-resize--nw" data-tc-resize="nw" title="拖动左上角调整大小"></div>
+                                        <div class="tc-left-float-resize tc-left-float-resize--ne" data-tc-resize="ne" title="拖动右上角调整大小"></div>
+                                        <div class="tc-left-float-resize tc-left-float-resize--sw" data-tc-resize="sw" title="拖动左下角调整大小"></div>
+                                        <div class="tc-left-float-resize tc-left-float-resize--se" data-tc-resize="se" title="拖动右下角调整大小"></div>
+                                    </aside>
+{% include 'partials/tools/tc_workbench_enhancements.html' %}
+                                    <div id="main-grid" class="tc-main-grid tc-main-grid--with-lanhu-tree">
+                                        
+<aside id="tc-lanhu-doc-tree-rail" class="tc-lanhu-doc-tree-rail" aria-label="蓝湖需求文档树">
+                                            <div class="tc-lanhu-tree-rail__head">
+                                                <div class="tc-lanhu-tree-rail__brand">
+                                                    <span class="tc-lanhu-tree-rail__logo" aria-hidden="true">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18M3 12h18M7 7l10 10M17 7L7 17"/></svg>
+                                                    </span>
+                                                    <div class="tc-lanhu-tree-rail__titles">
+                                                        <div id="tc-lanhu-tree-doc-title" class="tc-lanhu-tree-rail__title">蓝湖需求树</div>
+                                                        <div id="tc-lanhu-tree-page-count" class="tc-lanhu-tree-rail__subtitle">连接后展示文档页面</div>
+                                                    </div>
+                                                </div>
+                                                <div class="tc-lanhu-tree-rail__actions">
+                                                    <button type="button" id="tc-lanhu-tree-head-add-btn" class="tc-lanhu-tree-rail__head-add-btn hidden" title="添加 / 连接蓝湖文档" aria-label="添加 / 连接蓝湖文档" aria-haspopup="dialog" aria-hidden="true" tabindex="-1">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+                                                    </button>
+                                                    <button type="button" id="tc-lanhu-tree-connect-btn" class="tc-lanhu-tree-rail__icon-btn" title="添加 / 连接蓝湖文档" aria-label="添加 / 连接蓝湖文档">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101M10.172 13.828a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                                                    </button>
+                                                    <button type="button" id="tc-lanhu-tree-rail-collapse" class="tc-lanhu-tree-rail__icon-btn" title="收起需求树" aria-expanded="true" aria-label="收起需求树">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="tc-lanhu-tree-rail__body">
+                                                <div class="tc-lanhu-tree-search-wrap">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M11 18a7 7 0 100-14 7 7 0 000 14z"/></svg>
+                                                    <input type="search" id="tc-lanhu-tree-search" class="tc-lanhu-tree-search" placeholder="搜索页面…" autocomplete="off" spellcheck="false">
+                                                </div>
+                                                <div id="tc-lanhu-tree-mount" class="tc-lanhu-tree-mount" role="region" aria-label="蓝湖页面树"></div>
+                                            </div>
+                                            <div class="tc-lanhu-tree-rail__foot">
+                                                <span id="tc-lanhu-tree-status" class="tc-lanhu-tree-status" aria-live="polite"></span>
+                                            </div>
+                                        </aside>
+<div id="tc-lanhu-doc-add-modal" class="fixed inset-0 hidden items-center justify-center bg-black/45 p-4 z-50" role="dialog" aria-modal="true" aria-labelledby="tc-lanhu-doc-add-title">
+                                <div style="background:#fff;border-radius:1.25rem;width:100%;max-width:28rem;box-shadow:0 20px 60px rgba(15,23,42,0.25);overflow:hidden;">
+                                    <div style="padding:1.25rem 1.5rem 0.5rem;display:flex;align-items:center;gap:0.5rem;border-bottom:1px solid #f1f5f9;">
+                                        <span style="width:2rem;height:2rem;border-radius:0.65rem;background:linear-gradient(135deg,#10b981,#059669);color:#fff;display:grid;place-items:center;flex-shrink:0;" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:1.1rem;height:1.1rem;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                                        </span>
+                                        <div>
+                                            <h3 id="tc-lanhu-doc-add-title" style="font-size:0.95rem;font-weight:700;color:#1e293b;margin:0;">新增蓝湖文档</h3>
+                                            <p style="font-size:0.72rem;color:#64748b;margin:0;">填写文档信息后将自动拉取页面树</p>
+                                        </div>
+                                        <button type="button" onclick="closeAddDocModal()" style="margin-left:auto;width:1.85rem;height:1.85rem;border-radius:0.55rem;border:1px solid #e2e8f0;background:#f8fafc;color:#94a3b8;display:grid;place-items:center;cursor:pointer;flex-shrink:0;" aria-label="关闭">&times;</button>
+                                    </div>
+                                    <div style="padding:1rem 1.5rem 1.25rem;display:flex;flex-direction:column;gap:0.85rem;">
+                                        <div>
+                                            <label style="display:block;font-size:0.74rem;font-weight:600;color:#475569;margin-bottom:0.3rem;" for="tc-lanhu-doc-add-name">文档名称</label>
+                                            <input type="text" id="tc-lanhu-doc-add-name" placeholder="例如：首页改版需求" autocomplete="off" style="width:100%;border-radius:0.65rem;border:1px solid #cbd5e1;padding:0.55rem 0.7rem;font-size:0.78rem;color:#1e293b;background:#fff;outline:none;box-sizing:border-box;">
+                                        </div>
+                                        <div>
+                                            <label style="display:block;font-size:0.74rem;font-weight:600;color:#475569;margin-bottom:0.3rem;" for="tc-lanhu-doc-add-cookie">蓝湖 Cookie</label>
+                                            <textarea id="tc-lanhu-doc-add-cookie" placeholder="粘贴蓝湖 Cookie..." rows="3" style="width:100%;border-radius:0.65rem;border:1px solid #cbd5e1;padding:0.55rem 0.7rem;font-size:0.76rem;color:#1e293b;background:#fff;resize:vertical;font-family:monospace;line-height:1.4;outline:none;box-sizing:border-box;"></textarea>
+                                        </div>
+                                        <div>
+                                            <label style="display:block;font-size:0.74rem;font-weight:600;color:#475569;margin-bottom:0.3rem;" for="tc-lanhu-doc-add-url">文档 URL</label>
+                                            <input type="text" id="tc-lanhu-doc-add-url" placeholder="https://lanhuapp.com/..." autocomplete="off" style="width:100%;border-radius:0.65rem;border:1px solid #cbd5e1;padding:0.55rem 0.7rem;font-size:0.78rem;color:#1e293b;background:#fff;outline:none;box-sizing:border-box;">
+                                        </div>
+                                        <div style="display:flex;justify-content:flex-end;gap:0.5rem;margin-top:0.15rem;">
+                                            <button type="button" onclick="closeAddDocModal()" style="border-radius:0.65rem;border:1px solid #e2e8f0;background:#f8fafc;color:#64748b;padding:0.5rem 1.25rem;font-size:0.76rem;font-weight:500;cursor:pointer;">取消</button>
+                                            <button type="button" onclick="confirmAddDoc()" style="border:none;border-radius:0.65rem;background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff;padding:0.5rem 1.5rem;font-size:0.76rem;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(79,70,229,0.3);">确认添加</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="tc-lanhu-tree-connect-modal" class="tc-lanhu-connect-wrapper hidden" role="dialog" aria-modal="true" aria-labelledby="tc-lanhu-tree-connect-title">
+                                <div class="tc-lanhu-connect-backdrop" id="tc-lanhu-connect-backdrop"></div>
+                                <div class="tc-lanhu-connect-card">
+                                    <div class="tc-lanhu-connect-card__head">
+                                        <div class="tc-lanhu-connect-card__badge" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101M10.172 13.828a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                                        </div>
+                                        <div class="tc-lanhu-connect-card__title-group">
+                                            <h3 id="tc-lanhu-tree-connect-title" class="tc-lanhu-connect-card__title">添加 / 连接蓝湖文档</h3>
+                                            <p class="tc-lanhu-connect-card__desc">填写配置后将保存文档并拉取页面树，RAG 与提示词可在此统一管理。</p>
+                                        </div>
+                                        <button type="button" class="tc-lanhu-connect-card__close" id="tc-lanhu-connect-close-btn" aria-label="关闭">&times;</button>
+                                    </div>
+                                    <div class="tc-lanhu-connect-card__body">
+                                        <div class="tc-lanhu-connect-card__section">
+                                            <div class="tc-lanhu-connect-card__section-title">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                                                <span>蓝湖接入</span>
+                                            </div>
+                                            <div class="tc-lanhu-connect-field">
+                                                <label for="tc-lanhu-connect-doc-name">文档名称 <span class="tc-lanhu-connect-field__opt" aria-hidden="true">（选填）</span></label>
+                                                <input type="text" id="tc-lanhu-connect-doc-name" placeholder="不填则使用蓝湖文档名称" autocomplete="off">
+                                            </div>
+                                            <div class="tc-lanhu-connect-field">
+                                                <label for="tc-lanhu-tree-cookie">蓝湖 Cookie</label>
+                                                <textarea id="tc-lanhu-tree-cookie" placeholder="从浏览器 Network 复制完整 Cookie…" rows="2"></textarea>
+                                            </div>
+                                            <div class="tc-lanhu-connect-field">
+                                                <label for="tc-lanhu-tree-url">文档 URL</label>
+                                                <input type="text" id="tc-lanhu-tree-url" placeholder="https://lanhuapp.com/web/#/item/project/product?pid=…&docId=…">
+                                            </div>
+                                            <div class="tc-lanhu-connect-field-row">
+                                                <label class="tc-lanhu-connect-field-label">RAG 召回</label>
+                                                <button type="button" id="tc-lanhu-connect-rag-btn" class="tc-connect-rag-btn tc-connect-rag-btn--locked" aria-pressed="false" title="RAG召回：已锁定" onclick="window._tcPremiumRagClick&&window._tcPremiumRagClick()">
+                                                    <svg class="tc-connect-rag-btn__icon tc-connect-rag-btn__icon--locked" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                                                    </svg>
+                                                    <svg class="tc-connect-rag-btn__icon tc-connect-rag-btn__icon--unlocked" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/>
+                                                    </svg>
+                                                    <span class="tc-connect-rag-btn__label">RAG 召回</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="tc-lanhu-connect-card__section">
+                                            <div class="tc-lanhu-connect-card__section-title">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                                <span>生成提示词</span>
+                                                <span class="tc-lanhu-connect-card__section-hint">在生成用例时拼接到需求末尾</span>
+                                            </div>
+                                            <div class="tc-lanhu-connect-field">
+                                                <textarea id="tc-lanhu-connect-prompt" placeholder="自定义生成提示词模板…" rows="4"></textarea>
+                                            </div>
+                                            <button type="button" id="tc-lanhu-connect-reset-prompt" class="tc-lanhu-connect-card__reset-link">恢复默认提示词</button>
+                                        </div>
+                                    </div>
+                                    <div class="tc-lanhu-connect-card__foot">
+                                        <button type="button" id="tc-lanhu-connect-cancel-btn" class="tc-lanhu-connect-card__btn tc-lanhu-connect-card__btn--ghost">取消</button>
+                                        <button type="button" id="tc-lanhu-connect-load-btn" class="tc-lanhu-connect-card__btn tc-lanhu-connect-card__btn--primary">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                                            <span>连接并保存</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                                    
+<div id="right-panel" class="tc-main-grid__workspace relative">
+                                            <div id="table-workspace">
+                                            <div id="table-toolbar" class="tc-table-workspace__head">
+                                                <div class="tc-right-panel-head flex min-w-0 flex-wrap items-center gap-2">
+<!-- 质量检测：独立操作，不在生成流程中 -->
+                                                <button type="button" id="tc-gen-quality-btn" class="tc-quality-toggle-btn hidden" aria-hidden="true" title="检测当前需求页表格内的全部用例" onclick="window._tcStartQualityCheck&&window._tcStartQualityCheck()">
+                                                    <svg class="tc-quality-toggle-btn__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                    </svg>
+                                                    <span class="tc-quality-toggle-btn__label">质量检测</span>
+                                                </button>
+                                                    <div id="tc-table-ops-anchor" class="tc-table-ops-anchor hidden" aria-hidden="true">
+                                                        <button type="button" id="tc-table-fab-toggle" class="tc-table-ops-trigger shrink-0" aria-expanded="false" aria-controls="tc-table-fab-sheet" aria-haspopup="menu" title="表格行与表头操作" aria-label="表格操作">
+                                                            <svg class="tc-table-ops-trigger__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
+                                                            </svg>
+                                                            <span class="tc-table-ops-trigger__label">表格操作</span>
+                                                            <svg class="tc-table-ops-trigger__caret" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                                            </svg>
+                                                        </button>
+                                                        <div id="tc-table-fab-sheet" class="tc-table-ops-menu tc-workbench-fab-sheet hidden" role="menu" aria-label="表格操作">
+                                                            <div id="tc-table-fab-sheet-list" class="tc-workbench-fab-sheet__group">
+                                                                <button type="button" id="add-row-btn" class="tc-workbench-fab-sheet__item tc-table-fab-sheet__item" role="menuitem">
+                                                                    <span class="tc-workbench-fab-sheet__ico tc-workbench-fab-sheet__ico--add tc-table-fab-sheet__ico tc-table-fab-sheet__ico--add" aria-hidden="true">+</span>
+                                                                    <span>添加行</span>
+                                                                </button>
+                                                                <button type="button" id="table-column-settings-btn" class="tc-workbench-fab-sheet__item tc-table-fab-sheet__item" role="menuitem">
+                                                                    <span class="tc-workbench-fab-sheet__ico tc-table-fab-sheet__ico" aria-hidden="true">⌗</span>
+                                                                    <span>表头配置</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+    <input type="checkbox" id="tc-gen-auto-validate" style="display:none" tabindex="-1" aria-hidden="true">
+    <input type="checkbox" id="tc-rag-enabled" style="display:none" tabindex="-1" aria-hidden="true">
+                                                    <span id="tc-active-template-label" class="tc-active-template-label hidden" aria-hidden="true"></span>
+                                                    <span id="tc-mindmap-meta-tag-1" class="tc-view-meta-label tc-view-meta-label--mindmap hidden" aria-hidden="true">要素分类</span>
+                                                    <span id="tc-mindmap-meta-tag-2" class="tc-view-meta-label tc-view-meta-label--mindmap-alt hidden" aria-hidden="true">导图编辑</span>
+                                                    <button type="button" id="tc-switch-template-btn" class="tc-switch-template-btn hidden" aria-hidden="true">切换模板</button>
+                                                </div>
+                                                <div id="tc-table-toolbar-center" class="tc-table-toolbar-center">
+                                                <div id="tc-right-view-nav" class="tc-right-view-nav" role="tablist" aria-label="右侧视图切换">
+                                                    <button type="button" id="tc-right-view-table-btn" class="tc-right-view-nav__btn tc-right-view-nav__btn--active" role="tab" aria-selected="true" aria-controls="tc-vxe-table-view-panel" onclick="switchTcRightView('table')">
+                                                        <svg class="tc-right-view-nav__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                                                        <span class="tc-right-view-nav__label">表格用例</span>
+                                                    </button>
+                                                    <button type="button" id="tc-right-view-mindmap-btn" class="tc-right-view-nav__btn" role="tab" aria-selected="false" aria-controls="tc-mindmap-view-panel" onclick="switchTcRightView('mindmap')">
+                                                        <svg class="tc-right-view-nav__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v3m0 12v3M3 12h3m12 0h3M7.05 7.05l2.12 2.12m7.66 7.66l2.12 2.12M7.05 16.95l2.12-2.12m7.66-7.66l2.12-2.12"/></svg>
+                                                        <span class="tc-right-view-nav__label">思维导图</span>
+                                                    </button>
+                                                </div>
+                                                </div>
+                                                <div id="tc-table-toolbar-right" class="tc-table-toolbar-right"></div>
+
+                                            </div>
+                                            <div id="tc-table-toolbar-actions" class="hidden" aria-hidden="true"></div>
+                                            <div id="tc-mindmap-toolbar-actions" class="hidden" aria-hidden="true"></div>
+                                            
+                                            <div id="tc-table-list-panel" class="tc-table-list-panel tc-table-list-panel--locked tc-table-list-panel--boot-loading relative">
+                                            {% include 'partials/tools/tc_gen_batch_bar.html' %}
+                                            {% include 'partials/tools/tc_gen_stage_bar.html' %}
+                                                <div id="tc-table-template-empty" class="tc-table-template-empty hidden" aria-hidden="true">
+                                                    <button type="button" id="tc-choose-template-btn" class="tc-choose-template-btn btn btn-primary">选择模板</button>
+                                                </div>
+                                                <div id="tc-vxe-table-view-panel" class="tc-vxe-table-view-panel tc-table-list-panel__body" aria-hidden="false">
+                                                    <div id="tc-vxe-table-mount" class="tc-vxe-table-mount" role="region" aria-label="测试用例表格"></div>
+                                                </div>
+                                                <div id="tc-provenance-rail" class="tc-provenance-rail hidden" aria-hidden="true"></div>
+                                            </div>
+
+                                            <!-- 思维导图容器 -->
+                                            <div id="tc-mindmap-view-panel" class="tc-mindmap-panel hidden border border-gray-200 rounded-xl shadow-sm" aria-hidden="true" tabindex="0">
+                                                <div id="tc-mindmap-context-menu" class="tc-mindmap-context-menu hidden" role="menu" aria-hidden="true" aria-label="思维导图操作">
+                                                    <div id="tc-mindmap-context-menu-body" class="tc-mindmap-context-menu__body"></div>
+                                                </div>
+                                                <div class="tc-mindmap-stage">
+                                                    <div id="tc-smm-container" class="tc-smm-container"></div>
+                                                </div>
+                                                <div id="tc-mindmap-loading" class="tc-mindmap-loading hidden" aria-hidden="true" aria-live="polite">
+                                                    <div class="ds-loading-inline">
+                                                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-500" aria-hidden="true"></div>
+                                                        <div class="font-medium text-slate-700">正在生成中</div>
+                                                        <div class="text-sm text-slate-500">AI 正在生成导图用例，请稍候</div>
+                                                    </div>
+                                                </div>
+                                                <div id="tc-mindmap-empty" class="tc-mindmap-empty hidden" aria-hidden="true">
+                                                    <div class="ds-table-empty mx-auto">
+                                                        <span class="ds-table-empty__title">暂无思维导图</span>
+                                                        <span id="tc-mindmap-empty-hint" class="ds-table-empty__desc hidden" aria-hidden="true">请先使用AI添加用例。</span>
+                                                    </div>
+                                                </div>
+                                                <div id="tc-mindmap-zoom-bar" class="tc-mindmap-zoom-bar hidden" aria-hidden="true" role="group" aria-label="画布缩放">
+                                                    <button type="button" id="tc-mindmap-zoom-out-btn" class="tc-mindmap-zoom-bar__btn" title="缩小" aria-label="缩小">−</button>
+                                                    <span id="tc-mindmap-zoom-label" class="tc-mindmap-zoom-bar__label">100%</span>
+                                                    <button type="button" id="tc-mindmap-zoom-in-btn" class="tc-mindmap-zoom-bar__btn" title="放大" aria-label="放大">+</button>
+                                                    <button type="button" id="tc-mindmap-zoom-fit-btn" class="tc-mindmap-zoom-bar__fit" title="适应画布" aria-label="适应画布">适应</button>
+                                                </div>
+                                            </div>
+
+                                            <!-- 编辑模态框 -->
+                                            <div id="edit-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+                                                <div class="bg-white w-full max-w-3xl max-h-[80vh] overflow-hidden mx-4 shadow-2xl relative flex flex-col" style="border-radius: 20px;">
+                                                    <!-- 顶部：标题和关闭按钮 -->
+                                                    <div class="flex justify-between items-center px-6 py-4 border-b border-gray-100 flex-shrink-0">
+                                                        <h3 class="text-lg font-semibold text-gray-800">编辑测试用例</h3>
+                                                        <button onclick="closeEditModal()" class="text-gray-400 hover:text-gray-600 transition-colors p-2 hover:bg-gray-100 rounded-full">
+                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                    <!-- 中间：表单内容（可滚动） -->
+                                                    <div id="edit-form" class="px-6 py-4 space-y-4 overflow-y-auto flex-grow">
+                                                        <!-- 动态生成表单 -->
+                                                    </div>
+                                                    <!-- 底部：按钮 -->
+                                                    <div class="flex justify-end gap-3 px-6 py-4 border-t border-gray-100 flex-shrink-0">
+                                                        <button onclick="closeEditModal()" class="btn btn-secondary">取消</button>
+                                                        <button onclick="saveEditRow()" class="btn btn-primary">保存</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- 表头配置模态框 -->
+                                            <div id="column-settings-modal" class="fixed inset-0 z-[110] hidden items-center justify-center overflow-y-auto bg-black/40 p-4" role="dialog" aria-modal="true" aria-labelledby="column-settings-modal-title">
+                                                <div class="flex w-full max-w-lg max-h-[min(70vh,calc(100vh-5rem))] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+                                                    <div class="flex shrink-0 items-center justify-between border-b border-gray-100 px-5 py-3">
+                                                        <h3 id="column-settings-modal-title" class="text-base font-semibold text-gray-800">配置表头</h3>
+                                                        <button type="button" onclick="closeColumnSettingsModal()" class="rounded-full p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600" aria-label="关闭">
+                                                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                    <div class="flex shrink-0 items-center justify-between px-5 pt-3 pb-2">
+                                                        <p class="text-xs text-gray-500">可添加新列，也可删除不需要的列。</p>
+                                                        <button type="button" onclick="addColumnSetting()" class="btn btn-secondary px-3 py-1 text-sm">+ 添加列</button>
+                                                    </div>
+                                                    <div id="column-settings-list" class="min-h-0 flex-1 space-y-2 overflow-y-auto px-5 py-2"></div>
+                                                    <div class="flex shrink-0 justify-between border-t border-gray-100 px-5 py-3">
+                                                        <button type="button" onclick="resetColumnSettingsDraft()" class="btn btn-secondary">恢复默认</button>
+                                                        <div class="flex gap-2">
+                                                            <button type="button" onclick="closeColumnSettingsModal()" class="btn btn-secondary">取消</button>
+                                                            <button type="button" onclick="saveColumnSettings()" class="btn btn-primary">保存表头</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="tc-ai-mindmap-confirm-modal" class="tc-ai-mindmap-confirm-modal hidden" aria-hidden="true">
+                                <div class="tc-ai-mindmap-confirm-modal__backdrop" aria-hidden="true"></div>
+                                <div class="tc-ai-mindmap-confirm-modal__panel" role="dialog" aria-modal="true" aria-labelledby="tc-ai-mindmap-confirm-title">
+                                    <button type="button" id="tc-ai-mindmap-confirm-close" class="tc-ai-mindmap-confirm-modal__close" aria-label="关闭">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+                                    </button>
+                                    <div class="tc-ai-mindmap-confirm-modal__icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path stroke-linecap="round" d="M9 12h6M9 16h4"/></svg>
+                                    </div>
+                                    <h3 id="tc-ai-mindmap-confirm-title" class="tc-ai-mindmap-confirm-modal__title">AI 转思维导图</h3>
+                                    <p id="tc-ai-mindmap-confirm-desc" class="tc-ai-mindmap-confirm-modal__desc">将当前页表格用例转换为思维导图，转换完成后可在思维导图 Tab 中查看与编辑。</p>
+                                    <div class="tc-ai-mindmap-confirm-modal__actions">
+                                        <button type="button" id="tc-ai-mindmap-confirm-cancel" class="tc-ai-mindmap-confirm-modal__btn tc-ai-mindmap-confirm-modal__btn--ghost">取消</button>
+                                        <button type="button" id="tc-ai-mindmap-confirm-submit" class="tc-ai-mindmap-confirm-modal__btn tc-ai-mindmap-confirm-modal__btn--primary">开始转换</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="tc-view-convert-modal" class="fixed inset-0 z-[10350] hidden items-center justify-center bg-black/40 p-4">
+                                <div class="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+                                    <h3 id="tc-view-convert-modal-title" class="text-lg font-semibold text-gray-900">目标已有数据</h3>
+                                    <p id="tc-view-convert-modal-desc" class="mt-2 text-sm text-gray-600">请选择如何处理现有数据。</p>
+                                    <div class="mt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:justify-end">
+                                        <button type="button" id="tc-view-convert-overwrite" class="btn btn-primary order-2 sm:order-none">覆盖</button>
+                                        <button type="button" id="tc-view-convert-append" class="btn btn-secondary order-3 sm:order-none">追加</button>
+                                        <button type="button" id="tc-view-convert-cancel" class="btn btn-secondary order-1 w-full sm:order-none sm:w-auto">取消</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="lanhu-cookie-modal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/40 p-4" role="dialog" aria-modal="true" aria-labelledby="lanhu-cookie-modal-title">
+                                <div class="relative flex w-full max-w-lg flex-col rounded-xl bg-white p-4 shadow-2xl sm:p-5">
+                                    <h3 id="lanhu-cookie-modal-title" class="text-base font-semibold text-gray-900">蓝湖 Cookie</h3>
+                                    <p class="mt-1 text-xs text-slate-500">可在此查看与编辑完整内容，确定后写回输入框。</p>
+                                    <textarea id="lanhu-cookie-modal-input" rows="10" class="form-input mt-3 min-h-[12rem] font-mono text-xs leading-relaxed" placeholder="粘贴蓝湖 Cookie…" spellcheck="false"></textarea>
+                                    <div class="mt-4 flex justify-end gap-2">
+                                        <button type="button" id="lanhu-cookie-modal-cancel" class="btn btn-secondary text-sm py-1.5 px-3">取消</button>
+                                        <button type="button" id="lanhu-cookie-modal-save" class="btn btn-primary text-sm py-1.5 px-3">确定</button>
+                                    </div>
+                                </div>
+                            </div>
+
+            </div>            <div id="tc-table-fab-wrap" class="tc-workbench-fab-wrap tc-workbench-fab-wrap--edit hidden" aria-hidden="true"></div>
+            <div id="tc-export-fab-wrap" class="tc-workbench-fab-wrap tc-workbench-fab-wrap--export hidden" aria-hidden="true">
+                <div id="tc-export-fab-sheet" class="tc-workbench-fab-sheet hidden" role="menu" aria-label="导出与协作">
+                    <div id="tc-export-fab-sheet-list" class="tc-workbench-fab-sheet__group">
+                        <button type="button" id="export-excel-btn" class="tc-workbench-fab-sheet__item tc-table-fab-sheet__item" role="menuitem">
+                            <span class="tc-workbench-fab-sheet__ico tc-table-fab-sheet__ico" aria-hidden="true">↓</span>
+                            <span>AI转导图</span>
+                        </button>
+                        <button type="button" id="table-to-mindmap-btn" class="tc-workbench-fab-sheet__item tc-table-fab-sheet__item" role="menuitem">
+                            <span class="tc-workbench-fab-sheet__ico tc-table-fab-sheet__ico" aria-hidden="true">↓</span>
+                            <span>导出 Excel</span>
+                        </button>
+                    </div>
+                    <div id="tc-export-fab-sheet-mindmap" class="tc-workbench-fab-sheet__group hidden" aria-hidden="true">
+                        <button type="button" id="export-xmind-btn" class="tc-workbench-fab-sheet__item tc-table-fab-sheet__item" role="menuitem">
+                            <span class="tc-workbench-fab-sheet__ico tc-table-fab-sheet__ico" aria-hidden="true">↗</span>
+                            <span>导出 XMind</span>
+                        </button>
+                    
+                        <button type="button" id="clear-mindmap-btn" class="tc-workbench-fab-sheet__item tc-workbench-fab-sheet__item--danger tc-table-fab-sheet__item tc-table-fab-sheet__item--danger" role="menuitem">
+                            <span class="tc-workbench-fab-sheet__ico tc-table-fab-sheet__ico" aria-hidden="true">⌫</span>
+                            <span>清空</span>
+                        </button>
+                    </div>
+                    <div id="tc-export-fab-sheet-common" class="tc-workbench-fab-sheet__group tc-workbench-fab-sheet__group--common" aria-hidden="false">
+                        <button type="button" id="tc-share-create-btn" class="tc-workbench-fab-sheet__item tc-table-fab-sheet__item" role="menuitem" title="分享当前表格进行评审" aria-label="用例评审">
+                            <span class="tc-workbench-fab-sheet__ico tc-table-fab-sheet__ico" aria-hidden="true">◎</span>
+                            <span>用例评审</span>
+                        </button>
+                        <button type="button" id="tc-share-list-open-btn" class="tc-workbench-fab-sheet__item tc-table-fab-sheet__item" role="menuitem" title="查看我创建的评审分享" aria-label="我的评审">
+                            <span class="tc-workbench-fab-sheet__ico tc-table-fab-sheet__ico" aria-hidden="true">☰</span>
+                            <span>我的评审</span>
+                        </button>
+                    </div>
+                </div>
+                <button type="button" id="tc-export-fab-toggle" class="tc-workbench-fab-toggle tc-workbench-fab-toggle--export pointer-events-auto" aria-expanded="false" aria-controls="tc-export-fab-sheet" title="拖动移动 · 点击展开导出与协作" aria-label="导出与协作（可拖动）">
+                    <svg class="tc-workbench-fab-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v10m0 0l3.5-3.5M12 13l-3.5-3.5"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17h14a2 2 0 002-2v-1H3v1a2 2 0 002 2z"/>
+                    </svg>
+                </button>
+            </div>
+<div id="tc-left-input-float-wrap" class="pointer-events-none" aria-hidden="false">
+                <div id="tc-left-float-dock" class="tc-left-float-dock pointer-events-auto hidden" role="toolbar" aria-label="打开 AI 用例助手">
+                    <button type="button" class="tc-left-float-dock__mode tc-left-float-dock__mode--entry" data-tc-float-open title="拖动移动 · 点击打开 AI 用例助手" aria-label="AI 用例助手（可拖动）">
+                        <span class="tc-left-float-dock__label">AI</span>
+                    </button>
+                </div>
+            </div>
+
+                            <!-- ===== 页面生成用例弹窗（简化版） ===== -->
+                            <div id="tc-page-gen-modal" class="tc-gen-modal-v2-wrapper hidden" role="dialog" aria-modal="true" aria-labelledby="tc-page-gen-modal-title">
+                                <div class="tc-gen-modal-v2-backdrop" id="tc-page-gen-backdrop"></div>
+                                <div class="tc-gen-modal-v2-card">
+                                    <div class="tc-gen-modal-v2__head">
+                                        <div class="tc-gen-modal-v2__badge" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                        </div>
+                                        <div>
+                                            <h3 id="tc-page-gen-modal-title" class="tc-gen-modal-v2__title">生成测试用例</h3>
+                                            <p class="tc-gen-modal-v2__subtitle">基于已配置的提示词与 RAG 设置生成用例</p>
+                                        </div>
+                                        <button type="button" class="tc-gen-modal-v2__close" id="tc-page-gen-close-btn" aria-label="关闭">&times;</button>
+                                    </div>
+                                    <div class="tc-gen-modal-v2__body">
+                                        <div class="tc-gen-modal-v2__info-row">
+                                            <span class="tc-gen-modal-v2__info-label">目标页面</span>
+                                            <span class="tc-gen-modal-v2__info-value" id="tc-page-gen-target-name">—</span>
+                                        </div>
+                                        <div class="tc-gen-modal-v2__note">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>
+                                            <span>提示词与 RAG 可在<strong>「添加 / 连接蓝湖文档」</strong>弹窗中编辑。</span>
+                                        </div>
+                                    </div>
+                                    <div class="tc-gen-modal-v2__foot">
+                                        <button type="button" id="tc-page-gen-cancel-btn" class="tc-gen-modal-v2__btn tc-gen-modal-v2__btn--secondary">取消</button>
+                                        <button type="button" id="tc-page-gen-confirm-btn" class="tc-gen-modal-v2__btn tc-gen-modal-v2__btn--primary">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                            <span>开始生成</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+            {% include 'partials/tools/tc_share_review.html' %}
+            </div>
+
+<script>
+(function(){
+if(window._tcPremiumSyncDoneV2)return;window._tcPremiumSyncDoneV2=1;
+var TC_DEFAULT_PROMPT = '';
+var TC_USER_PROMPT = '';
+var _tcDefaultPromptFetchPromise = null;
+
+function ensureTcDefaultPromptLoaded() {
+    if (TC_DEFAULT_PROMPT) return Promise.resolve(TC_DEFAULT_PROMPT);
+    if (_tcDefaultPromptFetchPromise) return _tcDefaultPromptFetchPromise;
+    _tcDefaultPromptFetchPromise = fetch('/api/test-cases/system-prompts', { credentials: 'same-origin' })
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+            if (d && !d.error && d.table_generate_default) {
+                TC_DEFAULT_PROMPT = String(d.table_generate_default);
+                if (!TC_USER_PROMPT) TC_USER_PROMPT = TC_DEFAULT_PROMPT;
+            }
+            return TC_DEFAULT_PROMPT;
+        })
+        .catch(function(e) {
+            console.warn('[TestHub] 表格默认提示词加载失败，使用空兜底', e);
+            return TC_DEFAULT_PROMPT;
+        });
+    return _tcDefaultPromptFetchPromise;
+}
+
+function isConnectRagAdminUser() {
+    if (window._tcConnectRagIsAdmin === true) return true;
+    if (typeof isTcPublicRagAdmin === 'function' && isTcPublicRagAdmin()) return true;
+    return false;
+}
+
+function isConnectRagUnlocked() {
+    if (window._tcAllowRag === true) return true;
+    if (typeof isTcRagFeatureUnlocked === 'function' && isTcRagFeatureUnlocked()) return true;
+    if (isConnectRagAdminUser() && (typeof TC_ADMIN_RAG_NO_PASSWORD === 'undefined' || TC_ADMIN_RAG_NO_PASSWORD !== false)) {
+        return true;
+    }
+    return false;
+}
+
+function applyConnectRagUnlockedState() {
+    window._tcAllowRag = true;
+    if (typeof setTcFeatureUnlocked === 'function') {
+        setTcFeatureUnlocked('rag', true);
+    }
+    syncConnectRagState();
+    if (typeof syncTcRagLockChrome === 'function') syncTcRagLockChrome();
+}
+
+var syncConnectRagState = function() {
+    var btn = document.getElementById('tc-lanhu-connect-rag-btn');
+    if (!btn) return;
+    var unlocked = isConnectRagUnlocked();
+    var flagChecked = false;
+    try {
+        var flagEl = document.getElementById('tc-rag-enabled');
+        flagChecked = flagEl && flagEl.checked;
+    } catch (e) {}
+    btn.classList.remove('tc-connect-rag-btn--locked', 'tc-connect-rag-btn--on', 'tc-connect-rag-btn--off');
+    if (unlocked) {
+        btn.classList.add(flagChecked ? 'tc-connect-rag-btn--on' : 'tc-connect-rag-btn--off');
+        btn.setAttribute('aria-pressed', flagChecked ? 'true' : 'false');
+        btn.title = flagChecked ? 'RAG召回：已开启' : 'RAG召回：已关闭';
+    } else {
+        btn.classList.add('tc-connect-rag-btn--locked');
+        btn.setAttribute('aria-pressed', 'false');
+        btn.title = isConnectRagAdminUser()
+            ? 'RAG召回：已锁定（点击解锁）'
+            : 'RAG召回：企业专属能力（点击了解）';
+    }
+};
+window.syncConnectRagState = syncConnectRagState;
+
+window._tcPremiumRagClick = function() {
+    var btn = document.getElementById('tc-lanhu-connect-rag-btn');
+    if (!btn) return;
+    if (isConnectRagUnlocked()) {
+        var flagEl = document.getElementById('tc-rag-enabled');
+        if (flagEl) {
+            flagEl.checked = !flagEl.checked;
+            flagEl.dispatchEvent(new Event('change', { bubbles: true }));
+            syncConnectRagState();
+            if (typeof paintTcRagToggleUi === 'function') paintTcRagToggleUi();
+            if (typeof syncTcRagLockChrome === 'function') syncTcRagLockChrome();
+        }
+        return;
+    }
+    /* 非管理员：独立私有化提示弹窗，不走密码解锁，避免影响管理员路径 */
+    if (!isConnectRagAdminUser()) {
+        if (typeof window.showTcRagPrivateDeployNotice === 'function') {
+            window.showTcRagPrivateDeployNotice();
+        } else if (typeof window.tcAppAlert === 'function') {
+            window.tcAppAlert(
+                'RAG 召回面向私有化部署开放。如需开通，请通过顶部「投稿 / 建议」联系我们。结合系统现有功能生成，可用性最高约可提升 50%。',
+                { title: 'RAG 召回 · 企业专属能力', variant: 'info' }
+            );
+        }
+        return;
+    }
+    if (typeof requestTcFeatureUnlock === 'function') {
+        requestTcFeatureUnlock('rag', function() {
+            applyConnectRagUnlockedState();
+            var flagEl = document.getElementById('tc-rag-enabled');
+            if (flagEl) {
+                flagEl.checked = true;
+                flagEl.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+            syncConnectRagState();
+            if (typeof paintTcRagToggleUi === 'function') paintTcRagToggleUi();
+        });
+        return;
+    }
+    if (typeof window.tcAppAlert === 'function') {
+        window.tcAppAlert('RAG 召回模块尚未就绪，请刷新页面后重试。', { variant: 'warning' });
+    }
+};
+
+window.tcPublicRagAdminUnlock = function() {
+    applyConnectRagUnlockedState();
+};
+
+function bootstrapConnectRagAdminAccess() {
+    fetch('/api/auth/me', { credentials: 'same-origin' })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            window._tcConnectRagIsAdmin = !!(data && data.authenticated && data.can_manage_builtin_ai);
+            if (!window._tcConnectRagIsAdmin) {
+                syncConnectRagState();
+                return null;
+            }
+            return fetch('/api/rag/status', { credentials: 'same-origin' })
+                .then(function(r) { return r.json(); })
+                .catch(function() { return null; });
+        })
+        .then(function(rag) {
+            if (rag && typeof applyTcContextStackStatus === 'function') {
+                applyTcContextStackStatus(rag);
+            }
+            if (window._tcConnectRagIsAdmin && (!rag || rag.admin_rag_no_password !== false)) {
+                applyConnectRagUnlockedState();
+            } else {
+                syncConnectRagState();
+            }
+        })
+        .catch(function() { syncConnectRagState(); });
+}
+window.bootstrapConnectRagAdminAccess = bootstrapConnectRagAdminAccess;
+
+var _tcConnectModalSnapshot = null;
+
+function applyTcConnectModalFields(opts) {
+    opts = opts || {};
+    var docNameEl = document.getElementById('tc-lanhu-connect-doc-name');
+    var cookieEl = document.getElementById('tc-lanhu-tree-cookie');
+    var urlEl = document.getElementById('tc-lanhu-tree-url');
+    var promptEl = document.getElementById('tc-lanhu-connect-prompt');
+    var mainCookie = document.getElementById('lanhu-cookie');
+    var mainUrl = document.getElementById('lanhu-url');
+    if (opts.doc_name != null && docNameEl) docNameEl.value = String(opts.doc_name);
+    if (opts.cookie != null && cookieEl) cookieEl.value = String(opts.cookie);
+    if (opts.url != null && urlEl) urlEl.value = String(opts.url);
+    if (opts.prompt != null) {
+        var prompt = String(opts.prompt);
+        TC_USER_PROMPT = prompt || TC_DEFAULT_PROMPT;
+        if (promptEl) promptEl.value = prompt;
+    }
+    if (opts.cookie != null && mainCookie) mainCookie.value = String(opts.cookie);
+    if (opts.url != null && mainUrl) mainUrl.value = String(opts.url);
+    if (typeof autoGrowTcPresetLanhuField === 'function') {
+        autoGrowTcPresetLanhuField(cookieEl);
+        autoGrowTcPresetLanhuField(urlEl);
+        autoGrowTcPresetLanhuField(mainCookie);
+        autoGrowTcPresetLanhuField(mainUrl);
+    }
+}
+
+/** 仅改连接弹窗表单，不写主区 lanhu-cookie/url，避免「新增」打开时误清空当前工作台连接 */
+function applyTcConnectModalFormFieldsOnly(opts) {
+    opts = opts || {};
+    var docNameEl = document.getElementById('tc-lanhu-connect-doc-name');
+    var cookieEl = document.getElementById('tc-lanhu-tree-cookie');
+    var urlEl = document.getElementById('tc-lanhu-tree-url');
+    var promptEl = document.getElementById('tc-lanhu-connect-prompt');
+    if (opts.doc_name != null && docNameEl) docNameEl.value = String(opts.doc_name);
+    if (opts.cookie != null && cookieEl) cookieEl.value = String(opts.cookie);
+    if (opts.url != null && urlEl) urlEl.value = String(opts.url);
+    if (opts.prompt != null) {
+        var prompt = String(opts.prompt);
+        TC_USER_PROMPT = prompt || TC_DEFAULT_PROMPT;
+        if (promptEl) promptEl.value = prompt;
+    }
+    if (typeof autoGrowTcPresetLanhuField === 'function') {
+        autoGrowTcPresetLanhuField(cookieEl);
+        autoGrowTcPresetLanhuField(urlEl);
+    }
+}
+
+function readTcConnectModalFieldValues() {
+    var flagEl = document.getElementById('tc-rag-enabled');
+    return {
+        doc_name: (document.getElementById('tc-lanhu-connect-doc-name') || {}).value || '',
+        cookie: (document.getElementById('tc-lanhu-tree-cookie') || {}).value || '',
+        url: (document.getElementById('tc-lanhu-tree-url') || {}).value || '',
+        prompt: (document.getElementById('tc-lanhu-connect-prompt') || {}).value || '',
+        mainCookie: (document.getElementById('lanhu-cookie') || {}).value || '',
+        mainUrl: (document.getElementById('lanhu-url') || {}).value || '',
+        ragChecked: !!(flagEl && flagEl.checked)
+    };
+}
+
+function captureTcConnectModalSnapshot() {
+    _tcConnectModalSnapshot = readTcConnectModalFieldValues();
+}
+window.captureTcConnectModalSnapshot = captureTcConnectModalSnapshot;
+window.restoreTcConnectModalSnapshot = restoreTcConnectModalSnapshot;
+
+function restoreTcConnectModalSnapshot() {
+    if (!_tcConnectModalSnapshot) return;
+    var s = _tcConnectModalSnapshot;
+    applyTcConnectModalFields({ doc_name: s.doc_name, cookie: s.cookie, url: s.url, prompt: s.prompt });
+    var mainCookie = document.getElementById('lanhu-cookie');
+    var mainUrl = document.getElementById('lanhu-url');
+    if (mainCookie) mainCookie.value = s.mainCookie;
+    if (mainUrl) mainUrl.value = s.mainUrl;
+    var flagEl = document.getElementById('tc-rag-enabled');
+    if (flagEl && flagEl.checked !== s.ragChecked) {
+        flagEl.checked = s.ragChecked;
+        flagEl.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    syncConnectRagState();
+    if (typeof paintTcRagToggleUi === 'function') paintTcRagToggleUi();
+    if (typeof syncTcRagLockChrome === 'function') syncTcRagLockChrome();
+}
+
+function resolveTcConnectModalDocName() {
+    if (typeof window.getTcLanhuActiveSavedDocName === 'function') {
+        var saved = String(window.getTcLanhuActiveSavedDocName() || '').trim();
+        if (saved) return saved;
+    }
+    if (typeof window.getTcLanhuDocTreeMeta === 'function') {
+        var meta = window.getTcLanhuDocTreeMeta() || {};
+        if (String(meta.docName || '').trim()) return String(meta.docName).trim();
+    }
+    return '';
+}
+
+var openTcConnectModal = function() {
+    if (typeof window.isTcLanhuTreeHeadActionsBlocked === 'function' && window.isTcLanhuTreeHeadActionsBlocked()) {
+        if (typeof window.toastTcLanhuTreeHeadActionsBlocked === 'function') window.toastTcLanhuTreeHeadActionsBlocked();
+        return;
+    }
+    window._tcConnectModalIntent = 'connect';
+    var modal = document.getElementById('tc-lanhu-tree-connect-modal');
+    if (!modal) return;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    loadUserLanhuConfig(true).then(function() {
+        var docName = resolveTcConnectModalDocName();
+        if (docName) applyTcConnectModalFields({ doc_name: docName });
+        captureTcConnectModalSnapshot();
+        syncConnectRagState();
+    });
+};
+/**
+ * 新增文档入口：打开同一连接弹窗，表单置空（不写主区 cookie/url）。
+ * 取消时按打开前快照恢复，不影响当前已连接文档。
+ */
+var openTcConnectModalForAdd = function() {
+    if (typeof window.isTcLanhuTreeHeadActionsBlocked === 'function' && window.isTcLanhuTreeHeadActionsBlocked()) {
+        if (typeof window.toastTcLanhuTreeHeadActionsBlocked === 'function') window.toastTcLanhuTreeHeadActionsBlocked();
+        return;
+    }
+    window._tcConnectModalIntent = 'add';
+    var modal = document.getElementById('tc-lanhu-tree-connect-modal');
+    if (!modal) return;
+    captureTcConnectModalSnapshot();
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    ensureTcDefaultPromptLoaded().then(function() {
+        return fetch('/api/user-lanhu-config', { credentials: 'same-origin' })
+            .then(function(r) { return r.json(); })
+            .catch(function() { return null; });
+    }).then(function(d) {
+        var prompt = (d && d.ok && d.prompt != null) ? String(d.prompt) : (TC_USER_PROMPT || TC_DEFAULT_PROMPT);
+        applyTcConnectModalFormFieldsOnly({
+            doc_name: '',
+            cookie: '',
+            url: '',
+            prompt: prompt
+        });
+        syncConnectRagState();
+        setTimeout(function() {
+            var nameEl = document.getElementById('tc-lanhu-connect-doc-name');
+            if (nameEl) nameEl.focus();
+        }, 80);
+    });
+};
+window.openTcConnectModalForAdd = openTcConnectModalForAdd;
+var closeTcConnectModal = function(opts) {
+    opts = opts || {};
+    if (!opts.skipRestore) restoreTcConnectModalSnapshot();
+    window._tcConnectModalIntent = '';
+    var modal = document.getElementById('tc-lanhu-tree-connect-modal');
+    if (!modal) return;
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+};
+
+
+var _tcLanhuTreeBootstrapToken = 0;
+function hasUsableTcLanhuStoredTree() {
+    try {
+        var raw = sessionStorage.getItem('tc_lanhu_doc_tree_meta_v1');
+        if (!raw) return false;
+        var meta = JSON.parse(raw);
+        if (meta && Array.isArray(meta.tree) && meta.tree.length) return true;
+        sessionStorage.removeItem('tc_lanhu_doc_tree_meta_v1');
+    } catch (eStoredTree) {
+        try { sessionStorage.removeItem('tc_lanhu_doc_tree_meta_v1'); } catch (eRemoveStoredTree) {}
+    }
+    return false;
+}
+function runTcLanhuTreeBootstrap(configRes) {
+    configRes = configRes || {};
+    try {
+        if (sessionStorage.getItem('tc_logout_pending_tree_clear_v1') === '1') return;
+        if (hasUsableTcLanhuStoredTree()) return;
+    } catch (eFlag) { /* ignore */ }
+    if (typeof window.getTcLanhuDocTreeMeta === 'function') {
+        var meta = window.getTcLanhuDocTreeMeta() || {};
+        if (meta.tree && meta.tree.length) return;
+    }
+    var cookie = configRes.lanhu_cookie != null ? String(configRes.lanhu_cookie).trim() : '';
+    var url = configRes.lanhu_url != null ? String(configRes.lanhu_url).trim() : '';
+    function refreshTree() {
+        if (typeof window.refreshTcLanhuDocTree === 'function') {
+            window.refreshTcLanhuDocTree();
+        }
+    }
+    function applyDoc(doc) {
+        if (!doc || !doc.cookie || !doc.url) return;
+        applyTcConnectModalFields({
+            cookie: doc.cookie,
+            url: doc.url,
+            doc_name: doc.name || ''
+        });
+        if (typeof window.setTcLanhuConnectDocName === 'function') {
+            window.setTcLanhuConnectDocName(doc.name || '');
+        }
+        setTimeout(refreshTree, 80);
+    }
+    if (configRes.lanhu_tree_enabled && cookie && url) {
+        applyTcConnectModalFields({ cookie: cookie, url: url });
+        setTimeout(refreshTree, 80);
+        return;
+    }
+    fetch('/api/user-lanhu-docs', { credentials: 'same-origin' })
+        .then(function(r) { return r.json(); })
+        .then(function(docRes) {
+            if (!docRes || !docRes.ok || !docRes.docs || !docRes.docs.length) {
+                if (!configRes.lanhu_tree_enabled && typeof window.clearTcLanhuDocTreeView === 'function') {
+                    window.clearTcLanhuDocTreeView();
+                }
+                return;
+            }
+            var docs = docRes.docs;
+            var activeId = String(configRes.active_lanhu_doc_id || '').trim();
+            var doc = null;
+            for (var i = 0; i < docs.length; i++) {
+                if (activeId && docs[i].id === activeId) { doc = docs[i]; break; }
+            }
+            if (!doc) doc = docs[0];
+            applyDoc(doc);
+        })
+        .catch(function() {});
+}
+function scheduleTcLanhuTreeBootstrap(configRes) {
+    var token = ++_tcLanhuTreeBootstrapToken;
+    var tries = 0;
+    function attempt() {
+        if (token !== _tcLanhuTreeBootstrapToken) return;
+        tries += 1;
+        if (typeof window.refreshTcLanhuDocTree !== 'function') {
+            if (tries < 50) setTimeout(attempt, 100);
+            return;
+        }
+        runTcLanhuTreeBootstrap(configRes);
+    }
+    setTimeout(attempt, 100);
+}
+
+var loadUserLanhuConfig = function(fromModalOpen) {
+    return fetch('/api/user-lanhu-config', {credentials: 'same-origin'})
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+        if (d && d.ok) {
+            var cookie = d.lanhu_cookie != null ? String(d.lanhu_cookie) : '';
+            var url = d.lanhu_url != null ? String(d.lanhu_url) : '';
+            var prompt = d.prompt != null ? String(d.prompt) : TC_DEFAULT_PROMPT;
+            applyTcConnectModalFields({ cookie: cookie, url: url, prompt: prompt });
+            if (!fromModalOpen) {
+                scheduleTcLanhuTreeBootstrap(d);
+            }
+        }
+        return d;
+    }).catch(function(e) {
+        console.warn('Failed to load user lanhu config', e);
+        return null;
+    });
+};
+var saveUserLanhuConfig = function() {
+    var cookie = document.getElementById('tc-lanhu-tree-cookie').value;
+    var url = document.getElementById('tc-lanhu-tree-url').value;
+    var prompt = document.getElementById('tc-lanhu-connect-prompt').value;
+    TC_USER_PROMPT = prompt || TC_DEFAULT_PROMPT;
+    return fetch('/api/user-lanhu-config', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({lanhu_cookie: cookie, lanhu_url: url, prompt: prompt}),
+        credentials: 'same-origin'
+    }).then(function(r) {
+        return r.json().then(function(d) {
+            d = d || {};
+            if (!r.ok) {
+                d.ok = false;
+                if (!d.error) d.error = (d.code === 'AUTH_REQUIRED') ? '请先登录后再保存' : ('请求失败 (' + r.status + ')');
+            }
+            return d;
+        });
+    });
+};
+var connectAndLoadLanhu = function() {
+    var docName = (document.getElementById('tc-lanhu-connect-doc-name') || {}).value || '';
+    var cookie = document.getElementById('tc-lanhu-tree-cookie').value;
+    var url = document.getElementById('tc-lanhu-tree-url').value;
+    docName = String(docName).trim();
+    /* 文档名称选填：最终名称由 tcLanhuDocTreeConfirmConnect 内 resolve（用户优先，否则蓝湖名） */
+    if (!cookie.trim()) { alert('请填写蓝湖 Cookie'); return Promise.reject(); }
+    if (!url.trim()) { alert('请填写文档 URL'); return Promise.reject(); }
+    /* 合并后：全新 URL 才做配额拦截；已有文档允许重连/更新。不改 saveCurrentAsDoc */
+    if (typeof window.tcCanProceedLanhuConnectSave === 'function') {
+        var gate = window.tcCanProceedLanhuConnectSave(url.trim());
+        if (gate && gate.ok === false) {
+            if (gate.reason === 'quota') {
+                if (typeof window.tcShowLanhuDocQuotaBlocked === 'function') window.tcShowLanhuDocQuotaBlocked();
+                else alert('文档数量已达上限，无法添加新文档');
+            }
+            return Promise.reject();
+        }
+    }
+    return saveUserLanhuConfig().then(function(d) {
+        if (d && d.ok === false) {
+            alert((d && d.error) || '保存失败，请重试');
+            return Promise.reject();
+        }
+        applyTcConnectModalFields({ doc_name: docName, cookie: cookie.trim(), url: url.trim() });
+        if (docName && typeof window.setTcLanhuConnectDocName === 'function') {
+            window.setTcLanhuConnectDocName(docName);
+        }
+        if (typeof window.tcLanhuDocTreeConfirmConnect === 'function') {
+            return window.tcLanhuDocTreeConfirmConnect();
+        }
+        captureTcConnectModalSnapshot();
+        closeTcConnectModal({ skipRestore: true });
+        if (typeof window.refreshTcLanhuDocTree === 'function') {
+            window.refreshTcLanhuDocTree();
+        }
+    }).then(function() {
+        window._tcConnectModalIntent = '';
+    });
+};
+var resetPromptToDefault = function() {
+    ensureTcDefaultPromptLoaded().then(function(prompt) {
+        var ta = document.getElementById('tc-lanhu-connect-prompt');
+        if (ta) ta.value = prompt || TC_DEFAULT_PROMPT;
+        TC_USER_PROMPT = prompt || TC_DEFAULT_PROMPT;
+    });
+};
+
+function syncTcLanhuCredsToFields(creds) {
+    creds = creds || {};
+    var treeCookie = document.getElementById('tc-lanhu-tree-cookie');
+    var treeUrl = document.getElementById('tc-lanhu-tree-url');
+    var mainCookie = document.getElementById('lanhu-cookie');
+    var mainUrl = document.getElementById('lanhu-url');
+    if (treeCookie && creds.cookie) treeCookie.value = creds.cookie;
+    if (treeUrl && creds.url) treeUrl.value = creds.url;
+    if (mainCookie && creds.cookie) mainCookie.value = creds.cookie;
+    if (mainUrl && creds.url) mainUrl.value = creds.url;
+}
+
+function readTcLanhuCredsFromDom() {
+    var treeCookie = document.getElementById('tc-lanhu-tree-cookie');
+    var treeUrl = document.getElementById('tc-lanhu-tree-url');
+    var mainCookie = document.getElementById('lanhu-cookie');
+    var mainUrl = document.getElementById('lanhu-url');
+    var cookie = (treeCookie && String(treeCookie.value || '').trim()) ||
+        (mainCookie && String(mainCookie.value || '').trim()) || '';
+    var url = (treeUrl && String(treeUrl.value || '').trim()) ||
+        (mainUrl && String(mainUrl.value || '').trim()) || '';
+    return { cookie: cookie, url: url };
+}
+
+function ensureTcLanhuCredsFromSavedConfig() {
+    var dom = readTcLanhuCredsFromDom();
+    if (dom.cookie && dom.url) {
+        syncTcLanhuCredsToFields(dom);
+        return Promise.resolve(dom);
+    }
+    return fetch('/api/user-lanhu-config', { credentials: 'same-origin' })
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+            if (d && d.ok) {
+                var creds = {
+                    cookie: String(d.lanhu_cookie || '').trim(),
+                    url: String(d.lanhu_url || '').trim()
+                };
+                if (creds.cookie || creds.url) syncTcLanhuCredsToFields(creds);
+                if (d.prompt) {
+                    TC_USER_PROMPT = d.prompt;
+                    var ta = document.getElementById('tc-lanhu-connect-prompt');
+                    if (ta) ta.value = d.prompt;
+                }
+                return creds;
+            }
+            return dom;
+        })
+        .catch(function() { return dom; });
+}
+
+function resolveTcUserPrompt() {
+    var ta = document.getElementById('tc-lanhu-connect-prompt');
+    var dom = ta ? String(ta.value || '').trim() : '';
+    if (dom) {
+        TC_USER_PROMPT = dom;
+        return dom;
+    }
+    var mem = String(TC_USER_PROMPT || '').trim();
+    if (mem) return mem;
+    return TC_DEFAULT_PROMPT;
+}
+
+var TC_PAGE_GEN_STATE = { pageId: null, pageName: null, mergeMode: null };
+window.TC_PAGE_GEN_STATE = TC_PAGE_GEN_STATE;
+
+function tcPageGenTargetHasCases(pageId) {
+    pageId = String(pageId || '').trim();
+    if (!pageId) return false;
+    if (typeof tcTableHasCaseData === 'function' && tcTableHasCaseData()) {
+        var store = window.TcRequirementCaseStore;
+        if (store && typeof store.resolveContext === 'function') {
+            var ctx = store.resolveContext({}) || {};
+            if (String(ctx.lanhu_page_id || ctx.page_id || '').trim() === pageId) {
+                return true;
+            }
+        }
+    }
+    if (window.TcLanhuTreeCaseStatus && typeof window.TcLanhuTreeCaseStatus.pageHasCases === 'function') {
+        var meta = typeof window.getTcLanhuDocTreeMeta === 'function'
+            ? (window.getTcLanhuDocTreeMeta() || {})
+            : {};
+        var docId = String(meta.docId || '').trim();
+        if (docId && window.TcLanhuTreeCaseStatus.pageHasCases(docId, pageId)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function showTcPageGenModal(pageId, pageName) {
+    var modal = document.getElementById('tc-page-gen-modal');
+    if (!modal) return;
+    var pid = String(pageId || '').trim();
+    var pname = String(pageName || '').trim() || '—';
+    TC_PAGE_GEN_STATE.pageId = pid;
+    TC_PAGE_GEN_STATE.pageName = pname;
+    modal.setAttribute('data-page-id', pid);
+    modal.setAttribute('data-page-name', pname);
+    var nameEl = document.getElementById('tc-page-gen-target-name');
+    if (nameEl) nameEl.textContent = pname;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+window.openTcPageGenModal = function(pageId, pageName) {
+    var pid = String(pageId || '').trim();
+    var pname = String(pageName || '').trim() || '—';
+    // 如果目标页不是当前显示页，先通过树节点切换到目标页，再走正常流程
+    if (pid && window.TcRequirementCaseStore && typeof window.TcRequirementCaseStore.resolveContext === 'function') {
+        var curCtx = window.TcRequirementCaseStore.resolveContext({});
+        if (curCtx) {
+            var curPageId = String(curCtx.lanhu_page_id || curCtx.page_id || '').trim();
+            if (curPageId && curPageId !== pid) {
+                window._tcPendingPageGenAfterTemplate = { pageId: pid, pageName: pname };
+                // 点击左侧树节点，触发 onTreeClick → onPageSelected → switchRequirementPage
+                var treeRow = document.querySelector('[data-tree-select="' + pid + '"]');
+                if (treeRow) {
+                    treeRow.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+                }
+                return;
+            }
+        }
+    }
+    // 模板检查
+    if (typeof window.ensureTcTableTemplateApplied === 'function') {
+        if (!window.ensureTcTableTemplateApplied()) {
+            window._tcPendingPageGenAfterTemplate = { pageId: pid, pageName: pname };
+            return;
+        }
+    } else if (typeof window.isTcExplicitTemplateApplied === 'function' && !window.isTcExplicitTemplateApplied()) {
+        window._tcPendingPageGenAfterTemplate = { pageId: pid, pageName: pname };
+        if (typeof openTcTemplateModal === 'function') {
+            openTcTemplateModal();
+        } else {
+            alert('请先选择模板');
+        }
+        return;
+    }
+
+    function openGenModal(mergeMode) {
+        var mode = mergeMode === 'append' ? 'append' : 'overwrite';
+        TC_PAGE_GEN_STATE.mergeMode = mode;
+        showTcPageGenModal(pid, pname);
+        var modalEl = document.getElementById('tc-page-gen-modal');
+        if (modalEl) modalEl.setAttribute('data-merge-mode', mode);
+    }
+
+    if (tcPageGenTargetHasCases(pid) && typeof askTcViewConvertChoice === 'function') {
+        askTcViewConvertChoice({
+            title: '当前页面已有用例',
+            message: '该需求页已保存用例。覆盖将清空现有数据并填入新生成结果；追加会优先填入表格中的空行（从最后一条已有用例的下一行起）；取消则不继续。'
+        }).then(function(choice) {
+            if (choice === 'cancel') return;
+            openGenModal(choice === 'append' ? 'append' : 'overwrite');
+        });
+        return;
+    }
+    openGenModal('overwrite');
+};
+window.closeTcPageGenModal = function() {
+    var modal = document.getElementById('tc-page-gen-modal');
+    if (!modal) return;
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    TC_PAGE_GEN_STATE.mergeMode = null;
+    modal.removeAttribute('data-merge-mode');
+};
+function resolveTcPageGenTarget() {
+    var state = window.TC_PAGE_GEN_STATE || TC_PAGE_GEN_STATE || {};
+    var pid = String(state.pageId || '').trim();
+    var pname = String(state.pageName || '').trim();
+    var modal = document.getElementById('tc-page-gen-modal');
+    if (modal) {
+        if (!pid) pid = String(modal.getAttribute('data-page-id') || '').trim();
+        if (!pname) pname = String(modal.getAttribute('data-page-name') || '').trim();
+    }
+    if (!pid && typeof window.getTcLanhuDocTreeMeta === 'function') {
+        var meta = window.getTcLanhuDocTreeMeta() || {};
+        pid = String(meta.selectedId || meta.focusPageId || '').trim();
+        if (!pname) pname = String(meta.selectedPageName || '').trim();
+    }
+    return { pageId: pid, pageName: pname || '—' };
+}
+
+function resolveTcPageGenMergeMode() {
+    var state = window.TC_PAGE_GEN_STATE || TC_PAGE_GEN_STATE || {};
+    if (state.mergeMode === 'append') return 'append';
+    var modal = document.getElementById('tc-page-gen-modal');
+    if (modal) {
+        var fromModal = String(modal.getAttribute('data-merge-mode') || '').trim();
+        if (fromModal === 'append') return 'append';
+    }
+    return 'overwrite';
+}
+
+window.executeTcPageGen = function() {
+    var target = resolveTcPageGenTarget();
+    var pid = target.pageId;
+    var pname = target.pageName;
+    if (!pid) {
+        if (typeof tcAppToast === 'function') {
+            tcAppToast('未识别目标页面，请关闭弹窗后重新点击生成', { variant: 'warning' });
+        } else {
+            alert('未识别目标页面，请重新点击生成');
+        }
+        return;
+    }
+    TC_PAGE_GEN_STATE.pageId = pid;
+    TC_PAGE_GEN_STATE.pageName = pname;
+    if (typeof window.setOptimisticPageGenLock === 'function') {
+        window.setOptimisticPageGenLock(pid, pname, '');
+    }
+
+    var confirmBtn = document.getElementById('tc-page-gen-confirm-btn');
+    if (confirmBtn && confirmBtn.disabled) return;
+    if (confirmBtn) {
+        confirmBtn.disabled = true;
+        confirmBtn.setAttribute('aria-busy', 'true');
+    }
+
+    function resetConfirmBtn() {
+        if (!confirmBtn) return;
+        confirmBtn.disabled = false;
+        confirmBtn.removeAttribute('aria-busy');
+    }
+
+    function failPageGen(msg) {
+        resetConfirmBtn();
+        if (typeof window.clearOptimisticPageGenLock === 'function') {
+            window.clearOptimisticPageGenLock();
+        }
+        if (typeof tcAppToast === 'function') {
+            tcAppToast(msg, { variant: 'warning' });
+        } else {
+            alert(msg);
+        }
+    }
+
+    function setPageGenActiveContext(creds) {
+        if (!window.TcRequirementCaseStore || typeof window.TcRequirementCaseStore.setActiveContext !== 'function') return;
+        creds = creds || readTcLanhuCredsFromDom();
+        var url = creds.url || '';
+        if (url) {
+            var pageUrl = typeof window.buildTcLanhuPageUrl === 'function'
+                ? window.buildTcLanhuPageUrl(url, pid)
+                : url;
+            window.TcRequirementCaseStore.setActiveContext({
+                lanhu_url: pageUrl,
+                lanhu_page_id: pid,
+                page_id: pid,
+                page_name: pname
+            });
+        }
+    }
+
+    function kickoffPageGen(creds, pageUrl, userPrompt, pageGenCtx) {
+        if (typeof runAiTableToolbar !== 'function') {
+            failPageGen('生成组件未加载，请刷新页面后重试');
+            return;
+        }
+        var mergeMode = typeof resolveTcPageGenMergeMode === 'function'
+            ? resolveTcPageGenMergeMode()
+            : ((TC_PAGE_GEN_STATE.mergeMode === 'append') ? 'append' : 'overwrite');
+        closeTcPageGenModal();
+        resetConfirmBtn();
+        if (typeof tcAppToast === 'function') {
+            tcAppToast('正在启动生成…', { variant: 'info', duration: 1600 });
+        }
+        if (mergeMode === 'append') {
+            if (typeof window.tcBeginAppendGenerationBaseline === 'function') {
+                window.tcBeginAppendGenerationBaseline();
+            }
+            if (window.TcRequirementCaseStore && typeof window.TcRequirementCaseStore.captureGenerationContext === 'function') {
+                window.TcRequirementCaseStore.captureGenerationContext('append');
+            }
+        }
+        runAiTableToolbar('legacy_freeform', null, {
+            promptText: userPrompt,
+            outputTarget: 'list',
+            suppressLeftPanelUi: true,
+            lanhuCookie: creds.cookie,
+            lanhuUrl: pageUrl,
+            pageGen: pageGenCtx,
+            skipMergeModePrompt: true,
+            mergeMode: mergeMode,
+            _userAiGatePassed: true
+        });
+        TC_PAGE_GEN_STATE.mergeMode = null;
+        if (typeof window.refreshTcPageGenLock === 'function') {
+            setTimeout(function() { window.refreshTcPageGenLock(); }, 400);
+        }
+    }
+
+    ensureTcLanhuCredsFromSavedConfig().then(function(creds) {
+        creds = creds || {};
+        if (!creds.cookie || !creds.url) {
+            failPageGen('请先在「添加 / 连接蓝湖文档」中配置并保存 Cookie 与 URL');
+            return;
+        }
+        syncTcLanhuCredsToFields(creds);
+        setPageGenActiveContext(creds);
+        var pageUrl = typeof window.buildTcLanhuPageUrl === 'function'
+            ? window.buildTcLanhuPageUrl(creds.url, pid)
+            : creds.url;
+        if (typeof window.setOptimisticPageGenLock === 'function') {
+            window.setOptimisticPageGenLock(pid, pname, pageUrl);
+        }
+        var mainUrl = document.getElementById('lanhu-url');
+        if (mainUrl) mainUrl.value = pageUrl;
+        var userPrompt = String(resolveTcUserPrompt() || TC_DEFAULT_PROMPT) + (pname || '');
+        var pageGenCtx = typeof window.buildTcPageGenContext === 'function'
+            ? window.buildTcPageGenContext(pid, pname, pageUrl)
+            : { lanhu_page_id: pid, page_name: pname, lanhu_url: pageUrl };
+
+        if (typeof window.fetchTcLanhuPageForGen === 'function') {
+            if (typeof tcAppToast === 'function') {
+                tcAppToast('正在拉取页面需求…', { variant: 'info', duration: 1800 });
+            }
+            window.fetchTcLanhuPageForGen(pid, pname).then(function(data) {
+                if (data && data.error) {
+                    var confirmFn = typeof window.tcAppConfirm === 'function' ? window.tcAppConfirm : null;
+                    var msg = '拉取页面需求失败：' + data.error + '\n\n是否仍尝试生成？';
+                    if (confirmFn) {
+                        confirmFn(msg, {
+                            title: '拉取失败',
+                            variant: 'warning',
+                            confirmText: '继续生成',
+                            cancelText: '取消'
+                        }).then(function(ok) {
+                            if (ok) kickoffPageGen(creds, pageUrl, userPrompt, pageGenCtx);
+                            else resetConfirmBtn();
+                        });
+                    } else if (window.confirm(msg)) {
+                        kickoffPageGen(creds, pageUrl, userPrompt, pageGenCtx);
+                    } else {
+                        resetConfirmBtn();
+                    }
+                    return;
+                }
+                kickoffPageGen(creds, pageUrl, userPrompt, pageGenCtx);
+            }).catch(function(err) {
+                failPageGen((err && err.message) || '拉取页面需求失败');
+            });
+            return;
+        }
+        kickoffPageGen(creds, pageUrl, userPrompt, pageGenCtx);
+    }).catch(function() {
+        failPageGen('读取蓝湖配置失败，请稍后重试');
+    });
+};
+
+window.openTcConnectModal = openTcConnectModal;
+
+(function init() {
+    var modalEl = document.getElementById('tc-lanhu-tree-connect-modal');
+    var backdropEl = document.getElementById('tc-lanhu-connect-backdrop');
+    var closeBtn = document.getElementById('tc-lanhu-connect-close-btn');
+    var cancelBtn = document.getElementById('tc-lanhu-connect-cancel-btn');
+    var loadBtn = document.getElementById('tc-lanhu-connect-load-btn');
+    var resetLink = document.getElementById('tc-lanhu-connect-reset-prompt');
+    if (backdropEl) backdropEl.addEventListener('click', closeTcConnectModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeTcConnectModal);
+    if (cancelBtn) cancelBtn.addEventListener('click', closeTcConnectModal);
+    if (loadBtn) loadBtn.addEventListener('click', connectAndLoadLanhu);
+    if (resetLink) resetLink.addEventListener('click', resetPromptToDefault);
+
+    var genModal = document.getElementById('tc-page-gen-modal');
+    var genBackdrop = document.getElementById('tc-page-gen-backdrop');
+    var genClose = document.getElementById('tc-page-gen-close-btn');
+    var genCancel = document.getElementById('tc-page-gen-cancel-btn');
+    var genConfirm = document.getElementById('tc-page-gen-confirm-btn');
+    if (genBackdrop) genBackdrop.addEventListener('click', window.closeTcPageGenModal);
+    if (genClose) genClose.addEventListener('click', window.closeTcPageGenModal);
+    if (genCancel) genCancel.addEventListener('click', window.closeTcPageGenModal);
+    if (genConfirm) genConfirm.addEventListener('click', window.executeTcPageGen);
+
+    var addDocBtn = document.getElementById('tc-lanhu-tree-head-add-btn');
+    if (addDocBtn) addDocBtn.onclick = function() { window.openAddDocModal && window.openAddDocModal(); };
+    var connBtn = document.getElementById('tc-lanhu-tree-connect-btn');
+    if (connBtn) connBtn.onclick = function() { window.openTcConnectModal && window.openTcConnectModal(); };
+
+// 质量检测：确认后独立执行
+window._tcStartQualityCheck = function() {
+    var enh = window.TcWorkbenchEnhancements;
+    if (enh && typeof enh.ensureInit === 'function') enh.ensureInit();
+    if (enh && typeof enh.handleStandaloneQualityCheckButtonClick === 'function') {
+        enh.handleStandaloneQualityCheckButtonClick();
+        return;
+    }
+    if (typeof window.tcAppAlert === 'function') {
+        window.tcAppAlert('质量检测模块尚未就绪，请刷新页面后重试。', { variant: 'warning' });
+    }
+};
+// 页面初始化时加载已保存的蓝湖配置
+ensureTcDefaultPromptLoaded().then(function() {
+    return loadUserLanhuConfig();
+}).then(function() { captureTcConnectModalSnapshot(); });
+bootstrapConnectRagAdminAccess();
+})();
+})();
+</script>
+

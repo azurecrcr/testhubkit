@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{% set _lth_page_tab = lth_tab | default('jmeter') %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>压测造数工作台 · {{ hf_site_brand_title }}</title>
+    {% include 'partials/hf_favicon.html' %}
+    {% include 'partials/tools/load_test_hub_shell_css.html' %}
+    <script>(function(){var w=console.warn;console.warn=function(){var a=arguments[0];if(typeof a==="string"&&(a.indexOf("cdn.tailwindcss.com")!==-1||a.indexOf("should not be used in production")!==-1))return;return w.apply(console,arguments);};})();</script>
+    <script src="{{ url_for('static', filename='vendor/tailwindcss-cdn-3.4.10.js') }}"></script>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+    </style>
+    {% include 'partials/tools/api_scenario_studio_styles.html' %}
+    {% include 'partials/tools/load_test_hub_styles_bundle.html' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_logic_ctrl_modal_shape_fix.css') }}?v=20260715ai-timer-cfg1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_postproc_modal_shape_fix.css') }}?v=20260715ai-timer-cfg1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_listener_modal_shape_fix.css') }}?v=20260715ai-timer-cfg1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_logic_ctrl_card_toggle.css') }}?v=20260702logicctrltoggle1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_assert_modal_shape_fix.css') }}?v=20260715ai-timer-cfg1">
+    {% include 'partials/tools/test_data_builder_styles.html' %}
+    {% include 'partials/tools/load_test_hub_styles_tail.html' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_http_step_config_modal_shape_fix.css') }}?v=20260715ai-timer-cfg1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_http_beanshell_preproc_modal_shape_fix.css') }}?v=20260715ai-timer-cfg1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_assert_modal_surface_fix.css') }}?v=20260715ai-timer-cfg1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_body_appended_modal_cloak.css') }}?v=20260715ai-timer-cfg1">
+    
+    {# 数据构建 Tab：首屏即隐藏 JMeter 弹窗，避免无 jmeter-tab 作用域时 FOUC #}
+    {% if _lth_page_tab == 'data' %}
+    <style id="jms-hub-data-tab-fouc-cloak">
+      body.lth-hub-data-tab #lth-hub-panel-jmeter,
+      body.lth-hub-data-tab [id^="modal-"],
+      body.lth-hub-data-tab #jm-stash-save-modal,
+      body.lth-hub-data-tab #jm-stash-list-modal,
+      body.lth-hub-data-tab #jm-stash-restore-modal,
+      body.lth-hub-data-tab > .jms-modal,
+      body.lth-hub-data-tab > [role="dialog"][id^="modal-"] {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        opacity: 0 !important;
+      }
+    </style>
+    {% endif %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_hub_data_tab_modal_cloak_v1.css') }}?v=20260715data-fouc1">
+
+
+    {# JMeter Tab：首屏抑制深色「场景搭建」FOUC #}
+    {% if _lth_page_tab != 'data' %}
+    <style id="jms-hub-jmeter-tab-fouc-cloak">
+      /* 内联优先：大包 CSS 到达前就藏住关闭态弹窗，避免 If/BeanShell 表单 FOUC */
+      body.lth-hub-jmeter-tab .lth-studio-workspace .jms-section-title { display: none !important; }
+      body.lth-hub-jmeter-tab:not(.lth-jms-studio-ready) .lth-studio-workspace,
+      body.lth-hub-jmeter-tab:not(.lth-jms-studio-ready) .lth-studio-canvas { min-height: 0 !important; }
+      body.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white {
+        background: linear-gradient(168deg, #ffffff 0%, #f0fdf4 45%, #ecfdf5 100%) !important;
+        background-color: #f0fdf4 !important;
+      }
+      body.lth-hub-jmeter-tab [id^="modal-"]:not(.jms-modal-open),
+      body.lth-hub-jmeter-tab [id^="modal-"][aria-hidden="true"]:not(.jms-modal-open),
+      body.lth-hub-jmeter-tab > .jms-modal:not(.jms-modal-open),
+      body.lth-hub-jmeter-tab #jm-stash-save-modal.hidden,
+      body.lth-hub-jmeter-tab #jm-stash-list-modal.hidden,
+      body.lth-hub-jmeter-tab #jm-stash-restore-modal.hidden {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        opacity: 0 !important;
+        position: fixed !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+      }
+      body.lth-hub-jmeter-tab [id^="modal-"]:not(.jms-modal-open) .jms-step-modal,
+      body.lth-hub-jmeter-tab [id^="modal-"][aria-hidden="true"] .jms-step-modal {
+        display: none !important;
+      }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_studio_workspace_green_glass_v2.css') }}?v=20260717datagreen3">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_hub_jmeter_tab_fouc_cloak_v1.css') }}?v=20260715jmeter-fouc2">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_if_edit_modal.css') }}?v=20260715jmeter-fouc2">
+    {% endif %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lth_data_topbar_green.css') }}?v=20260717datagreen4">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lth_gnav_glass.css') }}?v=20260729msgnav4">
+</head>
+<body class="jms-page lth-studio-v2 min-h-screen{% if _lth_page_tab != 'data' %} lth-hub-jmeter-tab{% else %} lth-hub-data-tab{% endif %}">
+    {% include 'partials/hf_global_nav.html' %}
+
+    {% if _lth_page_tab == 'data' %}
+    <div class="lth-data-page__bg" aria-hidden="true">
+        <picture>
+            <source srcset="{{ url_for('static', filename='images/load-test/lth-data-page-bg.webp') }}?v=20260717datagreen4" type="image/webp">
+            <img src="{{ url_for('static', filename='images/load-test/lth-data-page-bg.png') }}?v=20260717datagreen4" alt="" class="lth-data-page__bg-img" width="1920" height="1080" loading="lazy" decoding="async">
+        </picture>
+        <div class="lth-data-page__bg-scrim"></div>
+    </div>
+    {% else %}
+    <div class="lth-jmeter-page__bg" aria-hidden="true">
+        <img src="{{ url_for('static', filename='images/load-test/lth-jmeter-page-bg.png') }}" alt="" class="lth-jmeter-page__bg-img" width="1920" height="1600" loading="lazy" decoding="async">
+        <div class="lth-jmeter-page__bg-scrim"></div>
+    </div>
+    {% endif %}
+
+    <div class="mx-auto max-w-7xl relative z-[1] px-4 py-1 sm:py-2 lth-hub-tab-wrap">
+        {% include 'partials/tools/load_test_hub_tabs.html' %}
+    </div>
+
+    {% include 'partials/tools/load_test_hub_vendor_scripts.html' %}
+    <script src="{{ url_for('static', filename='js/hf_local_stash.js') }}?v=20260715cloud-toast1" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jm_scene_list_v1.css') }}?v=20260715jm-scene-div1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_modal_copy_visibility_v1.css') }}?v=20260715reset-copy2">
+    <script src="{{ url_for('static', filename='js/hf_jmeter_scene_cloud_ui_v1.js') }}?v=20260715badge-fix1" defer></script>
+    {% include 'partials/tools/load_test_hub_scripts_bundle.html' %}
+    {% include 'partials/tools/load_test_hub_styles_post_js.html' %}
+    <script src="{{ url_for('static', filename='js/load_test_hub_tailwind_refresh.js') }}?v=20260715ai-timer-cfg1" defer></script>
+    {% include 'partials/tools/load_test_hub_scripts_inline.html' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_scenario_leave_guard_v1.css') }}?v=20260715leave-guard2">
+    <script src="{{ url_for('static', filename='js/jms_scenario_leave_guard_v1.js') }}?v=20260715leave-guard2" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_page_nav_loading_safety_v1.js') }}?v=20260715leave-guard-spin1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_hub_jmeter_ready_v1.js') }}?v=20260715jmeter-fouc2" defer></script>
+    {% set hf_footer_tdb_legal = (_lth_page_tab == 'data') %}
+    {% include 'partials/hf_site_footer.html' %}
+</body>
+</html>

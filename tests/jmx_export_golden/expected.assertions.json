@@ -1,0 +1,19 @@
+{
+  "paths_must_contain": [
+    "sku=${sku}",
+    "order_id=${order_id}"
+  ],
+  "paths_must_not_contain": [
+    "%24%7B"
+  ],
+  "jsr223_post_processors_min": 2,
+  "md5hex_disabled_min": 5,
+  "cookie_must_have_name": true,
+  "jdbc_data_source": "demo_ds",
+  "config_test_element_max": 5,
+  "plan_args_duplicate": false,
+  "http_sampler_count_min": 1,
+  "empty_http_defaults_max": 0,
+  "build_id_must_contain": "${BUILD_ID}",
+  "csv_files_min": 1
+}

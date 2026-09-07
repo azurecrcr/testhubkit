@@ -1,0 +1,35 @@
+{# JMeter 压测 Tab · AI 步骤助手悬浮窗（仅文字输入，禁止文件上传） #}
+<button type="button" id="jms-ai-fab" class="jms-ai-fab hidden" aria-label="打开 AI 步骤助手" aria-expanded="false" aria-controls="jms-ai-panel">
+    <span class="jms-ai-fab__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/>
+            <path stroke-linecap="round" d="M5 19h14"/>
+        </svg>
+    </span>
+    <span class="jms-ai-fab__text">AI</span>
+</button>
+
+<div id="jms-ai-panel" class="jms-ai-panel hidden" role="dialog" aria-modal="false" aria-labelledby="jms-ai-panel-title" aria-hidden="true">
+    <div class="jms-ai-panel__shell">
+        <header class="jms-ai-panel__head">
+            <div class="jms-ai-panel__head-main">
+                <div class="jms-ai-panel__title-row">
+                    <h4 id="jms-ai-panel-title" class="jms-ai-panel__title">AI 步骤助手</h4>
+                    <span class="jms-ai-panel__scope-note" title="仅编辑当前选中线程组内的组件；测试计划级别的组件不会被修改">不改测试计划级</span>
+                </div>
+                <p id="jms-ai-panel-subtitle" class="jms-ai-panel__subtitle">基于当前选中线程组 YAML · 仅支持新增/修改步骤</p>
+            </div>
+            <button type="button" id="jms-ai-panel-close" class="jms-ai-panel__close" aria-label="关闭">&times;</button>
+        </header>
+        <div id="jms-ai-panel-messages" class="jms-ai-panel__messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+        <footer class="jms-ai-panel__composer">
+            <textarea id="jms-ai-panel-input" class="jms-ai-panel__input" rows="2" maxlength="4000" placeholder="描述要新增或修改的步骤，例如：在登录步骤后增加查询订单 GET 请求"></textarea>
+            <button type="button" id="jms-ai-panel-send" class="jms-ai-panel__send" aria-label="发送">发送</button>
+        </footer>
+    </div>
+    <div class="jms-ai-panel__resize jms-ai-panel__resize--edge-top" data-resize="n" aria-hidden="true"></div>
+    <div class="jms-ai-panel__resize jms-ai-panel__resize--edge-left" data-resize="w" aria-hidden="true"></div>
+    <button type="button" class="jms-ai-panel__resize jms-ai-panel__resize--corner-nw" data-resize="nw" aria-label="拖拽调整面板大小" tabindex="-1"></button>
+    <button type="button" class="jms-ai-panel__resize jms-ai-panel__resize--corner-ne" data-resize="ne" aria-label="拖拽调整面板大小" tabindex="-1"></button>
+    <div class="jms-ai-panel__resize jms-ai-panel__resize--edge-right" data-resize="e" aria-hidden="true"></div>
+</div>

@@ -1,0 +1,1485 @@
+/* 用例录入弹窗 — 布局与视觉升级（仅样式，不改功能） */
+
+#left-panel.tc-left-float-panel {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+#left-panel .tc-left-float-panel__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+#left-panel .tc-entry-card {
+    border: 1px solid #f1f5f9;
+    border-radius: 14px;
+    background: #ffffff;
+    padding: 16px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+#left-panel .tc-entry-card__label {
+    margin: 0 0 8px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #1f2937;
+    letter-spacing: 0.01em;
+    line-height: 1.35;
+}
+
+#left-panel .tc-entry-card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+#left-panel .tc-entry-card__head .tc-entry-card__label {
+    margin-bottom: 0;
+}
+
+#left-panel .tc-entry-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 蓝湖输入 — Cookie / URL 并排一行，加密展示 */
+#left-panel .tc-preset-lanhu--inline {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 8px;
+}
+
+#left-panel .tc-preset-lanhu--inline .tc-preset-lanhu__field {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 0;
+    grid-column: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#left-panel .tc-preset-lanhu__input-shell {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+}
+
+#left-panel .tc-preset-lanhu__input-shell .tc-preset-lanhu__input,
+#left-panel .tc-preset-lanhu__input-shell .tc-preset-lanhu__input.form-input {
+    width: 100%;
+}
+
+#left-panel .tc-preset-lanhu__reveal-btn {
+    position: absolute;
+    right: 0.375rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.625rem;
+    height: 1.625rem;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #9ca3af;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.15s ease, visibility 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+#left-panel .tc-preset-lanhu__input-shell:hover .tc-preset-lanhu__reveal-btn,
+#left-panel .tc-preset-lanhu__input-shell:focus-within .tc-preset-lanhu__reveal-btn,
+#left-panel .tc-preset-lanhu__reveal-btn--active,
+#left-panel .tc-preset-lanhu__reveal-btn:focus-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+#left-panel .tc-preset-lanhu__input-shell:hover .tc-preset-lanhu__input,
+#left-panel .tc-preset-lanhu__input-shell:focus-within .tc-preset-lanhu__input,
+#left-panel .tc-preset-lanhu__input-shell:has(.tc-preset-lanhu__reveal-btn--active) .tc-preset-lanhu__input,
+#left-panel .tc-preset-lanhu__input-shell:hover .tc-preset-lanhu__input.form-input,
+#left-panel .tc-preset-lanhu__input-shell:focus-within .tc-preset-lanhu__input.form-input,
+#left-panel .tc-preset-lanhu__input-shell:has(.tc-preset-lanhu__reveal-btn--active) .tc-preset-lanhu__input.form-input {
+    padding-right: 2.375rem !important;
+}
+
+#left-panel .tc-preset-lanhu__reveal-btn:hover {
+    background: rgba(15, 23, 42, 0.06);
+    color: #4b5563;
+}
+
+#left-panel .tc-preset-lanhu__reveal-btn:focus-visible {
+    outline: none;
+    background: rgba(99, 102, 241, 0.1);
+    color: #4338ca;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+#left-panel .tc-preset-lanhu__reveal-btn--active {
+    color: #4338ca;
+}
+
+#left-panel .tc-preset-lanhu__reveal-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+#left-panel .tc-preset-lanhu__reveal-icon.hidden {
+    display: none;
+}
+
+#left-panel .tc-preset-lanhu--inline .tc-preset-lanhu__input[type="text"] {
+    font-family: inherit;
+    letter-spacing: normal;
+}
+
+#left-panel .tc-preset-lanhu__hint {
+    display: block;
+    margin: 0 8px;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #9ca3af;
+    letter-spacing: 0.01em;
+}
+
+#left-panel .tc-preset-lanhu--inline .tc-preset-lanhu__deck {
+    flex: 1 1 100%;
+    width: 100%;
+}
+
+#left-panel .tc-preset-lanhu__input {
+    background: #f9fafb;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.8125rem;
+    color: #111827;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+#left-panel .tc-preset-lanhu__input:hover {
+    background: #f3f4f6;
+}
+
+#left-panel .tc-preset-lanhu__input:focus {
+    outline: none;
+    background: #ffffff;
+    border-color: #e5e7eb;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+#left-panel .tc-preset-lanhu__input::placeholder {
+    color: #9ca3af;
+}
+
+#left-panel .tc-preset-lanhu--inline .tc-preset-lanhu__input[type="password"] {
+    font-family: inherit;
+    letter-spacing: 0.08em;
+}
+
+#left-panel #tc-lanhu-tooldeck .tc-lanhu-tooldeck__status {
+    font-size: 0.6875rem;
+    color: #6b7280;
+}
+
+/* 生成模式 — 胶囊切换器 */
+/* 生成模式 — 顶部 Tab 胶囊切换器 */
+#left-panel #tc-drawer-tabs-root {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+}
+
+#left-panel #tc-drawer-tabs-root #drawer-tabs {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+#left-panel .tc-wb-head-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    margin-right: 6px;
+}
+
+#left-panel .tc-wb-history-wrap {
+    position: relative;
+}
+
+#left-panel .tc-wb-history-toggle--open {
+    border-color: rgba(99, 102, 241, 0.35);
+    background: #eef2ff;
+    color: #4338ca;
+}
+
+#left-panel .tc-wb-new-chat-btn:hover {
+    border-color: rgba(99, 102, 241, 0.35);
+    background: #eef2ff;
+    color: #4338ca;
+}
+
+#left-panel .tc-wb-new-chat-btn:focus-visible {
+    outline: none;
+    border-color: rgba(99, 102, 241, 0.45);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+#left-panel .tc-session-nav-btn--locked,
+#left-panel .tc-session-nav-btn--locked:hover,
+#left-panel .tc-session-nav-btn--locked:focus-visible {
+    opacity: 0.48;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+}
+
+#left-panel .tc-wb-history-panel {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    z-index: 60;
+    width: min(280px, calc(100vw - 24px));
+    max-height: 320px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 12px 32px -12px rgba(15, 23, 42, 0.28);
+    overflow: hidden;
+}
+
+#left-panel .tc-wb-history-panel.hidden {
+    display: none;
+}
+
+#left-panel .tc-wb-history-panel__head {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-bottom: 1px solid #f1f5f9;
+    background: #f8fafc;
+}
+
+#left-panel .tc-wb-history-panel__title {
+    flex: 1;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #334155;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#left-panel .tc-wb-history-panel__hint {
+    font-size: 0.625rem;
+    color: #94a3b8;
+    white-space: nowrap;
+}
+
+#left-panel .tc-wb-history-panel__new,
+#left-panel .tc-wb-history-panel__close {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.75rem;
+    color: #6366f1;
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+#left-panel .tc-wb-history-panel__close {
+    font-size: 1rem;
+    line-height: 1;
+    color: #64748b;
+}
+
+#left-panel .tc-wb-history-panel__new:hover,
+#left-panel .tc-wb-history-panel__close:hover {
+    background: #eef2ff;
+}
+
+#left-panel .tc-wb-history-list {
+    list-style: none;
+    margin: 0;
+    padding: 6px;
+    overflow-y: auto;
+}
+
+#left-panel .tc-wb-history-list__item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+#left-panel .tc-wb-history-list__item:hover {
+    background: #f8fafc;
+}
+
+#left-panel .tc-wb-history-list__item--active {
+    background: #eef2ff;
+}
+
+#left-panel .tc-wb-history-list__title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #1e293b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#left-panel .tc-wb-history-list__meta {
+    font-size: 0.6875rem;
+    color: #64748b;
+}
+
+#left-panel .tc-wb-history-list__empty {
+    padding: 16px 10px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+.tc-wb-session-limit-banner {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 13050;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: min(560px, calc(100vw - 32px));
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #fcd34d;
+    background: #fffbeb;
+    color: #92400e;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    box-shadow: 0 10px 28px -8px rgba(146, 64, 14, 0.28);
+    pointer-events: auto;
+}
+
+.tc-wb-session-limit-banner.hidden {
+    display: none;
+}
+
+.tc-wb-session-limit-banner__text {
+    flex: 1;
+    min-width: 0;
+}
+
+.tc-wb-session-limit-banner__close {
+    flex-shrink: 0;
+    border: none;
+    background: transparent;
+    color: #b45309;
+    font-size: 1.125rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+.tc-wb-session-limit-banner__close:hover {
+    background: rgba(251, 191, 36, 0.25);
+}
+
+#left-panel .tc-wb-history-list__item-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+}
+
+#left-panel .tc-wb-history-list__item-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+#left-panel .tc-wb-history-list__rename,
+#left-panel .tc-wb-history-list__delete {
+    flex-shrink: 0;
+    border: none;
+    background: transparent;
+    color: #94a3b8;
+    font-size: 0.6875rem;
+    padding: 4px 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+#left-panel .tc-wb-history-list__item:hover .tc-wb-history-list__rename,
+#left-panel .tc-wb-history-list__item:hover .tc-wb-history-list__delete,
+#left-panel .tc-wb-history-list__rename:focus-visible,
+#left-panel .tc-wb-history-list__delete:focus-visible {
+    opacity: 1;
+}
+
+#left-panel .tc-wb-history-list__rename:hover {
+    background: #eef2ff;
+    color: #4338ca;
+}
+
+#left-panel .tc-wb-history-list__title-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2px 6px;
+    border: 1px solid #c7d2fe;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #1e293b;
+    background: #fff;
+}
+
+#left-panel .tc-wb-history-list__delete {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+#left-panel .tc-lanhu-section-toggle {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-right: 6px;
+    padding: 6px 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #f9fafb;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #475569;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#left-panel .tc-lanhu-section-toggle:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+    color: #374151;
+}
+
+#left-panel .tc-lanhu-section-toggle:focus-visible {
+    outline: none;
+    border-color: rgba(99, 102, 241, 0.45);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+#left-panel .tc-lanhu-section-toggle__icon {
+    width: 0.875rem;
+    height: 0.875rem;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+#left-panel .tc-lanhu-section-toggle--collapsed .tc-lanhu-section-toggle__icon {
+    transform: rotate(-90deg);
+}
+
+#left-panel #ai-config-mode-root.tc-lanhu-section--collapsed {
+    display: none;
+}
+
+#left-panel #drawer-tabs.tc-drawer-mode-nav.tc-entry-gen-mode__seg {
+    position: relative;
+    display: flex;
+    flex: 0 1 auto;
+    width: auto;
+    min-width: 0;
+    height: auto;
+    min-height: 0;
+    padding: 0 0.15rem;
+    gap: 1.75rem;
+    align-items: flex-end;
+    justify-content: flex-start;
+    border: none !important;
+    border-bottom: 1px solid #e2e8f0;
+    border-radius: 0;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+#left-panel #drawer-tabs.tc-drawer-mode-nav.tc-entry-gen-mode__seg::before {
+    display: none;
+    content: none;
+}
+
+#left-panel #drawer-tabs.tc-drawer-mode-nav.tc-entry-gen-mode__seg .tc-gen-mode-btn {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+    width: auto;
+    height: auto;
+    min-height: 2.25rem;
+    margin: 0;
+    padding: 0.45rem 0.15rem 0.55rem;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.25;
+    color: #64748b;
+    transition: color 0.2s ease;
+}
+
+#left-panel .tc-entry-gen-mode__seg-wrap {
+    width: 100%;
+    justify-content: stretch;
+    margin-bottom: 12px;
+}
+
+#left-panel #tc-gen-mode-toolbar {
+    width: 100%;
+    margin: 0;
+}
+
+#left-panel #drawer-tabs.tc-drawer-mode-nav .tc-gen-mode-btn:hover:not(.tc-gen-mode-btn--active):not(.tc-mode-nav__btn--active):not(:disabled),
+#left-panel #drawer-tabs.tc-drawer-mode-nav .tc-drawer-tab:hover:not(.tc-gen-mode-btn--active):not(.tc-mode-nav__btn--active):not(:disabled) {
+    color: #6366f1;
+    -webkit-text-fill-color: #6366f1;
+    background-color: transparent !important;
+    background-image: none !important;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+}
+
+#left-panel #drawer-tabs.tc-drawer-mode-nav .tc-gen-mode-btn--active,
+#left-panel #drawer-tabs.tc-drawer-mode-nav .tc-drawer-tab.tc-mode-nav__btn--active,
+#left-panel #drawer-tabs.tc-drawer-mode-nav .tc-mode-nav__btn--active,
+#left-panel #drawer-tabs.tc-drawer-mode-nav .tc-gen-mode-btn--active:hover,
+#left-panel #drawer-tabs.tc-drawer-mode-nav .tc-drawer-tab.tc-mode-nav__btn--active:hover,
+#left-panel #drawer-tabs.tc-drawer-mode-nav .tc-mode-nav__btn--active:hover {
+    color: transparent !important;
+    background-color: transparent !important;
+    background-image: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    box-shadow: none !important;
+}
+
+#left-panel #drawer-tabs.tc-drawer-mode-nav .tc-gen-mode-btn--active::after,
+#left-panel #drawer-tabs.tc-drawer-mode-nav .tc-drawer-tab.tc-mode-nav__btn--active::after,
+#left-panel #drawer-tabs.tc-drawer-mode-nav .tc-mode-nav__btn--active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 3px;
+    border-radius: 999px 999px 0 0;
+    background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 48%, #ec4899 100%);
+    pointer-events: none;
+}
+
+#left-panel #tc-ai-entry-head {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+#left-panel #tc-entry-head-actions {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 0;
+    margin-right: 6px;
+}
+
+#left-panel #tc-entry-head-actions #tc-gen-options-row {
+    width: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+#left-panel #tc-entry-head-actions .tc-gen-option-item {
+    flex: 0 0 auto;
+}
+
+#tc-gen-batch-validate-btn {
+    display: none !important;
+}
+
+#table-toolbar .tc-right-panel-head #tc-gen-options-row {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.35rem;
+    min-width: 0;
+}
+
+#table-toolbar .tc-right-panel-head .tc-gen-option-item {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+#table-toolbar #tc-gen-validate-option-item {
+    display: inline-flex !important;
+}
+
+body.tc-workbench-gen-mode-agent #table-toolbar #tc-gen-validate-option-item {
+    display: none !important;
+}
+
+#left-panel .tc-gen-toggle-btn {
+    border-radius: 8px;
+    border-color: #e5e7eb;
+    background: #f9fafb;
+    color: #374151;
+}
+
+#left-panel .tc-gen-toggle-btn--on {
+    border-color: rgba(99, 102, 241, 0.35);
+    background: #eef2ff;
+    color: #4338ca;
+}
+
+/* 执行区 */
+#left-panel .tc-entry-card--execute {
+    padding-bottom: 12px;
+}
+
+#left-panel .tc-entry-execute__body {
+    gap: 10px;
+}
+
+#left-panel #tc-ai-generate-actions.tc-entry-card--execute {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f1f5f9;
+    border-radius: 14px;
+    background: #ffffff;
+    padding: 16px;
+}
+
+
+/* 紧凑模式：隐藏底部执行区，Enter / 发送触发生成（含 Agent 规划） */
+body.tc-left-gen-compact #tc-ai-generate-actions {
+    display: none !important;
+}
+
+
+body.tc-left-gen-compact--mindmap #drawer-tabs.tc-entry-gen-mode__seg::before {
+    display: none;
+}
+
+body.tc-left-gen-compact--mindmap #drawer-tabs.tc-entry-gen-mode__seg .tc-gen-mode-btn {
+    flex: 1 1 100%;
+    cursor: default;
+}
+
+body.tc-left-gen-compact #tc-prompt-composer {
+    margin-bottom: 0;
+}
+
+/* 抽屉内容：蓝湖区可滚动，输入区 + 执行区固定底部 */
+#left-panel .tc-left-float-panel__scroll {
+    display: flex;
+    flex-direction: column;
+}
+
+#left-panel .tc-left-float-panel__body.tc-left-panel {
+    flex: 1 1 auto;
+    min-height: 100%;
+}
+
+#left-panel #left-content-wrapper {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+#left-panel #drawer-1-content.tc-drawer-1-layout,
+#left-panel #drawer-edit-content.tc-drawer-edit-layout {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    gap: 0;
+}
+
+#left-panel .tc-drawer-1-main {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+#left-panel .tc-gen-instruction-zone {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: clamp(11.5rem, 44vh, 20rem);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #e8edf3;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+#left-panel .tc-gen-instruction-body {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#left-panel #ai-config-mode-root.tc-gen-lanhu-overlay:not(.tc-lanhu-section--collapsed) {
+    position: absolute;
+    inset: 0;
+    z-index: 24;
+    margin: 0 !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border: none;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 16px 40px -12px rgba(15, 23, 42, 0.18);
+    background: #ffffff;
+}
+
+/* 有对话时：蓝湖只占上方浮层，下方对话区仍可见（不被白底整屏盖住） */
+#left-panel .tc-gen-instruction-zone--lanhu-over-chat #ai-config-mode-root.tc-gen-lanhu-overlay:not(.tc-lanhu-section--collapsed) {
+    inset: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    max-height: min(56%, 17.5rem);
+    box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.2);
+}
+
+#left-panel #ai-config-mode-root.tc-gen-lanhu-overlay.tc-lanhu-section--collapsed {
+    display: none;
+}
+
+#left-panel #ai-config-mode-root {
+    flex: 0 0 auto;
+}
+
+#left-panel .tc-gen-chat-panel {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: 0;
+    background: #ffffff;
+    border: none;
+    border-bottom: none;
+}
+
+#left-panel .tc-gen-instruction-zone.tc-gen-lanhu-open .tc-gen-instruction-body {
+    flex: 1 1 auto;
+    min-height: 6.5rem;
+}
+
+/* 蓝湖展开时：对话区保留在 overlay 下层；有对话内容时下方仍可见可滚动 */
+#left-panel .tc-gen-instruction-zone.tc-gen-lanhu-open .tc-gen-chat-panel {
+    flex: 1 1 auto;
+    min-height: 6.5rem;
+    z-index: 1;
+}
+
+#left-panel .tc-gen-instruction-zone--lanhu-over-chat .tc-gen-chat-panel {
+    min-height: 6.5rem;
+    pointer-events: auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* 有对话时：蓝湖 overlay 空白区穿透，让下方对话区可接收点击（表单控件仍可交互） */
+#left-panel .tc-gen-instruction-zone--lanhu-over-chat #ai-config-mode-root.tc-gen-lanhu-overlay:not(.tc-lanhu-section--collapsed) {
+    pointer-events: none;
+}
+
+#left-panel .tc-gen-instruction-zone--lanhu-over-chat #ai-config-mode-root.tc-gen-lanhu-overlay:not(.tc-lanhu-section--collapsed) :is(
+    input,
+    textarea,
+    select,
+    button,
+    a,
+    label,
+    [role="button"],
+    [contenteditable="true"]
+) {
+    pointer-events: auto;
+}
+
+#left-panel .tc-gen-instruction-zone.tc-gen-lanhu-open:not(.tc-gen-instruction-zone--lanhu-over-chat) .tc-gen-chat-panel .tc-gen-chat-thread {
+    pointer-events: none;
+}
+
+#left-panel .tc-gen-instruction-zone--lanhu-over-chat .tc-gen-chat-panel .tc-gen-chat-thread {
+    pointer-events: auto;
+}
+
+#left-panel .tc-gen-instruction-zone:not(.tc-gen-lanhu-open) .tc-gen-chat-panel .tc-gen-chat-thread {
+    pointer-events: auto;
+}
+
+#left-panel .tc-gen-chat-panel:not(.tc-gen-chat-panel--has-messages) {
+    flex: 0 1 auto;
+    min-height: 0;
+}
+
+#left-panel .tc-gen-chat-panel--has-messages {
+    min-height: 6.5rem;
+}
+
+#left-panel .tc-gen-chat-thread {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overscroll-behavior: contain;
+}
+
+/* React 对话区：由内部 .tc-gen-chat-x-scroll 承担滚动，避免与 thread 双层滚动冲突 */
+#left-panel .tc-gen-chat-thread .tc-gen-chat-x-mount {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+#left-panel .tc-gen-chat-msg {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.3rem;
+    max-width: 100%;
+}
+
+#left-panel .tc-gen-chat-msg__bubble {
+    max-width: min(100%, 28rem);
+    padding: 0.65rem 0.85rem;
+    border-radius: 14px 14px 4px 14px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: #1e293b;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+#left-panel .tc-gen-chat-msg__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding-right: 0.15rem;
+    font-size: 0.6875rem;
+    line-height: 1;
+    color: #94a3b8;
+}
+
+#left-panel .tc-gen-chat-msg__mode {
+    font-weight: 500;
+    color: #64748b;
+}
+
+#left-panel .tc-gen-chat-msg__time {
+    font-variant-numeric: tabular-nums;
+}
+
+#left-panel .tc-gen-chat-msg--progress {
+    align-items: flex-start;
+}
+
+#left-panel .tc-gen-chat-msg--progress .tc-gen-chat-msg__bubble--progress {
+    max-width: min(100%, 30rem);
+    border-radius: 14px 14px 14px 4px;
+    background: #eef2ff;
+    border-color: #c7d2fe;
+    color: #312e81;
+}
+
+#left-panel .tc-gen-chat-msg--progress-done .tc-gen-chat-msg__bubble--progress {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+    color: #065f46;
+}
+
+#left-panel .tc-gen-chat-msg--progress-error .tc-gen-chat-msg__bubble--progress,
+#left-panel .tc-gen-chat-msg--progress-cancelled .tc-gen-chat-msg__bubble--progress {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #475569;
+}
+
+#left-panel .tc-gen-chat-progress__step {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+#left-panel .tc-gen-chat-progress__step--loading::after {
+    content: '…';
+    display: inline-block;
+    width: 0.85rem;
+    margin-left: 0.05rem;
+    animation: tc-gen-chat-progress-dots 1.2s steps(4, end) infinite;
+}
+
+@keyframes tc-gen-chat-progress-dots {
+    0% { opacity: 0.35; }
+    50% { opacity: 1; }
+    100% { opacity: 0.35; }
+}
+
+#left-panel .tc-gen-chat-progress__detail {
+    margin: 0.35rem 0 0;
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: #4338ca;
+    font-variant-numeric: tabular-nums;
+}
+
+#left-panel .tc-gen-chat-msg--progress-done .tc-gen-chat-progress__detail {
+    color: #047857;
+}
+
+#left-panel .tc-gen-chat-msg--progress-error .tc-gen-chat-progress__detail,
+#left-panel .tc-gen-chat-msg--progress-cancelled .tc-gen-chat-progress__detail {
+    color: #64748b;
+}
+
+#left-panel .tc-gen-chat-progress__detail.hidden {
+    display: none !important;
+}
+
+#left-panel .tc-gen-chat-progress__cancel {
+    margin-top: 0.55rem;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #4338ca;
+    background: transparent;
+    border: 1px solid #a5b4fc;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#left-panel .tc-gen-chat-progress__cancel:hover {
+    color: #3730a3;
+    border-color: #818cf8;
+    background: rgb(99 102 241 / 0.06);
+}
+
+#left-panel .tc-gen-chat-progress__cancel.hidden {
+    display: none !important;
+}
+
+#left-panel .tc-drawer-1-footer {
+    flex: 0 0 auto;
+    position: relative;
+    z-index: 26;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-top: auto;
+    padding: 0.65rem 0.85rem 0.85rem;
+    background: #ffffff;
+    border: none;
+    border-top: 1px solid #f1f5f9;
+    border-radius: 0;
+}
+
+#left-panel .tc-drawer-1-footer #tc-prompt-composer {
+    margin-bottom: 0;
+}
+
+#left-panel .tc-drawer-1-footer #tc-ai-generate-actions {
+    margin-bottom: 0;
+}
+
+body.tc-left-gen-compact #left-panel .tc-left-float-panel__scroll {
+    padding-bottom: 8px;
+}
+
+/* 工作台初始化完成前隐藏 AI 悬浮按钮，避免先闪 FAB 再展开用例生成弹窗 */
+body:not(.tc-left-gen-ui-ready) #tc-left-input-float-wrap {
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* 首次进入：禁用过渡，避免弹窗尺寸/透明度闪动 */
+body:not(.tc-left-gen-ui-ready) #left-panel.tc-left-float-panel,
+body:not(.tc-left-gen-ui-ready) #left-panel #left-content-wrapper,
+body:not(.tc-left-gen-ui-ready) #tc-left-float-backdrop {
+    transition: none !important;
+}
+
+#left-panel #tc-generate-preset-wrap .btn-primary {
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.28);
+    font-weight: 600;
+}
+
+#left-panel #tc-generate-preset-wrap .btn-primary:hover {
+    filter: brightness(1.04);
+    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.34);
+}
+
+#left-panel #tc-generate-preset-wrap .btn-mindmap {
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+#left-panel .tc-entry-execute__text-btn {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #6b7280 !important;
+    font-weight: 600;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+#left-panel .tc-entry-execute__text-btn:hover {
+    color: #6366f1 !important;
+    background: rgba(99, 102, 241, 0.06) !important;
+}
+
+#left-panel #tc-single-generate-actions {
+    width: 100%;
+}
+
+#left-panel #tc-ai-form-actions-wrap {
+    margin-left: auto;
+    align-self: flex-end;
+}
+
+/* 智能编辑 Tab — 样式与智能生成 Tab 统一（渐变下划线，见 #drawer-tabs.tc-drawer-mode-nav） */
+
+/* 智能编辑 — 会话区（独立样式，参考生成区圆角白底容器） */
+#left-panel #drawer-edit-content .tc-edit-instruction-zone {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: clamp(11.5rem, 44vh, 20rem);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #e8edf3;
+    border-radius: 12px;
+    background: #ffffff;
+}
+#left-panel #drawer-edit-content .tc-edit-instruction-body {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+/* 智能编辑面板 */
+#drawer-edit-content.tc-drawer-edit-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    flex: 1 1 auto;
+}
+#drawer-edit-content.hidden {
+    display: none !important;
+}
+
+#left-panel #drawer-edit-content .tc-edit-chat-panel {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+}
+#left-panel #drawer-edit-content .tc-edit-chat-panel:not(.tc-edit-chat-panel--has-messages) {
+    min-height: 0;
+}
+#left-panel #drawer-edit-content .tc-edit-chat-panel--has-messages {
+    min-height: 6rem;
+}
+#left-panel #drawer-edit-content .tc-edit-chat-thread {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 0.5rem 0.65rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+#left-panel .tc-edit-chat-msg {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 100%;
+}
+#left-panel .tc-edit-chat-msg__bubble {
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+    word-break: break-word;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #1e293b;
+}
+#left-panel .tc-edit-chat-msg--user .tc-edit-chat-msg__bubble {
+    background: #ffffff;
+    border-color: #d1d5db;
+}
+#left-panel .tc-edit-chat-msg__status {
+    padding: 0 2px;
+    font-size: 0.6875rem;
+    line-height: 1.35;
+    color: #94a3b8;
+}
+#left-panel .tc-edit-chat-msg__status--done {
+    color: #64748b;
+}
+#left-panel .tc-edit-chat-msg__status--info {
+    color: #94a3b8;
+}
+#left-panel .tc-edit-chat-msg__status--cancelled {
+    color: #94a3b8;
+}
+#left-panel .tc-edit-chat-msg__status--error {
+    color: #b91c1c;
+}
+#left-panel .tc-edit-chat-msg--assistant .tc-edit-chat-msg__bubble {
+    background: #ffffff;
+    border-color: #d1d5db;
+}
+#left-panel .tc-edit-chat-msg--thinking .tc-edit-chat-msg__bubble {
+    background: #ffffff;
+    border-color: #d1d5db;
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.55;
+    max-height: 12rem;
+    overflow-y: auto;
+    white-space: pre-wrap;
+}
+#left-panel .tc-edit-chat-msg--error .tc-edit-chat-msg__bubble,
+#left-panel .tc-edit-chat-msg--assistant.tc-edit-chat-msg--error .tc-edit-chat-msg__bubble {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #991b1b;
+}
+#left-panel .tc-edit-actions-row {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.25rem 0 0;
+}
+#left-panel .tc-edit-undo-btn {
+    font-size: 12px;
+    color: #6d28d9;
+    padding: 4px 10px;
+    border: 1px solid rgba(109, 40, 217, 0.25);
+    border-radius: 8px;
+    background: #faf5ff;
+    cursor: pointer;
+}
+#left-panel .tc-edit-undo-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+body.tc-workbench-mode-edit #ai-config-mode-root {
+    display: none !important;
+}
+body.tc-workbench-mode-edit #tc-gen-instruction-zone .tc-gen-chat-panel {
+    display: none !important;
+}
+body.tc-workbench-mode-edit #tc-prompt-composer {
+    display: none !important;
+}
+tr.tc-row--ai-edited {
+    animation: tc-row-ai-edited-flash 2.5s ease-out;
+}
+@keyframes tc-row-ai-edited-flash {
+    0% { background-color: rgba(167, 139, 250, 0.35); }
+    100% { background-color: transparent; }
+}
+
+
+body.tc-workbench-mode-edit #tc-lanhu-section-toggle {
+    display: none !important;
+}
+
+#left-panel #left-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+#left-panel #drawer-edit-content .tc-drawer-1-footer {
+    flex: 0 0 auto;
+    position: relative;
+    z-index: 26;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-top: auto;
+    padding: 0.65rem 0.85rem 0.85rem;
+    background: #ffffff;
+    border: none;
+    border-top: 1px solid #f1f5f9;
+    border-radius: 0;
+}
+#left-panel #drawer-edit-content #tc-edit-prompt-composer.tc-entry-card,
+#left-panel #drawer-edit-content #tc-edit-prompt-composer.tc-left-section {
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+}
+#left-panel #drawer-edit-content #tc-edit-prompt-composer {
+    margin-bottom: 0;
+}
+body.tc-workbench-mode-edit #tc-edit-prompt-composer {
+    display: block !important;
+}
+/* 智能编辑输入框尺寸 — 与智能生成 Composer 一致（覆盖 toolkit 默认 min-height） */
+#left-panel #drawer-edit-content #tc-edit-prompt-composer-box #ai-edit-prompt.tc-prompt-composer__input,
+#left-panel #drawer-edit-content #tc-edit-prompt-composer-box .tc-prompt-composer__input.tc-prompt-block__input {
+    min-height: 1rem !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+#left-panel #drawer-edit-content #tc-edit-prompt-composer-box #ai-edit-prompt.tc-prompt-composer__input:focus,
+#left-panel #drawer-edit-content #tc-edit-prompt-composer-box .tc-prompt-composer__input.tc-prompt-block__input:focus {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+#left-panel #drawer-edit-content #tc-edit-prompt-composer-box.tc-prompt-composer__box--multiline {
+    border-radius: 10px !important;
+}
+
+/* 智能编辑浮窗 — 顶栏与内容区样式（仅 #left-panel.tc-left-float-panel，不影响侧栏嵌入模式） */
+#left-panel.tc-left-float-panel .tc-left-float-panel__title {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    color: #4338ca;
+}
+#left-panel.tc-left-float-panel .tc-left-float-panel__title::before {
+    content: '';
+    flex-shrink: 0;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 55%, #ec4899 100%);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+#left-panel.tc-left-float-panel .tc-left-float-panel__head {
+    padding: 0.7rem 0.85rem 0.55rem;
+    border-bottom: 1px solid #e8edf3;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+}
+#left-panel.tc-left-float-panel .tc-drawer-mode-nav__solo {
+    display: none !important;
+}
+#left-panel.tc-left-float-panel #tc-drawer-tabs-root.tc-left-panel__head--mode {
+    margin-bottom: 0.4rem;
+    padding: 0 0 0.35rem;
+    border-bottom: 1px solid #eef2f7;
+}
+#left-panel.tc-left-float-panel #tc-drawer-tabs-root {
+    justify-content: flex-end;
+}
+#left-panel.tc-left-float-panel #drawer-edit-content .tc-edit-instruction-zone {
+    border-color: #e2e8f0;
+    border-radius: 14px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+#left-panel.tc-left-float-panel #drawer-edit-content .tc-drawer-1-footer {
+    padding: 0.45rem 0.65rem 0.55rem;
+    border-top: 1px solid #f1f5f9;
+    background: linear-gradient(180deg, #fafbfc 0%, #ffffff 100%);
+    border-radius: 0 0 14px 14px;
+}
+#left-panel.tc-left-float-panel .tc-edit-undo-btn:not(:disabled):hover {
+    background: #f3e8ff;
+    border-color: rgba(109, 40, 217, 0.35);
+}
+/* 智能编辑发送区置于浮窗 resize 手柄之上，避免点击被拦截 */
+#left-panel.tc-left-float-panel .tc-left-float-panel__scroll {
+    position: relative;
+    z-index: 5;
+}
+#left-panel.tc-left-float-panel #drawer-edit-content .tc-drawer-1-footer,
+#left-panel.tc-left-float-panel #tc-edit-prompt-composer,
+#left-panel.tc-left-float-panel #tc-edit-send-btn {
+    position: relative;
+    z-index: 6;
+}
+
+/* 智能编辑对话 — 用户消息内附件预览（DeepSeek 风格，仅 tc-edit-chat） */
+#left-panel .tc-edit-chat-msg--user.tc-edit-chat-msg--with-attachments {
+    align-items: flex-end;
+}
+
+#left-panel .tc-edit-chat-msg--user.tc-edit-chat-msg--with-attachments .tc-edit-chat-msg__bubble {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: min(100%, 22rem);
+    padding: 0.625rem 0.75rem;
+    background: #2b2f36;
+    border: 1px solid #3a3f47;
+    color: #f3f4f6;
+}
+
+#left-panel .tc-edit-chat-msg__attachments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    width: 100%;
+}
+
+#left-panel .tc-edit-chat-msg__attach-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 4.5rem;
+    min-width: 4.5rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+#left-panel .tc-edit-chat-msg__attach-img {
+    display: block;
+    width: 100%;
+    height: 3.25rem;
+    object-fit: cover;
+    background: #1f2329;
+}
+
+#left-panel .tc-edit-chat-msg__attach-doc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 3.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #e5e7eb;
+    background: linear-gradient(145deg, #374151 0%, #1f2937 100%);
+}
+
+#left-panel .tc-edit-chat-msg__attach-name {
+    padding: 0.2rem 0.35rem 0.3rem;
+    font-size: 0.625rem;
+    line-height: 1.25;
+    color: #cbd5e1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#left-panel .tc-edit-chat-msg--user.tc-edit-chat-msg--with-attachments .tc-edit-chat-msg__text {
+    font-size: 13px;
+    line-height: 1.55;
+    word-break: break-word;
+    color: #f9fafb;
+}
+
+
+#left-panel .tc-edit-chat-msg__attach-item--expired {
+    opacity: 0.72;
+    border-style: dashed;
+    background: rgba(148, 163, 184, 0.12);
+}
+
+#left-panel .tc-edit-chat-msg__attach-expired {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 8px 6px;
+    font-size: 11px;
+    line-height: 1.35;
+    text-align: center;
+    color: #94a3b8;
+}
+
+#left-panel .tc-edit-chat-msg__attach-item--expired .tc-edit-chat-msg__attach-doc {
+    opacity: 0.55;
+}

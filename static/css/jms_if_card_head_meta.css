@@ -1,0 +1,35 @@
+/**
+ * If 控制器卡片 · 条件与子步骤数紧邻展示（隔离样式，仅树形视图）
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__head .jms-if-card__meta {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    flex-wrap: nowrap !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__head .jms-if-card__meta .jms-if-card__condition {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__head .jms-if-card__meta .jms-if-card__child-count,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__head .jms-if-card__meta .jms-http-assert-badge {
+    flex: 0 0 auto !important;
+    margin-left: 0 !important;
+    white-space: nowrap !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__head .jms-if-card__meta .jms-if-card__child-count {
+    font-size: 10px !important;
+    line-height: 1.25 !important;
+    padding: 0.05rem 0.35rem !important;
+    border-radius: 0.2rem !important;
+    color: #b45309 !important;
+    background: #fffbeb !important;
+    border: 1px solid #fde68a !important;
+}

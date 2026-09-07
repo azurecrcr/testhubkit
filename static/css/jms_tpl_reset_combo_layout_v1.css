@@ -1,0 +1,70 @@
+/* 清空重做左侧 · 场景模板标签仅在下拉框上方（终版 v2） */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar #tpl-select-wrap {
+    display: block !important;
+    min-width: 0 !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar #tpl-select-wrap .lth-tpl-controls-row {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-end !important;
+    justify-content: flex-start !important;
+    gap: 0.4rem !important;
+    width: auto !important;
+    min-width: 0 !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar #tpl-select-wrap #btn-scenario-reset {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+    align-self: flex-end !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar #tpl-select-wrap .lth-tpl-select-col {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.12rem !important;
+    min-width: 0 !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar #tpl-select-wrap .lth-tpl-select-col > .lth-studio-topbar__tpl-label {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 0.62rem !important;
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar #tpl-select-wrap .lth-tpl-select-slot {
+    display: block !important;
+    min-width: 8.5rem !important;
+    max-width: 11.75rem !important;
+    width: 100% !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar #tpl-select-wrap .lth-tpl-combobox {
+    width: 100% !important;
+    min-width: 8.5rem !important;
+    max-width: 11.75rem !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar #tpl-select-wrap .lth-tpl-select-native {
+    display: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar #tpl-select-wrap #btn-scenario-reset,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar #tpl-select-wrap .lth-tpl-combobox__trigger {
+    box-sizing: border-box !important;
+    height: 2.0625rem !important;
+    min-height: 2.0625rem !important;
+    padding: 0.48rem 0.72rem !important;
+    border-radius: 0.7rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    line-height: 1.25 !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar #tpl-select-wrap #btn-scenario-reset {
+    justify-content: center !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar #tpl-select-wrap.hidden {
+    display: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-topbar #tpl-select-wrap .lth-tpl-select-col.hidden {
+    display: none !important;
+}

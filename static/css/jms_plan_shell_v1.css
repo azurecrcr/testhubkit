@@ -1,0 +1,174 @@
+/* 压测造数 · 测试计划壳 + 左栏 hint（P0/P1 独立模块，仅 load_test_hub 引入） */
+
+/* --- 左栏 hint --- */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-nav__sub {
+  margin: 0.15rem 0 0.55rem;
+  font-size: 0.68rem;
+  line-height: 1.35;
+  color: rgba(148, 163, 184, 0.92);
+  font-weight: 500;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.08rem;
+  min-width: 0;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-nav-item__hint {
+  font-size: 0.62rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: rgba(148, 163, 184, 0.88);
+}
+
+/* --- 工作区副标题 --- */
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-section-subtitle {
+  margin: 0.12rem 0 0;
+  font-size: 0.68rem;
+  line-height: 1.3;
+  color: rgba(100, 116, 139, 0.95);
+  font-weight: 500;
+}
+
+/* --- v2：toolbar 移入 plan card 后隐藏区头占位 --- */
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .lth-studio-workspace__head .jms-section-head__left {
+  display: none !important;
+}
+
+/* --- 测试计划外壳 --- */
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-card {
+  border: 1px solid rgba(37, 99, 235, 0.22) !important;
+  border-radius: 0.85rem !important;
+  background: linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(248,250,252,0.94) 100%) !important;
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06), inset 3px 0 0 #2563eb !important;
+  padding: 0.65rem 0.75rem 0.75rem !important;
+  margin-bottom: 0.5rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__frame {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.45rem 0.75rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px dashed rgba(148, 163, 184, 0.35);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__badge-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  flex: 0 0 auto;
+  min-width: 5.5rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1d4ed8;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__badge::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__desc {
+  margin: 0;
+  font-size: 0.65rem;
+  line-height: 1.35;
+  color: #64748b;
+  font-weight: 500;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__toolbar-host {
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__toolbar-host .jms-studio-plan-toolbar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.45rem 0.65rem !important;
+  width: 100% !important;
+  padding: 0.35rem 0.5rem !important;
+  border-radius: 0.6rem !important;
+  background: rgba(239, 246, 255, 0.72) !important;
+  border: 1px solid rgba(147, 197, 253, 0.45) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.65) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.55rem;
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell-listeners {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.55rem;
+  width: 100%;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell-listeners__label {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #475569;
+  white-space: nowrap;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__toolbar-host .jms-plan-listener-btn {
+  font-size: 0.68rem !important;
+  padding: 0.2rem 0.55rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__toolbar-host .jms-plan-meta,
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__toolbar-host .jms-studio-plan-meta {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__toolbar-host .jms-plan-var-badge {
+  display: inline-flex !important;
+  font-size: 0.62rem !important;
+  padding: 0.12rem 0.45rem !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,0.85) !important;
+  border: 1px solid rgba(203, 213, 225, 0.8) !important;
+  color: #475569 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__body {
+  padding: 0.35rem 0 0 0.65rem;
+  border-left: 2px solid rgba(37, 99, 235, 0.12);
+  margin-left: 0.15rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__body > .jms-plan-tgs {
+  margin: 0;
+}

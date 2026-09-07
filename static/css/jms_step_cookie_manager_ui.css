@@ -1,0 +1,314 @@
+/**
+ * HTTP 步骤配置元件 · HTTP Cookie 管理器弹窗（隔离样式，仅 #modal-http-step-config-cookie-edit）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit {
+    --jms-step-cm-bg-modal: #eef1f7;
+    --jms-step-cm-bg-body: #f3f5f9;
+    --jms-step-cm-bg-card: #f8f9fc;
+    --jms-step-cm-bg-input: #fbfcfe;
+    --jms-step-cm-bg-elevated: #e9edf4;
+    --jms-step-cm-border: rgba(199, 210, 224, 0.9);
+    --jms-step-cm-border-soft: rgba(214, 222, 232, 0.95);
+    --jms-step-cm-accent: #f59e0b;
+    --jms-step-cm-accent-soft: rgba(245, 158, 11, 0.14);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-modal {
+    width: min(820px, 96vw) !important;
+    background: var(--jms-step-cm-bg-modal) !important;
+    border: 1px solid var(--jms-step-cm-border-soft);
+    box-shadow: 0 18px 46px rgba(15, 23, 42, 0.13), 0 2px 8px rgba(15, 23, 42, 0.05) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-http-step-config-drawer__body {
+    background: var(--jms-step-cm-bg-body) !important;
+    padding: 0.5rem 0.65rem 0.65rem !important;
+    max-height: min(72vh, 36rem);
+    overflow-y: auto;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-http-step-config-drawer__foot {
+    background: var(--jms-step-cm-bg-elevated) !important;
+    border-top-color: var(--jms-step-cm-border-soft) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-http-step-config-cookie-edit .jms-step-modal {
+    width: min(820px, calc(100vw - 0.5rem)) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-http-step-config-drawer__head {
+    background: linear-gradient(135deg, #e9edf5 0%, #e4e9f2 48%, #dfe6f4 100%) !important;
+    border-bottom-color: var(--jms-step-cm-border-soft) !important;
+    padding: 0.55rem 0.65rem 0.5rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-http-step-config-drawer__badge {
+    color: #b45309 !important;
+    background: rgba(254, 243, 199, 0.82) !important;
+    border-color: rgba(251, 191, 36, 0.42) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-http-step-config-drawer__head .jms-step-modal__title {
+    margin-bottom: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__card {
+    border: 1px solid var(--jms-step-cm-border-soft);
+    border-radius: 10px;
+    background: var(--jms-step-cm-bg-card);
+    padding: 0.55rem 0.65rem 0.6rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.025);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__meta-row {
+    display: grid;
+    grid-template-columns: minmax(8rem, 0.95fr) 1.4fr;
+    gap: 0.45rem 0.55rem;
+    align-items: end;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__card-title {
+    margin: 0 0 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #475569;
+    letter-spacing: 0.01em;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.55rem 1.25rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__field--policy {
+    flex: 1 1 12rem;
+    min-width: 10rem;
+    max-width: 18rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__policy-select {
+    cursor: pointer;
+    padding-right: 1.5rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__chk-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    color: #334155;
+    cursor: pointer;
+    user-select: none;
+    padding-bottom: 0.36rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__chk-row input {
+    margin: 0;
+    accent-color: var(--jms-step-cm-accent);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #475569;
+    line-height: 1.25;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__input {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 0.74rem;
+    padding: 0.36rem 0.5rem;
+    border: 1px solid var(--jms-step-cm-border);
+    border-radius: 6px;
+    color: #0f172a;
+    background: var(--jms-step-cm-bg-input);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__input:focus {
+    outline: none;
+    border-color: var(--jms-step-cm-accent);
+    background: #fcfdff;
+    box-shadow: 0 0 0 2px var(--jms-step-cm-accent-soft);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.45rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__section-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #475569;
+    letter-spacing: 0.01em;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__add-btn {
+    padding: 0.28rem 0.65rem;
+    border: 1px dashed rgba(251, 191, 36, 0.7);
+    border-radius: 6px;
+    background: var(--jms-step-cm-bg-elevated);
+    color: #b45309;
+    font-size: 0.68rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__add-btn:hover {
+    background: rgba(254, 243, 199, 0.5);
+    border-color: #fbbf24;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__table-wrap {
+    border: 1px solid var(--jms-step-cm-border-soft);
+    border-radius: 8px;
+    background: var(--jms-step-cm-bg-input);
+    overflow: hidden;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__table-head {
+    display: grid;
+    grid-template-columns: minmax(4.5rem, 0.85fr) minmax(4.5rem, 1fr) minmax(4rem, 0.75fr) minmax(3.5rem, 0.55fr) 2.4rem 1.6rem;
+    gap: 0.3rem;
+    padding: 0.35rem 0.45rem;
+    background: var(--jms-step-cm-bg-elevated);
+    border-bottom: 1px solid var(--jms-step-cm-border-soft);
+    font-size: 0.64rem;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.02em;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__table-head span:nth-child(5) {
+    text-align: center;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__cookie-list {
+    display: flex;
+    flex-direction: column;
+    max-height: min(16rem, 42vh);
+    overflow-y: auto;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__cookie-row {
+    display: grid;
+    grid-template-columns: minmax(4.5rem, 0.85fr) minmax(4.5rem, 1fr) minmax(4rem, 0.75fr) minmax(3.5rem, 0.55fr) 2.4rem 1.6rem;
+    gap: 0.3rem;
+    align-items: center;
+    padding: 0.3rem 0.45rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+    transition: background 0.12s ease;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__cookie-row:last-child {
+    border-bottom: none;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__cookie-row:hover {
+    background: rgba(248, 250, 252, 0.85);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__cookie-row .jms-step-cm-v2__input {
+    padding: 0.32rem 0.42rem;
+    font-size: 0.71rem;
+    border: 1px solid var(--jms-step-cm-border);
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__cookie-row .jms-step-cm-v2__input::placeholder {
+    color: #94a3b8;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__cookie-row .jms-step-cm-v2__input:focus {
+    border-color: var(--jms-step-cm-accent);
+    background: #fff;
+    box-shadow: 0 0 0 2px var(--jms-step-cm-accent-soft);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__secure-chk {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__secure-chk input {
+    margin: 0;
+    accent-color: var(--jms-step-cm-accent);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__secure-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__row-del {
+    width: 1.6rem;
+    height: 1.6rem;
+    padding: 0;
+    border: 1px solid var(--jms-step-cm-border);
+    border-radius: 5px;
+    background: var(--jms-step-cm-bg-card);
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__row-del:hover {
+    color: #ef4444;
+    border-color: #fecaca;
+    background: #fef2f2;
+}
+
+@media (max-width: 640px) {
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__meta-row {
+        grid-template-columns: 1fr;
+    }
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__table-head,
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__cookie-row {
+        grid-template-columns: 1fr 1fr;
+    }
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__table-head span:nth-child(n+3),
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-step-config-cookie-edit .jms-step-cm-v2__cookie-row > :nth-child(n+3) {
+        grid-column: 1 / -1;
+    }
+}

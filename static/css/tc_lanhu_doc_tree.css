@@ -1,0 +1,1893 @@
+/* 用例工作台 — 左侧蓝湖需求文档树（布局规则须压过 toolkit.css 的 #main-grid { display:block }） */
+#tc-main-content-shell > #main-grid.tc-main-grid.tc-main-grid--with-lanhu-tree {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+}
+
+#tc-main-content-shell > #main-grid.tc-main-grid.tc-main-grid--with-lanhu-tree .tc-lanhu-doc-tree-rail {
+    flex: 0 0 var(--tc-lanhu-tree-w, 264px);
+    width: var(--tc-lanhu-tree-w, 264px);
+    max-width: var(--tc-lanhu-tree-w, 264px);
+    min-width: 0;
+}
+
+#tc-main-content-shell > #main-grid.tc-main-grid.tc-main-grid--with-lanhu-tree .tc-main-grid__workspace,
+#tc-main-content-shell > #main-grid.tc-main-grid.tc-main-grid--with-lanhu-tree #right-panel.tc-main-grid__workspace {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    width: auto !important;
+    max-width: 100% !important;
+}
+
+/* 兼容旧选择器（子代规则已覆盖） */
+#main-grid.tc-main-grid--with-lanhu-tree {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    min-height: 0;
+}
+
+#main-grid.tc-main-grid--with-lanhu-tree .tc-main-grid__workspace {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto;
+    max-width: none;
+}
+
+.tc-lanhu-doc-tree-rail {
+    --tc-lanhu-tree-w: 264px;
+    --tc-lanhu-tree-glass: rgba(255, 255, 255, 0.38);
+    --tc-lanhu-tree-glass-strong: rgba(255, 255, 255, 0.52);
+    --tc-lanhu-tree-glass-border: rgba(255, 255, 255, 0.42);
+    --tc-lanhu-tree-bg: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.26) 0%,
+        rgba(238, 242, 255, 0.2) 48%,
+        rgba(224, 231, 255, 0.16) 100%
+    );
+    --tc-lanhu-tree-border: rgba(148, 163, 184, 0.28);
+    --tc-lanhu-tree-accent: #4f46e5;
+    flex: 0 0 var(--tc-lanhu-tree-w);
+    width: var(--tc-lanhu-tree-w);
+    max-width: var(--tc-lanhu-tree-w);
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--tc-lanhu-tree-border);
+    background: var(--tc-lanhu-tree-bg);
+    backdrop-filter: blur(16px) saturate(1.12);
+    -webkit-backdrop-filter: blur(16px) saturate(1.12);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.38),
+        inset -1px 0 0 rgba(255, 255, 255, 0.18);
+    position: relative;
+    transition: flex-basis 0.22s ease, width 0.22s ease, max-width 0.22s ease, opacity 0.2s ease;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.tc-lanhu-doc-tree-rail--collapsed {
+    --tc-lanhu-tree-w: 44px;
+}
+
+.tc-lanhu-doc-tree-rail--collapsed .tc-lanhu-tree-rail__body,
+.tc-lanhu-doc-tree-rail--collapsed .tc-lanhu-tree-rail__foot {
+    display: none;
+}
+
+.tc-lanhu-doc-tree-rail--collapsed .tc-lanhu-tree-rail__head {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0;
+    padding: 0.65rem 0.35rem;
+    border-bottom: none;
+}
+
+.tc-lanhu-doc-tree-rail--collapsed .tc-lanhu-tree-rail__brand,
+.tc-lanhu-doc-tree-rail--collapsed #tc-lanhu-tree-connect-btn,
+.tc-lanhu-doc-tree-rail--collapsed #tc-lanhu-tree-refresh-btn {
+    display: none !important;
+}
+
+.tc-lanhu-doc-tree-rail--collapsed .tc-lanhu-tree-rail__actions {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.tc-lanhu-doc-tree-rail--collapsed #tc-lanhu-tree-rail-collapse {
+    margin: 0 auto;
+}
+
+.tc-lanhu-tree-rail__head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 0.75rem 0.65rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    background: var(--tc-lanhu-tree-glass);
+    backdrop-filter: blur(12px) saturate(1.1);
+    -webkit-backdrop-filter: blur(12px) saturate(1.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    border-radius: 10px 10px 0 0;
+    overflow: visible;
+}
+
+.tc-lanhu-tree-rail__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.42rem;
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.tc-lanhu-tree-rail__logo {
+    width: 1.86rem;
+    height: 1.86rem;
+    border-radius: 0.6rem;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    background: linear-gradient(145deg, #6366f1 0%, #4f46e5 55%, #4338ca 100%);
+    box-shadow: 0 8px 18px rgba(79, 70, 229, 0.28);
+    flex-shrink: 0;
+}
+
+.tc-lanhu-tree-rail__logo svg {
+    width: 1.02rem;
+    height: 1.02rem;
+}
+
+.tc-lanhu-tree-rail__titles {
+    min-width: 0;
+    max-width: 100%;
+    padding-right: 1.35rem;
+}
+
+.tc-lanhu-tree-rail__title {
+    font-size: 0.76rem;
+    line-height: 1.12;
+    font-weight: 700;
+    color: #1e293b;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tc-lanhu-tree-rail__subtitle {
+    font-size: 0.61rem;
+    line-height: 1.15;
+    color: #64748b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.tc-lanhu-tree-rail__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-shrink: 0;
+}
+
+.tc-lanhu-tree-rail__icon-btn {
+    width: 1.85rem;
+    height: 1.85rem;
+    border-radius: 0.55rem;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    background: var(--tc-lanhu-tree-glass-strong);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #475569;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.12s;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.tc-lanhu-tree-rail__icon-btn:hover {
+    color: var(--tc-lanhu-tree-accent);
+    border-color: rgba(99, 102, 241, 0.4);
+    background: rgba(255, 255, 255, 0.68);
+}
+
+.tc-lanhu-tree-rail__icon-btn:active {
+    transform: scale(0.96);
+}
+
+.tc-lanhu-tree-rail__icon-btn svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.tc-lanhu-tree-rail__body {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0.65rem 0.55rem 0.45rem;
+    gap: 0.55rem;
+    transition: opacity 0.18s ease;
+}
+
+.tc-lanhu-tree-search-wrap {
+    position: relative;
+}
+
+.tc-lanhu-tree-search-wrap svg {
+    position: absolute;
+    left: 0.65rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.95rem;
+    height: 0.95rem;
+    color: #94a3b8;
+    pointer-events: none;
+}
+
+.tc-lanhu-tree-search {
+    width: 100%;
+    border-radius: 0.65rem;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    background: var(--tc-lanhu-tree-glass-strong);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0.48rem 0.65rem 0.48rem 2rem;
+    font-size: 0.78rem;
+    color: #334155;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.tc-lanhu-tree-search:focus {
+    border-color: rgba(99, 102, 241, 0.55);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.tc-lanhu-tree-mount {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+    border-radius: 0.6rem;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    background: var(--tc-lanhu-tree-glass);
+    backdrop-filter: blur(12px) saturate(1.08);
+    -webkit-backdrop-filter: blur(12px) saturate(1.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    padding: 0.35rem 0.25rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100, 116, 139, 0.45) transparent;
+}
+
+.tc-lanhu-tree-root {
+    list-style: none;
+    margin: 0;
+    padding: 0.15rem 0;
+}
+
+.tc-lanhu-tree-node {
+    margin: 0;
+    padding: 0;
+}
+
+.tc-lanhu-tree-node__row {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    min-height: 1.85rem;
+    padding: 0.12rem 0.35rem 0.12rem calc(0.35rem + var(--tc-tree-depth, 0) * 0.65rem);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s;
+}
+
+.tc-lanhu-tree-node__row:hover {
+    background: rgba(99, 102, 241, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.tc-lanhu-tree-node--selected > .tc-lanhu-tree-node__row {
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.22) 0%, rgba(99, 102, 241, 0.1) 100%);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #312e81;
+}
+
+.tc-lanhu-tree-node__toggle {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: none;
+    background: transparent;
+    color: #64748b;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    border-radius: 0.35rem;
+    flex-shrink: 0;
+    padding: 0;
+}
+
+.tc-lanhu-tree-node__toggle--spacer {
+    cursor: default;
+}
+
+.tc-lanhu-tree-node__toggle svg {
+    width: 0.85rem;
+    height: 0.85rem;
+    transition: transform 0.15s ease;
+}
+
+.tc-lanhu-tree-node--expanded > .tc-lanhu-tree-node__row .tc-lanhu-tree-node__toggle svg {
+    transform: rotate(90deg);
+}
+
+.tc-lanhu-tree-node__icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+}
+
+.tc-lanhu-tree-node__icon svg {
+    width: 0.95rem;
+    height: 0.95rem;
+}
+
+.tc-lanhu-tree-node__icon--folder {
+    color: #f59e0b;
+}
+
+.tc-lanhu-tree-node__icon--page {
+    color: #6366f1;
+}
+
+.tc-lanhu-tree-node__label {
+    font-size: 0.76rem;
+    line-height: 1.25;
+    color: #334155;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    flex: 1;
+}
+
+/* 需求页：仅截断标题文字，已设计绿点（__case-dot）始终可见 */
+.tc-lanhu-tree-node--page > .tc-lanhu-tree-node__row .tc-lanhu-tree-node__label {
+    display: inline-flex;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+.tc-lanhu-tree-node--page > .tc-lanhu-tree-node__row .tc-lanhu-tree-node__label-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+/* 页面需求字数 / 刷新（独立于 body.tc-hub-ai-tab 的全局浅色字继承） */
+.tc-lanhu-tree-node__refresh {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.35rem;
+    height: 1.35rem;
+    margin-left: 0.1rem;
+    padding: 0;
+    border: none;
+    border-radius: 0.35rem;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    flex-shrink: 0;
+    opacity: 0;
+    transition: opacity 0.15s ease, color 0.12s ease, background 0.12s ease;
+}
+
+.tc-lanhu-tree-node__row:hover .tc-lanhu-tree-node__refresh,
+.tc-lanhu-tree-node__row:focus-within .tc-lanhu-tree-node__refresh {
+    opacity: 1;
+}
+
+.tc-lanhu-tree-node__refresh:hover {
+    color: #4f46e5;
+    background: rgba(99, 102, 241, 0.12);
+}
+
+.tc-lanhu-tree-node__refresh svg {
+    width: 0.85rem;
+    height: 0.85rem;
+}
+
+.tc-lanhu-tree-node__chars {
+    flex-shrink: 0;
+    font-size: 0.68rem;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: #475569;
+    max-width: 4.75rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tc-lanhu-tree-node__chars--ok {
+    color: #4f46e5;
+    font-weight: 600;
+}
+
+.tc-lanhu-tree-node__chars--loading {
+    display: inline-block;
+    width: 0.72rem;
+    height: 0.72rem;
+    color: transparent;
+    font-size: 0;
+    border: 2px solid rgba(79, 70, 229, 0.22);
+    border-top-color: #4f46e5;
+    border-radius: 50%;
+    animation: tc-lanhu-tree-chars-spin 0.65s linear infinite;
+    vertical-align: middle;
+}
+
+.tc-lanhu-tree-node__chars--error {
+    color: #dc2626;
+    font-size: 0.62rem;
+    font-weight: 500;
+    max-width: 5.5rem;
+}
+
+/* 页面加载中 — 玻璃感脉冲骨架屏 */
+
+/* 用例生成中：禁止切换其它需求页（当前选中页仍可操作） */
+.tc-lanhu-tree-mount--gen-page-locked .tc-lanhu-tree-node--page:not(.tc-lanhu-tree-node--selected) .tc-lanhu-tree-node__row {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+.tc-lanhu-tree-mount--gen-page-locked .tc-lanhu-tree-node--page:not(.tc-lanhu-tree-node--selected) .tc-lanhu-tree-node__row:hover {
+    background: transparent;
+}
+.tc-lanhu-tree-rail--gen-page-locked .tc-lanhu-tree-search {
+    opacity: 0.85;
+}
+.tc-lanhu-tree-node--loading > .tc-lanhu-tree-node__row {
+    position: relative;
+    pointer-events: none;
+}
+.tc-lanhu-tree-node--loading > .tc-lanhu-tree-node__row::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 0.5rem;
+    background: linear-gradient(
+        110deg,
+        rgba(99, 102, 241, 0) 30%,
+        rgba(99, 102, 241, 0.08) 50%,
+        rgba(99, 102, 241, 0) 70%
+    );
+    background-size: 200% 100%;
+    animation: tc-tree-loading-shimmer 1.4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+/* 绿色圆点在 loading 期间保持可见但略暗 */
+.tc-lanhu-tree-node--loading.tc-lanhu-tree-node--designed > .tc-lanhu-tree-node__row .tc-lanhu-tree-node__case-dot {
+    opacity: 0.55;
+    filter: grayscale(0.3);
+}
+/* loading 微标：右侧小旋转环 */
+.tc-lanhu-tree-node--loading > .tc-lanhu-tree-node__row .tc-lanhu-tree-node__label::before {
+    content: '';
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    margin-right: 0.35rem;
+    border: 2px solid rgba(99, 102, 241, 0.2);
+    border-top-color: #6366f1;
+    border-radius: 50%;
+    animation: tc-lanhu-tree-chars-spin 0.6s linear infinite;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+.tc-lanhu-tree-node--loading > .tc-lanhu-tree-node__row .tc-lanhu-tree-node__label {
+    display: inline-flex;
+    align-items: center;
+}
+
+@keyframes tc-tree-loading-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes tc-lanhu-tree-chars-spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes tc-spin {
+    to { transform: rotate(360deg); }
+}
+
+
+body.tc-hub-ai-tab .tc-lanhu-tree-mount .tc-lanhu-tree-node__label {
+    color: #1e293b;
+}
+
+body.tc-hub-ai-tab .tc-lanhu-tree-mount .tc-lanhu-tree-node__chars {
+    color: #475569;
+}
+
+body.tc-hub-ai-tab .tc-lanhu-tree-mount .tc-lanhu-tree-node__chars--ok {
+    color: #4f46e5;
+}
+
+body.tc-hub-ai-tab .tc-lanhu-tree-mount .tc-lanhu-tree-node__chars--error {
+    color: #dc2626;
+}
+
+body.tc-hub-ai-tab .tc-lanhu-tree-mount .tc-lanhu-tree-node__refresh {
+    color: #64748b;
+}
+
+.tc-lanhu-tree-node__children {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tc-lanhu-tree-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem 0.85rem;
+    min-height: 12rem;
+    gap: 0.45rem;
+}
+
+.tc-lanhu-tree-empty__icon {
+    font-size: 1.75rem;
+    filter: grayscale(0.2);
+}
+
+.tc-lanhu-tree-empty__title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 0;
+}
+
+.tc-lanhu-tree-empty__desc {
+    font-size: 0.72rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.45;
+    max-width: 14rem;
+}
+
+.tc-lanhu-tree-empty__btn {
+    margin-top: 0.35rem;
+    border: none;
+    border-radius: 999px;
+    padding: 0.45rem 1rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.28);
+}
+
+.tc-lanhu-tree-rail__foot {
+    padding: 0.45rem 0.65rem 0.65rem;
+    transition: opacity 0.18s ease;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+}
+
+.tc-lanhu-tree-status {
+    display: block;
+    font-size: 0.68rem;
+    color: #64748b;
+    min-height: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tc-lanhu-tree-status--ok { color: #059669; }
+.tc-lanhu-tree-status--error { color: #dc2626; }
+.tc-lanhu-tree-status--loading { color: #4f46e5; }
+
+/* 连接蓝湖弹窗 */
+#tc-lanhu-tree-connect-modal {
+    z-index: 75;
+}
+
+.tc-lanhu-tree-connect-card {
+    width: min(520px, 100%);
+    border-radius: 1rem;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+    padding: 1.25rem 1.35rem 1.1rem;
+}
+
+.tc-lanhu-tree-connect-card__head {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.tc-lanhu-tree-connect-card__badge {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.7rem;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    background: linear-gradient(145deg, #818cf8, #4f46e5);
+    flex-shrink: 0;
+}
+
+.tc-lanhu-tree-connect-card__badge svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.tc-lanhu-tree-connect-card__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.2rem;
+}
+
+.tc-lanhu-tree-connect-card__desc {
+    font-size: 0.78rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.45;
+}
+
+.tc-lanhu-tree-connect-field {
+    margin-bottom: 0.75rem;
+}
+
+.tc-lanhu-tree-connect-field label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 0.3rem;
+}
+
+.tc-lanhu-tree-connect-field input,
+.tc-lanhu-tree-connect-field textarea {
+    width: 100%;
+    border-radius: 0.65rem;
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    padding: 0.45rem 0.55rem;
+    font-size: 0.78rem;
+    color: #1e293b;
+    background: #fff;
+}
+
+.tc-lanhu-tree-connect-field textarea {
+    min-height: 5.5rem;
+    resize: vertical;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    line-height: 1.4;
+}
+
+.tc-lanhu-tree-connect-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 0.35rem;
+}
+
+@media (max-width: 1100px) {
+    .tc-lanhu-doc-tree-rail:not(.tc-lanhu-doc-tree-rail--collapsed) {
+        --tc-lanhu-tree-w: 248px;
+    }
+}
+
+@media (max-width: 900px) {
+    #main-grid.tc-main-grid--with-lanhu-tree {
+        flex-direction: column;
+    }
+    .tc-lanhu-doc-tree-rail:not(.tc-lanhu-doc-tree-rail--collapsed) {
+        --tc-lanhu-tree-w: 100%;
+        max-width: 100%;
+        flex-basis: auto;
+        width: 100%;
+        min-height: 180px;
+        max-height: min(32vh, 280px);
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--tc-lanhu-tree-border);
+    }
+}
+
+/* —— 工作台卡片内：左侧树 + 右侧用例区并排铺满（不锁 body/main，避免页面变形） —— */
+.tc-workbench-scope.tc-workbench-scope--lanhu-fill {
+    height: var(--tc-wb-grid-h, auto);
+    max-height: var(--tc-wb-grid-h, none);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.tc-workbench-scope--lanhu-fill #tc-main-content-shell.tc-main-wb-surface {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0.5rem 0.6rem;
+}
+
+.tc-workbench-scope--lanhu-fill #main-grid.tc-main-grid--with-lanhu-tree {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    overflow: hidden;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+}
+
+.tc-workbench-scope--lanhu-fill #main-grid.tc-main-grid--with-lanhu-tree .tc-lanhu-doc-tree-rail {
+    align-self: stretch;
+    min-height: 0;
+    max-height: none;
+    height: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid var(--tc-lanhu-tree-glass-border);
+    border-right-color: rgba(148, 163, 184, 0.22);
+}
+
+.tc-workbench-scope--lanhu-fill #main-grid.tc-main-grid--with-lanhu-tree .tc-lanhu-tree-rail__head {
+    border-radius: 10px 10px 0 0;
+}
+
+.tc-workbench-scope--lanhu-fill .tc-lanhu-doc-tree-rail--collapsed .tc-lanhu-tree-rail__head {
+    border-radius: 1.8rem 1.2rem 1.8rem 1.2rem / 2.4rem 1.6rem 2.4rem 1.6rem;
+}
+
+.tc-workbench-scope--lanhu-fill #main-grid.tc-main-grid--with-lanhu-tree .tc-main-grid__workspace,
+.tc-workbench-scope--lanhu-fill #right-panel.tc-main-grid__workspace {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.tc-workbench-scope--lanhu-fill #right-panel #table-workspace {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0.45rem 0.5rem;
+}
+
+.tc-workbench-scope--lanhu-fill #right-panel #table-workspace {
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.14) 0%,
+        rgba(248, 250, 252, 0.1) 55%,
+        rgba(241, 245, 249, 0.08) 100%
+    );
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    backdrop-filter: blur(14px) saturate(1.08);
+    -webkit-backdrop-filter: blur(14px) saturate(1.08);
+    box-shadow:
+        0 1px 3px rgba(15, 23, 42, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.tc-workbench-scope--lanhu-fill #right-panel #table-workspace #table-toolbar.tc-table-workspace__head {
+    flex: 0 0 auto;
+    margin-bottom: 0.35rem;
+    padding: 0.42rem 0.55rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    border-bottom: none;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    background: rgba(255, 255, 255, 0.38);
+    backdrop-filter: blur(12px) saturate(1.1);
+    -webkit-backdrop-filter: blur(12px) saturate(1.1);
+    box-shadow:
+        0 1px 3px rgba(15, 23, 42, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.tc-workbench-scope--lanhu-fill #table-toolbar.tc-table-workspace__head {
+    flex: 0 0 auto;
+    margin-bottom: 0.35rem;
+    padding: 0.5rem 0.65rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.tc-workbench-scope--lanhu-fill #tc-table-toolbar-center,
+.tc-workbench-scope--lanhu-fill #tc-table-toolbar-right {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.tc-workbench-scope--lanhu-fill #tc-right-view-nav {
+    max-width: 100%;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    background: rgba(255, 255, 255, 0.42);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+
+.tc-workbench-scope--lanhu-fill #tc-right-panel-title {
+    display: none !important;
+}
+
+.tc-workbench-scope--lanhu-fill .tc-right-view-nav__btn {
+    min-height: 1.7rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.74rem;
+    border-color: rgba(148, 163, 184, 0.32);
+    background: rgba(255, 255, 255, 0.48);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.tc-workbench-scope--lanhu-fill .tc-right-view-nav__btn:hover:not(.tc-right-view-nav__btn--active) {
+    background: rgba(255, 255, 255, 0.68);
+    border-color: rgba(99, 102, 241, 0.38);
+}
+
+.tc-workbench-scope--lanhu-fill #table-toolbar #restore-columns button {
+    border-color: rgba(148, 163, 184, 0.32);
+    background: rgba(255, 255, 255, 0.52);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.tc-workbench-scope--lanhu-fill #table-toolbar #restore-columns button:hover {
+    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(99, 102, 241, 0.38);
+}
+
+.tc-workbench-scope--lanhu-fill #table-toolbar .tc-table-filter-bar__search,
+.tc-workbench-scope--lanhu-fill #table-toolbar .tc-table-filter-bar__reset {
+    border-color: rgba(148, 163, 184, 0.32);
+    background: rgba(255, 255, 255, 0.52);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.tc-workbench-scope--lanhu-fill #table-toolbar .tc-table-filter-bar__reset:hover {
+    background: rgba(238, 242, 255, 0.72);
+    border-color: rgba(99, 102, 241, 0.38);
+}
+
+.tc-workbench-scope--lanhu-fill #table-toolbar .tc-right-panel-head #tc-gen-options-row {
+    gap: 0.3rem;
+}
+
+.tc-workbench-scope--lanhu-fill #table-toolbar .tc-right-panel-head .tc-gen-toggle-btn {
+    min-height: 1.7rem;
+    padding: 0.28rem 0.62rem;
+    font-size: 0.72rem;
+    border-color: rgba(148, 163, 184, 0.28);
+    background: rgba(255, 255, 255, 0.48);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.tc-workbench-scope--lanhu-fill #table-toolbar .tc-right-panel-head .tc-gen-option-help-btn {
+    width: 1.1rem;
+    height: 1.1rem;
+    font-size: 0.62rem;
+    border-color: rgba(148, 163, 184, 0.28);
+    background: rgba(255, 255, 255, 0.42);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.tc-workbench-scope--lanhu-fill #tc-table-list-panel {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.tc-workbench-scope--lanhu-fill .tc-vxe-table-view-panel:not(.hidden) {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: 100%;
+}
+
+.tc-workbench-scope--lanhu-fill .tc-vxe-table-mount {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tc-workbench-scope--lanhu-fill #tc-mindmap-view-panel:not(.hidden) {
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.tc-workbench-scope--lanhu-fill .tc-mindmap-panel {
+    min-height: 0 !important;
+    height: 100% !important;
+    flex: 1 1 auto;
+}
+
+.tc-workbench-scope--lanhu-fill .tc-mindmap-stage,
+.tc-workbench-scope--lanhu-fill .tc-smm-container {
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: 100% !important;
+}
+
+.tc-workbench-scope--lanhu-fill .tc-table-template-empty {
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+@media (max-width: 900px) {
+    .tc-workbench-scope.tc-workbench-scope--lanhu-fill {
+        height: auto;
+        max-height: none;
+        overflow: visible;
+    }
+    .tc-workbench-scope--lanhu-fill #main-grid.tc-main-grid--with-lanhu-tree {
+        height: auto;
+    }
+}
+
+
+/* =================================================================
+   连接蓝湖文档弹窗 V2 —— 玻璃质感卡片（新版类名，不冲突）
+   ================================================================= */
+.tc-lanhu-connect-wrapper {
+    position: fixed; inset: 0; z-index: 10100;
+    display: none; align-items: center; justify-content: center;
+    padding: 1rem;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+.tc-lanhu-connect-wrapper.flex { display: flex; }
+
+.tc-lanhu-connect-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.tc-lanhu-connect-card {
+    position: relative;
+    width: min(380px, calc(100vw - 2rem));
+    max-height: min(72vh, calc(100vh - 5rem));
+    display: flex; flex-direction: column;
+    border-radius: 1rem;
+    background: linear-gradient(165deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.92) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 25px 70px rgba(15, 23, 42, 0.25),
+                0 4px 12px rgba(15, 23, 42, 0.08),
+                inset 0 1px 0 rgba(255,255,255,0.6);
+    overflow: hidden;
+    animation: tcConnectCardIn 0.25s ease-out;
+}
+
+@keyframes tcConnectCardIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.tc-lanhu-connect-card__head {
+    display: flex; align-items: flex-start; gap: 0.65rem;
+    padding: 0.65rem 0.85rem 0.5rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    flex-shrink: 0;
+}
+.tc-lanhu-connect-card__badge {
+    width: 1.55rem; height: 1.55rem;
+    border-radius: 0.75rem;
+    display: grid; place-items: center;
+    color: #fff;
+    background: linear-gradient(145deg, #818cf8, #6366f1);
+    flex-shrink: 0;
+}
+.tc-lanhu-connect-card__badge svg { width: 0.95rem; height: 0.95rem; }
+.tc-lanhu-connect-card__title-group { flex: 1; min-width: 0; }
+.tc-lanhu-connect-card__title {
+    font-size: 0.8125rem; font-weight: 700; color: #0f172a;
+    margin: 0 0 0.15rem; letter-spacing: -0.01em;
+}
+.tc-lanhu-connect-card__desc {
+    font-size: 0.66rem; color: #64748b; margin: 0; line-height: 1.35;
+}
+.tc-lanhu-connect-card__close {
+    width: 1.8rem; height: 1.8rem;
+    border-radius: 0.55rem; border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(248, 250, 252, 0.8);
+    color: #94a3b8; cursor: pointer; font-size: 1.15rem;
+    display: grid; place-items: center;
+    flex-shrink: 0; transition: all 0.2s;
+}
+.tc-lanhu-connect-card__close:hover {
+    background: rgba(239, 68, 68, 0.08); color: #ef4444; border-color: rgba(239, 68, 68, 0.2);
+}
+
+.tc-lanhu-connect-card__body {
+    flex: 1 1 auto; overflow-y: auto; overflow-x: hidden;
+    padding: 0.45rem 0.85rem 0.35rem;
+}
+
+.tc-lanhu-connect-card__section {
+    margin-bottom: 0.5rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.85rem;
+    background: rgba(248, 250, 252, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+}
+.tc-lanhu-connect-card__section-title {
+    display: flex; align-items: center; gap: 0.35rem;
+    font-size: 0.68rem; font-weight: 700; color: #475569;
+    margin-bottom: 0.35rem;
+}
+.tc-lanhu-connect-card__section-title svg { width: 15px; height: 15px; color: #6366f1; }
+.tc-lanhu-connect-card__section-hint {
+    font-size: 0.65rem; color: #94a3b8; font-weight: 400;
+    margin-left: auto;
+}
+
+.tc-lanhu-connect-field { margin-bottom: 0.45rem; }
+.tc-lanhu-connect-field:last-child { margin-bottom: 0; }
+.tc-lanhu-connect-field label {
+    display: block; font-size: 0.68rem; font-weight: 600;
+    color: #475569; margin-bottom: 0.25rem;
+}
+.tc-lanhu-connect-field__opt {
+    font-weight: 500;
+    color: #94a3b8;
+}
+.tc-lanhu-connect-field input,
+.tc-lanhu-connect-field textarea {
+    width: 100%; border-radius: 0.6rem;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    padding: 0.5rem 0.65rem;
+    font-size: 0.72rem; color: #1e293b;
+    background: rgba(255, 255, 255, 0.7);
+    outline: none; transition: all 0.2s;
+    box-sizing: border-box;
+}
+.tc-lanhu-connect-field input:focus,
+.tc-lanhu-connect-field textarea:focus {
+    border-color: #818cf8; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+}
+.tc-lanhu-connect-field textarea {
+    resize: vertical; min-height: 2.75rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    line-height: 1.45;
+}
+
+/* RAG 按钮行 */
+.tc-lanhu-connect-field-row {
+    display: flex; align-items: center; gap: 0.6rem; margin-top: 0.25rem;
+}
+.tc-lanhu-connect-field-label {
+    font-size: 0.68rem; font-weight: 600; color: #475569;
+}
+
+/* ---- RAG 按钮（连接弹窗内，与生成区 RAG 开关视觉一致） ---- */
+.tc-connect-rag-btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 4px 10px; border-radius: 9999px;
+    border: 1.5px solid rgba(148, 163, 184, 0.45);
+    background: #ffffff;
+    cursor: pointer; outline: none;
+    font-size: 0.72rem; font-weight: 600; color: #64748b;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    min-height: 28px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+.tc-connect-rag-btn:hover {
+    border-color: rgba(124, 58, 237, 0.35);
+    background: #faf5ff;
+    color: #6d28d9;
+}
+.tc-connect-rag-btn__icon { width: 15px; height: 15px; flex-shrink: 0; }
+.tc-connect-rag-btn__label { white-space: nowrap; }
+
+/* Locked */
+.tc-connect-rag-btn--locked {
+    opacity: 1;
+    border-color: rgba(217, 119, 6, 0.42);
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    color: #92400e;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+.tc-connect-rag-btn--locked:hover {
+    border-color: rgba(217, 119, 6, 0.58);
+    background: linear-gradient(135deg, #fef9c3 0%, #fde68a 100%);
+    color: #78350f;
+    filter: brightness(1.02);
+}
+.tc-connect-rag-btn--locked .tc-connect-rag-btn__icon--locked { color: #d97706; }
+
+/* On */
+.tc-connect-rag-btn--on {
+    border-color: rgba(124, 58, 237, 0.45);
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 48%, #6d28d9 100%);
+    color: #ffffff;
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.06),
+        0 4px 14px rgba(109, 40, 217, 0.26);
+}
+.tc-connect-rag-btn--on:hover {
+    filter: brightness(1.06);
+}
+
+/* Off */
+.tc-connect-rag-btn--off {
+    border-color: rgba(148, 163, 184, 0.55);
+    background: #ffffff;
+    color: #64748b;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+.tc-connect-rag-btn--off:hover {
+    border-color: rgba(124, 58, 237, 0.35);
+    background: #faf5ff;
+    color: #6d28d9;
+    box-shadow: 0 2px 6px rgba(109, 40, 217, 0.1);
+}
+
+/* Icon toggle */
+.tc-connect-rag-btn__icon--locked { display: inline; }
+.tc-connect-rag-btn__icon--unlocked { display: none; }
+.tc-connect-rag-btn--on .tc-connect-rag-btn__icon--locked { display: none; }
+.tc-connect-rag-btn--on .tc-connect-rag-btn__icon--unlocked { display: inline; }
+.tc-connect-rag-btn--off .tc-connect-rag-btn__icon--locked { display: none; }
+.tc-connect-rag-btn--off .tc-connect-rag-btn__icon--unlocked { display: inline; }
+
+/* 恢复默认提示词链接 */
+.tc-lanhu-connect-card__reset-link {
+    display: inline-block; margin-top: 0.35rem;
+    font-size: 0.68rem; color: #6366f1; cursor: pointer;
+    background: none; border: none; padding: 0;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.tc-lanhu-connect-card__reset-link:hover { color: #4f46e5; text-decoration: underline; }
+
+/* Footer */
+.tc-lanhu-connect-card__foot {
+    display: flex; justify-content: flex-end; gap: 0.5rem;
+    padding: 0.55rem 0.85rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.12);
+    flex-shrink: 0;
+    background: rgba(248, 250, 252, 0.4);
+}
+.tc-lanhu-connect-card__btn {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    padding: 0.42rem 0.85rem; border-radius: 0.55rem;
+    font-size: 0.72rem; font-weight: 600;
+    cursor: pointer; border: none; outline: none;
+    transition: all 0.2s;
+}
+.tc-lanhu-connect-card__btn svg { width: 14px; height: 14px; }
+.tc-lanhu-connect-card__btn--ghost {
+    background: transparent; color: #64748b;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+}
+.tc-lanhu-connect-card__btn--ghost:hover {
+    background: rgba(148, 163, 184, 0.06); color: #475569;
+}
+.tc-lanhu-connect-card__btn--secondary {
+    background: rgba(99, 102, 241, 0.08); color: #6366f1;
+    border: 1px solid rgba(99, 102, 241, 0.15);
+}
+.tc-lanhu-connect-card__btn--secondary:hover {
+    background: rgba(99, 102, 241, 0.14);
+}
+.tc-lanhu-connect-card__btn--primary {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff; box-shadow: 0 3px 12px rgba(99, 102, 241, 0.25);
+}
+.tc-lanhu-connect-card__btn--primary:hover {
+    box-shadow: 0 5px 18px rgba(99, 102, 241, 0.35);
+    transform: translateY(-1px);
+}
+
+/* =================================================================
+   生成弹窗 V2 —— 简约高级卡片
+   ================================================================= */
+.tc-gen-modal-v2-wrapper {
+    position: fixed; inset: 0; z-index: 10100;
+    display: none; align-items: center; justify-content: center;
+}
+.tc-gen-modal-v2-wrapper.flex { display: flex; }
+
+.tc-gen-modal-v2-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.tc-gen-modal-v2-card {
+    position: relative;
+    width: min(440px, 90vw);
+    border-radius: 1.2rem;
+    background: linear-gradient(175deg, rgba(255,255,255,0.96) 0%, rgba(248,250,252,0.94) 100%);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.2),
+                0 4px 10px rgba(15, 23, 42, 0.06),
+                inset 0 1px 0 rgba(255,255,255,0.5);
+    overflow: hidden;
+    animation: tcGenModalV2In 0.25s ease-out;
+}
+
+@keyframes tcGenModalV2In {
+    from { opacity: 0; transform: translateY(10px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.tc-gen-modal-v2__head {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    padding: 1.1rem 1.2rem 0.8rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+.tc-gen-modal-v2__badge {
+    width: 2.1rem; height: 2.1rem; border-radius: 0.7rem;
+    display: grid; place-items: center;
+    color: #fff;
+    background: linear-gradient(145deg, #a78bfa, #7c3aed);
+    flex-shrink: 0;
+}
+.tc-gen-modal-v2__badge svg { width: 1rem; height: 1rem; }
+.tc-gen-modal-v2__title {
+    font-size: 0.9rem; font-weight: 700; color: #0f172a;
+    margin: 0 0 0.15rem;
+}
+.tc-gen-modal-v2__subtitle {
+    font-size: 0.68rem; color: #64748b; margin: 0; line-height: 1.35;
+}
+.tc-gen-modal-v2__close {
+    margin-left: auto; width: 1.65rem; height: 1.65rem;
+    border-radius: 0.5rem; border: 1px solid rgba(148, 163, 184, 0.18);
+    background: rgba(248, 250, 252, 0.7);
+    color: #94a3b8; cursor: pointer; font-size: 1.05rem;
+    display: grid; place-items: center;
+    flex-shrink: 0; transition: all 0.2s;
+}
+.tc-gen-modal-v2__close:hover {
+    background: rgba(239, 68, 68, 0.06); color: #ef4444;
+}
+
+.tc-gen-modal-v2__body {
+    padding: 1rem 1.2rem;
+}
+
+.tc-gen-modal-v2__info-row {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.65rem 0.85rem;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.04), rgba(139, 92, 246, 0.02));
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    margin-bottom: 0.65rem;
+}
+.tc-gen-modal-v2__info-label {
+    font-size: 0.7rem; font-weight: 600; color: #64748b;
+    flex-shrink: 0;
+}
+.tc-gen-modal-v2__info-value {
+    font-size: 0.82rem; font-weight: 700; color: #1e293b;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.tc-gen-modal-v2__note {
+    display: flex; align-items: flex-start; gap: 0.35rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: 0.6rem;
+    background: rgba(245, 158, 11, 0.05);
+    border: 1px solid rgba(245, 158, 11, 0.1);
+    font-size: 0.66rem; color: #92400e; line-height: 1.4;
+}
+.tc-gen-modal-v2__note svg {
+    width: 14px; height: 14px; flex-shrink: 0;
+    margin-top: 0.05rem; color: #f59e0b;
+}
+
+.tc-gen-modal-v2__foot {
+    display: flex; justify-content: flex-end; gap: 0.5rem;
+    padding: 0.7rem 1.2rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    background: rgba(248, 250, 252, 0.3);
+}
+
+.tc-gen-modal-v2__btn {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    padding: 0.48rem 1rem; border-radius: 0.6rem;
+    font-size: 0.76rem; font-weight: 600;
+    cursor: pointer; border: none; outline: none;
+    transition: all 0.2s;
+}
+.tc-gen-modal-v2__btn svg { width: 13px; height: 13px; }
+.tc-gen-modal-v2__btn--secondary {
+    background: rgba(148, 163, 184, 0.07); color: #64748b;
+    border: 1px solid rgba(148, 163, 184, 0.12);
+}
+.tc-gen-modal-v2__btn--secondary:hover {
+    background: rgba(148, 163, 184, 0.13); color: #475569;
+}
+.tc-gen-modal-v2__btn--primary {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff; box-shadow: 0 3px 10px rgba(99, 102, 241, 0.2);
+}
+.tc-gen-modal-v2__btn--primary:hover {
+    box-shadow: 0 5px 16px rgba(99, 102, 241, 0.3);
+    transform: translateY(-1px);
+}
+
+
+/* ===== 质量检测切换按钮（测试用例生成旁边） ===== */
+.tc-quality-toggle-btn {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 5px 14px; border-radius: 9999px;
+    border: 1.5px solid #e2e8f0;
+    background: #ffffff;
+    cursor: pointer; outline: none;
+    font-size: 0.78rem; font-weight: 600;
+    color: #475569;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 32px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+}
+.tc-quality-toggle-btn:hover {
+    border-color: #818cf8;
+    background: #eef2ff;
+    color: #4338ca;
+    box-shadow: 0 2px 6px rgba(99,102,241,0.12);
+    transform: translateY(-0.5px);
+}
+.tc-quality-toggle-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.tc-quality-toggle-btn:focus-visible {
+    outline: 2px solid #818cf8;
+    outline-offset: 2px;
+}
+.tc-quality-toggle-btn__icon {
+    width: 15px; height: 15px; flex-shrink: 0;
+}
+.tc-quality-toggle-btn__label { white-space: nowrap; }
+
+/* ON — 绿色强调 */
+.tc-quality-toggle-btn--on {
+    border-color: #6ee7b7;
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+    color: #059669;
+    box-shadow: 0 0 0 1px rgba(16,185,129,0.15), 0 2px 6px rgba(16,185,129,0.1);
+    font-weight: 600;
+}
+.tc-quality-toggle-btn--on:hover {
+    border-color: #34d399;
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    color: #047857;
+    box-shadow: 0 0 0 1px rgba(16,185,129,0.25), 0 3px 10px rgba(16,185,129,0.18);
+    transform: translateY(-0.5px);
+}
+
+/* OFF — 温和的灰调 */
+.tc-quality-toggle-btn--off {
+    color: #64748b;
+    background: #f8fafc;
+    border-color: #e2e8f0;
+}
+.tc-quality-toggle-btn--off:hover {
+    color: #334155;
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    transform: translateY(-0.5px);
+}
+
+
+
+/* 质量检测进行中 — 按钮不可点击态 */
+.tc-quality-toggle-btn--busy,
+.tc-quality-toggle-btn:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: #94a3b8;
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+}
+.tc-quality-toggle-btn--busy .tc-quality-toggle-btn__label,
+.tc-quality-toggle-btn:disabled .tc-quality-toggle-btn__label {
+    color: #64748b;
+}
+.tc-quality-toggle-btn--busy:hover,
+.tc-quality-toggle-btn--busy:active,
+.tc-quality-toggle-btn:disabled:hover,
+.tc-quality-toggle-btn:disabled:active {
+    color: #94a3b8;
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    box-shadow: none;
+    transform: none;
+}
+.tc-doc-switcher-trigger--qc-busy,
+.tc-doc-switcher-trigger--qc-busy:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+.tc-lanhu-tree-rail__action-btn--locked,
+.tc-lanhu-tree-rail__action-btn--locked:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+
+/* ===== 树节点生成按钮 ===== */
+.tc-lanhu-tree-node__gen {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 1.35rem; height: 1.35rem;
+    margin-left: 0.1rem; margin-right: 0.1rem;
+    padding: 0; border: none; border-radius: 0.35rem;
+    background: transparent; color: #7c3aed;
+    cursor: pointer; flex-shrink: 0;
+    opacity: 0;
+    transition: opacity 0.15s ease, color 0.12s ease, background 0.12s ease;
+}
+.tc-lanhu-tree-node__gen svg {
+    width: 0.85rem; height: 0.85rem;
+}
+.tc-lanhu-tree-node__row:hover .tc-lanhu-tree-node__gen,
+.tc-lanhu-tree-node__row:focus-within .tc-lanhu-tree-node__gen {
+    opacity: 1;
+}
+.tc-lanhu-tree-node__gen:hover {
+    color: #6d28d9;
+    background: rgba(124, 58, 237, 0.12);
+}
+
+
+
+/* =================================================================
+   文档切换器 Dropdown — 高级玻璃质感
+   ================================================================= */
+.tc-lanhu-tree-rail__titles {
+    position: relative;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+.tc-lanhu-tree-rail__titles:hover {
+    opacity: 0.85;
+}
+
+/* 向下箭头指示器，由 JS 动态注入 */
+.tc-doc-switcher-trigger {
+    position: absolute;
+    right: 0.08rem;
+    top: 0.04rem;
+    transform: none;
+    width: 1.18rem;
+    height: 1.18rem;
+    border: 1px solid rgba(99, 102, 241, 0.28);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #4f46e5;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    opacity: 1;
+    box-shadow: 0 1px 5px rgba(79, 70, 229, 0.13), inset 0 1px 0 rgba(255,255,255,0.9);
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+.tc-lanhu-tree-rail__titles:hover .tc-doc-switcher-trigger,
+.tc-doc-switcher-trigger:hover,
+.tc-doc-switcher-trigger:focus-visible {
+    color: #ffffff;
+    border-color: rgba(79, 70, 229, 0.78);
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    box-shadow: 0 5px 14px rgba(79, 70, 229, 0.28);
+}
+.tc-doc-switcher-trigger:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.22), 0 5px 14px rgba(79, 70, 229, 0.28);
+}
+.tc-doc-switcher-trigger svg {
+    width: 0.72rem;
+    height: 0.72rem;
+    stroke-width: 2.55;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 下拉面板 */
+.tc-doc-switcher-panel {
+    position: fixed;
+    z-index: 62;
+    top: var(--tc-ds-top, 0px);
+    left: var(--tc-ds-left, 0px);
+    width: min(22rem, 90vw);
+    border-radius: 1rem;
+    background: linear-gradient(175deg, rgba(255,255,255,0.98) 0%, rgba(250,250,252,0.96) 100%);
+    backdrop-filter: blur(24px) saturate(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(1.2);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow:
+        0 16px 48px -12px rgba(15, 23, 42, 0.2),
+        0 4px 16px -4px rgba(99, 102, 241, 0.08),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+    transform-origin: top left;
+    transform: scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.2s ease;
+    overflow: hidden;
+    display: none;
+}
+
+.tc-doc-switcher-panel--open {
+    display: block;
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 面板头部 */
+.tc-doc-switcher-panel__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.65rem 0.9rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    background: rgba(248, 250, 252, 0.5);
+}
+.tc-doc-switcher-panel__title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #475569;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+.tc-doc-switcher-panel__add {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 0.5rem;
+    border: 1.5px solid rgba(99, 102, 241, 0.25);
+    background: linear-gradient(135deg, rgba(99,102,241,0.06), rgba(139,92,246,0.03));
+    color: #6366f1;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: all 0.2s ease;
+}
+.tc-doc-switcher-panel__add:hover {
+    background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(139,92,246,0.08));
+    border-color: rgba(99, 102, 241, 0.45);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15);
+}
+.tc-doc-switcher-panel__add svg {
+    width: 0.9rem;
+    height: 0.9rem;
+}
+
+/* 文档列表 */
+.tc-doc-switcher-list {
+    max-height: min(18rem, 50vh);
+    overflow-y: auto;
+    padding: 0.35rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
+}
+
+.tc-doc-switcher-empty {
+    padding: 1.5rem 1rem;
+    text-align: center;
+    font-size: 0.72rem;
+    color: #94a3b8;
+    line-height: 1.55;
+}
+
+/* 文档项 */
+.tc-doc-switcher-item {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 0.65rem;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    position: relative;
+}
+.tc-doc-switcher-item:hover {
+    background: rgba(99, 102, 241, 0.06);
+}
+.tc-doc-switcher-item:active {
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.tc-doc-switcher-item__icon {
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 0.45rem;
+    background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.04));
+    color: #6366f1;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+.tc-doc-switcher-item__icon svg {
+    width: 0.85rem;
+    height: 0.85rem;
+}
+.tc-doc-switcher-item__name {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #1e293b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tc-doc-switcher-item__time {
+    font-size: 0.65rem;
+    color: #94a3b8;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+}
+.tc-doc-switcher-item__del {
+    width: 1.625rem;
+    height: 1.625rem;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    border-radius: 0.5rem;
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 42%, #eef2ff 100%);
+    color: #94a3b8;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1;
+    opacity: 1;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.15s ease;
+}
+.tc-doc-switcher-item__del:hover {
+    background: linear-gradient(145deg, #fff5f5 0%, #fee2e2 52%, #fecaca 100%);
+    border-color: rgba(252, 165, 165, 0.55);
+    color: #dc2626;
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    transform: translateY(-1px);
+}
+.tc-doc-switcher-item__del:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(239, 68, 68, 0.08);
+}
+
+/* =================================================================
+   树栏头部 — 新增文档按钮
+   ================================================================= */
+.tc-lanhu-tree-rail__head-add-btn {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.65rem;
+    border: 1.5px dashed rgba(99, 102, 241, 0.35);
+    background: linear-gradient(135deg, rgba(99,102,241,0.05), rgba(139,92,246,0.02));
+    color: #818cf8;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.tc-lanhu-tree-rail__head-add-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(139,92,246,0.06));
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+.tc-lanhu-tree-rail__head-add-btn:hover {
+    border-color: rgba(99, 102, 241, 0.6);
+    border-style: solid;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.2);
+    transform: translateY(-1px);
+}
+.tc-lanhu-tree-rail__head-add-btn:hover::before {
+    opacity: 1;
+}
+.tc-lanhu-tree-rail__head-add-btn:active {
+    transform: scale(0.95);
+}
+.tc-lanhu-tree-rail__head-add-btn svg {
+    width: 1rem;
+    height: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* 新增按钮微动效 */
+@keyframes tc-add-btn-shimmer {
+    0%, 100% { border-color: rgba(99, 102, 241, 0.35); }
+    50% { border-color: rgba(139, 92, 246, 0.55); }
+}
+.tc-lanhu-tree-rail--has-data .tc-lanhu-tree-rail__head-add-btn {
+    animation: tc-add-btn-shimmer 3s ease-in-out infinite;
+}
+
+/* 当文档列表为空时保持静态 */
+.tc-lanhu-tree-rail:not(.tc-lanhu-tree-rail--has-data) .tc-lanhu-tree-rail__head-add-btn {
+    animation: none;
+}
+
+.tc-lanhu-tree-node__gen--locked,
+.tc-lanhu-tree-node__gen:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+/* =================================================================
+   工作台首次进入/刷新 boot loading — 与页面切换 loading 隔离
+   ================================================================= */
+.tc-table-list-panel--boot-loading {
+    position: relative;
+    pointer-events: none;
+}
+.tc-table-list-panel--boot-loading::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    border-radius: 10px;
+    background: rgba(248, 250, 252, 0.82);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+.tc-table-list-panel--boot-loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 11;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin: -1.125rem 0 0 -1.125rem;
+    border: 2.5px solid rgba(99, 102, 241, 0.15);
+    border-top-color: #6366f1;
+    border-radius: 50%;
+    animation: tc-lanhu-tree-chars-spin 0.7s linear infinite;
+}
+.tc-workbench-scope #tc-table-list-panel.tc-table-list-panel--boot-loading .tc-table-template-empty {
+    visibility: hidden !important;
+    pointer-events: none;
+}
+
+.tc-table-list-panel--boot-loading.tc-table-list-panel--locked .tc-table-template-empty {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* =================================================================
+   表格页面加载覆层 — 玻璃感 shimmer
+   ================================================================= */
+.tc-table-list-panel--page-loading {
+    position: relative;
+    pointer-events: none;
+}
+.tc-table-list-panel--page-loading::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    border-radius: 10px;
+    background: linear-gradient(
+        110deg,
+        rgba(99, 102, 241, 0) 30%,
+        rgba(99, 102, 241, 0.06) 50%,
+        rgba(99, 102, 241, 0) 70%
+    );
+    background-size: 200% 100%;
+    animation: tc-table-page-loading-shimmer 1.5s ease-in-out infinite;
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+}
+/* loading 微标：面板中央小旋转环 */
+.tc-table-list-panel--page-loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 11;
+    width: 2rem;
+    height: 2rem;
+    margin: -1rem 0 0 -1rem;
+    border: 2.5px solid rgba(99, 102, 241, 0.15);
+    border-top-color: #6366f1;
+    border-radius: 50%;
+    animation: tc-lanhu-tree-chars-spin 0.7s linear infinite;
+}
+
+
+/* 有用例页切换 loading 时压住「选择模板」占位，避免与 spinner 叠层混淆 */
+.tc-table-list-panel--page-loading.tc-table-list-panel--locked .tc-table-template-empty {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+@keyframes tc-table-page-loading-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* VXE virtual scroll container fix */
+.tc-vxe-table-mount {
+    height: calc(100vh - 290px) !important;
+    min-height: 300px !important;
+}
+#tc-vxe-table-mount {
+    height: calc(100vh - 290px) !important;
+    min-height: 300px !important;
+}
+
+

@@ -1,0 +1,27 @@
+/**
+ * 树形视图 · HTTP 请求行拉满宽度（隔离，不影响 Debug/BeanShell/If）
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--http .jms-tree-node__body {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--http .jms-http-card {
+    width: 100% !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    align-self: stretch !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--http .jms-http-card__main {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__body .jms-tree-node--http .jms-http-card {
+    width: 100% !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+}

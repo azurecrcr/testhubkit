@@ -1,0 +1,51 @@
+/**
+ * catalog_element · legacy 网格步骤区（jms-tg-steps，非树形视图）
+ */
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-card {
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    border-radius: 10px;
+    background: rgba(255, 251, 235, 0.65);
+    margin: 0.35rem 0;
+    overflow: hidden;
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-card__head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding: 0.45rem 0.55rem;
+    border-bottom: 1px solid rgba(251, 191, 36, 0.18);
+    background: rgba(251, 191, 36, 0.08);
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.65rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 999px;
+    font-size: 0.625rem;
+    font-weight: 800;
+    color: #fcd34d;
+    background: rgba(251, 191, 36, 0.2);
+    border: 1px solid rgba(251, 191, 36, 0.35);
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-card__meta {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.62rem;
+    color: #64748b;
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-card__body {
+    padding: 0.45rem 0.55rem 0.55rem 0.75rem;
+}
+
+body.lth-hub-jmeter-tab .jms-tg-steps .jms-catalog-plan-card.is-disabled {
+    opacity: 0.55;
+}

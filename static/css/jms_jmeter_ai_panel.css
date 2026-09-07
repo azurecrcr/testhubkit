@@ -1,0 +1,405 @@
+/* JMeter 压测 · AI 步骤助手悬浮窗（scoped to jmeter tab） */
+body.jms-page.lth-hub-jmeter-tab .jms-ai-fab {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 5.5rem;
+    z-index: 860;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.55rem 0.85rem;
+    border: 1px solid rgba(45, 212, 191, 0.45);
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(13, 148, 136, 0.95), rgba(6, 78, 59, 0.92));
+    color: #ecfeff;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(13, 148, 136, 0.35);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-fab.hidden {
+    display: none !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-fab__icon {
+    width: 1rem;
+    height: 1rem;
+    display: inline-flex;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-fab:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 28px rgba(13, 148, 136, 0.45);
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-fab[aria-expanded="true"] {
+    opacity: 0.85;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 8.25rem;
+    z-index: 861;
+    width: min(24rem, calc(100vw - 2rem));
+    height: min(30rem, calc(100vh - 10rem));
+    min-width: 17.5rem;
+    min-height: 18.75rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel.hidden {
+    display: none !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__shell {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    border: 1px solid rgba(45, 212, 191, 0.35);
+    border-radius: 0.875rem;
+    background: rgba(15, 23, 42, 0.94);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 16px 40px rgba(2, 6, 23, 0.45);
+    overflow: hidden;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.75rem 0.85rem 0.55rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    flex: 0 0 auto;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__title {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #f0fdfa;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__subtitle {
+    margin: 0.2rem 0 0;
+    font-size: 0.6875rem;
+    color: rgba(153, 246, 228, 0.75);
+    line-height: 1.35;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__close {
+    border: none;
+    background: transparent;
+    color: rgba(226, 232, 240, 0.8);
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.1rem 0.25rem;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__messages {
+    flex: 1 1 auto;
+    min-height: 6rem;
+    overflow-y: auto;
+    padding: 0.65rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__msg {
+    display: flex;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__msg--user {
+    justify-content: flex-end;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__bubble {
+    max-width: 92%;
+    padding: 0.45rem 0.65rem;
+    border-radius: 0.65rem;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__msg--user .jms-ai-panel__bubble {
+    background: rgba(13, 148, 136, 0.35);
+    color: #ecfeff;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__msg--assistant .jms-ai-panel__bubble {
+    background: rgba(30, 41, 59, 0.85);
+    color: #e2e8f0;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__msg--error .jms-ai-panel__bubble {
+    background: rgba(127, 29, 29, 0.35);
+    color: #fecaca;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__msg--pending .jms-ai-panel__bubble {
+    opacity: 0.75;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__composer {
+    display: flex;
+    gap: 0.45rem;
+    align-items: flex-end;
+    padding: 0.55rem 0.65rem 0.65rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.18);
+    flex: 0 0 auto;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__input {
+    flex: 1 1 auto;
+    min-height: 2.5rem;
+    max-height: 6rem;
+    resize: vertical;
+    border: 1px solid rgba(100, 116, 139, 0.45);
+    border-radius: 0.55rem;
+    background: rgba(15, 23, 42, 0.75);
+    color: #f8fafc;
+    padding: 0.45rem 0.55rem;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__send {
+    flex: 0 0 auto;
+    border: none;
+    border-radius: 0.55rem;
+    padding: 0.5rem 0.75rem;
+    background: linear-gradient(135deg, #14b8a6, #0f766e);
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__send:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* 拉伸把手（仅 JMeter Tab） */
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__resize {
+    position: absolute;
+    z-index: 3;
+    touch-action: none;
+    border: none;
+    padding: 0;
+    background: transparent;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__resize--edge-top {
+    top: -3px;
+    left: 14px;
+    right: 14px;
+    height: 8px;
+    cursor: ns-resize;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__resize--edge-left {
+    top: 14px;
+    left: -3px;
+    bottom: 14px;
+    width: 8px;
+    cursor: ew-resize;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__resize--corner-nw {
+    top: -2px;
+    left: -2px;
+    width: 18px;
+    height: 18px;
+    cursor: nwse-resize;
+    border-radius: 0.35rem 0 0 0;
+    background:
+        linear-gradient(135deg, transparent 0 42%, rgba(45, 212, 191, 0.65) 42% 48%, transparent 48% 58%, rgba(45, 212, 191, 0.65) 58% 64%, transparent 64%);
+    opacity: 0.75;
+    transition: opacity 0.15s ease;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__resize--corner-nw:hover,
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__resize--corner-nw:focus-visible {
+    opacity: 1;
+}
+
+body.jms-page.lth-hub-jmeter-tab.jms-ai-panel-resizing,
+body.jms-page.lth-hub-jmeter-tab.jms-ai-panel-resizing * {
+    user-select: none !important;
+}
+
+@media (max-width: 640px) {
+    body.jms-page.lth-hub-jmeter-tab .jms-ai-fab {
+        right: 0.85rem;
+        bottom: 4.75rem;
+    }
+    body.jms-page.lth-hub-jmeter-tab .jms-ai-panel {
+        right: 0.85rem;
+        bottom: 7.5rem;
+        width: calc(100vw - 1.7rem);
+        height: min(70vh, 32rem);
+        min-width: 0;
+    }
+    body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__resize {
+        display: none;
+    }
+}
+
+/* ---- Dock 内嵌 AI 按钮（v20260705dockactions1） ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-fab.jms-ai-fab--dock {
+    position: static;
+    right: auto;
+    bottom: auto;
+    z-index: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    height: 1.72rem;
+    padding: 0 0.68rem;
+    margin: 0;
+    border-radius: 8px;
+    border: 1px solid rgba(45, 212, 191, 0.55);
+    background: linear-gradient(145deg, rgba(13, 148, 136, 0.96) 0%, rgba(6, 95, 70, 0.94) 100%);
+    color: #ecfdf5;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    box-shadow:
+        0 1px 4px rgba(13, 148, 136, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-fab.jms-ai-fab--dock .jms-ai-fab__icon {
+    width: 0.875rem;
+    height: 0.875rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-fab.jms-ai-fab--dock:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.04);
+    box-shadow:
+        0 3px 10px rgba(13, 148, 136, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-fab.jms-ai-fab--dock[aria-expanded="true"] {
+    opacity: 1;
+    border-color: rgba(94, 234, 212, 0.75);
+    box-shadow:
+        0 0 0 2px rgba(45, 212, 191, 0.22),
+        0 2px 8px rgba(13, 148, 136, 0.3);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel {
+    width: min(31.5rem, calc(100vw - 1.5rem));
+    height: min(34.5rem, calc(100vh - 5.5rem));
+    min-width: 22rem;
+    min-height: 22rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel.jms-ai-panel--dock-above {
+    z-index: 862;
+    transform-origin: bottom left;
+    box-shadow:
+        0 -4px 28px rgba(2, 6, 23, 0.28),
+        0 16px 40px rgba(2, 6, 23, 0.45);
+}
+
+@media (max-width: 640px) {
+    body.lth-studio-v2.lth-hub-jmeter-tab .jms-ai-panel.jms-ai-panel--dock-above {
+        width: calc(100vw - 1.5rem) !important;
+        height: min(72vh, 34rem) !important;
+        min-width: 0;
+        left: 0.75rem !important;
+    }
+}
+/* ---- AI panel NE border resize v2 ---- */
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__resize--edge-top {
+    right: 20px !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__resize--edge-right {
+    top: 20px !important;
+    right: -3px !important;
+    bottom: 14px !important;
+    left: auto !important;
+    width: 8px !important;
+    cursor: ew-resize !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__resize--corner-ne {
+    top: -2px !important;
+    right: -2px !important;
+    left: auto !important;
+    width: 18px !important;
+    height: 18px !important;
+    cursor: nesw-resize !important;
+    border-radius: 0 0.35rem 0 0 !important;
+    background:
+        linear-gradient(225deg, transparent 0 42%, rgba(45, 212, 191, 0.65) 42% 48%, transparent 48% 58%, rgba(45, 212, 191, 0.65) 58% 64%, transparent 64%) !important;
+    opacity: 0.75 !important;
+    transition: opacity 0.15s ease !important;
+    z-index: 4 !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__resize--corner-ne:hover,
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__resize--corner-ne:focus-visible {
+    opacity: 1 !important;
+}
+/* ---- AI panel header drag ---- */
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__head {
+    cursor: grab;
+    touch-action: none;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__head--dragging,
+body.jms-page.lth-hub-jmeter-tab.jms-ai-panel-dragging .jms-ai-panel__head {
+    cursor: grabbing;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__close {
+    cursor: pointer;
+}
+
+body.jms-page.lth-hub-jmeter-tab.jms-ai-panel-dragging,
+body.jms-page.lth-hub-jmeter-tab.jms-ai-panel-dragging * {
+    user-select: none !important;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__title-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 0.5rem;
+}
+
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__scope-note {
+    display: inline-block;
+    margin: 0;
+    padding: 0.08rem 0.4rem;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    background: rgba(15, 23, 42, 0.28);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: rgba(226, 232, 240, 0.78);
+    line-height: 1.3;
+    white-space: nowrap;
+    flex: 0 0 auto;
+}

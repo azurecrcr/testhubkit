@@ -1,0 +1,37 @@
+/**
+ * 场景与监控抽屉 UI（隔离模块 · 仅 #modal-scene-monitor）
+ */
+#modal-scene-monitor .jms-vars-modal__head {
+    background: linear-gradient(
+        125deg,
+        rgba(240, 249, 255, 0.98) 0%,
+        rgba(236, 254, 255, 0.94) 52%,
+        rgba(255, 255, 255, 0.99) 100%
+    );
+    border-bottom: 1px solid rgba(14, 165, 233, 0.22);
+}
+
+#modal-scene-monitor .jms-vars-modal__icon--scene {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    box-shadow: 0 2px 10px rgba(2, 132, 199, 0.28);
+}
+
+#modal-scene-monitor .jms-vars-modal__title {
+    color: #0c4a6e !important;
+    font-weight: 800;
+    letter-spacing: 0.012em;
+}
+
+#modal-scene-monitor .jms-vars-modal__sub {
+    color: #64748b !important;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+body.lth-studio-v2.lth-drawer-open #modal-scene-monitor .jms-vars-modal__title {
+    color: #0369a1 !important;
+}
+
+body.lth-studio-v2.lth-drawer-open #modal-scene-monitor .jms-vars-modal__sub {
+    color: #64748b !important;
+}

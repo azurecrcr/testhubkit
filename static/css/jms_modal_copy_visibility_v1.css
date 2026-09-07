@@ -1,0 +1,75 @@
+/* 确认/保存弹窗文案可见性兜底（最后覆盖，硬编码色值） */
+body.lth-hub-jmeter-tab #modal-jms-confirm.jms-modal-open .jms-confirm-title,
+body.lth-studio-v2 #modal-jms-confirm.jms-modal-open .jms-confirm-title {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #065f46 !important;
+  -webkit-text-fill-color: #065f46 !important;
+  font-size: 1.0625rem !important;
+  font-weight: 800 !important;
+  line-height: 1.35 !important;
+  margin: 0 !important;
+}
+body.lth-hub-jmeter-tab #modal-jms-confirm.jms-modal-open .jms-confirm-msg,
+body.lth-studio-v2 #modal-jms-confirm.jms-modal-open .jms-confirm-msg {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #14532d !important;
+  -webkit-text-fill-color: #14532d !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  line-height: 1.55 !important;
+  margin: 0.55rem 0 0 !important;
+  min-height: 1.2em !important;
+  white-space: pre-wrap !important;
+}
+body.lth-hub-jmeter-tab #modal-jms-confirm.jms-modal-open .jms-modal-card,
+body.lth-studio-v2 #modal-jms-confirm.jms-modal-open .jms-modal-card {
+  color: #14532d !important;
+  background: linear-gradient(168deg, #ffffff 0%, #f0fdf4 48%, #ecfdf5 100%) !important;
+}
+body.lth-hub-jmeter-tab #modal-jms-confirm.jms-modal-open .jms-modal-card::before,
+body.lth-hub-jmeter-tab #modal-jms-confirm.jms-modal-open .jms-modal-card::after,
+body.lth-studio-v2 #modal-jms-confirm.jms-modal-open .jms-modal-card::before,
+body.lth-studio-v2 #modal-jms-confirm.jms-modal-open .jms-modal-card::after {
+  display: none !important;
+  content: none !important;
+  opacity: 0 !important;
+}
+
+/* 保存场景弹窗：标题/标签/输入始终可见 */
+body.lth-hub-jmeter-tab #jm-stash-save-modal h3,
+body.lth-studio-v2 #jm-stash-save-modal h3 {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #065f46 !important;
+  -webkit-text-fill-color: #065f46 !important;
+  font-size: 1.125rem !important;
+  font-weight: 700 !important;
+}
+body.lth-hub-jmeter-tab #jm-stash-save-modal label,
+body.lth-studio-v2 #jm-stash-save-modal label {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #047857 !important;
+  -webkit-text-fill-color: #047857 !important;
+}
+body.lth-hub-jmeter-tab #jm-stash-save-title,
+body.lth-studio-v2 #jm-stash-save-title {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  color: #064e3b !important;
+  -webkit-text-fill-color: #064e3b !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
+}
+body.lth-hub-jmeter-tab #jm-stash-save-submit,
+body.lth-studio-v2 #jm-stash-save-submit {
+  color: #ecfdf5 !important;
+}

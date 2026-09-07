@@ -1,0 +1,27 @@
+/* 智能编辑 — 附件预览区（独立于智能生成，避免影响 tc-prompt-composer） */
+#left-panel #drawer-edit-content #tc-edit-prompt-composer {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0.35rem;
+    overflow: visible;
+}
+
+#left-panel #drawer-edit-content #tc-edit-prompt-composer-attachments {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+    min-height: 0;
+    overflow: visible;
+    flex: 0 0 auto;
+}
+
+#left-panel #drawer-edit-content #tc-edit-prompt-composer-attachments:not(:empty) {
+    padding: 0.35rem 0.625rem 0.15rem;
+    min-height: 4.75rem;
+}
+
+#left-panel #drawer-edit-content #tc-edit-prompt-composer.tc-prompt-composer--has-attachments #tc-edit-prompt-composer-box {
+    margin-top: 0;
+}

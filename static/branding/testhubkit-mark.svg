@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" role="img" aria-label="Test Hub Kit">
+  <defs>
+    <linearGradient id="thkMarkBg" x1="5" y1="2" x2="27" y2="30" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2F7DE1"/>
+      <stop offset="0.55" stop-color="#2FAE78"/>
+      <stop offset="1" stop-color="#1E9A6C"/>
+    </linearGradient>
+    <linearGradient id="thkMarkSheen" x1="8" y1="4" x2="20" y2="16" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Soft squircle -->
+  <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#thkMarkBg)"/>
+  <rect x="1.5" y="1.5" width="29" height="29" rx="8.5" stroke="#ffffff" stroke-opacity="0.16"/>
+  <path d="M10 3.2c4.2-1.1 8.8-1.1 13 0" stroke="url(#thkMarkSheen)" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Hub spokes -->
+  <g stroke="#ffffff" stroke-width="2" stroke-linecap="round">
+    <path d="M16 11.35V8.2"/>
+    <path d="M16 20.65V23.8"/>
+    <path d="M11.35 16H8.2"/>
+    <path d="M20.65 16H23.8"/>
+  </g>
+
+  <!-- Outer nodes -->
+  <circle cx="16" cy="6.85" r="1.85" fill="#ffffff"/>
+  <circle cx="25.15" cy="16" r="1.85" fill="#FFE4A8"/>
+  <circle cx="16" cy="25.15" r="1.85" fill="#ffffff"/>
+  <circle cx="6.85" cy="16" r="1.85" fill="#ffffff"/>
+
+  <!-- Core -->
+  <circle cx="16" cy="16" r="3.55" fill="#ffffff"/>
+  <circle cx="16" cy="16" r="1.35" fill="#2F7DE1" fill-opacity="0.88"/>
+</svg>

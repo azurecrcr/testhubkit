@@ -1,0 +1,210 @@
+/**
+ * JMeter · 树形步骤「内容贴合 + 双列」布局（隔离）
+ * 解决整行拉满、名称与启用/⋮ 之间大片空白
+ */
+
+/* ---- 步骤列表：宽屏双列 wrap，避免 grid 在 flex 容器里被拉伸 ---- */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+    align-content: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 0.28rem 0.45rem !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    align-items: flex-start !important;
+    box-sizing: border-box !important;
+}
+
+@media (min-width: 900px) {
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node {
+        flex: 0 1 calc(50% - 0.28rem) !important;
+        width: calc(50% - 0.28rem) !important;
+        max-width: calc(50% - 0.28rem) !important;
+    }
+
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node--if,
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node--http.is-selected,
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node--http:has(.jms-http-context) {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node__body {
+    flex: 0 1 auto !important;
+    width: auto !important;
+    max-width: 100% !important;
+    align-items: flex-start !important;
+}
+
+/* 覆盖 http_fullwidth：卡片随内容宽度 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--http .jms-tree-node__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--http .jms-http-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__body .jms-tree-node--http .jms-http-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__body .jms-tree-node--http .jms-tree-node__body {
+    width: auto !important;
+    flex: 0 1 auto !important;
+    max-width: 100% !important;
+    align-self: flex-start !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node .jms-aux-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--config .jms-aux-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--tg-listener .jms-aux-card {
+    width: auto !important;
+    max-width: 100% !important;
+    flex: 0 1 auto !important;
+}
+
+/* ---- 卡片：inline 簇，操作区紧跟内容 ---- */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card {
+    display: inline-flex !important;
+    width: auto !important;
+    max-width: 100% !important;
+    flex: 0 1 auto !important;
+    align-items: center !important;
+    align-self: flex-start !important;
+    flex-wrap: nowrap !important;
+    gap: 0.32rem !important;
+    border: 1px solid rgba(226, 232, 240, 0.9) !important;
+    border-radius: 8px !important;
+    background: #fff !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node:hover > .jms-tree-node__body > .jms-http-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node:hover .jms-aux-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node:focus-within > .jms-tree-node__body > .jms-http-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node:focus-within .jms-aux-card {
+    border-color: rgba(148, 163, 184, 0.95) !important;
+    background: #f8fafc !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card__main,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card__content,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card__content--tree {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    max-width: min(48vw, 380px) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-name {
+    max-width: 9rem !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-path {
+    max-width: 10rem !important;
+    flex: 0 1 auto !important;
+}
+
+@media (min-width: 900px) {
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card__main,
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card__content,
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card__content--tree {
+        max-width: min(36vw, 320px) !important;
+    }
+
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-path {
+        max-width: 7.5rem !important;
+    }
+}
+
+/* 取消 margin-left:auto，启用/⋮ 紧贴内容 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card .jms-config-card-toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card .jms-config-card-toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-config-card-toolbar .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-processor-row .jms-config-card-toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-processor-row .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .lth-step-actions {
+    margin-left: 0 !important;
+    flex: 0 0 auto !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-config-card-toolbar {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.2rem !important;
+    flex: 0 0 auto !important;
+}
+
+/* ---- If 控制器：头行贴合，展开后占满 ---- */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--if .jms-if-card {
+    width: auto !important;
+    max-width: 100% !important;
+    align-self: flex-start !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__head {
+    display: inline-flex !important;
+    width: auto !important;
+    max-width: 100% !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 0.28rem !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__head .jms-if-card__meta {
+    flex: 0 1 auto !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__head .jms-config-card-toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__head .lth-step-actions {
+    margin-left: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--if .jms-if-card:not(.jms-if-card--collapsed) {
+    width: 100% !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__body .jms-tree-node {
+    width: 100% !important;
+}
+
+/* 逻辑控制器头行（宽度/右对齐由 jms_logic_ctrl_card_if_unify.css 末位覆盖） */
+
+/* ---- HTTP 选中展开区：独占行宽 ---- */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--http.is-selected > .jms-tree-node__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--http:has(.jms-http-context) > .jms-tree-node__body {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--http.is-selected > .jms-tree-node__body > .jms-http-card {
+    max-width: 100% !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--http.is-selected .jms-http-card__main {
+    max-width: min(56vw, 480px) !important;
+}
+
+/* ---- 处理器行：同样贴合 ---- */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-processor-row {
+    display: inline-flex !important;
+    width: auto !important;
+    max-width: 100% !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 0.28rem !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-processor-row__name {
+    flex: 0 1 auto !important;
+    max-width: 14rem !important;
+}

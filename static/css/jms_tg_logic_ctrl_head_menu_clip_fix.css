@@ -1,0 +1,172 @@
+/**
+ * 逻辑控制器头行 ⋯ 菜单防裁切 v2（隔离）
+ * 折叠态 + 嵌套在 Txn 内：放开 jms-tree-node__body 与父级卡片 overflow，折叠时向上展开。
+ */
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card:has(.lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card:has(.lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card:has(.lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card:has(.lth-step-actions.is-measuring) {
+    overflow: visible !important;
+    position: relative !important;
+    isolation: isolate !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__body:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__body:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__body:has(.lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__body:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__body:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__body:has(.lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__body:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__body:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__body:has(.lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__body:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__body:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__body:has(.lth-step-actions.is-measuring) {
+    overflow: visible !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card:has(.jms-loop-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card:has(.jms-loop-card .lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card:has(.jms-loop-card .lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card:has(.jms-random-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card:has(.jms-random-card .lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card:has(.jms-random-card .lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card:has(.jms-simple-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card:has(.jms-simple-card .lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card:has(.jms-simple-card .lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card:has(.jms-loop-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card:has(.jms-loop-card .lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card:has(.jms-loop-card .lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card:has(.jms-loop-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card:has(.jms-loop-card .lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card:has(.jms-loop-card .lth-step-actions.is-measuring) {
+    overflow: visible !important;
+    position: relative !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__body:has(.jms-loop-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__body:has(.jms-loop-card .lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__body:has(.jms-loop-card .lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__body:has(.jms-random-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__body:has(.jms-random-card .lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__body:has(.jms-random-card .lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__body:has(.jms-simple-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__body:has(.jms-random-card .lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__body:has(.jms-loop-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__body:has(.jms-loop-card .lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__body:has(.jms-loop-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__body:has(.jms-loop-card .lth-step-actions.is-hover) {
+    overflow: visible !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop:has(.lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple:has(.lth-step-actions.is-hover) {
+    overflow: visible !important;
+    z-index: 5 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop > .jms-tree-node__body:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop > .jms-tree-node__body:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop > .jms-tree-node__body:has(.lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction > .jms-tree-node__body:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction > .jms-tree-node__body:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random > .jms-tree-node__body:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random > .jms-tree-node__body:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple > .jms-tree-node__body:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple > .jms-tree-node__body:has(.lth-step-actions.is-hover) {
+    overflow: visible !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction:has(.jms-loop-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction:has(.jms-loop-card .lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction:has(.jms-loop-card .lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random:has(.jms-loop-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random:has(.jms-loop-card .lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple:has(.jms-loop-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple:has(.jms-loop-card .lth-step-actions.is-hover) {
+    overflow: visible !important;
+    z-index: 6 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction > .jms-tree-node__body:has(.jms-loop-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction > .jms-tree-node__body:has(.jms-loop-card .lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction > .jms-tree-node__body:has(.jms-loop-card .lth-step-actions.is-measuring),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random > .jms-tree-node__body:has(.jms-loop-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random > .jms-tree-node__body:has(.jms-loop-card .lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple > .jms-tree-node__body:has(.jms-loop-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple > .jms-tree-node__body:has(.jms-loop-card .lth-step-actions.is-hover) {
+    overflow: visible !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-block--tree:has(.jms-loop-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-block--tree:has(.jms-loop-card .lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-block--tree:has(.jms-transaction-card .lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-block--tree:has(.jms-transaction-card .lth-step-actions.is-hover) {
+    overflow: visible !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card--collapsed:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card--collapsed:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card--collapsed:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card--collapsed:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card--collapsed:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card--collapsed:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card--collapsed:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card--collapsed:has(.lth-step-actions.is-hover) {
+    z-index: 12 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head .lth-step-actions.is-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head .lth-step-actions.is-hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head .lth-step-actions.is-measuring,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head .lth-step-actions.is-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head .lth-step-actions.is-hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head .lth-step-actions.is-measuring,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head .lth-step-actions.is-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head .lth-step-actions.is-hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head .lth-step-actions.is-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head .lth-step-actions.is-hover {
+    position: relative !important;
+    z-index: 35 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head .jms-config-card-toolbar:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head .jms-config-card-toolbar:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head .jms-config-card-toolbar:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head .jms-config-card-toolbar:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head .jms-config-card-toolbar:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head .jms-config-card-toolbar:has(.lth-step-actions.is-hover),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head .jms-config-card-toolbar:has(.lth-step-actions.is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head .jms-config-card-toolbar:has(.lth-step-actions.is-hover) {
+    overflow: visible !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head .lth-step-actions.is-open .lth-step-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head .lth-step-actions.is-hover .lth-step-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head .lth-step-actions.is-measuring .lth-step-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head .lth-step-actions.is-open .lth-step-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head .lth-step-actions.is-hover .lth-step-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head .lth-step-actions.is-measuring .lth-step-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head .lth-step-actions.is-open .lth-step-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head .lth-step-actions.is-hover .lth-step-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head .lth-step-actions.is-open .lth-step-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head .lth-step-actions.is-hover .lth-step-menu {
+    z-index: 40 !important;
+}

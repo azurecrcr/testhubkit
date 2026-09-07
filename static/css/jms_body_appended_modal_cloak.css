@@ -1,0 +1,89 @@
+/**
+ * Body 挂载弹窗兜底隐藏（隔离模块）
+ * ensureDrawer 预创建的 .jms-modal 关闭后必须完全不可见，避免堆叠在页面底部。
+ * 加载顺序：须在 jms_assert_modal_surface_fix.css 之后。
+ */
+
+body.lth-studio-v2.lth-hub-jmeter-tab > .jms-modal:not(.jms-modal-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab > .jms-modal:not(.jms-modal-open),
+body.lth-studio-v2.lth-hub-jmeter-tab > .jms-modal[aria-hidden="true"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab > .jms-modal[aria-hidden="true"] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab > .jms-modal:not(.jms-modal-open) .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab > .jms-modal:not(.jms-modal-open) .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab > .jms-modal[aria-hidden="true"] .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab > .jms-modal[aria-hidden="true"] .jms-step-modal {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab > .jms-modal.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab > .jms-modal.jms-modal-open {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab > .jms-modal.jms-modal-open .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab > .jms-modal.jms-modal-open .jms-step-modal {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* 断言弹窗打开时：遮罩 + 面板不透明（覆盖 studio 全局深色半透明主题） */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-response-assert-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-json-assert-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-size-assert-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-response-assert-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-json-assert-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-size-assert-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-json-assert-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-size-assert-edit.jms-modal-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit.jms-modal-open {
+    display: flex !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10320 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(15, 23, 42, 0.45) !important;
+    backdrop-filter: blur(6px);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-response-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-json-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-size-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-response-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-json-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-size-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-response-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-json-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-size-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-tg-md5hex-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-response-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-json-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-size-assert-edit.jms-modal-open .jms-step-modal,
+body.lth-tg-view-tree.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit.jms-modal-open .jms-step-modal {
+    display: flex !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid rgba(229, 233, 239, 0.98) !important;
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.14) !important;
+    isolation: isolate !important;
+}

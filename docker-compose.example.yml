@@ -1,0 +1,116 @@
+﻿# Test Hub Kit 寮€婧愮増 Docker Compose
+# 鐢ㄦ硶锛?#   cp .env.opensource.example .env
+#   docker compose -f docker-compose.example.yml up -d --build
+#
+# 涓嶅惈锛歐eb UI 鑷姩鍖栵紙OmniFlow锛夈€佹帴鍙ｆ櫤鑳斤紙api_intel锛?# 璇﹁ DEPLOY.md 涓?opensource-exclude.txt
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: testhub-mysql
+    restart: unless-stopped
+    command:
+      - --binlog-expire-logs-seconds=172800
+      - --max-binlog-size=104857600
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-changeme-root}
+      MYSQL_DATABASE: testhub
+      MYSQL_USER: testhub
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-changeme}
+    ports:
+      - "3306:3306"
+    volumes:
+      - testhub_mysql_data:/var/lib/mysql
+      - ./scripts/mysql-init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - ./deploy/mysql/conf.d:/etc/mysql/conf.d:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${MYSQL_ROOT_PASSWORD:-changeme-root}"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+  minio:
+    image: minio/minio:RELEASE.2024-12-18T13-15-44Z
+    container_name: testhub-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-root}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-changeme-minio}
+    ports:
+      - "10005:9000"
+      - "10006:9001"
+    volumes:
+      - testhub_minio_data:/data
+
+  testhub:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: testhub:opensource
+    container_name: testhub
+    command: ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "--timeout", "900", "--keep-alive", "5", "app:app"]
+    restart: unless-stopped
+    expose:
+      - "5000"
+    env_file:
+      - .env
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: "3306"
+      MYSQL_USER: testhub
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-changeme}
+      MYSQL_DATABASE: testhub
+      TZ: ${TZ:-Asia/Shanghai}
+      FLASK_SECRET_KEY: ${FLASK_SECRET_KEY:-change-me-in-production}
+      TEMPLATES_AUTO_RELOAD: "false"
+      OPENIM_MINIO_ENDPOINT: minio:9000
+      OPENIM_MINIO_ACCESS_KEY: ${MINIO_ROOT_USER:-root}
+      OPENIM_MINIO_SECRET_KEY: ${MINIO_ROOT_PASSWORD:-changeme-minio}
+      OPENIM_MINIO_BUCKET: openim
+      OPENIM_MINIO_USE_SSL: "false"
+      OPENIM_MEDIA_PREFIX: testhub/media/
+      OPENIM_CLEANUP_MAX_AGE_HOURS: "24"
+      RAG_ENABLED: ${RAG_ENABLED:-0}
+      CONTEXT_STACK_ENABLED: ${CONTEXT_STACK_ENABLED:-1}
+      SMS_AUTH_ENABLED: ${SMS_AUTH_ENABLED:-false}
+      EMAIL_REGISTER_DISABLED: ${EMAIL_REGISTER_DISABLED:-false}
+      PHONE_BIND_GATE_ENABLED: ${PHONE_BIND_GATE_ENABLED:-false}
+      FEEDBACK_EMAIL_ENABLED: ${FEEDBACK_EMAIL_ENABLED:-false}
+      AUTH_SECURITY_LOG_RETENTION_ENABLED: "true"
+      AUTH_SECURITY_LOG_RETENTION_DAYS: "180"
+      AUTH_SECURITY_LOG_RETENTION_HOUR: "4"
+      BUILTIN_AI_BASE_URL: ${BUILTIN_AI_BASE_URL:-}
+      BUILTIN_AI_API_KEY: ${BUILTIN_AI_API_KEY:-}
+      BUILTIN_AI_MODEL: ${BUILTIN_AI_MODEL:-}
+      BUILTIN_AI_TEMPERATURE: ${BUILTIN_AI_TEMPERATURE:-0.1}
+      VISION_API_BASE_URL: ${VISION_API_BASE_URL:-}
+      VISION_API_KEY: ${VISION_API_KEY:-}
+      VISION_MODEL: ${VISION_MODEL:-gpt-4o}
+    volumes:
+      - ./uploads:/app/uploads
+      - ./data/rag:/app/data/rag
+    depends_on:
+      mysql:
+        condition: service_healthy
+      minio:
+        condition: service_started
+
+  testhub-nginx:
+    image: nginx:1.27-alpine
+    container_name: testhub-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./deploy/nginx-testhub.opensource.conf:/etc/nginx/nginx.conf:ro
+      - ./static:/var/www/static:ro
+      - ./uploads/community:/var/www/community-qr:ro
+    depends_on:
+      - testhub
+
+volumes:
+  testhub_mysql_data:
+  testhub_minio_data:
+

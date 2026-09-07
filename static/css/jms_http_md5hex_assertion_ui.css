@@ -1,0 +1,217 @@
+/**
+ * HTTP 步骤 · MD5Hex 断言弹窗（隔离样式 v2 · #modal-http-md5hex-assert-edit）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10320;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.36);
+    backdrop-filter: blur(6px);
+    --jms-http-m5-accent: #7c3aed;
+    --jms-http-m5-accent-soft: rgba(124, 58, 237, 0.12);
+    --jms-http-m5-border: #e5e9ef;
+    --jms-http-m5-surface: #ffffff;
+    --jms-http-m5-text: #111827;
+    --jms-http-m5-title: #6d28d9;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit.jms-modal-open {
+    display: flex !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-step-modal {
+    width: min(680px, 96vw) !important;
+    max-height: min(96vh, 44rem);
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(229, 233, 239, 0.98) !important;
+    background: var(--jms-http-m5-surface) !important;
+    color: var(--jms-http-m5-text) !important;
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.12) !important;
+    overflow: hidden !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-drawer__head {
+    flex-shrink: 0;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 1rem 1.35rem !important;
+    border-bottom: 1px solid var(--jms-http-m5-border) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-drawer__head-main {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-drawer__badge {
+    padding: 0.12rem 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--jms-http-m5-accent);
+    background: var(--jms-http-m5-accent-soft);
+    border: 1px solid rgba(124, 58, 237, 0.35);
+    border-radius: 999px;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-step-modal__title {
+    margin: 0 !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: var(--jms-http-m5-title) !important;
+    -webkit-text-fill-color: var(--jms-http-m5-title) !important;
+    letter-spacing: -0.01em;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-drawer__close {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #94a3b8;
+    font-size: 1.35rem;
+    cursor: pointer;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-drawer__close:hover {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-drawer__body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 1rem 1.35rem 0.75rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-v1 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-v1__grid--meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem 0.75rem;
+}
+
+@media (max-width: 560px) {
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-v1__grid--meta {
+        grid-template-columns: 1fr;
+    }
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-v1__card {
+    padding: 0.85rem 0.9rem;
+    border: 1px solid #eef2f7;
+    border-radius: 10px;
+    background: #fafbfc;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-v1__card-title {
+    margin: 0 0 0.35rem;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.02em;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-v1__hint {
+    margin: 0 0 0.65rem;
+    font-size: 0.72rem;
+    color: #94a3b8;
+    line-height: 1.45;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-v1__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-v1__label {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-v1__label-en {
+    font-weight: 500;
+    color: #9ca3af;
+    font-size: 0.68rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-v1__input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.48rem 0.62rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.8125rem;
+    color: #0f172a !important;
+    -webkit-text-fill-color: #0f172a !important;
+    background: #fff !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-v1__input--hex {
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    padding: 0.55rem 0.7rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-v1__input:focus {
+    outline: none;
+    border-color: #a78bfa;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.14);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-v1__chk {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.76rem;
+    color: #475569;
+    cursor: pointer;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-v1__chk input {
+    accent-color: #7c3aed;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-drawer__foot {
+    flex-shrink: 0;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0.9rem 1.35rem calc(0.9rem + env(safe-area-inset-bottom, 0px)) !important;
+    border-top: 1px solid var(--jms-http-m5-border) !important;
+    background: #fafbfc !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-md5hex-assert-edit .jms-http-m5-drawer__foot-actions {
+    display: flex;
+    gap: 0.6rem;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__assert-type--m5 {
+    background: rgba(237, 233, 254, 0.95) !important;
+    color: #6d28d9 !important;
+}

@@ -1,0 +1,236 @@
+/**
+ * 树形视图 · 头行操作区布局：子步骤 | 启用/停用 | ⋮，全宽自适应
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-main,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-editor,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node__body {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* 逻辑控制器头行：占满可用宽度 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card__head {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__head .jms-if-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head .jms-transaction-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head .jms-random-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head .jms-simple-card__meta,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head .jms-loop-card__meta {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+}
+
+/* HTTP 折叠态单行；展开态由 logic_mount_toolbar_polish / http_context_ui 纵向布局 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card.jms-http-card--collapsed,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card:not(.jms-http-card--collapsed) {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card__main,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card__content,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card__content--tree {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    overflow: hidden !important;
+}
+
+/* 右侧操作簇：[标签…向左扩展] [启用/停用] [⋮] */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-actions {
+    display: inline-flex !important;
+    align-items: center !important;
+    flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
+    gap: 0.28rem !important;
+    margin-left: auto !important;
+}
+
+/* 动态标签：紧贴启用按钮左侧，有几个显示几个，向左增长 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-badges {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
+    gap: 0.22rem !important;
+    max-width: min(52vw, 24rem) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-badges:empty {
+    display: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-badge-slot.is-empty {
+    display: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-badges > * {
+    flex: 0 0 auto !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-badges .jms-http-assert-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-badges .jms-http-proc-badge {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+    font-size: 10px !important;
+    line-height: 1.25 !important;
+    padding: 0.05rem 0.35rem !important;
+    border-radius: 999px !important;
+    color: #64748b !important;
+    background: #f1f5f9 !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-child-count-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-badges .jms-tree-child-count-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-actions .jms-if-card__child-count,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-actions .jms-transaction-card__child-count,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-actions .jms-random-card__child-count,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-actions .jms-simple-card__child-count,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-actions .jms-loop-card__child-count {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+    font-size: 10px !important;
+    line-height: 1.25 !important;
+    padding: 0.05rem 0.35rem !important;
+    border-radius: 999px !important;
+    color: #b45309 !important;
+    background: #fffbeb !important;
+    border: 1px solid #fde68a !important;
+}
+
+/* 覆盖 row_unify 对 toolbar 的 1.65rem 限宽 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-config-card-toolbar,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-config-card-toolbar {
+    display: inline-flex !important;
+    align-items: center !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    gap: 0.22rem !important;
+    padding: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card > .jms-card-head-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card > .jms-card-head-actions {
+    margin-left: auto !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card > .jms-config-card-toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card > .jms-config-card-toolbar {
+    margin-left: auto !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-card-head-actions .jms-config-card-toolbar {
+    margin-left: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-config-card-toolbar .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card__actions {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: 1.45rem !important;
+    max-width: none !important;
+    margin: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps [class*="-enable-seg"] {
+    flex-shrink: 0 !important;
+}
+
+/* 名称/路径过长时截断，避免撑出横向滚动 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-name {
+    flex: 0 1 auto !important;
+    max-width: min(28vw, 12rem) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-path,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__head .jms-if-card__condition {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* 窄屏 / F12 缩小时：头行可横向滑动查看操作区 */
+@media (max-width: 1100px) {
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__head,
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head,
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head,
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head,
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head,
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card,
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-aux-card {
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        overscroll-behavior-x: contain !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+}

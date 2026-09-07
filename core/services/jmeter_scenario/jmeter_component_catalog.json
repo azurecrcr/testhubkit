@@ -1,0 +1,1559 @@
+{
+  "generated_from": "/opt/jmeter/bin/saveservice.properties",
+  "total": 172,
+  "categories": [
+    {
+      "id": "test_plan",
+      "label_zh": "测试计划",
+      "label_en": "Test Plan",
+      "description": "顶层测试计划与工作台元素",
+      "count": 2
+    },
+    {
+      "id": "thread_group",
+      "label_zh": "线程组",
+      "label_en": "Thread Group",
+      "description": "并发用户与调度（含 SetUp / TearDown）",
+      "count": 7
+    },
+    {
+      "id": "controller",
+      "label_zh": "逻辑控制器",
+      "label_en": "Logic Controller",
+      "description": "控制取样器执行顺序与条件",
+      "count": 31
+    },
+    {
+      "id": "config",
+      "label_zh": "配置元件",
+      "label_en": "Config Element",
+      "description": "默认值、变量、CSV、Cookie 等",
+      "count": 12
+    },
+    {
+      "id": "sampler",
+      "label_zh": "取样器",
+      "label_en": "Sampler",
+      "description": "HTTP / JDBC / Java / JMS 等请求",
+      "count": 30
+    },
+    {
+      "id": "timer",
+      "label_zh": "定时器",
+      "label_en": "Timer",
+      "description": "思考时间与吞吐量控制",
+      "count": 11
+    },
+    {
+      "id": "preprocessor",
+      "label_zh": "前置处理器",
+      "label_en": "Pre-Processor",
+      "description": "请求发送前的脚本与变量处理",
+      "count": 3
+    },
+    {
+      "id": "postprocessor",
+      "label_zh": "后置处理器",
+      "label_en": "Post-Processor",
+      "description": "响应提取与脚本处理",
+      "count": 11
+    },
+    {
+      "id": "assertion",
+      "label_zh": "断言",
+      "label_en": "Assertion",
+      "description": "响应校验",
+      "count": 20
+    },
+    {
+      "id": "listener",
+      "label_zh": "监听器",
+      "label_en": "Listener",
+      "description": "结果收集、报告与 Backend Listener",
+      "count": 13
+    },
+    {
+      "id": "other",
+      "label_zh": "其他组件",
+      "label_en": "Other",
+      "description": "代理、邮件、杂项与扩展",
+      "count": 32
+    }
+  ],
+  "components": [
+    {
+      "alias": "BSFAssertion",
+      "class": "org.apache.jmeter.assertions.BSFAssertion",
+      "category": "assertion",
+      "label_zh": "BSFAssertion",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.BSFAssertion"
+    },
+    {
+      "alias": "BeanShellAssertion",
+      "class": "org.apache.jmeter.assertions.BeanShellAssertion",
+      "category": "assertion",
+      "label_zh": "BeanShell 断言",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.BeanShellAssertion"
+    },
+    {
+      "alias": "CompareAssertion",
+      "class": "org.apache.jmeter.assertions.CompareAssertion",
+      "category": "assertion",
+      "label_zh": "CompareAssertion",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.CompareAssertion"
+    },
+    {
+      "alias": "HTMLAssertion",
+      "class": "org.apache.jmeter.assertions.HTMLAssertion",
+      "category": "assertion",
+      "label_zh": "HTMLAssertion",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.HTMLAssertion"
+    },
+    {
+      "alias": "JMESPathAssertion",
+      "class": "org.apache.jmeter.assertions.jmespath.JMESPathAssertion",
+      "category": "assertion",
+      "label_zh": "JMESPathAssertion",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.jmespath.JMESPathAssertion"
+    },
+    {
+      "alias": "JSONPathAssertion",
+      "class": "org.apache.jmeter.assertions.JSONPathAssertion",
+      "category": "assertion",
+      "label_zh": "JSON 断言",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.JSONPathAssertion"
+    },
+    {
+      "alias": "JSR223Assertion",
+      "class": "org.apache.jmeter.assertions.JSR223Assertion",
+      "category": "assertion",
+      "label_zh": "JSR223 断言",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.JSR223Assertion"
+    },
+    {
+      "alias": "MD5HexAssertion",
+      "class": "org.apache.jmeter.assertions.MD5HexAssertion",
+      "category": "assertion",
+      "label_zh": "MD5 断言",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.MD5HexAssertion"
+    },
+    {
+      "alias": "MD5HexAssertionGUI",
+      "class": "org.apache.jmeter.assertions.gui.MD5HexAssertionGUI",
+      "category": "assertion",
+      "label_zh": "MD5HexAssertionGUI",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.gui.MD5HexAssertionGUI"
+    },
+    {
+      "alias": "SMIMEAssertion",
+      "class": "org.apache.jmeter.assertions.SMIMEAssertionTestElement",
+      "category": "assertion",
+      "label_zh": "SMIMEAssertion",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.SMIMEAssertionTestElement"
+    },
+    {
+      "alias": "SubstitutionElement",
+      "class": "org.apache.jmeter.assertions.SubstitutionElement",
+      "category": "assertion",
+      "label_zh": "SubstitutionElement",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.SubstitutionElement"
+    },
+    {
+      "alias": "XMLAssertion",
+      "class": "org.apache.jmeter.assertions.XMLAssertion",
+      "category": "assertion",
+      "label_zh": "XML 断言",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.XMLAssertion"
+    },
+    {
+      "alias": "XMLSchemaAssertion",
+      "class": "org.apache.jmeter.assertions.XMLSchemaAssertion",
+      "category": "assertion",
+      "label_zh": "XMLSchemaAssertion",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.XMLSchemaAssertion"
+    },
+    {
+      "alias": "XMLSchemaAssertionGUI",
+      "class": "org.apache.jmeter.assertions.gui.XMLSchemaAssertionGUI",
+      "category": "assertion",
+      "label_zh": "XMLSchemaAssertionGUI",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.gui.XMLSchemaAssertionGUI"
+    },
+    {
+      "alias": "XPathAssertion",
+      "class": "org.apache.jmeter.assertions.XPathAssertion",
+      "category": "assertion",
+      "label_zh": "XPath 断言",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.XPathAssertion"
+    },
+    {
+      "alias": "XPath2Assertion",
+      "class": "org.apache.jmeter.assertions.XPath2Assertion",
+      "category": "assertion",
+      "label_zh": "XPath2 断言",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.XPath2Assertion"
+    },
+    {
+      "alias": "assertionResult",
+      "class": "org.apache.jmeter.assertions.AssertionResult",
+      "category": "assertion",
+      "label_zh": "assertionResult",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.AssertionResult"
+    },
+    {
+      "alias": "ResponseAssertion",
+      "class": "org.apache.jmeter.assertions.ResponseAssertion",
+      "category": "assertion",
+      "label_zh": "响应断言",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.ResponseAssertion"
+    },
+    {
+      "alias": "SizeAssertion",
+      "class": "org.apache.jmeter.assertions.SizeAssertion",
+      "category": "assertion",
+      "label_zh": "大小断言",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.SizeAssertion"
+    },
+    {
+      "alias": "DurationAssertion",
+      "class": "org.apache.jmeter.assertions.DurationAssertion",
+      "category": "assertion",
+      "label_zh": "持续时间断言",
+      "scope": "core",
+      "description": "org.apache.jmeter.assertions.DurationAssertion"
+    },
+    {
+      "alias": "BoltConnectionElement",
+      "class": "org.apache.jmeter.protocol.bolt.config.BoltConnectionElement",
+      "category": "config",
+      "label_zh": "BoltConnectionElement",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.bolt.config.BoltConnectionElement"
+    },
+    {
+      "alias": "CSVDataSet",
+      "class": "org.apache.jmeter.config.CSVDataSet",
+      "category": "config",
+      "label_zh": "CSV 数据文件设置",
+      "scope": "core",
+      "description": "org.apache.jmeter.config.CSVDataSet"
+    },
+    {
+      "alias": "ConfigTestElement",
+      "class": "org.apache.jmeter.config.ConfigTestElement",
+      "category": "config",
+      "label_zh": "HTTP 请求默认值",
+      "scope": "core",
+      "description": "org.apache.jmeter.config.ConfigTestElement"
+    },
+    {
+      "alias": "JDBCDataSource",
+      "class": "org.apache.jmeter.protocol.jdbc.config.DataSourceElement",
+      "category": "config",
+      "label_zh": "JDBCDataSource",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.jdbc.config.DataSourceElement"
+    },
+    {
+      "alias": "JavaConfig",
+      "class": "org.apache.jmeter.protocol.java.config.JavaConfig",
+      "category": "config",
+      "label_zh": "JavaConfig",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.java.config.JavaConfig"
+    },
+    {
+      "alias": "KeystoreConfig",
+      "class": "org.apache.jmeter.config.KeystoreConfig",
+      "category": "config",
+      "label_zh": "Keystore 配置",
+      "scope": "core",
+      "description": "org.apache.jmeter.config.KeystoreConfig"
+    },
+    {
+      "alias": "LDAPArgument",
+      "class": "org.apache.jmeter.protocol.ldap.config.gui.LDAPArgument",
+      "category": "config",
+      "label_zh": "LDAPArgument",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.ldap.config.gui.LDAPArgument"
+    },
+    {
+      "alias": "LDAPArguments",
+      "class": "org.apache.jmeter.protocol.ldap.config.gui.LDAPArguments",
+      "category": "config",
+      "label_zh": "LDAPArguments",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.ldap.config.gui.LDAPArguments"
+    },
+    {
+      "alias": "MongoSourceElement",
+      "class": "org.apache.jmeter.protocol.mongodb.config.MongoSourceElement",
+      "category": "config",
+      "label_zh": "MongoSourceElement",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.mongodb.config.MongoSourceElement"
+    },
+    {
+      "alias": "LoginConfig",
+      "class": "org.apache.jmeter.config.LoginConfig",
+      "category": "config",
+      "label_zh": "登录配置",
+      "scope": "core",
+      "description": "org.apache.jmeter.config.LoginConfig"
+    },
+    {
+      "alias": "InterThread Communication",
+      "class": "kg.apc.jmeter.control.InterThreadCommunication",
+      "category": "config",
+      "label_zh": "线程间通信",
+      "scope": "plugin",
+      "description": "JMeter Plugins - 跨线程组变量传递"
+    },
+    {
+      "alias": "RandomVariableConfig",
+      "class": "org.apache.jmeter.config.RandomVariableConfig",
+      "category": "config",
+      "label_zh": "随机变量",
+      "scope": "core",
+      "description": "org.apache.jmeter.config.RandomVariableConfig"
+    },
+    {
+      "alias": "Authorization",
+      "class": "org.apache.jmeter.protocol.http.control.Authorization",
+      "category": "controller",
+      "label_zh": "Authorization",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.control.Authorization"
+    },
+    {
+      "alias": "Cookie",
+      "class": "org.apache.jmeter.protocol.http.control.Cookie",
+      "category": "controller",
+      "label_zh": "Cookie",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.control.Cookie"
+    },
+    {
+      "alias": "DNSCacheManager",
+      "class": "org.apache.jmeter.protocol.http.control.DNSCacheManager",
+      "category": "controller",
+      "label_zh": "DNS 缓存管理器",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.control.DNSCacheManager"
+    },
+    {
+      "alias": "ForeachController",
+      "class": "org.apache.jmeter.control.ForeachController",
+      "category": "controller",
+      "label_zh": "ForeachController",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.ForeachController"
+    },
+    {
+      "alias": "GenericController",
+      "class": "org.apache.jmeter.control.GenericController",
+      "category": "controller",
+      "label_zh": "GenericController",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.GenericController"
+    },
+    {
+      "alias": "CookieManager",
+      "class": "org.apache.jmeter.protocol.http.control.CookieManager",
+      "category": "controller",
+      "label_zh": "HTTP Cookie 管理器",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.control.CookieManager"
+    },
+    {
+      "alias": "Arguments",
+      "class": "org.apache.jmeter.config.Arguments",
+      "category": "config",
+      "label_zh": "用户定义的变量",
+      "scope": "core",
+      "description": "org.apache.jmeter.config.Arguments"
+    },
+    {
+      "alias": "HeaderManager",
+      "class": "org.apache.jmeter.protocol.http.control.HeaderManager",
+      "category": "config",
+      "label_zh": "HTTP 信息头管理器",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.control.HeaderManager"
+    },
+    {
+      "alias": "AuthManager",
+      "class": "org.apache.jmeter.protocol.http.control.AuthManager",
+      "category": "controller",
+      "label_zh": "HTTP 授权管理器",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.control.AuthManager"
+    },
+    {
+      "alias": "CacheManager",
+      "class": "org.apache.jmeter.protocol.http.control.CacheManager",
+      "category": "controller",
+      "label_zh": "HTTP 缓存管理器",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.control.CacheManager"
+    },
+    {
+      "alias": "Header",
+      "class": "org.apache.jmeter.protocol.http.control.Header",
+      "category": "controller",
+      "label_zh": "Header",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.control.Header"
+    },
+    {
+      "alias": "HttpMirrorControl",
+      "class": "org.apache.jmeter.protocol.http.control.HttpMirrorControl",
+      "category": "controller",
+      "label_zh": "HttpMirrorControl",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.control.HttpMirrorControl"
+    },
+    {
+      "alias": "HttpTestSampleGui,HttpTestSampleGui2",
+      "class": "org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui",
+      "category": "controller",
+      "label_zh": "HttpTestSampleGui,HttpTestSampleGui2",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui"
+    },
+    {
+      "alias": "IfController",
+      "class": "org.apache.jmeter.control.IfController",
+      "category": "controller",
+      "label_zh": "If 控制器",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.IfController"
+    },
+    {
+      "alias": "IncludeController",
+      "class": "org.apache.jmeter.control.IncludeController",
+      "category": "controller",
+      "label_zh": "Include 控制器",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.IncludeController"
+    },
+    {
+      "alias": "RecordController",
+      "class": "org.apache.jmeter.protocol.http.control.gui.RecordController",
+      "category": "controller",
+      "label_zh": "RecordController",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.control.gui.RecordController"
+    },
+    {
+      "alias": "StaticHost",
+      "class": "org.apache.jmeter.protocol.http.control.StaticHost",
+      "category": "controller",
+      "label_zh": "StaticHost",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.control.StaticHost"
+    },
+    {
+      "alias": "SwitchController",
+      "class": "org.apache.jmeter.control.SwitchController",
+      "category": "controller",
+      "label_zh": "Switch 控制器",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.SwitchController"
+    },
+    {
+      "alias": "TransactionSampler",
+      "class": "org.apache.jmeter.control.TransactionSampler",
+      "category": "controller",
+      "label_zh": "TransactionSampler",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.TransactionSampler"
+    },
+    {
+      "alias": "WhileController",
+      "class": "org.apache.jmeter.control.WhileController",
+      "category": "controller",
+      "label_zh": "While 控制器",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.WhileController"
+    },
+    {
+      "alias": "CriticalSectionController",
+      "class": "org.apache.jmeter.control.CriticalSectionController",
+      "category": "controller",
+      "label_zh": "临界区控制器",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.CriticalSectionController"
+    },
+    {
+      "alias": "TransactionController",
+      "class": "org.apache.jmeter.control.TransactionController",
+      "category": "controller",
+      "label_zh": "事务控制器",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.TransactionController"
+    },
+    {
+      "alias": "InterleaveControl",
+      "class": "org.apache.jmeter.control.InterleaveControl",
+      "category": "controller",
+      "label_zh": "交替控制器",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.InterleaveControl"
+    },
+    {
+      "alias": "OnceOnlyController",
+      "class": "org.apache.jmeter.control.OnceOnlyController",
+      "category": "controller",
+      "label_zh": "仅一次控制器",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.OnceOnlyController"
+    },
+    {
+      "alias": "ThroughputController",
+      "class": "org.apache.jmeter.control.ThroughputController",
+      "category": "controller",
+      "label_zh": "吞吐量控制器",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.ThroughputController"
+    },
+    {
+      "alias": "RecordingController",
+      "class": "org.apache.jmeter.protocol.http.control.RecordingController",
+      "category": "controller",
+      "label_zh": "录制控制器",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.control.RecordingController"
+    },
+    {
+      "alias": "LoopController",
+      "class": "org.apache.jmeter.control.LoopController",
+      "category": "controller",
+      "label_zh": "循环控制器",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.LoopController"
+    },
+    {
+      "alias": "ModuleController",
+      "class": "org.apache.jmeter.control.ModuleController",
+      "category": "controller",
+      "label_zh": "模块控制器",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.ModuleController"
+    },
+    {
+      "alias": "TestFragmentController",
+      "class": "org.apache.jmeter.control.TestFragmentController",
+      "category": "controller",
+      "label_zh": "测试片段",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.TestFragmentController"
+    },
+    {
+      "alias": "RunTime",
+      "class": "org.apache.jmeter.control.RunTime",
+      "category": "controller",
+      "label_zh": "运行时间控制器",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.RunTime"
+    },
+    {
+      "alias": "RandomController",
+      "class": "org.apache.jmeter.control.RandomController",
+      "category": "controller",
+      "label_zh": "随机控制器",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.RandomController"
+    },
+    {
+      "alias": "RandomOrderController",
+      "class": "org.apache.jmeter.control.RandomOrderController",
+      "category": "controller",
+      "label_zh": "随机顺序控制器",
+      "scope": "core",
+      "description": "org.apache.jmeter.control.RandomOrderController"
+    },
+    {
+      "alias": "BSFListener",
+      "class": "org.apache.jmeter.visualizers.BSFListener",
+      "category": "listener",
+      "label_zh": "BSFListener",
+      "scope": "core",
+      "description": "org.apache.jmeter.visualizers.BSFListener"
+    },
+    {
+      "alias": "BackendListener",
+      "class": "org.apache.jmeter.visualizers.backend.BackendListener",
+      "category": "listener",
+      "label_zh": "Backend Listener",
+      "scope": "core",
+      "description": "org.apache.jmeter.visualizers.backend.BackendListener"
+    },
+    {
+      "alias": "BeanShellListener",
+      "class": "org.apache.jmeter.visualizers.BeanShellListener",
+      "category": "listener",
+      "label_zh": "BeanShellListener",
+      "scope": "core",
+      "description": "org.apache.jmeter.visualizers.BeanShellListener"
+    },
+    {
+      "alias": "JSR223Listener",
+      "class": "org.apache.jmeter.visualizers.JSR223Listener",
+      "category": "listener",
+      "label_zh": "JSR223Listener",
+      "scope": "core",
+      "description": "org.apache.jmeter.visualizers.JSR223Listener"
+    },
+    {
+      "alias": "MailerResultCollector",
+      "class": "org.apache.jmeter.reporters.MailerResultCollector",
+      "category": "listener",
+      "label_zh": "MailerResultCollector",
+      "scope": "core",
+      "description": "org.apache.jmeter.reporters.MailerResultCollector"
+    },
+    {
+      "alias": "PerfMon Metrics Collector",
+      "class": "kg.apc.jmeter.vizualizers.PerfMonitorCollector",
+      "category": "listener",
+      "label_zh": "PerfMon 性能监控",
+      "scope": "plugin",
+      "description": "JMeter Plugins - Server Agent 性能指标"
+    },
+    {
+      "alias": "ResultAction",
+      "class": "org.apache.jmeter.reporters.ResultAction",
+      "category": "listener",
+      "label_zh": "ResultAction",
+      "scope": "core",
+      "description": "org.apache.jmeter.reporters.ResultAction"
+    },
+    {
+      "alias": "SimpleDataWriter",
+      "class": "org.apache.jmeter.visualizers.SimpleDataWriter",
+      "category": "listener",
+      "label_zh": "SimpleDataWriter",
+      "scope": "core",
+      "description": "org.apache.jmeter.visualizers.SimpleDataWriter"
+    },
+    {
+      "alias": "Summariser",
+      "class": "org.apache.jmeter.reporters.Summariser",
+      "category": "listener",
+      "label_zh": "Summariser",
+      "scope": "core",
+      "description": "org.apache.jmeter.reporters.Summariser"
+    },
+    {
+      "alias": "monitorStats",
+      "class": "org.apache.jmeter.visualizers.MonitorStats",
+      "category": "listener",
+      "label_zh": "monitorStats",
+      "scope": "core",
+      "description": "org.apache.jmeter.visualizers.MonitorStats"
+    },
+    {
+      "alias": "SummaryReport",
+      "class": "org.apache.jmeter.visualizers.SummaryReport",
+      "category": "listener",
+      "label_zh": "汇总报告",
+      "scope": "core",
+      "description": "org.apache.jmeter.visualizers.SummaryReport"
+    },
+    {
+      "alias": "Flexible File Writer",
+      "class": "kg.apc.jmeter.vizualizers.FlexibleFileWriter",
+      "category": "listener",
+      "label_zh": "灵活文件写入器",
+      "scope": "plugin",
+      "description": "JMeter Plugins - 自定义结果输出"
+    },
+    {
+      "alias": "ResultCollector",
+      "class": "org.apache.jmeter.reporters.ResultCollector",
+      "category": "listener",
+      "label_zh": "结果收集器",
+      "scope": "core",
+      "description": "org.apache.jmeter.reporters.ResultCollector"
+    },
+    {
+      "alias": "AnchorModifier",
+      "class": "org.apache.jmeter.protocol.http.modifier.AnchorModifier",
+      "category": "other",
+      "label_zh": "AnchorModifier",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.modifier.AnchorModifier"
+    },
+    {
+      "alias": "ProxyControl",
+      "class": "org.apache.jmeter.protocol.http.proxy.ProxyControl",
+      "category": "other",
+      "label_zh": "HTTP(S) 测试脚本录制",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.proxy.ProxyControl"
+    },
+    {
+      "alias": "HTTPArgument",
+      "class": "org.apache.jmeter.protocol.http.util.HTTPArgument",
+      "category": "other",
+      "label_zh": "HTTPArgument",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.util.HTTPArgument"
+    },
+    {
+      "alias": "HTTPFileArg",
+      "class": "org.apache.jmeter.protocol.http.util.HTTPFileArg",
+      "category": "other",
+      "label_zh": "HTTPFileArg",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.util.HTTPFileArg"
+    },
+    {
+      "alias": "HTTPFileArgs",
+      "class": "org.apache.jmeter.protocol.http.util.HTTPFileArgs",
+      "category": "other",
+      "label_zh": "HTTPFileArgs",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.util.HTTPFileArgs"
+    },
+    {
+      "alias": "JDBCPostProcessor",
+      "class": "org.apache.jmeter.protocol.jdbc.processor.JDBCPostProcessor",
+      "category": "other",
+      "label_zh": "JDBCPostProcessor",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.jdbc.processor.JDBCPostProcessor"
+    },
+    {
+      "alias": "JDBCPreProcessor",
+      "class": "org.apache.jmeter.protocol.jdbc.processor.JDBCPreProcessor",
+      "category": "other",
+      "label_zh": "JDBCPreProcessor",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.jdbc.processor.JDBCPreProcessor"
+    },
+    {
+      "alias": "JavaTest",
+      "class": "org.apache.jmeter.protocol.java.test.JavaTest",
+      "category": "other",
+      "label_zh": "JavaTest",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.java.test.JavaTest"
+    },
+    {
+      "alias": "ParamMask",
+      "class": "org.apache.jmeter.protocol.http.modifier.ParamMask",
+      "category": "other",
+      "label_zh": "ParamMask",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.modifier.ParamMask"
+    },
+    {
+      "alias": "ParamModifier",
+      "class": "org.apache.jmeter.protocol.http.modifier.ParamModifier",
+      "category": "other",
+      "label_zh": "ParamModifier",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.modifier.ParamModifier"
+    },
+    {
+      "alias": "RegExUserParameters",
+      "class": "org.apache.jmeter.protocol.http.modifier.RegExUserParameters",
+      "category": "other",
+      "label_zh": "RegExUserParameters",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.modifier.RegExUserParameters"
+    },
+    {
+      "alias": "SampleTimeout",
+      "class": "org.apache.jmeter.modifiers.SampleTimeout",
+      "category": "other",
+      "label_zh": "SampleTimeout",
+      "scope": "core",
+      "description": "org.apache.jmeter.modifiers.SampleTimeout"
+    },
+    {
+      "alias": "TestBeanGUI",
+      "class": "org.apache.jmeter.testbeans.gui.TestBeanGUI",
+      "category": "other",
+      "label_zh": "TestBeanGUI",
+      "scope": "core",
+      "description": "org.apache.jmeter.testbeans.gui.TestBeanGUI"
+    },
+    {
+      "alias": "URLRewritingModifier",
+      "class": "org.apache.jmeter.protocol.http.modifier.URLRewritingModifier",
+      "category": "other",
+      "label_zh": "URLRewritingModifier",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.modifier.URLRewritingModifier"
+    },
+    {
+      "alias": "UserParameterModifier",
+      "class": "org.apache.jmeter.protocol.http.modifier.UserParameterModifier",
+      "category": "other",
+      "label_zh": "UserParameterModifier",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.modifier.UserParameterModifier"
+    },
+    {
+      "alias": "UserParameters",
+      "class": "org.apache.jmeter.modifiers.UserParameters",
+      "category": "other",
+      "label_zh": "UserParameters",
+      "scope": "core",
+      "description": "org.apache.jmeter.modifiers.UserParameters"
+    },
+    {
+      "alias": "boolProp",
+      "class": "org.apache.jmeter.testelement.property.BooleanProperty",
+      "category": "other",
+      "label_zh": "boolProp",
+      "scope": "core",
+      "description": "org.apache.jmeter.testelement.property.BooleanProperty"
+    },
+    {
+      "alias": "collectionProp",
+      "class": "org.apache.jmeter.testelement.property.CollectionProperty",
+      "category": "other",
+      "label_zh": "collectionProp",
+      "scope": "core",
+      "description": "org.apache.jmeter.testelement.property.CollectionProperty"
+    },
+    {
+      "alias": "doubleProp",
+      "class": "org.apache.jmeter.testelement.property.DoubleProperty",
+      "category": "other",
+      "label_zh": "doubleProp",
+      "scope": "core",
+      "description": "org.apache.jmeter.testelement.property.DoubleProperty"
+    },
+    {
+      "alias": "elementProp",
+      "class": "org.apache.jmeter.testelement.property.TestElementProperty",
+      "category": "other",
+      "label_zh": "elementProp",
+      "scope": "core",
+      "description": "org.apache.jmeter.testelement.property.TestElementProperty"
+    },
+    {
+      "alias": "hashTree",
+      "class": "org.apache.jorphan.collections.ListedHashTree",
+      "category": "other",
+      "label_zh": "hashTree",
+      "scope": "core",
+      "description": "org.apache.jorphan.collections.ListedHashTree"
+    },
+    {
+      "alias": "intProp",
+      "class": "org.apache.jmeter.testelement.property.IntegerProperty",
+      "category": "other",
+      "label_zh": "intProp",
+      "scope": "core",
+      "description": "org.apache.jmeter.testelement.property.IntegerProperty"
+    },
+    {
+      "alias": "jmeterTestPlan",
+      "class": "org.apache.jmeter.save.ScriptWrapper",
+      "category": "other",
+      "label_zh": "jmeterTestPlan",
+      "scope": "core",
+      "description": "org.apache.jmeter.save.ScriptWrapper"
+    },
+    {
+      "alias": "longProp",
+      "class": "org.apache.jmeter.testelement.property.LongProperty",
+      "category": "other",
+      "label_zh": "longProp",
+      "scope": "core",
+      "description": "org.apache.jmeter.testelement.property.LongProperty"
+    },
+    {
+      "alias": "mapProp",
+      "class": "org.apache.jmeter.testelement.property.MapProperty",
+      "category": "other",
+      "label_zh": "mapProp",
+      "scope": "core",
+      "description": "org.apache.jmeter.testelement.property.MapProperty"
+    },
+    {
+      "alias": "objProp",
+      "class": "org.apache.jmeter.testelement.property.ObjectProperty",
+      "category": "other",
+      "label_zh": "objProp",
+      "scope": "core",
+      "description": "org.apache.jmeter.testelement.property.ObjectProperty"
+    },
+    {
+      "alias": "sample",
+      "class": "org.apache.jmeter.samplers.SampleResult",
+      "category": "other",
+      "label_zh": "sample",
+      "scope": "core",
+      "description": "org.apache.jmeter.samplers.SampleResult"
+    },
+    {
+      "alias": "sampleEvent",
+      "class": "org.apache.jmeter.samplers.SampleEvent",
+      "category": "other",
+      "label_zh": "sampleEvent",
+      "scope": "core",
+      "description": "org.apache.jmeter.samplers.SampleEvent"
+    },
+    {
+      "alias": "statSample",
+      "class": "org.apache.jmeter.samplers.StatisticalSampleResult",
+      "category": "other",
+      "label_zh": "statSample",
+      "scope": "core",
+      "description": "org.apache.jmeter.samplers.StatisticalSampleResult"
+    },
+    {
+      "alias": "stringProp",
+      "class": "org.apache.jmeter.testelement.property.StringProperty",
+      "category": "other",
+      "label_zh": "stringProp",
+      "scope": "core",
+      "description": "org.apache.jmeter.testelement.property.StringProperty"
+    },
+    {
+      "alias": "testResults",
+      "class": "org.apache.jmeter.save.TestResultWrapper",
+      "category": "other",
+      "label_zh": "testResults",
+      "scope": "core",
+      "description": "org.apache.jmeter.save.TestResultWrapper"
+    },
+    {
+      "alias": "CounterConfig",
+      "class": "org.apache.jmeter.modifiers.CounterConfig",
+      "category": "other",
+      "label_zh": "计数器",
+      "scope": "core",
+      "description": "org.apache.jmeter.modifiers.CounterConfig"
+    },
+    {
+      "alias": "BSFPostProcessor",
+      "class": "org.apache.jmeter.extractor.BSFPostProcessor",
+      "category": "postprocessor",
+      "label_zh": "BSFPostProcessor",
+      "scope": "core",
+      "description": "org.apache.jmeter.extractor.BSFPostProcessor"
+    },
+    {
+      "alias": "BeanShellPostProcessor",
+      "class": "org.apache.jmeter.extractor.BeanShellPostProcessor",
+      "category": "postprocessor",
+      "label_zh": "BeanShell 后置处理器",
+      "scope": "core",
+      "description": "org.apache.jmeter.extractor.BeanShellPostProcessor"
+    },
+    {
+      "alias": "DebugPostProcessor",
+      "class": "org.apache.jmeter.extractor.DebugPostProcessor",
+      "category": "postprocessor",
+      "label_zh": "DebugPostProcessor",
+      "scope": "core",
+      "description": "org.apache.jmeter.extractor.DebugPostProcessor"
+    },
+    {
+      "alias": "HtmlExtractor",
+      "class": "org.apache.jmeter.extractor.HtmlExtractor",
+      "category": "postprocessor",
+      "label_zh": "HtmlExtractor",
+      "scope": "core",
+      "description": "org.apache.jmeter.extractor.HtmlExtractor"
+    },
+    {
+      "alias": "JMESPathExtractor",
+      "class": "org.apache.jmeter.extractor.json.jmespath.JMESPathExtractor",
+      "category": "postprocessor",
+      "label_zh": "JMESPath 提取器",
+      "scope": "core",
+      "description": "org.apache.jmeter.extractor.json.jmespath.JMESPathExtractor"
+    },
+    {
+      "alias": "JSONPostProcessor",
+      "class": "org.apache.jmeter.extractor.json.jsonpath.JSONPostProcessor",
+      "category": "postprocessor",
+      "label_zh": "JSON 提取器",
+      "scope": "core",
+      "description": "org.apache.jmeter.extractor.json.jsonpath.JSONPostProcessor"
+    },
+    {
+      "alias": "JSR223PostProcessor",
+      "class": "org.apache.jmeter.extractor.JSR223PostProcessor",
+      "category": "postprocessor",
+      "label_zh": "JSR223 后置处理器",
+      "scope": "core",
+      "description": "org.apache.jmeter.extractor.JSR223PostProcessor"
+    },
+    {
+      "alias": "XPathExtractor",
+      "class": "org.apache.jmeter.extractor.XPathExtractor",
+      "category": "postprocessor",
+      "label_zh": "XPath 提取器",
+      "scope": "core",
+      "description": "org.apache.jmeter.extractor.XPathExtractor"
+    },
+    {
+      "alias": "XPath2Extractor",
+      "class": "org.apache.jmeter.extractor.XPath2Extractor",
+      "category": "postprocessor",
+      "label_zh": "XPath2 提取器",
+      "scope": "core",
+      "description": "org.apache.jmeter.extractor.XPath2Extractor"
+    },
+    {
+      "alias": "RegexExtractor",
+      "class": "org.apache.jmeter.extractor.RegexExtractor",
+      "category": "postprocessor",
+      "label_zh": "正则表达式提取器",
+      "scope": "core",
+      "description": "org.apache.jmeter.extractor.RegexExtractor"
+    },
+    {
+      "alias": "BoundaryExtractor",
+      "class": "org.apache.jmeter.extractor.BoundaryExtractor",
+      "category": "postprocessor",
+      "label_zh": "边界提取器",
+      "scope": "core",
+      "description": "org.apache.jmeter.extractor.BoundaryExtractor"
+    },
+    {
+      "alias": "BSFPreProcessor",
+      "class": "org.apache.jmeter.modifiers.BSFPreProcessor",
+      "category": "preprocessor",
+      "label_zh": "BSFPreProcessor",
+      "scope": "core",
+      "description": "org.apache.jmeter.modifiers.BSFPreProcessor"
+    },
+    {
+      "alias": "BeanShellPreProcessor",
+      "class": "org.apache.jmeter.modifiers.BeanShellPreProcessor",
+      "category": "preprocessor",
+      "label_zh": "BeanShell 前置处理器",
+      "scope": "core",
+      "description": "org.apache.jmeter.modifiers.BeanShellPreProcessor"
+    },
+    {
+      "alias": "JSR223PreProcessor",
+      "class": "org.apache.jmeter.modifiers.JSR223PreProcessor",
+      "category": "preprocessor",
+      "label_zh": "JSR223 前置处理器",
+      "scope": "core",
+      "description": "org.apache.jmeter.modifiers.JSR223PreProcessor"
+    },
+    {
+      "alias": "AjpSampler",
+      "class": "org.apache.jmeter.protocol.http.sampler.AjpSampler",
+      "category": "sampler",
+      "label_zh": "AJP 请求",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.sampler.AjpSampler"
+    },
+    {
+      "alias": "BSFSampler",
+      "class": "org.apache.jmeter.protocol.java.sampler.BSFSampler",
+      "category": "sampler",
+      "label_zh": "BSF 取样器",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.java.sampler.BSFSampler"
+    },
+    {
+      "alias": "BeanShellSampler",
+      "class": "org.apache.jmeter.protocol.java.sampler.BeanShellSampler",
+      "category": "sampler",
+      "label_zh": "BeanShell 取样器",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.java.sampler.BeanShellSampler"
+    },
+    {
+      "alias": "BoltSampler",
+      "class": "org.apache.jmeter.protocol.bolt.sampler.BoltSampler",
+      "category": "sampler",
+      "label_zh": "Bolt 请求",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.bolt.sampler.BoltSampler"
+    },
+    {
+      "alias": "DebugSampler",
+      "class": "org.apache.jmeter.sampler.DebugSampler",
+      "category": "sampler",
+      "label_zh": "Debug 取样器",
+      "scope": "core",
+      "description": "org.apache.jmeter.sampler.DebugSampler"
+    },
+    {
+      "alias": "Dummy Sampler",
+      "class": "kg.apc.jmeter.samplers.DummySampler",
+      "category": "sampler",
+      "label_zh": "Dummy 取样器",
+      "scope": "plugin",
+      "description": "JMeter Plugins - 占位/调试取样器"
+    },
+    {
+      "alias": "FTPSampler",
+      "class": "org.apache.jmeter.protocol.ftp.sampler.FTPSampler",
+      "category": "sampler",
+      "label_zh": "FTPSampler",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.ftp.sampler.FTPSampler"
+    },
+    {
+      "alias": "HTTPSampler2_",
+      "class": "org.apache.jmeter.protocol.http.sampler.HTTPSampler2",
+      "category": "sampler",
+      "label_zh": "HTTPSampler2_",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.sampler.HTTPSampler2"
+    },
+    {
+      "alias": "HTTPSamplerProxy,HTTPSampler,HTTPSampler2",
+      "class": "org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy",
+      "category": "sampler",
+      "label_zh": "HTTPSamplerProxy,HTTPSampler,HTTPSampler2",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy"
+    },
+    {
+      "alias": "HTTPSampler_",
+      "class": "org.apache.jmeter.protocol.http.sampler.HTTPSampler",
+      "category": "sampler",
+      "label_zh": "HTTPSampler_",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.sampler.HTTPSampler"
+    },
+    {
+      "alias": "JDBCSampler",
+      "class": "org.apache.jmeter.protocol.jdbc.sampler.JDBCSampler",
+      "category": "sampler",
+      "label_zh": "JDBC 请求",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.jdbc.sampler.JDBCSampler"
+    },
+    {
+      "alias": "PublisherSampler",
+      "class": "org.apache.jmeter.protocol.jms.sampler.PublisherSampler",
+      "category": "sampler",
+      "label_zh": "JMS 发布",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.jms.sampler.PublisherSampler"
+    },
+    {
+      "alias": "JMSSampler",
+      "class": "org.apache.jmeter.protocol.jms.sampler.JMSSampler",
+      "category": "sampler",
+      "label_zh": "JMS 点对点",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.jms.sampler.JMSSampler"
+    },
+    {
+      "alias": "SubscriberSampler",
+      "class": "org.apache.jmeter.protocol.jms.sampler.SubscriberSampler",
+      "category": "sampler",
+      "label_zh": "JMS 订阅",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.jms.sampler.SubscriberSampler"
+    },
+    {
+      "alias": "JMSProperties",
+      "class": "org.apache.jmeter.protocol.jms.sampler.JMSProperties",
+      "category": "sampler",
+      "label_zh": "JMSProperties",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.jms.sampler.JMSProperties"
+    },
+    {
+      "alias": "JSR223Sampler",
+      "class": "org.apache.jmeter.protocol.java.sampler.JSR223Sampler",
+      "category": "sampler",
+      "label_zh": "JSR223 取样器",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.java.sampler.JSR223Sampler"
+    },
+    {
+      "alias": "JUnitSampler",
+      "class": "org.apache.jmeter.protocol.java.sampler.JUnitSampler",
+      "category": "sampler",
+      "label_zh": "JUnit 请求",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.java.sampler.JUnitSampler"
+    },
+    {
+      "alias": "JavaSampler",
+      "class": "org.apache.jmeter.protocol.java.sampler.JavaSampler",
+      "category": "sampler",
+      "label_zh": "Java 请求",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.java.sampler.JavaSampler"
+    },
+    {
+      "alias": "LDAPExtSampler",
+      "class": "org.apache.jmeter.protocol.ldap.sampler.LDAPExtSampler",
+      "category": "sampler",
+      "label_zh": "LDAP 扩展请求",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.ldap.sampler.LDAPExtSampler"
+    },
+    {
+      "alias": "LDAPSampler",
+      "class": "org.apache.jmeter.protocol.ldap.sampler.LDAPSampler",
+      "category": "sampler",
+      "label_zh": "LDAP 请求",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.ldap.sampler.LDAPSampler"
+    },
+    {
+      "alias": "MongoScriptSampler",
+      "class": "org.apache.jmeter.protocol.mongodb.sampler.MongoScriptSampler",
+      "category": "sampler",
+      "label_zh": "MongoDB 脚本",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.mongodb.sampler.MongoScriptSampler"
+    },
+    {
+      "alias": "SmtpSampler",
+      "class": "org.apache.jmeter.protocol.smtp.sampler.SmtpSampler",
+      "category": "sampler",
+      "label_zh": "SMTP 取样器",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.smtp.sampler.SmtpSampler"
+    },
+    {
+      "alias": "SoapSampler",
+      "class": "org.apache.jmeter.protocol.http.sampler.SoapSampler",
+      "category": "sampler",
+      "label_zh": "SoapSampler",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.sampler.SoapSampler"
+    },
+    {
+      "alias": "SystemSampler",
+      "class": "org.apache.jmeter.protocol.system.SystemSampler",
+      "category": "sampler",
+      "label_zh": "SystemSampler",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.system.SystemSampler"
+    },
+    {
+      "alias": "TCPSampler",
+      "class": "org.apache.jmeter.protocol.tcp.sampler.TCPSampler",
+      "category": "sampler",
+      "label_zh": "TCPSampler",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.tcp.sampler.TCPSampler"
+    },
+    {
+      "alias": "TestAction",
+      "class": "org.apache.jmeter.sampler.TestAction",
+      "category": "sampler",
+      "label_zh": "TestAction",
+      "scope": "core",
+      "description": "org.apache.jmeter.sampler.TestAction"
+    },
+    {
+      "alias": "WebServiceSampler",
+      "class": "org.apache.jmeter.protocol.http.sampler.WebServiceSampler",
+      "category": "sampler",
+      "label_zh": "WebServiceSampler",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.sampler.WebServiceSampler"
+    },
+    {
+      "alias": "httpSample",
+      "class": "org.apache.jmeter.protocol.http.sampler.HTTPSampleResult",
+      "category": "sampler",
+      "label_zh": "httpSample",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.sampler.HTTPSampleResult"
+    },
+    {
+      "alias": "AccessLogSampler",
+      "class": "org.apache.jmeter.protocol.http.sampler.AccessLogSampler",
+      "category": "sampler",
+      "label_zh": "访问日志取样器",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.http.sampler.AccessLogSampler"
+    },
+    {
+      "alias": "MailReaderSampler",
+      "class": "org.apache.jmeter.protocol.mail.sampler.MailReaderSampler",
+      "category": "sampler",
+      "label_zh": "邮件读取取样器",
+      "scope": "core",
+      "description": "org.apache.jmeter.protocol.mail.sampler.MailReaderSampler"
+    },
+    {
+      "alias": "WorkBench",
+      "class": "org.apache.jmeter.testelement.WorkBench",
+      "category": "test_plan",
+      "label_zh": "WorkBench",
+      "scope": "core",
+      "description": "org.apache.jmeter.testelement.WorkBench"
+    },
+    {
+      "alias": "TestPlan",
+      "class": "org.apache.jmeter.testelement.TestPlan",
+      "category": "test_plan",
+      "label_zh": "测试计划",
+      "scope": "core",
+      "description": "org.apache.jmeter.testelement.TestPlan"
+    },
+    {
+      "alias": "Custom Thread Groups",
+      "class": "com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup",
+      "category": "thread_group",
+      "label_zh": "Concurrency Thread Group",
+      "scope": "plugin",
+      "description": "JMeter Plugins - 并发线程组"
+    },
+    {
+      "alias": "OpenModelThreadGroupController",
+      "class": "org.apache.jmeter.threads.openmodel.OpenModelThreadGroupController",
+      "category": "thread_group",
+      "label_zh": "OpenModelThreadGroupController",
+      "scope": "core",
+      "description": "org.apache.jmeter.threads.openmodel.OpenModelThreadGroupController"
+    },
+    {
+      "alias": "PostThreadGroup",
+      "class": "org.apache.jmeter.threads.PostThreadGroup",
+      "category": "thread_group",
+      "label_zh": "Post 线程组",
+      "scope": "core",
+      "description": "org.apache.jmeter.threads.PostThreadGroup"
+    },
+    {
+      "alias": "ReflectionThreadGroup",
+      "class": "org.apache.jmeter.threads.ReflectionThreadGroup",
+      "category": "thread_group",
+      "label_zh": "ReflectionThreadGroup",
+      "scope": "core",
+      "description": "org.apache.jmeter.threads.ReflectionThreadGroup"
+    },
+    {
+      "alias": "SetupThreadGroup",
+      "class": "org.apache.jmeter.threads.SetupThreadGroup",
+      "category": "thread_group",
+      "label_zh": "SetUp 线程组",
+      "scope": "core",
+      "description": "org.apache.jmeter.threads.SetupThreadGroup"
+    },
+    {
+      "alias": "OpenModelThreadGroup",
+      "class": "org.apache.jmeter.threads.openmodel.OpenModelThreadGroup",
+      "category": "thread_group",
+      "label_zh": "开放模型线程组",
+      "scope": "core",
+      "description": "org.apache.jmeter.threads.openmodel.OpenModelThreadGroup"
+    },
+    {
+      "alias": "ThreadGroup",
+      "class": "org.apache.jmeter.threads.ThreadGroup",
+      "category": "thread_group",
+      "label_zh": "线程组",
+      "scope": "core",
+      "description": "org.apache.jmeter.threads.ThreadGroup"
+    },
+    {
+      "alias": "BSFTimer",
+      "class": "org.apache.jmeter.timers.BSFTimer",
+      "category": "timer",
+      "label_zh": "BSFTimer",
+      "scope": "core",
+      "description": "org.apache.jmeter.timers.BSFTimer"
+    },
+    {
+      "alias": "BeanShellTimer",
+      "class": "org.apache.jmeter.timers.BeanShellTimer",
+      "category": "timer",
+      "label_zh": "BeanShell 定时器",
+      "scope": "core",
+      "description": "org.apache.jmeter.timers.BeanShellTimer"
+    },
+    {
+      "alias": "JSR223Timer",
+      "class": "org.apache.jmeter.timers.JSR223Timer",
+      "category": "timer",
+      "label_zh": "JSR223 定时器",
+      "scope": "core",
+      "description": "org.apache.jmeter.timers.JSR223Timer"
+    },
+    {
+      "alias": "SyncTimer",
+      "class": "org.apache.jmeter.timers.SyncTimer",
+      "category": "timer",
+      "label_zh": "同步定时器",
+      "scope": "core",
+      "description": "org.apache.jmeter.timers.SyncTimer"
+    },
+    {
+      "alias": "Throughput Shaping Timer",
+      "class": "kg.apc.jmeter.timers.VariableThroughputTimer",
+      "category": "timer",
+      "label_zh": "吞吐量 shaping 定时器",
+      "scope": "plugin",
+      "description": "JMeter Plugins - 动态吞吐量"
+    },
+    {
+      "alias": "ConstantTimer",
+      "class": "org.apache.jmeter.timers.ConstantTimer",
+      "category": "timer",
+      "label_zh": "固定定时器",
+      "scope": "core",
+      "description": "org.apache.jmeter.timers.ConstantTimer"
+    },
+    {
+      "alias": "UniformRandomTimer",
+      "class": "org.apache.jmeter.timers.UniformRandomTimer",
+      "category": "timer",
+      "label_zh": "均匀随机定时器",
+      "scope": "core",
+      "description": "org.apache.jmeter.timers.UniformRandomTimer"
+    },
+    {
+      "alias": "ConstantThroughputTimer",
+      "class": "org.apache.jmeter.timers.ConstantThroughputTimer",
+      "category": "timer",
+      "label_zh": "常数吞吐量定时器",
+      "scope": "core",
+      "description": "org.apache.jmeter.timers.ConstantThroughputTimer"
+    },
+    {
+      "alias": "PoissonRandomTimer",
+      "class": "org.apache.jmeter.timers.PoissonRandomTimer",
+      "category": "timer",
+      "label_zh": "泊松随机定时器",
+      "scope": "core",
+      "description": "org.apache.jmeter.timers.PoissonRandomTimer"
+    },
+    {
+      "alias": "PreciseThroughputTimer",
+      "class": "org.apache.jmeter.timers.poissonarrivals.PreciseThroughputTimer",
+      "category": "timer",
+      "label_zh": "精确吞吐量定时器",
+      "scope": "core",
+      "description": "org.apache.jmeter.timers.poissonarrivals.PreciseThroughputTimer"
+    },
+    {
+      "alias": "GaussianRandomTimer",
+      "class": "org.apache.jmeter.timers.GaussianRandomTimer",
+      "category": "timer",
+      "label_zh": "高斯随机定时器",
+      "scope": "core",
+      "description": "org.apache.jmeter.timers.GaussianRandomTimer"
+    }
+  ],
+  "tree": {
+    "id": "test_plan_root",
+    "label_zh": "测试计划",
+    "label_en": "Test Plan",
+    "children": [
+      {
+        "id": "tg",
+        "label_zh": "线程组",
+        "label_en": "Thread Group",
+        "category": "thread_group",
+        "children": [
+          {
+            "id": "tg_config",
+            "label_zh": "配置元件",
+            "category": "config"
+          },
+          {
+            "id": "tg_controller",
+            "label_zh": "逻辑控制器",
+            "category": "controller"
+          },
+          {
+            "id": "tg_sampler",
+            "label_zh": "取样器",
+            "category": "sampler"
+          },
+          {
+            "id": "tg_timer",
+            "label_zh": "定时器",
+            "category": "timer"
+          },
+          {
+            "id": "tg_pre",
+            "label_zh": "前置处理器",
+            "category": "preprocessor"
+          },
+          {
+            "id": "tg_post",
+            "label_zh": "后置处理器",
+            "category": "postprocessor"
+          },
+          {
+            "id": "tg_assert",
+            "label_zh": "断言",
+            "category": "assertion"
+          },
+          {
+            "id": "tg_listener",
+            "label_zh": "监听器",
+            "category": "listener"
+          }
+        ]
+      },
+      {
+        "id": "plan_listener",
+        "label_zh": "测试计划级监听器",
+        "category": "listener"
+      },
+      {
+        "id": "plan_other",
+        "label_zh": "其他 / 插件",
+        "category": "other"
+      }
+    ]
+  },
+  "runtime": {
+    "jmeter_home": "/opt/jmeter",
+    "jmeter_version": "unknown",
+    "java_version": "unknown",
+    "maven_version": "not installed",
+    "plugin_jars": [
+      "ApacheJMeter_bolt.jar",
+      "ApacheJMeter_components.jar",
+      "ApacheJMeter_core.jar",
+      "ApacheJMeter_ftp.jar",
+      "ApacheJMeter_functions.jar",
+      "ApacheJMeter_http.jar",
+      "ApacheJMeter_java.jar",
+      "ApacheJMeter_jdbc.jar",
+      "ApacheJMeter_jms.jar",
+      "ApacheJMeter_junit.jar",
+      "ApacheJMeter_ldap.jar",
+      "ApacheJMeter_mail.jar",
+      "ApacheJMeter_mongodb.jar",
+      "ApacheJMeter_native.jar",
+      "ApacheJMeter_tcp.jar",
+      "jmeter-plugins-manager.jar"
+    ],
+    "plugin_jar_count": 16
+  }
+}

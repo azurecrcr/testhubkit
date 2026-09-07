@@ -1,0 +1,28 @@
+/**
+ * Studio v2 树形 · ⋯ 菜单仅点击展开（禁用 hover 预览）
+ * 覆盖 jms-load-test-studio-inline.css 中 .is-hover 展示规则
+ */
+body.lth-studio-v2 .lth-step-actions.is-hover:not(.is-open) .lth-step-menu {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+body.lth-studio-v2 .lth-step-actions.is-open .lth-step-menu {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.15rem !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--http:has(.lth-step-actions.is-hover:not(.is-open)),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card:has(.lth-step-actions.is-hover:not(.is-open)) {
+    overflow: hidden !important;
+    z-index: auto !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-http-card .lth-step-actions.is-hover:not(.is-open) {
+    position: static !important;
+    z-index: auto !important;
+}

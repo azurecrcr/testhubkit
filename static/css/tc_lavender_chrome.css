@@ -1,0 +1,410 @@
+/* Test-case hub · soft lavender page bg (AI / Excel workbench) */
+body.tc-hub-ai-tab,
+body.tc-hub-excel-tab {
+    background-color: #f5f3ff !important;
+    color: #1f2937 !important;
+}
+
+.tc-ai-page__bg,
+.tc-excel-page__bg {
+    background-color: #f3e8ff !important;
+}
+
+.tc-ai-page__bg > picture,
+.tc-ai-page__bg > picture img,
+.tc-ai-page__bg-img,
+.tc-excel-page__bg > picture,
+.tc-excel-page__bg > picture img,
+.tc-excel-page__bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+    object-position: center bottom;
+    display: block;
+}
+
+.tc-ai-page__bg-scrim,
+.tc-excel-page__bg-scrim {
+    background:
+        linear-gradient(180deg, rgba(245, 243, 255, 0.30) 0%, rgba(243, 232, 255, 0.18) 42%, rgba(250, 245, 255, 0.26) 100%),
+        radial-gradient(ellipse 90% 55% at 50% -5%, rgba(167, 139, 250, 0.14), transparent 62%),
+        radial-gradient(ellipse 70% 45% at 100% 100%, rgba(196, 181, 253, 0.10), transparent 55%) !important;
+}
+
+/* Mode switch: readable on light lavender */
+body.tc-hub-ai-tab .tc-hub-scope .tc-hub-mode-switch--compact,
+body.tc-hub-excel-tab .tc-hub-scope .tc-hub-mode-switch--compact {
+    border-color: rgba(167, 139, 250, 0.28) !important;
+    background: rgba(255, 255, 255, 0.42) !important;
+    box-shadow:
+        0 1px 3px rgba(91, 33, 182, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55) !important;
+}
+
+body.tc-hub-ai-tab .tc-hub-scope .tc-hub-mode--compact:not(.tc-hub-mode--active),
+body.tc-hub-excel-tab .tc-hub-scope .tc-hub-mode--compact:not(.tc-hub-mode--active) {
+    color: #6d28d9 !important;
+}
+
+body.tc-hub-ai-tab .tc-hub-scope .tc-hub-mode--compact:not(.tc-hub-mode--active) .tc-hub-mode__title,
+body.tc-hub-excel-tab .tc-hub-scope .tc-hub-mode--compact:not(.tc-hub-mode--active) .tc-hub-mode__title {
+    color: #6d28d9 !important;
+}
+
+body.tc-hub-ai-tab .tc-hub-scope .tc-hub-mode--compact:not(.tc-hub-mode--active):hover,
+body.tc-hub-excel-tab .tc-hub-scope .tc-hub-mode--compact:not(.tc-hub-mode--active):hover {
+    background: rgba(245, 243, 255, 0.85) !important;
+    border-color: rgba(167, 139, 250, 0.4) !important;
+    color: #5b21b6 !important;
+}
+
+body.tc-hub-ai-tab .tc-hub-scope .tc-hub-mode--compact:not(.tc-hub-mode--active):hover .tc-hub-mode__title,
+body.tc-hub-excel-tab .tc-hub-scope .tc-hub-mode--compact:not(.tc-hub-mode--active):hover .tc-hub-mode__title {
+    color: #5b21b6 !important;
+}
+
+body.tc-hub-ai-tab .tc-hub-scope .tc-hub-mode--compact.tc-hub-mode--active,
+body.tc-hub-ai-tab .tc-hub-scope .tc-hub-mode--compact.tc-hub-mode--active:hover,
+body.tc-hub-excel-tab .tc-hub-scope .tc-hub-mode--compact.tc-hub-mode--active,
+body.tc-hub-excel-tab .tc-hub-scope .tc-hub-mode--compact.tc-hub-mode--active:hover {
+    border-color: rgba(124, 58, 237, 0.4) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #5b21b6 !important;
+    box-shadow: 0 1px 4px rgba(91, 33, 182, 0.12) !important;
+}
+
+body.tc-hub-ai-tab .tc-hub-scope .tc-hub-mode--compact.tc-hub-mode--active .tc-hub-mode__title,
+body.tc-hub-excel-tab .tc-hub-scope .tc-hub-mode--compact.tc-hub-mode--active .tc-hub-mode__title {
+    color: #5b21b6 !important;
+}
+
+/* Outer glass cards: a bit more opaque on light lavender */
+body.tc-hub-ai-tab .tc-workbench-scope {
+    border-color: rgba(167, 139, 250, 0.22) !important;
+    background: rgba(255, 255, 255, 0.28) !important;
+    box-shadow:
+        0 1px 2px rgba(91, 33, 182, 0.05),
+        0 12px 40px rgba(139, 92, 246, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45) !important;
+}
+
+body.tc-hub-excel-tab .tc-hub-panel--excel .ctm-card {
+    border-color: rgba(167, 139, 250, 0.24) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* —— 用例页顶栏：浅紫玻璃（仅 tc-hub-page / AI·Excel tab） —— */
+body.tc-hub-page .hf-gnav,
+body.tc-hub-ai-tab .hf-gnav,
+body.tc-hub-excel-tab .hf-gnav {
+    background:
+        linear-gradient(
+            118deg,
+            rgba(255, 255, 255, 0.72) 0%,
+            rgba(245, 243, 255, 0.68) 42%,
+            rgba(237, 233, 254, 0.62) 100%
+        ) !important;
+    border-bottom: 1px solid rgba(167, 139, 250, 0.22) !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.55) inset,
+        0 8px 28px -16px rgba(91, 33, 182, 0.18) !important;
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+body.tc-hub-page .hf-gnav::before,
+body.tc-hub-ai-tab .hf-gnav::before,
+body.tc-hub-excel-tab .hf-gnav::before {
+    opacity: 0.25 !important;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0,
+        transparent 47px,
+        rgba(167, 139, 250, 0.04) 47px,
+        rgba(167, 139, 250, 0.04) 48px
+    ) !important;
+}
+
+body.tc-hub-page .hf-gnav::after,
+body.tc-hub-ai-tab .hf-gnav::after,
+body.tc-hub-excel-tab .hf-gnav::after {
+    background:
+        radial-gradient(ellipse 70% 120% at 8% -30%, rgba(196, 181, 253, 0.35), transparent 58%),
+        radial-gradient(ellipse 55% 90% at 96% 0%, rgba(167, 139, 250, 0.18), transparent 52%) !important;
+    opacity: 1 !important;
+}
+
+body.tc-hub-page .hf-gnav__brand,
+body.tc-hub-ai-tab .hf-gnav__brand,
+body.tc-hub-excel-tab .hf-gnav__brand {
+    color: #4c1d95 !important;
+}
+
+body.tc-hub-page .hf-gnav__titles strong,
+body.tc-hub-ai-tab .hf-gnav__titles strong,
+body.tc-hub-excel-tab .hf-gnav__titles strong {
+    color: #4c1d95 !important;
+}
+
+body.tc-hub-page .hf-gnav__titles span,
+body.tc-hub-ai-tab .hf-gnav__titles span,
+body.tc-hub-excel-tab .hf-gnav__titles span {
+    color: rgba(109, 40, 217, 0.62) !important;
+}
+
+body.tc-hub-page .hf-gnav__mark,
+body.tc-hub-ai-tab .hf-gnav__mark,
+body.tc-hub-excel-tab .hf-gnav__mark {
+    box-shadow:
+        0 2px 12px rgba(139, 92, 246, 0.28),
+        0 0 0 1px rgba(167, 139, 250, 0.28) !important;
+}
+
+body.tc-hub-page .hf-gnav__brand:hover .hf-gnav__mark,
+body.tc-hub-ai-tab .hf-gnav__brand:hover .hf-gnav__mark,
+body.tc-hub-excel-tab .hf-gnav__brand:hover .hf-gnav__mark {
+    box-shadow:
+        0 4px 16px rgba(139, 92, 246, 0.35),
+        0 0 0 1px rgba(124, 58, 237, 0.3) !important;
+}
+
+body.tc-hub-page .hf-gnav__mega-btn,
+body.tc-hub-ai-tab .hf-gnav__mega-btn,
+body.tc-hub-excel-tab .hf-gnav__mega-btn {
+    border-color: rgba(167, 139, 250, 0.28) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    color: #5b21b6 !important;
+}
+
+body.tc-hub-page .hf-gnav__mega-btn:hover,
+body.tc-hub-ai-tab .hf-gnav__mega-btn:hover,
+body.tc-hub-excel-tab .hf-gnav__mega-btn:hover {
+    background: rgba(245, 243, 255, 0.92) !important;
+    border-color: rgba(139, 92, 246, 0.4) !important;
+}
+
+body.tc-hub-page .hf-gnav__mega-btn[aria-expanded="true"],
+body.tc-hub-ai-tab .hf-gnav__mega-btn[aria-expanded="true"],
+body.tc-hub-excel-tab .hf-gnav__mega-btn[aria-expanded="true"] {
+    background: rgba(237, 233, 254, 0.95) !important;
+    border-color: rgba(124, 58, 237, 0.4) !important;
+    box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.22) !important;
+}
+
+body.tc-hub-page .hf-gnav__prompts,
+body.tc-hub-ai-tab .hf-gnav__prompts,
+body.tc-hub-excel-tab .hf-gnav__prompts {
+    color: #5b21b6 !important;
+    border-color: rgba(167, 139, 250, 0.35) !important;
+    background: linear-gradient(120deg, rgba(237, 233, 254, 0.9), rgba(224, 231, 255, 0.85)) !important;
+    box-shadow: 0 1px 4px rgba(91, 33, 182, 0.08) !important;
+}
+
+body.tc-hub-page .hf-gnav__prompts:hover,
+body.tc-hub-ai-tab .hf-gnav__prompts:hover,
+body.tc-hub-excel-tab .hf-gnav__prompts:hover {
+    border-color: rgba(124, 58, 237, 0.45) !important;
+    box-shadow: 0 4px 16px -6px rgba(139, 92, 246, 0.35) !important;
+}
+
+body.tc-hub-page .hf-gnav__feedback,
+body.tc-hub-ai-tab .hf-gnav__feedback,
+body.tc-hub-excel-tab .hf-gnav__feedback {
+    color: #6d28d9 !important;
+    border-color: rgba(196, 181, 253, 0.45) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+}
+
+body.tc-hub-page .hf-gnav__feedback:hover,
+body.tc-hub-ai-tab .hf-gnav__feedback:hover,
+body.tc-hub-excel-tab .hf-gnav__feedback:hover {
+    background: rgba(245, 243, 255, 0.92) !important;
+    border-color: rgba(167, 139, 250, 0.55) !important;
+}
+
+body.tc-hub-page .hf-gnav__messages,
+body.tc-hub-ai-tab .hf-gnav__messages,
+body.tc-hub-excel-tab .hf-gnav__messages {
+    color: #6d28d9 !important;
+    border-color: rgba(167, 139, 250, 0.45) !important;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 243, 255, 0.82)) !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.85) inset,
+        0 1px 3px rgba(91, 33, 182, 0.1) !important;
+}
+
+body.tc-hub-page .hf-gnav__messages:hover,
+body.tc-hub-ai-tab .hf-gnav__messages:hover,
+body.tc-hub-excel-tab .hf-gnav__messages:hover {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border-color: rgba(124, 58, 237, 0.55) !important;
+}
+
+body.tc-hub-page .hf-gnav__messages[data-has-unread="1"],
+body.tc-hub-ai-tab .hf-gnav__messages[data-has-unread="1"],
+body.tc-hub-excel-tab .hf-gnav__messages[data-has-unread="1"] {
+    border-color: rgba(244, 63, 94, 0.5) !important;
+    box-shadow:
+        0 0 0 3px rgba(251, 113, 133, 0.16),
+        0 2px 10px rgba(91, 33, 182, 0.1) !important;
+}
+
+body.tc-hub-page .hf-gnav__messages-badge,
+body.tc-hub-ai-tab .hf-gnav__messages-badge,
+body.tc-hub-excel-tab .hf-gnav__messages-badge {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.95) !important;
+}
+
+body.tc-hub-page .hf-gnav__auth,
+body.tc-hub-ai-tab .hf-gnav__auth,
+body.tc-hub-excel-tab .hf-gnav__auth {
+    color: #5b21b6 !important;
+    border-color: rgba(167, 139, 250, 0.4) !important;
+    background: linear-gradient(120deg, rgba(237, 233, 254, 0.95), rgba(224, 231, 255, 0.88)) !important;
+}
+
+body.tc-hub-page .hf-gnav__user-email,
+body.tc-hub-ai-tab .hf-gnav__user-email,
+body.tc-hub-excel-tab .hf-gnav__user-email {
+    color: #4c1d95 !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    border: 1px solid rgba(167, 139, 250, 0.22);
+}
+
+body.tc-hub-page .hf-gnav__logout,
+body.tc-hub-ai-tab .hf-gnav__logout,
+body.tc-hub-excel-tab .hf-gnav__logout {
+    color: #6d28d9 !important;
+    border-color: rgba(167, 139, 250, 0.28) !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+}
+
+body.tc-hub-page .hf-gnav__logout:hover,
+body.tc-hub-ai-tab .hf-gnav__logout:hover,
+body.tc-hub-excel-tab .hf-gnav__logout:hover {
+    background: rgba(245, 243, 255, 0.92) !important;
+}
+
+body.tc-hub-page .hf-gnav__burger,
+body.tc-hub-ai-tab .hf-gnav__burger,
+body.tc-hub-excel-tab .hf-gnav__burger {
+    border-color: rgba(167, 139, 250, 0.3) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    color: #5b21b6 !important;
+}
+
+body.tc-hub-page .hf-gnav__burger span,
+body.tc-hub-ai-tab .hf-gnav__burger span,
+body.tc-hub-excel-tab .hf-gnav__burger span {
+    background: #5b21b6 !important;
+}
+
+/* 移动端抽屉：浅紫玻璃，与顶栏一致 */
+body.tc-hub-page .hf-gnav__drawer,
+body.tc-hub-ai-tab .hf-gnav__drawer,
+body.tc-hub-excel-tab .hf-gnav__drawer {
+    background: rgba(76, 29, 149, 0.18) !important;
+}
+
+body.tc-hub-page .hf-gnav__sheet,
+body.tc-hub-ai-tab .hf-gnav__sheet,
+body.tc-hub-excel-tab .hf-gnav__sheet {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(245, 243, 255, 0.98) 100%) !important;
+    border-left: 1px solid rgba(167, 139, 250, 0.25) !important;
+    box-shadow: -12px 0 40px rgba(91, 33, 182, 0.12) !important;
+}
+
+body.tc-hub-page .hf-gnav__sheet-top,
+body.tc-hub-ai-tab .hf-gnav__sheet-top,
+body.tc-hub-excel-tab .hf-gnav__sheet-top {
+    border-bottom-color: rgba(167, 139, 250, 0.18) !important;
+}
+
+body.tc-hub-page .hf-gnav__sheet-top p,
+body.tc-hub-ai-tab .hf-gnav__sheet-top p,
+body.tc-hub-excel-tab .hf-gnav__sheet-top p,
+body.tc-hub-page .hf-gnav__sheet-sec h3,
+body.tc-hub-ai-tab .hf-gnav__sheet-sec h3,
+body.tc-hub-excel-tab .hf-gnav__sheet-sec h3 {
+    color: rgba(109, 40, 217, 0.7) !important;
+}
+
+body.tc-hub-page .hf-gnav__sheet-x,
+body.tc-hub-ai-tab .hf-gnav__sheet-x,
+body.tc-hub-excel-tab .hf-gnav__sheet-x {
+    border-color: rgba(167, 139, 250, 0.28) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    color: #5b21b6 !important;
+}
+
+body.tc-hub-page .hf-gnav__sheet a,
+body.tc-hub-ai-tab .hf-gnav__sheet a,
+body.tc-hub-excel-tab .hf-gnav__sheet a {
+    color: #4c1d95 !important;
+}
+
+body.tc-hub-page .hf-gnav__sheet a:hover,
+body.tc-hub-ai-tab .hf-gnav__sheet a:hover,
+body.tc-hub-excel-tab .hf-gnav__sheet a:hover {
+    background: rgba(237, 233, 254, 0.85) !important;
+}
+
+body.tc-hub-page .hf-gnav__sheet a[aria-current="page"],
+body.tc-hub-ai-tab .hf-gnav__sheet a[aria-current="page"],
+body.tc-hub-excel-tab .hf-gnav__sheet a[aria-current="page"] {
+    background: rgba(237, 233, 254, 0.95) !important;
+    border-color: rgba(167, 139, 250, 0.35) !important;
+}
+
+body.tc-hub-page .hf-gnav__sheet-prompts,
+body.tc-hub-ai-tab .hf-gnav__sheet-prompts,
+body.tc-hub-excel-tab .hf-gnav__sheet-prompts {
+    border-top-color: rgba(167, 139, 250, 0.18) !important;
+}
+
+body.tc-hub-page .hf-gnav__sheet-prompts a,
+body.tc-hub-ai-tab .hf-gnav__sheet-prompts a,
+body.tc-hub-excel-tab .hf-gnav__sheet-prompts a {
+    background: linear-gradient(120deg, rgba(237, 233, 254, 0.9), rgba(224, 231, 255, 0.85)) !important;
+    border-color: rgba(167, 139, 250, 0.3) !important;
+}
+
+body.tc-hub-page .hf-gnav__sheet-feedback,
+body.tc-hub-ai-tab .hf-gnav__sheet-feedback,
+body.tc-hub-excel-tab .hf-gnav__sheet-feedback {
+    border-color: rgba(167, 139, 250, 0.3) !important;
+    background: rgba(245, 243, 255, 0.9) !important;
+    color: #5b21b6 !important;
+}
+
+body.tc-hub-page .hf-gnav__sheet-auth,
+body.tc-hub-ai-tab .hf-gnav__sheet-auth,
+body.tc-hub-excel-tab .hf-gnav__sheet-auth {
+    border-color: rgba(167, 139, 250, 0.35) !important;
+    background: rgba(237, 233, 254, 0.95) !important;
+    color: #5b21b6 !important;
+}
+
+body.tc-hub-page .hf-gnav__sheet-user,
+body.tc-hub-ai-tab .hf-gnav__sheet-user,
+body.tc-hub-excel-tab .hf-gnav__sheet-user {
+    background: rgba(255, 255, 255, 0.65) !important;
+    border-color: rgba(167, 139, 250, 0.22) !important;
+}
+
+body.tc-hub-page .hf-gnav__sheet-user p,
+body.tc-hub-ai-tab .hf-gnav__sheet-user p,
+body.tc-hub-excel-tab .hf-gnav__sheet-user p {
+    color: rgba(109, 40, 217, 0.65) !important;
+}
+
+body.tc-hub-page .hf-gnav__sheet-user strong,
+body.tc-hub-ai-tab .hf-gnav__sheet-user strong,
+body.tc-hub-excel-tab .hf-gnav__sheet-user strong {
+    color: #4c1d95 !important;
+}

@@ -1,0 +1,235 @@
+{# 全站投稿/建议：顶栏按钮 + 弹窗。样式见 page_shells.css / toolkit.css + hf_feedback_attach.css #}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hf_feedback_attach.css') }}?v=20260807fbimg9">
+<div id="hf-feedback-modal" class="hf-feedback-modal hidden" role="dialog" aria-modal="true" aria-labelledby="hf-feedback-modal-title" aria-hidden="true">
+    <div class="hf-feedback-modal__panel" onclick="event.stopPropagation()">
+        <div class="hf-feedback-modal__head">
+            <button type="button" id="hf-feedback-modal-close" class="hf-feedback-modal__close" aria-label="关闭">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <h3 id="hf-feedback-modal-title" class="hf-feedback-modal__title">投稿 / 建议</h3>
+            <p class="hf-feedback-modal__desc">欢迎反馈想法、问题或改进建议。</p>
+        </div>
+        <div class="hf-feedback-modal__body">
+            <div class="hf-feedback-modal__field">
+                <label class="form-label hf-feedback-modal__label" for="hf-feedback-content">建议内容 <span class="hf-feedback-modal__req">*</span></label>
+                <div class="hf-feedback-composer">
+                    <textarea id="hf-feedback-content" class="form-input hf-feedback-modal__textarea" maxlength="2000" placeholder="请描述你的建议或遇到的问题…"></textarea>
+                    <button type="button" id="hf-feedback-attach-add" class="hf-feedback-attach__add" aria-label="添加图片" title="添加图片">+</button>
+                    <input id="hf-feedback-attach-input" class="hf-feedback-attach__file" type="file" accept="image/jpeg,image/png,image/webp,image/gif,.jpg,.jpeg,.png,.webp,.gif" multiple>
+                </div>
+                <div id="hf-feedback-attach-thumbs" class="hf-feedback-attach__thumbs"></div>
+                <p class="hf-feedback-modal__hint">5～2000 字</p>
+                <p id="hf-feedback-attach-err" class="hf-feedback-attach__err is-hidden" role="alert"></p>
+            </div>
+            <div class="hf-feedback-modal__field hf-feedback-modal__field--contact">
+                <label class="form-label hf-feedback-modal__label" for="hf-feedback-contact">联系方式（选填）</label>
+                <input type="text" id="hf-feedback-contact" class="form-input" maxlength="120" placeholder="邮箱或昵称，便于回访">
+            </div>
+            <p id="hf-feedback-error" class="hf-feedback-modal__error hidden"></p>
+            <div class="hf-feedback-modal__actions">
+                <button type="button" id="hf-feedback-cancel" class="btn btn-secondary">取消</button>
+                <button type="button" id="hf-feedback-submit" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="hf-feedback-toast" class="hf-feedback-toast" role="status" aria-live="polite">
+    <div class="hf-feedback-toast__inner">感谢你的建议，我们已收到。</div>
+</div>
+
+<script src="{{ url_for('static', filename='js/hf_feedback_attachments.js') }}?v=20260807fbimg9"></script>
+<script>
+(function () {
+    if (window.__hfFeedbackUiBound) return;
+    window.__hfFeedbackUiBound = true;
+
+    function ensureFeedbackMounted() {
+        var modal = document.getElementById('hf-feedback-modal');
+        var toast = document.getElementById('hf-feedback-toast');
+        if (modal && modal.parentElement !== document.body) document.body.appendChild(modal);
+        if (toast && toast.parentElement !== document.body) document.body.appendChild(toast);
+        return modal;
+    }
+
+    function showModal(el) {
+        if (!el) return;
+        el.classList.remove('hidden');
+        el.classList.add('flex');
+        el.setAttribute('aria-hidden', 'false');
+        el.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function hideModal(el) {
+        if (!el) return;
+        el.classList.add('hidden');
+        el.classList.remove('flex');
+        el.setAttribute('aria-hidden', 'true');
+        el.style.display = '';
+        if (!document.querySelector('#tc-app-dialog:not(.hidden), #tc-template-modal:not(.hidden), #hf-feedback-modal:not(.hidden)')) {
+            document.body.style.overflow = '';
+        }
+    }
+
+    function showToast() {
+        var t = document.getElementById('hf-feedback-toast');
+        if (!t) return;
+        t.classList.add('hf-feedback-toast--visible');
+        setTimeout(function () {
+            t.classList.remove('hf-feedback-toast--visible');
+        }, 2800);
+    }
+
+    function closeMobileGnavDrawer() {
+        var drawer = document.querySelector('[data-gnav-drawer].is-open');
+        if (!drawer) return;
+        drawer.classList.remove('is-open');
+        var burger = document.querySelector('[data-gnav-burger]');
+        if (burger) {
+            burger.classList.remove('is-open');
+            burger.setAttribute('aria-expanded', 'false');
+        }
+        setTimeout(function () { drawer.hidden = true; }, 320);
+    }
+
+    function openFeedbackModal(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        closeMobileGnavDrawer();
+        var modal = ensureFeedbackMounted();
+        var contentEl = document.getElementById('hf-feedback-content');
+        var contactEl = document.getElementById('hf-feedback-contact');
+        var errEl = document.getElementById('hf-feedback-error');
+        if (contentEl) contentEl.value = '';
+        if (contactEl) contactEl.value = '';
+        if (errEl) { errEl.textContent = ''; errEl.classList.add('hidden'); }
+        if (window.HfFeedbackAttach && typeof window.HfFeedbackAttach.clear === 'function') {
+            window.HfFeedbackAttach.clear();
+        }
+        showModal(modal);
+        if (contentEl) setTimeout(function () { contentEl.focus(); }, 50);
+    }
+
+    function closeFeedbackModal() {
+        if (window.HfFeedbackAttach && typeof window.HfFeedbackAttach.clear === 'function') {
+            window.HfFeedbackAttach.clear();
+        }
+        hideModal(document.getElementById('hf-feedback-modal'));
+    }
+
+    /** 弹窗内已有草稿（正文/联系方式/图片）时，点击遮罩不关闭。新方法，不影响取消/关闭按钮。 */
+    function feedbackModalHasDraft() {
+        var contentEl = document.getElementById('hf-feedback-content');
+        var contactEl = document.getElementById('hf-feedback-contact');
+        if (contentEl && String(contentEl.value || '').trim()) return true;
+        if (contactEl && String(contactEl.value || '').trim()) return true;
+        if (window.HfFeedbackAttach && typeof window.HfFeedbackAttach.getCount === 'function') {
+            if (window.HfFeedbackAttach.getCount() > 0) return true;
+        }
+        return false;
+    }
+
+    function tryCloseFeedbackModalByMask() {
+        if (feedbackModalHasDraft()) return;
+        closeFeedbackModal();
+    }
+
+    window.openHfFeedbackModal = openFeedbackModal;
+    window.closeHfFeedbackModal = closeFeedbackModal;
+
+    function bindOpenTriggers() {
+        document.querySelectorAll('[data-hf-feedback-open]').forEach(function (btn) {
+            if (btn._hfFbOpenBound) return;
+            btn._hfFbOpenBound = true;
+            btn.addEventListener('click', openFeedbackModal);
+        });
+    }
+
+    document.addEventListener('click', function (e) {
+        var btn = e.target && e.target.closest ? e.target.closest('[data-hf-feedback-open]') : null;
+        if (!btn) return;
+        openFeedbackModal(e);
+    }, true);
+
+    document.addEventListener('keydown', function (e) {
+        var modal = document.getElementById('hf-feedback-modal');
+        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) closeFeedbackModal();
+    });
+
+    function bindSubmit() {
+        bindOpenTriggers();
+        if (window.HfFeedbackAttach && typeof window.HfFeedbackAttach.bind === 'function') {
+            window.HfFeedbackAttach.bind();
+        }
+        var submitBtn = document.getElementById('hf-feedback-submit');
+        var cancelBtn = document.getElementById('hf-feedback-cancel');
+        var closeBtn = document.getElementById('hf-feedback-modal-close');
+        var contentEl = document.getElementById('hf-feedback-content');
+        var contactEl = document.getElementById('hf-feedback-contact');
+        var errEl = document.getElementById('hf-feedback-error');
+        var modal = document.getElementById('hf-feedback-modal');
+        if (closeBtn && !closeBtn._hfFbBound) {
+            closeBtn._hfFbBound = true;
+            closeBtn.addEventListener('click', closeFeedbackModal);
+        }
+        if (cancelBtn && !cancelBtn._hfFbBound) {
+            cancelBtn._hfFbBound = true;
+            cancelBtn.addEventListener('click', closeFeedbackModal);
+        }
+        if (modal && !modal._hfFbBound) {
+            modal._hfFbBound = true;
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) tryCloseFeedbackModalByMask();
+            });
+        }
+        if (submitBtn && !submitBtn._hfFbBound) {
+            submitBtn._hfFbBound = true;
+            submitBtn.addEventListener('click', function () {
+                var content = contentEl ? contentEl.value.trim() : '';
+                var contact = contactEl ? contactEl.value.trim() : '';
+                if (errEl) { errEl.classList.add('hidden'); errEl.textContent = ''; }
+                if (content.length < 5) {
+                    if (errEl) { errEl.textContent = '请至少填写 5 个字的建议内容'; errEl.classList.remove('hidden'); }
+                    return;
+                }
+                submitBtn.disabled = true;
+                var fd = new FormData();
+                fd.append('content', content);
+                fd.append('contact', contact);
+                fd.append('page_url', window.location.href);
+                if (window.HfFeedbackAttach && typeof window.HfFeedbackAttach.appendToFormData === 'function') {
+                    window.HfFeedbackAttach.appendToFormData(fd);
+                }
+                fetch('/api/feedback', {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    body: fd
+                })
+                .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+                .then(function (res) {
+                    if (!res.ok || res.j.error) throw new Error(res.j.error || '提交失败');
+                    closeFeedbackModal();
+                    showToast();
+                })
+                .catch(function (err) {
+                    if (errEl) {
+                        errEl.textContent = err.message || '提交失败，请稍后重试';
+                        errEl.classList.remove('hidden');
+                    }
+                })
+                .finally(function () { submitBtn.disabled = false; });
+            });
+        }
+    }
+
+    bindOpenTriggers();
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bindSubmit);
+    } else {
+        bindSubmit();
+    }
+})();
+</script>

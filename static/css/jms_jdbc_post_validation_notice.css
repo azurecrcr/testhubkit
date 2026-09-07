@@ -1,0 +1,161 @@
+/**
+ * JDBC PostProcessor · 保存校验提示（隔离样式 · 仅 TG/HTTP JDBC 弹窗）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-step-modal {
+    position: relative;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-jdbc-vn,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-jdbc-vn {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 4.25rem;
+    z-index: 14;
+    display: flex;
+    justify-content: center;
+    padding: 0 1.1rem;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.24s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-jdbc-vn.is-visible,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-jdbc-vn.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-jdbc-vn__card,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-jdbc-vn__card {
+    pointer-events: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    width: min(100%, 30rem);
+    padding: 0.9rem 1rem 0.9rem 0.85rem;
+    border-radius: 16px;
+    border: 1px solid rgba(99, 102, 241, 0.22);
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.99) 0%, rgba(248, 250, 252, 0.97) 55%, rgba(238, 242, 255, 0.94) 100%);
+    box-shadow:
+        0 20px 48px rgba(15, 23, 42, 0.12),
+        0 0 0 1px rgba(255, 255, 255, 0.75) inset,
+        0 1px 0 rgba(99, 102, 241, 0.06) inset;
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-jdbc-vn__accent,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-jdbc-vn__accent {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #6366f1 0%, #4f46e5 48%, #3730a3 100%);
+    border-radius: 16px 0 0 16px;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-jdbc-vn__main,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-jdbc-vn__main {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding-left: 0.15rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-jdbc-vn__icon,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-jdbc-vn__icon {
+    flex: 0 0 auto;
+    width: 2.15rem;
+    height: 2.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    color: #4338ca;
+    background: rgba(99, 102, 241, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(99, 102, 241, 0.12);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-jdbc-vn__icon svg,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-jdbc-vn__icon svg {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-jdbc-vn__copy,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-jdbc-vn__copy {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-jdbc-vn__title,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-jdbc-vn__title {
+    font-size: 0.84rem;
+    font-weight: 650;
+    letter-spacing: 0.01em;
+    color: #0f172a;
+    line-height: 1.35;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-jdbc-vn__message,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-jdbc-vn__message {
+    margin-top: 0.2rem;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: #334155;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-jdbc-vn__hint,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-jdbc-vn__hint {
+    margin-top: 0.35rem;
+    font-size: 0.72rem;
+    line-height: 1.4;
+    color: #64748b;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-jdbc-vn__action,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-jdbc-vn__action {
+    flex: 0 0 auto;
+    align-self: center;
+    padding: 0.42rem 0.85rem;
+    border: none;
+    border-radius: 999px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #fff;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.28);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-jdbc-vn__action:hover,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-jdbc-vn__action:hover {
+    filter: brightness(1.04);
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.34);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-jdbc-vn__action:active,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-jdbc-vn__action:active {
+    transform: scale(0.98);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-jdbc-post-edit .jms-jdbc-vn__field--pulse,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-http-jdbc-post-proc-edit .jms-jdbc-vn__field--pulse {
+    animation: jms-jdbc-vn-field-pulse 1.1s ease-in-out 2;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18) !important;
+    border-color: #6366f1 !important;
+}
+
+@keyframes jms-jdbc-vn-field-pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12); }
+    50% { box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.28); }
+}

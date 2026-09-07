@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel 转导图 · {{ hf_site_brand_title }}</title>
+    {% include 'partials/hf_favicon.html' %}
+    <script src="{{ url_for('static', filename='vendor/tailwindcss-cdn-3.4.10.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toolkit.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/jsmind-0.8.7.css') }}">
+</head>
+<body class="min-h-screen ctm-excel-page text-slate-900">
+    {% include 'partials/hf_global_nav.html' %}
+
+    <div class="tc-excel-page__bg" aria-hidden="true">
+        <img src="{{ url_for('static', filename='images/test-cases/tc-excel-page-bg.png') }}" alt="" class="tc-excel-page__bg-img" width="1920" height="1600" loading="eager" decoding="async">
+        <div class="tc-excel-page__bg-scrim"></div>
+    </div>
+
+    <main class="ctm-page-shell relative z-[1] px-3 pb-8 pt-3 sm:px-4 sm:pt-4">
+        <header class="ctm-page-header">
+            <h1>Excel 转导图</h1>
+            <p>上传 Excel 按模板生成可编辑、可下载的思维导图</p>
+        </header>
+
+        {% include 'partials/tools/case_to_mindmap_panel.html' %}
+    </main>
+
+    {% include 'partials/tools/tc_preset_model_modal.html' %}
+
+    <script src="{{ url_for('static', filename='vendor/jsmind-0.8.7.js') }}?v=20260523"></script>
+    <script src="{{ url_for('static', filename='vendor/jsmind.draggable-node-0.8.7.js') }}?v=20260523"></script>
+    <script src="{{ url_for('static', filename='js/mindmap_view_zoom.js') }}?v=20260530"></script>
+    <script src="{{ url_for('static', filename='js/mindmap_free_drag.js') }}?v=20260609a"></script>
+    <script src="{{ url_for('static', filename='js/tc_ai_config_bridge.js') }}?v=20260609"></script>
+    <script src="{{ url_for('static', filename='js/case_to_mindmap.js') }}?v=20260612"></script>
+</body>
+</html>

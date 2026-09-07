@@ -1,0 +1,259 @@
+/**
+ * 测试计划级 catalog 元件区 · 绿色玻璃主题（对齐 lth-studio-v2）
+ */
+body.lth-hub-jmeter-tab .jms-plan-catalog-section {
+    margin: 0 0 0.85rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 12px;
+    border: 1px solid rgba(16, 185, 129, 0.22);
+    background: linear-gradient(135deg, rgba(236, 253, 245, 0.72), rgba(255, 255, 255, 0.82));
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-section__head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 0.45rem;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-section__title {
+    margin: 0;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #0f766e;
+    letter-spacing: 0.02em;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-section__hint {
+    margin: 0;
+    font-size: 0.62rem;
+    color: #64748b;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-section__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-left: auto;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-add-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.22rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    background: rgba(255, 255, 255, 0.88);
+    color: #0f766e;
+    font-size: 0.62rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-add-btn:hover {
+    background: rgba(209, 250, 229, 0.65);
+    border-color: rgba(16, 185, 129, 0.55);
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 12.5rem), 1fr));
+    gap: 0.55rem;
+    overflow: visible;
+    min-height: 0;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-card.jms-catalog-card {
+    position: relative;
+    flex: none;
+    width: auto;
+    min-width: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-card.jms-catalog-card:hover {
+    border-color: rgba(16, 185, 129, 0.42);
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.1);
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-card__head {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+    padding: 0.5rem 0.55rem 0.55rem;
+    flex: 1 1 auto;
+    height: 100%;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-card__main {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-width: 0;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-card .jms-http-name {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-card .jms-plan-catalog-meta {
+    margin-left: 0;
+    font-size: 0.58rem;
+    line-height: 1.35;
+    color: #64748b;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-card__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    margin-top: auto;
+    padding-top: 0.15rem;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-card .jms-btn-edit-catalog {
+    padding: 0.18rem 0.5rem;
+    border-radius: 6px;
+    border: 1px solid rgba(16, 185, 129, 0.28);
+    background: rgba(255, 255, 255, 0.92);
+    color: #047857;
+    font-size: 0.62rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-card .jms-btn-edit-catalog:hover {
+    background: rgba(209, 250, 229, 0.75);
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-card .jms-btn-del-catalog {
+    flex: 0 0 auto;
+    width: 1.65rem;
+    height: 1.65rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 7px;
+    border: 1px solid rgba(248, 113, 113, 0.35);
+    background: rgba(255, 255, 255, 0.95);
+    color: #dc2626;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-card .jms-btn-del-catalog:hover {
+    background: #fef2f2;
+    border-color: rgba(220, 38, 38, 0.45);
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-empty {
+    grid-column: 1 / -1;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-card.jms-catalog-card {
+    border-radius: 10px;
+    border: 1px solid rgba(16, 185, 129, 0.28);
+    background: rgba(255, 255, 255, 0.92);
+    overflow: hidden;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-card__head {
+    background: rgba(236, 253, 245, 0.55);
+    border-bottom: 1px solid rgba(16, 185, 129, 0.12);
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.8rem;
+    padding: 0.08rem 0.38rem;
+    border-radius: 999px;
+    font-size: 0.58rem;
+    font-weight: 800;
+    color: #047857;
+    background: rgba(16, 185, 129, 0.14);
+    border: 1px solid rgba(16, 185, 129, 0.28);
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-card .jms-http-name {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-card.is-disabled {
+    opacity: 0.62;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-empty {
+    margin: 0;
+    padding: 0.35rem 0.15rem;
+    font-size: 0.62rem;
+    color: #94a3b8;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-nav .lth-nav-item {
+    width: 100%;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-more {
+    display: block;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-menu {
+    display: none;
+}
+
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-section {
+    position: relative;
+    z-index: 3;
+    flex-shrink: 0;
+}
+
+body.lth-hub-jmeter-tab .jms-plan-catalog-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.15rem;
+    margin-left: 0.25rem;
+    padding: 0.04rem 0.38rem;
+    border-radius: 999px;
+    font-size: 0.58rem;
+    font-weight: 800;
+    color: #047857;
+    background: rgba(16, 185, 129, 0.16);
+    border: 1px solid rgba(16, 185, 129, 0.28);
+    vertical-align: middle;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__plan-catalog {
+    margin-bottom: 0.45rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.jms-plan-shell-v1 .jms-plan-shell__frame {
+    position: relative;
+    z-index: 1;
+}

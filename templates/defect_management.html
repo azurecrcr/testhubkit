@@ -1,0 +1,414 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" class="dm-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>缺陷管理 · {{ hf_site_brand_title }}</title>
+    {% include 'partials/hf_favicon.html' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toolkit.css') }}?v=20260556">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dm_gnav_glass.css') }}?v=20260729msgnav4">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/defect_management.css') }}?v=20260730act1">
+</head>
+<body class="dm-page">
+    <div class="dm-page__bg" aria-hidden="true">
+        <div class="dm-page__bg-base"></div>
+        <div class="dm-page__bg-grid"></div>
+        <div class="dm-page__bg-orb dm-page__bg-orb--a"></div>
+        <div class="dm-page__bg-orb dm-page__bg-orb--b"></div>
+        <div class="dm-page__bg-scrim"></div>
+    </div>
+    {% include 'partials/hf_global_nav.html' %}
+    {% include 'partials/hf_float_toast.html' %}
+
+    <main class="dm-shell" id="dm-app">
+        <header class="dm-topbar">
+            <div class="dm-topbar__brand">
+                <h1 class="dm-title">缺陷管理</h1>
+            </div>
+            <div class="dm-topbar__right">
+                <div class="dm-field-inline dm-field-inline--project">
+                    <span class="dm-field-inline__label" id="dm-project-label">项目：</span>
+                    <select id="dm-project-select" class="dm-native-select" tabindex="-1" aria-hidden="true"></select>
+                    <div class="dm-multi dm-multi--toolbar" id="dm-pick-project" data-select="dm-project-select">
+                        <div class="dm-multi__control" id="dm-pick-project-btn" role="button" tabindex="0" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="dm-project-label">
+                            <div class="dm-multi__summary is-placeholder" id="dm-pick-project-summary">选择项目</div>
+                            <span class="dm-multi__caret" aria-hidden="true"></span>
+                        </div>
+                        <div class="dm-multi__panel is-hidden" id="dm-pick-project-panel" role="listbox" aria-label="选择项目"></div>
+                    </div>
+                </div>
+                <button type="button" class="dm-btn dm-btn--ghost" id="dm-btn-members">成员管理</button>
+                <button type="button" class="dm-btn dm-btn--primary" id="dm-btn-new" disabled>新建缺陷</button>
+            </div>
+        </header>
+
+        <div class="dm-gate" id="dm-login-gate">
+            <div class="dm-gate__card">
+                <p class="dm-gate__kicker">Defect Board</p>
+                <p class="dm-gate__title">缺陷管理需要登录后使用</p>
+                <p class="dm-gate__desc">登录后可按项目查看缺陷列表、指派处理人，并关联用例管理中的用例。</p>
+                <a class="dm-btn dm-btn--primary" href="/auth">去登录 / 注册</a>
+            </div>
+        </div>
+
+        <div class="dm-empty is-hidden" id="dm-empty-projects">
+            <div class="dm-gate__card">
+                <p class="dm-gate__kicker">No Project</p>
+                <p class="dm-gate__title">还没有可用项目</p>
+                <p class="dm-gate__desc">请先在用例管理中创建项目，并邀请成员组成团队后再使用缺陷管理。</p>
+                <a class="dm-btn dm-btn--primary" href="/tool/case-management">去用例管理</a>
+            </div>
+        </div>
+
+        <div class="dm-empty is-hidden" id="dm-empty-team">
+            <div class="dm-gate__card">
+                <p class="dm-gate__kicker">Team Required</p>
+                <p class="dm-gate__title">当前项目尚未组成团队</p>
+                <p class="dm-gate__desc">缺陷管理面向团队协作，请先邀请至少一名成员（正式成员 ≥ 2）。</p>
+                <button type="button" class="dm-btn dm-btn--primary" id="dm-btn-invite">邀请成员</button>
+            </div>
+        </div>
+
+        <div class="dm-workspace is-hidden" id="dm-workspace">
+            <aside class="dm-side">
+                <p class="dm-side__label">状态</p>
+                <div class="dm-side-nav" id="dm-side-status">
+                    <button type="button" data-status="" class="is-active"><span class="dm-side-nav__text">全部</span><span class="dm-side-count" data-count-for="all">0</span></button>
+                    <button type="button" data-status="open"><span class="dm-side-nav__text">待处理</span><span class="dm-side-count" data-count-for="open">0</span></button>
+                    <button type="button" data-status="confirmed"><span class="dm-side-nav__text">已确认</span><span class="dm-side-count" data-count-for="confirmed">0</span></button>
+                    <button type="button" data-status="in_progress"><span class="dm-side-nav__text">处理中</span><span class="dm-side-count" data-count-for="in_progress">0</span></button>
+                    <button type="button" data-status="resolved"><span class="dm-side-nav__text">已解决</span><span class="dm-side-count" data-count-for="resolved">0</span></button>
+                    <button type="button" data-status="closed"><span class="dm-side-nav__text">已关闭</span><span class="dm-side-count" data-count-for="closed">0</span></button>
+                    <button type="button" data-status="rejected"><span class="dm-side-nav__text">已拒绝</span><span class="dm-side-count" data-count-for="rejected">0</span></button>
+                </div>
+                <p class="dm-side__label dm-side__label--spaced">处理人</p>
+                <div class="dm-side-nav">
+                    <button type="button" id="dm-filter-mine"><span class="dm-side-nav__text">我处理的</span></button>
+                </div>
+            </aside>
+
+            <section class="dm-main">
+                <div class="dm-stats" id="dm-stats" aria-label="缺陷概览">
+                    <button type="button" class="dm-stat" data-sev-filter="" id="dm-stat-open">
+                        <span class="dm-stat__label">未关闭</span>
+                        <strong class="dm-stat__value" id="dm-stat-open-n">0</strong>
+                    </button>
+                    <button type="button" class="dm-stat dm-stat--blocker" data-sev-filter="blocker" id="dm-stat-blocker">
+                        <span class="dm-stat__label">阻塞</span>
+                        <strong class="dm-stat__value" id="dm-stat-blocker-n">0</strong>
+                    </button>
+                    <button type="button" class="dm-stat dm-stat--major" data-sev-filter="major" id="dm-stat-major">
+                        <span class="dm-stat__label">严重</span>
+                        <strong class="dm-stat__value" id="dm-stat-major-n">0</strong>
+                    </button>
+                    <button type="button" class="dm-stat" data-sev-filter="normal" id="dm-stat-normal">
+                        <span class="dm-stat__label">一般及以下</span>
+                        <strong class="dm-stat__value" id="dm-stat-normal-n">0</strong>
+                    </button>
+                </div>
+                <div class="dm-filters">
+                    <input type="search" id="dm-q" class="dm-input" placeholder="搜索标题或编号（如 D-12）…" autocomplete="off">
+                    <div class="dm-field-inline dm-field-inline--filter">
+                        <select id="dm-filter-severity" class="dm-native-select" tabindex="-1" aria-hidden="true">
+                            <option value="">全部严重程度</option>
+                            <option value="blocker">阻塞</option>
+                            <option value="major">严重</option>
+                            <option value="normal">一般</option>
+                            <option value="minor">次要</option>
+                            <option value="trivial">细微</option>
+                        </select>
+                        <div class="dm-multi dm-multi--filter" id="dm-pick-filter-severity" data-select="dm-filter-severity">
+                            <div class="dm-multi__control" id="dm-pick-filter-severity-btn" role="button" tabindex="0" aria-expanded="false" aria-haspopup="listbox">
+                                <div class="dm-multi__summary" id="dm-pick-filter-severity-summary">全部严重程度</div>
+                                <span class="dm-multi__caret" aria-hidden="true"></span>
+                            </div>
+                            <div class="dm-multi__panel is-hidden" id="dm-pick-filter-severity-panel" role="listbox" aria-label="严重程度"></div>
+                        </div>
+                    </div>
+                    <div class="dm-field-inline dm-field-inline--filter">
+                        <select id="dm-filter-assignee" class="dm-native-select" tabindex="-1" aria-hidden="true">
+                            <option value="">全部处理人</option>
+                        </select>
+                        <div class="dm-multi dm-multi--filter" id="dm-pick-filter-assignee" data-select="dm-filter-assignee">
+                            <div class="dm-multi__control" id="dm-pick-filter-assignee-btn" role="button" tabindex="0" aria-expanded="false" aria-haspopup="listbox">
+                                <div class="dm-multi__summary" id="dm-pick-filter-assignee-summary">全部处理人</div>
+                                <span class="dm-multi__caret" aria-hidden="true"></span>
+                            </div>
+                            <div class="dm-multi__panel is-hidden" id="dm-pick-filter-assignee-panel" role="listbox" aria-label="处理人"></div>
+                        </div>
+                    </div>
+                    <button type="button" class="dm-btn dm-btn--ghost" id="dm-btn-search">搜索</button>
+                    <button type="button" class="dm-btn dm-btn--ghost" id="dm-btn-reset">重置</button>
+                </div>
+                <div class="dm-table-wrap" id="dm-table-wrap">
+                    <table class="dm-table">
+                        <thead>
+                            <tr>
+                                <th class="dm-col-id">编号</th>
+                                <th class="dm-col-title">标题</th>
+                                <th class="dm-col-sev">严重程度</th>
+                                <th class="dm-col-status">状态</th>
+                                <th class="dm-col-user">提交人</th>
+                                <th class="dm-col-user">处理人</th>
+                                <th class="dm-col-time">更新时间</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dm-tbody"></tbody>
+                    </table>
+                    <div class="dm-list-empty is-hidden" id="dm-list-empty" hidden></div>
+                </div>
+                <div class="dm-pager">
+                    <span id="dm-pager-info">共 0 条</span>
+                    <button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" id="dm-page-prev">上一页</button>
+                    <button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" id="dm-page-next">下一页</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="dm-drawer-mask is-hidden" id="dm-drawer-mask">
+        <div class="dm-drawer" role="dialog" aria-modal="true" aria-labelledby="dm-drawer-title">
+            <div class="dm-drawer__head">
+                <div class="dm-drawer__head-main">
+                    <p class="dm-drawer__eyebrow">Defect</p>
+                    <strong id="dm-drawer-title">新建缺陷</strong>
+                    <p class="dm-drawer__sub" id="dm-drawer-sub">填写基本信息后保存</p>
+                </div>
+                <button type="button" class="dm-icon-btn" id="dm-drawer-close" aria-label="关闭">×</button>
+            </div>
+            <div class="dm-drawer__tabs" role="tablist" aria-label="缺陷详情分区">
+                <button type="button" class="dm-drawer-tab is-active" id="dm-tab-detail" data-tab="detail" role="tab" aria-selected="true" aria-controls="dm-pane-detail">详情</button>
+                <button type="button" class="dm-drawer-tab is-hidden" id="dm-tab-activity" data-tab="activity" role="tab" aria-selected="false" aria-controls="dm-pane-activity">活动</button>
+            </div>
+            <div class="dm-drawer__body">
+                <div class="dm-drawer-pane is-active" id="dm-pane-detail" role="tabpanel" aria-labelledby="dm-tab-detail">
+                <section class="dm-drawer-sec dm-drawer-sec--basic" aria-labelledby="dm-sec-basic">
+                    <h3 class="dm-drawer-sec__title" id="dm-sec-basic">基本信息</h3>
+                    <div class="dm-drawer-sec__body">
+                        <label class="dm-field dm-field--title">
+                            <span>标题</span>
+                            <input type="text" id="dm-f-title" class="dm-input dm-input--title" maxlength="200" placeholder="简要描述问题">
+                        </label>
+                        <div class="dm-field-row dm-field-row--meta">
+                            <div class="dm-field dm-field--pick">
+                                <span>严重程度</span>
+                                <select id="dm-f-severity" class="dm-native-select" tabindex="-1" aria-hidden="true">
+                                    <option value="blocker">阻塞</option>
+                                    <option value="major">严重</option>
+                                    <option value="normal" selected>一般</option>
+                                    <option value="minor">次要</option>
+                                    <option value="trivial">细微</option>
+                                </select>
+                                <div class="dm-multi" id="dm-pick-severity" data-select="dm-f-severity">
+                                    <div class="dm-multi__control" id="dm-pick-severity-btn" role="button" tabindex="0" aria-expanded="false" aria-haspopup="listbox">
+                                        <div class="dm-multi__summary" id="dm-pick-severity-summary">一般</div>
+                                        <span class="dm-multi__caret" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="dm-multi__panel is-hidden" id="dm-pick-severity-panel" role="listbox" aria-label="严重程度"></div>
+                                </div>
+                            </div>
+                            <div class="dm-field dm-field--pick">
+                                <span>状态</span>
+                                <select id="dm-f-status" class="dm-native-select" tabindex="-1" aria-hidden="true">
+                                    <option value="open">待处理</option>
+                                    <option value="confirmed">已确认</option>
+                                    <option value="in_progress">处理中</option>
+                                    <option value="resolved">已解决</option>
+                                    <option value="closed">已关闭</option>
+                                    <option value="rejected">已拒绝</option>
+                                </select>
+                                <div class="dm-multi" id="dm-pick-status" data-select="dm-f-status">
+                                    <div class="dm-multi__control" id="dm-pick-status-btn" role="button" tabindex="0" aria-expanded="false" aria-haspopup="listbox">
+                                        <div class="dm-multi__summary" id="dm-pick-status-summary">待处理</div>
+                                        <span class="dm-multi__caret" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="dm-multi__panel is-hidden" id="dm-pick-status-panel" role="listbox" aria-label="状态"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dm-field-row dm-field-row--people">
+                            <div class="dm-field dm-field--person">
+                                <span>提交人</span>
+                                <div class="dm-readonly dm-readonly--person" id="dm-f-reporter">—</div>
+                            </div>
+                            <div class="dm-field dm-field--pick dm-field--person">
+                                <span>处理人</span>
+                                <div class="dm-multi" id="dm-f-handlers">
+                                    <div class="dm-multi__control" id="dm-f-handlers-btn" role="button" tabindex="0" aria-expanded="false">
+                                        <div class="dm-multi__summary is-placeholder" id="dm-f-handlers-summary">选择处理人</div>
+                                        <span class="dm-multi__caret" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="dm-multi__panel is-hidden" id="dm-f-handlers-panel" role="listbox" aria-label="选择处理人"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="dm-drawer-sec" aria-labelledby="dm-sec-desc">
+                    <h3 class="dm-drawer-sec__title" id="dm-sec-desc">描述</h3>
+                    <div class="dm-drawer-sec__body">
+                        <label class="dm-field">
+                            <span>详情<span class="dm-field__hint">纯文本，可粘贴外链；不支持附件</span></span>
+                            <textarea id="dm-f-desc" class="dm-textarea" maxlength="8000" placeholder="复现步骤、期望结果、实际结果…"></textarea>
+                        </label>
+                    </div>
+                </section>
+
+                <section class="dm-drawer-sec" id="dm-cases-block" aria-labelledby="dm-sec-cases">
+                    <div class="dm-drawer-sec__head">
+                        <h3 class="dm-drawer-sec__title" id="dm-sec-cases">关联用例</h3>
+                        <button type="button" class="dm-btn dm-btn--pick-cases" id="dm-btn-pick-cases">选择用例</button>
+                    </div>
+                    <div class="dm-drawer-sec__body">
+                        <div class="dm-field dm-field--flush">
+                            <div class="dm-chips" id="dm-case-chips"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="dm-drawer-sec" id="dm-comments-block" aria-labelledby="dm-sec-comments">
+                    <h3 class="dm-drawer-sec__title" id="dm-sec-comments">评论</h3>
+                    <div class="dm-drawer-sec__body">
+                        <div class="dm-field dm-field--flush">
+                            <div class="dm-comments" id="dm-comments"></div>
+                            <div class="dm-comments-pager is-hidden" id="dm-comments-pager">
+                                <button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" id="dm-comments-prev">上一页</button>
+                                <span class="dm-comments-pager__info" id="dm-comments-pager-info">1 / 1</span>
+                                <button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" id="dm-comments-next">下一页</button>
+                            </div>
+                            <textarea id="dm-comment-body" class="dm-textarea dm-textarea--comment" maxlength="4000" placeholder="添加评论…"></textarea>
+                            <button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" id="dm-btn-comment">发表评论</button>
+                        </div>
+                    </div>
+                </section>
+                </div>
+
+                <div class="dm-drawer-pane is-hidden" id="dm-pane-activity" role="tabpanel" aria-labelledby="dm-tab-activity">
+                    <div id="dm-l5-activity" class="dm-activity" role="list"></div>
+                </div>
+            </div>
+            <div class="dm-drawer__foot">
+                <button type="button" class="dm-btn dm-btn--ghost" id="dm-btn-cancel">取消</button>
+                <button type="button" class="dm-btn dm-btn--danger is-hidden" id="dm-btn-delete">删除</button>
+                <button type="button" class="dm-btn dm-btn--ghost" id="dm-l5-btn-export">导出 CSV</button>
+                <span class="dm-drawer__foot-spacer" aria-hidden="true"></span>
+                <button type="button" class="dm-btn dm-btn--primary" id="dm-btn-save">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="dm-modal-mask is-hidden" id="dm-case-modal-mask">
+        <div class="dm-modal dm-modal--cases" role="dialog" aria-modal="true" aria-labelledby="dm-case-modal-title">
+            <div class="dm-modal__head">
+                <strong id="dm-case-modal-title">选择关联用例</strong>
+                <button type="button" class="dm-icon-btn" id="dm-case-modal-close" aria-label="关闭">×</button>
+            </div>
+            <div class="dm-modal__split">
+                <aside class="dm-case-modal-tree-wrap">
+                    <p class="dm-case-modal-side-label">目录</p>
+                    <ul class="dm-case-modal-tree" id="dm-case-modal-tree"></ul>
+                </aside>
+                <section class="dm-case-modal-main">
+                    <div class="dm-modal__toolbar">
+                        <input type="search" id="dm-case-modal-q" class="dm-input" placeholder="搜索用例标题…" autocomplete="off">
+                        <button type="button" class="dm-btn dm-btn--ghost" id="dm-case-modal-search">搜索</button>
+                    </div>
+                    <div class="dm-case-modal-list" id="dm-case-modal-list"></div>
+                    <div class="dm-case-modal-pager">
+                        <button type="button" class="dm-btn dm-btn--ghost" id="dm-case-modal-prev">上一页</button>
+                        <span id="dm-case-modal-page-info">第 1 页</span>
+                        <button type="button" class="dm-btn dm-btn--ghost" id="dm-case-modal-next">下一页</button>
+                    </div>
+                </section>
+            </div>
+            <div class="dm-modal__foot">
+                <span class="dm-modal__hint" id="dm-case-modal-hint">已选 0 条</span>
+                <button type="button" class="dm-btn dm-btn--ghost" id="dm-case-modal-cancel">取消</button>
+                <button type="button" class="dm-btn dm-btn--primary" id="dm-case-modal-ok">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="dm-modal-mask is-hidden" id="dm-members-mask">
+        <div class="dm-modal dm-modal--members" role="dialog" aria-modal="true" aria-labelledby="dm-members-title">
+            <div class="dm-modal__head">
+                <div>
+                    <strong id="dm-members-title">项目成员</strong>
+                    <p class="dm-members-lead" id="dm-members-hint">邀请站内账号组成团队后即可使用缺陷管理</p>
+                </div>
+                <button type="button" class="dm-icon-btn" id="dm-members-close" aria-label="关闭">×</button>
+            </div>
+            <div class="dm-members-body">
+                <div class="dm-members-invite is-hidden" id="dm-members-invite">
+                    <p class="dm-members-invite__title">邀请新成员</p>
+                    <div class="dm-members-search-bar">
+                        <input type="search" id="dm-members-q" class="dm-input" placeholder="输入完整邮箱或手机号后回车搜索" autocomplete="off" enterkeyhint="search">
+                        <button type="button" class="dm-btn dm-btn--ghost" id="dm-members-search-btn">搜索</button>
+                    </div>
+                    <div class="dm-members-search-list is-empty" id="dm-members-search-list" aria-live="polite"></div>
+                    <div class="dm-members-picked is-hidden" id="dm-members-picked">
+                        <div class="dm-members-picked__user">
+                            <strong id="dm-members-picked-name"></strong>
+                            <span id="dm-members-picked-meta"></span>
+                        </div>
+                        <select id="dm-members-role" class="dm-select" aria-label="邀请角色">
+                            <option value="editor">编辑</option>
+                            <option value="viewer">只读</option>
+                        </select>
+                        <button type="button" class="dm-btn dm-btn--primary" id="dm-members-invite-btn" disabled>邀请</button>
+                    </div>
+                </div>
+                <div class="dm-members-section-head">
+                    <span>成员列表</span>
+                    <span class="dm-members-count" id="dm-members-count"></span>
+                </div>
+                <div class="dm-members-table-wrap">
+                    <table class="dm-table dm-members-table">
+                        <thead>
+                            <tr>
+                                <th>成员</th>
+                                <th>角色</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dm-members-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="dm-modal__foot">
+                <button type="button" class="dm-btn dm-btn--ghost" id="dm-members-done">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="dm-dialog-mask is-hidden" id="dm-dialog" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="dm-dialog-title">
+        <div class="dm-dialog dm-dialog--danger">
+            <div class="dm-dialog__glow" aria-hidden="true"></div>
+            <div class="dm-dialog__head">
+                <p class="dm-dialog__badge">
+                    <svg class="dm-dialog__badge-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    危险操作
+                </p>
+                <h2 class="dm-dialog__title" id="dm-dialog-title">确认删除</h2>
+                <p class="dm-dialog__desc" id="dm-dialog-desc">此操作不可恢复。</p>
+            </div>
+            <div class="dm-dialog__body">
+                <div class="dm-dialog__meta is-hidden" id="dm-dialog-meta"></div>
+            </div>
+            <div class="dm-dialog__actions">
+                <button type="button" class="dm-btn dm-btn--ghost" id="dm-dialog-cancel">取消</button>
+                <button type="button" class="dm-btn dm-btn--primary" id="dm-dialog-ok">删除</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/hf_float_toast.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/defect_management/dialogs.js') }}?v=20260727dmdlg1"></script>
+    <script src="{{ url_for('static', filename='js/defect_management/app.js') }}?v=20260730nox2"></script>
+    <script src="{{ url_for('static', filename='js/defect_management/l5_bridge_ui.js') }}?v=20260730act1"></script>
+    {% include 'partials/hf_site_footer.html' %}
+</body>
+</html>

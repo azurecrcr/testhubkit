@@ -1,0 +1,1741 @@
+    <div id="tdb-toast" class="tdb-toast" role="status" aria-live="polite"></div>
+    <script>
+    window.TDB_CFG = {{ {"protectedApex": tdb_protected_domains|default([]), "protectedMaxRepeat": tdb_protected_max_repeat|default(5), "maxBatch": tdb_max_batch|default(500)}|tojson }};
+    </script>
+    <main class="tdb-page-shell px-3 pb-6 pt-3 sm:px-4 sm:pb-8 sm:pt-4">
+        <div class="tdb-page-shell__content">
+        <header class="tdb-page-header">
+            <div class="tdb-page-header__card">
+                <span class="tdb-page-header__icon" aria-hidden="true">⚡</span>
+                <div class="tdb-page-header__text">
+                    <p class="tdb-page-header__eyebrow">压测造数</p>
+                    <h1 class="tdb-page-header__title">数据构建</h1>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:items-start lg:gap-5">
+            <section class="tdb-config-panel rounded-xl border border-slate-200 bg-white p-2.5 shadow-sm sm:p-3 lg:col-span-7">
+                <div class="tdb-config-panel__toolbar">
+                    <h2 class="text-sm font-semibold text-slate-900">请求配置</h2>
+                    <div class="flex flex-wrap items-center justify-end gap-1">
+                        <div id="tdb-export-actions" class="flex flex-wrap items-center gap-1" style="display:none">
+                            <button type="button" id="btn-export-py" class="rounded-md border border-violet-200 bg-violet-50 px-2 py-1 text-[11px] font-semibold text-violet-900 hover:bg-violet-100">查看 Python</button>
+                            <button type="button" id="btn-view-curl" class="rounded-md border border-cyan-200 bg-cyan-50 px-2 py-1 text-[11px] font-semibold text-cyan-900 hover:bg-cyan-100">查看 cURL</button>
+                        </div>
+                        <button type="button" id="btn-curl-open" class="rounded-md border border-violet-200 bg-violet-50 px-2 py-1 text-[11px] font-semibold text-violet-800 hover:bg-violet-100">curl 导入</button>
+                    </div>
+                </div>
+
+                <div class="tdb-field">
+                    <label for="f-url">URL <span class="text-red-600">*</span></label>
+                    <input id="f-url" type="url" autocomplete="off" placeholder="https://api.example.com/v1/users" class="tdb-input hf-mono" />
+                    <div id="tdb-protected-hint" class="mt-1 hidden rounded-md border border-amber-200 bg-amber-50 px-2 py-1 text-[11px] leading-snug text-amber-950" role="status">
+                        常见平台域名单次最多 <strong>{{ tdb_protected_max_repeat|default(5) }}</strong> 次，大批量请用自有测试环境。
+                    </div>
+                </div>
+
+                <div class="tdb-field">
+                    <label for="f-token">Token <span class="text-red-600">*</span></label>
+                    <input id="f-token" type="password" autocomplete="off" placeholder="Bearer Token" class="tdb-input hf-mono" />
+                </div>
+
+                <div class="tdb-config-meta">
+                    <div class="tdb-field">
+                        <label for="f-method">协议</label>
+                        <select id="f-method" class="tdb-input bg-white">
+                            <option value="POST" selected>POST</option>
+                            <option value="PUT">PUT</option>
+                            <option value="PATCH">PATCH</option>
+                            <option value="GET">GET</option>
+                            <option value="DELETE">DELETE</option>
+                        </select>
+                    </div>
+                    <div class="tdb-field">
+                        <label for="f-delay">间隔（毫秒）</label>
+                        <input id="f-delay" type="number" min="0" value="0" class="tdb-input" />
+                    </div>
+                </div>
+
+                <div class="tdb-json-split">
+                    <div class="tdb-field">
+                        <div class="flex flex-wrap items-center justify-between gap-1">
+                            <label for="f-headers">请求头（JSON）</label>
+                            <button type="button" id="btn-reset-headers" class="text-[11px] font-semibold text-violet-700 hover:text-violet-900">恢复默认</button>
+                        </div>
+                        <textarea id="f-headers" rows="6" class="tdb-input hf-mono" spellcheck="false" aria-label="请求头 JSON"></textarea>
+                    </div>
+                    <div class="tdb-field">
+                        <label for="f-body">请求体（JSON）</label>
+                        <textarea id="f-body" rows="8" class="tdb-input hf-mono" spellcheck="false" aria-label="请求体 JSON"></textarea>
+                    </div>
+                </div>
+
+                <div class="tdb-inc-block">
+                    <div class="tdb-inc-fields-toolbar">
+                        <h3 class="text-xs font-semibold text-violet-950">递增字段与次数</h3>
+                        <div class="flex flex-wrap items-center gap-1.5">
+                            <button type="button" id="btn-add-inc-field" class="rounded-md border border-violet-200 bg-white px-2 py-0.5 text-[11px] font-semibold text-violet-800 hover:bg-violet-50">添加字段</button>
+                            <button type="button" id="btn-open-inc-range" class="rounded-md border border-violet-200 bg-violet-50 px-2.5 py-0.5 text-[11px] font-semibold text-violet-800 hover:bg-violet-100">设置下限/上限/次数</button>
+                        </div>
+                    </div>
+                    <div id="tdb-inc-fields-list" class="mt-1.5"></div>
+                    <p id="tdb-inc-range-summary" class="mt-1.5 text-[11px] text-slate-500 sm:text-xs" aria-live="polite"></p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-1.5 pt-0.5">
+                    <button type="button" id="btn-run" class="rounded-lg bg-violet-600 px-3.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-violet-700">开始批量请求</button>
+                    <button type="button" id="btn-clear-out" class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">清空结果</button>
+                </div>
+                <p id="f-err" class="hidden rounded-lg border border-red-200 bg-red-50 px-2.5 py-1.5 text-xs text-red-800 sm:text-sm" role="alert"></p>
+            </section>
+
+            <section class="rounded-xl border border-slate-200 bg-white p-2.5 shadow-sm sm:p-3 lg:col-span-5 lg:sticky lg:top-[4.25rem] lg:self-start">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-1.5 mb-1.5">
+                    <h2 class="text-sm font-semibold text-slate-900">执行结果</h2>
+                    <button type="button" id="btn-download-log" disabled class="rounded-md border border-slate-200 bg-white px-2 py-0.5 text-[11px] font-semibold text-slate-400" title="完成一轮批量请求后可导出">下载 TXT</button>
+                </div>
+                <pre id="out-log" class="hf-out hf-mono overflow-auto rounded-lg border border-slate-200 bg-slate-900 p-2 text-[11px] leading-relaxed text-emerald-100/95 sm:text-xs"></pre>
+            </section>
+        </div>
+        </div>
+    </main>
+
+    <!-- 递增范围与请求次数（按字段配置） -->
+    <div id="modal-inc-range" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 p-4" role="dialog" aria-modal="true" aria-labelledby="modal-inc-range-title">
+        <div class="tdb-modal-card w-full max-w-lg overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-between gap-2 border-b border-slate-100 px-5 py-4">
+                <h3 id="modal-inc-range-title" class="text-lg font-semibold text-slate-900">递增范围与请求次数</h3>
+                <button type="button" id="btn-inc-range-close" class="rounded-lg p-2 text-sm font-medium text-slate-500 hover:bg-slate-100 hover:text-slate-800" aria-label="关闭">✕</button>
+            </div>
+            <div class="space-y-3 px-5 py-4">
+                <div>
+                    <label for="f-repeat" class="text-xs font-medium text-slate-700">请求次数 <span id="f-repeat-limit-hint" class="font-normal text-slate-500"></span></label>
+                    <input id="f-repeat" type="number" min="1" max="{{ tdb_max_batch|default(500) }}" value="20" class="tdb-input mt-1 w-full" />
+                </div>
+                <div id="tdb-inc-range-fields" class="tdb-inc-range-fields max-h-[min(50vh,22rem)] space-y-2 overflow-y-auto border-t border-slate-100 pt-3"></div>
+                <input type="hidden" id="f-min" value="1" />
+                <input type="hidden" id="f-max" value="1000" />
+            </div>
+            <div class="flex justify-end gap-2 border-t border-slate-100 px-5 py-4">
+                <button type="button" id="btn-inc-range-cancel" class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">取消</button>
+                <button type="button" id="btn-inc-range-save" class="rounded-lg bg-violet-600 px-4 py-2 text-sm font-semibold text-white hover:bg-violet-700">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 使用说明与合规限制 -->
+    <div id="modal-usage" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 p-4" role="dialog" aria-modal="true" aria-labelledby="modal-usage-title">
+        <div class="tdb-modal-card flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
+            <div class="flex shrink-0 items-center justify-between gap-2 border-b border-slate-100 px-5 py-4">
+                <h3 id="modal-usage-title" class="text-lg font-semibold text-slate-900">使用说明与合规限制</h3>
+                <button type="button" id="btn-usage-close" class="rounded-lg p-2 text-sm font-medium text-slate-500 hover:bg-slate-100 hover:text-slate-800" aria-label="关闭">✕</button>
+            </div>
+            <div class="min-h-0 flex-1 overflow-y-auto px-5 py-4 tdb-legal-body">
+                <p><strong>工具用途：</strong>面向<strong>已获得授权</strong>的测试、联调或预发环境，按 JSON 字段路径递增数值并批量代发 HTTP 请求，用于构造测试数据。请勿将本工具用于未获许可的第三方生产系统。</p>
+                <p><strong>频率与域名限制（平台策略）：</strong></p>
+                <ul>
+                    <li>目标 URL 命中常见正规平台主域（如阿里、腾讯、字节、百度、京东、美团、银行、运营商等）时，单次「请求次数」<strong>最多 {{ tdb_protected_max_repeat|default(5) }} 次</strong>，以降低对公共服务的异常压力。</li>
+                    <li>其它地址单次「请求次数」<strong>最多 {{ tdb_max_batch|default(500) }} 次</strong>；可通过「间隔(ms)」适当拉长请求间隔。</li>
+                    <li>多个递增字段时，可在「递增范围与请求次数」弹窗中为各字段单独设置范围；当某字段「上限 − 下限」小于请求次数时可勾选<strong>循环</strong>；未开启循环时可勾选<strong>不携带</strong>，递增到上限后后续请求不再附带该字段。</li>
+                </ul>
+                <p><strong>法律与合规（使用者责任）：</strong></p>
+                <ul>
+                    <li>您应遵守《中华人民共和国网络安全法》《数据安全法》《个人信息保护法》等法律法规，以及目标系统的服务条款与访问控制策略。</li>
+                    <li><strong>禁止</strong>对未授权系统实施扫描、爆破、绕过身份验证或风控、爬取个人信息、发送垃圾信息，以及任何可能构成未授权访问、干扰服务或侵害他人合法权益的行为。</li>
+                    <li>请求体、Token 及产生的数据可能包含敏感信息，请仅在必要范围内使用，不得非法收集、存储或传播他人个人信息与商业秘密。</li>
+                    <li>因违反上述要求或滥用本工具而产生的一切法律后果，由使用者自行承担；平台有权拒绝或限制异常请求。</li>
+                </ul>
+            </div>
+            <div class="flex shrink-0 justify-end border-t border-slate-100 px-5 py-4">
+                <button type="button" id="btn-usage-ok" class="rounded-lg bg-violet-600 px-4 py-2 text-sm font-semibold text-white hover:bg-violet-700">我知道了</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 免责声明 -->
+    <div id="modal-disclaimer" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 p-4" role="dialog" aria-modal="true" aria-labelledby="modal-disclaimer-title">
+        <div class="tdb-modal-card flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
+            <div class="flex shrink-0 items-center justify-between gap-2 border-b border-slate-100 px-5 py-4">
+                <h3 id="modal-disclaimer-title" class="text-lg font-semibold text-slate-900">免责声明</h3>
+                <button type="button" id="btn-disclaimer-close" class="rounded-lg p-2 text-sm font-medium text-slate-500 hover:bg-slate-100 hover:text-slate-800" aria-label="关闭">✕</button>
+            </div>
+            <div class="min-h-0 flex-1 overflow-y-auto px-5 py-4 tdb-legal-body">
+                <p>本「数据构建」工具按<strong>「现状」</strong>提供，仅供具备合法授权的人员在测试、联调或预发等受控场景中使用。平台不对工具的可用性、准确性、完整性或适用性作任何明示或默示担保。</p>
+                <p><strong>使用者须知：</strong></p>
+                <ul>
+                    <li>您应自行确认对目标 URL、接口及数据拥有合法访问与测试权限；因越权访问、误操作或配置错误导致的任何损失或纠纷，由使用者自行承担。</li>
+                    <li>通过本工具发出的 HTTP 请求及其响应内容，均不代表平台立场；平台不存储、不审核您填写的 Token、请求体及业务数据，亦不对第三方系统的处理结果负责。</li>
+                    <li>平台有权基于安全与合规需要，对异常频率、可疑目标域名或明显违规用途进行限流、拦截或拒绝服务，且无需事先通知。</li>
+                    <li>因网络故障、目标服务变更、证书策略、CORS 以外之服务端限制等导致请求失败或结果不符预期，平台不承担赔偿责任。</li>
+                </ul>
+                <p>点击「开始批量请求」或使用导出功能，即表示您已阅读并理解上述说明、合规限制及本免责声明，并同意在法律法规及授权范围内使用本工具。如不同意，请停止使用。</p>
+            </div>
+            <div class="flex shrink-0 justify-end border-t border-slate-100 px-5 py-4">
+                <button type="button" id="btn-disclaimer-ok" class="rounded-lg bg-violet-600 px-4 py-2 text-sm font-semibold text-white hover:bg-violet-700">我知道了</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- cURL 导入 -->
+    <div id="modal-curl" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 p-4" role="dialog" aria-modal="true" aria-labelledby="modal-curl-title">
+        <div class="tdb-modal-card max-h-[90vh] w-full max-w-2xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
+            <div class="border-b border-slate-100 px-5 py-4">
+                <h3 id="modal-curl-title" class="text-lg font-semibold text-slate-900">从 cURL 导入</h3>
+                <p class="mt-1 text-xs leading-relaxed text-slate-500">在下方粘贴或输入 cURL（支持 Chrome / Edge「复制为 cURL」、Postman「Code → cURL」等），点击<strong>确认</strong>后自动解析并写入当前表单。将识别 URL、HTTP 方法、<code class="hf-mono">-H</code> / <code class="hf-mono">--header</code>、<code class="hf-mono">--data-raw</code> / <code class="hf-mono">-d</code>；<code class="hf-mono">Authorization: Bearer</code> 会填入 Token 框并从请求头 JSON 中省略。</p>
+            </div>
+            <div class="max-h-[calc(90vh-8rem)] overflow-y-auto px-5 py-4">
+                <label for="curl-input" class="text-sm font-medium text-slate-800">cURL 内容</label>
+                <textarea id="curl-input" class="hf-mono mt-1 min-h-[14rem] w-full rounded-lg border border-slate-200 bg-slate-50/80 p-3 text-xs leading-relaxed focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20" spellcheck="false" placeholder="curl 'https://...' \n  -H 'Content-Type: application/json' \n  --data-raw '{...}'"></textarea>
+                <p id="curl-err" class="mt-2 hidden rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-900" role="status"></p>
+            </div>
+            <div class="flex flex-wrap justify-end gap-2 border-t border-slate-100 px-5 py-4">
+                <button type="button" id="btn-curl-cancel" class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50">取消</button>
+                <button type="button" id="btn-curl-apply" class="rounded-lg bg-violet-600 px-4 py-2 text-sm font-semibold text-white hover:bg-violet-700">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 单次 cURL 预览（不含循环） -->
+    <div id="modal-curl-view" class="fixed inset-0 z-[60] hidden items-center justify-center bg-slate-900/50 p-4" role="dialog" aria-modal="true" aria-labelledby="modal-curl-view-title">
+        <div class="tdb-modal-card flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
+            <div class="flex shrink-0 items-center justify-between gap-2 border-b border-slate-100 px-4 py-3">
+                <h3 id="modal-curl-view-title" class="text-base font-semibold text-slate-900 sm:text-lg">单次请求 cURL</h3>
+                <button type="button" id="btn-curl-view-close" class="rounded-lg p-2 text-sm font-medium text-slate-500 hover:bg-slate-100 hover:text-slate-800" aria-label="关闭">✕</button>
+            </div>
+            <div class="min-h-0 flex-1 overflow-y-auto px-4 py-3">
+                <p class="mb-2 text-xs text-slate-500">以下为根据当前表单生成的<strong>一条</strong> cURL（已合并 Token 到 Authorization），请求体为下方「请求体」文本框原文。</p>
+                <pre id="curl-view-out" class="tdb-code-preview hf-mono" spellcheck="false"></pre>
+            </div>
+            <div class="flex shrink-0 justify-end border-t border-slate-100 px-4 py-3">
+                <button type="button" id="btn-curl-view-copy" class="rounded-lg bg-cyan-600 px-5 py-2 text-sm font-semibold text-white hover:bg-cyan-700">复制</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 导出 Python 预览 -->
+    <div id="modal-py-export" class="fixed inset-0 z-[60] hidden items-center justify-center bg-slate-900/50 p-4" role="dialog" aria-modal="true" aria-labelledby="modal-py-export-title">
+        <div class="tdb-modal-card flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
+            <div class="flex shrink-0 items-center justify-between gap-2 border-b border-slate-100 px-4 py-3">
+                <div>
+                    <h3 id="modal-py-export-title" class="text-base font-semibold text-slate-900 sm:text-lg">Python 脚本预览</h3>
+                    <p class="mt-0.5 text-xs text-slate-500">内网机器：<code class="hf-mono">pip install requests</code> 后保存为 <code class="hf-mono">.py</code> 运行。</p>
+                </div>
+                <button type="button" id="btn-py-close" class="rounded-lg p-2 text-sm font-medium text-slate-500 hover:bg-slate-100 hover:text-slate-800" aria-label="关闭">✕</button>
+            </div>
+            <div class="min-h-0 flex-1 overflow-y-auto px-4 py-3">
+                <textarea id="py-export-out" readonly class="tdb-code-preview hf-mono w-full resize-none focus:outline-none" spellcheck="false" rows="18"></textarea>
+            </div>
+            <div class="flex shrink-0 items-center justify-between gap-2 border-t border-slate-100 px-4 py-3">
+                <button type="button" id="btn-py-download" class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50">下载 .py</button>
+                <button type="button" id="btn-py-copy" class="rounded-lg bg-violet-600 px-5 py-2 text-sm font-semibold text-white hover:bg-violet-700">复制</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 未改配置再次运行 -->
+    <div id="modal-dup" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 p-4" role="dialog" aria-modal="true" aria-labelledby="modal-dup-title">
+        <div class="max-w-md rounded-2xl border border-slate-200 bg-white p-5 shadow-xl">
+            <h3 id="modal-dup-title" class="text-lg font-semibold text-slate-900">请调整后再发起</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">检测到<strong class="font-medium text-slate-800">请求配置与上次成功执行完全一致</strong>。为避免误重复造数，建议先修改请求体、URL、范围或次数等字段。</p>
+            <p class="mt-2 text-xs text-slate-500">若你确认仍要再跑一轮相同配置，可选择继续。</p>
+            <div class="mt-5 flex flex-wrap justify-end gap-2">
+                <button type="button" id="modal-dup-edit" class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50">去修改</button>
+                <button type="button" id="modal-dup-force" class="rounded-lg bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700">仍要继续</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+(function () {
+    var DEFAULT_HEADERS = "{\n  \"Content-Type\": \"application/json\",\n  \"Accept\": \"application/json\",\n  \"User-Agent\": \"TestHub-DataBuilder/1.0\"\n}";
+    var DEFAULT_BODY = "{\n  \"account\": \"test_1\",\n  \"phone\": \"1\"\n}";
+
+    var elUrl = document.getElementById("f-url");
+    var elToken = document.getElementById("f-token");
+    var elMethod = document.getElementById("f-method");
+    var elDelay = document.getElementById("f-delay");
+    var elHeaders = document.getElementById("f-headers");
+    var elBody = document.getElementById("f-body");
+    var elPath = null;
+    var elMin = document.getElementById("f-min");
+    var elMax = document.getElementById("f-max");
+    var elRepeat = document.getElementById("f-repeat");
+    var elErr = document.getElementById("f-err");
+    var toastEl = document.getElementById("tdb-toast");
+    var elOut = document.getElementById("out-log");
+    var btnRun = document.getElementById("btn-run");
+    var btnClear = document.getElementById("btn-clear-out");
+    var btnResetH = document.getElementById("btn-reset-headers");
+    var btnDownload = document.getElementById("btn-download-log");
+    var modal = document.getElementById("modal-dup");
+    var btnDupEdit = document.getElementById("modal-dup-edit");
+    var btnDupForce = document.getElementById("modal-dup-force");
+    var modalCurl = document.getElementById("modal-curl");
+    var curlInput = document.getElementById("curl-input");
+    var curlErr = document.getElementById("curl-err");
+    var btnCurlOpen = document.getElementById("btn-curl-open");
+    var btnCurlCancel = document.getElementById("btn-curl-cancel");
+    var btnCurlApply = document.getElementById("btn-curl-apply");
+    var btnExportPy = document.getElementById("btn-export-py");
+    var btnViewCurl = document.getElementById("btn-view-curl");
+    var tdbExportActions = document.getElementById("tdb-export-actions");
+    var modalPyExport = document.getElementById("modal-py-export");
+    var pyExportOut = document.getElementById("py-export-out");
+    var btnPyClose = document.getElementById("btn-py-close");
+    var btnPyCopy = document.getElementById("btn-py-copy");
+    var btnPyDownload = document.getElementById("btn-py-download");
+    var modalCurlView = document.getElementById("modal-curl-view");
+    var curlViewOut = document.getElementById("curl-view-out");
+    var btnCurlViewClose = document.getElementById("btn-curl-view-close");
+    var btnCurlViewCopy = document.getElementById("btn-curl-view-copy");
+    var modalUsage = document.getElementById("modal-usage");
+    var modalDisclaimer = document.getElementById("modal-disclaimer");
+    var btnOpenUsage = document.getElementById("btn-open-usage");
+    var btnOpenDisclaimer = document.getElementById("btn-open-disclaimer");
+    var btnUsageClose = document.getElementById("btn-usage-close");
+    var btnUsageOk = document.getElementById("btn-usage-ok");
+    var btnDisclaimerClose = document.getElementById("btn-disclaimer-close");
+    var btnDisclaimerOk = document.getElementById("btn-disclaimer-ok");
+    var lastPyScript = "";
+    var incFieldsList = document.getElementById("tdb-inc-fields-list");
+    var btnAddIncField = document.getElementById("btn-add-inc-field");
+    var modalIncRange = document.getElementById("modal-inc-range");
+    var btnOpenIncRange = document.getElementById("btn-open-inc-range");
+    var btnIncRangeClose = document.getElementById("btn-inc-range-close");
+    var btnIncRangeCancel = document.getElementById("btn-inc-range-cancel");
+    var btnIncRangeSave = document.getElementById("btn-inc-range-save");
+    var elIncRangeSummary = document.getElementById("tdb-inc-range-summary");
+    var incRangeFieldsContainer = document.getElementById("tdb-inc-range-fields");
+    var incRangeState = { repeat_count: 20, fields: {} };
+
+    var lastSuccessFingerprint = null;
+    var forceRunOnce = false;
+    var lastExportBundle = null;
+
+    var CFG = window.TDB_CFG || { protectedApex: [], protectedMaxRepeat: 5, maxBatch: 500 };
+    var elProtectedHint = document.getElementById("tdb-protected-hint");
+    var elRepeatHint = document.getElementById("f-repeat-limit-hint");
+
+    function hostnameFromUrl(u) {
+        try {
+            var p = new URL(u);
+            return (p.hostname || "").toLowerCase().replace(/\.$/, "");
+        } catch (e) {
+            return "";
+        }
+    }
+
+    function isProtectedUrl(u) {
+        var hn = hostnameFromUrl(String(u || "").trim());
+        if (!hn) return false;
+        var apx = CFG.protectedApex || [];
+        for (var i = 0; i < apx.length; i++) {
+            var apex = String(apx[i]).toLowerCase();
+            if (hn === apex || hn.endsWith("." + apex)) return true;
+        }
+        return false;
+    }
+
+    function syncProtectedUi() {
+        if (!elRepeat) return;
+        var prot = isProtectedUrl(elUrl.value);
+        var maxR = prot ? CFG.protectedMaxRepeat : CFG.maxBatch;
+        elRepeat.setAttribute("max", String(maxR));
+        var cur = parseInt(elRepeat.value, 10);
+        if (!isNaN(cur) && cur > maxR) elRepeat.value = String(maxR);
+        if (elProtectedHint) elProtectedHint.classList.toggle("hidden", !prot);
+        if (elRepeatHint) {
+            elRepeatHint.textContent = prot ? "（≤" + CFG.protectedMaxRepeat + "）" : "（≤" + CFG.maxBatch + "）";
+        }
+        updateExportToolbarVisibility();
+    }
+
+    function defaultFieldConfig() {
+        return { range_min: 1, range_max: 1000, loop: false, omit_carry: false };
+    }
+
+    function getPathFromRow(row) {
+        var input = row && row.querySelector(".tdb-inc-path-input");
+        return input ? input.value.trim() : "";
+    }
+
+    function getFieldConfig(path) {
+        if (!path) return defaultFieldConfig();
+        if (!incRangeState.fields[path]) incRangeState.fields[path] = defaultFieldConfig();
+        return incRangeState.fields[path];
+    }
+
+    function setFieldConfig(path, partial) {
+        if (!path) return;
+        var c = getFieldConfig(path);
+        if (partial.range_min != null) c.range_min = partial.range_min;
+        if (partial.range_max != null) c.range_max = partial.range_max;
+        if (partial.loop != null) c.loop = !!partial.loop;
+        if (partial.omit_carry != null) c.omit_carry = !!partial.omit_carry;
+        if (c.loop) c.omit_carry = false;
+        incRangeState.fields[path] = c;
+    }
+
+    function buildFieldConfigs() {
+        return getVariablePaths().map(function (path) {
+            var c = getFieldConfig(path);
+            var loopOn = !!c.loop;
+            return {
+                path: path,
+                range_min: parseInt(c.range_min, 10) || 1,
+                range_max: parseInt(c.range_max, 10) || 1,
+                loop: loopOn,
+                omit_carry: !loopOn && !!c.omit_carry
+            };
+        });
+    }
+
+    function syncLegacyRangeInputs() {
+        var cfgs = buildFieldConfigs();
+        if (cfgs.length && elMin && elMax) {
+            elMin.value = String(cfgs[0].range_min);
+            elMax.value = String(cfgs[0].range_max);
+        }
+    }
+
+    function getModalRepeatCount() {
+        var rep = parseInt(elRepeat && elRepeat.value, 10);
+        return isNaN(rep) ? (incRangeState.repeat_count || 20) : rep;
+    }
+
+    function shouldShowLoopForFieldValues(mn, mx, rep) {
+        if (isNaN(mn) || isNaN(mx) || isNaN(rep)) return false;
+        return mx - mn < rep;
+    }
+
+    /** 循环 / 不携带显隐同步：仅当「上限−下限 < 请求次数」时显示循环；未勾选循环时显示不携带。 */
+    function updateModalFieldOptionsVisibility() {
+        if (!incRangeFieldsContainer) return;
+        var rep = getModalRepeatCount();
+        var rows = incRangeFieldsContainer.querySelectorAll(".tdb-inc-range-row");
+        for (var i = 0; i < rows.length; i++) {
+            var row = rows[i];
+            var loopWrap = row.querySelector(".tdb-inc-range-loop-wrap");
+            var loopCb = row.querySelector(".tdb-inc-range-loop");
+            var omitWrap = row.querySelector(".tdb-inc-range-omit-wrap");
+            var mn = parseInt((row.querySelector(".tdb-inc-range-min") || {}).value, 10);
+            var mx = parseInt((row.querySelector(".tdb-inc-range-max") || {}).value, 10);
+            var showLoop = shouldShowLoopForFieldValues(mn, mx, rep);
+
+            if (loopWrap) {
+                loopWrap.classList.toggle("hidden", !showLoop);
+                if (!showLoop && loopCb) loopCb.checked = false;
+            }
+
+            var loopChecked = showLoop && loopCb && loopCb.checked;
+            var showOmit = showLoop && !loopChecked;
+
+            if (omitWrap) {
+                omitWrap.classList.toggle("hidden", !showOmit);
+                if (!showOmit) {
+                    var omitCb = omitWrap.querySelector(".tdb-inc-range-omit");
+                    if (omitCb) omitCb.checked = false;
+                }
+            }
+        }
+    }
+
+    function renderIncRangeModal() {
+        if (!incRangeFieldsContainer) return;
+        var paths = getVariablePaths();
+        if (!paths.length) {
+            incRangeFieldsContainer.innerHTML =
+                '<p class="rounded-md border border-amber-200 bg-amber-50 px-2.5 py-2 text-xs text-amber-900">请先在上方添加至少一个递增字段路径。</p>';
+            return;
+        }
+        var html = "";
+        paths.forEach(function (path) {
+            var c = getFieldConfig(path);
+            html +=
+                '<div class="tdb-inc-range-row rounded-lg border border-slate-200 p-3" data-path="' +
+                path.replace(/&/g, "&amp;").replace(/"/g, "&quot;") +
+                '">' +
+                '<div class="tdb-inc-range-path mb-2">' +
+                path.replace(/&/g, "&amp;").replace(/</g, "&lt;") +
+                "</div>" +
+                '<div class="grid grid-cols-2 gap-2">' +
+                '<div><label class="text-[11px] font-medium text-slate-600">下限</label>' +
+                '<input type="number" class="tdb-input tdb-inc-range-min mt-0.5 w-full" value="' +
+                c.range_min +
+                '" /></div>' +
+                '<div><label class="text-[11px] font-medium text-slate-600">上限</label>' +
+                '<input type="number" class="tdb-input tdb-inc-range-max mt-0.5 w-full" value="' +
+                c.range_max +
+                '" /></div></div>' +
+                '<label class="tdb-inc-range-loop-wrap mt-2 flex cursor-pointer items-center gap-2 text-[11px] text-slate-600 hidden">' +
+                '<input type="checkbox" class="tdb-inc-range-loop rounded border-slate-300 text-violet-600 focus:ring-violet-500/30"' +
+                (c.loop ? " checked" : "") +
+                ' />' +
+                "<span>循环（超过上限后从下限重新开始）</span></label>" +
+                '<div class="tdb-inc-range-omit-wrap mt-2 hidden flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-slate-600">' +
+                '<label class="flex cursor-pointer items-center gap-1.5">' +
+                '<input type="checkbox" class="tdb-inc-range-omit rounded border-slate-300 text-violet-600 focus:ring-violet-500/30"' +
+                (c.omit_carry ? " checked" : "") +
+                ' />' +
+                "<span>不携带</span></label>" +
+                '<span class="tdb-inc-range-omit-hint text-[10px] font-normal text-slate-400">到上限后后续请求不带此字段</span>' +
+                "</div></div>";
+        });
+        incRangeFieldsContainer.innerHTML = html;
+        updateModalFieldOptionsVisibility();
+    }
+
+    function saveIncRangeFromModal() {
+        if (!incRangeFieldsContainer) return;
+        var paths = getVariablePaths();
+        if (!paths.length) throw new Error("请先在上方添加至少一个递增字段路径");
+        var rows = incRangeFieldsContainer.querySelectorAll(".tdb-inc-range-row");
+        for (var i = 0; i < rows.length; i++) {
+            var row = rows[i];
+            var path = row.getAttribute("data-path") || paths[i];
+            if (!path) continue;
+            var mn = parseInt((row.querySelector(".tdb-inc-range-min") || {}).value, 10);
+            var mx = parseInt((row.querySelector(".tdb-inc-range-max") || {}).value, 10);
+            if (isNaN(mn) || isNaN(mx)) throw new Error("字段「" + path + "」的下限与上限须为整数");
+            if (mn > mx) throw new Error("字段「" + path + "」的下限不能大于上限");
+            var loop = false;
+            var loopWrap = row.querySelector(".tdb-inc-range-loop-wrap");
+            var loopCb = row.querySelector(".tdb-inc-range-loop");
+            if (loopWrap && loopCb && !loopWrap.classList.contains("hidden")) {
+                loop = !!loopCb.checked;
+            }
+            var omit = false;
+            var omitWrap = row.querySelector(".tdb-inc-range-omit-wrap");
+            var omitCb = row.querySelector(".tdb-inc-range-omit");
+            if (omitWrap && omitCb && !omitWrap.classList.contains("hidden")) {
+                omit = !!omitCb.checked;
+            }
+            setFieldConfig(path, { range_min: mn, range_max: mx, loop: loop, omit_carry: omit });
+        }
+        var rep = parseInt(elRepeat.value, 10);
+        if (isNaN(rep) || rep < 1) throw new Error("请求次数须为 ≥1 的整数");
+        if (isProtectedUrl(elUrl.value)) {
+            if (rep > CFG.protectedMaxRepeat) {
+                throw new Error("当前 URL 为常见正规平台地址，单次「请求次数」最多为 " + CFG.protectedMaxRepeat + "。");
+            }
+        } else if (rep > CFG.maxBatch) {
+            throw new Error("请求次数单次最多为 " + CFG.maxBatch + "。");
+        }
+        incRangeState.repeat_count = rep;
+        syncLegacyRangeInputs();
+        syncIncRangeSummary();
+    }
+
+    function syncIncRangeSummary() {
+        if (!elIncRangeSummary) return;
+        var paths = getVariablePaths();
+        var rep = elRepeat ? elRepeat.value : String(incRangeState.repeat_count || 20);
+        if (!paths.length) {
+            elIncRangeSummary.textContent = "请先添加递增字段，再设置下限/上限/次数";
+            return;
+        }
+        var parts = paths.map(function (p) {
+            var c = getFieldConfig(p);
+            return (
+                p +
+                " [" +
+                c.range_min +
+                "–" +
+                c.range_max +
+                (c.loop ? "·循环" : "") +
+                (c.omit_carry ? "·不携带" : "") +
+                "]"
+            );
+        });
+        elIncRangeSummary.textContent = "当前：请求 " + rep + " 次 · " + parts.join("；");
+        clearIncFieldsHintIfReady();
+    }
+
+    function openIncRangeModal() {
+        if (!modalIncRange) return;
+        if (!getVariablePaths().length) {
+            showErr(INC_FIELDS_HINT_ERR);
+            return;
+        }
+        syncProtectedUi();
+        if (elRepeat) elRepeat.value = String(incRangeState.repeat_count || parseInt(elRepeat.value, 10) || 20);
+        renderIncRangeModal();
+        modalIncRange.classList.remove("hidden");
+        modalIncRange.classList.add("tdb-modal-open");
+    }
+
+    function closeIncRangeModal() {
+        if (!modalIncRange) return;
+        modalIncRange.classList.remove("tdb-modal-open");
+        modalIncRange.classList.add("hidden");
+    }
+
+    function jsonNormEqual(textA, textB) {
+        try {
+            return JSON.stringify(JSON.parse(textA)) === JSON.stringify(JSON.parse(textB));
+        } catch (e) {
+            return false;
+        }
+    }
+
+    function exportActionsVisible() {
+        if (elUrl.value.trim() || elToken.value.trim() || getVariablePaths().length) return true;
+        if (!jsonNormEqual(elHeaders.value, DEFAULT_HEADERS) || !jsonNormEqual(elBody.value, DEFAULT_BODY)) return true;
+        if (elMethod.value !== "POST") return true;
+        if ((parseInt(elDelay.value, 10) || 0) !== 0) return true;
+        if ((parseInt(elRepeat.value, 10) || 20) !== 20) return true;
+        var cfgs = buildFieldConfigs();
+        for (var fi = 0; fi < cfgs.length; fi++) {
+            var fc = cfgs[fi];
+            if (fc.range_min !== 1 || fc.range_max !== 1000 || fc.loop || fc.omit_carry) return true;
+        }
+        return false;
+    }
+
+    function updateExportToolbarVisibility() {
+        if (!tdbExportActions) return;
+        tdbExportActions.style.display = exportActionsVisible() ? "flex" : "none";
+    }
+
+    var INC_FIELDS_HINT_ERR = "请先在递增字段区域添加至少一个字段路径";
+
+    function clearIncFieldsHintIfReady() {
+        if (!elErr || elErr.classList.contains("hidden")) return;
+        if (getVariablePaths().length > 0 && elErr.textContent === INC_FIELDS_HINT_ERR) {
+            showErr("");
+        }
+    }
+
+    function showErr(msg) {
+        if (!elErr) return;
+        elErr.textContent = msg || "";
+        elErr.classList.remove("border-emerald-200", "bg-emerald-50", "text-emerald-900");
+        elErr.classList.add("border-red-200", "bg-red-50", "text-red-800");
+        elErr.classList.toggle("hidden", !msg);
+    }
+
+    function showBriefOk(msg) {
+        if (!elErr) return;
+        elErr.textContent = msg || "";
+        elErr.classList.remove("hidden", "border-red-200", "bg-red-50", "text-red-800");
+        elErr.classList.add("border-emerald-200", "bg-emerald-50", "text-emerald-900");
+        clearTimeout(showBriefOk._t);
+        showBriefOk._t = setTimeout(function () {
+            elErr.classList.add("hidden");
+            elErr.classList.remove("border-emerald-200", "bg-emerald-50", "text-emerald-900");
+            elErr.classList.add("border-red-200", "bg-red-50", "text-red-800");
+        }, 2200);
+    }
+
+    var toastTimer = null;
+    var toastHideAfterOutTimer = null;
+    var TOAST_FADE_IN_MS = 380;
+    var TOAST_FADE_OUT_MS = 360;
+    var TOAST_HOLD_MS = 2300;
+    function showToast(msg, kind) {
+        kind = kind === "ok" ? "ok" : "err";
+        if (!toastEl) return;
+        var t = (msg == null ? "" : String(msg)).trim();
+        if (!t) return;
+        clearTimeout(toastTimer);
+        clearTimeout(toastHideAfterOutTimer);
+        toastHideAfterOutTimer = null;
+        var wasVisible = toastEl.classList.contains("tdb-toast--visible");
+        toastEl.textContent = t;
+        toastEl.setAttribute("role", kind === "ok" ? "status" : "alert");
+        toastEl.setAttribute("aria-live", kind === "ok" ? "polite" : "assertive");
+        toastEl.classList.remove("tdb-toast--err", "tdb-toast--ok");
+        toastEl.classList.add(kind === "ok" ? "tdb-toast--ok" : "tdb-toast--err");
+        if (!wasVisible) {
+            toastEl.classList.remove("tdb-toast--visible");
+            void toastEl.offsetWidth;
+            requestAnimationFrame(function () {
+                toastEl.classList.add("tdb-toast--visible");
+            });
+        } else {
+            toastEl.classList.add("tdb-toast--visible");
+        }
+        var untilHide = wasVisible ? TOAST_HOLD_MS : TOAST_FADE_IN_MS + TOAST_HOLD_MS;
+        toastTimer = setTimeout(function () {
+            toastTimer = null;
+            toastEl.classList.remove("tdb-toast--visible");
+            toastHideAfterOutTimer = setTimeout(function () {
+                toastHideAfterOutTimer = null;
+                toastEl.textContent = "";
+                toastEl.classList.remove("tdb-toast--err", "tdb-toast--ok");
+            }, TOAST_FADE_OUT_MS);
+        }, untilHide);
+    }
+
+    function syncPrimaryPathRef() {
+        elPath = document.getElementById("f-path");
+    }
+
+    function getVariablePaths() {
+        if (!incFieldsList) return [];
+        var inputs = incFieldsList.querySelectorAll(".tdb-inc-path-input");
+        var paths = [];
+        for (var i = 0; i < inputs.length; i++) {
+            var v = inputs[i].value.trim();
+            if (v && paths.indexOf(v) === -1) paths.push(v);
+        }
+        return paths;
+    }
+
+    function onIncPathInputChange(ev) {
+        syncIncRangeSummary();
+        clearIncFieldsHintIfReady();
+        updateExportToolbarVisibility();
+    }
+
+    function updateIncFieldRemoveButtons() {
+        if (!incFieldsList) return;
+        var rows = incFieldsList.querySelectorAll(".tdb-inc-field-row");
+        var onlyOne = rows.length <= 1;
+        for (var i = 0; i < rows.length; i++) {
+            var btn = rows[i].querySelector(".tdb-inc-field-remove");
+            if (!btn) continue;
+            btn.disabled = onlyOne;
+            btn.style.visibility = onlyOne ? "hidden" : "visible";
+        }
+    }
+
+    function addIncFieldRow(opts) {
+        opts = opts || {};
+        if (!incFieldsList) return;
+        var isFirst = !!opts.isFirst;
+        var value = opts.value || "";
+        var row = document.createElement("div");
+        row.className = "tdb-inc-field-row";
+        if (isFirst) {
+            row.innerHTML =
+                '<div class="tdb-inc-field-body">' +
+                '<label class="text-[11px] font-medium text-slate-700 sm:text-xs">字段路径</label>' +
+                '<div class="tdb-inc-field-controls">' +
+                '<input id="f-path" type="text" placeholder="如 phone" class="tdb-inc-path-input hf-mono" autocomplete="off" />' +
+                "</div></div>" +
+                '<button type="button" class="tdb-inc-field-remove" title="移除字段" aria-label="移除字段">×</button>';
+        } else {
+            row.innerHTML =
+                '<div class="tdb-inc-field-body">' +
+                '<label class="text-[11px] font-medium text-slate-700 sm:text-xs">字段路径</label>' +
+                '<div class="tdb-inc-field-controls">' +
+                '<input type="text" placeholder="如 phone" class="tdb-inc-path-input hf-mono" autocomplete="off" />' +
+                "</div></div>" +
+                '<button type="button" class="tdb-inc-field-remove" title="移除字段" aria-label="移除字段">×</button>';
+        }
+        incFieldsList.appendChild(row);
+        var input = row.querySelector(".tdb-inc-path-input");
+        if (input && value) input.value = value;
+        if (input) {
+            ["input", "change"].forEach(function (ev) {
+                input.addEventListener(ev, onIncPathInputChange);
+            });
+        }
+        var removeBtn = row.querySelector(".tdb-inc-field-remove");
+        if (removeBtn) {
+            removeBtn.addEventListener("click", function () {
+                if (incFieldsList.querySelectorAll(".tdb-inc-field-row").length <= 1) return;
+                row.remove();
+                syncPrimaryPathRef();
+                updateIncFieldRemoveButtons();
+                syncIncRangeSummary();
+                updateExportToolbarVisibility();
+            });
+        }
+        syncPrimaryPathRef();
+        updateIncFieldRemoveButtons();
+        syncIncRangeSummary();
+    }
+
+    function initIncFields() {
+        if (!incFieldsList) return;
+        incFieldsList.innerHTML = "";
+        addIncFieldRow({ isFirst: true });
+    }
+
+    function setDownloadEnabled(on) {
+        btnDownload.disabled = !on;
+        if (on) {
+            btnDownload.classList.remove("text-slate-400", "border-slate-200");
+            btnDownload.classList.add("text-violet-800", "border-violet-200", "bg-violet-50", "hover:bg-violet-100");
+        } else {
+            btnDownload.classList.add("text-slate-400", "border-slate-200");
+            btnDownload.classList.remove("text-violet-800", "border-violet-200", "bg-violet-50", "hover:bg-violet-100");
+        }
+    }
+
+    function fingerprint() {
+        return JSON.stringify({
+            url: elUrl.value.trim(),
+            token: elToken.value.trim(),
+            method: elMethod.value,
+            delay_ms: elDelay.value.trim(),
+            headers: elHeaders.value.trim(),
+            body: elBody.value.trim(),
+            variable_paths: getVariablePaths(),
+            field_configs: buildFieldConfigs(),
+            range_min: elMin ? elMin.value.trim() : "1",
+            range_max: elMax ? elMax.value.trim() : "1000",
+            repeat_count: elRepeat ? elRepeat.value.trim() : String(incRangeState.repeat_count)
+        });
+    }
+
+    function appendLog(line) {
+        elOut.textContent += line + "\n";
+        elOut.scrollTop = elOut.scrollHeight;
+    }
+
+    function tokenizeCurl(input) {
+        var s = String(input)
+            .replace(/;\s*$/, "")
+            .replace(/\^\r?\n/g, " ")
+            .replace(/\r\n/g, "\n")
+            .replace(/\\\r?\n/g, "\n")
+            .replace(/\r/g, "\n")
+            .trim();
+        var out = [];
+        var i = 0;
+        var n = s.length;
+        while (i < n) {
+            while (i < n && /[\s\u00a0]/.test(s.charAt(i))) i++;
+            if (i >= n) break;
+            var c = s.charAt(i);
+            if (c === "'" || c === "\"") {
+                var q = c;
+                var buf = "";
+                i++;
+                while (i < n) {
+                    if (q === "\"" && s.charAt(i) === "\\" && i + 1 < n) {
+                        buf += s.charAt(++i);
+                        i++;
+                        continue;
+                    }
+                    if (s.charAt(i) === q) {
+                        i++;
+                        break;
+                    }
+                    buf += s.charAt(i++);
+                }
+                out.push(buf);
+            } else {
+                var buf2 = "";
+                while (i < n && !/[\s\u00a0]/.test(s.charAt(i))) buf2 += s.charAt(i++);
+                out.push(buf2);
+            }
+        }
+        return out;
+    }
+
+    function expandTokens(tokens) {
+        var res = [];
+        for (var t = 0; t < tokens.length; t++) {
+            var tok = tokens[t];
+            var m = tok.match(/^-X([A-Za-z]+)$/);
+            if (m) {
+                res.push("-X", m[1]);
+                continue;
+            }
+            var m2 = tok.match(/^--request=([^\s]+)$/i);
+            if (m2) {
+                res.push("--request", m2[1]);
+                continue;
+            }
+            res.push(tok);
+        }
+        return res;
+    }
+
+    function parseHeaderPair(hv) {
+        var colon = hv.indexOf(":");
+        if (colon === -1) return null;
+        return { name: hv.slice(0, colon).trim(), value: hv.slice(colon + 1).trim() };
+    }
+
+    function parseCurlToForm(raw) {
+        var warnings = [];
+        var tokens = expandTokens(tokenizeCurl(raw));
+        var ti = 0;
+        if (ti < tokens.length && /^curl$/i.test(tokens[ti])) ti++;
+
+        var url = "";
+        var method = "";
+        var methodSeen = false;
+        var headers = {};
+        var bodyParts = [];
+
+        while (ti < tokens.length) {
+            var tok = tokens[ti];
+            var low = tok.toLowerCase();
+
+            if (/^https?:\/\//i.test(tok)) {
+                url = tok;
+                ti++;
+                continue;
+            }
+
+            if (tok === "-X" || low === "--request") {
+                method = String(tokens[ti + 1] || "GET").toUpperCase();
+                methodSeen = true;
+                ti += 2;
+                continue;
+            }
+
+            if (low.indexOf("--header=") === 0) {
+                var hp = parseHeaderPair(tok.slice("--header=".length));
+                if (hp) {
+                    if (hp.name.toLowerCase() !== "host") headers[hp.name] = hp.value;
+                }
+                ti++;
+                continue;
+            }
+
+            if (tok === "-H" || low === "--header") {
+                var hv = tokens[ti + 1];
+                ti += 2;
+                if (hv == null) continue;
+                var pair = parseHeaderPair(hv);
+                if (!pair) continue;
+                if (pair.name.toLowerCase() === "host") continue;
+                headers[pair.name] = pair.value;
+                continue;
+            }
+
+            if (tok === "-b" || low === "--cookie") {
+                var ck = tokens[ti + 1];
+                ti += 2;
+                if (ck != null) {
+                    if (headers.Cookie) headers.Cookie = headers.Cookie + "; " + ck;
+                    else headers.Cookie = ck;
+                }
+                continue;
+            }
+
+            if (tok === "-A" || low === "--user-agent") {
+                var ua = tokens[ti + 1];
+                ti += 2;
+                if (ua != null) headers["User-Agent"] = ua;
+                continue;
+            }
+
+            if (low === "--location" || tok === "-L") {
+                ti++;
+                continue;
+            }
+            if (low === "--compressed") {
+                ti++;
+                continue;
+            }
+            if (low === "--silent" || tok === "-s") {
+                ti++;
+                continue;
+            }
+            if (low === "--insecure" || tok === "-k") {
+                ti++;
+                continue;
+            }
+            if (low === "--verbose" || tok === "-v") {
+                ti++;
+                continue;
+            }
+
+            if (low === "--url") {
+                if (tokens[ti + 1]) url = tokens[ti + 1];
+                ti += 2;
+                continue;
+            }
+
+            if (tok === "-d" || low === "--data" || low === "--data-raw" || low === "--data-binary" || low === "--data-urlencode") {
+                var next = tokens[ti + 1];
+                ti += 2;
+                if (next == null) continue;
+                var ns = String(next);
+                if (ns.charAt(0) === "@") {
+                    throw new Error("当前不支持 cURL 中的 @ 文件引用，请粘贴正文或去掉 @file");
+                }
+                bodyParts.push(ns);
+                continue;
+            }
+
+            if (low.indexOf("--data-binary=") === 0 || low.indexOf("--data-raw=") === 0 || low.indexOf("--data=") === 0) {
+                var eq = tok.indexOf("=");
+                var rest = tok.slice(eq + 1);
+                if (rest.charAt(0) === "@") throw new Error("当前不支持 cURL 中的 @ 文件引用");
+                bodyParts.push(rest);
+                ti++;
+                continue;
+            }
+
+            if (tok.charAt(0) === "-") {
+                ti++;
+                continue;
+            }
+
+            ti++;
+        }
+
+        if (!url) throw new Error("未识别到 URL，请确认 cURL 中含 https://… 或 --url");
+
+        if (!methodSeen) {
+            if (bodyParts.length) method = "POST";
+            else method = "GET";
+        }
+
+        var bodyRaw = "";
+        if (bodyParts.length) {
+            var joiner = bodyParts.length > 1 && !/^\s*\{/.test(bodyParts[0]) ? "&" : "";
+            bodyRaw = bodyParts.join(joiner);
+        }
+
+        var token = "";
+        var authKey = null;
+        Object.keys(headers).forEach(function (k) {
+            if (k.toLowerCase() === "authorization") authKey = k;
+        });
+        if (authKey) {
+            var av = String(headers[authKey] || "").trim();
+            var bm = av.match(/^Bearer\s+(.+)$/i);
+            if (bm) {
+                token = bm[1].trim();
+                delete headers[authKey];
+            } else {
+                warnings.push("Authorization 非 Bearer 格式，已保留在请求头 JSON 中，请自行检查 Token 框。");
+            }
+        }
+
+        var bodyJsonText = DEFAULT_BODY;
+        if (bodyParts.length && !bodyRaw.trim()) {
+            bodyJsonText = "{}";
+        } else if (bodyRaw.trim()) {
+            try {
+                var parsed = JSON.parse(bodyRaw);
+                if (parsed !== null && typeof parsed === "object" && !Array.isArray(parsed)) {
+                    bodyJsonText = JSON.stringify(parsed, null, 2);
+                } else {
+                    warnings.push("请求体 JSON 不是对象，已使用默认请求体模板，请手动修改。");
+                }
+            } catch (e) {
+                warnings.push("请求体不是合法 JSON（可能为表单或其它格式），已使用默认请求体模板，请手动粘贴 JSON。");
+            }
+        }
+
+        var hdrOut = {};
+        Object.keys(headers).forEach(function (k) {
+            hdrOut[k] = headers[k];
+        });
+        if (!hdrOut["Content-Type"] && !hdrOut["content-type"] && ["POST", "PUT", "PATCH"].indexOf(method) >= 0) {
+            hdrOut["Content-Type"] = "application/json";
+        }
+        var headersJson = JSON.stringify(hdrOut, null, 2);
+
+        return { url: url, method: method, headersJson: headersJson, bodyJson: bodyJsonText, token: token, warnings: warnings };
+    }
+
+    function openCurlModal() {
+        if (!modalCurl) return;
+        if (curlErr) {
+            curlErr.textContent = "";
+            curlErr.classList.add("hidden");
+        }
+        modalCurl.classList.remove("hidden");
+        modalCurl.classList.add("tdb-modal-open");
+        if (curlInput) {
+            try {
+                curlInput.focus();
+            } catch (e) {}
+        }
+    }
+
+    function closeCurlModal() {
+        if (!modalCurl) return;
+        modalCurl.classList.remove("tdb-modal-open");
+        modalCurl.classList.add("hidden");
+    }
+
+    function applyCurlImport() {
+        curlErr.textContent = "";
+        curlErr.classList.add("hidden");
+        try {
+            var r = parseCurlToForm(curlInput.value);
+            elUrl.value = r.url;
+            elMethod.value = (["GET", "POST", "PUT", "PATCH", "DELETE"].indexOf(r.method) >= 0) ? r.method : "POST";
+            elHeaders.value = r.headersJson;
+            elBody.value = r.bodyJson;
+            if (r.token) elToken.value = r.token;
+            closeCurlModal();
+            var parts = (r.warnings || []).slice();
+            if (!r.token) parts.push("cURL 中未找到 Bearer Token，请手动填写 Token。");
+            if (parts.length) showErr(parts.join(" "));
+            else showErr("");
+            syncProtectedUi();
+        } catch (e) {
+            curlErr.textContent = e.message || String(e);
+            curlErr.classList.remove("hidden");
+        }
+    }
+
+    function maskHeadersForExport(h) {
+        if (!h || typeof h !== "object") return h;
+        var o = {};
+        Object.keys(h).forEach(function (k) {
+            var v = h[k];
+            if (k.toLowerCase() === "authorization" && typeof v === "string" && /^Bearer\s+/i.test(v)) {
+                o[k] = "Bearer <已省略>";
+            } else o[k] = v;
+        });
+        return o;
+    }
+
+    function buildExportTxt(bundle) {
+        if (!bundle || !bundle.response) return "";
+        var j = bundle.response;
+        var lines = [];
+        lines.push("TestHub — 数据构建 导出");
+        lines.push("导出时间(本地): " + new Date().toLocaleString());
+        lines.push("接口: POST /api/test-data-builder/run");
+        lines.push("");
+        if (j.summary) {
+            lines.push("[汇总]");
+            lines.push(JSON.stringify(j.summary, null, 2));
+        }
+        if (j.stopped_early) {
+            lines.push("");
+            lines.push("[提前结束]");
+            lines.push(JSON.stringify(j.stopped_early, null, 2));
+        }
+        lines.push("");
+        (j.results || []).forEach(function (row) {
+            lines.push("========== 第 " + row.index + " 次 ==========");
+            lines.push("递增写入值: " + JSON.stringify(row.value));
+            if (row.request_url) {
+                lines.push("请求 URL: " + row.request_url);
+                lines.push("请求方法: " + (row.request_method || ""));
+                if (row.request_headers) {
+                    lines.push("请求头:");
+                    lines.push(JSON.stringify(maskHeadersForExport(row.request_headers), null, 2));
+                }
+                if (row.request_body !== undefined && row.request_body !== null) {
+                    lines.push("请求体 JSON:");
+                    lines.push(JSON.stringify(row.request_body, null, 2));
+                } else if (row.request_method === "GET") {
+                    lines.push("请求体: (GET 无 JSON body)");
+                }
+            }
+            if (row.status_code != null) {
+                lines.push("响应 HTTP: " + row.status_code + (row.ok_http ? " OK" : ""));
+            }
+            if (row.error) {
+                lines.push("请求异常: " + row.error);
+            }
+            lines.push("响应正文:");
+            lines.push(row.body_preview != null ? String(row.body_preview) : "(无)");
+            lines.push("");
+        });
+        return lines.join("\n");
+    }
+
+    function triggerDownload(text, filename) {
+        var blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        a.rel = "noopener";
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function () {
+            URL.revokeObjectURL(a.href);
+            a.remove();
+        }, 0);
+    }
+
+    function shellSingleQuote(s) {
+        return "'" + String(s).replace(/'/g, "'\\''") + "'";
+    }
+
+    function validateCurlExport() {
+        if (!elUrl.value.trim()) throw new Error("请填写 URL");
+        if (!elToken.value.trim()) throw new Error("请填写 Token");
+        parseJsonField(elHeaders.value, "请求头");
+        parseJsonField(elBody.value, "请求体");
+    }
+
+    function buildCurlOneShot() {
+        var url = elUrl.value.trim();
+        var method = elMethod.value;
+        var token = elToken.value.trim();
+        var headersObj = parseJsonField(elHeaders.value, "请求头");
+        var bodyRaw = elBody.value;
+        var merged = {};
+        Object.keys(headersObj).forEach(function (k) {
+            merged[k] = headersObj[k];
+        });
+        merged.Authorization = "Bearer " + token;
+        var parts = ["curl", "-sS", "-X", method, shellSingleQuote(url)];
+        Object.keys(merged).forEach(function (k) {
+            parts.push("-H", shellSingleQuote(k + ": " + merged[k]));
+        });
+        if (method !== "GET" && method !== "HEAD") {
+            parts.push("--data-raw", shellSingleQuote(bodyRaw));
+        }
+        return parts.join(" ");
+    }
+
+    function buildPythonScript() {
+        var url = elUrl.value.trim();
+        var token = elToken.value.trim();
+        var method = elMethod.value;
+        var headersObj = parseJsonField(elHeaders.value, "请求头");
+        var bodyObj = parseJsonField(elBody.value, "请求体");
+        var paths = getVariablePaths();
+        var fieldConfigs = buildFieldConfigs();
+        var rep = parseInt(elRepeat.value, 10);
+        var delayMs = Math.max(0, parseInt(elDelay.value, 10) || 0);
+        var lines = [];
+        lines.push("#!/usr/bin/env python3");
+        lines.push('"""');
+        lines.push("由 TestHub「数据构建」根据当前表单生成。");
+        lines.push("在可访问目标 URL 的机器上: pip install requests  然后  python 本脚本.py");
+        lines.push('"""');
+        lines.push("");
+        lines.push("from __future__ import annotations");
+        lines.push("");
+        lines.push("import copy");
+        lines.push("import json");
+        lines.push("import time");
+        lines.push("");
+        lines.push("import requests");
+        lines.push("");
+        lines.push("METHOD = " + JSON.stringify(method));
+        lines.push("URL = " + JSON.stringify(url));
+        lines.push("TOKEN = " + JSON.stringify(token));
+        lines.push("HEADERS = json.loads(" + JSON.stringify(JSON.stringify(headersObj)) + ")");
+        lines.push("BODY_TEMPLATE = json.loads(" + JSON.stringify(JSON.stringify(bodyObj)) + ")");
+        lines.push("VARIABLE_PATHS = json.loads(" + JSON.stringify(JSON.stringify(paths)) + ")");
+        lines.push("FIELD_CONFIGS = json.loads(" + JSON.stringify(JSON.stringify(fieldConfigs)) + ")");
+        lines.push("REPEAT_COUNT = " + rep);
+        lines.push("DELAY_MS = " + delayMs);
+        lines.push("REQUEST_TIMEOUT = 30");
+        lines.push("");
+        lines.push("");
+        lines.push("def value_for_field(cfg: dict, index: int) -> int:");
+        lines.push("    range_min = int(cfg['range_min'])");
+        lines.push("    range_max = int(cfg['range_max'])");
+        lines.push("    if cfg.get('loop'):");
+        lines.push("        span = max(1, range_max - range_min + 1)");
+        lines.push("        return range_min + (index % span)");
+        lines.push("    return range_min + index");
+        lines.push("");
+        lines.push("");
+        lines.push("def field_exhausted(cfg: dict, index: int) -> bool:");
+        lines.push("    if cfg.get('loop'):");
+        lines.push("        return False");
+        lines.push("    return value_for_field(cfg, index) > int(cfg['range_max'])");
+        lines.push("");
+        lines.push("");
+        lines.push("def field_should_stop_batch(cfg: dict, index: int) -> bool:");
+        lines.push("    return field_exhausted(cfg, index) and not cfg.get('omit_carry')");
+        lines.push("");
+        lines.push("");
+        lines.push("def deep_delete(obj: dict, path: str) -> None:");
+        lines.push('    parts = path.strip().split(".")');
+        lines.push("    if not parts or not parts[0]:");
+        lines.push("        return");
+        lines.push("    cur = obj");
+        lines.push("    for p in parts[:-1]:");
+        lines.push("        if not isinstance(cur, dict) or p not in cur:");
+        lines.push("            return");
+        lines.push("        cur = cur[p]");
+        lines.push("    if isinstance(cur, dict):");
+        lines.push("        cur.pop(parts[-1], None)");
+        lines.push("");
+        lines.push("");
+        lines.push("def deep_get(obj: dict, path: str):");
+        lines.push("    cur = obj");
+        lines.push('    for p in path.strip().split("."):');
+        lines.push("        if not isinstance(cur, dict) or p not in cur:");
+        lines.push("            return None");
+        lines.push("        cur = cur[p]");
+        lines.push("    return cur");
+        lines.push("");
+        lines.push("");
+        lines.push("def deep_set(obj: dict, path: str, value) -> None:");
+        lines.push('    parts = path.strip().split(".")');
+        lines.push("    if not parts or not parts[0]:");
+        lines.push('        raise ValueError("字段路径不能为空")');
+        lines.push("    cur = obj");
+        lines.push("    for p in parts[:-1]:");
+        lines.push("        nxt = cur.get(p)");
+        lines.push("        if not isinstance(nxt, dict):");
+        lines.push("            nxt = {}");
+        lines.push("            cur[p] = nxt");
+        lines.push("        cur = nxt");
+        lines.push("    cur[parts[-1]] = value");
+        lines.push("");
+        lines.push("");
+        lines.push("def coerce_value(hint, val: int):");
+        lines.push("    if isinstance(hint, bool):");
+        lines.push("        return bool(val)");
+        lines.push("    if isinstance(hint, str):");
+        lines.push("        return str(val)");
+        lines.push("    if isinstance(hint, float):");
+        lines.push("        return float(val)");
+        lines.push("    return val");
+        lines.push("");
+        lines.push("");
+        lines.push("def main() -> None:");
+        lines.push("    headers = {str(k).strip(): str(v).strip() for k, v in HEADERS.items() if str(k).strip()}");
+        lines.push('    headers["Authorization"] = "Bearer " + str(TOKEN).strip()');
+        lines.push("    body_template = json.loads(json.dumps(BODY_TEMPLATE))");
+        lines.push("    cfg_by_path = {c['path']: c for c in FIELD_CONFIGS}");
+        lines.push("    for i in range(REPEAT_COUNT):");
+        lines.push("        exhausted = next((c for c in FIELD_CONFIGS if field_should_stop_batch(c, i)), None)");
+        lines.push("        if exhausted is not None:");
+        lines.push('            print("[提前结束] 字段", exhausted["path"], "已超过上限", exhausted["range_max"], "已完成", i, "次")');
+        lines.push("            break");
+        lines.push("        body = copy.deepcopy(body_template)");
+        lines.push("        field_values = {}");
+        lines.push("        for path in VARIABLE_PATHS:");
+        lines.push("            cfg = cfg_by_path[path]");
+        lines.push("            if field_exhausted(cfg, i) and cfg.get('omit_carry'):");
+        lines.push("                deep_delete(body, path)");
+        lines.push("                field_values[path] = None");
+        lines.push("                continue");
+        lines.push("            val = value_for_field(cfg, i)");
+        lines.push("            type_hint = deep_get(body_template, path)");
+        lines.push("            coerced = coerce_value(type_hint, val) if type_hint is not None else val");
+        lines.push("            deep_set(body, path, coerced)");
+        lines.push("            field_values[path] = coerced");
+        lines.push("        coerced = field_values.get(VARIABLE_PATHS[0]) if VARIABLE_PATHS else None");
+        lines.push("        try:");
+        lines.push('            if METHOD == "GET":');
+        lines.push("                r = requests.get(URL, headers=headers, timeout=REQUEST_TIMEOUT, allow_redirects=True)");
+        lines.push("            else:");
+        lines.push("                r = requests.request(METHOD, URL, headers=headers, json=body, timeout=REQUEST_TIMEOUT, allow_redirects=True)");
+        lines.push("            text = r.text");
+        lines.push("            if len(text) > 4000:");
+        lines.push('                text = text[:4000] + "...[truncated]"');
+        lines.push("            short = text.replace(chr(10), \" \").replace(chr(13), \" \")[:220]");
+        lines.push('            print("#" + str(i + 1) + " value=" + json.dumps(coerced, ensure_ascii=False) + " HTTP " + str(r.status_code) + " " + short)');
+        lines.push("        except requests.RequestException as e:");
+        lines.push('            print("#" + str(i + 1) + " value=" + json.dumps(coerced, ensure_ascii=False) + " err=" + str(e))');
+        lines.push("        if DELAY_MS > 0 and i < REPEAT_COUNT - 1:");
+        lines.push("            time.sleep(DELAY_MS / 1000.0)");
+        lines.push("");
+        lines.push("");
+        lines.push('if __name__ == "__main__":');
+        lines.push("    main()");
+        return lines.join("\n");
+    }
+
+    function copyTextToClipboard(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+            return navigator.clipboard.writeText(text);
+        }
+        return new Promise(function (resolve, reject) {
+            try {
+                var ta = document.createElement("textarea");
+                ta.value = text;
+                ta.style.position = "fixed";
+                ta.style.left = "-9999px";
+                document.body.appendChild(ta);
+                ta.focus();
+                ta.select();
+                document.execCommand("copy");
+                ta.remove();
+                resolve();
+            } catch (e) {
+                reject(e);
+            }
+        });
+    }
+
+    function openPyExportModal() {
+        if (!modalPyExport) return;
+        modalPyExport.classList.remove("hidden");
+        modalPyExport.classList.add("tdb-modal-open");
+    }
+
+    function closePyExportModal() {
+        if (!modalPyExport) return;
+        modalPyExport.classList.remove("tdb-modal-open");
+        modalPyExport.classList.add("hidden");
+    }
+
+    function openCurlViewModal() {
+        if (!modalCurlView) return;
+        modalCurlView.classList.remove("hidden");
+        modalCurlView.classList.add("tdb-modal-open");
+    }
+
+    function closeCurlViewModal() {
+        if (!modalCurlView) return;
+        modalCurlView.classList.remove("tdb-modal-open");
+        modalCurlView.classList.add("hidden");
+    }
+
+    function openUsageModal() {
+        if (!modalUsage) return;
+        modalUsage.classList.remove("hidden");
+        modalUsage.classList.add("tdb-modal-open");
+    }
+
+    function closeUsageModal() {
+        if (!modalUsage) return;
+        modalUsage.classList.remove("tdb-modal-open");
+        modalUsage.classList.add("hidden");
+    }
+
+    function openDisclaimerModal() {
+        if (!modalDisclaimer) return;
+        modalDisclaimer.classList.remove("hidden");
+        modalDisclaimer.classList.add("tdb-modal-open");
+    }
+
+    function closeDisclaimerModal() {
+        if (!modalDisclaimer) return;
+        modalDisclaimer.classList.remove("tdb-modal-open");
+        modalDisclaimer.classList.add("hidden");
+    }
+
+    function wireModalCards() {
+        [modalPyExport, modalCurlView, modalCurl, modalUsage, modalDisclaimer].forEach(function (m) {
+            if (!m) return;
+            var c = m.querySelector(".tdb-modal-card");
+            if (c) c.addEventListener("click", function (ev) {
+                ev.stopPropagation();
+            });
+        });
+    }
+
+    elHeaders.value = DEFAULT_HEADERS;
+    elBody.value = DEFAULT_BODY;
+    setDownloadEnabled(false);
+
+    elUrl.addEventListener("input", syncProtectedUi);
+    elUrl.addEventListener("change", syncProtectedUi);
+    if (elToken) {
+        elToken.addEventListener("input", updateExportToolbarVisibility);
+        elToken.addEventListener("change", updateExportToolbarVisibility);
+    }
+    elRepeat.addEventListener("change", function () {
+        var maxR = parseInt(elRepeat.getAttribute("max"), 10) || CFG.maxBatch;
+        var v = parseInt(elRepeat.value, 10);
+        if (!isNaN(v) && v > maxR) elRepeat.value = String(maxR);
+        if (!isNaN(v) && v >= 1) incRangeState.repeat_count = v;
+        syncIncRangeSummary();
+        updateExportToolbarVisibility();
+    });
+    ["input", "change"].forEach(function (ev) {
+        if (elHeaders) elHeaders.addEventListener(ev, updateExportToolbarVisibility);
+        if (elBody) elBody.addEventListener(ev, updateExportToolbarVisibility);
+        if (elMethod) elMethod.addEventListener(ev, updateExportToolbarVisibility);
+        if (elDelay) elDelay.addEventListener(ev, updateExportToolbarVisibility);
+        if (elMin) elMin.addEventListener(ev, updateExportToolbarVisibility);
+        if (elMax) elMax.addEventListener(ev, updateExportToolbarVisibility);
+    });
+    syncProtectedUi();
+    wireModalCards();
+
+    if (modalCurl && btnCurlOpen) {
+        btnCurlOpen.addEventListener("click", openCurlModal);
+        if (btnCurlCancel) btnCurlCancel.addEventListener("click", closeCurlModal);
+        if (btnCurlApply) btnCurlApply.addEventListener("click", applyCurlImport);
+        modalCurl.addEventListener("click", function (ev) {
+            if (ev.target === modalCurl) closeCurlModal();
+        });
+    }
+
+    if (btnExportPy) btnExportPy.addEventListener("click", function () {
+        try {
+            validate();
+            lastPyScript = buildPythonScript();
+            if (pyExportOut) pyExportOut.value = lastPyScript;
+            openPyExportModal();
+        } catch (e) {
+            showToast(e.message || String(e), "err");
+        }
+    });
+    if (btnViewCurl) btnViewCurl.addEventListener("click", function () {
+        try {
+            validateCurlExport();
+            var c = buildCurlOneShot();
+            if (curlViewOut) curlViewOut.textContent = c;
+            openCurlViewModal();
+        } catch (e) {
+            showToast(e.message || String(e), "err");
+        }
+    });
+    if (btnPyClose) btnPyClose.addEventListener("click", closePyExportModal);
+    if (btnPyCopy) btnPyCopy.addEventListener("click", function () {
+        if (!pyExportOut) return;
+        copyTextToClipboard(pyExportOut.value).then(
+            function () {
+                showBriefOk("已复制 Python 脚本到剪贴板");
+            },
+            function () {
+                showToast("复制失败，请手动全选复制。", "err");
+            }
+        );
+    });
+    if (btnPyDownload) btnPyDownload.addEventListener("click", function () {
+        if (!pyExportOut) return;
+        triggerDownload(pyExportOut.value, "testhub-data-builder-local.py");
+    });
+    if (modalPyExport) modalPyExport.addEventListener("click", function (ev) {
+        if (ev.target === modalPyExport) closePyExportModal();
+    });
+    if (btnCurlViewClose) btnCurlViewClose.addEventListener("click", closeCurlViewModal);
+    if (btnCurlViewCopy) btnCurlViewCopy.addEventListener("click", function () {
+        if (!curlViewOut) return;
+        copyTextToClipboard(curlViewOut.textContent || "").then(
+            function () {
+                showBriefOk("已复制 cURL 到剪贴板");
+            },
+            function () {
+                showToast("复制失败，请手动全选复制。", "err");
+            }
+        );
+    });
+    if (modalCurlView) modalCurlView.addEventListener("click", function (ev) {
+        if (ev.target === modalCurlView) closeCurlViewModal();
+    });
+
+    if (btnOpenUsage) btnOpenUsage.addEventListener("click", openUsageModal);
+    if (btnUsageClose) btnUsageClose.addEventListener("click", closeUsageModal);
+    if (btnUsageOk) btnUsageOk.addEventListener("click", closeUsageModal);
+    if (modalUsage) modalUsage.addEventListener("click", function (ev) {
+        if (ev.target === modalUsage) closeUsageModal();
+    });
+    if (btnOpenDisclaimer) btnOpenDisclaimer.addEventListener("click", openDisclaimerModal);
+    if (btnDisclaimerClose) btnDisclaimerClose.addEventListener("click", closeDisclaimerModal);
+    if (btnDisclaimerOk) btnDisclaimerOk.addEventListener("click", closeDisclaimerModal);
+    if (modalDisclaimer) modalDisclaimer.addEventListener("click", function (ev) {
+        if (ev.target === modalDisclaimer) closeDisclaimerModal();
+    });
+
+    btnDownload.addEventListener("click", function () {
+        if (!lastExportBundle) return;
+        var pad = function (n) { return n < 10 ? "0" + n : "" + n; };
+        var d = new Date();
+        var fname = "testhub-data-builder-" + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + "-" + pad(d.getHours()) + pad(d.getMinutes()) + pad(d.getSeconds()) + ".txt";
+        triggerDownload(buildExportTxt(lastExportBundle), fname);
+    });
+
+    initIncFields();
+    if (btnAddIncField) {
+        btnAddIncField.addEventListener("click", function () {
+            addIncFieldRow({ isFirst: false });
+        });
+    }
+
+    syncProtectedUi();
+    syncIncRangeSummary();
+    if (btnOpenIncRange) btnOpenIncRange.addEventListener("click", openIncRangeModal);
+    if (btnIncRangeClose) btnIncRangeClose.addEventListener("click", closeIncRangeModal);
+    if (btnIncRangeCancel) btnIncRangeCancel.addEventListener("click", closeIncRangeModal);
+    if (btnIncRangeSave) {
+        btnIncRangeSave.addEventListener("click", function () {
+            try {
+                saveIncRangeFromModal();
+                closeIncRangeModal();
+                showErr("");
+                updateExportToolbarVisibility();
+            } catch (e) {
+                showErr(e.message || String(e));
+            }
+        });
+    }
+    if (modalIncRange) {
+        modalIncRange.addEventListener("click", function (ev) {
+            if (ev.target === modalIncRange) closeIncRangeModal();
+        });
+        modalIncRange.addEventListener("input", function (ev) {
+            var t = ev.target;
+            if (!t || !t.classList) return;
+            if (
+                t.id === "f-repeat" ||
+                t.classList.contains("tdb-inc-range-min") ||
+                t.classList.contains("tdb-inc-range-max")
+            ) {
+                updateModalFieldOptionsVisibility();
+            }
+        });
+        modalIncRange.addEventListener("change", function (ev) {
+            var t = ev.target;
+            if (!t || !t.classList) return;
+            if (t.classList.contains("tdb-inc-range-loop") && t.checked) {
+                var row = t.closest(".tdb-inc-range-row");
+                var omitCb = row && row.querySelector(".tdb-inc-range-omit");
+                if (omitCb) omitCb.checked = false;
+            }
+            if (t.classList.contains("tdb-inc-range-omit") && t.checked) {
+                var row2 = t.closest(".tdb-inc-range-row");
+                var loopCb = row2 && row2.querySelector(".tdb-inc-range-loop");
+                if (loopCb) loopCb.checked = false;
+            }
+            if (t.classList.contains("tdb-inc-range-loop") || t.classList.contains("tdb-inc-range-omit")) {
+                updateModalFieldOptionsVisibility();
+            }
+        });
+    }
+
+    btnResetH.addEventListener("click", function () {
+        elHeaders.value = DEFAULT_HEADERS;
+        updateExportToolbarVisibility();
+    });
+
+    btnClear.addEventListener("click", function () {
+        elOut.textContent = "";
+        showErr("");
+        lastExportBundle = null;
+        setDownloadEnabled(false);
+    });
+
+    function parseJsonField(text, label) {
+        try {
+            var o = JSON.parse(text);
+            if (o === null || typeof o !== "object" || Array.isArray(o)) {
+                throw new Error(label + "须为 JSON 对象");
+            }
+            return o;
+        } catch (e) {
+            throw new Error((e && e.message) ? e.message : (label + "解析失败"));
+        }
+    }
+
+    function closeModal() {
+        if (!modal) return;
+        modal.classList.remove("tdb-modal-open");
+        modal.classList.add("hidden");
+    }
+
+    function openModal() {
+        if (!modal) return;
+        modal.classList.remove("hidden");
+        modal.classList.add("tdb-modal-open");
+    }
+
+    btnDupEdit.addEventListener("click", closeModal);
+    btnDupForce.addEventListener("click", function () {
+        forceRunOnce = true;
+        closeModal();
+        doRun();
+    });
+
+    function validate() {
+        if (!elUrl.value.trim()) throw new Error("请填写 URL");
+        if (!elToken.value.trim()) throw new Error("请填写 Token");
+        parseJsonField(elHeaders.value, "请求头");
+        parseJsonField(elBody.value, "请求体");
+        if (!getVariablePaths().length) throw new Error("请填写至少一个递增字段路径");
+        var fieldCfgs = buildFieldConfigs();
+        for (var vi = 0; vi < fieldCfgs.length; vi++) {
+            var fc = fieldCfgs[vi];
+            if (fc.range_min > fc.range_max) {
+                throw new Error("字段「" + fc.path + "」的下限不能大于上限");
+            }
+        }
+        var rep = parseInt(elRepeat.value, 10);
+        if (isNaN(rep) || rep < 1) throw new Error("请求次数须为 ≥1 的整数");
+        if (isProtectedUrl(elUrl.value)) {
+            if (rep > CFG.protectedMaxRepeat) {
+                throw new Error("当前 URL 为常见正规平台地址，不允许高频访问，单次「请求次数」最多为 " + CFG.protectedMaxRepeat + "。");
+            }
+        } else if (rep > CFG.maxBatch) {
+            throw new Error("请求次数单次最多为 " + CFG.maxBatch + "。");
+        }
+    }
+
+    function doRun() {
+        showErr("");
+        var fp = fingerprint();
+        if (!forceRunOnce && lastSuccessFingerprint && fp === lastSuccessFingerprint) {
+            openModal();
+            return;
+        }
+        forceRunOnce = false;
+
+        try {
+            validate();
+        } catch (e) {
+            showErr(e.message || String(e));
+            return;
+        }
+
+        var headersObj = parseJsonField(elHeaders.value, "请求头");
+        var bodyObj = parseJsonField(elBody.value, "请求体");
+        var delayRaw = parseInt(elDelay.value, 10);
+        var paths = getVariablePaths();
+        var fieldCfgsRun = buildFieldConfigs();
+        syncLegacyRangeInputs();
+        var payload = {
+            url: elUrl.value.trim(),
+            token: elToken.value.trim(),
+            method: elMethod.value,
+            headers: headersObj,
+            body: bodyObj,
+            variable_path: paths[0],
+            variable_paths: paths,
+            field_configs: fieldCfgsRun,
+            range_min: fieldCfgsRun.length ? fieldCfgsRun[0].range_min : 1,
+            range_max: fieldCfgsRun.length ? fieldCfgsRun[0].range_max : 1,
+            repeat_count: parseInt(elRepeat.value, 10),
+            delay_ms: isNaN(delayRaw) ? 0 : Math.max(0, delayRaw),
+            full_log: true
+        };
+
+        btnRun.disabled = true;
+        lastExportBundle = null;
+        setDownloadEnabled(false);
+        appendLog("--- 开始 " + new Date().toISOString() + " ---");
+
+        fetch("/api/test-data-builder/run", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        })
+            .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+            .then(function (_ref) {
+                var j = _ref.j;
+                if (!j.ok) {
+                    showErr(j.message || j.error || "请求失败");
+                    appendLog("[错误] " + (j.message || j.error || ""));
+                    return;
+                }
+                if (j.stopped_early) {
+                    appendLog("[提前结束] " + (j.stopped_early.message || JSON.stringify(j.stopped_early)));
+                }
+                (j.results || []).forEach(function (row) {
+                    var line = "#" + row.index;
+                    if (row.field_values && Object.keys(row.field_values).length > 1) {
+                        line += " values=" + JSON.stringify(row.field_values);
+                    } else {
+                        line += " value=" + JSON.stringify(row.value);
+                    }
+                    if (row.status_code != null) {
+                        line += " HTTP " + row.status_code + (row.ok_http ? " OK" : "");
+                    }
+                    if (row.error) line += " err=" + row.error;
+                    appendLog(line);
+                    if (row.body_preview) appendLog(row.body_preview.split("\n").slice(0, 8).join("\n"));
+                });
+                appendLog("--- 完成 共 " + (j.summary && j.summary.sent) + " 条 ---");
+                lastSuccessFingerprint = fp;
+                lastExportBundle = { response: j, at: new Date().toISOString() };
+                setDownloadEnabled(true);
+            })
+            .catch(function (e) {
+                showErr(e.message || "网络错误");
+                appendLog("[异常] " + e);
+            })
+            .finally(function () {
+                btnRun.disabled = false;
+            });
+    }
+
+    btnRun.addEventListener("click", function () {
+        doRun();
+    });
+})();
+    </script>

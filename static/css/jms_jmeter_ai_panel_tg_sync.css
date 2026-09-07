@@ -1,0 +1,6 @@
+body.jms-page.lth-hub-jmeter-tab .jms-ai-panel__msg--system .jms-ai-panel__bubble {
+    background: rgba(13, 148, 136, 0.18);
+    color: rgba(204, 251, 241, 0.95);
+    font-size: 0.75rem;
+    border: 1px dashed rgba(45, 212, 191, 0.35);
+}

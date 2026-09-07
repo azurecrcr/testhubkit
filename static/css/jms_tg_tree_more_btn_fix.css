@@ -1,0 +1,22 @@
+/**
+ * 树形顶栏「更多」按钮：解除固定方框，完整包裹文字与箭头（隔离）
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-head-add .lth-tg-add-more-btn.jms-tg-tree-more-btn {
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 1.45rem !important;
+    padding: 0.2rem 0.42rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.12rem !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-head-add .jms-tg-tree-more-caret {
+    flex: 0 0 auto !important;
+    line-height: 1 !important;
+}

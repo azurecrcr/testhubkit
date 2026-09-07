@@ -1,0 +1,63 @@
+/**
+ * 逻辑控制器挂载区下拉 · 末位防裁切（高优先级，覆盖 unify overflow:hidden）
+ * 加载于 jms_logic_ctrl_card_if_unify.css 之后
+ */
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random .jms-random-card:has(.jms-if-mount-context .is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple .jms-simple-card:has(.jms-if-mount-context .is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction .jms-transaction-card:has(.jms-if-mount-context .is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop .jms-loop-card:has(.jms-if-mount-context .is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random .jms-random-card:has(.jms-if-mount-context .is-open) .jms-random-card__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple .jms-simple-card:has(.jms-if-mount-context .is-open) .jms-simple-card__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction .jms-transaction-card:has(.jms-if-mount-context .is-open) .jms-transaction-card__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop .jms-loop-card:has(.jms-if-mount-context .is-open) .jms-loop-card__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random:has(.jms-if-mount-context .is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple:has(.jms-if-mount-context .is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction:has(.jms-if-mount-context .is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop:has(.jms-if-mount-context .is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random:has(.jms-if-mount-context .is-open) > .jms-tree-node__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple:has(.jms-if-mount-context .is-open) > .jms-tree-node__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction:has(.jms-if-mount-context .is-open) > .jms-tree-node__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop:has(.jms-if-mount-context .is-open) > .jms-tree-node__body {
+    overflow: visible !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random:has(.jms-if-mount-context .is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple:has(.jms-if-mount-context .is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction:has(.jms-if-mount-context .is-open),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop:has(.jms-if-mount-context .is-open) {
+    position: relative !important;
+    z-index: 48 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--random .jms-random-card:has(.jms-if-mount-context .is-open) .jms-if-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--simple .jms-simple-card:has(.jms-if-mount-context .is-open) .jms-if-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--transaction .jms-transaction-card:has(.jms-if-mount-context .is-open) .jms-if-mount-context,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--loop .jms-loop-card:has(.jms-if-mount-context .is-open) .jms-if-mount-context {
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 50 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-sampler-more.is-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-logic-more.is-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-assert-more.is-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-timer-more.is-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-preproc-more.is-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-proc-more.is-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-config-more.is-open,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-listener-more.is-open {
+    z-index: 52 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-sampler-more.is-open .jms-if-mount-ctx-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-logic-more.is-open .jms-if-mount-ctx-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-assert-more.is-open .jms-if-mount-ctx-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-timer-more.is-open .jms-if-mount-ctx-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-preproc-more.is-open .jms-if-mount-ctx-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-proc-more.is-open .jms-if-mount-ctx-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-config-more.is-open .jms-if-mount-ctx-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-mount-context .jms-if-mount-ctx-listener-more.is-open .jms-if-mount-ctx-menu {
+    z-index: 60 !important;
+}
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="doc-tools-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能编辑 · {{ hf_site_brand_title }}</title>
+    {% include 'partials/hf_favicon.html' %}
+    {% set doc_tools_bg_url = url_for('static', filename='images/doc-tools/doc-tools-page-bg.webp') ~ '?v=20260710perf1' %}
+    {% set doc_tools_bg_fallback = url_for('static', filename='images/doc-tools/doc-tools-page-bg.png') ~ '?v=20260710perf1' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toolkit.css') }}?v=20260556">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/doc_tools.css') }}?v=20260726doctools1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/doc_tools_gnav_glass.css') }}?v=20260729msgnav4">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/dtk-vxe-table/dtk-vxe-table.css') }}?v=20260629toolbarhidden">
+</head>
+<body class="doc-tools-page">
+    <div class="doc-tools-page__bg" aria-hidden="true" data-doc-tools-bg="{{ doc_tools_bg_url }}" style="--doc-tools-bg-url: url('{{ doc_tools_bg_url }}'); --doc-tools-bg-fallback: url('{{ doc_tools_bg_fallback }}');">
+        <div class="doc-tools-page__bg-scrim"></div>
+    </div>
+    {% include 'partials/hf_global_nav.html' %}
+    {% include 'partials/hf_float_toast.html' %}
+
+    <main class="doc-tools-shell">
+        {% include 'partials/tools/test_case_doc_tools.html' %}
+    </main>
+
+    <script src="{{ url_for('static', filename='js/hf_float_toast.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/doc_tools_ai_response.js') }}?v=20260710sendpause1"></script>
+    <script src="{{ url_for('static', filename='js/doc_tools_ai_panel_resize.js') }}?v=20260710sendpause1"></script>
+    <script src="{{ url_for('static', filename='js/doc_tools_ai_panel.js') }}?v=20260710quotatoast1"></script>
+    <script src="{{ url_for('static', filename='js/doc_tools_column_autofit.js') }}?v=20260710sendpause1"></script>
+    <script src="{{ url_for('static', filename='js/doc_tools_row_autofit.js') }}?v=20260710sendpause1"></script>
+    <script src="{{ url_for('static', filename='js/doc_tools_table_drag_resize.js') }}?v=20260710sendpause1"></script>
+    <script src="{{ url_for('static', filename='js/doc_tools_cell_content_scroll.js') }}?v=20260710sendpause1"></script>
+    <script src="{{ url_for('static', filename='js/column_fill.js') }}?v=20260622importai1"></script>
+    <script type="module" src="{{ url_for('static', filename='dist/dtk-vxe-table/dtk-vxe-table.js') }}?v=20260629toolbarhidden"></script>
+    <script src="{{ url_for('static', filename='js/doc_tools_import_ai_open.js') }}?v=20260622importai1"></script>
+    {% include 'partials/hf_site_footer.html' %}
+</body>
+</html>

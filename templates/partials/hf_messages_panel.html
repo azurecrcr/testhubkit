@@ -1,0 +1,165 @@
+{# 全站消息面板：依赖导航栏 #cm-btn-messages / #cm-msg-badge #}
+<div class="cm-modal-mask is-hidden" id="cm-messages-mask">
+    <div class="cm-modal cm-modal--cyan cm-modal--messages" role="dialog" aria-labelledby="cm-messages-title" aria-modal="true">
+        <div class="cm-modal__head">
+            <div class="cm-modal__head-main">
+                <strong id="cm-messages-title">消息</strong>
+                <span class="cm-messages-unread-hint is-hidden" id="cm-messages-unread-hint"></span>
+            </div>
+            <div class="cm-messages-head-actions">
+                <button type="button" class="cm-btn cm-btn--ghost cm-btn--sm" id="cm-messages-read-all" disabled>一键已读</button>
+                <button type="button" class="cm-icon-btn" id="cm-messages-close" aria-label="关闭">×</button>
+            </div>
+        </div>
+        <div class="cm-messages-filter" id="cm-messages-filter" role="tablist" aria-label="消息筛选">
+            <button type="button" class="cm-messages-filter__btn is-active" role="tab" aria-selected="true" data-filter="all" id="cm-messages-filter-all">全部</button>
+            <button type="button" class="cm-messages-filter__btn" role="tab" aria-selected="false" data-filter="unread" id="cm-messages-filter-unread">未读</button>
+            <span class="cm-messages-cap-hint">每位用户最多保留 99 条，超出将自动删除最早消息</span>
+        </div>
+        <div class="cm-messages-select-bar" id="cm-messages-select-bar">
+            <div class="cm-messages-select-bar__left">
+                <button type="button" class="cm-messages-sel-btn" id="cm-messages-select-page">选择当前</button>
+                <button type="button" class="cm-messages-sel-btn" id="cm-messages-select-all">全部消息</button>
+                <button type="button" class="cm-messages-sel-btn" id="cm-messages-select-clear">取消选择</button>
+            </div>
+            <button type="button" class="cm-messages-batch-del is-hidden" id="cm-messages-batch-delete" disabled>删除所选</button>
+        </div>
+        <div class="cm-messages-list" id="cm-messages-list" aria-live="polite"></div>
+        <div class="cm-messages-pager" id="cm-messages-pager">
+            <button type="button" class="cm-btn cm-btn--ghost cm-btn--sm" id="cm-messages-prev" disabled>上一页</button>
+            <span class="cm-messages-pager__info" id="cm-messages-page-info">—</span>
+            <button type="button" class="cm-btn cm-btn--ghost cm-btn--sm" id="cm-messages-next" disabled>下一页</button>
+        </div>
+    </div>
+    {# 消息面板内确认层，不依赖页面 CmDialogs #}
+    <div class="cm-messages-confirm is-hidden" id="cm-messages-confirm" role="alertdialog" aria-modal="true" aria-labelledby="cm-messages-confirm-title">
+        <div class="cm-messages-confirm__panel">
+            <strong class="cm-messages-confirm__title" id="cm-messages-confirm-title">确认删除</strong>
+            <p class="cm-messages-confirm__body" id="cm-messages-confirm-body">确定删除所选消息？</p>
+            <div class="cm-messages-confirm__actions">
+                <button type="button" class="cm-btn cm-btn--ghost cm-btn--sm" id="cm-messages-confirm-cancel">取消</button>
+                <button type="button" class="cm-btn cm-btn--danger cm-btn--sm" id="cm-messages-confirm-ok">删除</button>
+            </div>
+        </div>
+    </div>
+</div>
+{# 站点日报详情：必须在消息 mask 外，避免被消息面板层叠上下文盖住 #}
+<div class="cm-daily-detail is-hidden" id="cm-daily-detail" role="dialog" aria-modal="true" aria-labelledby="cm-daily-detail-title" aria-hidden="true">
+    <div class="cm-daily-detail__panel">
+        <div class="cm-daily-detail__glow" aria-hidden="true"></div>
+        <header class="cm-daily-detail__head">
+            <div class="cm-daily-detail__head-text">
+                <p class="cm-daily-detail__eyebrow">Daily Report</p>
+                <h3 class="cm-daily-detail__title" id="cm-daily-detail-title">站点日报</h3>
+                <p class="cm-daily-detail__date" id="cm-daily-detail-date">—</p>
+            </div>
+            <button type="button" class="cm-daily-detail__close" id="cm-daily-detail-close" aria-label="关闭详情">×</button>
+        </header>
+        <div class="cm-daily-detail__grid" id="cm-daily-detail-grid">
+            <section class="cm-daily-detail__block cm-daily-detail__block--login" aria-label="注册用户">
+                <h4 class="cm-daily-detail__block-title">注册用户</h4>
+                <div class="cm-daily-detail__metrics">
+                    <div class="cm-daily-detail__metric">
+                        <div class="cm-daily-detail__metric-top">
+                            <span class="cm-daily-detail__metric-label">总日活</span>
+                            <button type="button" class="cm-daily-detail__view-btn" id="cm-daily-view-login-total" data-view="login-total" aria-label="查看登录用户">查看</button>
+                        </div>
+                        <strong class="cm-daily-detail__metric-value" id="cm-daily-login-total">0</strong>
+                        <span class="cm-daily-detail__metric-hint">访问次数合计</span>
+                    </div>
+                    <div class="cm-daily-detail__metric">
+                        <div class="cm-daily-detail__metric-top">
+                            <span class="cm-daily-detail__metric-label">去重日活</span>
+                            <button type="button" class="cm-daily-detail__view-btn" id="cm-daily-view-login-unique" data-view="login-unique" aria-label="查看登录用户">查看</button>
+                        </div>
+                        <strong class="cm-daily-detail__metric-value" id="cm-daily-login-unique">0</strong>
+                        <span class="cm-daily-detail__metric-hint">独立账号</span>
+                    </div>
+                </div>
+            </section>
+            <section class="cm-daily-detail__block cm-daily-detail__block--anon" aria-label="离线访客">
+                <h4 class="cm-daily-detail__block-title">离线访客</h4>
+                <div class="cm-daily-detail__metrics">
+                    <div class="cm-daily-detail__metric">
+                        <div class="cm-daily-detail__metric-top">
+                            <span class="cm-daily-detail__metric-label">总日活</span>
+                            <button type="button" class="cm-daily-detail__view-btn cm-daily-detail__view-btn--anon" id="cm-daily-view-anon-total" data-view="anon-total" aria-label="查看离线访客">查看</button>
+                        </div>
+                        <strong class="cm-daily-detail__metric-value" id="cm-daily-anon-total">0</strong>
+                        <span class="cm-daily-detail__metric-hint">访问次数合计</span>
+                    </div>
+                    <div class="cm-daily-detail__metric">
+                        <div class="cm-daily-detail__metric-top">
+                            <span class="cm-daily-detail__metric-label">去重日活</span>
+                            <button type="button" class="cm-daily-detail__view-btn cm-daily-detail__view-btn--anon" id="cm-daily-view-anon-unique" data-view="anon-unique" aria-label="查看离线访客">查看</button>
+                        </div>
+                        <strong class="cm-daily-detail__metric-value" id="cm-daily-anon-unique">0</strong>
+                        <span class="cm-daily-detail__metric-hint">独立访客</span>
+                    </div>
+                </div>
+                <div class="cm-daily-detail__clean" aria-label="有效曝光去噪">
+                    <div class="cm-daily-detail__clean-head">
+                        <div>
+                            <span class="cm-daily-detail__clean-title">有效曝光（已去噪）</span>
+                            <p class="cm-daily-detail__clean-desc">排除纯首页扫站与探测路径；进过工具/登录等业务页才计入</p>
+                        </div>
+                        <button type="button" class="cm-daily-detail__view-btn cm-daily-detail__view-btn--clean" id="cm-daily-view-anon-clean" data-view="anon-clean" aria-label="查看有效曝光访客">查看</button>
+                    </div>
+                    <div class="cm-daily-detail__clean-metrics">
+                        <div class="cm-daily-detail__clean-metric">
+                            <span>去重</span>
+                            <strong id="cm-daily-anon-clean-unique">0</strong>
+                        </div>
+                        <div class="cm-daily-detail__clean-metric">
+                            <span>总访问</span>
+                            <strong id="cm-daily-anon-clean-total">0</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <footer class="cm-daily-detail__foot">
+            <div class="cm-daily-detail__aside">
+                <span>当日新注册</span>
+                <strong id="cm-daily-register-count">0</strong>
+                <span>人</span>
+            </div>
+            <p class="cm-daily-detail__note" id="cm-daily-detail-note">总日活为埋点写入次数；去重按账号 / 访客 cookie。有效曝光为去噪后的离线参考值。</p>
+        </footer>
+        <div class="cm-daily-users is-hidden" id="cm-daily-users" role="dialog" aria-modal="true" aria-labelledby="cm-daily-users-title" aria-hidden="true">
+            <div class="cm-daily-users__panel">
+                <header class="cm-daily-users__head">
+                    <div>
+                        <h4 class="cm-daily-users__title" id="cm-daily-users-title">登录用户</h4>
+                        <p class="cm-daily-users__sub" id="cm-daily-users-sub">—</p>
+                    </div>
+                    <button type="button" class="cm-daily-detail__close" id="cm-daily-users-close" aria-label="关闭登录用户列表">×</button>
+                </header>
+                <div class="cm-daily-users__body" id="cm-daily-users-body">
+                    <p class="cm-daily-users__empty">加载中…</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{# 投稿建议详情：独立于日报详情，避免互相影响 #}
+<div class="cm-feedback-detail is-hidden" id="cm-feedback-detail" role="dialog" aria-modal="true" aria-labelledby="cm-feedback-detail-title" aria-hidden="true">
+    <div class="cm-feedback-detail__panel">
+        <header class="cm-feedback-detail__head">
+            <div class="cm-feedback-detail__head-text">
+                <p class="cm-feedback-detail__eyebrow">User Feedback</p>
+                <h3 class="cm-feedback-detail__title" id="cm-feedback-detail-title">投稿建议</h3>
+                <p class="cm-feedback-detail__date" id="cm-feedback-detail-date">—</p>
+            </div>
+            <button type="button" class="cm-feedback-detail__close" id="cm-feedback-detail-close" aria-label="关闭详情">×</button>
+        </header>
+        <div class="cm-feedback-detail__meta" id="cm-feedback-detail-meta"></div>
+        <div class="cm-feedback-detail__body" id="cm-feedback-detail-body"></div>
+        <div class="cm-feedback-detail__images is-hidden" id="cm-feedback-detail-images" aria-label="附图"></div>
+        <p class="cm-feedback-detail__error is-hidden" id="cm-feedback-detail-error"></p>
+    </div>
+</div>
+<div class="cm-feedback-lightbox is-hidden" id="cm-feedback-lightbox" role="dialog" aria-modal="true" aria-label="图片预览" aria-hidden="true">
+    <button type="button" class="cm-feedback-lightbox__close" id="cm-feedback-lightbox-close" aria-label="关闭预览">×</button>
+    <img id="cm-feedback-lightbox-img" class="cm-feedback-lightbox__img" alt="投稿附图预览">
+</div>

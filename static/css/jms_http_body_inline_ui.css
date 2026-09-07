@@ -1,0 +1,20 @@
+/* 压测造数 · 线程组树形详情 GET/HEAD Body（路径后方行内） */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-body-inline {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 1;
+    min-width: 0;
+    max-width: min(42vw, 28rem);
+    margin-left: 0.35rem;
+    padding: 0.08rem 0.45rem;
+    border-radius: 0.35rem;
+    font-size: 0.68rem;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #9a3412;
+    background: rgba(251, 146, 60, 0.12);
+    border: 1px solid rgba(234, 88, 12, 0.28);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,245 @@
+                        <div class="media-workbench-scope mdh-panel-card relative">
+                            <div class="relative z-[1] space-y-8 mdw-wb-bg__content">
+                            <nav class="media-tool-nav" role="tablist" aria-label="媒体处理功能">
+                                <button type="button" id="media-tool-tab-sizer" class="media-tool-nav__btn is-active" role="tab" aria-selected="true" aria-controls="img-tool-panel-sizer" onclick="switchMediaToolTab('sizer')">
+                                    <span class="media-tool-nav__icon" aria-hidden="true">📐</span>
+                                    <span class="media-tool-nav__text">
+                                        <span class="media-tool-nav__label">图片大小</span>
+                                        <span class="media-tool-nav__hint">按目标 MB 压缩</span>
+                                    </span>
+                                </button>
+                                <button type="button" id="media-tool-tab-format" class="media-tool-nav__btn" role="tab" aria-selected="false" aria-controls="img-tool-panel-format" onclick="switchMediaToolTab('format')">
+                                    <span class="media-tool-nav__icon" aria-hidden="true">🔄</span>
+                                    <span class="media-tool-nav__text">
+                                        <span class="media-tool-nav__label">格式转换</span>
+                                        <span class="media-tool-nav__hint">PNG / JPEG / WebP</span>
+                                    </span>
+                                </button>
+                                <button type="button" id="media-tool-tab-audio" class="media-tool-nav__btn" role="tab" aria-selected="false" aria-controls="media-workbench-audio-panel" onclick="switchMediaToolTab('audio')">
+                                    <span class="media-tool-nav__icon" aria-hidden="true">🎵</span>
+                                    <span class="media-tool-nav__text">
+                                        <span class="media-tool-nav__label">音频生成</span>
+                                        <span class="media-tool-nav__hint">文本转语音</span>
+                                    </span>
+                                </button>
+                            </nav>
+
+                        <div id="img-tool-panel-sizer" class="tool-tab-panel is-active ds-split ds-split--md ds-split--loose" role="tabpanel" aria-labelledby="media-tool-tab-sizer">
+                            <!-- 左侧设置区域 -->
+                            <div class="rounded-2xl border border-slate-200/80 bg-white/95 p-6 shadow-[0_12px_40px_-28px_rgba(15,23,42,0.2)] ring-1 ring-slate-100/80">
+                                <h3 class="ds-section-title">设置</h3>
+                                <div class="form-group">
+                                    <label class="form-label">目标大小 (MB)</label>
+                                    <input type="number" class="form-input" name="target_size" id="target-size" min="0.1" step="0.1" value="1.0" required>
+                                </div>
+                                <div class="flex gap-3 mt-6">
+                                    <button type="submit" id="submit-btn" class="btn btn-primary flex-1">提交任务</button>
+                                </div>
+
+                                <!-- 任务状态显示区域 -->
+                                <div id="task-status" class="mt-6" style="display: none;">
+                                    <!-- 动态显示状态 -->
+                                </div>
+                            </div>
+
+                            <!-- 右侧上传和预览区域 -->
+                            <div class="rounded-2xl border border-slate-200/80 bg-white/95 p-6 shadow-[0_12px_40px_-28px_rgba(15,23,42,0.2)] ring-1 ring-slate-100/80">
+                                <h3 class="ds-section-title">上传与预览</h3>
+                                <div class="upload-section" id="upload-section">
+                                    <div class="upload-icon">📁</div>
+                                    <div class="upload-text">点击或拖拽文件到此处上传</div>
+                                    <input type="file" class="file-input-hidden" id="file-input" accept="image/*" required>
+                                    <button class="upload-btn" onclick="document.getElementById('file-input').click()">选择文件</button>
+                                    <p class="text-xs text-slate-500 mt-3 text-center leading-relaxed">单张不超过 {{ IMAGE_MAX_UPLOAD_MB }} MB；请求超时或服务器繁忙时会自动重试最多 {{ IMAGE_TOOL_MAX_RETRIES }} 次。</p>
+                                </div>
+
+                                <!-- 图片预览区域 -->
+                                <div id="image-preview" class="mt-4" style="display: none;">
+                                    <div class="bg-white/80 backdrop-blur p-4 rounded-xl border border-indigo-100">
+                                        <img id="preview-image" class="preview-image mx-auto" src="" alt="预览">
+                                        <div class="file-info mt-4 flex flex-wrap gap-2 justify-between items-center">
+                                            <div class="flex flex-wrap gap-2">
+                                                <span class="info-tag info-tag-blue">
+                                                    📏 <span id="original-size">0</span> MB
+                                                </span>
+                                                <span class="info-tag info-tag-green">
+                                                    📐 <span id="image-resolution">0 x 0</span> px
+                                                </span>
+                                            </div>
+                                            <button type="button" id="reupload-btn" class="btn btn-secondary text-sm py-1 px-3">
+                                                重新上传
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="img-tool-panel-format" class="tool-tab-panel ds-split ds-split--md ds-split--loose" role="tabpanel" aria-labelledby="media-tool-tab-format" hidden>
+                            <div class="rounded-2xl border border-slate-200/80 bg-white/95 p-6 shadow-[0_12px_40px_-28px_rgba(15,23,42,0.2)] ring-1 ring-slate-100/80">
+                                <h3 class="ds-section-title">上传与预览</h3>
+                                <div class="form-group">
+                                    <label class="form-label">上传图片</label>
+                                    <div class="upload-section" id="format-upload-section">
+                                        <div class="upload-icon">📁</div>
+                                        <div class="upload-text">点击或拖拽图片到此处</div>
+                                        <input type="file" id="format-image-input" accept="image/png,image/jpeg,image/bmp,image/tiff,image/webp" class="hidden">
+                                        <button type="button" class="upload-btn" onclick="document.getElementById('format-image-input').click()">选择文件</button>
+                                        <p class="text-xs text-slate-500 mt-3 text-center leading-relaxed">单张不超过 {{ IMAGE_MAX_UPLOAD_MB }} MB；请求超时或服务器繁忙时会自动重试最多 {{ IMAGE_TOOL_MAX_RETRIES }} 次。</p>
+                                    </div>
+                                </div>
+                                <div id="format-image-preview" class="mt-4" style="display: none;">
+                                    <div class="rounded-xl border border-slate-200/80 bg-slate-50/80 p-4 ring-1 ring-slate-100/80">
+                                        <img id="format-preview-img" class="preview-image mx-auto" src="" alt="预览">
+                                        <div class="file-info mt-4 flex flex-wrap gap-2 justify-between items-center">
+                                            <div class="flex flex-wrap gap-2">
+                                                <span class="info-tag info-tag-blue">📄 <span id="format-original-name">-</span></span>
+                                                <span class="info-tag info-tag-green">📐 <span id="format-original-format">-</span></span>
+                                            </div>
+                                            <button type="button" id="format-reupload-btn" class="btn btn-secondary text-sm py-1 px-3">重新上传</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rounded-2xl border border-slate-200/80 bg-white/95 p-6 shadow-[0_12px_40px_-28px_rgba(15,23,42,0.2)] ring-1 ring-slate-100/80">
+                                <h3 class="ds-section-title">格式与输出</h3>
+                                <div class="form-group">
+                                    <label class="form-label">目标格式</label>
+                                    <div id="format-options" class="grid grid-cols-2 gap-3"></div>
+                                </div>
+                                <div id="quality-section" class="form-group" style="display: none;">
+                                    <label class="form-label">质量（仅有损格式）</label>
+                                    <input type="range" id="format-quality" min="1" max="100" value="85" class="w-full">
+                                    <div class="flex justify-between text-xs text-slate-500 mt-1">
+                                        <span>低</span>
+                                        <span id="quality-value">85</span>
+                                        <span>高</span>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3 mt-2">
+                                    <button type="button" id="convert-format-btn" class="btn btn-primary flex-1" disabled>转换格式</button>
+                                </div>
+                                <div class="form-group mt-6">
+                                    <label class="form-label">转换结果</label>
+                                    <div id="format-result" class="ds-output-well">
+                                        <div class="ds-empty">
+                                            <span class="ds-empty__icon" aria-hidden="true">🖼</span>
+                                            <div class="ds-empty__title">尚无转换结果</div>
+                                            <div class="ds-empty__desc">选择目标格式并点击「转换格式」后，在此下载文件</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="media-workbench-audio-panel" class="tool-tab-panel ds-split ds-split--md ds-split--loose" role="tabpanel" aria-labelledby="media-tool-tab-audio" hidden>
+                            <div class="rounded-2xl border border-slate-200/80 bg-white/95 p-6 shadow-[0_12px_40px_-28px_rgba(15,23,42,0.2)] ring-1 ring-violet-100/60">
+                                <h3 class="ds-section-title ds-section-title--violet">音频内容</h3>
+                                <div id="audio-ai-assist-wrap" class="audio-ai-assist-wrap mb-5">
+                                    <button type="button" id="audio-ai-unlock-trigger" class="audio-ai-assist-trigger" aria-label="解锁 AI 文案助手">
+                                        <span class="audio-ai-assist-trigger__lock" aria-hidden="true">
+                                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                                        </span>
+                                        <span class="audio-ai-assist-trigger__title">AI 文案助手</span>
+                                    </button>
+                                    <div id="audio-ai-assist-panel" class="audio-ai-assist rounded-xl border border-violet-200/70 bg-violet-50/40 p-4">
+                                        <label class="form-label mb-2" for="audio-ai-prompt">AI 文案助手</label>
+                                        <textarea id="audio-ai-prompt" class="form-input bg-white/95" rows="3" placeholder="例如：用亲切口吻写一段约 10 秒的产品欢迎语…"></textarea>
+                                        <div class="mt-3 flex flex-wrap items-center gap-2">
+                                            <button type="button" id="audio-ai-generate-btn" class="btn btn-secondary text-sm">AI 生成文案</button>
+                                            <span id="audio-ai-status" class="text-xs text-slate-500"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="audio-ai-unlock-modal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/40 p-4" role="dialog" aria-modal="true" aria-labelledby="audio-ai-unlock-modal-title">
+                                    <div class="w-full max-w-sm rounded-xl bg-white p-5 shadow-xl" onclick="event.stopPropagation()">
+                                        <h3 id="audio-ai-unlock-modal-title" class="text-lg font-semibold text-gray-900">AI 文案助手已锁定</h3>
+                                        <p class="mt-1 text-xs text-gray-500">输入密码解锁后可使用 AI 生成朗读稿；下方正文与生成音频无需解锁。</p>
+                                        <div class="mt-4">
+                                            <label class="form-label text-sm" for="audio-ai-unlock-password">密码</label>
+                                            <input type="password" id="audio-ai-unlock-password" class="form-input mt-1" autocomplete="off" placeholder="请输入密码">
+                                        </div>
+                                        <div class="mt-5 flex justify-end gap-2">
+                                            <button type="button" id="audio-ai-unlock-cancel" class="btn btn-secondary">取消</button>
+                                            <button type="button" id="audio-ai-unlock-submit" class="btn btn-primary">解锁</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="audio-input-text">输入中文/英文</label>
+                                    <textarea id="audio-input-text" class="form-input bg-white/90" rows="8" placeholder="例如：你好，欢迎使用音频生成工具。或输入 English words here..."></textarea>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="form-group">
+                                        <label class="form-label" for="audio-format">音频格式</label>
+                                        <select id="audio-format" class="form-input bg-white/90">
+                                            <option value="mp3">MP3</option>
+                                            <option value="wav">WAV</option>
+                                            <option value="flac">FLAC</option>
+                                            <option value="aac">AAC</option>
+                                            <option value="ogg">OGG</option>
+                                            <option value="m4a">M4A</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="audio-duration">目标时长（秒）</label>
+                                        <input id="audio-duration" type="number" class="form-input bg-white/90" min="1" step="0.1" value="5">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="audio-voice">音色（Microsoft Edge TTS · 免费）</label>
+                                    <select id="audio-voice" class="form-input bg-white/90">
+                                        <optgroup label="推荐">
+                                            <option value="auto" selected>自动（随文本语言）</option>
+                                        </optgroup>
+                                        <optgroup label="中文普通话">
+                                            <option value="zh-CN-XiaoxiaoNeural">晓晓 · 温暖女声</option>
+                                            <option value="zh-CN-XiaoyiNeural">晓伊 · 活泼女声</option>
+                                            <option value="zh-CN-YunxiNeural">云希 · 阳光男声</option>
+                                            <option value="zh-CN-YunjianNeural">云健 · 沉稳男声</option>
+                                            <option value="zh-CN-YunxiaNeural">云夏 · 清新女声</option>
+                                        </optgroup>
+                                        <optgroup label="中文方言 / 繁体">
+                                            <option value="zh-CN-liaoning-XiaobeiNeural">晓北 · 东北方言</option>
+                                            <option value="zh-CN-shaanxi-XiaoniNeural">晓妮 · 陕西方言</option>
+                                            <option value="zh-TW-HsiaoChenNeural">曉臻 · 台湾女声</option>
+                                            <option value="zh-TW-YunJheNeural">雲哲 · 台湾男声</option>
+                                        </optgroup>
+                                        <optgroup label="English">
+                                            <option value="en-US-JennyNeural">Jenny · 美式女声</option>
+                                            <option value="en-US-GuyNeural">Guy · 美式男声</option>
+                                            <option value="en-US-AriaNeural">Aria · 叙事女声</option>
+                                            <option value="en-US-AndrewNeural">Andrew · 温暖男声</option>
+                                            <option value="en-US-EmmaNeural">Emma · 清晰女声</option>
+                                            <option value="en-GB-SoniaNeural">Sonia · 英式女声</option>
+                                            <option value="en-GB-RyanNeural">Ryan · 英式男声</option>
+                                            <option value="en-AU-NatashaNeural">Natasha · 澳式女声</option>
+                                        </optgroup>
+                                    </select>
+                                    <p class="mt-1 text-xs text-slate-500">在线合成使用 edge-tts；网络不可用时将回退本地引擎（音色可能不同）。</p>
+                                </div>
+                                <div class="flex gap-3">
+                                    <button id="generate-audio-btn" class="btn btn-primary flex-1">生成音频</button>
+                                    <button id="clear-audio-btn" class="btn btn-secondary">清空</button>
+                                </div>
+                            </div>
+
+                            <div class="rounded-2xl border border-slate-200/80 bg-white/95 p-6 shadow-[0_12px_40px_-28px_rgba(15,23,42,0.2)] ring-1 ring-slate-100/80">
+                                <h3 class="ds-section-title">生成结果</h3>
+                                <div id="audio-result" class="ds-output-well">
+                                    <div class="ds-empty">
+                                        <span class="ds-empty__icon" aria-hidden="true">🎵</span>
+                                        <div class="ds-empty__title">等待生成</div>
+                                        <div class="ds-empty__desc">生成完成后将显示摘要，下方出现播放器与下载按钮</div>
+                                    </div>
+                                </div>
+                                <div id="audio-player-wrapper" class="mt-4 hidden">
+                                    <audio id="audio-preview" controls class="w-full"></audio>
+                                    <div class="mt-4 text-center">
+                                        <a id="audio-download-link" class="btn btn-primary inline-block" href="#" download>下载音频</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+                        </div>

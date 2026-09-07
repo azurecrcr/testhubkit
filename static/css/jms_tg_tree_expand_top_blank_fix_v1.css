@@ -1,0 +1,71 @@
+/**
+ * 树形步骤 · 展开组件顶部空白修复（隔离模块，末位覆盖）
+ * 根因：catalog/控制器展开时 tree-node 被 flex:1 1 100% 纵向撑满，
+ *       再叠加 align-items:center 使卡片垂直居中，头行上方出现大块空白。
+ * 修复：展开态仅占内容高度，内容贴顶向下展开。
+ */
+
+/* 1) 步骤行贴顶对齐，禁止纵向居中 */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps > .jms-tree-node,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node {
+    align-items: flex-start !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps > .jms-tree-node > .jms-tree-drag-handle,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node > .jms-tree-drag-handle {
+    align-self: flex-start !important;
+}
+
+/* 2) catalog 节点：禁止撑满剩余高度（覆盖 catalog_element_tree_layout_fit） */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node--catalog {
+    flex: 0 0 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    align-self: stretch !important;
+}
+
+@media (min-width: 900px) {
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node--catalog {
+        flex: 0 0 auto !important;
+    }
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-tree-node__body {
+    flex: 0 0 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+/* 3) 展开态 catalog / 逻辑控制器 / HTTP：仅占内容高度 */
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--catalog:has(> .jms-tree-node__body > .jms-catalog-card:not(.jms-catalog-card--collapsed)),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--catalog:has(> .jms-tree-node__body > .jms-catalog-card:not(.jms-catalog-card--collapsed)),
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--if:has(> .jms-tree-node__body > .jms-if-card:not(.jms-if-card--collapsed)),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--if:has(> .jms-tree-node__body > .jms-if-card:not(.jms-if-card--collapsed)),
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--transaction:has(> .jms-tree-node__body > .jms-transaction-card:not(.jms-transaction-card--collapsed)),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--transaction:has(> .jms-tree-node__body > .jms-transaction-card:not(.jms-transaction-card--collapsed)),
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--loop:has(> .jms-tree-node__body > .jms-loop-card:not(.jms-loop-card--collapsed)),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--loop:has(> .jms-tree-node__body > .jms-loop-card:not(.jms-loop-card--collapsed)),
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--random:has(> .jms-tree-node__body > .jms-random-card:not(.jms-random-card--collapsed)),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--random:has(> .jms-tree-node__body > .jms-random-card:not(.jms-random-card--collapsed)),
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--simple:has(> .jms-tree-node__body > .jms-simple-card:not(.jms-simple-card--collapsed)),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--simple:has(> .jms-tree-node__body > .jms-simple-card:not(.jms-simple-card--collapsed)),
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--http.is-selected,
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-tg-view-tree .jms-tg-tree-steps .jms-tree-node--http:has(> .jms-tree-node__body > .jms-http-card:not(.jms-http-card--collapsed)),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--http.is-selected,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--http:has(> .jms-tree-node__body > .jms-http-card:not(.jms-http-card--collapsed)) {
+    flex: 0 0 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    align-self: stretch !important;
+}
+
+/* 4) 控制器子步骤行同样贴顶 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__body.jms-tree-if-children > .jms-tree-node,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__body.jms-tree-if-children > .jms-tree-node,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__body.jms-tree-if-children > .jms-tree-node,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card__body.jms-tree-if-children > .jms-tree-node {
+    flex: 0 0 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    align-items: flex-start !important;
+}

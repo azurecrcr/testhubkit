@@ -1,0 +1,131 @@
+{# /app 工作台首页 · Solar Grove；统一工具入口，不再按类别分区 #}
+<div class="agh-page">
+    <div class="agh-sky" aria-hidden="true">
+        <div class="agh-sky__sun"></div>
+        <div class="agh-sky__haze"></div>
+        <div class="agh-sky__ring agh-sky__ring--1"></div>
+        <div class="agh-sky__ring agh-sky__ring--2"></div>
+        <svg class="agh-deco agh-deco--1" viewBox="0 0 80 80" fill="none">
+            <defs><linearGradient id="aghD1" x1="10" y1="70" x2="70" y2="8" gradientUnits="userSpaceOnUse"><stop stop-color="#2FAE78"/><stop offset=".55" stop-color="#7EB6F5"/><stop offset="1" stop-color="#2F7DE1"/></linearGradient></defs>
+            <path d="M40 66C22 52 18 30 28 14c18 10 28 30 24 48-6-6-12-4-18 0" fill="url(#aghD1)" opacity=".28"/>
+            <path d="M34 22c8 10 12 24 8 36" stroke="#fff" stroke-width=".8" opacity=".45"/>
+            <circle cx="28" cy="14" r="2.2" fill="#8AD9B4"/>
+        </svg>
+        <svg class="agh-deco agh-deco--2" viewBox="0 0 80 80" fill="none">
+            <defs><linearGradient id="aghD2" x1="70" y1="12" x2="12" y2="68" gradientUnits="userSpaceOnUse"><stop stop-color="#F07AB8"/><stop offset="1" stop-color="#F9B4D8"/></linearGradient></defs>
+            <path d="M18 22C34 10 56 14 66 32 48 40 30 52 22 66 18 50 12 34 18 22Z" fill="url(#aghD2)" opacity=".3"/>
+            <path d="M22 28C36 18 52 22 60 34" stroke="#fff" stroke-width="1" opacity=".5"/>
+            <circle cx="64" cy="34" r="2" fill="#F9B4D8"/>
+        </svg>
+        <svg class="agh-deco agh-deco--3" viewBox="0 0 80 80" fill="none">
+            <defs><linearGradient id="aghD3" x1="16" y1="64" x2="64" y2="12" gradientUnits="userSpaceOnUse"><stop stop-color="#F08A3A"/><stop offset="1" stop-color="#F7C08A"/></linearGradient></defs>
+            <path d="M58 18C42 12 24 22 18 40c16 10 36 12 48-2-8 2-14-2-20-8 10 4 18 8 12-12" fill="url(#aghD3)" opacity=".28"/>
+            <circle cx="58" cy="18" r="2.2" fill="#F7C08A"/>
+        </svg>
+    </div>
+
+    <header class="agh-hero" data-agh-hero>
+        <div class="agh-hero__copy">
+            <p class="agh-hero__eyebrow">
+                <span class="agh-hero__eyebrow-dot" aria-hidden="true"></span>
+                Solar Grove · Toolkit
+            </p>
+            <h1 class="agh-hero__brand">Test Hub Kit</h1>
+            <p class="agh-hero__title">测试与质量工具聚合平台</p>
+            <p class="agh-hero__lead">用例生成、压测造数、媒体处理与自动化——一页直达各独立工作台。</p>
+            <div class="agh-hero__actions">
+                <a href="/tool/test-case-generator" class="agh-btn agh-btn--primary agh-magnetic">
+                    打开 AI 测试用例
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                </a>
+                <a href="/prompts" class="agh-btn agh-btn--ghost agh-magnetic">提示词库</a>
+            </div>
+            <div class="agh-chip-row" aria-hidden="true">
+                <span class="agh-chip"><i class="agh-chip__dot agh-chip__dot--b"></i>高频工具聚合</span>
+                <span class="agh-chip"><i class="agh-chip__dot agh-chip__dot--p"></i>本地即开即用</span>
+                <span class="agh-chip"><i class="agh-chip__dot agh-chip__dot--o"></i>AI 测试支持</span>
+                <span class="agh-chip"><i class="agh-chip__dot agh-chip__dot--g"></i>当前 {{ (tools|length) + 1 }} 个入口</span>
+            </div>
+        </div>
+        <div class="agh-hero__aside" aria-hidden="true">
+            <div class="agh-hero__stat">
+                <span class="agh-hero__stat-num">{{ (tools|length) + 1 }}</span>
+                <span class="agh-hero__stat-label">可用工具入口</span>
+            </div>
+            <svg class="agh-hero__plant" viewBox="0 0 220 240" fill="none">
+                <defs>
+                    <linearGradient id="aghStem" x1="110" y1="220" x2="110" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#2FAE78"/><stop offset="1" stop-color="#7EB6F5"/></linearGradient>
+                    <linearGradient id="aghLA" x1="40" y1="160" x2="110" y2="110"><stop stop-color="#2FAE78"/><stop offset="1" stop-color="#A8E6C9"/></linearGradient>
+                    <linearGradient id="aghLB" x1="120" y1="100" x2="190" y2="150"><stop stop-color="#F07AB8"/><stop offset="1" stop-color="#FDC4E0"/></linearGradient>
+                    <linearGradient id="aghLC" x1="50" y1="90" x2="110" y2="50"><stop stop-color="#2F7DE1"/><stop offset="1" stop-color="#A8D0FF"/></linearGradient>
+                    <linearGradient id="aghLD" x1="120" y1="50" x2="180" y2="90"><stop stop-color="#F08A3A"/><stop offset="1" stop-color="#FFD2A1"/></linearGradient>
+                </defs>
+                <ellipse cx="110" cy="218" rx="62" ry="10" fill="rgba(47,125,225,.1)"/>
+                <path d="M110 214 C108 160 114 100 110 48" stroke="url(#aghStem)" stroke-width="4" stroke-linecap="round"/>
+                <path class="js-agh-leaf" d="M106 168 C70 142 36 152 24 182 C58 192 88 184 106 168Z" fill="url(#aghLA)" opacity=".78"/>
+                <path class="js-agh-leaf" d="M114 132 C152 108 186 122 198 154 C166 164 136 152 114 132Z" fill="url(#aghLB)" opacity=".76"/>
+                <path class="js-agh-leaf" d="M106 96 C72 72 44 80 34 108 C62 116 88 108 106 96Z" fill="url(#aghLC)" opacity=".8"/>
+                <path class="js-agh-leaf" d="M114 72 C146 52 174 60 182 86 C158 92 134 84 114 72Z" fill="url(#aghLD)" opacity=".8"/>
+                <circle cx="110" cy="44" r="11" fill="#FFE8B8"/>
+                <circle cx="110" cy="44" r="5.5" fill="#FFF9EB"/>
+                <circle cx="110" cy="44" r="18" stroke="#F08A3A" stroke-width=".8" opacity=".28"/>
+            </svg>
+        </div>
+    </header>
+
+    <section class="agh-tools" aria-labelledby="agh-tools-heading" data-agh-tools>
+        <div class="agh-tools__header">
+            <div>
+                <h2 id="agh-tools-heading">工具入口</h2>
+                <p>一页直达，任选进入对应工作台。</p>
+            </div>
+            <span class="agh-tools__count">{{ (tools|length) + 1 }} 个入口</span>
+        </div>
+
+        <div class="agh-grid agh-grid--flat" data-agh-grid>
+            {% for tool in tools %}
+            <a href="/tool/{{ tool.id }}" class="agh-tile agh-magnetic" data-agh-tile style="--agh-accent: {{ tool.card_accent }}; --agh-accent-rgb: {{ tool.card_rgb }};">
+                <div class="agh-tile__body">
+                    <div class="agh-tile__icon">
+                        {% if tool.icon_image is defined and tool.icon_image %}
+                        <img src="{{ tool.icon_image }}?v=20260525" alt="" width="40" height="40" loading="lazy" decoding="async" />
+                        {% else %}
+                        <span aria-hidden="true">{{ tool.icon }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="agh-tile__text">
+                        <h4 class="agh-tile__title">{{ tool.name }}</h4>
+                        <p class="agh-tile__desc">{{ tool.description }}</p>
+                    </div>
+                </div>
+                <div class="agh-tile__foot">
+                    <span class="agh-tile__meta">进入</span>
+                    <span class="agh-tile__cta">
+                        打开
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </div>
+            </a>
+            {% endfor %}
+
+            <a href="/prompts" class="agh-tile agh-magnetic" data-agh-tile style="--agh-accent: #F07AB8; --agh-accent-rgb: 240, 122, 184;">
+                <div class="agh-tile__body">
+                    <div class="agh-tile__icon">
+                        <img src="/static/images/home/icons/icon-prompts.png?v=20260525" alt="" width="40" height="40" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="agh-tile__text">
+                        <h4 class="agh-tile__title">提示词库</h4>
+                        <p class="agh-tile__desc">集中存放可复用提示词，支持搜索与一键复制。</p>
+                    </div>
+                </div>
+                <div class="agh-tile__foot">
+                    <span class="agh-tile__meta">进入</span>
+                    <span class="agh-tile__cta">
+                        打开
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </section>
+</div>

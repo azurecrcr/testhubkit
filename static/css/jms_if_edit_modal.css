@@ -1,0 +1,159 @@
+/**
+ * If / BeanShell / Debug 编辑抽屉（隔离：仅压测造数 JMeter Tab）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 310;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.55);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit.jms-modal-open,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit.jms-modal-open {
+    display: flex !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit .jms-step-modal,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit .jms-step-modal {
+    width: 100%;
+    max-width: 36rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    padding: 1.25rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit .jms-step-modal__title,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit .jms-step-modal__title,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit .jms-step-modal__title {
+    margin: 0 0 0.75rem;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit .lth-step-field,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit .lth-step-field,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit .lth-step-field {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit .lth-step-field:has(input[type="checkbox"]),
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit .lth-step-field:has(input[type="checkbox"]),
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit .lth-step-field:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit .lth-step-field input[type="checkbox"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit .lth-step-field input[type="checkbox"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit .lth-step-field input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit input[type="text"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit textarea,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit input[type="text"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit textarea,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit input[type="text"],
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit textarea {
+    display: block;
+    width: 100%;
+    margin-top: 0.35rem;
+    padding: 0.45rem 0.55rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.8125rem;
+    color: #0f172a;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit .jms-assert-foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit .jms-assert-foot,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit .jms-assert-foot {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.22);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit .jms-assert-btn-cancel,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit .jms-assert-btn-cancel,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit .jms-assert-btn-cancel,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit #btn-if-edit-cancel,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit #btn-beanshell-edit-cancel,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit #btn-debug-edit-cancel {
+    min-width: 5.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    padding: 0.5rem 1.15rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #334155;
+    cursor: pointer;
+    line-height: 1.2;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit .jms-assert-btn-cancel:hover,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit .jms-assert-btn-cancel:hover,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit .jms-assert-btn-cancel:hover,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit #btn-if-edit-cancel:hover,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit #btn-beanshell-edit-cancel:hover,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit #btn-debug-edit-cancel:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit .jms-assert-btn-save,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit .jms-assert-btn-save,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit .jms-assert-btn-save,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit #btn-if-edit-save,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit #btn-beanshell-edit-save,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit #btn-debug-edit-save {
+    min-width: 5.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background: linear-gradient(135deg, #0f766e, #14b8a6);
+    padding: 0.5rem 1.15rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    line-height: 1.2;
+    box-shadow: 0 2px 8px rgba(15, 118, 110, 0.25);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit .jms-assert-btn-save:hover,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit .jms-assert-btn-save:hover,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit .jms-assert-btn-save:hover,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-if-edit #btn-if-edit-save:hover,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-beanshell-edit #btn-beanshell-edit-save:hover,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-debug-edit #btn-debug-edit-save:hover {
+    background: linear-gradient(135deg, #0d9488, #2dd4bf);
+}
+
+/* drawer rules removed: unified center popup via post-js */

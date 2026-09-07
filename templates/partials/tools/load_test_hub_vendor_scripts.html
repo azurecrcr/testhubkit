@@ -1,0 +1,5 @@
+{# JMeter vendor scripts — defer to avoid blocking CSS in head #}
+{# version: 20260715ai-timer-cfg1 #}
+    <script>(function(){var w=console.warn;console.warn=function(){var a=arguments[0];if(typeof a==="string"&&(a.indexOf("cdn.tailwindcss.com")!==-1||a.indexOf("should not be used in production")!==-1))return;return w.apply(console,arguments);};})();</script>
+    <script src="{{ url_for('static', filename='vendor/tailwindcss-cdn-3.4.10.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='vendor/js-yaml-4.1.0.min.js') }}" defer></script>

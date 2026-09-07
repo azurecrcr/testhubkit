@@ -1,0 +1,17 @@
+/* 压测造数 · 线程组树形详情 HTTP 步骤 JSON 提取变量名（行内，断言后） */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-extract-inline {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: 0.35rem;
+    padding: 0.08rem 0.45rem;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    line-height: 1.2;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: #0f766e;
+    background: rgba(20, 184, 166, 0.12);
+    border: 1px solid rgba(20, 184, 166, 0.35);
+    white-space: nowrap;
+}

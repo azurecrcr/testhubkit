@@ -1,0 +1,128 @@
+/**
+ * 树形视图 · 全组件启用/停用分段按钮统一样式（简约专业）
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-config-card-toolbar {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 0.28rem;
+    margin-left: auto;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-logic-enable-seg,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-sampler-enable-seg,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-postproc-enable-seg,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-assert-enable-seg,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-listener-enable-seg,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-mount-enable-seg,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-mgr-enable-seg,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-counter-enable-seg,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-step-enable-seg {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 2px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.98), rgba(241, 245, 249, 0.92));
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-logic-enable-seg__btn,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-sampler-enable-seg__btn,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-postproc-enable-seg__btn,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-assert-enable-seg__btn,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-listener-enable-seg__btn,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-mount-enable-seg__btn,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-mgr-enable-seg__btn,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-counter-enable-seg__btn,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-step-enable-seg__btn {
+    border: none;
+    background: transparent;
+    min-width: 2.15rem;
+    padding: 0.2rem 0.52rem;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    color: #64748b;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.16s ease, background 0.16s ease, box-shadow 0.16s ease, transform 0.12s ease;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-logic-enable-seg__btn:hover:not(.is-active),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-sampler-enable-seg__btn:hover:not(.is-active),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-postproc-enable-seg__btn:hover:not(.is-active),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-assert-enable-seg__btn:hover:not(.is-active),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-listener-enable-seg__btn:hover:not(.is-active),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-mount-enable-seg__btn:hover:not(.is-active),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-mgr-enable-seg__btn:hover:not(.is-active),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-counter-enable-seg__btn:hover:not(.is-active),
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-step-enable-seg__btn:hover:not(.is-active) {
+    color: #334155;
+    background: rgba(255, 255, 255, 0.72);
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-logic-enable-val="1"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-tg-sampler-enable-val="1"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-postproc-enable-val="1"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-assert-enable-val="1"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-listener-enable-val="1"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-http-mount-enable-val="1"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-mgr-enable-val="1"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-counter-enable-val="1"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-step-enable-val="1"] {
+    background: #fff;
+    color: #0d9488;
+    box-shadow: 0 1px 3px rgba(13, 148, 136, 0.14), 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-logic-enable-val="0"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-tg-sampler-enable-val="0"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-postproc-enable-val="0"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-assert-enable-val="0"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-listener-enable-val="0"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-http-mount-enable-val="0"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-mgr-enable-val="0"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-counter-enable-val="0"],
+body.lth-tg-view-tree.lth-hub-jmeter-tab [class*="-enable-seg__btn"].is-active[data-step-enable-val="0"] {
+    background: #fff;
+    color: #94a3b8;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-if-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-loop-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-random-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-simple-card__head,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-transaction-card__head {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-aux-card {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-aux-card .jms-config-card-toolbar,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-card .jms-config-card-toolbar {
+    margin-left: auto;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-config-card-toolbar + .lth-step-actions,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-config-card-toolbar .lth-step-actions {
+    margin-left: 0;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card__head .jms-config-card-toolbar {
+    flex-shrink: 0;
+    margin-left: auto;
+}

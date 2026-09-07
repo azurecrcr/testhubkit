@@ -1,0 +1,46 @@
+/**
+ * HTTP 请求挂载区 · 工具栏下拉选项样式统一（对齐 .jms-http-ctx-proc-item / .jms-http-ctx-proc-menu）
+ * 仅覆盖挂载区下拉菜单容器与选项，不影响触发按钮、列表面板与弹窗。
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-config-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-preproc-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-timer-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-logic-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-assert-menu {
+    min-width: 10.5rem !important;
+    padding: 0.22rem !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(226, 232, 240, 0.95) !important;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-listener-menu {
+    padding: 0.22rem !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(226, 232, 240, 0.95) !important;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-config-item,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-preproc-item,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-timer-item,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-logic-item,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-assert-item,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-listener-item {
+    padding: 0.32rem 0.45rem !important;
+    border-radius: 6px !important;
+    font-size: 10px !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+    color: #334155 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-config-item:hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-preproc-item:hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-timer-item:hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-logic-item:hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-assert-item:hover,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-listener-item:hover {
+    background: rgba(241, 245, 249, 0.95) !important;
+    color: #334155 !important;
+}

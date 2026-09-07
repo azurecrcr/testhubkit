@@ -1,0 +1,542 @@
+/**
+ * 树形视图 · HTTP 请求上下文区（隔离样式）
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--http.is-selected > .jms-tree-node__body > .jms-http-card {
+    border-color: rgba(99, 102, 241, 0.55) !important;
+    box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.18) !important;
+    background: rgba(238, 242, 255, 0.55) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--http > .jms-tree-node__body > .jms-http-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-card__main {
+    cursor: pointer !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-row-mount-badges {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.28rem !important;
+    flex: 0 0 auto !important;
+    flex-wrap: wrap !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-card__main .jms-http-assert-badge,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-card__main .jms-http-proc-badge {
+    flex: 0 0 auto !important;
+    font-size: 10px !important;
+    line-height: 1.25 !important;
+    padding: 0.05rem 0.35rem !important;
+    border-radius: 0.2rem !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-card__main .jms-http-assert-badge {
+    color: #b45309 !important;
+    background: #fffbeb !important;
+    border: 1px solid #fde68a !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-card__main .jms-http-proc-badge {
+    color: #c2410c !important;
+    background: #fff7ed !important;
+    border: 1px solid #fdba74 !important;
+}
+
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context--toolbar-only {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0.38rem 0.55rem !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.92) !important;
+    border-radius: 0 !important;
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.98), rgba(241, 245, 249, 0.88)) !important;
+    box-shadow: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context--toolbar-only .jms-http-context__summary {
+    display: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context--toolbar-only .jms-http-context__toolbar {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 0.22rem !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context--toolbar-only .jms-http-context__toolbar-main {
+    display: inline-flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 0.22rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-config-more,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-preproc-more,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-timer-more,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-proc-more,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-assert-more,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-listener-more {
+    position: relative !important;
+    display: inline-flex !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context {
+    width: 100% !important;
+    margin: 0.28rem 0 0.42rem 0 !important;
+    padding: 0.45rem 0.55rem 0.5rem !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(199, 210, 254, 0.85) !important;
+    background: linear-gradient(180deg, rgba(248, 250, 255, 0.98) 0%, rgba(255, 255, 255, 0.92) 100%) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__summary {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 0.38rem !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__label {
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    color: #4338ca !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__meta {
+    font-size: 10px !important;
+    color: #64748b !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__toolbar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.35rem !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 0.38rem !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__toolbar-main {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.22rem !important;
+    flex-wrap: wrap !important;
+    min-width: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-add-more-btn,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-add-processor,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-edit-processor,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-del-processor {
+    border: 1px solid rgba(203, 213, 225, 0.95) !important;
+    background: #fff !important;
+    color: #334155 !important;
+    border-radius: 7px !important;
+    padding: 0.18rem 0.42rem !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    line-height: 1.25 !important;
+    cursor: pointer !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-assert.is-empty {
+    color: #334155 !important;
+    border-color: rgba(203, 213, 225, 0.95) !important;
+    background: #ffffff !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-assert.is-configured {
+    color: #7c3aed !important;
+    border-color: rgba(167, 139, 250, 0.55) !important;
+    background: rgba(245, 243, 255, 0.95) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-assert {
+    /* 兼容旧 DOM：未带状态时等同未配置（白底） */
+    color: #334155 !important;
+    border-color: rgba(203, 213, 225, 0.95) !important;
+    background: #ffffff !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-btn-processors {
+    color: #b45309 !important;
+    border-color: rgba(251, 191, 36, 0.55) !important;
+    background: rgba(255, 251, 235, 0.95) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-proc-more {
+    position: relative !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-proc-menu {
+    display: none !important;
+    position: absolute !important;
+    top: calc(100% + 0.22rem) !important;
+    left: 0 !important;
+    min-width: 10.5rem !important;
+    padding: 0.22rem !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(226, 232, 240, 0.95) !important;
+    background: #fff !important;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12) !important;
+    z-index: 40 !important;
+}
+
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-config-more.is-open .jms-http-ctx-config-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-preproc-more.is-open .jms-http-ctx-preproc-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-timer-more.is-open .jms-http-ctx-timer-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-assert-more.is-open .jms-http-ctx-assert-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-listener-more.is-open .jms-http-ctx-listener-menu {
+    display: block !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-config-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-preproc-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-timer-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-assert-menu,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-listener-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 0.22rem);
+    z-index: 42;
+    min-width: 10.5rem;
+    padding: 0.22rem;
+    border-radius: 8px;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-proc-more.is-open .jms-http-ctx-proc-menu {
+    display: block !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-proc-item {
+    display: block !important;
+    width: 100% !important;
+    text-align: left !important;
+    border: none !important;
+    background: transparent !important;
+    padding: 0.32rem 0.45rem !important;
+    border-radius: 6px !important;
+    font-size: 10px !important;
+    color: #334155 !important;
+    cursor: pointer !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-proc-item:hover {
+    background: rgba(241, 245, 249, 0.95) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-add-more {
+    position: relative !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-add-caret {
+    margin-left: 0.12rem !important;
+    font-size: 9px !important;
+    opacity: 0.75 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-add-menu {
+    display: none !important;
+    position: absolute !important;
+    top: calc(100% + 0.22rem) !important;
+    left: 0 !important;
+    min-width: 8.5rem !important;
+    padding: 0.22rem !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(226, 232, 240, 0.95) !important;
+    background: #fff !important;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12) !important;
+    z-index: 40 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-add-more.is-open .jms-http-ctx-add-menu {
+    display: block !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-add-item {
+    display: block !important;
+    width: 100% !important;
+    text-align: left !important;
+    border: none !important;
+    background: transparent !important;
+    padding: 0.32rem 0.45rem !important;
+    border-radius: 6px !important;
+    font-size: 10px !important;
+    color: #334155 !important;
+    cursor: pointer !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-add-item:hover {
+    background: rgba(241, 245, 249, 0.95) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__listeners {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.1rem !important;
+    padding: 0.1rem !important;
+    border-radius: 999px !important;
+    background: rgba(241, 245, 249, 0.95) !important;
+    border: 1px solid rgba(226, 232, 240, 0.95) !important;
+    flex-shrink: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-listener-pill {
+    border: none !important;
+    background: transparent !important;
+    color: #64748b !important;
+    border-radius: 999px !important;
+    padding: 0.18rem 0.42rem !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-listener-pill.is-on {
+    background: #fff !important;
+    color: #4338ca !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__chips {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.22rem !important;
+    margin-bottom: 0.38rem !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-chip {
+    border: 1px solid rgba(226, 232, 240, 0.95) !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #475569 !important;
+    border-radius: 999px !important;
+    padding: 0.12rem 0.42rem !important;
+    font-size: 10px !important;
+    line-height: 1.3 !important;
+    cursor: default !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-chip--assertion {
+    border-color: rgba(167, 139, 250, 0.45) !important;
+    color: #6d28d9 !important;
+    background: rgba(245, 243, 255, 0.95) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-chip--processor {
+    border-color: rgba(251, 191, 36, 0.45) !important;
+    color: #b45309 !important;
+    background: rgba(255, 251, 235, 0.95) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__chips-empty {
+    font-size: 10px !important;
+    color: #94a3b8 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__processors {
+    border-top: 1px dashed rgba(226, 232, 240, 0.95) !important;
+    padding-top: 0.38rem !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__processors-head {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.35rem !important;
+    margin-bottom: 0.28rem !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__processors-label {
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    color: #64748b !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__proc-count {
+    font-size: 10px !important;
+    color: #94a3b8 !important;
+    font-weight: 600 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__proc-type {
+    flex-shrink: 0 !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-edit-processor,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-del-processor {
+    flex-shrink: 0 !important;
+    padding: 0.1rem 0.38rem !important;
+    font-size: 10px !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-ctx-del-processor {
+    color: #b91c1c !important;
+    border-color: rgba(252, 165, 165, 0.65) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__proc-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    flex-wrap: wrap !important;
+    padding: 0.22rem 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__proc-row.is-disabled {
+    opacity: 0.55 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__proc-name {
+    font-size: 10px !important;
+    color: #334155 !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__proc-empty,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context-hint {
+    font-size: 10px !important;
+    color: #94a3b8 !important;
+    margin: 0.15rem 0 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--http.is-selected > .jms-tree-node__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--http:has(> .jms-tree-node__body > .jms-http-card:not(.jms-http-card--collapsed)) > .jms-tree-node__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--http > .jms-tree-node__body {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--http.is-selected > .jms-tree-node__body > .jms-http-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--http:has(> .jms-tree-node__body > .jms-http-card:not(.jms-http-card--collapsed)) > .jms-tree-node__body > .jms-http-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--http > .jms-tree-node__body > .jms-http-card {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* 请求挂载 · 逻辑控制器列表（与定时器/前置处理器区块一致） */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__logic-list {
+    width: 100% !important;
+    margin-top: 0.35rem !important;
+    padding-top: 0.35rem !important;
+    border-top: 1px dashed rgba(203, 213, 225, 0.75) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__logic-head {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    margin-bottom: 0.28rem !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__logic-label {
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    color: #64748b !important;
+    letter-spacing: 0.04em !important;
+    font-family: inherit !important;
+    line-height: 1.35 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__logic-count {
+    font-size: 0.68rem !important;
+    color: #94a3b8 !important;
+    font-weight: 600 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-http-context__logic-empty {
+    margin: 0 !important;
+    font-size: 0.72rem !important;
+    color: #94a3b8 !important;
+    line-height: 1.45 !important;
+    font-family: inherit !important;
+}
+/* HTTP 请求行 + 下方工具栏（对齐逻辑控制器 head / mount 分区） */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card:not(.jms-http-card--collapsed) {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    align-self: stretch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card__head {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    gap: 0.22rem !important;
+    flex: 0 0 auto !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card:not(.jms-http-card--collapsed) .jms-http-card__main {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card:not(.jms-http-card--collapsed) .jms-http-name,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card:not(.jms-http-card--collapsed) .jms-http-path {
+    max-width: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--http:has(> .jms-tree-node__body > .jms-http-card:not(.jms-http-card--collapsed)) > .jms-tree-node__body,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--http.is-selected > .jms-tree-node__body {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+    align-self: stretch !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--http:has(> .jms-tree-node__body > .jms-http-card:not(.jms-http-card--collapsed)) > .jms-tree-node__body > .jms-http-card {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card .jms-http-context {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    align-self: stretch !important;
+    margin-top: 0.25rem !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card--collapsed .jms-http-context {
+    display: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-http-card--collapsed .jms-http-card__head {
+    width: auto !important;
+}
+

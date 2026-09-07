@@ -1,0 +1,9 @@
+{
+  "name": "tc-workbench",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "bash ../../scripts/build_tc_workbench.sh",
+    "build:enhancements": "bash ../../scripts/build_tc_enhancements.sh"
+  }
+}

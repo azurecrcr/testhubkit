@@ -1,0 +1,38 @@
+/**
+ * 配置元件抽屉 · 多选下拉不被 modal 内容区遮挡（隔离：#modal-tg-http-mgr）
+ */
+#modal-tg-http-mgr .jms-vars-modal,
+#modal-tg-http-mgr .jms-vars-modal.jms-tg-config-modal,
+body.lth-studio-v2 #modal-tg-http-mgr .jms-vars-modal,
+body.lth-studio-v2 #modal-tg-http-mgr .jms-vars-modal.jms-tg-config-modal {
+    overflow: visible !important;
+}
+
+#modal-tg-http-mgr .jms-vars-modal__head {
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 40 !important;
+}
+
+#modal-tg-http-mgr .jms-tg-config-head__main,
+#modal-tg-http-mgr .jms-tg-config-head__title-row,
+#modal-tg-http-mgr .jms-tg-config-picker {
+    overflow: visible !important;
+}
+
+#modal-tg-http-mgr .jms-tg-config-picker__menu {
+    z-index: 50 !important;
+    max-height: min(18rem, 52vh);
+    overflow-y: auto;
+}
+
+#modal-tg-http-mgr .jms-vars-modal__body,
+#modal-tg-http-mgr .jms-vars-modal__body.jms-tg-mgr-form {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+#modal-tg-http-mgr .jms-vars-modal__foot {
+    position: relative !important;
+    z-index: 1 !important;
+}

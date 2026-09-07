@@ -1,0 +1,60 @@
+/**
+ * catalog_element · 树形步骤区布局对齐（隔离 · 末位覆盖 jms_tg_tree_row_layout_fit）
+ * 修复 catalog 控制器在双列 wrap 中被压成窄条、文字串连变形
+ */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog .jms-tree-node__body {
+    display: block !important;
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    align-items: stretch !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node--catalog {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+@media (min-width: 900px) {
+    body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps > .jms-tree-node--catalog {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--catalog .jms-catalog-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node:hover > .jms-tree-node__body > .jms-catalog-card,
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node--catalog:focus-within > .jms-tree-node__body > .jms-catalog-card {
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card__body.jms-tree-if-children {
+    padding: 0.35rem 0.45rem 0.45rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.3rem !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-catalog-card__body.jms-tree-if-children > .jms-tree-node {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-node--catalog::before {
+    background: linear-gradient(180deg, rgba(251, 191, 36, 0.35), rgba(251, 191, 36, 0.08)) !important;
+}
+
+/* legacy 网格（隐藏 legacy 区仍可能被导出预览用到） */
+body.lth-hub-jmeter-tab .jms-plan-tgs--legacy .jms-tg-steps .jms-catalog-plan-card {
+    width: 100%;
+    box-sizing: border-box;
+}

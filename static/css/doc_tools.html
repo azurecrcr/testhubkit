@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档工具 · Hugo Feng Toolkit</title>
+    {% include 'partials/hf_favicon.html' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toolkit.css') }}?v=20260538">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/doc_tools.css') }}?v=20260541">
+</head>
+<body class="doc-tools-page">
+    <div class="doc-tools-page__bg" aria-hidden="true">
+        <img src="{{ url_for('static', filename='images/doc-tools/doc-tools-page-bg.png') }}" alt="" class="doc-tools-page__bg-img" width="1920" height="1080" loading="eager" decoding="async">
+        <div class="doc-tools-page__bg-scrim"></div>
+    </div>
+    {% include 'partials/hf_global_nav.html' %}
+    {% include 'partials/hf_float_toast.html' %}
+
+    <main class="doc-tools-shell">
+        {% include 'partials/tools/test_case_doc_tools.html' %}
+    </main>
+
+    <script src="{{ url_for('static', filename='js/hf_float_toast.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/column_fill.js') }}?v=20260541"></script>
+</body>
+</html>

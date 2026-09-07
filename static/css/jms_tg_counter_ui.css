@@ -1,0 +1,215 @@
+/**
+ * 线程组配置元件 · 计数器弹窗（隔离样式，仅 #modal-tg-config-drawer-counter）
+ */
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter {
+    --jms-counter-bg-modal: #eef1f7;
+    --jms-counter-bg-body: #f3f5f9;
+    --jms-counter-bg-card: #f8f9fc;
+    --jms-counter-bg-input: #fbfcfe;
+    --jms-counter-bg-elevated: #e9edf4;
+    --jms-counter-border: rgba(199, 210, 224, 0.9);
+    --jms-counter-border-soft: rgba(214, 222, 232, 0.95);
+    --jms-counter-accent: #0d9488;
+    --jms-counter-accent-soft: rgba(13, 148, 136, 0.14);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-step-modal {
+    width: min(760px, 96vw) !important;
+    background: var(--jms-counter-bg-modal) !important;
+    border: 1px solid var(--jms-counter-border-soft);
+    box-shadow: 0 18px 46px rgba(15, 23, 42, 0.13), 0 2px 8px rgba(15, 23, 42, 0.05) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-http-step-config-drawer__body,
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-config-drawer__body {
+    background: var(--jms-counter-bg-body) !important;
+    padding: 0.5rem 0.65rem 0.65rem !important;
+    max-height: min(72vh, 34rem);
+    overflow-y: auto;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-http-step-config-drawer__foot {
+    background: var(--jms-counter-bg-elevated) !important;
+    border-top-color: var(--jms-counter-border-soft) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-drawer-open #modal-tg-config-drawer-counter .jms-step-modal {
+    width: min(760px, calc(100vw - 0.5rem)) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-http-step-config-drawer__head {
+    background: linear-gradient(135deg, #ccfbf1 0%, #e9edf5 52%, #e4e9f2 100%) !important;
+    border-bottom-color: var(--jms-counter-border-soft) !important;
+    padding: 0.55rem 0.65rem 0.5rem !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-http-step-config-drawer__badge {
+    color: #0f766e !important;
+    background: rgba(204, 251, 241, 0.9) !important;
+    border-color: rgba(45, 212, 191, 0.45) !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-http-step-config-drawer__head .jms-step-modal__title {
+    margin-bottom: 0 !important;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__card {
+    border: 1px solid var(--jms-counter-border-soft);
+    border-radius: 8px;
+    background: var(--jms-counter-bg-card);
+    padding: 0.45rem 0.58rem 0.5rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.025);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__card--foot {
+    padding: 0.4rem 0.58rem 0.42rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__card-title {
+    margin: 0 0 0.38rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #475569;
+    letter-spacing: 0.01em;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__meta-row {
+    display: grid;
+    grid-template-columns: minmax(7rem, 0.9fr) 1.35fr;
+    gap: 0.4rem 0.5rem;
+    align-items: end;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__grid {
+    display: grid;
+    gap: 0.38rem 0.5rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__field--ref {
+    min-width: 0;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #475569;
+    line-height: 1.25;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__hint {
+    font-size: 0.62rem;
+    font-weight: 500;
+    color: #94a3b8;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__input {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 0.71rem;
+    padding: 0.28rem 0.42rem;
+    border: 1px solid var(--jms-counter-border);
+    border-radius: 5px;
+    color: #0f172a;
+    background: var(--jms-counter-bg-input);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__input:focus {
+    outline: none;
+    border-color: var(--jms-counter-accent);
+    background: #fcfdff;
+    box-shadow: 0 0 0 2px var(--jms-counter-accent-soft);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__ref-options {
+    display: grid;
+    grid-template-columns: minmax(9rem, 1fr) auto;
+    gap: 0.45rem 0.75rem;
+    align-items: end;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__options-inline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.35rem 0.4rem;
+    padding-bottom: 0.05rem;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__chk-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: 0;
+    padding: 0.22rem 0.5rem;
+    border: 1px solid var(--jms-counter-border);
+    border-radius: 6px;
+    background: var(--jms-counter-bg-input);
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #334155;
+    line-height: 1.2;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__chk-pill:hover {
+    border-color: rgba(45, 212, 191, 0.55);
+    background: rgba(204, 251, 241, 0.35);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__chk-pill:has(input:checked) {
+    border-color: var(--jms-counter-accent);
+    background: rgba(204, 251, 241, 0.55);
+    box-shadow: 0 0 0 1px var(--jms-counter-accent-soft);
+}
+
+body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__chk-pill input {
+    margin: 0;
+    flex-shrink: 0;
+    width: 0.78rem;
+    height: 0.78rem;
+    accent-color: var(--jms-counter-accent);
+}
+
+@media (max-width: 720px) {
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__grid--4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__ref-options {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+    }
+
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__options-inline {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 520px) {
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__meta-row,
+    body.lth-studio-v2.lth-hub-jmeter-tab #modal-tg-config-drawer-counter .jms-tg-counter-v2__grid--4 {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,36 @@
+/**
+ * 树形步骤：隐藏 legacy 时间轴竖线 + 避开拖动手柄（隔离，仅 body.lth-tg-view-tree）
+ */
+
+/* legacy 步骤列表左侧时间轴竖线 — 树形模式下与拖动手柄重叠 */
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-steps.jms-tg-tree-steps::before {
+    display: none !important;
+    content: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node::before {
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node[data-depth="0"]::before {
+    display: none !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-tree-steps .jms-tree-node:not([data-depth="0"])::before {
+    left: calc(0.35rem + (var(--jms-tree-depth, 0) - 1) * 0.85rem) !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tg-steps.jms-tg-tree-steps {
+    padding-left: 0.35rem !important;
+}
+
+body.lth-tg-view-tree.lth-hub-jmeter-tab .jms-tree-drag-handle {
+    position: relative !important;
+    z-index: 3 !important;
+    flex: 0 0 1rem !important;
+    width: 1rem !important;
+    min-width: 1rem !important;
+    margin-right: 0.12rem !important;
+    pointer-events: auto !important;
+}

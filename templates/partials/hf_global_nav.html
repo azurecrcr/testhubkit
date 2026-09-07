@@ -1,0 +1,529 @@
+{# 全站顶栏：分组下拉 + 移动端抽屉。依赖 hf_nav_sections（context_processor）、active_page / active_tool #}
+{% if active_tool is defined and active_tool %}
+  {% set gnav_active = active_tool.id %}
+{% elif active_page is defined and active_page == 'tool' and active_tool is defined and active_tool %}
+  {% set gnav_active = active_tool.id %}
+{% elif active_page is defined %}
+  {% set gnav_active = active_page %}
+{% else %}
+  {% set gnav_active = '' %}
+{% endif %}
+{% set gnav_sections = hf_nav_sections if hf_nav_sections is defined else [] %}
+<style>
+.hf-gnav { position: sticky; top: 0; z-index: 100; background: linear-gradient(118deg, #0b1220 0%, #1e1b4b 38%, #0c4a6e 88%, #0b1220 100%); border-bottom: 1px solid rgba(255,255,255,.1); box-shadow: 0 4px 30px rgba(2,6,23,.35); }
+.hf-gnav::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 90% 120% at 10% -20%, rgba(99,102,241,.25), transparent 55%), radial-gradient(ellipse 70% 80% at 100% 0%, rgba(6,182,212,.18), transparent 50%); opacity: .85; }
+.hf-gnav__inner { position: relative; z-index: 2; width: 100%; max-width: none; margin: 0; padding: .55rem .75rem; display: flex; align-items: center; gap: .5rem; }
+.hf-gnav__start { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; min-width: 0; }
+.hf-gnav__end { display: flex; align-items: center; justify-content: flex-end; min-width: 0; flex-shrink: 0; margin-left: auto; gap: .35rem; }
+.hf-gnav__brand { display: flex; align-items: center; gap: .65rem; text-decoration: none; color: #fff; flex-shrink: 0; border-radius: .6rem; padding: .2rem .35rem .2rem 0; transition: opacity .2s; }
+.hf-gnav__brand:hover { opacity: .92; }
+.hf-gnav__mark {
+    width: 2.35rem;
+    height: 2.35rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .7rem;
+    overflow: hidden;
+    box-shadow: 0 2px 14px rgba(47, 125, 225, .38), 0 0 0 1px rgba(255, 255, 255, .16);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.hf-gnav__brand:hover .hf-gnav__mark {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 18px rgba(47, 174, 120, .4), 0 0 0 1px rgba(255, 255, 255, .26);
+}
+.hf-gnav__mark svg { display: block; width: 100%; height: 100%; }
+.hf-gnav__titles { display: flex; flex-direction: column; gap: .05rem; min-width: 0; }
+.hf-gnav__titles strong { font-size: 1rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.15; }
+.hf-gnav__titles span { font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; color: rgba(165,243,252,.75); }
+.hf-gnav__desk { display: none; align-items: center; justify-content: center; flex-wrap: wrap; gap: .4rem; min-width: 0; }
+.hf-gnav__actions { display: none; }
+@media (min-width: 1024px) {
+    .hf-gnav__inner {
+        padding: .55rem .875rem;
+        gap: .75rem;
+    }
+    .hf-gnav__actions { display: inline-flex; }
+    .hf-gnav__desk {
+        display: flex;
+        flex: 1 1 auto;
+        justify-content: center;
+        min-width: 0;
+    }
+    .hf-gnav__burger { display: none !important; }
+}
+.hf-gnav__mega { position: relative; }
+.hf-gnav__mega-btn { display: inline-flex; align-items: center; gap: .35rem; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06); color: rgba(248,250,252,.95); font-size: .8rem; font-weight: 600; padding: .45rem .75rem; border-radius: .65rem; cursor: pointer; transition: background .2s, border-color .2s, box-shadow .2s; }
+.hf-gnav__mega-btn:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.22); }
+.hf-gnav__mega-btn[aria-expanded="true"] { background: rgba(255,255,255,.16); border-color: rgba(129,140,248,.45); box-shadow: 0 0 0 1px rgba(129,140,248,.25); }
+.hf-gnav__mega-chev { width: .65rem; height: .65rem; opacity: .75; transition: transform .25s ease; }
+.hf-gnav__mega-btn[aria-expanded="true"] .hf-gnav__mega-chev { transform: rotate(180deg); }
+.hf-gnav__mega-panel { position: absolute; left: 50%; transform: translateX(-50%) translateY(-6px); top: calc(100% + .45rem); min-width: 12.5rem; max-width: min(17rem, 92vw); padding: .35rem .4rem .4rem; border-radius: .85rem; background: rgba(255,255,255,.97); border: 1px solid rgba(148,163,184,.35); box-shadow: 0 18px 50px -12px rgba(15,23,42,.28); opacity: 0; visibility: hidden; pointer-events: none; display: none; transition: opacity .22s ease, transform .22s ease, visibility 0s linear .22s; }
+.hf-gnav__mega-panel.is-open { display: block; opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); transition: opacity .24s ease, transform .24s cubic-bezier(.22,1,.36,1), visibility 0s linear 0s; }
+.hf-gnav__mega-panel:not(.is-open), .hf-gnav__mega-panel[hidden] { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+.hf-gnav__mega a { display: flex; align-items: center; padding: .5rem .7rem; border-radius: .55rem; text-decoration: none; color: #0f172a; font-size: .84rem; font-weight: 600; line-height: 1.35; transition: background .15s; }
+.hf-gnav__mega a:hover { background: rgba(99,102,241,.08); }
+.hf-gnav__mega a[aria-current="page"] { background: linear-gradient(135deg, rgba(99,102,241,.14), rgba(6,182,212,.1)); outline: 1px solid rgba(99,102,241,.25); }
+.hf-gnav__mega-group { padding: .1rem 0 .2rem; }
+.hf-gnav__mega-group + .hf-gnav__mega-group { margin-top: .15rem; border-top: 1px solid rgba(148,163,184,.22); padding-top: .2rem; }
+.hf-gnav__mega-group-label { margin: 0; padding: .35rem .7rem .1rem; font-size: .72rem; font-weight: 700; letter-spacing: .04em; color: #64748b; }
+.hf-gnav__mega-divider { margin: .35rem .55rem; border: none; border-top: 1px solid rgba(148,163,184,.28); }
+.hf-gnav__mega a.hf-gnav__mega-sub { padding-left: .95rem; font-size: .82rem; }
+.hf-gnav__sheet-sub { padding-left: 1.35rem !important; font-size: .84rem !important; opacity: .95; }
+.hf-gnav__sheet-sec .hf-gnav__mega-group-label { margin: .35rem 0 .1rem; padding-left: .65rem; color: rgba(148,163,184,.95); font-size: .72rem; font-weight: 700; letter-spacing: .04em; }
+.hf-gnav__prompts { display: inline-flex; align-items: center; gap: .4rem; margin-left: .25rem; padding: .45rem .85rem; border-radius: 9999px; font-size: .78rem; font-weight: 700; text-decoration: none; color: #fff; border: 1px solid rgba(232,121,249,.45); background: linear-gradient(120deg, rgba(192,38,211,.35), rgba(99,102,241,.25)); box-shadow: 0 2px 14px rgba(147,51,234,.2); transition: transform .2s, box-shadow .2s, border-color .2s; }
+.hf-gnav__prompts:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(147,51,234,.28); border-color: rgba(244,114,182,.55); }
+.hf-gnav__prompts[aria-current="page"] { box-shadow: 0 0 0 2px rgba(253,224,255,.35), 0 6px 22px rgba(147,51,234,.35); }
+.hf-gnav__actions { display: inline-flex; flex-shrink: 0; align-items: center; gap: .4rem; }
+.hf-gnav__feedback {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-size: .78rem;
+    font-weight: 600;
+    color: rgba(248,250,252,.95);
+    padding: .45rem .75rem;
+    border-radius: .6rem;
+    border: 1px solid rgba(251,191,36,.45);
+    background: linear-gradient(120deg, rgba(245,158,11,.28), rgba(6,182,212,.18));
+    cursor: pointer;
+    transition: background .2s, border-color .2s, transform .15s;
+}
+.hf-gnav__feedback:hover { background: linear-gradient(120deg, rgba(245,158,11,.38), rgba(6,182,212,.26)); transform: translateY(-1px); }
+.hf-gnav__sheet-feedback {
+    display: flex; align-items: center; justify-content: center; gap: .4rem;
+    width: 100%; padding: .65rem 1rem; border-radius: .75rem;
+    border: 1px solid rgba(251,191,36,.35); background: rgba(245,158,11,.12);
+    color: #fef3c7; font-size: .875rem; font-weight: 600; cursor: pointer;
+}
+.hf-gnav__sheet-feedback:hover { background: rgba(245,158,11,.22); }
+.hf-gnav__auth {
+    display: inline-flex; align-items: center; gap: .35rem;
+    font-size: .78rem; font-weight: 700; text-decoration: none; color: #fff;
+    padding: .45rem .8rem; border-radius: .6rem;
+    border: 1px solid rgba(167,139,250,.55);
+    background: linear-gradient(120deg, rgba(99,102,241,.45), rgba(6,182,212,.25));
+    transition: transform .15s, box-shadow .15s;
+}
+.hf-gnav__auth:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(99,102,241,.25); }
+.hf-gnav__user-box { display: inline-flex; align-items: center; gap: .35rem; }
+.hf-gnav__user-email {
+    max-width: 11rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    font-size: .75rem; font-weight: 600; color: rgba(248,250,252,.92);
+    padding: .35rem .55rem; border-radius: .45rem; background: rgba(255,255,255,.08);
+}
+.hf-gnav__logout {
+    font-size: .72rem; font-weight: 600; color: rgba(248,250,252,.85);
+    padding: .35rem .55rem; border-radius: .45rem; border: 1px solid rgba(255,255,255,.16);
+    background: rgba(255,255,255,.06); cursor: pointer;
+}
+.hf-gnav__logout:hover { background: rgba(255,255,255,.12); }
+.hf-gnav__sheet-auth {
+    display: flex; width: 100%; align-items: center; justify-content: center; gap: .4rem;
+    padding: .65rem 1rem; border-radius: .75rem; margin-top: .75rem;
+    border: 1px solid rgba(167,139,250,.35); background: rgba(99,102,241,.18);
+    color: #eef2ff; font-size: .875rem; font-weight: 700; text-decoration: none;
+}
+.hf-gnav__sheet-user { margin-top: .75rem; padding: .65rem .75rem; border-radius: .75rem; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); }
+.hf-gnav__sheet-user p { margin: 0; font-size: .75rem; color: rgba(148,163,184,.95); }
+.hf-gnav__sheet-user strong { display: block; margin-top: .25rem; font-size: .82rem; color: #f8fafc; word-break: break-all; }
+.is-hidden { display: none !important; }
+.hf-gnav__auth-slot {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: .35rem;
+    margin-left: 0;
+}
+.hf-gnav__messages {
+    display: inline-flex;
+    position: relative;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    padding: 0;
+    border-radius: .7rem;
+    border: 1px solid rgba(255,255,255,.18);
+    background: rgba(255,255,255,.08);
+    color: rgba(248,250,252,.95);
+    cursor: pointer;
+    transition: background .18s ease, border-color .18s ease, transform .15s ease, box-shadow .18s ease;
+}
+.hf-gnav__community {
+    display: inline-flex;
+    position: relative;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    padding: 0;
+    border-radius: .7rem;
+    border: 1px solid rgba(125, 211, 252, 0.35);
+    background: linear-gradient(145deg, rgba(56, 189, 248, 0.22), rgba(99, 102, 241, 0.18));
+    color: rgba(248,250,252,.98);
+    cursor: pointer;
+    transition: background .18s ease, border-color .18s ease, transform .15s ease, box-shadow .18s ease;
+}
+.hf-gnav__community:hover {
+    border-color: rgba(165, 243, 252, 0.55);
+    background: linear-gradient(145deg, rgba(56, 189, 248, 0.34), rgba(129, 140, 248, 0.28));
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px -10px rgba(56, 189, 248, 0.55);
+}
+.hf-gnav__community-icon {
+    display: block;
+    width: 1.15rem;
+    height: 1.15rem;
+}
+.hf-gnav__messages:hover {
+    background: rgba(255,255,255,.14);
+    border-color: rgba(255,255,255,.28);
+    transform: translateY(-1px);
+}
+.hf-gnav__messages[data-has-unread="1"] {
+    border-color: rgba(251,113,133,.55);
+    box-shadow: 0 0 0 1px rgba(251,113,133,.2);
+}
+.hf-gnav__messages-icon {
+    display: block;
+    width: 1.15rem;
+    height: 1.15rem;
+}
+.hf-gnav__messages-badge {
+    position: absolute;
+    top: -.28rem;
+    right: -.28rem;
+    min-width: 1.05rem;
+    height: 1.05rem;
+    padding: 0 .28rem;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #fb7185, #e11d48);
+    color: #fff;
+    font-size: .62rem;
+    font-weight: 800;
+    line-height: 1.05rem;
+    text-align: center;
+    box-shadow: 0 0 0 2px rgba(15,23,42,.55);
+    pointer-events: none;
+}
+.hf-gnav__messages-badge.is-hidden {
+    display: none !important;
+}
+.hf-gnav__burger { margin-left: .25rem; flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: .6rem; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+@media (min-width: 1024px) { .hf-gnav__burger { display: none; } }
+.hf-gnav__burger span { display: block; width: 1.1rem; height: 2px; background: #fff; border-radius: 1px; transition: transform .25s, opacity .2s; }
+.hf-gnav__burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hf-gnav__burger.is-open span:nth-child(2) { opacity: 0; }
+.hf-gnav__burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.hf-gnav__drawer { position: fixed; inset: 0; z-index: 250; background: rgba(2,6,23,.52); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .28s ease, visibility 0s linear .28s; }
+.hf-gnav__drawer.is-open { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .28s ease, visibility 0s linear 0s; }
+.hf-gnav__sheet { position: absolute; top: 0; right: 0; width: min(22rem, 92vw); height: 100%; background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%); border-left: 1px solid rgba(255,255,255,.1); box-shadow: -12px 0 40px rgba(0,0,0,.35); transform: translateX(100%); transition: transform .32s cubic-bezier(.22,1,.36,1); overflow-y: auto; }
+.hf-gnav__drawer.is-open .hf-gnav__sheet { transform: translateX(0); }
+.hf-gnav__sheet-top { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1rem .75rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+.hf-gnav__sheet-top p { margin: 0; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: rgba(148,163,184,.95); }
+.hf-gnav__sheet-x { width: 2.25rem; height: 2.25rem; border-radius: .5rem; border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.06); color: #fff; font-size: 1.1rem; line-height: 1; cursor: pointer; }
+.hf-gnav__sheet-body { padding: .75rem 1rem 1.5rem; }
+.hf-gnav__sheet-sec { margin-bottom: 1.1rem; }
+.hf-gnav__sheet-sec h3 { margin: 0 0 .35rem; font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(148,163,184,.9); }
+.hf-gnav__sheet a { display: flex; align-items: center; gap: .55rem; padding: .6rem .65rem; border-radius: .55rem; color: #f8fafc; text-decoration: none; font-size: .88rem; font-weight: 600; margin-bottom: .2rem; border: 1px solid transparent; }
+.hf-gnav__sheet a:hover { background: rgba(255,255,255,.08); }
+.hf-gnav__sheet a[aria-current="page"] { background: rgba(99,102,241,.2); border-color: rgba(129,140,248,.35); }
+.hf-gnav__sheet-prompts { margin-top: .5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.1); }
+.hf-gnav__sheet-prompts a { background: linear-gradient(120deg, rgba(192,38,211,.22), rgba(99,102,241,.18)); border-color: rgba(232,121,249,.3); }
+
+{% if gnav_active == 'home' %}
+.hf-gnav.hf-gnav--studio-home {
+    background: rgba(6, 8, 14, 0.62);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 32px -12px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+}
+.hf-gnav.hf-gnav--studio-home::after {
+    background: radial-gradient(ellipse 60% 100% at 0% 0%, rgba(99, 102, 241, 0.08), transparent 55%), radial-gradient(ellipse 50% 80% at 100% 0%, rgba(34, 211, 238, 0.05), transparent 50%);
+    opacity: 1;
+}
+.hf-gnav.hf-gnav--studio-home .hf-gnav__titles span { color: rgba(165, 180, 252, 0.65); letter-spacing: 0.16em; }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__mark { box-shadow: 0 2px 12px rgba(99, 102, 241, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.1); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__brand:hover .hf-gnav__mark { box-shadow: 0 4px 16px rgba(99, 102, 241, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.16); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__mega-btn { border-color: rgba(255,255,255,.08); background: rgba(255,255,255,.03); color: rgba(226,232,240,.88); font-weight: 500; }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__mega-btn:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.14); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__mega-btn[aria-expanded="true"] { background: rgba(99,102,241,.12); border-color: rgba(129,140,248,.28); box-shadow: 0 0 0 1px rgba(99,102,241,.12); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__prompts { border-color: rgba(129,140,248,.28); background: rgba(99,102,241,.1); box-shadow: none; color: rgba(224,231,255,.95); font-weight: 600; }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__prompts:hover { background: rgba(99,102,241,.16); border-color: rgba(129,140,248,.4); box-shadow: 0 4px 20px -6px rgba(99,102,241,.35); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__feedback { border-color: rgba(255,255,255,.1); background: rgba(255,255,255,.04); color: rgba(226,232,240,.85); font-weight: 500; }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__feedback:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.16); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__auth { border-color: rgba(129,140,248,.32); background: rgba(99,102,241,.14); font-weight: 600; }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__auth:hover { background: rgba(99,102,241,.22); box-shadow: 0 4px 16px -4px rgba(99,102,241,.4); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__user-email { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.06); color: rgba(226,232,240,.82); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__logout { border-color: rgba(255,255,255,.1); background: rgba(255,255,255,.04); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__logout:hover { background: rgba(255,255,255,.08); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__burger { border-color: rgba(255,255,255,.1); background: rgba(255,255,255,.04); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__drawer { background: rgba(3,3,8,.55); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__sheet { background: linear-gradient(180deg, rgba(8,10,18,.98) 0%, rgba(6,8,14,.99) 100%); border-left-color: rgba(255,255,255,.06); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__sheet-top { border-bottom-color: rgba(255,255,255,.06); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__sheet a[aria-current="page"] { background: rgba(99,102,241,.14); border-color: rgba(129,140,248,.25); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__sheet-prompts a { background: rgba(99,102,241,.12); border-color: rgba(129,140,248,.25); }
+.hf-gnav.hf-gnav--studio-home .hf-gnav__sheet-feedback { border-color: rgba(255,255,255,.1); background: rgba(255,255,255,.05); color: rgba(226,232,240,.88); }
+{% endif %}
+</style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hf_global_nav_tricolor.css') }}?v=20260711tri1">
+<header class="hf-gnav{% if gnav_active == 'home' %} hf-gnav--studio-home{% endif %}" data-hf-gnav>
+    <div class="hf-gnav__inner">
+        <div class="hf-gnav__start">
+        <a class="hf-gnav__brand" href="/app" {% if gnav_active == 'home' %}aria-current="page"{% endif %}>
+            <span class="hf-gnav__mark" aria-hidden="true">{% set mark_uid = 'gnav' %}{% include 'partials/hf_brand_mark.html' %}</span>
+            <span class="hf-gnav__titles">
+                <strong>Test Hub Kit</strong>
+                <span>Developer suite</span>
+            </span>
+        </a>
+        </div>
+        <nav class="hf-gnav__desk" aria-label="工具分组">
+            {% for sec in gnav_sections %}
+            <div class="hf-gnav__mega">
+                <button type="button" class="hf-gnav__mega-btn" data-gnav-mega-btn aria-expanded="false" aria-controls="hf-gnav-mega-{{ sec.id }}">
+                    {{ sec.label }}
+                    <svg class="hf-gnav__mega-chev" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="hf-gnav__mega-panel" id="hf-gnav-mega-{{ sec.id }}" data-gnav-mega-panel role="region" aria-label="{{ sec.label }}" hidden aria-hidden="true">
+                    {% if sec.nav_items is defined and sec.nav_items %}
+                    {% for item in sec.nav_items %}
+                    {% if item.type == 'group' %}
+                    <div class="hf-gnav__mega-group" role="group" aria-label="{{ item.label }}">
+                        <p class="hf-gnav__mega-group-label">{{ item.label }}</p>
+                        {% for tool in item.tools %}
+                        <a href="/tool/{{ tool.id }}" class="hf-gnav__mega-sub" {% if gnav_active == tool.id %}aria-current="page"{% endif %}>{{ tool.nav_name | default(tool.name) }}</a>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <a href="/tool/{{ item.tool.id }}" {% if gnav_active == item.tool.id %}aria-current="page"{% endif %}>{{ item.tool.nav_name | default(item.tool.name) }}</a>
+                    {% endif %}
+                    {% endfor %}
+                    {% else %}
+                    {% for tool in sec.tools %}
+                    <a href="/tool/{{ tool.id }}" {% if gnav_active == tool.id %}aria-current="page"{% endif %}>{{ tool.nav_name | default(tool.name) }}</a>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+            <a class="hf-gnav__prompts" href="/prompts" {% if gnav_active == 'prompts' %}aria-current="page"{% endif %}>
+                <span aria-hidden="true">✨</span> 提示词库
+            </a>
+        </nav>
+        <div class="hf-gnav__end">
+            <div class="hf-gnav__actions">
+                <button type="button" class="hf-gnav__feedback" data-hf-feedback-open aria-label="投稿或建议">
+                    <span aria-hidden="true">✉</span> 投稿/建议
+                </button>
+            </div>
+            <button type="button" class="hf-gnav__community" data-hf-community-open title="交流群" aria-label="交流群">
+                <svg class="hf-gnav__community-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M8.2 11.2c0-2.45 2.2-4.4 4.9-4.4s4.9 1.95 4.9 4.4-2.2 4.4-4.9 4.4c-.5 0-1-.07-1.45-.2L9.2 16.3l.45-2.35C8.7 13.3 8.2 12.3 8.2 11.2Z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/>
+                    <path d="M6.6 17.5c-1.85-1.05-3-2.7-3-4.55 0-2.85 2.55-5.2 5.75-5.55" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" opacity=".85"/>
+                    <circle cx="10.6" cy="10.85" r=".7" fill="currentColor"/>
+                    <circle cx="13.15" cy="10.85" r=".7" fill="currentColor"/>
+                    <circle cx="15.7" cy="10.85" r=".7" fill="currentColor"/>
+                </svg>
+            </button>
+            <button type="button" class="hf-gnav__messages" id="cm-btn-messages" title="消息" aria-label="消息">
+                <svg class="hf-gnav__messages-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5.5 8.5A6.5 6.5 0 0 1 18.5 8.5c0 4.2 1.55 6.35 2.2 7.15a.75.75 0 0 1-.57 1.25H3.87a.75.75 0 0 1-.57-1.25C3.95 14.85 5.5 12.7 5.5 8.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                    <path d="M9.6 18.2a2.6 2.6 0 0 0 4.8 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    <circle cx="17.2" cy="6.2" r="1.35" fill="currentColor" opacity=".9"/>
+                </svg>
+                <span class="hf-gnav__messages-badge is-hidden" id="cm-msg-badge" aria-label="未读消息"></span>
+            </button>
+            <div class="hf-gnav__auth-slot">
+                <a id="hf-auth-login-btn" class="hf-gnav__auth" href="/auth">注册 / 登录</a>
+                <div id="hf-auth-user-box" class="hf-gnav__user-box is-hidden">
+                    <div id="hf-auth-user-menu" class="hf-gnav__user-menu is-hidden">
+                        <button type="button" id="hf-auth-user-menu-btn" class="hf-gnav__user-menu-btn hf-gnav__user-menu-btn--avatar-only" aria-expanded="false" aria-haspopup="true" title="账户菜单" aria-label="账户菜单">
+                            <img id="hf-auth-user-menu-avatar" class="hf-gnav__user-menu-avatar" alt="" width="36" height="36">
+                        </button>
+                        <div id="hf-auth-user-menu-panel" class="hf-gnav__user-menu-panel" role="menu">
+                            <a href="/account/profile" id="hf-auth-open-profile" role="menuitem">编辑个人资料</a>
+                            <button type="button" id="hf-auth-open-feedback-admin" role="menuitem" class="is-hidden">用户建议</button>
+                            <button type="button" id="hf-auth-open-quota-bonus-admin" role="menuitem" class="is-hidden">额度增额</button>
+                            <button type="button" id="hf-auth-open-ai-config" role="menuitem">AI配置</button>
+                            <button type="button" id="hf-auth-open-builtin-ai-config" role="menuitem" class="is-hidden">全站 AI 配置</button>
+                            <button type="button" class="hf-gnav__user-menu-logout" data-hf-auth-logout role="menuitem">退出登录</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="hf-gnav__burger" data-gnav-burger aria-expanded="false" aria-controls="hf-gnav-drawer" aria-label="打开菜单">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+<div class="hf-gnav__drawer" id="hf-gnav-drawer" data-gnav-drawer hidden>
+    <div class="hf-gnav__sheet" role="dialog" aria-modal="true" aria-label="站点导航">
+        <div class="hf-gnav__sheet-top">
+            <p>导航</p>
+            <button type="button" class="hf-gnav__sheet-x" data-gnav-drawer-close aria-label="关闭">×</button>
+        </div>
+        <div class="hf-gnav__sheet-body">
+            {% for sec in gnav_sections %}
+            <div class="hf-gnav__sheet-sec">
+                <h3>{{ sec.label }}</h3>
+                {% if sec.nav_items is defined and sec.nav_items %}
+                {% for item in sec.nav_items %}
+                {% if item.type == 'group' %}
+                <p class="hf-gnav__mega-group-label">{{ item.label }}</p>
+                {% for tool in item.tools %}
+                <a href="/tool/{{ tool.id }}" class="hf-gnav__sheet-sub" data-gnav-drawer-link {% if gnav_active == tool.id %}aria-current="page"{% endif %}>{{ tool.nav_name | default(tool.name) }}</a>
+                {% endfor %}
+                {% else %}
+                <a href="/tool/{{ item.tool.id }}" data-gnav-drawer-link {% if gnav_active == item.tool.id %}aria-current="page"{% endif %}>{{ item.tool.nav_name | default(item.tool.name) }}</a>
+                {% endif %}
+                {% endfor %}
+                {% else %}
+                {% for tool in sec.tools %}
+                <a href="/tool/{{ tool.id }}" data-gnav-drawer-link {% if gnav_active == tool.id %}aria-current="page"{% endif %}>{{ tool.name }}</a>
+                {% endfor %}
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class="hf-gnav__sheet-prompts">
+                <a href="/prompts" data-gnav-drawer-link {% if gnav_active == 'prompts' %}aria-current="page"{% endif %}>✨ 提示词库</a>
+            </div>
+            <button type="button" class="hf-gnav__sheet-feedback mt-3 w-full" data-hf-feedback-open style="border-color:rgba(52,211,153,.32);background:rgba(16,185,129,.12);">
+                ✉ 投稿 / 建议
+            </button>
+            <button type="button" class="hf-gnav__sheet-feedback mt-2 w-full" data-hf-community-open style="border-color:rgba(56,189,248,.35);background:linear-gradient(120deg,rgba(56,189,248,.16),rgba(99,102,241,.14));color:#e0f2fe;">
+                💬 交流群
+            </button>
+            <a id="hf-auth-sheet-login" class="hf-gnav__sheet-auth" href="/auth">🔐 注册 / 登录</a>
+            <div id="hf-auth-sheet-user" class="hf-gnav__sheet-user is-hidden">
+                <p>已登录</p>
+                <strong id="hf-auth-sheet-email"></strong>
+                <a href="/account/profile" id="hf-auth-sheet-profile" class="hf-gnav__sheet-feedback mt-2 w-full is-hidden" style="border-color:rgba(59,130,246,.32);background:rgba(37,99,235,.16);color:#eff6ff;text-decoration:none;box-sizing:border-box;">编辑个人资料</a>
+                <button type="button" id="hf-auth-sheet-feedback-admin" class="hf-gnav__sheet-feedback mt-2 w-full is-hidden" style="border-color:rgba(16,185,129,.32);background:rgba(16,185,129,.14);color:#ecfdf5;">用户建议</button>
+                <button type="button" id="hf-auth-sheet-quota-bonus-admin" class="hf-gnav__sheet-feedback mt-2 w-full is-hidden" style="border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.14);color:#fffbeb;">额度增额</button>
+                <button type="button" id="hf-auth-sheet-ai-config" class="hf-gnav__sheet-feedback mt-2 w-full is-hidden" style="border-color:rgba(59,130,246,.32);background:rgba(37,99,235,.16);color:#eff6ff;">AI配置</button>
+                <button type="button" class="hf-gnav__sheet-feedback mt-2 w-full" data-hf-auth-logout style="border-color:rgba(148,163,184,.25);background:rgba(255,255,255,.06);color:#e2e8f0;">退出登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'partials/hf_feedback_widget.html' %}
+{% include 'partials/hf_feedback_admin_modal.html' %}
+{% include 'partials/hf_ai_quota_bonus_admin_modal.html' %}
+<script>
+(function () {
+    if (window.__hfGnavBound) return;
+    window.__hfGnavBound = true;
+    var root = document.querySelector("[data-hf-gnav]");
+    if (!root) return;
+    var drawer = document.querySelector("[data-gnav-drawer]");
+    var burger = document.querySelector("[data-gnav-burger]");
+    var megaBtns = root.querySelectorAll("[data-gnav-mega-btn]");
+    root.querySelectorAll("[data-gnav-mega-panel]").forEach(function (pan) {
+        pan.hidden = true;
+        pan.setAttribute("aria-hidden", "true");
+    });
+
+    function closeMegas() {
+        megaBtns.forEach(function (btn) {
+            btn.setAttribute("aria-expanded", "false");
+            var id = btn.getAttribute("aria-controls");
+            var p = id && document.getElementById(id);
+            if (p) {
+                p.classList.remove("is-open");
+                p.hidden = true;
+                p.setAttribute("aria-hidden", "true");
+            }
+        });
+    }
+    function toggleMega(btn) {
+        var open = btn.getAttribute("aria-expanded") === "true";
+        closeMegas();
+        if (!open) {
+            btn.setAttribute("aria-expanded", "true");
+            var id = btn.getAttribute("aria-controls");
+            var p = id && document.getElementById(id);
+            if (p) {
+                p.hidden = false;
+                p.setAttribute("aria-hidden", "false");
+                p.classList.add("is-open");
+            }
+        }
+    }
+    megaBtns.forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMega(btn);
+        });
+    });
+    document.addEventListener("click", function (e) {
+        var el = e.target;
+        if (el && el.closest && (el.closest("[data-gnav-mega-panel]") || el.closest("[data-gnav-mega-btn]"))) return;
+        closeMegas();
+    });
+    root.querySelectorAll("[data-gnav-mega-panel]").forEach(function (pan) {
+        pan.addEventListener("click", function (e) { e.stopPropagation(); });
+    });
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+            closeMegas();
+            if (drawer && drawer.classList.contains("is-open")) closeDrawer();
+        }
+    });
+    function openDrawer() {
+        if (!drawer || !burger) return;
+        drawer.hidden = false;
+        requestAnimationFrame(function () {
+            drawer.classList.add("is-open");
+            burger.classList.add("is-open");
+            burger.setAttribute("aria-expanded", "true");
+        });
+    }
+    function closeDrawer() {
+        if (!drawer || !burger) return;
+        drawer.classList.remove("is-open");
+        burger.classList.remove("is-open");
+        burger.setAttribute("aria-expanded", "false");
+        setTimeout(function () { drawer.hidden = true; }, 320);
+    }
+    if (burger && drawer) {
+        burger.addEventListener("click", function (e) {
+            e.stopPropagation();
+            if (drawer.classList.contains("is-open")) closeDrawer();
+            else { closeMegas(); openDrawer(); }
+        });
+        drawer.addEventListener("click", function (e) {
+            if (e.target === drawer) closeDrawer();
+        });
+        document.querySelectorAll("[data-gnav-drawer-close]").forEach(function (b) {
+            b.addEventListener("click", closeDrawer);
+        });
+        document.querySelectorAll("[data-gnav-drawer-link]").forEach(function (a) {
+            a.addEventListener("click", closeDrawer);
+        });
+    }
+})();
+</script>
+{% include 'partials/hf_user_ai_config_modal.html' %}
+{% include 'partials/hf_builtin_ai_config_modal.html' %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hf_messages.css') }}?v=20260807fbmsg1">
+{% include 'partials/hf_messages_panel.html' %}
+<script src="{{ url_for('static', filename='js/hf_site_nav.bundle.js') }}?v=20260811perf1" defer></script>
+    <script src="{{ url_for('static', filename='js/hf_user_profile.js') }}?v=20260714profile1" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hf_phone_bind_gate.css') }}?v=20260811phone1">
+<script src="{{ url_for('static', filename='js/hf_phone_bind_gate.js') }}?v=20260811phone1" defer></script>
+<script src="{{ url_for('static', filename='js/hf_ai_quota_toast.js') }}?v=20260715cloud-toast1" defer></script>
+<script src="{{ url_for('static', filename='js/hf_user_ai_cursor_agent.js') }}?v=20260712cursorcopy1" defer></script>
+<script src="{{ url_for('static', filename='js/hf_builtin_ai_admin.js') }}?v=20260710cursoragent1" defer></script>
+<script src="{{ url_for('static', filename='js/hf_feedback_admin.js') }}?v=20260807fbimg1" defer></script>
+<script src="{{ url_for('static', filename='js/hf_ai_quota_bonus_admin.js') }}?v=20260807qbonus1" defer></script>
+<script src="{{ url_for('static', filename='js/case_management/messages_ui.js') }}?v=20260807fbmsg1" defer></script>
+<script src="{{ url_for('static', filename='js/case_management/messages_l5.js') }}?v=20260730inbox12" defer></script>
+{% include 'partials/hf_page_nav_loading.html' %}

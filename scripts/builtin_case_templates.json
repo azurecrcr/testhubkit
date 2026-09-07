@@ -1,0 +1,52 @@
+[
+  {
+    "id": "metersphere",
+    "name": "MeterSphere",
+    "badge": "MS",
+    "badge_class": "ms",
+    "hint": "",
+    "columns": ["用例名称", "所属模块", "标签", "前置条件", "步骤描述", "预期结果", "编辑模式", "备注", "用例等级"],
+    "is_default": true,
+    "sort_order": 10
+  },
+  {
+    "id": "zentao",
+    "name": "禅道",
+    "badge": "禅道",
+    "badge_class": "zt",
+    "hint": "",
+    "columns": ["用例标题", "所属产品", "所属模块", "相关需求", "前置条件", "步骤", "预期", "优先级", "用例类型", "关键词"],
+    "is_default": false,
+    "sort_order": 20
+  },
+  {
+    "id": "jira",
+    "name": "Jira / Xray",
+    "badge": "Jira",
+    "badge_class": "jira",
+    "hint": "",
+    "columns": ["用例摘要", "组件", "优先级", "描述", "前置条件", "测试步骤", "预期结果", "标签", "关联需求"],
+    "is_default": false,
+    "sort_order": 30
+  },
+  {
+    "id": "testrail",
+    "name": "TestRail",
+    "badge": "TR",
+    "badge_class": "tr",
+    "hint": "",
+    "columns": ["标题", "目录", "优先级", "前置条件", "步骤", "预期结果", "类型", "引用"],
+    "is_default": false,
+    "sort_order": 40
+  },
+  {
+    "id": "excel",
+    "name": "Excel 通用",
+    "badge": "XLS",
+    "badge_class": "excel",
+    "hint": "",
+    "columns": ["模块", "用例标题", "前置条件", "操作步骤", "预期结果", "优先级", "备注"],
+    "is_default": false,
+    "sort_order": 50
+  }
+]

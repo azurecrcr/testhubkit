@@ -1,0 +1,93 @@
+{# JMeter CSS that must load after JS bundles (plan config + studio reset) #}
+{# version: 20260715ai-timer-cfg1 #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/jms-load-test/jms-load-test-post-js.css') }}?v=20260730close-tr3">
+{# JMeter post-bundle assets — plan catalog + green glass only #}
+{# version: 20260712plan-legacy-rm1 #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_component_delete_confirm_ui.css') }}?v=20260711plan-multi1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_plan_shell_v1.css') }}?v=20260711plan-multi1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_plan_settings_nav_v1.css') }}?v=20260711plan-multi1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_plan_nav_green_glass_v1.css') }}?v=20260711plan-multi1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_plan_rc_modal_green_v2.css') }}?v=20260711plan-multi1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_studio_workspace_green_glass_v2.css') }}?v=20260711plan-multi1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_studio_nested_mount_green_v1.css') }}?v=20260711plan-multi1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_http_mount_modal_green_v2.css') }}?v=20260711plan-multi1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_jmeter_page_bg_blue_v1.css') }}?v=20260711plan-multi1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_jmeter_page_bg_deco_v1.css') }}?v=20260711lth-glass5">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_jmeter_glass_transparency_v3.css') }}?v=20260711lth-glass5">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_http_mount_edit_green_v3.css') }}?v=20260711plan-multi1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_http_mount_edit_green_v4_layout.css') }}?v=20260711plan-multi1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_http_mount_edit_green_v5_layout.css') }}?v=20260711plan-multi1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_http_mount_edit_green_v6_chrome.css') }}?v=20260711plan-multi1">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/jms_output_modal_viewport_fix.css') }}?v=20260730close-tr3">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_output_modal_nexus_green_v1.css') }}?v=20260730close-tr3">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_jmx_import_modal_green_v2.css') }}?v=20260711jmx-queue1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_plan_catalog_items_v1.css') }}?v=20260712plan-legacy-rm1">
+    <script src="{{ url_for('static', filename='js/jms_component_delete_confirm_ui.js') }}?v=20260711plan-multi1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_component_delete.js') }}?v=20260711plan-multi1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_if_mount_model.js') }}?v=20260712txn-mount-scroll-fix1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_if_mount_timeline.js') }}?v=20260712txn-mount-scroll-fix1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_tg_if_mount_tree_rows.js') }}?v=20260712txn-mount-scroll-fix1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_if_mount_row_actions.js') }}?v=20260712debug-mount-edit-del1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_mount_catalog_bridge.js') }}?v=20260712mount-bridge5" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_mount_host_resolver.js') }}?v=20260711plan-multi1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_catalog_sampler_mount_refresh.js') }}?v=20260711plan-multi1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_catalog_sampler_mount_post_add_fix_v1.js') }}?v=20260712txn-mount-scroll-fix1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_sampler_listener_mount_v1.js') }}?v=20260715sampler-listener1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_plan_shell_v1.js') }}?v=20260711plan-multi1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_plan_settings_nav_v1.js') }}?v=20260711rm-plan-common1" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/jms_plan_catalog_editor_modal_green_v1.css') }}?v=20260712txn-mount-scroll-fix1">
+    <script src="{{ url_for('static', filename='js/jms_plan_catalog_resolve.js') }}?v=20260712txn-mount-scroll-fix1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_plan_catalog_scene_resolve.js') }}?v=20260712plan-scene-catalog1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_scene_monitor_validate_optional_v1.js') }}?v=20260714order-arg1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_import_fidelity_v1.js') }}?v=20260714order-arg1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_export_tg_args_dedupe_v1.js') }}?v=20260714order-arg1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_import_tg_arguments_step_v1.js') }}?v=20260714order-arg1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_http_path_validate_v1.js') }}?v=20260714order-arg1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_export_prepare_fidelity_guard_v1.js') }}?v=20260714order-arg1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_import_ui_recover_v1.js') }}?v=20260714order-arg1" defer></script>
+
+    <script src="{{ url_for('static', filename='js/jms_plan_catalog_jmx_props.js') }}?v=20260712plan-scene-catalog1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_plan_catalog_append.js') }}?v=20260712plan-scene-catalog1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_plan_catalog_items_ui.js') }}?v=20260714order-arg1" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_step_modals_green_unify_v3.css') }}?v=20260712step-modals-green-v3">
+    <script src="{{ url_for('static', filename='js/jms_step_modal_auto_fit_v1.js') }}?v=20260712step-modals-green-v3" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_debug_catalog_tree_row_fix_v1.css') }}?v=20260712debug-tree-row-fix8">
+    <script src="{{ url_for('static', filename='js/jms_catalog_element_delete_ui.js') }}?v=20260712catalog-delete-fix3" defer></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_tpl_reset_combo_layout_v1.css') }}?v=20260713reset-bind1">
+    <script src="{{ url_for('static', filename='js/jms_tpl_reset_combo_layout_v1.js') }}?v=20260713reset-bind1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_scenario_studio_reset.js') }}?v=20260715reset-open1" defer></script>
+
+{# HTTPSamplerProxy query editor · 20260714http-query-ui1 #}
+    <script src="{{ url_for('static', filename='js/jms_http_sampler_query_editor_v1.js') }}?v=20260714http-query-ui1" defer></script>
+
+{# JMeter TG detail timeline · AI export dep · 20260714ai-tlready1 #}
+    <script src="{{ url_for('static', filename='js/jms_tg_import_timeline.js') }}?v=20260714ai-tlready1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_tg_listener_timeline.js') }}?v=20260714ai-tlready1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_tg_detail_timeline.js') }}?v=20260714ai-tlready1" defer></script>
+
+{# AI config adapt · 20260715ai-cfg-adapt1 #}
+    <script src="{{ url_for('static', filename='js/jms_ai_config_component_adapt_v1.js') }}?v=20260715ai-cfg-adapt1" defer></script>
+
+{# JMeter AI step helper · dock FAB · 20260714ai-scope-note1 #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_jmeter_ai_panel.css') }}?v=20260714order-arg1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_jmeter_ai_panel_green_v2.css') }}?v=20260714order-arg1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_jmeter_ai_panel_tg_sync.css') }}?v=20260714order-arg1">
+    <script src="{{ url_for('static', filename='js/jms_ai_chat_log_client_v1.js') }}?v=20260715ai-chatlog1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmeter_ai_panel_ops.js') }}?v=20260714order-arg1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmeter_ai_panel.js') }}?v=20260715ai-quota1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmeter_ai_panel_drag.js') }}?v=20260714order-arg1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmeter_ai_panel_resize.js') }}?v=20260714order-arg1" defer></script>
+
+{# JMeter AI two-pass · 20260714ai-twopass1 #}
+    <script src="{{ url_for('static', filename='js/jms_ai_component_schema_pack_v1.js') }}?v=20260715ai-listener-under1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmeter_ai_panel_two_pass_v1.js') }}?v=20260715ai-quota1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_backend_listener_params_fidelity_v1.js') }}?v=20260714order-arg1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_plan_variables_dedupe_v3.js') }}?v=20260714order-arg1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_export_finalize_v1.js') }}?v=20260714order-arg1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_roundtrip_fidelity_v1.js') }}?v=20260714order-arg1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_import_tg_load_capture_v1.js') }}?v=20260714order-arg1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_udv_args_fidelity_v1.js') }}?v=20260714order-arg1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_hash_children_order_fidelity_v1.js') }}?v=20260714order-arg1" defer></script>
+    <script src="{{ url_for('static', filename='js/jms_jmx_httparg_name_fidelity_v1.js') }}?v=20260714order-arg1" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jms_modal_copy_visibility_v1.css') }}?v=20260715reset-copy2">

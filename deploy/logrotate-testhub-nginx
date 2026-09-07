@@ -1,0 +1,12 @@
+# TestHub Nginx 访问/错误日志（宿主机挂载 deploy/nginx-logs）
+# 按日轮转，至少保留 180 天
+/root/TestHub/deploy/nginx-logs/*.log {
+    daily
+    rotate 180
+    missingok
+    notifempty
+    compress
+    delaycompress
+    copytruncate
+    sharedscripts
+}
