@@ -1540,7 +1540,15 @@ function applyDrawerLayout(drawerNum) {
     shell.classList.toggle('tc-left-float--collapsed', isCollapsed);
     shell.classList.toggle('tc-left-float--open', !isCollapsed);
     leftPanel.classList.toggle('tc-left-float-panel--collapsed', isCollapsed);
-    leftPanel.setAttribute('aria-hidden', isCollapsed ? 'true' : 'false');
+    if (isCollapsed) {
+        if (typeof tcReleaseFocusWithin === 'function') tcReleaseFocusWithin(leftPanel);
+    }
+    // 收起时标题栏关闭按钮仍可聚焦：整块 aside 不可 aria-hidden
+    leftPanel.setAttribute('aria-hidden', 'false');
+    var leftScrollEl = leftPanel.querySelector('.tc-left-float-panel__scroll');
+    if (leftScrollEl) {
+        leftScrollEl.setAttribute('aria-hidden', isCollapsed ? 'true' : 'false');
+    }
     if (dock) dock.classList.toggle('hidden', !isCollapsed);
     if (backdrop) {
         backdrop.classList.toggle('hidden', isCollapsed);

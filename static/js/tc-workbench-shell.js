@@ -862,6 +862,43 @@ function tcWorkbenchModalZIndex() {
 }
 
 
+/** 隐藏前释放内部焦点，避免 aria-hidden 祖先仍持有焦点（控制台 a11y 报错） */
+function tcReleaseFocusWithin(root) {
+    try {
+        var ae = document.activeElement;
+        if (!ae || !root || typeof root.contains !== 'function') return;
+        if (!root.contains(ae)) return;
+        if (typeof ae.blur === 'function') ae.blur();
+        // blur 后仍可能停在原节点；把焦点挪到 body，避免随后 aria-hidden 祖先仍含焦点
+        ae = document.activeElement;
+        if (ae && root.contains(ae)) {
+            var body = document.body;
+            if (body) {
+                if (!body.hasAttribute('tabindex')) body.setAttribute('tabindex', '-1');
+                try { body.focus({ preventScroll: true }); } catch (e1) {
+                    try { body.focus(); } catch (e2) { /* ignore */ }
+                }
+            }
+        }
+    } catch (err) { /* ignore */ }
+}
+
+/** 点击收尾可能把焦点还给按钮：同步 blur 后再延迟清一次（不影响其它调用方） */
+function tcReleaseFocusWithinSoon(root) {
+    tcReleaseFocusWithin(root);
+    function again() { tcReleaseFocusWithin(root); }
+    try {
+        if (typeof requestAnimationFrame === 'function') {
+            requestAnimationFrame(function () {
+                again();
+                requestAnimationFrame(again);
+            });
+        } else {
+            setTimeout(again, 0);
+        }
+    } catch (err2) { /* ignore */ }
+}
+
 /** 通用模态框显隐（原 tc_stash.js，暂存移除后仍供模板/导出等弹窗使用） */
 function showModal(el) {
     if (!el) return;
@@ -874,10 +911,13 @@ function showModal(el) {
 
 function hideModal(el) {
     if (!el) return;
+    // 必须同步移出焦点后再 aria-hidden，否则 Chrome 报 Blocked aria-hidden
+    if (typeof tcReleaseFocusWithin === 'function') tcReleaseFocusWithin(el);
     el.classList.add('hidden');
     el.classList.remove('flex');
     el.style.display = '';
     el.setAttribute('aria-hidden', 'true');
+    if (typeof tcReleaseFocusWithinSoon === 'function') tcReleaseFocusWithinSoon(el);
 }
 
 function tcEnsureModalTopLayer(el) {
@@ -2728,7 +2768,7 @@ function bindAudioAiUnlockUi() {
         submitBtn.addEventListener('click', function () {
             var pwd = (pwdInp?.value || '').trim();
             if (!HF_TOOLKIT_UNLOCK_PASSWORD || pwd !== HF_TOOLKIT_UNLOCK_PASSWORD) {
-                hfUnlockFailToast(HF_TOOLKIT_UNLOCK_PASSWORD ? '密码错误，请重试' : '未配置解锁密码');
+                hfUnlockFailToast('密码错误，请重试');
                 if (pwdInp) pwdInp.focus();
                 return;
             }
@@ -6674,6 +6714,29 @@ window.tcAllocateContextLayers = tcAllocateContextLayers;
         return Promise.resolve(false);
     }
 
+    /** 生成/落库专用：让 URL 中的 docId 与上下文 lanhu_doc_id 对齐，避免解析漂移 */
+    function alignLanhuUrlDocIdForPersist(url, docId) {
+        url = String(url || '').trim();
+        docId = String(docId || '').trim();
+        if (!url || !docId) return url;
+        if (/([?&#]docId=)[^&]*/i.test(url)) {
+            return url.replace(/([?&#]docId=)[^&]*/i, '$1' + encodeURIComponent(docId));
+        }
+        if (/([?&#]image_id=)[^&]*/i.test(url)) {
+            return url.replace(/([?&#]image_id=)[^&]*/i, '$1' + encodeURIComponent(docId));
+        }
+        var sep = url.indexOf('?') >= 0 || url.indexOf('#') >= 0 ? '&' : '?';
+        if (url.indexOf('#') >= 0 && url.indexOf('?') < 0) {
+            // hash-route without query: append ?docId after #
+            return url.replace(/#(.*)$/, function (_m, frag) {
+                if (!frag) return '#?docId=' + encodeURIComponent(docId);
+                if (frag.indexOf('?') >= 0) return '#' + frag + '&docId=' + encodeURIComponent(docId);
+                return '#' + frag + '?docId=' + encodeURIComponent(docId);
+            });
+        }
+        return url + sep + 'docId=' + encodeURIComponent(docId);
+    }
+
     function persistNow(source, opts) {
         opts = opts || {};
         if (shouldBlockOverwriteDbPersistDuringGeneration(opts)) return Promise.resolve(null);
@@ -6694,9 +6757,14 @@ window.tcAllocateContextLayers = tcAllocateContextLayers;
                 dedupe: source === 'generation' || _genMergeMode === 'append'
             });
         }
+        var persistUrl = stripPageIdFromLanhuUrl(ctx.lanhu_url) || ctx.lanhu_url;
+        if (ctx.lanhu_doc_id) {
+            persistUrl = alignLanhuUrlDocIdForPersist(persistUrl, ctx.lanhu_doc_id);
+        }
         var body = {
-            lanhu_url: stripPageIdFromLanhuUrl(ctx.lanhu_url) || ctx.lanhu_url,
+            lanhu_url: persistUrl,
             page_id: ctx.lanhu_page_id || undefined,
+            lanhu_doc_id: ctx.lanhu_doc_id || undefined,
             page_name: ctx.page_name || '',
             template_id: (source === 'generation' && global.__tcGenerationTableSnapshot &&
                 global.__tcGenerationTableSnapshot.tcActiveTemplateId)
@@ -6738,6 +6806,12 @@ window.tcAllocateContextLayers = tcAllocateContextLayers;
             return r.json().then(function (d) {
                 if (!r.ok || !d.ok) {
                     console.warn('[TcRequirementCaseStore] save failed', d && d.error);
+                    if (source === 'generation' && typeof global.tcAppToast === 'function') {
+                        global.tcAppToast(
+                            (d && d.error) || '用例保存失败，请稍后重试',
+                            { variant: 'warning', duration: 4200 }
+                        );
+                    }
                     return null;
                 }
                 // 服务端仍跳过空表覆盖时：补一次强制清空，且不清 dirty
@@ -7074,9 +7148,59 @@ window.tcAllocateContextLayers = tcAllocateContextLayers;
             return null;
         }).finally(function () {
             clearGenerationPinnedContext();
-            if (typeof global.refreshTcPageGenLock === 'function') {
-                global.refreshTcPageGenLock();
+            if (typeof global.clearOptimisticPageGenLock === 'function') {
+                try { global.clearOptimisticPageGenLock(); } catch (_eOpt) { /* ignore */ }
             }
+            var refreshPromise = Promise.resolve(null);
+            if (typeof global.refreshTcPageGenLock === 'function') {
+                try {
+                    refreshPromise = Promise.resolve(global.refreshTcPageGenLock()).catch(function () {
+                        return null;
+                    });
+                } catch (_eRef) {
+                    refreshPromise = Promise.resolve(null);
+                }
+            }
+            /* 落库成功/失败都要解开顶栏交互锁，避免生成结束后按钮一直置灰 */
+            function unlockWorkbenchChromeAfterGenerationPersist() {
+                try {
+                    if (typeof global.clearPageGenLockUiAfterGenerationIdle === 'function') {
+                        global.clearPageGenLockUiAfterGenerationIdle();
+                    } else if (typeof global.clearOptimisticPageGenLock === 'function') {
+                        global.clearOptimisticPageGenLock();
+                    }
+                } catch (_ePg) { /* ignore */ }
+                try {
+                    if (typeof global.setTcLeftPanelAiGenerateLock === 'function') {
+                        global.setTcLeftPanelAiGenerateLock(false);
+                    }
+                } catch (_eLock) { /* ignore */ }
+                try {
+                    if (global.TcAgentOrchestrator &&
+                        typeof global.TcAgentOrchestrator.releaseGenModeLockIfIdle === 'function') {
+                        global.TcAgentOrchestrator.releaseGenModeLockIfIdle();
+                    }
+                } catch (_eAgent) { /* ignore */ }
+                if (typeof global.scheduleReleaseWorkbenchInteractionLocks === 'function') {
+                    global.scheduleReleaseWorkbenchInteractionLocks();
+                } else if (typeof global.syncQcWorkbenchInteractionLock === 'function') {
+                    global.syncQcWorkbenchInteractionLock();
+                }
+                if (typeof global.syncTcQualityCheckButtonChrome === 'function') {
+                    try { global.syncTcQualityCheckButtonChrome(); } catch (_eQc) { /* ignore */ }
+                }
+                if (typeof global.syncTcTableTemplateChrome === 'function') {
+                    try { global.syncTcTableTemplateChrome(); } catch (_eTpl) { /* ignore */ }
+                }
+            }
+            unlockWorkbenchChromeAfterGenerationPersist();
+            refreshPromise.finally(function () {
+                unlockWorkbenchChromeAfterGenerationPersist();
+                if (typeof global.setTimeout === 'function') {
+                    global.setTimeout(unlockWorkbenchChromeAfterGenerationPersist, 0);
+                    global.setTimeout(unlockWorkbenchChromeAfterGenerationPersist, 320);
+                }
+            });
         });
     }
 
@@ -11265,8 +11389,11 @@ function closeTcFeatureUnlockModal() {
     var inp = document.getElementById('tc-feature-unlock-password');
     if (inp) inp.value = '';
     if (m) {
+        if (typeof tcReleaseFocusWithin === 'function') tcReleaseFocusWithin(m);
         m.classList.add('hidden');
         m.classList.remove('flex');
+        m.setAttribute('aria-hidden', 'true');
+        if (typeof tcReleaseFocusWithinSoon === 'function') tcReleaseFocusWithinSoon(m);
     }
     document.body.style.overflow = '';
 }
@@ -11295,6 +11422,7 @@ function openTcFeatureUnlockModal(feature, onSuccess) {
     }
     m.classList.remove('hidden');
     m.classList.add('flex');
+    m.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     inp.value = '';
     setTimeout(function() { inp.focus(); }, 50);
@@ -11330,7 +11458,7 @@ function initTcFeatureUnlockUi() {
             if (!pending) return;
             var pwd = (inp && inp.value || '').trim();
             if (!TC_FEATURE_UNLOCK_PASSWORD || pwd !== TC_FEATURE_UNLOCK_PASSWORD) {
-                hfUnlockFailToast(TC_FEATURE_UNLOCK_PASSWORD ? '密码错误，请重试' : '未配置解锁密码');
+                hfUnlockFailToast('密码错误，请重试');
                 if (inp) inp.focus();
                 return;
             }
@@ -18447,6 +18575,51 @@ function initTcPromptSendBtn() {
         }
     }
 
+    /**
+     * 通过态专用（新方法）：只同步问题清单 Tab 外观与 activeTab，不 restore、不 refresh。
+     * 供 applyValidateCleanPassDrawerChrome 使用，打断
+     * refresh → cleanPassChrome → switchValidateTab → refresh 的递归栈溢出。
+     * 不影响既有 switchValidateTab / openCoverageTab 行为。
+     */
+    function applyValidateIssuesTabChromeWithoutRefresh() {
+        if (shouldHideValidateDrawerTabsDuringFillPresentation(_covScope)) {
+            return;
+        }
+        covState().activeTab = 'issues';
+        var issuesTab = $('tc-validate-tab-issues');
+        var covTab = $('tc-validate-tab-coverage');
+        var issueList = $('tc-validate-issue-list');
+        var covPanel = $('tc-validate-coverage-panel');
+
+        if (issuesTab) {
+            issuesTab.classList.toggle('tc-validate-tab--active', true);
+            issuesTab.setAttribute('aria-selected', 'true');
+        }
+        if (covTab) {
+            covTab.classList.toggle('tc-validate-tab--active', false);
+            covTab.setAttribute('aria-selected', 'false');
+        }
+        if (issueList) {
+            issueList.classList.remove('hidden');
+            issueList.setAttribute('aria-hidden', 'false');
+        }
+        if (covPanel) {
+            covPanel.classList.add('hidden');
+            covPanel.setAttribute('aria-hidden', 'true');
+        }
+        var fillPanel = getValidateDrawerFillProgressEl(_covScope);
+        if (fillPanel) {
+            if (!covState().fillProgressActive) {
+                fillPanel.classList.add('hidden');
+                fillPanel.setAttribute('aria-hidden', 'true');
+                var fillInner = getValidateDrawerFillProgressInnerEl(_covScope);
+                if (fillInner) fillInner.innerHTML = '';
+            }
+        }
+        var drawer = $('tc-validate-drawer');
+        if (drawer) drawer.classList.remove('tc-validate-drawer--coverage');
+    }
+
     function openCoverageTab(scope) {
         scope = normalizeScope(scope || _covScope);
         if (global.TcWorkbenchEnhancements && typeof global.TcWorkbenchEnhancements.openValidateDrawer === 'function') {
@@ -21016,6 +21189,11 @@ function initTcPromptSendBtn() {
                 switchValidateTab(tabId);
             });
         },
+        applyValidateIssuesTabChromeWithoutRefresh: function (scope) {
+            return useCovScope(scope == null ? 'single' : scope, function () {
+                applyValidateIssuesTabChromeWithoutRefresh();
+            });
+        },
         isIssueListPrimaryActionsMode: isIssueListPrimaryActionsMode,
         applyIssueListPrimaryActionsChrome: applyIssueListPrimaryActionsChrome,
         triggerFillFromIssueList: function (scope) {
@@ -22630,7 +22808,16 @@ function applyDrawerLayout(drawerNum) {
     shell.classList.toggle('tc-left-float--collapsed', isCollapsed);
     shell.classList.toggle('tc-left-float--open', !isCollapsed);
     leftPanel.classList.toggle('tc-left-float-panel--collapsed', isCollapsed);
-    leftPanel.setAttribute('aria-hidden', isCollapsed ? 'true' : 'false');
+    if (isCollapsed) {
+        if (typeof tcReleaseFocusWithinSoon === 'function') tcReleaseFocusWithinSoon(leftPanel);
+        else if (typeof tcReleaseFocusWithin === 'function') tcReleaseFocusWithin(leftPanel);
+    }
+    // 收起时标题栏关闭按钮仍在 aside 内且可聚焦：不可对整个 left-panel 设 aria-hidden
+    leftPanel.setAttribute('aria-hidden', 'false');
+    var leftScrollEl = leftPanel.querySelector('.tc-left-float-panel__scroll');
+    if (leftScrollEl) {
+        leftScrollEl.setAttribute('aria-hidden', isCollapsed ? 'true' : 'false');
+    }
     if (dock) dock.classList.toggle('hidden', !isCollapsed);
     if (backdrop) {
         backdrop.classList.toggle('hidden', isCollapsed);
@@ -36079,6 +36266,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeTcAiMindmapConfirmModal(choice) {
         var modal = document.getElementById('tc-ai-mindmap-confirm-modal');
         if (modal) {
+            if (typeof tcReleaseFocusWithin === 'function') tcReleaseFocusWithin(modal);
             modal.classList.add('hidden');
             modal.classList.remove('flex');
             modal.setAttribute('aria-hidden', 'true');

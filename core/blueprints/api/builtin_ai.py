@@ -265,6 +265,58 @@ def register_routes(bp: Blueprint) -> None:
             stored = None
         return jsonify(_config_json_response(cfg, stored=bool(stored)))
 
+
+    @bp.route("/builtin-ai/sms-credentials", methods=["GET", "PUT"])
+    def builtin_ai_sms_credentials():
+        """全站短信 AccessKey：独立于 AI 配置保存，避免影响原有 builtin-ai/config。"""
+        denied = _require_builtin_ai_admin()
+        if denied:
+            return denied
+        from core.services.auth.aliyun_sms_credentials_db import (
+            credentials_public_status,
+            get_aliyun_sms_credentials,
+            upsert_aliyun_sms_credentials_from_admin,
+        )
+
+        if request.method == "GET":
+            creds = get_aliyun_sms_credentials()
+            status = credentials_public_status()
+            return jsonify(
+                {
+                    "error": None,
+                    "access_key_id": creds.get("access_key_id") or "",
+                    # 管理端回填用；Secret 不回传明文，仅标记是否已配置
+                    "access_key_secret_configured": bool(creds.get("access_key_secret")),
+                    "source": creds.get("source") or "",
+                    "configured": bool(status.get("configured")),
+                    "access_key_id_masked": status.get("access_key_id_masked") or "",
+                }
+            )
+
+        data = request.get_json(silent=True) or {}
+        try:
+            result = upsert_aliyun_sms_credentials_from_admin(
+                str(data.get("access_key_id") or ""),
+                str(data.get("access_key_secret") or ""),
+            )
+            status = credentials_public_status()
+            return jsonify(
+                {
+                    "error": None,
+                    "updated": bool(result.get("updated")),
+                    "configured": bool(status.get("configured")),
+                    "source": status.get("source") or "database",
+                    "access_key_id": result.get("access_key_id") or "",
+                    "access_key_id_masked": status.get("access_key_id_masked") or "",
+                    "access_key_secret_configured": bool(status.get("configured")),
+                }
+            )
+        except ValueError as exc:
+            return jsonify({"error": str(exc)}), 400
+        except Exception as exc:
+            return jsonify({"error": f"保存短信密钥失败：{exc}"}), 500
+
+
     @bp.route("/builtin-ai/audio-script", methods=["POST"])
     def audio_script():
         data = request.get_json(silent=True) or {}

@@ -91,6 +91,69 @@
     }
   }
 
+
+  function applySmsToForm(data) {
+    data = data || {};
+    if ($("hf-builtin-ai-sms-ak-id")) {
+      $("hf-builtin-ai-sms-ak-id").value = data.access_key_id || "";
+    }
+    if ($("hf-builtin-ai-sms-ak-secret")) {
+      $("hf-builtin-ai-sms-ak-secret").value = "";
+      $("hf-builtin-ai-sms-ak-secret").placeholder = data.access_key_secret_configured
+        ? "已配置，留空则保留原密钥"
+        : "密钥";
+    }
+    var st = $("hf-builtin-ai-sms-status");
+    if (st) {
+      if (data.configured) {
+        st.textContent = "当前已配置" + (data.access_key_id_masked ? "（" + data.access_key_id_masked + "）" : "") + (data.source ? " · " + data.source : "");
+      } else {
+        st.textContent = "尚未配置短信 AccessKey";
+      }
+    }
+  }
+
+  function loadSmsCredentials() {
+    return fetch("/api/builtin-ai/sms-credentials", { credentials: "same-origin" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("加载短信密钥失败");
+        return res.json();
+      })
+      .then(function (data) {
+        if (data && data.error) throw new Error(data.error);
+        applySmsToForm(data);
+        return data;
+      });
+  }
+
+  function saveSmsCredentials() {
+    var idEl = $("hf-builtin-ai-sms-ak-id");
+    var secretEl = $("hf-builtin-ai-sms-ak-secret");
+    if (!idEl && !secretEl) return Promise.resolve(null);
+    var payload = {
+      access_key_id: (idEl && idEl.value || "").trim(),
+      access_key_secret: (secretEl && secretEl.value || "").trim(),
+    };
+    // 未改动且未填：跳过，避免误报
+    if (!payload.access_key_id && !payload.access_key_secret) {
+      return Promise.resolve({ skipped: true });
+    }
+    return fetch("/api/builtin-ai/sms-credentials", {
+      method: "PUT",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).then(function (res) {
+      return res.json().then(function (d) {
+        return { ok: res.ok, data: d };
+      });
+    }).then(function (r) {
+      if (!r.ok) throw new Error((r.data && r.data.error) || "短信密钥保存失败");
+      applySmsToForm(r.data);
+      return r.data;
+    });
+  }
+
   function loadModalConfig() {
     configReady = false;
     setSaveEnabled(false);
@@ -104,9 +167,17 @@
         if (global.HfBuiltinAiCursorAgent && global.HfBuiltinAiCursorAgent.onModalOpen) {
           global.HfBuiltinAiCursorAgent.onModalOpen();
         }
-        configReady = true;
-        setSaveEnabled(true);
-        return data;
+        return loadSmsCredentials()
+          .catch(function (err) {
+            applySmsToForm({});
+            var st = $("hf-builtin-ai-sms-status");
+            if (st) st.textContent = (err && err.message) || "短信密钥加载失败";
+          })
+          .then(function () {
+            configReady = true;
+            setSaveEnabled(true);
+            return data;
+          });
       });
   }
 
@@ -190,8 +261,16 @@
     setSaveEnabled(false);
     saveAiConfig()
       .then(function (aiData) {
-        dispatchPresetChanged(aiData);
-        toast("全站 AI 配置已保存并生效");
+        return saveSmsCredentials().then(function (smsData) {
+          return { aiData: aiData, smsData: smsData };
+        });
+      })
+      .then(function (pack) {
+        dispatchPresetChanged(pack.aiData);
+        var smsMsg = "";
+        if (pack.smsData && pack.smsData.updated) smsMsg = "，短信密钥已更新";
+        else if (pack.smsData && pack.smsData.skipped) smsMsg = "";
+        toast("全站 AI 配置已保存并生效" + smsMsg);
         closeModal();
       })
       .catch(function (err) {

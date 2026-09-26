@@ -47,6 +47,16 @@ function tcWorkbenchModalZIndex() {
 }
 
 
+/** 隐藏前释放内部焦点，避免 aria-hidden 祖先仍持有焦点 */
+function tcReleaseFocusWithin(root) {
+    try {
+        var ae = document.activeElement;
+        if (!ae || !root || typeof root.contains !== 'function') return;
+        if (!root.contains(ae)) return;
+        if (typeof ae.blur === 'function') ae.blur();
+    } catch (err) { /* ignore */ }
+}
+
 /** 通用模态框显隐（原 tc_stash.js，暂存移除后仍供模板/导出等弹窗使用） */
 function showModal(el) {
     if (!el) return;
@@ -59,6 +69,7 @@ function showModal(el) {
 
 function hideModal(el) {
     if (!el) return;
+    if (typeof tcReleaseFocusWithin === 'function') tcReleaseFocusWithin(el);
     el.classList.add('hidden');
     el.classList.remove('flex');
     el.style.display = '';

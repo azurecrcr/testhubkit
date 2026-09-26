@@ -27,8 +27,8 @@ def _client():
 
     return Client(
         open_api_models.Config(
-            access_key_id=cfg.ALIYUN_ACCESS_KEY_ID,
-            access_key_secret=cfg.ALIYUN_ACCESS_KEY_SECRET,
+            access_key_id=cfg.get_aliyun_access_key_id(),
+            access_key_secret=cfg.get_aliyun_access_key_secret(),
             endpoint=cfg.SMS_ENDPOINT,
         )
     )

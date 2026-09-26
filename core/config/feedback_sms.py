@@ -1,6 +1,9 @@
-"""投稿建议短信通知配置（独立于邮箱 SMTP、独立于号码认证 dypnsapi）。"""
+"""投稿建议短信通知配置（独立于邮箱 SMTP、独立于号码认证 dypnsapi）。
 
-from __future__ import annotations
+阿里云 AccessKey 与注册验证码共用 MySQL 表 aliyun_sms_credentials。
+"""
+
+
 
 import os
 import re
@@ -23,7 +26,7 @@ def _env_bool(name: str, default: bool = False) -> bool:
 FEEDBACK_SMS_ENABLED = _env_bool("FEEDBACK_SMS_ENABLED", False)
 FEEDBACK_NOTIFY_PHONE = _env("FEEDBACK_NOTIFY_PHONE")
 
-# 复用同一套阿里云 AK（仅权限需覆盖 dysmsapi；不改动号码认证配置模块）
+# 兼容旧代码；运行时请用 get_aliyun_access_key_*（优先数据库）
 ALIYUN_ACCESS_KEY_ID = _env("ALIYUN_ACCESS_KEY_ID")
 ALIYUN_ACCESS_KEY_SECRET = _env("ALIYUN_ACCESS_KEY_SECRET")
 
@@ -41,6 +44,18 @@ FEEDBACK_SMS_SUMMARY_MAX_LEN = int(_env("FEEDBACK_SMS_SUMMARY_MAX_LEN", "30") or
 
 # 管理员通知短信限流（防刷投稿打爆管理员手机）
 FEEDBACK_SMS_RATE_LIMIT_PER_MINUTE = int(_env("FEEDBACK_SMS_RATE_LIMIT_PER_MINUTE", "20") or "20")
+
+
+def get_aliyun_access_key_id() -> str:
+    from core.services.auth.aliyun_sms_credentials_db import get_aliyun_sms_credentials
+
+    return get_aliyun_sms_credentials().get("access_key_id") or ""
+
+
+def get_aliyun_access_key_secret() -> str:
+    from core.services.auth.aliyun_sms_credentials_db import get_aliyun_sms_credentials
+
+    return get_aliyun_sms_credentials().get("access_key_secret") or ""
 
 
 def normalize_notify_phone(phone: str) -> str:
@@ -64,8 +79,8 @@ def is_feedback_sms_ready() -> bool:
         phone_ok = False
     return bool(
         phone_ok
-        and ALIYUN_ACCESS_KEY_ID
-        and ALIYUN_ACCESS_KEY_SECRET
+        and get_aliyun_access_key_id()
+        and get_aliyun_access_key_secret()
         and FEEDBACK_SMS_SIGN_NAME
         and FEEDBACK_SMS_TEMPLATE_CODE
     )

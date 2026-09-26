@@ -16,12 +16,7 @@ _storage: Optional["OpenIMObjectStorage"] = None
 
 
 def is_openim_storage_enabled() -> bool:
-    return bool(
-        cfg.OPENIM_MINIO_ENDPOINT
-        and cfg.OPENIM_MINIO_BUCKET
-        and cfg.OPENIM_MINIO_ACCESS_KEY
-        and cfg.OPENIM_MINIO_SECRET_KEY
-    )
+    return bool(cfg.OPENIM_MINIO_ENDPOINT and cfg.OPENIM_MINIO_BUCKET)
 
 
 def get_openim_storage() -> "OpenIMObjectStorage":

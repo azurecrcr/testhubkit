@@ -372,6 +372,13 @@
         } else if (typeof window.tcSyncLanhuDocSwitcherLockUi === 'function') {
             window.tcSyncLanhuDocSwitcherLockUi();
         }
+        /* 新方法：锁变化时同步工作台顶栏交互锁，避免生成结束后按钮仍置灰 */
+        if (typeof window.syncQcWorkbenchInteractionLock === 'function') {
+            try { window.syncQcWorkbenchInteractionLock(); } catch (eSync) { /* ignore */ }
+        }
+        if (!_activeLock && typeof window.scheduleReleaseWorkbenchInteractionLocks === 'function') {
+            try { window.scheduleReleaseWorkbenchInteractionLocks(); } catch (eRel) { /* ignore */ }
+        }
     }
 
     window.buildTcPageGenContext = buildPageGenContext;
@@ -382,6 +389,13 @@
     window.toastTcPageGenNavigationBlocked = toastPageGenNavigationBlocked;
     window.setOptimisticPageGenLock = setOptimisticPageGenLock;
     window.clearOptimisticPageGenLock = clearOptimisticPageGenLock;
+    /** 生成流已结束后强制清本地页锁 UI，避免顶栏按钮一直置灰 */
+    function clearPageGenLockUiAfterGenerationIdle() {
+        if (isGenerationStreamActive()) return false;
+        setLock(null);
+        return true;
+    }
+    window.clearPageGenLockUiAfterGenerationIdle = clearPageGenLockUiAfterGenerationIdle;
     window.isTcRequirementPageGenBusy = isTcRequirementPageGenBusy;
     if (typeof window.isTcWorkbenchGenerationActive !== 'function') {
         window.isTcWorkbenchGenerationActive = isTcRequirementPageGenBusy;

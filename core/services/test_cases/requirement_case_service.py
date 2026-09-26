@@ -69,6 +69,10 @@ def save_requirement_cases(user_id: str, data: dict[str, Any]) -> dict[str, Any]
         page_from_client or None,
         explicit_page_id=bool(page_from_client),
     )
+    # 工作台显式 doc_id（生成钉住上下文）优先于 URL 解析，避免 URL 与树文档不一致导致 400
+    explicit_doc = str(data.get("lanhu_doc_id") or data.get("doc_id") or "").strip()
+    if explicit_doc and explicit_doc != keys.get("lanhu_doc_id"):
+        keys["lanhu_doc_id"] = explicit_doc
     merge_mode = str(data.get("merge_mode") or "overwrite").strip()
     payload = {
         **keys,

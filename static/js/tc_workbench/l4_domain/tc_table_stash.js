@@ -404,6 +404,7 @@ function showModal(el) {
 
 function hideModal(el) {
     if (!el) return;
+    if (typeof tcReleaseFocusWithin === 'function') tcReleaseFocusWithin(el);
     el.classList.add('hidden');
     el.classList.remove('flex');
     el.style.display = '';

@@ -3312,6 +3312,18 @@
         }
 
         syncQcWorkbenchInteractionLock();
+
+        /* 生成锁异步清除后补刷顶栏置灰（独立监听，不改 page-gen-lock 本体） */
+        if (!global._tcQcPageGenLockChromeHooked) {
+            global._tcQcPageGenLockChromeHooked = true;
+            window.addEventListener('tc-page-gen-lock-changed', function () {
+                syncQcWorkbenchInteractionLock();
+                if (typeof global.setTimeout === 'function') {
+                    global.setTimeout(function () { syncQcWorkbenchInteractionLock(); }, 0);
+                    global.setTimeout(function () { syncQcWorkbenchInteractionLock(); }, 200);
+                }
+            });
+        }
     }
 
     function failPendingGenChatQualityCheck(detail) {
@@ -7309,7 +7321,13 @@
         return html;
     }
 
+    var _applyValidateCleanPassDrawerChromeDepth = 0;
+
     function applyValidateCleanPassDrawerChrome(scope, stored) {
+        /* 重入保护：避免 layout/restore 旁路再次进入 chrome 造成栈溢出 */
+        if (_applyValidateCleanPassDrawerChromeDepth > 0) return false;
+        _applyValidateCleanPassDrawerChromeDepth += 1;
+        try {
         scope = normalizeValidateScope(scope);
         var drawer = getValidatePanel(scope);
         if (!drawer) return false;
@@ -7326,9 +7344,15 @@
         drawer.classList.remove('tc-validate-drawer--coverage');
         drawer.classList.remove('tc-validate-drawer--fill-active');
 
+        /* 布局从覆盖率 Tab 收回（不经 switchValidateTab，避免再进 refresh 递归） */
+        try {
+            restoreValidateSingleSideLayoutAfterCoverageTab(scope);
+        } catch (eRestore) { /* ignore */ }
+
+        /* 新方法：仅同步 Tab 外观，禁止再走完整 switchValidateTab */
         if (global.TcCoverageMatrix &&
-            typeof global.TcCoverageMatrix.switchValidateTab === 'function') {
-            global.TcCoverageMatrix.switchValidateTab('issues', scope);
+            typeof global.TcCoverageMatrix.applyValidateIssuesTabChromeWithoutRefresh === 'function') {
+            global.TcCoverageMatrix.applyValidateIssuesTabChromeWithoutRefresh(scope);
         }
 
         var issuesList = vEl('tc-validate-issue-list', scope);
@@ -7364,6 +7388,9 @@
             issuesActions.setAttribute('aria-hidden', 'true');
         }
         return true;
+        } finally {
+            _applyValidateCleanPassDrawerChromeDepth -= 1;
+        }
     }
 
     /**
@@ -7973,36 +8000,45 @@
         }
     }
 
+    var _refreshValidationIssuesViewDepth = 0;
+
     function refreshValidationIssuesView(scope) {
-        scope = normalizeValidateScope(scope);
-        var vData = vScopeData(scope);
-        var list = vEl('tc-validate-issue-list', scope);
-        if (!list) return;
-        var drawer = getValidatePanel(scope);
-        var cleanPass = !!(drawer && drawer.classList.contains('tc-validate-drawer--clean-pass'));
-        /* 通过态时即使仍带 hidden（刚从矩阵 Tab 切回），也必须重绘，避免中间空白 */
-        if (list.classList.contains('hidden') && !cleanPass) return;
-        if (cleanPass) {
-            list.classList.remove('hidden');
-            list.setAttribute('aria-hidden', 'false');
+        /* 重入保护（新逻辑）：打断 clean-pass chrome / switchValidateTab 回呼造成的栈溢出 */
+        if (_refreshValidationIssuesViewDepth > 0) return;
+        _refreshValidationIssuesViewDepth += 1;
+        try {
+            scope = normalizeValidateScope(scope);
+            var vData = vScopeData(scope);
+            var list = vEl('tc-validate-issue-list', scope);
+            if (!list) return;
+            var drawer = getValidatePanel(scope);
+            var cleanPass = !!(drawer && drawer.classList.contains('tc-validate-drawer--clean-pass'));
+            /* 通过态时即使仍带 hidden（刚从矩阵 Tab 切回），也必须重绘，避免中间空白 */
+            if (list.classList.contains('hidden') && !cleanPass) return;
+            if (cleanPass) {
+                list.classList.remove('hidden');
+                list.setAttribute('aria-hidden', 'false');
+            }
+            var prog = vData.validateProgress;
+            if (prog && prog.active) {
+                renderValidationProgressUI(scope);
+                return;
+            }
+            if (!vData.lastValidation) return;
+            if (validationResultHasNoActionableIssues(vData.lastValidation)) {
+                paintValidateCleanPassIssueList(list, vData.lastValidation);
+                applyValidateCleanPassDrawerChrome(scope, vData.lastValidation);
+                return;
+            }
+            renderValidationIssues(vData.lastValidation, scope, {
+                skipCoverageMerge: true,
+                skipPersist: true,
+                skipGenChatSync: true,
+                skipCompleteOutcome: true
+            });
+        } finally {
+            _refreshValidationIssuesViewDepth -= 1;
         }
-        var prog = vData.validateProgress;
-        if (prog && prog.active) {
-            renderValidationProgressUI(scope);
-            return;
-        }
-        if (!vData.lastValidation) return;
-        if (validationResultHasNoActionableIssues(vData.lastValidation)) {
-            paintValidateCleanPassIssueList(list, vData.lastValidation);
-            applyValidateCleanPassDrawerChrome(scope, vData.lastValidation);
-            return;
-        }
-        renderValidationIssues(vData.lastValidation, scope, {
-            skipCoverageMerge: true,
-            skipPersist: true,
-            skipGenChatSync: true,
-            skipCompleteOutcome: true
-        });
     }
 
 

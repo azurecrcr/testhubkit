@@ -1179,7 +1179,7 @@ function bindAudioAiUnlockUi() {
         submitBtn.addEventListener('click', function () {
             var pwd = (pwdInp?.value || '').trim();
             if (!HF_TOOLKIT_UNLOCK_PASSWORD || pwd !== HF_TOOLKIT_UNLOCK_PASSWORD) {
-                hfUnlockFailToast(HF_TOOLKIT_UNLOCK_PASSWORD ? '密码错误，请重试' : '未配置解锁密码');
+                hfUnlockFailToast('密码错误，请重试');
                 if (pwdInp) pwdInp.focus();
                 return;
             }

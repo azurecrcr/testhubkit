@@ -42,9 +42,9 @@
     <script src="{{ url_for('static', filename='js/tc_ai_generate_notify.js') }}?v=20260710attachclean1"></script>
     <script src="{{ url_for('static', filename='js/tc_workbench_data.js') }}?v=20260614datasplit2"></script>
     {% if TC_WB_BUNDLE_ENABLED %}
-    <script src="{{ url_for('static', filename='dist/tc-workbench/tc-workbench-enhancements.js') }}?v=20260804reasonperf1" defer></script>
+    <script src="{{ url_for('static', filename='dist/tc-workbench/tc-workbench-enhancements.js') }}?v=20260923genunlock1" defer></script>
     {% else %}
-    <script src="{{ url_for('static', filename='js/tc_workbench_enhancements.js') }}?v=20260804reasonperf1" defer></script>
+    <script src="{{ url_for('static', filename='js/tc_workbench_enhancements.js') }}?v=20260904qcstack3" defer></script>
     {% endif %}
     <script src="{{ url_for('static', filename='js/tc_share_review_case_tabs.js') }}?v=20260624reviewtabs3" defer></script>
     <script src="{{ url_for('static', filename='js/tc_share_mindmap_preview_meta.js') }}?v=20260624previewmindmap1" defer></script>
@@ -263,6 +263,6 @@
     {# 媒体工具页：轻量 Tab 切换 + 媒体/编解码业务脚本（不含 VXE/用例表） #}
     {% include 'partials/tools/tc_workbench/_config.html' %}
     <script src="{{ url_for('static', filename='js/mdh_tool_tabs.js') }}?v=20260804matrixalign1"></script>
-    <script src="{{ url_for('static', filename='js/tc-workbench-shell.js') }}?v=20260804matrixalign1"></script>
+    <script src="{{ url_for('static', filename='js/tc-workbench-shell.js') }}?v=20260923docrebind1"></script>
     {% endif %}
 {% endblock %}

@@ -31,6 +31,8 @@ _ALLOW_EXACT = {
     "/prompts",
     "/workspace",
     "/day",
+    "/ui-automation",
+    "/omniflow",
 }
 
 # 段匹配前缀：仅匹配自身或「前缀/…」，不匹配 /app_dev /appliance
@@ -42,6 +44,8 @@ _ALLOW_SEGMENT_PREFIXES = (
     "/share",
     "/tools",
     "/tool",
+    "/ui-automation",
+    "/omniflow",
     "/workspace",
     "/legal",
     "/case-management",

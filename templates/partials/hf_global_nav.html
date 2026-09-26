@@ -59,10 +59,10 @@
 .hf-gnav__mega-btn[aria-expanded="true"] { background: rgba(255,255,255,.16); border-color: rgba(129,140,248,.45); box-shadow: 0 0 0 1px rgba(129,140,248,.25); }
 .hf-gnav__mega-chev { width: .65rem; height: .65rem; opacity: .75; transition: transform .25s ease; }
 .hf-gnav__mega-btn[aria-expanded="true"] .hf-gnav__mega-chev { transform: rotate(180deg); }
-.hf-gnav__mega-panel { position: absolute; left: 50%; transform: translateX(-50%) translateY(-6px); top: calc(100% + .45rem); min-width: 12.5rem; max-width: min(17rem, 92vw); padding: .35rem .4rem .4rem; border-radius: .85rem; background: rgba(255,255,255,.97); border: 1px solid rgba(148,163,184,.35); box-shadow: 0 18px 50px -12px rgba(15,23,42,.28); opacity: 0; visibility: hidden; pointer-events: none; display: none; transition: opacity .22s ease, transform .22s ease, visibility 0s linear .22s; }
+.hf-gnav__mega-panel { position: absolute; left: 50%; transform: translateX(-50%) translateY(-6px); top: calc(100% + .45rem); min-width: 14.5rem; max-width: min(22rem, 94vw); padding: .35rem .4rem .4rem; border-radius: .85rem; background: rgba(255,255,255,.97); border: 1px solid rgba(148,163,184,.35); box-shadow: 0 18px 50px -12px rgba(15,23,42,.28); opacity: 0; visibility: hidden; pointer-events: none; display: none; transition: opacity .22s ease, transform .22s ease, visibility 0s linear .22s; }
 .hf-gnav__mega-panel.is-open { display: block; opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); transition: opacity .24s ease, transform .24s cubic-bezier(.22,1,.36,1), visibility 0s linear 0s; }
 .hf-gnav__mega-panel:not(.is-open), .hf-gnav__mega-panel[hidden] { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
-.hf-gnav__mega a { display: flex; align-items: center; padding: .5rem .7rem; border-radius: .55rem; text-decoration: none; color: #0f172a; font-size: .84rem; font-weight: 600; line-height: 1.35; transition: background .15s; }
+.hf-gnav__mega a { display: flex; align-items: center; justify-content: space-between; gap: .55rem; padding: .5rem .7rem; border-radius: .55rem; text-decoration: none; color: #0f172a; font-size: .84rem; font-weight: 600; line-height: 1.35; transition: background .15s; }
 .hf-gnav__mega a:hover { background: rgba(99,102,241,.08); }
 .hf-gnav__mega a[aria-current="page"] { background: linear-gradient(135deg, rgba(99,102,241,.14), rgba(6,182,212,.1)); outline: 1px solid rgba(99,102,241,.25); }
 .hf-gnav__mega-group { padding: .1rem 0 .2rem; }
@@ -70,6 +70,13 @@
 .hf-gnav__mega-group-label { margin: 0; padding: .35rem .7rem .1rem; font-size: .72rem; font-weight: 700; letter-spacing: .04em; color: #64748b; }
 .hf-gnav__mega-divider { margin: .35rem .55rem; border: none; border-top: 1px solid rgba(148,163,184,.28); }
 .hf-gnav__mega a.hf-gnav__mega-sub { padding-left: .95rem; font-size: .82rem; }
+.hf-gnav__mega-label { flex: 0 1 auto; min-width: 0; }
+.hf-gnav__mega-badge { flex: 0 0 auto; margin-left: auto; font-size: .68rem; font-weight: 550; letter-spacing: .01em; color: #0e7490; white-space: nowrap; line-height: 1.25; background: none; border: 0; padding: 0; box-shadow: none; border-radius: 0; opacity: 1; }
+.hf-gnav__mega a:hover .hf-gnav__mega-badge { color: #0f766e; }
+.hf-gnav__mega a[aria-current="page"] .hf-gnav__mega-badge { color: #0369a1; }
+.hf-gnav__sheet-sub { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.hf-gnav__sheet-body a { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+
 .hf-gnav__sheet-sub { padding-left: 1.35rem !important; font-size: .84rem !important; opacity: .95; }
 .hf-gnav__sheet-sec .hf-gnav__mega-group-label { margin: .35rem 0 .1rem; padding-left: .65rem; color: rgba(148,163,184,.95); font-size: .72rem; font-weight: 700; letter-spacing: .04em; }
 .hf-gnav__prompts { display: inline-flex; align-items: center; gap: .4rem; margin-left: .25rem; padding: .45rem .85rem; border-radius: 9999px; font-size: .78rem; font-weight: 700; text-decoration: none; color: #fff; border: 1px solid rgba(232,121,249,.45); background: linear-gradient(120deg, rgba(192,38,211,.35), rgba(99,102,241,.25)); box-shadow: 0 2px 14px rgba(147,51,234,.2); transition: transform .2s, box-shadow .2s, border-color .2s; }
@@ -297,16 +304,16 @@
                     <div class="hf-gnav__mega-group" role="group" aria-label="{{ item.label }}">
                         <p class="hf-gnav__mega-group-label">{{ item.label }}</p>
                         {% for tool in item.tools %}
-                        <a href="/tool/{{ tool.id }}" class="hf-gnav__mega-sub" {% if gnav_active == tool.id %}aria-current="page"{% endif %}>{{ tool.nav_name | default(tool.name) }}</a>
+                        <a href="/tool/{{ tool.id }}" class="hf-gnav__mega-sub" {% if gnav_active == tool.id %}aria-current="page"{% endif %}><span class="hf-gnav__mega-label">{{ tool.nav_name | default(tool.name) }}</span>{% if tool.nav_badge %}<span class="hf-gnav__mega-badge">{{ tool.nav_badge }}</span>{% endif %}</a>
                         {% endfor %}
                     </div>
                     {% else %}
-                    <a href="/tool/{{ item.tool.id }}" {% if gnav_active == item.tool.id %}aria-current="page"{% endif %}>{{ item.tool.nav_name | default(item.tool.name) }}</a>
+                    <a href="/tool/{{ item.tool.id }}" {% if gnav_active == item.tool.id %}aria-current="page"{% endif %}><span class="hf-gnav__mega-label">{{ item.tool.nav_name | default(item.tool.name) }}</span>{% if item.tool.nav_badge %}<span class="hf-gnav__mega-badge">{{ item.tool.nav_badge }}</span>{% endif %}</a>
                     {% endif %}
                     {% endfor %}
                     {% else %}
                     {% for tool in sec.tools %}
-                    <a href="/tool/{{ tool.id }}" {% if gnav_active == tool.id %}aria-current="page"{% endif %}>{{ tool.nav_name | default(tool.name) }}</a>
+                    <a href="/tool/{{ tool.id }}" {% if gnav_active == tool.id %}aria-current="page"{% endif %}><span class="hf-gnav__mega-label">{{ tool.nav_name | default(tool.name) }}</span>{% if tool.nav_badge %}<span class="hf-gnav__mega-badge">{{ tool.nav_badge }}</span>{% endif %}</a>
                     {% endfor %}
                     {% endif %}
                 </div>
@@ -378,10 +385,10 @@
                 {% if item.type == 'group' %}
                 <p class="hf-gnav__mega-group-label">{{ item.label }}</p>
                 {% for tool in item.tools %}
-                <a href="/tool/{{ tool.id }}" class="hf-gnav__sheet-sub" data-gnav-drawer-link {% if gnav_active == tool.id %}aria-current="page"{% endif %}>{{ tool.nav_name | default(tool.name) }}</a>
+                <a href="/tool/{{ tool.id }}" class="hf-gnav__sheet-sub" data-gnav-drawer-link {% if gnav_active == tool.id %}aria-current="page"{% endif %}><span class="hf-gnav__mega-label">{{ tool.nav_name | default(tool.name) }}</span>{% if tool.nav_badge %}<span class="hf-gnav__mega-badge">{{ tool.nav_badge }}</span>{% endif %}</a>
                 {% endfor %}
                 {% else %}
-                <a href="/tool/{{ item.tool.id }}" data-gnav-drawer-link {% if gnav_active == item.tool.id %}aria-current="page"{% endif %}>{{ item.tool.nav_name | default(item.tool.name) }}</a>
+                <a href="/tool/{{ item.tool.id }}" data-gnav-drawer-link {% if gnav_active == item.tool.id %}aria-current="page"{% endif %}><span class="hf-gnav__mega-label">{{ item.tool.nav_name | default(item.tool.name) }}</span>{% if item.tool.nav_badge %}<span class="hf-gnav__mega-badge">{{ item.tool.nav_badge }}</span>{% endif %}</a>
                 {% endif %}
                 {% endfor %}
                 {% else %}
@@ -515,15 +522,15 @@
 {% include 'partials/hf_builtin_ai_config_modal.html' %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/hf_messages.css') }}?v=20260807fbmsg1">
 {% include 'partials/hf_messages_panel.html' %}
-<script src="{{ url_for('static', filename='js/hf_site_nav.bundle.js') }}?v=20260811perf1" defer></script>
+<script src="{{ url_for('static', filename='js/hf_site_nav.bundle.js') }}?v=20260916webui1" defer></script>
     <script src="{{ url_for('static', filename='js/hf_user_profile.js') }}?v=20260714profile1" defer></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/hf_phone_bind_gate.css') }}?v=20260811phone1">
 <script src="{{ url_for('static', filename='js/hf_phone_bind_gate.js') }}?v=20260811phone1" defer></script>
 <script src="{{ url_for('static', filename='js/hf_ai_quota_toast.js') }}?v=20260715cloud-toast1" defer></script>
 <script src="{{ url_for('static', filename='js/hf_user_ai_cursor_agent.js') }}?v=20260712cursorcopy1" defer></script>
-<script src="{{ url_for('static', filename='js/hf_builtin_ai_admin.js') }}?v=20260710cursoragent1" defer></script>
+<script src="{{ url_for('static', filename='js/hf_builtin_ai_admin.js') }}?v=20260917smsui1" defer></script>
 <script src="{{ url_for('static', filename='js/hf_feedback_admin.js') }}?v=20260807fbimg1" defer></script>
 <script src="{{ url_for('static', filename='js/hf_ai_quota_bonus_admin.js') }}?v=20260807qbonus1" defer></script>
-<script src="{{ url_for('static', filename='js/case_management/messages_ui.js') }}?v=20260807fbmsg1" defer></script>
+<script src="{{ url_for('static', filename='js/case_management/messages_ui.js') }}?v=20260831inv1" defer></script>
 <script src="{{ url_for('static', filename='js/case_management/messages_l5.js') }}?v=20260730inbox12" defer></script>
 {% include 'partials/hf_page_nav_loading.html' %}

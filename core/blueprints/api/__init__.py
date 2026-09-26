@@ -8,6 +8,7 @@ api_bp = Blueprint("api", __name__, url_prefix="/api")
 def _register_routes() -> None:
     from . import (
         admin_ai_quota_bonus,
+
         admin_daily_stats,
         auth,
         community,
@@ -31,6 +32,7 @@ def _register_routes() -> None:
         test_data_builder,
         text,
         toolkit_lock,
+
     )
 
     media.register_routes(api_bp)

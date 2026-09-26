@@ -7,6 +7,7 @@ from typing import Any, Optional
 
 from core.services.test_cases.lanhu_page_cache_db import (
     assert_page_belongs_to_requirement_doc,
+    prepare_page_doc_binding_for_generation_save,
     sql_exclude_pages_bound_to_other_doc,
 )
 from core.services.test_cases.mysql_db import get_connection
@@ -163,6 +164,11 @@ def upsert_requirement_case(user_id: str, data: dict[str, Any]) -> dict[str, Any
     requirement_id = str(data.get("requirement_id") or lanhu_page_id or lanhu_doc_id or "").strip()
     if not requirement_id:
         raise ValueError("无法识别需求 ID，请确认蓝湖 URL 含 docId/pageId")
+    _save_source = str(data.get("source") or "manual_edit")
+    if _save_source == "generation":
+        prepare_page_doc_binding_for_generation_save(
+            uid, lanhu_doc_id, lanhu_page_id, lanhu_pid=lanhu_pid
+        )
     assert_page_belongs_to_requirement_doc(uid, lanhu_doc_id, lanhu_page_id)
     payload = data.get("payload")
     if not isinstance(payload, dict):

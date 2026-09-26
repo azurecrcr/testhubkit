@@ -761,7 +761,7 @@ function initTcFeatureUnlockUi() {
             if (!pending) return;
             var pwd = (inp && inp.value || '').trim();
             if (!TC_FEATURE_UNLOCK_PASSWORD || pwd !== TC_FEATURE_UNLOCK_PASSWORD) {
-                hfUnlockFailToast(TC_FEATURE_UNLOCK_PASSWORD ? '密码错误，请重试' : '未配置解锁密码');
+                hfUnlockFailToast('密码错误，请重试');
                 if (inp) inp.focus();
                 return;
             }

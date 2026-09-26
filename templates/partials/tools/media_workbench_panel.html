@@ -157,7 +157,7 @@
                                         <p class="mt-1 text-xs text-gray-500">输入密码解锁后可使用 AI 生成朗读稿；下方正文与生成音频无需解锁。</p>
                                         <div class="mt-4">
                                             <label class="form-label text-sm" for="audio-ai-unlock-password">密码</label>
-                                            <input type="password" id="audio-ai-unlock-password" class="form-input mt-1" autocomplete="off" placeholder="请输入密码">
+                                            <form class="hf-pwd-form" autocomplete="off" onsubmit="return false;"><input type="password" id="audio-ai-unlock-password" class="form-input mt-1" autocomplete="off" placeholder="请输入密码"></form>
                                         </div>
                                         <div class="mt-5 flex justify-end gap-2">
                                             <button type="button" id="audio-ai-unlock-cancel" class="btn btn-secondary">取消</button>

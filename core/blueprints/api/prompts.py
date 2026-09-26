@@ -10,7 +10,6 @@ from core.services.prompts.prompt_library_service import (
 )
 from core.services.toolkit_lock.toolkit_lock_db import toolkit_is_locked
 
-# 部署时通过环境变量设置；开源仓库不包含真实密码
 PROMPT_ADD_PASSWORD = (os.environ.get("PROMPT_ADD_PASSWORD") or "").strip()
 
 

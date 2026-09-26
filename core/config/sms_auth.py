@@ -1,6 +1,10 @@
-"""手机号短信认证配置（号码认证 dypnsapi，与邮箱 SMTP 分离）。"""
+"""手机号短信认证配置（号码认证 dypnsapi，与邮箱 SMTP 分离）。
 
-from __future__ import annotations
+阿里云 AccessKey 存 MySQL（aliyun_sms_credentials），不写死在代码/compose。
+签名与模板等非密钥项仍可用环境变量配置。
+"""
+
+
 
 import os
 
@@ -11,6 +15,7 @@ def _flag(name: str, default: str = "") -> bool:
 
 SMS_AUTH_ENABLED = _flag("SMS_AUTH_ENABLED", "false")
 
+# 兼容旧代码读取；运行时请用 get_aliyun_access_key_*（优先数据库）
 ALIYUN_ACCESS_KEY_ID = os.environ.get("ALIYUN_ACCESS_KEY_ID", "").strip()
 ALIYUN_ACCESS_KEY_SECRET = os.environ.get("ALIYUN_ACCESS_KEY_SECRET", "").strip()
 
@@ -28,11 +33,23 @@ SMS_ENDPOINT = os.environ.get("SMS_ENDPOINT", "dypnsapi.aliyuncs.com").strip()
 PHONE_EMAIL_DOMAIN = "phone.local"
 
 
+def get_aliyun_access_key_id() -> str:
+    from core.services.auth.aliyun_sms_credentials_db import get_aliyun_sms_credentials
+
+    return get_aliyun_sms_credentials().get("access_key_id") or ""
+
+
+def get_aliyun_access_key_secret() -> str:
+    from core.services.auth.aliyun_sms_credentials_db import get_aliyun_sms_credentials
+
+    return get_aliyun_sms_credentials().get("access_key_secret") or ""
+
+
 def is_sms_auth_ready() -> bool:
     return bool(
         SMS_AUTH_ENABLED
-        and ALIYUN_ACCESS_KEY_ID
-        and ALIYUN_ACCESS_KEY_SECRET
+        and get_aliyun_access_key_id()
+        and get_aliyun_access_key_secret()
         and SMS_SIGN_NAME
         and SMS_TEMPLATE_CODE
     )

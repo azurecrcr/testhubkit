@@ -2,17 +2,8 @@ FROM eclipse-temurin:21-jdk-jammy AS jmeter-build
 ENV JMETER_VERSION=5.6.3
 ENV JMETER_HOME=/opt/apache-jmeter-5.6.3
 ENV JMETER_TOOLS_DIR=/opt/jmeter-tools
-COPY deploy/jmeter-tools/ /opt/jmeter-tools-src/
-RUN set -eux; \
-    if [ -f "/opt/jmeter-tools-src/apache-jmeter-${JMETER_VERSION}.tgz" ]; then \
-      cp "/opt/jmeter-tools-src/apache-jmeter-${JMETER_VERSION}.tgz" /tmp/jmeter.tgz; \
-    else \
-      apt-get update \
-      && apt-get install -y --no-install-recommends curl ca-certificates \
-      && curl -fsSL "https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz" -o /tmp/jmeter.tgz \
-      && rm -rf /var/lib/apt/lists/*; \
-    fi \
-    && tar -xzf /tmp/jmeter.tgz -C /opt \
+COPY deploy/jmeter-tools/apache-jmeter-5.6.3.tgz /tmp/jmeter.tgz
+RUN tar -xzf /tmp/jmeter.tgz -C /opt \
     && rm /tmp/jmeter.tgz
 COPY deploy/jmeter-tools/JmxLoadValidator.java /opt/jmeter-tools/
 COPY deploy/jmeter-tools/validate_jmx.sh /opt/jmeter-tools/

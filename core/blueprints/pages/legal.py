@@ -9,13 +9,13 @@ _DOCS = {
     "terms": {
         "slug": "terms",
         "title": "用户协议",
-        "updated": "2026年7月31日",
+        "updated": "2026年9月1日",
         "template": "legal_terms.html",
     },
     "privacy": {
         "slug": "privacy",
         "title": "隐私政策",
-        "updated": "2026年7月31日",
+        "updated": "2026年9月1日",
         "template": "legal_privacy.html",
     },
 }
