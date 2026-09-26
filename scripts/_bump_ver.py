@@ -1,4 +1,4 @@
-﻿import os
+import os
 ROOT = "${TESTHUB_ROOT}"
 ver = "20260610uai1"
 files = [

@@ -1,4 +1,4 @@
-﻿"""按用户隔离的 AI 文本 + 视觉模型配置。"""
+"""按用户隔离的 AI 文本 + 视觉模型配置。"""
 from __future__ import annotations
 
 import time

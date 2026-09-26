@@ -1,4 +1,4 @@
-﻿import os, re
+import os, re
 ROOT = "${TESTHUB_ROOT}"
 
 def read(rel):

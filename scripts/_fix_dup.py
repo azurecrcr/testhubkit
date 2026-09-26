@@ -1,4 +1,4 @@
-﻿p = "${TESTHUB_ROOT}/static/js/tc_stash_storage.js"
+p = "${TESTHUB_ROOT}/static/js/tc_stash_storage.js"
 t = open(p, encoding="utf-8-sig").read()
 t = t.replace(
     "        var localDoc = saveAutoRecoveryLocal(payload);\n        saveAutoRecoveryLocal(payload);\n        saveAutoRecoveryRemote(payload);",

@@ -1,5 +1,6 @@
-import os
 from __future__ import annotations
+
+import os
 
 from flask import jsonify, request
 

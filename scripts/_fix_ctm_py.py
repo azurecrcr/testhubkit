@@ -1,4 +1,4 @@
-﻿p = "${TESTHUB_ROOT}/core/blueprints/api/test_cases/case_to_mindmap.py"
+p = "${TESTHUB_ROOT}/core/blueprints/api/test_cases/case_to_mindmap.py"
 t = open(p, encoding="utf-8-sig").read()
 if t.startswith("from core.services.auth.auth_session import get_current_user_id\nfrom __future__"):
     t = t.replace(

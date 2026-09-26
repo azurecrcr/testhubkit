@@ -1,4 +1,4 @@
-﻿import re
+import re
 ROOT = "${TESTHUB_ROOT}"
 
 # 1. Fix tc_stash_storage.js
