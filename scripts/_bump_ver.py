@@ -1,5 +1,5 @@
 ﻿import os
-ROOT = "/root/TestHub"
+ROOT = "${TESTHUB_ROOT}"
 ver = "20260610uai1"
 files = [
     "templates/_scripts_manifest.html",

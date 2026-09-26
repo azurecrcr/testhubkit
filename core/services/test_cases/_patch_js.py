@@ -1,5 +1,5 @@
 from pathlib import Path
-path = Path("/root/TestHub/static/js/tc_workbench/l3_ui/tc_lanhu_doc_manager.js")
+path = Path("${TESTHUB_ROOT}/static/js/tc_workbench/l3_ui/tc_lanhu_doc_manager.js")
 text = path.read_text(encoding="utf-8")
 
 # 1) vars after _docsReady

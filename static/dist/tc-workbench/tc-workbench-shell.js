@@ -2664,7 +2664,7 @@ document.getElementById('clear-base64')?.addEventListener('click', function() {
 // 音频生成工具
 let currentAudioBlobUrl = null;
 
-var HF_TOOLKIT_UNLOCK_PASSWORD = 'hugokit.123';
+var HF_TOOLKIT_UNLOCK_PASSWORD = String(window.__TESTHUB_FEATURE_UNLOCK_PASSWORD__ || '').trim();
 /** 仅当前页内存有效；刷新或关闭浏览器后重新上锁 */
 var HF_UNLOCK_MEMORY = {};
 
@@ -2767,7 +2767,7 @@ function bindAudioAiUnlockUi() {
     if (submitBtn) {
         submitBtn.addEventListener('click', function () {
             var pwd = (pwdInp?.value || '').trim();
-            if (pwd !== HF_TOOLKIT_UNLOCK_PASSWORD) {
+            if (!HF_TOOLKIT_UNLOCK_PASSWORD || pwd !== HF_TOOLKIT_UNLOCK_PASSWORD) {
                 hfUnlockFailToast('密码错误，请重试');
                 if (pwdInp) pwdInp.focus();
                 return;
@@ -11321,7 +11321,7 @@ function initTcPresetModelSettingsUi() {
     });
 }
 
-var TC_FEATURE_UNLOCK_PASSWORD = 'hugokit.123';
+var TC_FEATURE_UNLOCK_PASSWORD = String(window.__TESTHUB_FEATURE_UNLOCK_PASSWORD__ || '').trim();
 var TC_FEATURE_UNLOCK_STATE = { preset: false, rag: false };
 var tcFeatureUnlockPending = null;
 
@@ -11457,7 +11457,7 @@ function initTcFeatureUnlockUi() {
             var pending = tcFeatureUnlockPending;
             if (!pending) return;
             var pwd = (inp && inp.value || '').trim();
-            if (pwd !== TC_FEATURE_UNLOCK_PASSWORD) {
+            if (!TC_FEATURE_UNLOCK_PASSWORD || pwd !== TC_FEATURE_UNLOCK_PASSWORD) {
                 hfUnlockFailToast('密码错误，请重试');
                 if (inp) inp.focus();
                 return;

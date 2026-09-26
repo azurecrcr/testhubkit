@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-cd /root/TestHub
+cd ${TESTHUB_ROOT}
 echo "[1/3] build bundle..."
 python3 scripts/build_jms_load_test_bundle.py
 echo "[2/3] sync static to container..."

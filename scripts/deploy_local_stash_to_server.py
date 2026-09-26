@@ -2,7 +2,7 @@
 """仅将浏览器本地暂存功能补丁应用到服务器 index / load_test / jmeter panel。"""
 from pathlib import Path
 
-ROOT = Path("/root/TestHub")
+ROOT = Path("${TESTHUB_ROOT}")
 INDEX = ROOT / "templates/index.html"
 PANEL = ROOT / "templates/partials/tools/api_scenario_studio_panel.html"
 LOAD_HUB = ROOT / "templates/load_test_hub.html"

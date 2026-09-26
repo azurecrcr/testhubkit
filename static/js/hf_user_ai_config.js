@@ -128,14 +128,14 @@
     summary.textContent = [
       _quotaKindLine(quota.text, "文本"),
       _quotaKindLine(quota.vision, "视觉"),
-      _quotaKindLine(quota.cursor, "Cursor"),
+      _quotaKindLine(quota.cursor, "WebUI"),
     ].join(" · ");
     var bonusParts = [];
     var until = "";
     ["text", "vision", "cursor"].forEach(function (k) {
       var q = quota[k];
       if (q && q.bonus > 0) {
-        bonusParts.push(k === "text" ? "文本+" + q.bonus : k === "vision" ? "视觉+" + q.bonus : "Cursor+" + q.bonus);
+        bonusParts.push(k === "text" ? "文本+" + q.bonus : k === "vision" ? "视觉+" + q.bonus : "WebUI+" + q.bonus);
         if (q.bonus_until) until = q.bonus_until;
       }
     });

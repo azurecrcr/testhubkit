@@ -172,7 +172,7 @@
       kindLabel = "视觉模型";
     } else if (/CURSOR/i.test(code)) {
       kind = "cursor";
-      kindLabel = "Cursor Agent";
+      kindLabel = "WebUI 自动化";
     }
     hfAiQuotaNotify({
       kind: kind,
@@ -200,7 +200,7 @@
         kindLabel = "视觉模型";
       } else if (/Cursor/i.test(text) || /免费运行次数已用完/i.test(text)) {
         kind = "cursor";
-        kindLabel = "Cursor Agent";
+        kindLabel = "WebUI 自动化";
       }
       hfAiQuotaNotify({
         kind: kind,
@@ -227,7 +227,7 @@
     else if (input && typeof input.url === "string") url = input.url;
     if (!url) return false;
     if (/\/api\/jmeter-scenario\/scenes/i.test(url)) return false;
-    return /\/api\/(?:tc\/|test-cases|test-case-generator|user-ai|smart-edit|mindmap-smart-edit|builtin-llm|builtin-ai|doc-tools\/ai|media\/ai|hub\/ai|jmeter-scenario)/i.test(
+    return /\/api\/(?:tc\/|test-cases|test-case-generator|user-ai|smart-edit|mindmap-smart-edit|builtin-llm|builtin-ai|doc-tools\/ai|media\/ai|hub\/ai|ui-automation\/runs|jmeter-scenario)/i.test(
       url
     );
   }

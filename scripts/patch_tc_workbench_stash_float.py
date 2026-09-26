@@ -2,7 +2,7 @@
 """Patch TestHub server: float panel size persist, stash btn, remove yellow hint."""
 from pathlib import Path
 
-ROOT = Path("/root/TestHub")
+ROOT = Path("${TESTHUB_ROOT}")
 INDEX = ROOT / "templates/index.html"
 MAIN = ROOT / "templates/partials/tools/test_case_main.html"
 CSS = ROOT / "static/css/toolkit.css"

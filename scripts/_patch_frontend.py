@@ -1,5 +1,5 @@
 ﻿import os, re
-ROOT = "/root/TestHub"
+ROOT = "${TESTHUB_ROOT}"
 
 def read(rel):
     with open(os.path.join(ROOT, rel), "r", encoding="utf-8-sig") as f:

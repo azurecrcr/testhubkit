@@ -26,7 +26,7 @@ function patchQuerySelector(el) {
     };
 }
 
-const BASE = '/root/TestHub/static/js';
+const BASE = '${TESTHUB_ROOT}/static/js';
 const ctx = { window: {}, console };
 ctx.global = ctx.window;
 ctx.DOMParser = class {

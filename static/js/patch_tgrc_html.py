@@ -39,8 +39,8 @@ bumps = [
     "js/jms_tg_aggregate_report_ui.js",
     "css/jms_tg_aggregate_report_ui.css",
 ]
-bump_file(Path("/root/TestHub/templates/load_test_hub.html"), True, True, False, bumps)
-bump_file(Path("/root/TestHub/templates/api_scenario_studio_scripts.html"), False, False, True, [
+bump_file(Path("${TESTHUB_ROOT}/templates/load_test_hub.html"), True, True, False, bumps)
+bump_file(Path("${TESTHUB_ROOT}/templates/api_scenario_studio_scripts.html"), False, False, True, [
     "js/jms_tg_view_results_tree_catalog.js",
     "js/jms_tg_view_results_tree_jmx.js",
     "js/jms_tg_aggregate_report_catalog.js",

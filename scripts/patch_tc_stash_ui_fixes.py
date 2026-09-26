@@ -2,7 +2,7 @@
 """修复暂存列表收起、高度异常；调整录入弹窗 Tab 与提示词库背景。"""
 from pathlib import Path
 
-ROOT = Path("/root/TestHub")
+ROOT = Path("${TESTHUB_ROOT}")
 INDEX = ROOT / "templates/index.html"
 TOOLKIT = ROOT / "static/css/toolkit.css"
 PAGE_SHELLS = ROOT / "static/css/page_shells.css"

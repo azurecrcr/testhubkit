@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys
-sys.path.insert(0, "/root/TestHub")
+sys.path.insert(0, "${TESTHUB_ROOT}")
 from core.services.jmeter_scenario.demo_seed_db import upsert_default_demo_seed, get_demo_seed, DEMO_SEED_KEY
 
 r = upsert_default_demo_seed()

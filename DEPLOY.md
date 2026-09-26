@@ -31,8 +31,8 @@
 | 智能编辑（Excel + AI） | ✅ | `/tool/doc-tools` |
 | 提示词库 | ✅ | `/prompts` |
 | 账号 / 消息 / 反馈 | ✅ | `/auth` |
-| **Web UI 自动化** | ❌ 不开源 | 见 [opensource-exclude.txt](opensource-exclude.txt) |
-| **接口智能** | ❌ 不开源 | 同上 |
+| **Web UI 自动化** | ❌ 暂不开源（商业核心） | 见 [opensource-exclude.txt](opensource-exclude.txt) |
+| **接口智能** | ❌ 暂不开源（商业核心） | 同上 |
 
 私有模块列表：[opensource-exclude.txt](opensource-exclude.txt)
 

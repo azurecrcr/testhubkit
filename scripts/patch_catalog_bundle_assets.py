@@ -6,7 +6,7 @@ import re
 import subprocess
 import sys
 
-ROOT = Path('/root/TestHub')
+ROOT = Path('${TESTHUB_ROOT}')
 BUILD = ROOT / 'scripts/build_jms_load_test_bundle.py'
 VER = '20260707v2style1'
 

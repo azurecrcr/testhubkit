@@ -1,6 +1,6 @@
 from pathlib import Path
 
-p = Path("/root/TestHub/templates/index.html")
+p = Path("${TESTHUB_ROOT}/templates/index.html")
 t = p.read_text(encoding="utf-8")
 old = "href=\"{{ url_for('static', filename='css/toolkit.css') }}\""
 new = "href=\"{{ url_for('static', filename='css/toolkit.css') }}?v=20260525b\""

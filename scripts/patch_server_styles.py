@@ -2,7 +2,7 @@
 """One-off server patch: nav /app links, page_shells.css link, /app redirect."""
 from pathlib import Path
 
-ROOT = Path("/root/TestHub")
+ROOT = Path("${TESTHUB_ROOT}")
 
 PAGE_SHELLS_LINK = (
     '    <link rel="stylesheet" href="{{ url_for(\'static\', filename=\'css/page_shells.css\') }}?v=20260525">'

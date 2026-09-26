@@ -2,12 +2,12 @@
 const fs = require('fs');
 const vm = require('vm');
 const path = require('path');
-const BASE = '/root/TestHub/static/js';
+const BASE = '${TESTHUB_ROOT}/static/js';
 const ctx = { window: {}, console };
 ctx.global = ctx.window;
 function load(n) { vm.runInNewContext(fs.readFileSync(path.join(BASE, n), 'utf8'), ctx, { filename: n }); }
 
-const expected = JSON.parse(fs.readFileSync('/root/TestHub/tests/jmx_export_golden/expected.assertions.json', 'utf8'));
+const expected = JSON.parse(fs.readFileSync('${TESTHUB_ROOT}/tests/jmx_export_golden/expected.assertions.json', 'utf8'));
 
 // minimal export chain test for path query
 load('jms_http_path_query.js');

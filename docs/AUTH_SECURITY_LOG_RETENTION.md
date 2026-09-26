@@ -43,7 +43,7 @@
 
 访问/错误日志双写到容器 stdout 与宿主机目录 `deploy/nginx-logs/`（compose 挂载为 `/var/log/nginx-testhub`）。
 
-将 `deploy/logrotate-testhub-nginx` 安装到 `/etc/logrotate.d/testhub-nginx`，对 `/root/TestHub/deploy/nginx-logs/*.log` 按日轮转并至少保留 180 份。
+将 `deploy/logrotate-testhub-nginx` 安装到 `/etc/logrotate.d/testhub-nginx`，对 `${TESTHUB_ROOT}/deploy/nginx-logs/*.log` 按日轮转并至少保留 180 份。
 
 ## 整改回执可用表述
 

@@ -93,6 +93,14 @@ def create_app():
 
     register_blueprints(app)
 
+    @app.get("/favicon.ico")
+    def hf_favicon_ico():
+        """浏览器默认请求 /favicon.ico；站点实际用 SVG branding。"""
+        from flask import redirect, url_for
+
+        return redirect(url_for("static", filename="branding/favicon.svg"), code=302)
+
+
 
     try:
         from core.services.auth.user_activity_tracker import register_user_activity_tracker
@@ -171,6 +179,11 @@ def create_app():
     try:
         from core.services.auth.auth_db import ensure_auth_tables
         ensure_auth_tables()
+
+        from core.services.auth.aliyun_sms_credentials_db import (
+            ensure_aliyun_sms_credentials_table,
+        )
+        ensure_aliyun_sms_credentials_table()
         from core.services.auth.user_default_avatar_service import (
             backfill_missing_default_avatars,
             backfill_stale_default_avatars_without_file,
@@ -209,6 +222,8 @@ def create_app():
         ensure_anon_activity_tables()
     except Exception as exc:
         print("hub_anon_uv 表初始化跳过: %s" % exc)
+
+
 
 
     try:
@@ -265,6 +280,9 @@ def create_app():
             start_auth_security_log_retention_thread()
         except Exception as exc:  # noqa: BLE001
             print("安全日志留存清理线程启动失败: %s" % exc)
+        try:()
+        except Exception as exc:  # noqa: BLE001
+            print("接口智能调度线程启动失败: %s" % exc)
 
     # 嵌入式 Desktop MCP 反代（与 daemon 同机时启用；Docker 旁路请设 DESKTOP_RELAY_URL）
     if not (os.environ.get("DESKTOP_RELAY_URL") or "").strip():

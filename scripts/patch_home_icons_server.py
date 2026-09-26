@@ -10,7 +10,7 @@ except ImportError:
     subprocess.check_call(["pip3", "install", "pillow", "-q"])
     from PIL import Image
 
-ROOT = Path("/root/TestHub")
+ROOT = Path("${TESTHUB_ROOT}")
 ICONS = ROOT / "static" / "images" / "home" / "icons"
 CACHE = "20260525"
 TARGET = 96

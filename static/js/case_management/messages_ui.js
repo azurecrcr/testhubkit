@@ -757,7 +757,7 @@
     var nav = "none";
     var hint = "";
 
-    if (type === "project_invite") {
+    if (type === "project_invite" || type === "api_intel_workspace_invite") {
       group = "invite";
       tag = "邀请";
       nav = "none";
@@ -1121,8 +1121,12 @@
         content.appendChild(body);
       }
 
-      if (m.msg_type === "project_invite" && m.status !== "acted") {
+      if (
+        (m.msg_type === "project_invite" || m.msg_type === "api_intel_workspace_invite") &&
+        m.status !== "acted"
+      ) {
         var inviteId = (m.payload && m.payload.invite_id) || m.ref_id || "";
+        var isApiIntelInvite = m.msg_type === "api_intel_workspace_invite";
         var actions = document.createElement("div");
         actions.className = "cm-msg-card__actions";
         var btnAccept = document.createElement("button");
@@ -1133,11 +1137,27 @@
           if (!inviteId) return toast("邀请无效", "error");
           btnAccept.disabled = true;
           btnReject.disabled = true;
-          api("/api/case-management/invites/" + encodeURIComponent(inviteId) + "/accept", {
+          var acceptUrl = isApiIntelInvite
+            ? "/api/api-intel/invites/" + encodeURIComponent(inviteId) + "/accept"
+            : "/api/case-management/invites/" + encodeURIComponent(inviteId) + "/accept";
+          api(acceptUrl, {
             method: "POST",
             body: "{}",
           })
             .then(function (res) {
+              if (isApiIntelInvite) {
+                toast("已加入工作空间", "success");
+                var wid =
+                  (res && res.workspace_id) ||
+                  (m.payload && m.payload.workspace_id) ||
+                  "";
+                return loadMessages().then(function () {
+                  if (wid) {
+                    global.location.href =
+                      "/tool/api-intel?ws=" + encodeURIComponent(wid);
+                  }
+                });
+              }
               toast("已加入项目", "success");
               var pid =
                 (res && res.project_id) ||
@@ -1167,7 +1187,10 @@
           if (!inviteId) return toast("邀请无效", "error");
           btnAccept.disabled = true;
           btnReject.disabled = true;
-          api("/api/case-management/invites/" + encodeURIComponent(inviteId) + "/reject", {
+          var rejectUrl = isApiIntelInvite
+            ? "/api/api-intel/invites/" + encodeURIComponent(inviteId) + "/reject"
+            : "/api/case-management/invites/" + encodeURIComponent(inviteId) + "/reject";
+          api(rejectUrl, {
             method: "POST",
             body: "{}",
           })
@@ -1184,7 +1207,10 @@
         actions.appendChild(btnAccept);
         actions.appendChild(btnReject);
         content.appendChild(actions);
-      } else if (m.msg_type === "project_invite" && m.status === "acted") {
+      } else if (
+        (m.msg_type === "project_invite" || m.msg_type === "api_intel_workspace_invite") &&
+        m.status === "acted"
+      ) {
         var done = document.createElement("span");
         done.className = "cm-msg-card__meta";
         done.textContent = "已处理";
@@ -1217,7 +1243,7 @@
           openFeedbackDetailInbox(m);
         });
         foot.appendChild(fbDetailBtn);
-      } else if (meta.hint && m.msg_type !== "project_invite") {
+      } else if (meta.hint && m.msg_type !== "project_invite" && m.msg_type !== "api_intel_workspace_invite") {
         var hintEl = document.createElement("span");
         hintEl.className = "cm-msg-card__hint";
         hintEl.textContent = meta.hint;

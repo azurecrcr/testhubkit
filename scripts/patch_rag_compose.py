@@ -10,7 +10,7 @@ def main() -> int:
         print("usage: patch_rag_compose.py <embed_base_url> <embed_api_key> <embed_model>", file=sys.stderr)
         return 1
     base, api_key, embed = sys.argv[1:4]
-    compose = Path("/root/TestHub/docker-compose.yml")
+    compose = Path("${TESTHUB_ROOT}/docker-compose.yml")
     text = compose.read_text(encoding="utf-8")
     text = re.sub(r'RAG_ENABLED: "[^"]*"', 'RAG_ENABLED: "1"', text)
     for name, val in (

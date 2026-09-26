@@ -93,6 +93,8 @@ TOOLS: list[dict[str, Any]] = [
         "card_accent": "#0891b2",
         "card_rgb": "8, 145, 178",
     },
+
+
 ]
 
 # 兼容旧书签：路径段 → 当前 canonical tool id
@@ -122,6 +124,8 @@ MEDIA_DATA_HUB_LEGACY_ROUTE_IDS = frozenset(
     {"media-tool", "json-formatter", "base64-converter"}
 )
 
+
+# 独立整页模板（非 index.html 壳）
 STANDALONE_TOOL_IDS: frozenset[str] = frozenset({"doc-tools"})
 
 _TOOLS_BY_ID: dict[str, dict[str, Any]] = {t["id"]: t for t in TOOLS}
@@ -167,6 +171,7 @@ def is_media_data_hub_route(route_tool_id: str) -> bool:
     if route_tool_id in ("imagesizer", "image-format-converter", "audio-generator"):
         return True
     return False
+
 
 
 def media_data_hub_tab_for_route(route_tool_id: str, query_tab: str | None = None) -> str:

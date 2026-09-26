@@ -24,7 +24,7 @@ DAILY_CURSOR_LIMIT = 1
 KIND_LABELS = {
     "text": "文本模型",
     "vision": "视觉模型",
-    "cursor": "Cursor Agent",
+    "cursor": "WebUI 自动化",
 }
 
 LIMITS = {
@@ -50,7 +50,7 @@ USER_AI_CURSOR_QUOTA_EXCEEDED = (
 )
 SITE_TEXT_CONFIG_REQUIRED = "全站文本 AI 未配置，请联系管理员"
 SITE_VISION_CONFIG_REQUIRED = "全站视觉 AI 未配置，请联系管理员"
-SITE_CURSOR_CONFIG_REQUIRED = "全站 Cursor Agent 未配置，请联系管理员"
+SITE_CURSOR_CONFIG_REQUIRED = "全站 Cursor Agent（WebUI 自动化）未配置，请联系管理员"
 
 
 def _remaining(kind: str, used: int) -> int:

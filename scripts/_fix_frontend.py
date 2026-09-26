@@ -1,5 +1,5 @@
 ﻿import os
-ROOT = "/root/TestHub"
+ROOT = "${TESTHUB_ROOT}"
 
 def rw(rel):
     p = os.path.join(ROOT, rel)

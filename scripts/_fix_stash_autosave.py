@@ -1,5 +1,5 @@
 ﻿import re
-ROOT = "/root/TestHub"
+ROOT = "${TESTHUB_ROOT}"
 
 # 1. Fix tc_stash_storage.js
 p = ROOT + "/static/js/tc_stash_storage.js"

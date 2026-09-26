@@ -2,7 +2,7 @@
 """Patch server index.html for left-float panel default collapsed."""
 from pathlib import Path
 
-ROOT = Path("/root/TestHub")
+ROOT = Path("${TESTHUB_ROOT}")
 INDEX = ROOT / "templates/index.html"
 
 

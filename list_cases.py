@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys
-sys.path.insert(0, '/root/TestHub')
+sys.path.insert(0, '${TESTHUB_ROOT}')
 from core.services.test_cases.requirement_case_db import list_requirement_cases
 rows = list_requirement_cases('1')
 print('count', len(rows))

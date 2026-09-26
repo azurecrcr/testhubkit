@@ -31,7 +31,6 @@ def _context_test_data_builder() -> dict:
     }
 
 
-# canonical tool_id → (template, extra_context)
 _STANDALONE_PAGES: dict[str, tuple[str, object]] = {
     "doc-tools": ("doc_tools.html", lambda: {}),
     "case-management": ("case_management.html", lambda: {}),

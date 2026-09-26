@@ -47,10 +47,10 @@
                             <span>API Base URL</span>
                             <input type="text" id="hf-user-ai-base-url" autocomplete="off" placeholder="http://host:port/v1">
                         </label>
-                        <label class="hf-user-ai-modal__field">
-                            <span>API Key</span>
-                            <input type="password" id="hf-user-ai-api-key" autocomplete="off" placeholder="密钥">
-                        </label>
+                        <div class="hf-user-ai-modal__field">
+                            <label for="hf-user-ai-api-key"><span>API Key</span></label>
+                            <form class="hf-pwd-form" autocomplete="off" onsubmit="return false;"><input type="password" id="hf-user-ai-api-key" autocomplete="off" placeholder="密钥"></form>
+                        </div>
                         <label class="hf-user-ai-modal__field">
                             <span>文本模型</span>
                             <input type="text" id="hf-user-ai-model" autocomplete="off" placeholder="如 Qwen3-30B-A3B">
@@ -76,10 +76,10 @@
                             <span>视觉 API Base URL</span>
                             <input type="text" id="hf-user-ai-vision-base-url" autocomplete="off" placeholder="https://dashscope.aliyuncs.com/compatible-mode/v1">
                         </label>
-                        <label class="hf-user-ai-modal__field">
-                            <span>视觉 API Key</span>
-                            <input type="password" id="hf-user-ai-vision-api-key" autocomplete="off" placeholder="密钥">
-                        </label>
+                        <div class="hf-user-ai-modal__field">
+                            <label for="hf-user-ai-vision-api-key"><span>视觉 API Key</span></label>
+                            <form class="hf-pwd-form" autocomplete="off" onsubmit="return false;"><input type="password" id="hf-user-ai-vision-api-key" autocomplete="off" placeholder="密钥"></form>
+                        </div>
                         <label class="hf-user-ai-modal__field hf-user-ai-modal__field--full">
                             <span>视觉模型</span>
                             <input type="text" id="hf-user-ai-vision-model" autocomplete="off" placeholder="如 qwen-vl-max">
@@ -93,15 +93,15 @@
                     <div class="hf-user-ai-modal__card-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7-6.3-4.6L5.7 21l2.3-7-6-4.6h7.6L12 2z"/></svg>
                     </div>
-                    <h4 class="hf-user-ai-modal__section-title" id="hf-user-ai-section-cursor">Cursor Agent</h4>
+                    <h4 class="hf-user-ai-modal__section-title" id="hf-user-ai-section-cursor">Cursor Agent（WebUI 自动化）</h4>
                 </div>
                 <div class="hf-user-ai-modal__card-body">
                     <div class="hf-user-ai-modal__grid hf-user-ai-modal__grid--cursor-agent">
-                        <label class="hf-user-ai-modal__field hf-user-ai-modal__field--control">
-                            <span class="hf-user-ai-modal__field-label">Cursor API Key</span>
-                            <input type="password" id="hf-user-ai-cursor-api-key" autocomplete="off" placeholder="sk-…" spellcheck="false">
-                            <span class="hf-user-ai-modal__hint hf-user-ai-modal__hint--key">Cursor → Access Tokens 获取密钥，用于 Cursor Agent 执行</span>
-                        </label>
+                        <div class="hf-user-ai-modal__field hf-user-ai-modal__field--control">
+                            <label class="hf-user-ai-modal__field-label" for="hf-user-ai-cursor-api-key">Cursor API Key</label>
+                            <form class="hf-pwd-form" autocomplete="off" onsubmit="return false;"><input type="password" id="hf-user-ai-cursor-api-key" autocomplete="off" placeholder="sk-…" spellcheck="false"></form>
+                            <span class="hf-user-ai-modal__hint hf-user-ai-modal__hint--key">Cursor → Access Tokens 获取密钥，用于 WebUI 自动化 Agent 执行</span>
+                        </div>
                         <div class="hf-user-ai-modal__field hf-user-ai-modal__field--control" role="group" aria-labelledby="hf-user-ai-agent-model-label-wrap">
                             <span id="hf-user-ai-agent-model-label-wrap" class="hf-user-ai-modal__field-label">Agent 模型<em class="hf-user-ai-modal__note-inline">仅国内可用</em></span>
                             <div class="hf-user-ai-model-picker" id="hf-user-ai-agent-model-picker">
@@ -133,3 +133,17 @@
         </div>
     </div>
 </div>
+
+<style>
+/* password 字段包 form，消除 Chrome「Password field is not contained in a form」警告；不改布局 */
+/* 真实盒模型 form：display:contents 会被 Chrome 视为「密码框不在 form 内」 */
+form.hf-pwd-form {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+  width: 100%;
+}
+form.hf-pwd-form > input { width: 100%; box-sizing: border-box; }
+</style>
