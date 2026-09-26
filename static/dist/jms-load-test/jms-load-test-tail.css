@@ -1,0 +1,529 @@
+/* ---- css/jms_tg_load_drawer_ui.css ---- */
+/**
+ * 压测负载抽屉 UI（隔离模块 · 仅 #modal-tg-load）
+ */
+#modal-tg-load .jms-vars-modal__head {
+    background: linear-gradient(
+        125deg,
+        rgba(238, 242, 255, 0.98) 0%,
+        rgba(245, 243, 255, 0.94) 52%,
+        rgba(255, 255, 255, 0.99) 100%
+    );
+    border-bottom: 1px solid rgba(99, 102, 241, 0.22);
+}
+
+#modal-tg-load .jms-vars-modal__icon--load {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    box-shadow: 0 2px 10px rgba(79, 70, 229, 0.28);
+}
+
+#modal-tg-load .jms-vars-modal__title {
+    color: #3730a3 !important;
+    font-weight: 800;
+    letter-spacing: 0.012em;
+}
+
+#modal-tg-load .jms-vars-modal__sub {
+    color: #64748b !important;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+body.lth-studio-v2.lth-drawer-open #modal-tg-load .jms-vars-modal__title {
+    color: #4338ca !important;
+}
+
+body.lth-studio-v2.lth-drawer-open #modal-tg-load .jms-vars-modal__sub {
+    color: #64748b !important;
+}
+
+#modal-tg-load .jms-tg-load-kind-badge {
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: none;
+    border-radius: 999px;
+    padding: 0.15rem 0.5rem;
+}
+
+#modal-tg-load .jms-tg-load-kind-badge--setup {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #86efac;
+}
+
+#modal-tg-load .jms-tg-load-kind-badge--post {
+    background: #ffedd5;
+    color: #9a3412;
+    border: 1px solid #fdba74;
+}
+
+#modal-tg-load .jms-tg-load-kind-badge--thread {
+    background: #e0e7ff;
+    color: #3730a3;
+    border: 1px solid #c7d2fe;
+}
+
+#modal-tg-load .jms-vars-plan__head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+#modal-tg-load .jms-tg-load-card__name {
+    font-size: 12px;
+    font-weight: 700;
+    color: #334155;
+    line-height: 1.35;
+    min-width: 0;
+    word-break: break-word;
+}
+
+#modal-tg-load .jms-tg-load-card--setup {
+    border-color: #bbf7d0;
+}
+
+#modal-tg-load .jms-tg-load-card--setup .jms-vars-plan__head {
+    background: #f0fdf4;
+    border-bottom-color: #bbf7d0;
+}
+
+#modal-tg-load .jms-tg-load-card--post {
+    border-color: #fed7aa;
+}
+
+#modal-tg-load .jms-tg-load-card--post .jms-vars-plan__head {
+    background: #fff7ed;
+    border-bottom-color: #fed7aa;
+}
+
+#modal-tg-load .jms-tg-load-card--thread .jms-vars-plan__head {
+    background: #f5f3ff;
+    border-bottom-color: #e0e7ff;
+}
+
+/* ---- css/jms_scene_monitor_drawer_ui.css ---- */
+/**
+ * 场景与监控抽屉 UI（隔离模块 · 仅 #modal-scene-monitor）
+ */
+#modal-scene-monitor .jms-vars-modal__head {
+    background: linear-gradient(
+        125deg,
+        rgba(240, 249, 255, 0.98) 0%,
+        rgba(236, 254, 255, 0.94) 52%,
+        rgba(255, 255, 255, 0.99) 100%
+    );
+    border-bottom: 1px solid rgba(14, 165, 233, 0.22);
+}
+
+#modal-scene-monitor .jms-vars-modal__icon--scene {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    box-shadow: 0 2px 10px rgba(2, 132, 199, 0.28);
+}
+
+#modal-scene-monitor .jms-vars-modal__title {
+    color: #0c4a6e !important;
+    font-weight: 800;
+    letter-spacing: 0.012em;
+}
+
+#modal-scene-monitor .jms-vars-modal__sub {
+    color: #64748b !important;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+body.lth-studio-v2.lth-drawer-open #modal-scene-monitor .jms-vars-modal__title {
+    color: #0369a1 !important;
+}
+
+body.lth-studio-v2.lth-drawer-open #modal-scene-monitor .jms-vars-modal__sub {
+    color: #64748b !important;
+}
+
+/* ---- css/jms_tg_add_choice_ui.css ---- */
+/**
+ * 添加线程组 · 类型选择弹窗（隔离模块，仅 #modal-tg-add-choice）
+ */
+#modal-tg-add-choice {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.5);
+}
+
+#modal-tg-add-choice.jms-modal-open {
+    display: flex !important;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-card {
+    width: 100%;
+    max-width: 32rem;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    padding: 1.25rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-sub {
+    margin-top: 0.45rem;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #475569;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-actions {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+}
+
+@media (max-width: 640px) {
+    #modal-tg-add-choice .jms-tg-add-choice-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    padding: 0.85rem 0.95rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-btn:hover {
+    border-color: #cbd5e1;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-btn--setup:hover {
+    border-color: #86efac;
+    background: #f0fdf4;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-btn--teardown:hover {
+    border-color: #fdba74;
+    background: #fff7ed;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-btn--thread:hover {
+    border-color: #93c5fd;
+    background: #eff6ff;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-btn__label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+#modal-tg-add-choice .jms-tg-add-choice-btn__hint {
+    font-size: 11px;
+    line-height: 1.45;
+    color: #64748b;
+}
+
+body.lth-studio-v2 #modal-tg-add-choice.jms-modal-open {
+    z-index: 10300 !important;
+    background: rgba(255, 255, 255, 0.38) !important;
+    backdrop-filter: blur(12px) saturate(1.25) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(1.25) !important;
+}
+
+body.lth-studio-v2 #modal-tg-add-choice .jms-tg-add-choice-card {
+    max-width: 28rem;
+    border: 1px solid rgba(255, 255, 255, 0.95) !important;
+    border-radius: 16px !important;
+    background: linear-gradient(148deg, rgba(255, 255, 255, 0.97) 0%, rgba(248, 250, 252, 0.94) 100%) !important;
+    box-shadow: 0 18px 48px -12px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(148, 163, 184, 0.12) !important;
+}
+
+/* ---- css/jms_studio_workspace_glass.css ---- */
+/**
+ * 压测造数 · 场景搭建专业渐变 + 线程组响应式网格（隔离模块 v2）
+ * 作用域：body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white
+ * 覆盖：jms_tg_layout_relaxed / jms_scenario_wide_center
+ */
+
+/* ---- 取消超宽屏居中限宽 ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-shell {
+    max-width: none !important;
+    width: 100% !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white #jms-visual-wrap,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white #jms-plans-container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white #jms-visual-wrap {
+    display: block !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-plan-card {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+
+/* ---- 场景画布：仅布局容器，不再叠加第二层背景 ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-canvas {
+    position: relative !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+/* ---- 场景搭建：与顶栏 hf-jmeter-hero 同款渐变（仅 jmeter-tab） ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white {
+    --lth-ws-hero-navy: #1e3a5f;
+    --lth-ws-hero-teal: #0f766e;
+    --lth-ws-hero-cyan: #0e7490;
+    --lth-ws-accent: #5eead4;
+    --lth-ws-accent-soft: rgba(45, 212, 191, 0.14);
+    --lth-ws-line: rgba(45, 212, 191, 0.32);
+    position: relative !important;
+    isolation: isolate !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 0.55rem 0.55rem 0.65rem !important;
+    border-radius: 1rem !important;
+    border: 1px solid rgba(45, 212, 191, 0.25) !important;
+    background-color: #0f766e !important;
+    background: linear-gradient(
+        125deg,
+        #1e3a5f 0%,
+        #0f766e 45%,
+        #0e7490 100%
+    ) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow:
+        0 1px 3px rgba(15, 23, 42, 0.12),
+        0 12px 32px rgba(15, 23, 42, 0.14) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+    opacity: 1 !important;
+    background:
+        radial-gradient(ellipse 70% 50% at 100% 0%, rgba(255, 255, 255, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 45% at 0% 100%, rgba(34, 211, 238, 0.18) 0%, transparent 45%) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white::after {
+    content: none !important;
+    display: none !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white > * {
+    position: relative !important;
+    z-index: 1 !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .lth-studio-workspace__head .jms-section-head__left {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-section-title {
+    color: rgba(240, 253, 250, 0.98) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.012em !important;
+    text-shadow: 0 1px 2px rgba(15, 23, 42, 0.22) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-studio-plan-toolbar {
+    background: linear-gradient(
+        125deg,
+        rgba(255, 255, 255, 0.16) 0%,
+        rgba(255, 255, 255, 0.1) 45%,
+        rgba(255, 255, 255, 0.08) 100%
+    ) !important;
+    border: 1px solid rgba(45, 212, 191, 0.32) !important;
+    border-radius: 10px !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+/* ---- 内容层透明，露出工作区渐变底 ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white #jms-visual-wrap,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white #jms-plans-container,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-plan-card,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-plan-tgs {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* ---- 头部去嵌套白底（仅 studio v2 工作区） ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-section-head.lth-studio-workspace__head {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding-bottom: 0.45rem !important;
+    margin-bottom: 0.35rem !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-section-head__left {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* ---- 压测页强制覆盖 inline 碎玻璃（仅 jmeter-tab） ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white::after {
+    content: none !important;
+    display: none !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-section-title {
+    color: rgba(240, 253, 250, 0.98) !important;
+    text-shadow: 0 1px 2px rgba(15, 23, 42, 0.22) !important;
+}
+
+/* ---- 底部操作栏：浅蓝渐变（仅压测造数 jmeter-tab） ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock {
+    position: sticky !important;
+    bottom: 0 !important;
+    z-index: 45 !important;
+    margin-top: 0.35rem !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(96, 165, 250, 0.38) !important;
+    background-color: #c5e4f6 !important;
+    background: linear-gradient(
+        168deg,
+        #dceefb 0%,
+        #c9e4f8 34%,
+        #b6daf3 68%,
+        #d2e9f8 100%
+    ) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow:
+        0 -3px 22px -10px rgba(37, 99, 235, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.42) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock__inner {
+    padding: 0.28rem 0.55rem !important;
+    gap: 0.35rem !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .jms-action-btn,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .lth-dock-btn {
+    border-radius: 8px !important;
+    font-size: 0.68rem !important;
+    font-weight: 700 !important;
+    padding: 0.28rem 0.62rem !important;
+    border: 1px solid rgba(96, 165, 250, 0.42) !important;
+    background: rgba(186, 230, 253, 0.62) !important;
+    color: #1e4a7a !important;
+    box-shadow: 0 1px 3px rgba(37, 99, 235, 0.08) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .jms-action-btn:hover:not(:disabled),
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .lth-dock-btn:hover:not(:disabled) {
+    background: rgba(147, 197, 253, 0.72) !important;
+    border-color: rgba(59, 130, 246, 0.55) !important;
+    color: #0c3d6e !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock #btn-validate,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .lth-dock-btn--ghost {
+    background: rgba(191, 219, 254, 0.58) !important;
+    border-color: rgba(96, 165, 250, 0.48) !important;
+    color: #1d4f82 !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock #btn-validate:hover:not(:disabled),
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .lth-dock-btn--ghost:hover:not(:disabled) {
+    background: rgba(147, 197, 253, 0.78) !important;
+    border-color: rgba(59, 130, 246, 0.62) !important;
+    color: #0c3d6e !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock #btn-generate-result,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .lth-dock-btn--primary {
+    background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 50%, #0284c7 100%) !important;
+    border-color: rgba(2, 132, 199, 0.35) !important;
+    color: #f0f9ff !important;
+    box-shadow: 0 2px 10px -2px rgba(2, 132, 199, 0.45) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock #btn-generate-result:hover:not(:disabled),
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .lth-dock-btn--primary:hover:not(:disabled) {
+    filter: brightness(1.05) !important;
+    color: #ffffff !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .jms-action-btn:disabled,
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock .lth-dock-btn:disabled {
+    opacity: 0.52 !important;
+    cursor: not-allowed !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-more-panel {
+    border: 1px solid rgba(96, 165, 250, 0.42) !important;
+    background: linear-gradient(180deg, #e0f2fe 0%, #dbeafe 100%) !important;
+    box-shadow: 0 10px 28px -8px rgba(37, 99, 235, 0.22) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-more-item {
+    color: #1e4a7a !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-more-item:hover {
+    background: rgba(147, 197, 253, 0.38) !important;
+    color: #0c3d6e !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-studio-dock #jm-stash-count-badge {
+    color: #2563eb !important;
+}
+
+/* ---- YAML 模式：尊重 .hidden 切换（隔离，v20260627） ---- */
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white #jms-visual-wrap.hidden {
+    display: none !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white #jms-yaml-wrap:not(.hidden) {
+    display: block !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-editor-yaml .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white {
+    background: linear-gradient(
+        152deg,
+        rgba(255, 255, 255, 0.96) 0%,
+        rgba(248, 250, 252, 0.94) 45%,
+        rgba(240, 253, 250, 0.92) 100%
+    ) !important;
+    border-color: rgba(148, 163, 184, 0.35) !important;
+    box-shadow:
+        0 0 0 1px rgba(148, 163, 184, 0.1),
+        0 12px 32px rgba(15, 23, 42, 0.08) !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-editor-yaml .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white::before {
+    opacity: 0.35 !important;
+}
+body.lth-studio-v2.lth-hub-jmeter-tab.lth-editor-yaml .lth-hub-scope section.lth-studio-workspace.rounded-2xl.border.border-slate-200.bg-white .jms-section-title {
+    color: #0f766e !important;
+    text-shadow: none !important;
+}
+

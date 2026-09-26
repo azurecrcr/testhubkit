@@ -80,8 +80,8 @@ __pycache__/
 *.so
 .Python
 build/
-dist/
-static/dist/
+# 仅忽略仓库根目录 dist；开源部署需要提交 static/dist 前端构建产物
+/dist/
 frontend/**/dist/
 *.egg-info/
 .eggs/
@@ -263,3 +263,8 @@ scripts/setup_omniflow_tunnel_user.sh
 scripts/ui_automation_minimal_notice.*
 scripts/_selftest_vision_admin.py
 api_intel_l5_overview.js
+
+# dist ����ʱ���ݲ��ύ
+static/dist/**/*.bak*
+static/dist/**/*.orig
+
